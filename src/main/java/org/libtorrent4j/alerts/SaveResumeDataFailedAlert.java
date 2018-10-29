@@ -1,0 +1,22 @@
+package org.libtorrent4j.alerts;
+
+import org.libtorrent4j.ErrorCode;
+import org.libtorrent4j.swig.save_resume_data_failed_alert;
+
+/**
+ * This alert is generated instead of ``save_resume_data_alert`` if there was an error
+ * generating the resume data. ``error`` describes what went wrong.
+ *
+ * @author gubatron
+ * @author aldenml
+ */
+public final class SaveResumeDataFailedAlert extends TorrentAlert<save_resume_data_failed_alert> {
+
+    SaveResumeDataFailedAlert(save_resume_data_failed_alert alert) {
+        super(alert);
+    }
+
+    public ErrorCode error() {
+        return new ErrorCode(alert.getError());
+    }
+}
