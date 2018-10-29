@@ -1,0 +1,245 @@
+apply plugin: 'java'
+apply plugin: 'signing'
+apply plugin: 'maven'
+
+group 'com.frostwire'
+archivesBaseName = 'jlibtorrent'
+version '1.2.0.18'
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+if (!hasProperty('ossrhUsername')) {
+    ext.ossrhUsername = ''
+}
+
+if (!hasProperty('ossrhPassword')) {
+    ext.ossrhPassword = ''
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+
+    environment "LD_LIBRARY_PATH": new File('.').absolutePath
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadoc2(type: Javadoc) {
+    source = sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc2) {
+    classifier = 'javadoc'
+    from javadoc2.destinationDir
+}
+
+task nativeMacOSXJar(type: Zip) {
+    destinationDir file("$buildDir/libs")
+    baseName 'jlibtorrent-macosx'
+    extension 'jar'
+    from fileTree(dir: 'swig/bin/release/macosx', excludes: ['**/ed25519', '**/src'], include: '**/*libjlibtorrent.dylib')
+    into 'lib/'
+    rename(".dylib", "-${version}.dylib")
+}
+
+task nativeWindowsJar(type: Zip) {
+    destinationDir file("$buildDir/libs")
+    baseName 'jlibtorrent-windows'
+    extension 'jar'
+    from fileTree(dir: 'swig/bin/release/windows', excludes: ['**/ed25519', '**/src'], include: '**/*jlibtorrent.dll')
+    into 'lib/'
+    rename(".dll", "-${version}.dll")
+}
+
+task nativeLinuxJar(type: Zip) {
+    destinationDir file("$buildDir/libs")
+    baseName 'jlibtorrent-linux'
+    extension 'jar'
+    from fileTree(dir: 'swig/bin/release/linux', excludes: ['**/ed25519', '**/src'], include: '**/*libjlibtorrent.so')
+    into 'lib/'
+    rename(".so", "-${version}.so")
+}
+
+task nativeAndroidArmJar(type: Zip) {
+    destinationDir file("$buildDir/libs")
+    baseName 'jlibtorrent-android-arm'
+    extension 'jar'
+    from fileTree(dir: 'swig/bin/release/android', include: 'armeabi-v7a/libjlibtorrent.so')
+    into 'lib/'
+    rename(".so", "-${version}.so")
+}
+
+task nativeAndroidX86Jar(type: Zip) {
+    destinationDir file("$buildDir/libs")
+    baseName 'jlibtorrent-android-x86'
+    extension 'jar'
+    from fileTree(dir: 'swig/bin/release/android', include: 'x86/libjlibtorrent.so')
+    into 'lib/'
+    rename(".so", "-${version}.so")
+}
+
+task nativeAndroidArm64Jar(type: Zip) {
+    destinationDir file("$buildDir/libs")
+    baseName 'jlibtorrent-android-arm64'
+    extension 'jar'
+    from fileTree(dir: 'swig/bin/release/android', include: 'arm64-v8a/libjlibtorrent.so')
+    into 'lib/'
+    rename(".so", "-${version}.so")
+}
+
+task nativeAndroidX64Jar(type: Zip) {
+    destinationDir file("$buildDir/libs")
+    baseName 'jlibtorrent-android-x86_64'
+    extension 'jar'
+    from fileTree(dir: 'swig/bin/release/android', include: 'x86_64/libjlibtorrent.so')
+    into 'lib/'
+    rename(".so", "-${version}.so")
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+    archives nativeMacOSXJar
+    archives nativeWindowsJar
+    archives nativeLinuxJar
+    archives nativeAndroidArmJar
+    archives nativeAndroidX86Jar
+    archives nativeAndroidArm64Jar
+    archives nativeAndroidX64Jar
+}
+
+signing {
+    required { gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            addFilter('jlibtorrent') { artifact, file ->
+                artifact.name == 'jlibtorrent'
+            }
+            addFilter('jlibtorrent-macosx') { artifact, file ->
+                artifact.name == 'jlibtorrent-macosx'
+            }
+            addFilter('jlibtorrent-windows') { artifact, file ->
+                artifact.name == 'jlibtorrent-windows'
+            }
+            addFilter('jlibtorrent-linux') { artifact, file ->
+                artifact.name == 'jlibtorrent-linux'
+            }
+            addFilter('jlibtorrent-android-arm') { artifact, file ->
+                artifact.name == 'jlibtorrent-android-arm'
+            }
+            addFilter('jlibtorrent-android-x86') { artifact, file ->
+                artifact.name == 'jlibtorrent-android-x86'
+            }
+            addFilter('jlibtorrent-android-arm64') { artifact, file ->
+                artifact.name == 'jlibtorrent-android-arm64'
+            }
+            addFilter('jlibtorrent-android-x86_64') { artifact, file ->
+                artifact.name == 'jlibtorrent-android-x86_64'
+            }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom('jlibtorrent').withXml {
+                asNode().children().last() + pomData()
+            }
+            pom('jlibtorrent-macosx').withXml {
+                asNode().children().last() + pomData()
+                addDependency(asNode())
+
+            }
+            pom('jlibtorrent-windows').withXml {
+                asNode().children().last() + pomData()
+                addDependency(asNode())
+            }
+            pom('jlibtorrent-linux').withXml {
+                asNode().children().last() + pomData()
+                addDependency(asNode())
+            }
+            pom('jlibtorrent-android-arm').withXml {
+                asNode().children().last() + pomData()
+                addDependency(asNode())
+            }
+            pom('jlibtorrent-android-x86').withXml {
+                asNode().children().last() + pomData()
+                addDependency(asNode())
+            }
+            pom('jlibtorrent-android-arm64').withXml {
+                asNode().children().last() + pomData()
+                addDependency(asNode())
+            }
+            pom('jlibtorrent-android-x86_64').withXml {
+                asNode().children().last() + pomData()
+                addDependency(asNode())
+            }
+        }
+    }
+}
+
+def pomData() {
+    return {
+        resolveStrategy = Closure.DELEGATE_FIRST
+        name 'frostwire-jlibtorrent'
+        description 'A swig Java interface for libtorrent by the makers of FrostWire.'
+        url 'https://github.com/frostwire/frostwire-jlibtorrent'
+        scm {
+            connection 'scm:git:git://github.com/frostwire/frostwire-jlibtorrent.git'
+            developerConnection 'scm:git:ssh:git@github.com/frostwire/frostwire-jlibtorrent.git'
+            url 'https://github.com/frostwire/frostwire-jlibtorrent'
+        }
+        licenses {
+            license {
+                name 'The MIT License'
+                url 'https://github.com/frostwire/frostwire-jlibtorrent/blob/master/LICENSE.md'
+            }
+        }
+        developers {
+            developer {
+                id 'gubatron'
+                name 'Angel Leon'
+                email 'gubatron@gmail.com'
+            }
+            developer {
+                id 'aldenml'
+                name 'Alden Torres'
+                email 'aldenml@gmail.com'
+            }
+        }
+    }
+}
+
+def addDependency(root) {
+    def dependenciesNode = root.dependencies[0]
+    if (!dependenciesNode) {
+        dependenciesNode = root.appendNode('dependencies')
+    }
+    def depNode = dependenciesNode.appendNode('dependency')
+    depNode.appendNode('groupId', group)
+    depNode.appendNode('artifactId', archivesBaseName)
+    depNode.appendNode('version', version)
+}
