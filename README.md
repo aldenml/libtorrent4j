@@ -1,8 +1,7 @@
-frostwire-jlibtorrent
+libtorrent4j
 =====================
-![JLibtorrent Logo](logo/jlibtorrent_logo_color.png)
 
-A swig Java interface for libtorrent by the makers of FrostWire.
+A swig Java interface for libtorrent.
 
 Develop libtorrent based apps with the joy of coding in Java.
 
