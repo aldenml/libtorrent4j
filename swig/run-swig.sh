@@ -12,14 +12,14 @@ function refixCode() {
 
 function runJni()
 {
-    JAVA_SRC_OUTPUT=../src/main/java/com/frostwire/jlibtorrent/swig
+    JAVA_SRC_OUTPUT=../src/main/java/org/libtorrent4j/swig
 
     rm -rf ${JAVA_SRC_OUTPUT}
     mkdir -p ${JAVA_SRC_OUTPUT}
 
     swig -c++ -java -o libtorrent_jni.cpp \
         -outdir ${JAVA_SRC_OUTPUT} \
-        -package com.frostwire.jlibtorrent.swig \
+        -package org.libtorrent4j.swig \
         -I${BOOST_ROOT} \
         -I${LIBTORRENT_ROOT}/include \
         -DBOOST_ASIO_DECL="" \
@@ -58,9 +58,9 @@ function runJni()
     # compile with -fno-rtti.
     sed -i '' 's/dynamic_cast<SwigDirector_/static_cast<SwigDirector_/g' libtorrent_jni.cpp
 
-    # replace jlibtorrent version
+    # replace libtorrent4j version
     GRADLE_VERSION=`sed -n -e '/^version /s/.* //p' ../build.gradle | tr -d "'"`
-    sed -i '' 's/\$JLIBTORRENT_VERSION\$/'"${GRADLE_VERSION}"'/g' ../src/main/java/com/frostwire/jlibtorrent/swig/libtorrent_jni.java
+    sed -i '' 's/\$LIBTORRENT4J_VERSION\$/'"${GRADLE_VERSION}"'/g' ../src/main/java/org/libtorrent4j/swig/libtorrent_jni.java
 }
 
 fixCode
