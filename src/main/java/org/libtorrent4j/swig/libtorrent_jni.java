@@ -13,25 +13,25 @@ public class libtorrent_jni {
 
     public static String jlibtorrentVersion() {
         // extracted from the gradle with the run-swig step
-        return "$JLIBTORRENT_VERSION$";
+        return "$LIBTORRENT4J_VERSION$";
     }
 
     static {
         try {
-            String path = System.getProperty("jlibtorrent.jni.path", "");
+            String path = System.getProperty("libtorrent4j.jni.path", "");
             if ("".equals(path)) {
                 try {
-                    System.loadLibrary("jlibtorrent-" + jlibtorrentVersion());
+                    System.loadLibrary("torrent4j-" + jlibtorrentVersion());
                 } catch (LinkageError e) {
                     // give it a try to the name without version
-                    System.loadLibrary("jlibtorrent");
+                    System.loadLibrary("torrent4j");
                 }
             } else {
                 System.load(path);
             }
         } catch (LinkageError e) {
             throw new LinkageError(
-                "Look for your architecture binary instructions at: https://github.com/frostwire/frostwire-jlibtorrent", e);
+                "Look for your architecture binary instructions at: https://github.com/aldenml/libtorrent4j", e);
         }
     }
 

@@ -64,7 +64,7 @@ feature.compose <ssl>on :
     <openssl-lib>$(OPENSSL_ROOT)/lib
     ;
 
-lib jlibtorrent
+lib torrent4j
 
     : # sources
 	 libtorrent_jni.cpp

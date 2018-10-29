@@ -11,6 +11,6 @@ libtorrent4j.iws
 *.o
 /swig/bin
 /swig/build
-/libjlibtorrent*.dylib
-/libjlibtorrent*.so
-/jlibtorrent*.dll
+/libtorrent4j*.dylib
+/libtorrent4j*.so
+/libtorrent4j*.dll
