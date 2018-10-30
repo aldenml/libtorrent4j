@@ -40,7 +40,7 @@ before_install:
 # libtorrent: download and checkout revision
   - git clone https://github.com/arvidn/libtorrent
   - cd libtorrent
-  - git checkout 6724c1eec03caa27f42c48c89367b35d718b8c02
+  - git checkout a3eed212a10b3b496451327d265f5549954d2bc6
   - cd ..
   - export LIBTORRENT_ROOT=$PWD/libtorrent
 
@@ -139,75 +139,75 @@ before_install:
       export run_openssl_configure="./Configure darwin64-x86_64-cc ${OPENSSL_NO_OPTS} --prefix=$OPENSSL_SOURCE/../openssl";
     fi
 
-# jlibtorrent
+# libtorrent4j
   # android-arm
   - if [[ $os_build == "android" && $os_arch == "arm" ]]; then
       export run_bjam="${BOOST_ROOT}/b2 --user-config=config/android-arm-config.jam variant=release toolset=clang-linux-arm target-os=android location=bin/release/android/armeabi-v7a";
-      export run_objcopy="${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-objcopy --only-keep-debug bin/release/android/armeabi-v7a/libjlibtorrent.so bin/release/android/armeabi-v7a/libjlibtorrent.so.debug";
-      export run_strip="${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-strip --strip-unneeded -x -g bin/release/android/armeabi-v7a/libjlibtorrent.so";
-      export run_readelf="${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-readelf -d bin/release/android/armeabi-v7a/libjlibtorrent.so";
+      export run_objcopy="${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-objcopy --only-keep-debug bin/release/android/armeabi-v7a/libtorrent4j.so bin/release/android/armeabi-v7a/libtorrent4j.so.debug";
+      export run_strip="${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-strip --strip-unneeded -x -g bin/release/android/armeabi-v7a/libtorrent4j.so";
+      export run_readelf="${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-readelf -d bin/release/android/armeabi-v7a/libtorrent4j.so";
       export PATH=$ANDROID_TOOLCHAIN/arm-linux-androideabi/bin:$PATH;
       sed -i 's/RANLIB = ranlib/RANLIB = "${ANDROID_TOOLCHAIN}\/bin\/arm-linux-androideabi-ranlib"/g' ${BOOST_ROOT}/tools/build/src/tools/gcc.jam;
     fi
   # android-arm64
   - if [[ $os_build == "android" && $os_arch == "arm64" ]]; then
       export run_bjam="${BOOST_ROOT}/b2 --user-config=config/android-arm64-config.jam variant=release toolset=clang-arm64 target-os=android location=bin/release/android/arm64-v8a";
-      export run_objcopy="${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-objcopy --only-keep-debug bin/release/android/arm64-v8a/libjlibtorrent.so bin/release/android/arm64-v8a/libjlibtorrent.so.debug";
-      export run_strip="${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-strip --strip-unneeded -x bin/release/android/arm64-v8a/libjlibtorrent.so";
-      export run_readelf="${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-readelf -d bin/release/android/arm64-v8a/libjlibtorrent.so";
+      export run_objcopy="${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-objcopy --only-keep-debug bin/release/android/arm64-v8a/libtorrent4j.so bin/release/android/arm64-v8a/libtorrent4j.so.debug";
+      export run_strip="${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-strip --strip-unneeded -x bin/release/android/arm64-v8a/libtorrent4j.so";
+      export run_readelf="${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-readelf -d bin/release/android/arm64-v8a/libtorrent4j.so";
       export PATH=$ANDROID_TOOLCHAIN/aarch64-linux-android/bin:$PATH;
       sed -i 's/RANLIB = ranlib/RANLIB = "${ANDROID_TOOLCHAIN}\/bin\/aarch64-linux-android-ranlib"/g' ${BOOST_ROOT}/tools/build/src/tools/gcc.jam;
     fi
   # android-x86
   - if [[ $os_build == "android" && $os_arch == "x86" ]]; then
       export run_bjam="${BOOST_ROOT}/b2 --user-config=config/android-x86-config.jam variant=release toolset=clang-x86 target-os=android location=bin/release/android/x86";
-      export run_objcopy="${ANDROID_TOOLCHAIN}/bin/i686-linux-android-objcopy --only-keep-debug bin/release/android/x86/libjlibtorrent.so bin/release/android/x86/libjlibtorrent.so.debug";
-      export run_strip="${ANDROID_TOOLCHAIN}/bin/i686-linux-android-strip --strip-unneeded -x -g bin/release/android/x86/libjlibtorrent.so";
-      export run_readelf="${ANDROID_TOOLCHAIN}/bin/i686-linux-android-readelf -d bin/release/android/x86/libjlibtorrent.so";
+      export run_objcopy="${ANDROID_TOOLCHAIN}/bin/i686-linux-android-objcopy --only-keep-debug bin/release/android/x86/libtorrent4j.so bin/release/android/x86/libtorrent4j.so.debug";
+      export run_strip="${ANDROID_TOOLCHAIN}/bin/i686-linux-android-strip --strip-unneeded -x -g bin/release/android/x86/libtorrent4j.so";
+      export run_readelf="${ANDROID_TOOLCHAIN}/bin/i686-linux-android-readelf -d bin/release/android/x86/libtorrent4j.so";
       export PATH=$ANDROID_TOOLCHAIN/i686-linux-android/bin:$PATH;
       sed -i 's/RANLIB = ranlib/RANLIB = "${ANDROID_TOOLCHAIN}\/bin\/i686-linux-android-ranlib"/g' ${BOOST_ROOT}/tools/build/src/tools/gcc.jam;
     fi
   # android-x86_64
   - if [[ $os_build == "android" && $os_arch == "x86_64" ]]; then
       export run_bjam="${BOOST_ROOT}/b2 --user-config=config/android-x86_64-config.jam variant=release toolset=clang-x86_64 target-os=android location=bin/release/android/x86_64";
-      export run_objcopy="${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-objcopy --only-keep-debug bin/release/android/x86_64/libjlibtorrent.so bin/release/android/x86_64/libjlibtorrent.so.debug";
-      export run_strip="${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-strip --strip-unneeded -x bin/release/android/x86_64/libjlibtorrent.so";
-      export run_readelf="${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-readelf -d bin/release/android/x86_64/libjlibtorrent.so";
+      export run_objcopy="${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-objcopy --only-keep-debug bin/release/android/x86_64/libtorrent4j.so bin/release/android/x86_64/libtorrent4j.so.debug";
+      export run_strip="${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-strip --strip-unneeded -x bin/release/android/x86_64/libtorrent4j.so";
+      export run_readelf="${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-readelf -d bin/release/android/x86_64/libtorrent4j.so";
       export PATH=$ANDROID_TOOLCHAIN/x86_64-linux-android/bin:$PATH;
       sed -i 's/RANLIB = ranlib/RANLIB = "${ANDROID_TOOLCHAIN}\/bin\/x86_64-linux-android-ranlib"/g' ${BOOST_ROOT}/tools/build/src/tools/gcc.jam;
     fi
   # linux-x86
   - if [[ $os_build == "linux" && $os_arch == "x86" ]]; then
       export run_bjam="${BOOST_ROOT}/b2 --user-config=config/linux-x86-config.jam variant=release toolset=gcc-x86 target-os=linux location=bin/release/linux/x86";
-      export run_objcopy="objcopy --only-keep-debug bin/release/linux/x86/libjlibtorrent.so bin/release/linux/x86/libjlibtorrent.so.debug";
-      export run_strip="strip --strip-unneeded -x bin/release/linux/x86/libjlibtorrent.so";
-      export run_readelf="readelf -d bin/release/linux/x86/libjlibtorrent.so";
+      export run_objcopy="objcopy --only-keep-debug bin/release/linux/x86/libtorrent4j.so bin/release/linux/x86/libtorrent4j.so.debug";
+      export run_strip="strip --strip-unneeded -x bin/release/linux/x86/libtorrent4j.so";
+      export run_readelf="readelf -d bin/release/linux/x86/libtorrent4j.so";
     fi
   # linux-x86_64
   - if [[ $os_build == "linux" && $os_arch == "x86_64" ]]; then
       export run_bjam="${BOOST_ROOT}/b2 --user-config=config/linux-x86_64-config.jam variant=release toolset=gcc-x86_64 target-os=linux location=bin/release/linux/x86_64";
-      export run_objcopy="objcopy --only-keep-debug bin/release/linux/x86_64/libjlibtorrent.so bin/release/linux/x86_64/libjlibtorrent.so.debug";
-      export run_strip="strip --strip-unneeded -x bin/release/linux/x86_64/libjlibtorrent.so";
-      export run_readelf="readelf -d bin/release/linux/x86_64/libjlibtorrent.so";
+      export run_objcopy="objcopy --only-keep-debug bin/release/linux/x86_64/libtorrent4j.so bin/release/linux/x86_64/libtorrent4j.so.debug";
+      export run_strip="strip --strip-unneeded -x bin/release/linux/x86_64/libtorrent4j.so";
+      export run_readelf="readelf -d bin/release/linux/x86_64/libtorrent4j.so";
     fi
   # windows-x86
   - if [[ $os_build == "windows" && $os_arch == "x86" ]]; then
       sed -i 's/ JNICALL Java_com_frostwire/ JNICALL _Java_com_frostwire/g' swig/libtorrent_jni.cpp;
       export run_bjam="${BOOST_ROOT}/b2 --user-config=config/windows-x86-config.jam variant=release toolset=gcc-x86 target-os=windows location=bin/release/windows/x86";
-      export run_strip="i686-w64-mingw32-strip --strip-unneeded -x bin/release/windows/x86/libjlibtorrent.dll";
-      export run_readelf="eval objdump -p bin/release/windows/x86/jlibtorrent.dll | grep DLL";
+      export run_strip="i686-w64-mingw32-strip --strip-unneeded -x bin/release/windows/x86/libtorrent4j.dll";
+      export run_readelf="eval objdump -p bin/release/windows/x86/libtorrent4j.dll | grep DLL";
     fi
   # windows-x86_64
   - if [[ $os_build == "windows" && $os_arch == "x86_64" ]]; then
       export run_bjam="${BOOST_ROOT}/b2 --user-config=config/windows-x86_64-config.jam variant=release toolset=gcc-x86_64 target-os=windows location=bin/release/windows/x86_64";
-      export run_strip="x86_64-w64-mingw32-strip --strip-unneeded -x bin/release/windows/x86_64/libjlibtorrent.dll";
-      export run_readelf="eval objdump -p bin/release/windows/x86_64/jlibtorrent.dll | grep DLL";
+      export run_strip="x86_64-w64-mingw32-strip --strip-unneeded -x bin/release/windows/x86_64/libtorrent4j.dll";
+      export run_readelf="eval objdump -p bin/release/windows/x86_64/libtorrent4j.dll | grep DLL";
     fi
   # macosx
   - if [ $os_build == "macosx" ]; then
       export run_bjam="${BOOST_ROOT}/b2 --user-config=config/macosx-x86_64-config.jam variant=release toolset=darwin-x86_64 target-os=darwin location=bin/release/macosx/x86_64";
-      export run_strip="strip -S -x bin/release/macosx/x86_64/libjlibtorrent.dylib";
-      export run_readelf="otool -L bin/release/macosx/x86_64/libjlibtorrent.dylib";
+      export run_strip="strip -S -x bin/release/macosx/x86_64/libtorrent4j.dylib";
+      export run_readelf="otool -L bin/release/macosx/x86_64/libtorrent4j.dylib";
     fi
 
 script:
@@ -224,15 +224,9 @@ script:
   - $run_bjam
   - $run_objcopy
   - $run_strip
-  - if [[ $os_build == "windows" && $os_arch == "x86" ]]; then
-      mv bin/release/windows/x86/libjlibtorrent.dll bin/release/windows/x86/jlibtorrent.dll;
-    fi
-  - if [[ $os_build == "windows" && $os_arch == "x86_64" ]]; then
-      mv bin/release/windows/x86_64/libjlibtorrent.dll bin/release/windows/x86_64/jlibtorrent.dll;
-    fi
   - if [ $os_build == "macosx" ]; then
       cd ..;
-      cp swig/bin/release/macosx/x86_64/libjlibtorrent.dylib .;
+      cp swig/bin/release/macosx/x86_64/libtorrent4j.dylib .;
       gradle test;
       cd swig;
     fi
