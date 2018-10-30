@@ -1,6 +1,8 @@
 libtorrent4j
 =====================
 
+[![Build Status](https://travis-ci.com/aldenml/libtorrent4j.svg?branch=master)](https://travis-ci.com/aldenml/libtorrent4j)
+
 A swig Java interface for libtorrent.
 
 Develop libtorrent based apps with the joy of coding in Java.
