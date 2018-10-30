@@ -62,27 +62,28 @@ using disconnect_severity_t = libtorrent::disconnect_severity_t;
 
 %pragma(java) jniclasscode=%{
 
-    public static String jlibtorrentVersion() {
+    public static String libtorrent4jVersion() {
         // extracted from the gradle with the run-swig step
-        return "$JLIBTORRENT_VERSION$";
+        return "$LIBTORRENT4J_VERSION$";
     }
 
     static {
         try {
-            String path = System.getProperty("jlibtorrent.jni.path", "");
+            String path = System.getProperty("libtorrent4j.jni.path", "");
             if ("".equals(path)) {
+                // TODO: fix prefix for windows
                 try {
-                    System.loadLibrary("jlibtorrent-" + jlibtorrentVersion());
+                    System.loadLibrary("torrent4j-" + libtorrent4jVersion());
                 } catch (LinkageError e) {
                     // give it a try to the name without version
-                    System.loadLibrary("jlibtorrent");
+                    System.loadLibrary("torrent4j");
                 }
             } else {
                 System.load(path);
             }
         } catch (LinkageError e) {
             throw new LinkageError(
-                "Look for your architecture binary instructions at: https://github.com/frostwire/frostwire-jlibtorrent", e);
+                "Look for your architecture binary instructions at: https://github.com/aldenml/libtorrent4j", e);
         }
     }
 
@@ -107,7 +108,7 @@ using disconnect_severity_t = libtorrent::disconnect_severity_t;
 extern "C" {
 #endif
 
-SWIGEXPORT jlong JNICALL Java_com_frostwire_jlibtorrent_swig_libtorrent_1jni_directBufferAddress(JNIEnv *jenv, jclass jcls, jobject jbuf) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBufferAddress(JNIEnv *jenv, jclass jcls, jobject jbuf) {
     try {
         return reinterpret_cast<jlong>(jenv->GetDirectBufferAddress(jbuf));
     } catch (std::exception& e) {
@@ -119,7 +120,7 @@ SWIGEXPORT jlong JNICALL Java_com_frostwire_jlibtorrent_swig_libtorrent_1jni_dir
     return 0;
 }
 
-SWIGEXPORT jlong JNICALL Java_com_frostwire_jlibtorrent_swig_libtorrent_1jni_directBufferCapacity(JNIEnv *jenv, jclass jcls, jobject jbuf) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBufferCapacity(JNIEnv *jenv, jclass jcls, jobject jbuf) {
     try {
         return reinterpret_cast<jlong>(jenv->GetDirectBufferCapacity(jbuf));
     } catch (std::exception& e) {

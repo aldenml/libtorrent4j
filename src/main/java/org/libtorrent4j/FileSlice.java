@@ -11,7 +11,7 @@ import org.libtorrent4j.swig.file_slice;
  * will never be greater than the file size.
  * <p>
  * Implementation note: This class does not store internally a reference to the native swig
- * {@link com.frostwire.jlibtorrent.swig.file_slice}. This is because we are dealing with only three integral
+ * {@link org.libtorrent4j.swig.file_slice}. This is because we are dealing with only three integral
  * values and we want to avoid keeping a reference to a memory in the native heap.
  *
  * @author gubatron

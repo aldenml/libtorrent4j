@@ -11,17 +11,18 @@ package org.libtorrent4j.swig;
 public class libtorrent_jni {
 
 
-    public static String jlibtorrentVersion() {
+    public static String libtorrent4jVersion() {
         // extracted from the gradle with the run-swig step
-        return "$LIBTORRENT4J_VERSION$";
+        return "1.2.0.18";
     }
 
     static {
         try {
             String path = System.getProperty("libtorrent4j.jni.path", "");
             if ("".equals(path)) {
+                // TODO: fix prefix for windows
                 try {
-                    System.loadLibrary("torrent4j-" + jlibtorrentVersion());
+                    System.loadLibrary("torrent4j-" + libtorrent4jVersion());
                 } catch (LinkageError e) {
                     // give it a try to the name without version
                     System.loadLibrary("torrent4j");

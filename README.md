@@ -10,27 +10,27 @@ Develop libtorrent based apps with the joy of coding in Java.
 Using
 ========
 
-Download [the latest JAR](https://search.maven.org/classic/remote_content?g=com.frostwire&a=jlibtorrent&v=LATEST) or get the dependency via Maven:
+Download [the latest JAR](https://search.maven.org/classic/remote_content?g=org.libtorrent4j&a=libtorrent4j&v=LATEST) or get the dependency via Maven:
 ```xml
 <dependency>
-  <groupId>com.frostwire</groupId>
-  <artifactId>jlibtorrent</artifactId>
+  <groupId>org.libtorrent4j</groupId>
+  <artifactId>libtorrent4j</artifactId>
   <version>1.2.x.x</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-compile 'com.frostwire:jlibtorrent:1.2.x.x'
+compile 'org.libtorrent4j:libtorrent4j:1.2.x.x'
 ```
 
 If you use ProGuard to obfuscate/minify make sure to add the following statement
 
-`-keep class com.frostwire.jlibtorrent.swig.libtorrent_jni {*;}`
+`-keep class org.libtorrent4j.swig.libtorrent_jni {*;}`
 
 
-Note that there are multiple version of jlibtorrent for different platforms: `jlibtorrent`, `jlibtorrent-windows`, `jlibtorrent-linux`, `jlibtorrent-macosx` and `jlibtorrent-android-<arch>`. These are all different artifacts.
+Note that there are multiple version of libtorrent4j for different platforms: `libtorrent4j`, `libtorrent4j-windows`, `libtorrent4j-linux`, `libtorrent4j-macosx` and `libtorrent4j-android-<arch>`. These are all different artifacts.
 
-For examples look at https://github.com/frostwire/frostwire-jlibtorrent/tree/master/src/test/java/com/frostwire/jlibtorrent/demo
+For examples look at https://github.com/aldenml/libtorrent4j/tree/master/src/test/java/org/libtorrent4j/demo
 
 Architectures supported:
 
@@ -54,7 +54,7 @@ The process is:
 
 - Create a user in amazon IAM, let's suppose it is `user1`. Download
 credentials for the keys.
-- Create a bucket in amazon S3, let's suppose it is `jlibtorrent1`.
+- Create a bucket in amazon S3, let's suppose it is `libtorrent4j1`.
 - Set the permission of the bucket according to your workflow, but at
 least the `user1` should have permission to put/upload to the bucket.
 See for example this bucket policy:
@@ -65,13 +65,13 @@ See for example this bucket policy:
 			"Effect": "Allow",
 			"Principal": {"AWS":"arn:aws:iam::<user1's ARN here>:user/user1"},
 			"Action": "s3:PutObject",
-			"Resource": "arn:aws:s3:::jlibtorrent1/*"
+			"Resource": "arn:aws:s3:::libtorrent4j1/*"
 		},
 		{
 			"Effect": "Allow",
 			"Principal": "*",
 			"Action": "s3:GetObject",
-			"Resource": "arn:aws:s3:::jlibtorrent1/*"
+			"Resource": "arn:aws:s3:::libtorrent4j1/*"
 		}
 	]
 }
@@ -81,11 +81,11 @@ See for example this bucket policy:
 - Go to 'More options' > 'Settings' > 'Environment Variables' and set the
 `S3_ACCESS_KEY, S3_SECRET_KEY, S3_BUCKET` variables using the values in the
 credentials file for the user you created and the bucket name you created.
-- Clone locally your repo, let's assume to the `jlibtorrent` folder and
+- Clone locally your repo, let's assume to the `libtorrent4j` folder and
 checkout the stable branch:
 ```bash
-$ git clone <your fork repo url> jlibtorrent
-$ cd jlibtorrent
+$ git clone <your fork repo url> libtorrent4j
+$ cd libtorrent4j
 $ git checkout master
 ```
 - Verify in your travis online if the build already started. The build
@@ -94,13 +94,9 @@ $ git checkout master
 - To trigger a new build, just make a change or merge new changes from
  the stable branch, commit and push.
 
-Projects using jLibtorrent
+Projects using libtorrent4j
 ==========================
-- [FrostWire](http://www.frostwire.com) (both desktop and android editions)
-- [TorrentStream-Android](https://github.com/mianharisali/TorrentStream-Android)
-- [Simple-Torrent-Android](https://github.com/masterwok/simple-torrent-android)
-- [TorrentTunes-Client](https://github.com/dessalines/torrenttunes-client)
-- [LibreTorrent](https://github.com/proninyaroslav/libretorrent)
+TODO
 
 License
 ========

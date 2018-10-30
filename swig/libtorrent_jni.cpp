@@ -734,7 +734,7 @@ using disconnect_severity_t = libtorrent::disconnect_severity_t;
 extern "C" {
 #endif
 
-SWIGEXPORT jlong JNICALL Java_com_frostwire_jlibtorrent_swig_libtorrent_1jni_directBufferAddress(JNIEnv *jenv, jclass jcls, jobject jbuf) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBufferAddress(JNIEnv *jenv, jclass jcls, jobject jbuf) {
     try {
         return reinterpret_cast<jlong>(jenv->GetDirectBufferAddress(jbuf));
     } catch (std::exception& e) {
@@ -746,7 +746,7 @@ SWIGEXPORT jlong JNICALL Java_com_frostwire_jlibtorrent_swig_libtorrent_1jni_dir
     return 0;
 }
 
-SWIGEXPORT jlong JNICALL Java_com_frostwire_jlibtorrent_swig_libtorrent_1jni_directBufferCapacity(JNIEnv *jenv, jclass jcls, jobject jbuf) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBufferCapacity(JNIEnv *jenv, jclass jcls, jobject jbuf) {
     try {
         return reinterpret_cast<jlong>(jenv->GetDirectBufferCapacity(jbuf));
     } catch (std::exception& e) {
