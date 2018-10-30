@@ -40,7 +40,7 @@ before_install:
 # libtorrent: download and checkout revision
   - git clone https://github.com/arvidn/libtorrent
   - cd libtorrent
-  - git checkout 6724c1eec03caa27f42c48c89367b35d718b8c02
+  - git checkout a3eed212a10b3b496451327d265f5549954d2bc6
   - cd ..
   - export LIBTORRENT_ROOT=$PWD/libtorrent
 
@@ -139,7 +139,7 @@ before_install:
       export run_openssl_configure="./Configure darwin64-x86_64-cc ${OPENSSL_NO_OPTS} --prefix=$OPENSSL_SOURCE/../openssl";
     fi
 
-# jlibtorrent
+# libtorrent4j
   # android-arm
   - if [[ $os_build == "android" && $os_arch == "arm" ]]; then
       export run_bjam="${BOOST_ROOT}/b2 --user-config=config/android-arm-config.jam variant=release toolset=clang-linux-arm target-os=android location=bin/release/android/armeabi-v7a";
