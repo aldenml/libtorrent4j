@@ -8,7 +8,7 @@ import org.libtorrent4j.SessionHandle;
  * The {@link SessionStatsAlert} is posted when the user requests session
  * statistics by calling {@link SessionHandle#postSessionStats()}
  * on the session object. Its category is
- * {@link com.frostwire.jlibtorrent.swig.alert#status_notification},
+ * {@link org.libtorrent4j.swig.alert#status_notification},
  * but it is not subject to filtering, since it's only manually posted anyway.
  *
  * @author gubatron

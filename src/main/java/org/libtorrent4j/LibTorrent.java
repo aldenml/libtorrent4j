@@ -40,7 +40,7 @@ public final class LibTorrent {
      * This is not the internal revision libtorrent reports, since
      * that string is updated from time to time. This library can be
      * using an up to date revision, this string is manually
-     * hardcoded in each version of jlibtorrent. See
+     * hardcoded in each version of libtorrent4j. See
      * {@link libtorrent#LIBTORRENT_REVISION} for the libtorrent string.
      *
      * @return the git revision
@@ -65,8 +65,8 @@ public final class LibTorrent {
         return libtorrent.openssl_version_text();
     }
 
-    public static String jlibtorrentVersion() {
-        return libtorrent_jni.jlibtorrentVersion();
+    public static String libtorrent4jVersion() {
+        return libtorrent_jni.libtorrent4jVersion();
     }
 
     /**

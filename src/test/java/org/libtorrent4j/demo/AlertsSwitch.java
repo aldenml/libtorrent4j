@@ -50,7 +50,7 @@ public final class AlertsSwitch {
             String s = "arr[" + i + "] = new InvokeLambda() { @Override public void invoke(TorrentAlertAdapter l, Alert a) { ";
             if (arr[i] != null) {
                 String c = capitalizeAlertTypeName(arr[i].getSimpleName());
-                Class<?> alertClass = Class.forName("com.frostwire.jlibtorrent.alerts." + c);
+                Class<?> alertClass = Class.forName("org.libtorrent4j.alerts." + c);
                 if (TorrentAlert.class.isAssignableFrom(alertClass)) {
                     String cc = Character.toLowerCase(c.charAt(0)) + c.substring(1);
                     cc = cc.replace("Alert", "");
@@ -87,7 +87,7 @@ public final class AlertsSwitch {
     private static Class[] getSwigAlerts() throws Exception {
         int n = 0;
         Class[] arr = new Class[Alerts.NUM_ALERT_TYPES];
-        for (Class c : getClasses("com.frostwire.jlibtorrent.swig")) {
+        for (Class c : getClasses("org.libtorrent4j.swig")) {
             if (c.getName().endsWith("_alert")) {
                 Field f = c.getDeclaredField("alert_type");
                 int type = f.getInt(null);
