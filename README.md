@@ -3,9 +3,7 @@ libtorrent4j
 
 [![Build Status](https://travis-ci.com/aldenml/libtorrent4j.svg?branch=master)](https://travis-ci.com/aldenml/libtorrent4j)
 
-A swig Java interface for libtorrent.
-
-Develop libtorrent based apps with the joy of coding in Java.
+A swig Java interface for libtorrent. Source code fork from [jlibtorrent](https://github.com/frostwire/frostwire-jlibtorrent).
 
 Using
 ========
@@ -30,7 +28,7 @@ If you use ProGuard to obfuscate/minify make sure to add the following statement
 
 Note that there are multiple version of libtorrent4j for different platforms: `libtorrent4j`, `libtorrent4j-windows`, `libtorrent4j-linux`, `libtorrent4j-macosx` and `libtorrent4j-android-<arch>`. These are all different artifacts.
 
-For examples look at https://github.com/aldenml/libtorrent4j/tree/master/src/test/java/org/libtorrent4j/demo
+For examples look at [demos](https://github.com/aldenml/libtorrent4j/tree/master/src/test/java/org/libtorrent4j/demo).
 
 Architectures supported:
 
@@ -96,9 +94,9 @@ $ git checkout master
 
 Projects using libtorrent4j
 ==========================
-TODO
+Submit a PR to add a link here.
 
 License
 ========
 
-This software is offered under the MIT License, available [here](License.md).
+This software is offered under the MIT License, available [here](LICENSE.md).
