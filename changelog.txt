@@ -1,4 +1,4 @@
-1.2.0.1-beta1
+1.2.0.19
 
   * lt:ssl listen port fix and improved tracker announce logging
   * lt:properly tear down the disk_io_thread object in set_piece_hashes() when
