@@ -1,5 +1,6 @@
 1.2.0.1-beta1
 
+  * lt:ssl listen port fix and improved tracker announce logging
   * lt:properly tear down the disk_io_thread object in set_piece_hashes() when
     exiting via an exception
   * lt:make throwing versions of read_resume_data
