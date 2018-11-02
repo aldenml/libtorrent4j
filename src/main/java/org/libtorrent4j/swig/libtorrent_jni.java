@@ -13,19 +13,22 @@ public class libtorrent_jni {
 
     public static String libtorrent4jVersion() {
         // extracted from the gradle with the run-swig step
-        return "1.2.0.1-beta1";
+        return "1.2.0.19";
     }
 
     static {
         try {
             String path = System.getProperty("libtorrent4j.jni.path", "");
             if ("".equals(path)) {
-                // TODO: fix prefix for windows
+                String libname = "torrent4j";
+                String os = System.getProperty("os.name");
+                if (os != null && os.toLowerCase(java.util.Locale.US).contains("windows"))
+                    libname = "lib" + libname;
                 try {
-                    System.loadLibrary("torrent4j-" + libtorrent4jVersion());
+                    System.loadLibrary(libname + "-" + libtorrent4jVersion());
                 } catch (LinkageError e) {
                     // give it a try to the name without version
-                    System.loadLibrary("torrent4j");
+                    System.loadLibrary(libname);
                 }
             } else {
                 System.load(path);
