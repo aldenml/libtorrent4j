@@ -1089,12 +1089,7 @@ public final class TorrentHandle {
 
     public Priority[] piecePriorities() {
         int_vector v = th.get_piece_priorities2();
-        int size = (int) v.size();
-        Priority[] arr = new Priority[size];
-        for (int i = 0; i < size; i++) {
-            arr[i] = Priority.fromSwig(v.get(i));
-        }
-        return arr;
+        return Priority.vector2array(v);
     }
 
     /**
@@ -1149,12 +1144,7 @@ public final class TorrentHandle {
      */
     public Priority[] filePriorities() {
         int_vector v = th.get_file_priorities2();
-        int size = (int) v.size();
-        Priority[] arr = new Priority[size];
-        for (int i = 0; i < size; i++) {
-            arr[i] = Priority.fromSwig(v.get(i));
-        }
-        return arr;
+        return Priority.vector2array(v);
     }
 
     /**

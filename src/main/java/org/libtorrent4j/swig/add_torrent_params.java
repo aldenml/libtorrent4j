@@ -288,6 +288,10 @@ public class add_torrent_params {
     libtorrent_jni.add_torrent_params_set_peers(swigCPtr, this, tcp_endpoint_vector.getCPtr(peers), peers);
   }
 
+  public int_vector get_file_priorities2() {
+    return new int_vector(libtorrent_jni.add_torrent_params_get_file_priorities2(swigCPtr, this), true);
+  }
+
   public void set_file_priorities2(byte_vector file_priorities) {
     libtorrent_jni.add_torrent_params_set_file_priorities2(swigCPtr, this, byte_vector.getCPtr(file_priorities), file_priorities);
   }
@@ -318,6 +322,10 @@ public class add_torrent_params {
 
   public void set_trackers(string_vector trackers) {
     libtorrent_jni.add_torrent_params_set_trackers(swigCPtr, this, string_vector.getCPtr(trackers), trackers);
+  }
+
+  public int_vector get_piece_priorities2() {
+    return new int_vector(libtorrent_jni.add_torrent_params_get_piece_priorities2(swigCPtr, this), true);
   }
 
   public void set_piece_priorities2(byte_vector piece_priorities) {

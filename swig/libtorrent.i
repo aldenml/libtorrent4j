@@ -1625,6 +1625,15 @@ namespace libtorrent {
         $self->peers = peers;
     }
 
+    std::vector<int> get_file_priorities2() const
+    {
+        std::vector<download_priority_t> v = $self->file_priorities;
+        std::vector<int> r(v.size());
+        for (std::size_t i = 0; i < v.size(); i++)
+            r[i] = int(static_cast<std::uint8_t>(v[i]));
+        return r;
+    }
+
     void set_file_priorities2(std::vector<std::int8_t> const& file_priorities) {
         std::vector<download_priority_t> v(file_priorities.size());
         for (std::size_t i = 0; i < v.size(); i++)
@@ -1658,6 +1667,15 @@ namespace libtorrent {
 
     void set_trackers(std::vector<std::string> const& trackers) {
         $self->trackers = trackers;
+    }
+
+    std::vector<int> get_piece_priorities2() const
+    {
+        std::vector<download_priority_t> v = $self->piece_priorities;
+        std::vector<int> r(v.size());
+        for (std::size_t i = 0; i < v.size(); i++)
+            r[i] = int(static_cast<std::uint8_t>(v[i]));
+        return r;
     }
 
     void set_piece_priorities2(std::vector<std::int8_t> const& piece_priorities) {
