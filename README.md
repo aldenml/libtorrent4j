@@ -95,6 +95,7 @@ $ git checkout master
 Projects using libtorrent4j
 ==========================
 Submit a PR to add a link here.
+ - [LibreTorrent](https://gitlab.com/proninyaroslav/libretorrent)
 
 License
 ========
