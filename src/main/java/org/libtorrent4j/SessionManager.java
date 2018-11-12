@@ -458,7 +458,7 @@ public class SessionManager {
                 th.prioritize_files2(Priority.array2vector(priorities));
             } else {
                 // did they just add the entire torrent (therefore not selecting any priorities)
-                priorities = Priority.array(Priority.NORMAL, ti.numFiles());
+                priorities = Priority.array(Priority.DEFAULT, ti.numFiles());
                 th.prioritize_files2(Priority.array2vector(priorities));
             }
 

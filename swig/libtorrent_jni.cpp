@@ -2112,6 +2112,13 @@ SWIGINTERN std::vector< libtorrent::tcp::endpoint > libtorrent_add_torrent_param
 SWIGINTERN void libtorrent_add_torrent_params_set_peers(libtorrent::add_torrent_params *self,std::vector< libtorrent::tcp::endpoint > const &peers){
         self->peers = peers;
     }
+SWIGINTERN std::vector< int > libtorrent_add_torrent_params_get_file_priorities2(libtorrent::add_torrent_params const *self){
+        std::vector<download_priority_t> v = self->file_priorities;
+        std::vector<int> r(v.size());
+        for (std::size_t i = 0; i < v.size(); i++)
+            r[i] = int(static_cast<std::uint8_t>(v[i]));
+        return r;
+    }
 SWIGINTERN void libtorrent_add_torrent_params_set_file_priorities2(libtorrent::add_torrent_params *self,std::vector< std::int8_t > const &file_priorities){
         std::vector<download_priority_t> v(file_priorities.size());
         for (std::size_t i = 0; i < v.size(); i++)
@@ -2138,6 +2145,13 @@ SWIGINTERN std::vector< std::string > libtorrent_add_torrent_params_get_trackers
     }
 SWIGINTERN void libtorrent_add_torrent_params_set_trackers(libtorrent::add_torrent_params *self,std::vector< std::string > const &trackers){
         self->trackers = trackers;
+    }
+SWIGINTERN std::vector< int > libtorrent_add_torrent_params_get_piece_priorities2(libtorrent::add_torrent_params const *self){
+        std::vector<download_priority_t> v = self->piece_priorities;
+        std::vector<int> r(v.size());
+        for (std::size_t i = 0; i < v.size(); i++)
+            r[i] = int(static_cast<std::uint8_t>(v[i]));
+        return r;
     }
 SWIGINTERN void libtorrent_add_torrent_params_set_piece_priorities2(libtorrent::add_torrent_params *self,std::vector< std::int8_t > const &piece_priorities){
         std::vector<download_priority_t> v(piece_priorities.size());
@@ -38966,6 +38980,31 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1get_1file_1priorities2(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< int > result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  {
+    try {
+      result = libtorrent_add_torrent_params_get_file_priorities2((libtorrent::add_torrent_params const *)arg1);
+    } catch (std::exception& e) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+      return 0;
+    } catch (...) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+      return 0;
+    }
+  }
+  *(std::vector< int > **)&jresult = new std::vector< int >((const std::vector< int > &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1set_1file_1priorities2(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
   std::vector< std::int8_t > *arg2 = 0 ;
@@ -39178,6 +39217,31 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_
       return ;
     }
   }
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1get_1piece_1priorities2(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< int > result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  {
+    try {
+      result = libtorrent_add_torrent_params_get_piece_priorities2((libtorrent::add_torrent_params const *)arg1);
+    } catch (std::exception& e) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+      return 0;
+    } catch (...) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+      return 0;
+    }
+  }
+  *(std::vector< int > **)&jresult = new std::vector< int >((const std::vector< int > &)result); 
+  return jresult;
 }
 
 

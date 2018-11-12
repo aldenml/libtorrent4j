@@ -15,9 +15,9 @@ public enum Priority {
     IGNORE(0),
 
     /**
-     * normal priority. Download order is dependent on availability
+     *
      */
-    NORMAL(1),
+    LOW(1),
 
     /**
      * higher than normal priority. Pieces are preferred over pieces with
@@ -34,15 +34,15 @@ public enum Priority {
      * pieces are preferred over partial pieces, but not over pieces with
      * lower availability
      */
-    FOUR(4),
+    DEFAULT(4),
 
     /**
-     * *currently the same as 4*
+     *
      */
     FIVE(5),
 
     /**
-     * piece is as likely to be picked as any piece with availability 1
+     *
      */
     SIX(6),
 
@@ -50,7 +50,7 @@ public enum Priority {
      * maximum priority, availability is disregarded, the piece is
      * preferred over any other piece with lower priority
      */
-    SEVEN(7);
+    TOP_PRIORITY(7);
 
     Priority(int swigValue) {
         this.swigValue = swigValue;
@@ -109,5 +109,14 @@ public enum Priority {
         }
 
         return v;
+    }
+
+    static Priority[] vector2array(int_vector v) {
+        int size = (int) v.size();
+        Priority[] arr = new Priority[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = Priority.fromSwig(v.get(i));
+        }
+        return arr;
     }
 }

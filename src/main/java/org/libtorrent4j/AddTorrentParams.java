@@ -406,6 +406,11 @@ public final class AddTorrentParams {
         p.set_url_seeds(v);
     }
 
+    public Priority[] filePriorities() {
+        int_vector v = p.get_file_priorities2();
+        return Priority.vector2array(v);
+    }
+
     /**
      * Can be set to control the initial file priorities when adding a
      * torrent. The semantics are the same as for
@@ -415,6 +420,11 @@ public final class AddTorrentParams {
      */
     public void filePriorities(Priority[] priorities) {
         p.set_file_priorities2(Priority.array2byte_vector(priorities));
+    }
+
+    public Priority[] piecePriorities() {
+        int_vector v = p.get_piece_priorities2();
+        return Priority.vector2array(v);
     }
 
     /**
