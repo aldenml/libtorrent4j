@@ -1,8 +1,9 @@
-1.2.0.20-RC1
+1.2.0.20-RC2
 
   * removed posix wrapper hack
   * added support for BEP 53
   * fixed priority values
+  * lt:remove redundant MTU boundary checks
   * lt:fix of asio-debugging build in natpmp. resend_request could be called
     directly, not only as a handler for an async operation
   * lt:fix move_storage with save_path with a trailing slash
