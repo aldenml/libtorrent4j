@@ -1,5 +1,6 @@
 1.2.0.20-RC2
 
+  * using android NDK r18b
   * removed posix wrapper hack
   * added support for BEP 53
   * fixed priority values
