@@ -1803,7 +1803,7 @@ SWIGINTERN int8_t libtorrent_span_Sl_char_SS_const_Sg__get(libtorrent::span< cha
                 return (*self)[idx];
             }
 SWIGINTERN libtorrent::sha1_hash *new_libtorrent_sha1_hash__SWIG_2(std::vector< int8_t > const &s){
-                return new libtorrent::sha1_hash({reinterpret_cast<char const*>(s.data()), s.size()});
+                return new libtorrent::sha1_hash({reinterpret_cast<char const*>(s.data()), static_cast<long>(s.size())});
             }
 SWIGINTERN int libtorrent_sha1_hash_hash_code(libtorrent::sha1_hash *self){
                 char const* data = self->data();
@@ -1894,7 +1894,7 @@ SWIGINTERN libtorrent::entry libtorrent_entry_from_preformatted_bytes(std::vecto
                 return libtorrent::entry(std::vector<char>(preformatted_bytes.begin(), preformatted_bytes.end()));
             }
 SWIGINTERN libtorrent::entry libtorrent_entry_bdecode(std::vector< int8_t > &buffer){
-                return libtorrent::bdecode(buffer.begin(), buffer.end());
+                return libtorrent::bdecode({reinterpret_cast<char const*>(buffer.data()), static_cast<long>(buffer.size())});
             }
 SWIGINTERN std::vector< int8_t > libtorrent_announce_endpoint_get_message(libtorrent::announce_endpoint *self){
                 std::string s = self->message;
@@ -2181,7 +2181,7 @@ SWIGINTERN libtorrent::add_torrent_params libtorrent_add_torrent_params_read_res
         return libtorrent::read_resume_data(rd, ec);
     }
 SWIGINTERN libtorrent::add_torrent_params libtorrent_add_torrent_params_read_resume_data__SWIG_1(std::vector< int8_t > const &buffer,libtorrent::error_code &ec){
-        return libtorrent::read_resume_data({(char const*)&buffer[0], buffer.size()}, ec);
+        return libtorrent::read_resume_data({(char const*)&buffer[0], static_cast<long>(buffer.size())}, ec);
     }
 SWIGINTERN libtorrent::entry libtorrent_add_torrent_params_write_resume_data(libtorrent::add_torrent_params const &atp){
         return libtorrent::write_resume_data(atp);
@@ -62067,23 +62067,21 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1han
 
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1handle_1async_1add_1torrent(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   libtorrent::session_handle *arg1 = (libtorrent::session_handle *) 0 ;
-  libtorrent::add_torrent_params arg2 ;
-  libtorrent::add_torrent_params *argp2 ;
+  libtorrent::add_torrent_params *arg2 = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
   arg1 = *(libtorrent::session_handle **)&jarg1; 
-  argp2 = *(libtorrent::add_torrent_params **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null libtorrent::add_torrent_params");
+  arg2 = *(libtorrent::add_torrent_params **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::add_torrent_params const & reference is null");
     return ;
-  }
-  arg2 = *argp2; 
+  } 
   {
     try {
-      (arg1)->async_add_torrent(arg2);
+      (arg1)->async_add_torrent((libtorrent::add_torrent_params const &)*arg2);
     } catch (std::exception& e) {
       SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
       return ;
@@ -63097,23 +63095,21 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1hand
 
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1handle_1apply_1settings(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   libtorrent::session_handle *arg1 = (libtorrent::session_handle *) 0 ;
-  libtorrent::settings_pack arg2 ;
-  libtorrent::settings_pack *argp2 ;
+  libtorrent::settings_pack *arg2 = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
   arg1 = *(libtorrent::session_handle **)&jarg1; 
-  argp2 = *(libtorrent::settings_pack **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null libtorrent::settings_pack");
+  arg2 = *(libtorrent::settings_pack **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::settings_pack const & reference is null");
     return ;
-  }
-  arg2 = *argp2; 
+  } 
   {
     try {
-      (arg1)->apply_settings(arg2);
+      (arg1)->apply_settings((libtorrent::settings_pack const &)*arg2);
     } catch (std::exception& e) {
       SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
       return ;
@@ -64430,22 +64426,20 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1session
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1session_1params_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  libtorrent::settings_pack arg1 ;
-  libtorrent::settings_pack *argp1 ;
+  libtorrent::settings_pack *arg1 = 0 ;
   libtorrent::session_params *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  argp1 = *(libtorrent::settings_pack **)&jarg1; 
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null libtorrent::settings_pack");
+  arg1 = *(libtorrent::settings_pack **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::settings_pack const & reference is null");
     return 0;
-  }
-  arg1 = *argp1; 
+  } 
   {
     try {
-      result = (libtorrent::session_params *)new libtorrent::session_params(arg1);
+      result = (libtorrent::session_params *)new libtorrent::session_params((libtorrent::settings_pack const &)*arg1);
     } catch (std::exception& e) {
       SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
       return 0;
@@ -64686,22 +64680,20 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_read_1sessio
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1session_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  libtorrent::session_params arg1 ;
-  libtorrent::session_params *argp1 ;
+  libtorrent::session_params *arg1 = 0 ;
   libtorrent::session *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  argp1 = *(libtorrent::session_params **)&jarg1; 
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null libtorrent::session_params");
+  arg1 = *(libtorrent::session_params **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::session_params const & reference is null");
     return 0;
-  }
-  arg1 = *argp1; 
+  } 
   {
     try {
-      result = (libtorrent::session *)new libtorrent::session(arg1);
+      result = (libtorrent::session *)new libtorrent::session((libtorrent::session_params const &)*arg1);
     } catch (std::exception& e) {
       SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
       return 0;
@@ -64739,9 +64731,8 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1session
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1session_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   jlong jresult = 0 ;
-  libtorrent::settings_pack arg1 ;
+  libtorrent::settings_pack *arg1 = 0 ;
   libtorrent::session_flags_t arg2 ;
-  libtorrent::settings_pack *argp1 ;
   libtorrent::session_flags_t const *argp2 ;
   libtorrent::session *result = 0 ;
   
@@ -64749,12 +64740,11 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1session
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
-  argp1 = *(libtorrent::settings_pack **)&jarg1; 
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null libtorrent::settings_pack");
+  arg1 = *(libtorrent::settings_pack **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::settings_pack const & reference is null");
     return 0;
-  }
-  arg1 = *argp1; 
+  } 
   argp2 = *(libtorrent::session_flags_t **)&jarg2; 
   if (!argp2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null libtorrent::session_flags_t const");
@@ -64763,7 +64753,7 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1session
   arg2 = *argp2; 
   {
     try {
-      result = (libtorrent::session *)new libtorrent::session(arg1,arg2);
+      result = (libtorrent::session *)new libtorrent::session((libtorrent::settings_pack const &)*arg1,arg2);
     } catch (std::exception& e) {
       SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
       return 0;
@@ -64779,22 +64769,20 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1session
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1session_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  libtorrent::settings_pack arg1 ;
-  libtorrent::settings_pack *argp1 ;
+  libtorrent::settings_pack *arg1 = 0 ;
   libtorrent::session *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  argp1 = *(libtorrent::settings_pack **)&jarg1; 
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null libtorrent::settings_pack");
+  arg1 = *(libtorrent::settings_pack **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::settings_pack const & reference is null");
     return 0;
-  }
-  arg1 = *argp1; 
+  } 
   {
     try {
-      result = (libtorrent::session *)new libtorrent::session(arg1);
+      result = (libtorrent::session *)new libtorrent::session((libtorrent::settings_pack const &)*arg1);
     } catch (std::exception& e) {
       SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
       return 0;
