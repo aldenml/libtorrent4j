@@ -1,9 +1,20 @@
-1.2.0.20-RC2
+1.2.0.20-RC3(temp)
 
   * using android NDK r18b
   * removed posix wrapper hack
   * added support for BEP 53
   * fixed priority values
+  * lt:add support for &ipv4= tracker argument
+  * lt:use new bdecoder in ut_metadata class
+  * lt:fix redundant bytes overflow
+  * lt:check for self-assignment in bitfield operator=
+  * lt:initialize bencoded ints with zero when constructed
+  * lt:exit natpmp::on_reply earlier if we're shutting down
+  * lt:fix setting ipv6 interface
+  * lt:a better fix to the ssl port announce bug
+  * lt:perfect forward async handlers for udp_socket to underlying asio socket
+  * lt:move the whole add_torrent_params object into save_resume_data_alert
+  * lt:actually fix the issue with the second tracker announce with port 0
   * lt:remove redundant MTU boundary checks
   * lt:fix of asio-debugging build in natpmp. resend_request could be called
     directly, not only as a handler for an async operation
