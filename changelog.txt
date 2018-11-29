@@ -4,6 +4,11 @@
   * removed posix wrapper hack
   * added support for BEP 53
   * fixed priority values
+  * lt:correct %u format code for pieces in printf() calls
+  * lt:attempt to fix an assert for a newly connected peer that disconnects just
+    as we receive the metadata
+  * lt:don't use page aligned disk buffers
+  * lt:include &ipv4= for private trackers
   * lt:add support for &ipv4= tracker argument
   * lt:use new bdecoder in ut_metadata class
   * lt:fix redundant bytes overflow
