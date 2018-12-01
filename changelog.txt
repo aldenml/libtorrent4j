@@ -4,6 +4,9 @@
   * removed posix wrapper hack
   * added support for BEP 53
   * fixed priority values
+  * lt:add stats counter for the number of outstanding async_accept calls
+  * lt:fix potential issue where the dht port message is sent before the peer
+    handshake
   * lt:correct %u format code for pieces in printf() calls
   * lt:attempt to fix an assert for a newly connected peer that disconnects just
     as we receive the metadata
