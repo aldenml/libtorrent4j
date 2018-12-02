@@ -2849,7 +2849,6 @@ public class libtorrent_jni {
   public final static native long session_handle_delete_files_get();
   public final static native long session_handle_delete_partfile_get();
   public final static native long session_handle_add_default_plugins_get();
-  public final static native long session_handle_start_default_features_get();
   public final static native void session_handle_remove_torrent__SWIG_0(long jarg1, session_handle jarg1_, long jarg2, torrent_handle jarg2_, long jarg3, remove_flags_t jarg3_);
   public final static native void session_handle_remove_torrent__SWIG_1(long jarg1, session_handle jarg1_, long jarg2, torrent_handle jarg2_);
   public final static native void session_handle_apply_settings(long jarg1, session_handle jarg1_, long jarg2, settings_pack jarg2_);

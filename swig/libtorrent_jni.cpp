@@ -63016,18 +63016,6 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1han
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1handle_1start_1default_1features_1get(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< unsigned char,libtorrent::session_flags_tag > *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< unsigned char,libtorrent::session_flags_tag > *)&libtorrent::session_handle::start_default_features;
-  *(libtorrent::flags::bitfield_flag< unsigned char,libtorrent::session_flags_tag > **)&jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1handle_1remove_1torrent_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_) {
   libtorrent::session_handle *arg1 = (libtorrent::session_handle *) 0 ;
   libtorrent::torrent_handle *arg2 = 0 ;

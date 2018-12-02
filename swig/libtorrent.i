@@ -1240,6 +1240,7 @@ namespace libtorrent {
 %ignore libtorrent::bdecode_category;
 %ignore libtorrent::http_category;
 %ignore libtorrent::libtorrent_category;
+%ignore libtorrent::print_error;
 %ignore libtorrent::dht_announce_alert::ip;
 %ignore libtorrent::external_ip_alert::external_address;
 %ignore libtorrent::listen_failed_alert::address;
