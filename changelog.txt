@@ -1,4 +1,4 @@
-1.2.0.20-RC3(temp)
+1.2.0.20-RC3
 
   * updated to OpenSSL 1.1.1a
   * using android NDK r18b
