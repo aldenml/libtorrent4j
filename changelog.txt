@@ -4,6 +4,11 @@
   * removed posix wrapper hack
   * added support for BEP 53
   * fixed priority values
+  * lt:deprecate start_default_features flag, it's only used in deprecated API
+  * lt:remove verbose peer logging
+  * lt:make stack_allocator::format_string() grow the buffer for large strings
+  * lt:move where socket buffers are set up, to happen after the socket is
+    opened. log errors in the peer's log instead of session and torrent
   * lt:add stats counter for the number of outstanding async_accept calls
   * lt:fix potential issue where the dht port message is sent before the peer
     handshake
