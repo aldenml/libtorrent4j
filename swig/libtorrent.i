@@ -1343,7 +1343,7 @@ namespace libtorrent {
 %ignore swig_plugin::implemented_features;
 %ignore set_piece_hashes_listener::progress_index;
 
-%ignore WRAP_POSIX;
+%ignore WRAP_POSIX_ANDROID;
 %ignore get_libc;
 %ignore posix_open;
 %ignore posix_stat;

@@ -277,4 +277,8 @@ public class libtorrent implements libtorrentConstants {
     return libtorrent_jni.arm_neon_support();
   }
 
+  public static void set_posix_wrapper(posix_wrapper obj) {
+    libtorrent_jni.set_posix_wrapper(posix_wrapper.getCPtr(obj), obj);
+  }
+
 }
