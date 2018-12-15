@@ -285,3 +285,134 @@ bool arm_neon_support()
 {
     return libtorrent::aux::arm_neon_support;
 }
+
+#if defined TORRENT_ANDROID
+#define WRAP_POSIX_ANDROID 1
+#else
+#define WRAP_POSIX_ANDROID 0
+#endif
+
+struct posix_stat_t {
+    int64_t size;
+    int64_t atime;
+    int64_t mtime;
+    int64_t ctime;
+    int mode;
+};
+
+#if WRAP_POSIX_ANDROID
+void* get_libc() {
+    static void* h = dlopen("libc.so", RTLD_NOW);
+    return h;
+}
+
+int posix_open(const char* path, int flags, mode_t mode) {
+    typedef int func_t(const char*, int, ...);
+    static func_t* f = (func_t*) dlsym(get_libc(), "open");
+    flags |= O_LARGEFILE;
+    return (*f)(path, flags, mode);
+}
+
+int posix_stat(const char *path, struct ::stat *buf) {
+    typedef int func_t(const char*, struct ::stat*);
+#if __ANDROID_API__ < 21
+    static func_t* f = (func_t*) dlsym(get_libc(), "stat");
+#else
+    static func_t* f = (func_t*) dlsym(get_libc(), "stat64");
+#endif
+    return (*f)(path, buf);
+}
+
+int posix_mkdir(const char *path, mode_t mode) {
+    typedef int func_t(const char*, mode_t);
+    static func_t* f = (func_t*) dlsym(get_libc(), "mkdir");
+    return (*f)(path, mode);
+}
+
+int posix_rename(const char *oldpath, const char *newpath) {
+    typedef int func_t(const char*, const char*);
+    static func_t* f = (func_t*) dlsym(get_libc(), "rename");
+    return (*f)(oldpath, newpath);
+}
+
+int posix_remove(const char *path) {
+    typedef int func_t(const char*);
+    static func_t* f = (func_t*) dlsym(get_libc(), "remove");
+    return (*f)(path);
+}
+#endif
+
+struct posix_wrapper {
+
+    virtual ~posix_wrapper() {
+    }
+
+    virtual int open(const char* path, int flags, int mode) = 0;
+
+    virtual int stat(const char *path, posix_stat_t *buf) = 0;
+
+    virtual int mkdir(const char *path, int mode) = 0;
+
+    virtual int rename(const char *oldpath, const char *newpath) = 0;
+
+    virtual int remove(const char *path) = 0;
+};
+
+posix_wrapper* g_posix_wrapper = nullptr;
+
+void set_posix_wrapper(posix_wrapper *obj) {
+    g_posix_wrapper = obj;
+}
+
+#if WRAP_POSIX_ANDROID
+extern "C" {
+
+int open(const char *path, int flags, ...) {
+    mode_t mode = 0;
+    if (flags & O_CREAT) {
+        va_list v;
+        va_start(v, flags);
+        mode = (mode_t) va_arg(v, int);
+        va_end(v);
+    }
+
+    return g_posix_wrapper != nullptr ?
+           g_posix_wrapper->open(path, flags, mode) :
+           posix_open(path, flags, mode);
+}
+
+int stat(const char *path, struct ::stat *buf) {
+    if (g_posix_wrapper != nullptr) {
+        posix_stat_t t;
+        int r = g_posix_wrapper->stat(path, &t);
+        buf->st_size = t.size;
+        buf->st_atime = t.atime;
+        buf->st_mtime = t.mtime;
+        buf->st_ctime = t.ctime;
+        buf->st_mode = t.mode;
+        return r;
+    } else {
+        return posix_stat(path, buf);
+    }
+}
+
+int mkdir(const char *path, mode_t mode) {
+    return g_posix_wrapper != nullptr ?
+           g_posix_wrapper->mkdir(path, mode) :
+           posix_mkdir(path, mode);
+}
+
+int rename(const char *oldpath, const char *newpath) {
+    return g_posix_wrapper != nullptr ?
+           g_posix_wrapper->rename(oldpath, newpath) :
+           posix_rename(oldpath, newpath);
+}
+
+int remove(const char *path) {
+    return g_posix_wrapper != nullptr ?
+           g_posix_wrapper->remove(path) :
+           posix_remove(path);
+}
+
+}
+#endif

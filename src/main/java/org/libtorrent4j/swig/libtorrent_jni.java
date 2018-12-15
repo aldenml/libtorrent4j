@@ -13,7 +13,7 @@ public class libtorrent_jni {
 
     public static String libtorrent4jVersion() {
         // extracted from the gradle with the run-swig step
-        return "1.2.0.20";
+        return "1.2.0.21-RC1";
     }
 
     static {
@@ -3089,6 +3089,28 @@ public class libtorrent_jni {
   public final static native long enum_routes(long jarg1, session jarg1_);
   public final static native long get_default_gateway(long jarg1, session jarg1_, long jarg2, byte_vector jarg2_, boolean jarg3);
   public final static native boolean arm_neon_support();
+  public final static native void posix_stat_t_size_set(long jarg1, posix_stat_t jarg1_, long jarg2);
+  public final static native long posix_stat_t_size_get(long jarg1, posix_stat_t jarg1_);
+  public final static native void posix_stat_t_atime_set(long jarg1, posix_stat_t jarg1_, long jarg2);
+  public final static native long posix_stat_t_atime_get(long jarg1, posix_stat_t jarg1_);
+  public final static native void posix_stat_t_mtime_set(long jarg1, posix_stat_t jarg1_, long jarg2);
+  public final static native long posix_stat_t_mtime_get(long jarg1, posix_stat_t jarg1_);
+  public final static native void posix_stat_t_ctime_set(long jarg1, posix_stat_t jarg1_, long jarg2);
+  public final static native long posix_stat_t_ctime_get(long jarg1, posix_stat_t jarg1_);
+  public final static native void posix_stat_t_mode_set(long jarg1, posix_stat_t jarg1_, int jarg2);
+  public final static native int posix_stat_t_mode_get(long jarg1, posix_stat_t jarg1_);
+  public final static native long new_posix_stat_t();
+  public final static native void delete_posix_stat_t(long jarg1);
+  public final static native void delete_posix_wrapper(long jarg1);
+  public final static native int posix_wrapper_open(long jarg1, posix_wrapper jarg1_, String jarg2, int jarg3, int jarg4);
+  public final static native int posix_wrapper_stat(long jarg1, posix_wrapper jarg1_, String jarg2, long jarg3, posix_stat_t jarg3_);
+  public final static native int posix_wrapper_mkdir(long jarg1, posix_wrapper jarg1_, String jarg2, int jarg3);
+  public final static native int posix_wrapper_rename(long jarg1, posix_wrapper jarg1_, String jarg2, String jarg3);
+  public final static native int posix_wrapper_remove(long jarg1, posix_wrapper jarg1_, String jarg2);
+  public final static native long new_posix_wrapper();
+  public final static native void posix_wrapper_director_connect(posix_wrapper obj, long cptr, boolean mem_own, boolean weak_global);
+  public final static native void posix_wrapper_change_ownership(posix_wrapper obj, long cptr, boolean take_or_release);
+  public final static native void set_posix_wrapper(long jarg1, posix_wrapper jarg1_);
   public final static native long torrent_alert_SWIGUpcast(long jarg1);
   public final static native long peer_alert_SWIGUpcast(long jarg1);
   public final static native long tracker_alert_SWIGUpcast(long jarg1);
@@ -3193,6 +3215,21 @@ public class libtorrent_jni {
   }
   public static boolean SwigDirector_swig_plugin_on_dht_request(swig_plugin jself, long query, long source, long message, long response) {
     return jself.on_dht_request(new string_view(query, true), new udp_endpoint(source, false), new bdecode_node(message, false), new entry(response, false));
+  }
+  public static int SwigDirector_posix_wrapper_open(posix_wrapper jself, String path, int flags, int mode) {
+    return jself.open(path, flags, mode);
+  }
+  public static int SwigDirector_posix_wrapper_stat(posix_wrapper jself, String path, long buf) {
+    return jself.stat(path, (buf == 0) ? null : new posix_stat_t(buf, false));
+  }
+  public static int SwigDirector_posix_wrapper_mkdir(posix_wrapper jself, String path, int mode) {
+    return jself.mkdir(path, mode);
+  }
+  public static int SwigDirector_posix_wrapper_rename(posix_wrapper jself, String oldpath, String newpath) {
+    return jself.rename(oldpath, newpath);
+  }
+  public static int SwigDirector_posix_wrapper_remove(posix_wrapper jself, String path) {
+    return jself.remove(path);
   }
 
   private final static native void swig_module_init();
