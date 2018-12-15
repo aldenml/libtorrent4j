@@ -308,18 +308,14 @@ void* get_libc() {
 
 int posix_open(const char* path, int flags, mode_t mode) {
     typedef int func_t(const char*, int, ...);
-    static func_t* f = (func_t*) dlsym(get_libc(), "open");
+    static func_t* f = (func_t*) dlsym(get_libc(), "open64");
     flags |= O_LARGEFILE;
     return (*f)(path, flags, mode);
 }
 
 int posix_stat(const char *path, struct ::stat *buf) {
     typedef int func_t(const char*, struct ::stat*);
-#if __ANDROID_API__ < 21
-    static func_t* f = (func_t*) dlsym(get_libc(), "stat");
-#else
     static func_t* f = (func_t*) dlsym(get_libc(), "stat64");
-#endif
     return (*f)(path, buf);
 }
 
