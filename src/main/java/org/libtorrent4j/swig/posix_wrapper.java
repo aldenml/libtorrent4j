@@ -51,23 +51,23 @@ public class posix_wrapper {
   }
 
   public int open(String path, int flags, int mode) {
-    return libtorrent_jni.posix_wrapper_open(swigCPtr, this, path, flags, mode);
+    return (getClass() == posix_wrapper.class) ? libtorrent_jni.posix_wrapper_open(swigCPtr, this, path, flags, mode) : libtorrent_jni.posix_wrapper_openSwigExplicitposix_wrapper(swigCPtr, this, path, flags, mode);
   }
 
   public int stat(String path, posix_stat_t buf) {
-    return libtorrent_jni.posix_wrapper_stat(swigCPtr, this, path, posix_stat_t.getCPtr(buf), buf);
+    return (getClass() == posix_wrapper.class) ? libtorrent_jni.posix_wrapper_stat(swigCPtr, this, path, posix_stat_t.getCPtr(buf), buf) : libtorrent_jni.posix_wrapper_statSwigExplicitposix_wrapper(swigCPtr, this, path, posix_stat_t.getCPtr(buf), buf);
   }
 
   public int mkdir(String path, int mode) {
-    return libtorrent_jni.posix_wrapper_mkdir(swigCPtr, this, path, mode);
+    return (getClass() == posix_wrapper.class) ? libtorrent_jni.posix_wrapper_mkdir(swigCPtr, this, path, mode) : libtorrent_jni.posix_wrapper_mkdirSwigExplicitposix_wrapper(swigCPtr, this, path, mode);
   }
 
   public int rename(String oldpath, String newpath) {
-    return libtorrent_jni.posix_wrapper_rename(swigCPtr, this, oldpath, newpath);
+    return (getClass() == posix_wrapper.class) ? libtorrent_jni.posix_wrapper_rename(swigCPtr, this, oldpath, newpath) : libtorrent_jni.posix_wrapper_renameSwigExplicitposix_wrapper(swigCPtr, this, oldpath, newpath);
   }
 
   public int remove(String path) {
-    return libtorrent_jni.posix_wrapper_remove(swigCPtr, this, path);
+    return (getClass() == posix_wrapper.class) ? libtorrent_jni.posix_wrapper_remove(swigCPtr, this, path) : libtorrent_jni.posix_wrapper_removeSwigExplicitposix_wrapper(swigCPtr, this, path);
   }
 
   public posix_wrapper() {

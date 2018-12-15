@@ -347,15 +347,52 @@ struct posix_wrapper {
     virtual ~posix_wrapper() {
     }
 
-    virtual int open(const char* path, int flags, int mode) = 0;
+    virtual int open(const char* path, int flags, int mode) {
+#if WRAP_POSIX_ANDROID
+        return posix_open(path, flags, mode);
+#else
+        return -1;
+#endif
+    }
 
-    virtual int stat(const char *path, posix_stat_t *buf) = 0;
+    virtual int stat(const char *path, posix_stat_t *buf) {
+#if WRAP_POSIX_ANDROID
+        struct ::stat t;
+        int r = posix_stat(path, &t);
+        buf->size = t.st_size;
+        buf->atime = t.st_atime;
+        buf->mtime = t.st_mtime;
+        buf->ctime = t.st_ctime;
+        buf->mode = t.st_mode;
+        return r;
+#else
+        return -1;
+#endif
+    }
 
-    virtual int mkdir(const char *path, int mode) = 0;
+    virtual int mkdir(const char *path, int mode) {
+#if WRAP_POSIX_ANDROID
+        return posix_mkdir(path, mode);
+#else
+        return -1;
+#endif
+    }
 
-    virtual int rename(const char *oldpath, const char *newpath) = 0;
+    virtual int rename(const char *oldpath, const char *newpath) {
+#if WRAP_POSIX_ANDROID
+        return posix_rename(oldpath, newpath);
+#else
+        return -1;
+#endif
+    }
 
-    virtual int remove(const char *path) = 0;
+    virtual int remove(const char *path) {
+#if WRAP_POSIX_ANDROID
+        return posix_remove(path);
+#else
+        return -1;
+#endif
+    }
 };
 
 posix_wrapper* g_posix_wrapper = nullptr;

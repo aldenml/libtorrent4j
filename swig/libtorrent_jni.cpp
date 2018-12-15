@@ -2749,8 +2749,7 @@ int SwigDirector_posix_wrapper::open(char const *path, int flags, int mode) {
   jint jmode  ;
   
   if (!swig_override[0]) {
-    SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method posix_wrapper::open.");
-    return c_result;
+    return posix_wrapper::open(path,flags,mode);
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
@@ -2787,8 +2786,7 @@ int SwigDirector_posix_wrapper::stat(char const *path, posix_stat_t *buf) {
   jlong jbuf = 0 ;
   
   if (!swig_override[1]) {
-    SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method posix_wrapper::stat.");
-    return c_result;
+    return posix_wrapper::stat(path,buf);
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
@@ -2824,8 +2822,7 @@ int SwigDirector_posix_wrapper::mkdir(char const *path, int mode) {
   jint jmode  ;
   
   if (!swig_override[2]) {
-    SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method posix_wrapper::mkdir.");
-    return c_result;
+    return posix_wrapper::mkdir(path,mode);
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
@@ -2861,8 +2858,7 @@ int SwigDirector_posix_wrapper::rename(char const *oldpath, char const *newpath)
   jstring jnewpath = 0 ;
   
   if (!swig_override[3]) {
-    SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method posix_wrapper::rename.");
-    return c_result;
+    return posix_wrapper::rename(oldpath,newpath);
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
@@ -2902,8 +2898,7 @@ int SwigDirector_posix_wrapper::remove(char const *path) {
   jstring jpath = 0 ;
   
   if (!swig_override[4]) {
-    SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method posix_wrapper::remove.");
-    return c_result;
+    return posix_wrapper::remove(path);
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
@@ -68889,6 +68884,42 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_posix_1wrappe
 }
 
 
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_posix_1wrapper_1openSwigExplicitposix_1wrapper(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3, jint jarg4) {
+  jint jresult = 0 ;
+  posix_wrapper *arg1 = (posix_wrapper *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(posix_wrapper **)&jarg1; 
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)jenv->GetStringUTFChars(jarg2, 0);
+    if (!arg2) return 0;
+  }
+  arg3 = (int)jarg3; 
+  arg4 = (int)jarg4; 
+  {
+    try {
+      result = (int)(arg1)->posix_wrapper::open((char const *)arg2,arg3,arg4);
+    } catch (std::exception& e) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+      return 0;
+    } catch (...) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+      return 0;
+    }
+  }
+  jresult = (jint)result; 
+  if (arg2) jenv->ReleaseStringUTFChars(jarg2, (const char *)arg2);
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_posix_1wrapper_1stat(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jlong jarg3, jobject jarg3_) {
   jint jresult = 0 ;
   posix_wrapper *arg1 = (posix_wrapper *) 0 ;
@@ -68924,6 +68955,41 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_posix_1wrappe
 }
 
 
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_posix_1wrapper_1statSwigExplicitposix_1wrapper(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jlong jarg3, jobject jarg3_) {
+  jint jresult = 0 ;
+  posix_wrapper *arg1 = (posix_wrapper *) 0 ;
+  char *arg2 = (char *) 0 ;
+  posix_stat_t *arg3 = (posix_stat_t *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg3_;
+  arg1 = *(posix_wrapper **)&jarg1; 
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)jenv->GetStringUTFChars(jarg2, 0);
+    if (!arg2) return 0;
+  }
+  arg3 = *(posix_stat_t **)&jarg3; 
+  {
+    try {
+      result = (int)(arg1)->posix_wrapper::stat((char const *)arg2,arg3);
+    } catch (std::exception& e) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+      return 0;
+    } catch (...) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+      return 0;
+    }
+  }
+  jresult = (jint)result; 
+  if (arg2) jenv->ReleaseStringUTFChars(jarg2, (const char *)arg2);
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_posix_1wrapper_1mkdir(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3) {
   jint jresult = 0 ;
   posix_wrapper *arg1 = (posix_wrapper *) 0 ;
@@ -68944,6 +69010,40 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_posix_1wrappe
   {
     try {
       result = (int)(arg1)->mkdir((char const *)arg2,arg3);
+    } catch (std::exception& e) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+      return 0;
+    } catch (...) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+      return 0;
+    }
+  }
+  jresult = (jint)result; 
+  if (arg2) jenv->ReleaseStringUTFChars(jarg2, (const char *)arg2);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_posix_1wrapper_1mkdirSwigExplicitposix_1wrapper(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3) {
+  jint jresult = 0 ;
+  posix_wrapper *arg1 = (posix_wrapper *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(posix_wrapper **)&jarg1; 
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)jenv->GetStringUTFChars(jarg2, 0);
+    if (!arg2) return 0;
+  }
+  arg3 = (int)jarg3; 
+  {
+    try {
+      result = (int)(arg1)->posix_wrapper::mkdir((char const *)arg2,arg3);
     } catch (std::exception& e) {
       SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
       return 0;
@@ -68997,6 +69097,45 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_posix_1wrappe
 }
 
 
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_posix_1wrapper_1renameSwigExplicitposix_1wrapper(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+  jint jresult = 0 ;
+  posix_wrapper *arg1 = (posix_wrapper *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(posix_wrapper **)&jarg1; 
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)jenv->GetStringUTFChars(jarg2, 0);
+    if (!arg2) return 0;
+  }
+  arg3 = 0;
+  if (jarg3) {
+    arg3 = (char *)jenv->GetStringUTFChars(jarg3, 0);
+    if (!arg3) return 0;
+  }
+  {
+    try {
+      result = (int)(arg1)->posix_wrapper::rename((char const *)arg2,(char const *)arg3);
+    } catch (std::exception& e) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+      return 0;
+    } catch (...) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+      return 0;
+    }
+  }
+  jresult = (jint)result; 
+  if (arg2) jenv->ReleaseStringUTFChars(jarg2, (const char *)arg2);
+  if (arg3) jenv->ReleaseStringUTFChars(jarg3, (const char *)arg3);
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_posix_1wrapper_1remove(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   jint jresult = 0 ;
   posix_wrapper *arg1 = (posix_wrapper *) 0 ;
@@ -69015,6 +69154,38 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_posix_1wrappe
   {
     try {
       result = (int)(arg1)->remove((char const *)arg2);
+    } catch (std::exception& e) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+      return 0;
+    } catch (...) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+      return 0;
+    }
+  }
+  jresult = (jint)result; 
+  if (arg2) jenv->ReleaseStringUTFChars(jarg2, (const char *)arg2);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_posix_1wrapper_1removeSwigExplicitposix_1wrapper(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  jint jresult = 0 ;
+  posix_wrapper *arg1 = (posix_wrapper *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(posix_wrapper **)&jarg1; 
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)jenv->GetStringUTFChars(jarg2, 0);
+    if (!arg2) return 0;
+  }
+  {
+    try {
+      result = (int)(arg1)->posix_wrapper::remove((char const *)arg2);
     } catch (std::exception& e) {
       SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
       return 0;
