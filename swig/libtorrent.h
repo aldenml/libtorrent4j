@@ -308,32 +308,45 @@ void* get_libc() {
 
 int posix_open(const char* path, int flags, mode_t mode) {
     typedef int func_t(const char*, int, ...);
+    static func_t* f = (func_t*) dlsym(get_libc(), "open");
+    if (f == NULL) return -2;
+    flags |= O_LARGEFILE;
+    return (*f)(path, flags, mode);
+}
+
+int posix_open64(const char* path, int flags, mode_t mode) {
+    typedef int func_t(const char*, int, ...);
     static func_t* f = (func_t*) dlsym(get_libc(), "open64");
+    if (f == NULL) return -2;
     flags |= O_LARGEFILE;
     return (*f)(path, flags, mode);
 }
 
 int posix_stat(const char *path, struct ::stat *buf) {
     typedef int func_t(const char*, struct ::stat*);
+    static func_t* f = (func_t*) dlsym(get_libc(), "stat");
+    if (f == NULL) return -2;
+    return (*f)(path, buf);
+}
+
+int posix_stat64(const char *path, struct ::stat *buf) {
+    typedef int func_t(const char*, struct ::stat*);
     static func_t* f = (func_t*) dlsym(get_libc(), "stat64");
+    if (f == NULL) return -2;
     return (*f)(path, buf);
 }
 
 int posix_mkdir(const char *path, mode_t mode) {
     typedef int func_t(const char*, mode_t);
     static func_t* f = (func_t*) dlsym(get_libc(), "mkdir");
+    if (f == NULL) return -2;
     return (*f)(path, mode);
-}
-
-int posix_rename(const char *oldpath, const char *newpath) {
-    typedef int func_t(const char*, const char*);
-    static func_t* f = (func_t*) dlsym(get_libc(), "rename");
-    return (*f)(oldpath, newpath);
 }
 
 int posix_remove(const char *path) {
     typedef int func_t(const char*);
     static func_t* f = (func_t*) dlsym(get_libc(), "remove");
+    if (f == NULL) return -2;
     return (*f)(path);
 }
 #endif
@@ -344,50 +357,19 @@ struct posix_wrapper {
     }
 
     virtual int open(const char* path, int flags, int mode) {
-#if WRAP_POSIX_ANDROID
-        return posix_open(path, flags, mode);
-#else
         return -1;
-#endif
     }
 
     virtual int stat(const char *path, posix_stat_t *buf) {
-#if WRAP_POSIX_ANDROID
-        struct ::stat t;
-        int r = posix_stat(path, &t);
-        buf->size = t.st_size;
-        buf->atime = t.st_atime;
-        buf->mtime = t.st_mtime;
-        buf->ctime = t.st_ctime;
-        buf->mode = t.st_mode;
-        return r;
-#else
         return -1;
-#endif
     }
 
     virtual int mkdir(const char *path, int mode) {
-#if WRAP_POSIX_ANDROID
-        return posix_mkdir(path, mode);
-#else
         return -1;
-#endif
-    }
-
-    virtual int rename(const char *oldpath, const char *newpath) {
-#if WRAP_POSIX_ANDROID
-        return posix_rename(oldpath, newpath);
-#else
-        return -1;
-#endif
     }
 
     virtual int remove(const char *path) {
-#if WRAP_POSIX_ANDROID
-        return posix_remove(path);
-#else
         return -1;
-#endif
     }
 };
 
@@ -433,12 +415,6 @@ int mkdir(const char *path, mode_t mode) {
     return g_posix_wrapper != nullptr ?
            g_posix_wrapper->mkdir(path, mode) :
            posix_mkdir(path, mode);
-}
-
-int rename(const char *oldpath, const char *newpath) {
-    return g_posix_wrapper != nullptr ?
-           g_posix_wrapper->rename(oldpath, newpath) :
-           posix_rename(oldpath, newpath);
 }
 
 int remove(const char *path) {
