@@ -13,7 +13,7 @@ public class libtorrent_jni {
 
     public static String libtorrent4jVersion() {
         // extracted from the gradle with the run-swig step
-        return "1.2.0.21-alpha1";
+        return "1.2.0.21-alpha2";
     }
 
     static {
@@ -3103,10 +3103,15 @@ public class libtorrent_jni {
   public final static native void delete_posix_stat_t(long jarg1);
   public final static native void delete_posix_wrapper(long jarg1);
   public final static native int posix_wrapper_open(long jarg1, posix_wrapper jarg1_, String jarg2, int jarg3, int jarg4);
+  public final static native int posix_wrapper_openSwigExplicitposix_wrapper(long jarg1, posix_wrapper jarg1_, String jarg2, int jarg3, int jarg4);
   public final static native int posix_wrapper_stat(long jarg1, posix_wrapper jarg1_, String jarg2, long jarg3, posix_stat_t jarg3_);
+  public final static native int posix_wrapper_statSwigExplicitposix_wrapper(long jarg1, posix_wrapper jarg1_, String jarg2, long jarg3, posix_stat_t jarg3_);
   public final static native int posix_wrapper_mkdir(long jarg1, posix_wrapper jarg1_, String jarg2, int jarg3);
+  public final static native int posix_wrapper_mkdirSwigExplicitposix_wrapper(long jarg1, posix_wrapper jarg1_, String jarg2, int jarg3);
   public final static native int posix_wrapper_rename(long jarg1, posix_wrapper jarg1_, String jarg2, String jarg3);
+  public final static native int posix_wrapper_renameSwigExplicitposix_wrapper(long jarg1, posix_wrapper jarg1_, String jarg2, String jarg3);
   public final static native int posix_wrapper_remove(long jarg1, posix_wrapper jarg1_, String jarg2);
+  public final static native int posix_wrapper_removeSwigExplicitposix_wrapper(long jarg1, posix_wrapper jarg1_, String jarg2);
   public final static native long new_posix_wrapper();
   public final static native void posix_wrapper_director_connect(posix_wrapper obj, long cptr, boolean mem_own, boolean weak_global);
   public final static native void posix_wrapper_change_ownership(posix_wrapper obj, long cptr, boolean take_or_release);
