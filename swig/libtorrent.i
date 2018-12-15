@@ -1183,6 +1183,8 @@ namespace libtorrent {
 %ignore libtorrent::settings_pack::deprecated_lock_files;
 %ignore libtorrent::settings_pack::deprecated_ssl_listen;
 %ignore libtorrent::settings_pack::deprecated_force_proxy;
+%ignore libtorrent::settings_pack::deprecated_aio_max;
+%ignore libtorrent::settings_pack::deprecated_disable_os_cache_for_aligned_files;
 %ignore libtorrent::storage_params::pool;
 %ignore libtorrent::storage_params::priorities;
 %ignore libtorrent::ipv6_peer::addr;

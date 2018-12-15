@@ -13,7 +13,7 @@ public class libtorrent_jni {
 
     public static String libtorrent4jVersion() {
         // extracted from the gradle with the run-swig step
-        return "1.2.0.20-RC3";
+        return "1.2.0.20";
     }
 
     static {
@@ -2713,7 +2713,7 @@ public class libtorrent_jni {
   public final static native void alerts_dropped_alert_dropped_alerts_set(long jarg1, alerts_dropped_alert jarg1_, long jarg2, bitset_96 jarg2_);
   public final static native long alerts_dropped_alert_dropped_alerts_get(long jarg1, alerts_dropped_alert jarg1_);
   public final static native void delete_alerts_dropped_alert(long jarg1);
-  public final static native int setting_by_name(String jarg1);
+  public final static native int setting_by_name(long jarg1, string_view jarg1_);
   public final static native String name_for_setting(int jarg1);
   public final static native long default_settings();
   public final static native long new_settings_pack__SWIG_0();

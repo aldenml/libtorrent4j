@@ -1,10 +1,18 @@
-1.2.0.20-RC3
+1.2.0.20
 
   * updated to OpenSSL 1.1.1a
   * using android NDK r18b
   * removed posix wrapper hack
   * added support for BEP 53
   * fixed priority values
+  * lt:add assignment operator to span
+  * lt:fix %u -> %d format codes
+  * lt:fix deprecation markup in torrent_status
+  * lt:tweak heuristic of how to interpret url seeds in multi-file torrents
+  * lt:added more TORRENT_DEPRECATED_ENUM and deprecated unused aio_max in
+    settings_pack
+  * lt:take a string_view in setting_by_name
+  * lt:fix typo in peer log
   * lt:deprecate start_default_features flag, it's only used in deprecated API
   * lt:remove verbose peer logging
   * lt:make stack_allocator::format_string() grow the buffer for large strings

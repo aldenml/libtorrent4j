@@ -25455,7 +25455,7 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_LIBTORRENT
   
   (void)jenv;
   (void)jcls;
-  result = (char *)("62cdec8");
+  result = (char *)("c76e9cc5e");
   if (result) jresult = jenv->NewStringUTF((const char *)result);
   return jresult;
 }
@@ -60172,25 +60172,24 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1alert
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_setting_1by_1name(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_setting_1by_1name(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jint jresult = 0 ;
-  std::string *arg1 = 0 ;
+  libtorrent::string_view arg1 ;
+  libtorrent::string_view *argp1 ;
   int result;
   
   (void)jenv;
   (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+  (void)jarg1_;
+  argp1 = *(libtorrent::string_view **)&jarg1; 
+  if (!argp1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null libtorrent::string_view");
     return 0;
   }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  arg1 = *argp1; 
   {
     try {
-      result = (int)libtorrent::setting_by_name((std::string const &)*arg1);
+      result = (int)libtorrent::setting_by_name(arg1);
     } catch (std::exception& e) {
       SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
       return 0;

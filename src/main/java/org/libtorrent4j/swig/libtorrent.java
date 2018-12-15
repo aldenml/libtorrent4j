@@ -145,8 +145,8 @@ public class libtorrent implements libtorrentConstants {
     return libtorrent_jni.num_alert_types_get();
   }
 
-  public static int setting_by_name(String name) {
-    return libtorrent_jni.setting_by_name(name);
+  public static int setting_by_name(string_view name) {
+    return libtorrent_jni.setting_by_name(string_view.getCPtr(name), name);
   }
 
   public static String name_for_setting(int s) {
