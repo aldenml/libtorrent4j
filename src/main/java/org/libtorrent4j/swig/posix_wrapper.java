@@ -62,10 +62,6 @@ public class posix_wrapper {
     return (getClass() == posix_wrapper.class) ? libtorrent_jni.posix_wrapper_mkdir(swigCPtr, this, path, mode) : libtorrent_jni.posix_wrapper_mkdirSwigExplicitposix_wrapper(swigCPtr, this, path, mode);
   }
 
-  public int rename(String oldpath, String newpath) {
-    return (getClass() == posix_wrapper.class) ? libtorrent_jni.posix_wrapper_rename(swigCPtr, this, oldpath, newpath) : libtorrent_jni.posix_wrapper_renameSwigExplicitposix_wrapper(swigCPtr, this, oldpath, newpath);
-  }
-
   public int remove(String path) {
     return (getClass() == posix_wrapper.class) ? libtorrent_jni.posix_wrapper_remove(swigCPtr, this, path) : libtorrent_jni.posix_wrapper_removeSwigExplicitposix_wrapper(swigCPtr, this, path);
   }

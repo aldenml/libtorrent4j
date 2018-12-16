@@ -80,14 +80,13 @@ public:
     virtual int open(char const *path, int flags, int mode);
     virtual int stat(char const *path, posix_stat_t *buf);
     virtual int mkdir(char const *path, int mode);
-    virtual int rename(char const *oldpath, char const *newpath);
     virtual int remove(char const *path);
 public:
     bool swig_overrides(int n) {
-      return (n < 5 ? swig_override[n] : false);
+      return (n < 4 ? swig_override[n] : false);
     }
 protected:
-    Swig::BoolArray<5> swig_override;
+    Swig::BoolArray<4> swig_override;
 };
 
 

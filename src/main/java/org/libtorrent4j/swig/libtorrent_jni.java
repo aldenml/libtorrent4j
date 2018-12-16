@@ -13,7 +13,7 @@ public class libtorrent_jni {
 
     public static String libtorrent4jVersion() {
         // extracted from the gradle with the run-swig step
-        return "1.2.0.21-alpha2";
+        return "1.2.0.21-alpha3";
     }
 
     static {
@@ -3108,8 +3108,6 @@ public class libtorrent_jni {
   public final static native int posix_wrapper_statSwigExplicitposix_wrapper(long jarg1, posix_wrapper jarg1_, String jarg2, long jarg3, posix_stat_t jarg3_);
   public final static native int posix_wrapper_mkdir(long jarg1, posix_wrapper jarg1_, String jarg2, int jarg3);
   public final static native int posix_wrapper_mkdirSwigExplicitposix_wrapper(long jarg1, posix_wrapper jarg1_, String jarg2, int jarg3);
-  public final static native int posix_wrapper_rename(long jarg1, posix_wrapper jarg1_, String jarg2, String jarg3);
-  public final static native int posix_wrapper_renameSwigExplicitposix_wrapper(long jarg1, posix_wrapper jarg1_, String jarg2, String jarg3);
   public final static native int posix_wrapper_remove(long jarg1, posix_wrapper jarg1_, String jarg2);
   public final static native int posix_wrapper_removeSwigExplicitposix_wrapper(long jarg1, posix_wrapper jarg1_, String jarg2);
   public final static native long new_posix_wrapper();
@@ -3229,9 +3227,6 @@ public class libtorrent_jni {
   }
   public static int SwigDirector_posix_wrapper_mkdir(posix_wrapper jself, String path, int mode) {
     return jself.mkdir(path, mode);
-  }
-  public static int SwigDirector_posix_wrapper_rename(posix_wrapper jself, String oldpath, String newpath) {
-    return jself.rename(oldpath, newpath);
   }
   public static int SwigDirector_posix_wrapper_remove(posix_wrapper jself, String path) {
     return jself.remove(path);

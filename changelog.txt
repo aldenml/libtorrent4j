@@ -1,4 +1,4 @@
-1.2.0.21-alpha2
+1.2.0.21-alpha3
 
   * experimental support for android external storage
   * lt:source code cleanup, performance and stability
