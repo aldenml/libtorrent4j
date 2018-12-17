@@ -287,9 +287,9 @@ bool arm_neon_support()
 }
 
 #if defined TORRENT_ANDROID
-#define WRAP_POSIX_ANDROID 1
+#define POSIX_WRAPPER 1
 #else
-#define WRAP_POSIX_ANDROID 0
+#define POSIX_WRAPPER 0
 #endif
 
 struct posix_stat_t {
@@ -300,40 +300,11 @@ struct posix_stat_t {
     int mode;
 };
 
-#if WRAP_POSIX_ANDROID
-void* get_libc() {
-    static void* h = dlopen("libc.so", RTLD_NOW);
-    return h;
-}
-
-int posix_open(const char* path, int flags, mode_t mode) {
-    typedef int func_t(const char*, int, ...);
-    static func_t* f1 = (func_t*) dlsym(get_libc(), "open");
-    static func_t* f2 = (func_t*) dlsym(get_libc(), "open64");
-    static func_t* f = f2 != NULL ? f2 : f1;
-    flags |= O_LARGEFILE;
-    return (*f)(path, flags, mode);
-}
-
-int posix_stat(const char *path, struct ::stat *buf) {
-    typedef int func_t(const char*, struct ::stat*);
-    static func_t* f1 = (func_t*) dlsym(get_libc(), "stat");
-    static func_t* f2 = (func_t*) dlsym(get_libc(), "stat64");
-    static func_t* f = f2 != NULL ? f2 : f1;
-    return (*f)(path, buf);
-}
-
-int posix_mkdir(const char *path, mode_t mode) {
-    typedef int func_t(const char*, mode_t);
-    static func_t* f = (func_t*) dlsym(get_libc(), "mkdir");
-    return (*f)(path, mode);
-}
-
-int posix_remove(const char *path) {
-    typedef int func_t(const char*);
-    static func_t* f = (func_t*) dlsym(get_libc(), "remove");
-    return (*f)(path);
-}
+#if POSIX_WRAPPER
+int posix_open(const char* path, int flags, int mode);
+int posix_stat(const char *path, struct ::stat *buf);
+int posix_mkdir(const char *path, mode_t mode);
+int posix_remove(const char *path);
 #endif
 
 struct posix_wrapper {
@@ -342,17 +313,17 @@ struct posix_wrapper {
     }
 
     virtual int open(const char* path, int flags, int mode) {
-#if WRAP_POSIX_ANDROID
-        return posix_open(path, flags, mode);
+#if POSIX_WRAPPER
+        return ::open(path, flags, mode);
 #else
         return -1;
 #endif
     }
 
     virtual int stat(const char *path, posix_stat_t *buf) {
-#if WRAP_POSIX_ANDROID
+#if POSIX_WRAPPER
         struct ::stat t;
-        int r = posix_stat(path, &t);
+        int r = ::stat(path, &t);
         buf->size = t.st_size;
         buf->atime = t.st_atime;
         buf->mtime = t.st_mtime;
@@ -365,16 +336,16 @@ struct posix_wrapper {
     }
 
     virtual int mkdir(const char *path, int mode) {
-#if WRAP_POSIX_ANDROID
-        return posix_mkdir(path, mode);
+#if POSIX_WRAPPER
+        return ::mkdir(path, mode);
 #else
         return -1;
 #endif
     }
 
     virtual int remove(const char *path) {
-#if WRAP_POSIX_ANDROID
-        return posix_remove(path);
+#if POSIX_WRAPPER
+        return ::remove(path);
 #else
         return -1;
 #endif
@@ -387,25 +358,18 @@ void set_posix_wrapper(posix_wrapper *obj) {
     g_posix_wrapper = obj;
 }
 
-#if WRAP_POSIX_ANDROID
-extern "C" {
-
-int open(const char *path, int flags, ...) {
-    mode_t mode = 0;
-    if (flags & O_CREAT) {
-        va_list v;
-        va_start(v, flags);
-        mode = (mode_t) va_arg(v, int);
-        va_end(v);
-    }
-
-    return g_posix_wrapper != nullptr ?
-           g_posix_wrapper->open(path, flags, mode) :
-           posix_open(path, flags, mode);
+#if POSIX_WRAPPER
+int posix_open(const char* path, int flags, int mode)
+{
+    return g_posix_wrapper != nullptr
+        ? g_posix_wrapper->open(path, flags, mode)
+        : ::open(path, flags, mode);
 }
 
-int stat(const char *path, struct ::stat *buf) {
-    if (g_posix_wrapper != nullptr) {
+int posix_stat(const char *path, struct ::stat *buf)
+{
+    if (g_posix_wrapper != nullptr)
+    {
         posix_stat_t t;
         int r = g_posix_wrapper->stat(path, &t);
         buf->st_size = t.size;
@@ -414,22 +378,24 @@ int stat(const char *path, struct ::stat *buf) {
         buf->st_ctime = t.ctime;
         buf->st_mode = t.mode;
         return r;
-    } else {
-        return posix_stat(path, buf);
+    }
+    else
+    {
+        return ::stat(path, buf);
     }
 }
 
-int mkdir(const char *path, mode_t mode) {
-    return g_posix_wrapper != nullptr ?
-           g_posix_wrapper->mkdir(path, mode) :
-           posix_mkdir(path, mode);
+int posix_mkdir(const char *path, mode_t mode)
+{
+    return g_posix_wrapper != nullptr
+        ? g_posix_wrapper->mkdir(path, mode)
+        : ::mkdir(path, mode);
 }
 
-int remove(const char *path) {
-    return g_posix_wrapper != nullptr ?
-           g_posix_wrapper->remove(path) :
-           posix_remove(path);
-}
-
+int posix_remove(const char *path)
+{
+    return g_posix_wrapper != nullptr
+        ? g_posix_wrapper->remove(path)
+        : ::remove(path);
 }
 #endif

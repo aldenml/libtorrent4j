@@ -1343,18 +1343,11 @@ namespace libtorrent {
 %ignore swig_plugin::implemented_features;
 %ignore set_piece_hashes_listener::progress_index;
 
-%ignore WRAP_POSIX_ANDROID;
-%ignore get_libc;
+%ignore POSIX_WRAPPER;
 %ignore posix_open;
 %ignore posix_stat;
 %ignore posix_mkdir;
-%ignore posix_rename;
 %ignore posix_remove;
-%ignore ::open;
-%ignore ::stat;
-%ignore ::mkdir;
-%ignore ::rename;
-%ignore ::remove;
 %ignore g_posix_wrapper;
 
 // BEGIN common set include ------------------------------------------------------
