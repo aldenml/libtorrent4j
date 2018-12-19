@@ -13,7 +13,7 @@ public class libtorrent_jni {
 
     public static String libtorrent4jVersion() {
         // extracted from the gradle with the run-swig step
-        return "1.2.0.21-alpha4";
+        return "1.2.0.21-beta1";
     }
 
     static {
@@ -3114,6 +3114,7 @@ public class libtorrent_jni {
   public final static native void posix_wrapper_director_connect(posix_wrapper obj, long cptr, boolean mem_own, boolean weak_global);
   public final static native void posix_wrapper_change_ownership(posix_wrapper obj, long cptr, boolean take_or_release);
   public final static native void set_posix_wrapper(long jarg1, posix_wrapper jarg1_);
+  public final static native void set_posix_errno(int jarg1);
   public final static native long torrent_alert_SWIGUpcast(long jarg1);
   public final static native long peer_alert_SWIGUpcast(long jarg1);
   public final static native long tracker_alert_SWIGUpcast(long jarg1);

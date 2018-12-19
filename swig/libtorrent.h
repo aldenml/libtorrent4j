@@ -358,6 +358,13 @@ void set_posix_wrapper(posix_wrapper *obj) {
     g_posix_wrapper = obj;
 }
 
+void set_posix_errno(int val)
+{
+#if POSIX_WRAPPER
+    errno = val;
+#endif
+}
+
 #if POSIX_WRAPPER
 int posix_open(const char* path, int flags, int mode)
 {
