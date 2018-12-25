@@ -222,11 +222,9 @@ public final class SettingsPack {
     }
 
     /**
-     * {@code active_dht_limit} is the max number of torrents to announce to
-     * the DHT. By default this is set to 88, which is no more than one
-     * DHT announce every 10 seconds.
+     * Max number of torrents to announce to the DHT. By default this is set
+     * to 88, which is no more than one DHT announce every 10 seconds.
      *
-     * @return
      * @see #activeDownloads()
      */
     public int activeDhtLimit() {
@@ -234,11 +232,12 @@ public final class SettingsPack {
     }
 
     /**
-     * @param value
+     * Max number of torrents to announce to the DHT.
+     *
      * @see #activeDhtLimit()
      */
     public SettingsPack activeDhtLimit(int value) {
-        sp.set_int(settings_pack.int_types.active_checking.swigValue(), value);
+        sp.set_int(settings_pack.int_types.active_dht_limit.swigValue(), value);
         return this;
     }
 
