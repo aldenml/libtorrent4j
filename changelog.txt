@@ -1,6 +1,14 @@
-1.2.0.21-beta1
+1.2.0.21-RC1(temp)
 
   * experimental support for android posix hook
+  * lt:remove old (incompatible) sequence number build option
+  * lt:don't leave slow-start just because we hit the advertized receive window
+  * lt:simplify and improve the uTP deferred ACK logic to respond earlier
+  * lt:improve logic for fast-retransmitting packets on incoming SACK
+  * lt:improve utp verbose logging a bit and make the parser pull out more
+    metrics
+  * lt:restore permissions on directories to 1.1. i.e. rely on umask
+  * lt:minor fix to invalid_request_alert logging
   * lt:source code cleanup, performance and stability
 
 1.2.0.20
