@@ -2,7 +2,7 @@ libtorrent4j
 =====================
 
 [![Build Status](https://travis-ci.com/aldenml/libtorrent4j.svg?branch=master)](https://travis-ci.com/aldenml/libtorrent4j)
-[![Maven Central](https://img.shields.io/maven-central/v/org.libtorrent4j/libtorrent4j.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22org.libtorrent4j%22%20AND%20a:%22libtorrent4j%22)
+[![Maven Central](https://img.shields.io/maven-central/v/org.libtorrent4j/libtorrent4j.svg?label=maven)](https://search.maven.org/search?q=g:%22org.libtorrent4j%22%20AND%20a:%22libtorrent4j%22)
 
 A swig Java interface for [libtorrent](https://github.com/arvidn/libtorrent). Source code fork from [jlibtorrent](https://github.com/frostwire/frostwire-jlibtorrent).
 

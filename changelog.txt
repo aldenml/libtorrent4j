@@ -1,4 +1,4 @@
-1.2.0.21-RC1(temp)
+1.2.0.21-RC1
 
   * updated to boost 1.69.0
   * experimental support for android posix hook
