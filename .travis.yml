@@ -46,7 +46,7 @@ before_install:
   - export LIBTORRENT_ROOT=$PWD/libtorrent
   # perform android specific modifications for posix calls
   - if [ $os_build == "android" ]; then
-      sed -i '142iextern int posix_open(const char*, int, int);' $LIBTORRENT_ROOT/src/file.cpp;
+      sed -i '137iextern int posix_open(const char*, int, int);' $LIBTORRENT_ROOT/src/file.cpp;
       sed -i 's/ ::open(/posix_open(/g' $LIBTORRENT_ROOT/src/file.cpp;
       sed -i '108iextern int posix_open(const char*, int, int mode = 0);' $LIBTORRENT_ROOT/src/path.cpp;
       sed -i '108iextern int posix_stat(const char*, struct ::stat*);' $LIBTORRENT_ROOT/src/path.cpp;
