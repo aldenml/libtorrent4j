@@ -51,6 +51,10 @@ public class error_code {
     return libtorrent_jni.error_code_message(swigCPtr, this);
   }
 
+  public boolean failed() {
+    return libtorrent_jni.error_code_failed(swigCPtr, this);
+  }
+
   public boolean op_bool() {
     return libtorrent_jni.error_code_op_bool(swigCPtr, this);
   }

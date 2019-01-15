@@ -29,6 +29,7 @@ function runJni()
         -DBOOST_SYSTEM_NOEXCEPT="" \
         -DBOOST_SYSTEM_DECL="" \
         -DBOOST_SYSTEM_NO_DEPRECATED=1 \
+        -DBOOST_SYSTEM_CONSTEXPR \
         -DBOOST_NO_IOSTREAM \
         -DBOOST_SYMBOL_VISIBLE \
         -DBOOST_NOEXCEPT="" \
