@@ -930,6 +930,7 @@ public class libtorrent_jni {
   public final static native void error_code_clear(long jarg1, error_code jarg1_);
   public final static native int error_code_value(long jarg1, error_code jarg1_);
   public final static native String error_code_message(long jarg1, error_code jarg1_);
+  public final static native boolean error_code_failed(long jarg1, error_code jarg1_);
   public final static native boolean error_code_op_bool(long jarg1, error_code jarg1_);
   public final static native boolean op_eq__SWIG_1(long jarg1, error_code jarg1_, long jarg2, error_code jarg2_);
   public final static native boolean op_lt__SWIG_1(long jarg1, error_code jarg1_, long jarg2, error_code jarg2_);
