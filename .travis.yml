@@ -88,7 +88,7 @@ before_install:
 
 # install gradle in macOS to run the unit tests
   - if [ $os_build == "macosx" ]; then
-      brew update > /dev/null && brew install --quiet gradle;
+      brew update > /dev/null && brew install gradle;
     fi
 
 # openssl
