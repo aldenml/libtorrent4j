@@ -28,9 +28,9 @@ before_install:
   - export BOOST_ROOT=$PWD/boost_1_69_0
 
 # openssl: download
-  - wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1a.tar.gz
+  - wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1b.tar.gz
   - tar xzf openssl.tar.gz
-  - export OPENSSL_SOURCE=$PWD/openssl-1.1.1a
+  - export OPENSSL_SOURCE=$PWD/openssl-1.1.1b
   # fix source code
   # this one avoid GDI dependency in windows
   - if [ $os_build == "windows" ]; then
@@ -41,15 +41,15 @@ before_install:
 # libtorrent: download and checkout revision
   - git clone https://github.com/arvidn/libtorrent
   - cd libtorrent
-  - git checkout 3a1e546a6c63a056914547ecdbc565fb907b423d
+  - git checkout 381d5a3c5d170c7e2cbcfe231c8e6108391327d7
   - cd ..
   - export LIBTORRENT_ROOT=$PWD/libtorrent
   # perform android specific modifications for posix calls
   - if [ $os_build == "android" ]; then
       cp swig/posix_wrapper.h $LIBTORRENT_ROOT/include/libtorrent;
-      sed -i '137c#include "libtorrent/posix_wrapper.h"' $LIBTORRENT_ROOT/src/file.cpp;
+      sed -i '134c#include "libtorrent/posix_wrapper.h"' $LIBTORRENT_ROOT/src/file.cpp;
       sed -i 's/ ::open(/posix_open(/g' $LIBTORRENT_ROOT/src/file.cpp;
-      sed -i '108c#include "libtorrent/posix_wrapper.h"' $LIBTORRENT_ROOT/src/path.cpp;
+      sed -i '106c#include "libtorrent/posix_wrapper.h"' $LIBTORRENT_ROOT/src/path.cpp;
       sed -i 's/ ::open(/posix_open(/g' $LIBTORRENT_ROOT/src/path.cpp;
       sed -i 's/ ::stat(/posix_stat(/g' $LIBTORRENT_ROOT/src/path.cpp;
       sed -i 's/ ::mkdir(/posix_mkdir(/g' $LIBTORRENT_ROOT/src/path.cpp;
@@ -58,10 +58,10 @@ before_install:
 
 # android ndk: download and create toolchain
   - if [ $os_build == "android" ]; then
-      wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-r18b-linux-x86_64.zip;
+      wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-r19b-linux-x86_64.zip;
       echo "Extracting NDK...wait";
       unzip -qq android-ndk.zip;
-      export NDK=$PWD/android-ndk-r18b;
+      export NDK=$PWD/android-ndk-r19b;
       $NDK/build/tools/make_standalone_toolchain.py --arch $os_arch --api $android_api --stl libc++ --install-dir android-toolchain;
       export ANDROID_TOOLCHAIN=$PWD/android-toolchain;
     fi

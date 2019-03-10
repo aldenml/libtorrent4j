@@ -51196,13 +51196,13 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_listen_1faile
 SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_listen_1failed_1alert_1socket_1type_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jint jresult = 0 ;
   libtorrent::listen_failed_alert *arg1 = (libtorrent::listen_failed_alert *) 0 ;
-  libtorrent::socket_type_t result;
+  lt::socket_type_t result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(libtorrent::listen_failed_alert **)&jarg1; 
-  result = (libtorrent::socket_type_t)(libtorrent::socket_type_t) ((arg1)->socket_type);
+  result = (lt::socket_type_t)(lt::socket_type_t) ((arg1)->socket_type);
   jresult = (jint)result; 
   return jresult;
 }
@@ -51422,13 +51422,13 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_listen_1succe
 SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_listen_1succeeded_1alert_1socket_1type_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jint jresult = 0 ;
   libtorrent::listen_succeeded_alert *arg1 = (libtorrent::listen_succeeded_alert *) 0 ;
-  libtorrent::socket_type_t result;
+  lt::socket_type_t result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(libtorrent::listen_succeeded_alert **)&jarg1; 
-  result = (libtorrent::socket_type_t)(libtorrent::socket_type_t) ((arg1)->socket_type);
+  result = (lt::socket_type_t)(lt::socket_type_t) ((arg1)->socket_type);
   jresult = (jint)result; 
   return jresult;
 }
