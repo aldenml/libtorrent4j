@@ -13,7 +13,7 @@ public class libtorrent_jni {
 
     public static String libtorrent4jVersion() {
         // extracted from the gradle with the run-swig step
-        return "1.2.0.21";
+        return "1.2.0.22";
     }
 
     static {

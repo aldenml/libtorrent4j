@@ -1233,6 +1233,8 @@ namespace libtorrent {
 %ignore libtorrent::create_torrent::add_tracker(string_view, int);
 %ignore libtorrent::create_torrent::add_collection(string_view);
 %ignore libtorrent::create_torrent::set_root_cert;
+%ignore libtorrent::get_file_attributes;
+%ignore libtorrent::get_symlink_path;
 %ignore libtorrent::stats_metric::name;
 %ignore libtorrent::peer_log_alert::event_type;
 %ignore libtorrent::dht_lookup::type;

@@ -207,7 +207,12 @@ public enum Operation {
     /**
      *
      */
-    HOSTNAME_LOOKUP(operation_t.hostname_lookup.swigValue());
+    HOSTNAME_LOOKUP(operation_t.hostname_lookup.swigValue()),
+
+    /**
+     *
+     */
+    SYMLINK(operation_t.symlink.swigValue());
 
     Operation(int swigValue) {
         this.swigValue = swigValue;
