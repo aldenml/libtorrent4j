@@ -1227,6 +1227,7 @@ namespace libtorrent {
 %ignore libtorrent::file_storage::add_file(std::string const&, std::int64_t, std::uint32_t, std::time_t, string_view);
 %ignore libtorrent::file_storage::file_range;
 %ignore libtorrent::file_storage::piece_range;
+%ignore libtorrent::file_storage::sanitize_symlinks;
 %ignore libtorrent::create_torrent::add_url_seed(string_view);
 %ignore libtorrent::create_torrent::add_http_seed(string_view);
 %ignore libtorrent::create_torrent::add_tracker(string_view);

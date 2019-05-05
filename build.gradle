@@ -4,7 +4,7 @@ apply plugin: 'maven'
 
 group 'org.libtorrent4j'
 archivesBaseName = 'libtorrent4j'
-version '1.2.0.22'
+version '1.2.1.0'
 
 sourceCompatibility = '1.7'
 targetCompatibility = '1.7'
