@@ -20,12 +20,12 @@ branches:
 
 before_install:
 # boost: download and bootstrap
-  - wget -nv -O boost.zip https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.zip
+  - wget -nv -O boost.zip https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.zip
   - unzip -qq boost.zip
-  - cd boost_1_69_0
+  - cd boost_1_70_0
   - ./bootstrap.sh
   - cd ..
-  - export BOOST_ROOT=$PWD/boost_1_69_0
+  - export BOOST_ROOT=$PWD/boost_1_70_0
 
 # openssl: download
   - wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1b.tar.gz
@@ -41,7 +41,7 @@ before_install:
 # libtorrent: download and checkout revision
   - git clone https://github.com/arvidn/libtorrent
   - cd libtorrent
-  - git checkout 381d5a3c5d170c7e2cbcfe231c8e6108391327d7
+  - git checkout 4b268297c4cf7beefd6d90e45e2f5c2a2284a870
   - cd ..
   - export LIBTORRENT_ROOT=$PWD/libtorrent
   # perform android specific modifications for posix calls
@@ -58,10 +58,10 @@ before_install:
 
 # android ndk: download and create toolchain
   - if [ $os_build == "android" ]; then
-      wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-r19b-linux-x86_64.zip;
+      wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-r19c-linux-x86_64.zip;
       echo "Extracting NDK...wait";
       unzip -qq android-ndk.zip;
-      export NDK=$PWD/android-ndk-r19b;
+      export NDK=$PWD/android-ndk-r19c;
       $NDK/build/tools/make_standalone_toolchain.py --arch $os_arch --api $android_api --stl libc++ --install-dir android-toolchain;
       export ANDROID_TOOLCHAIN=$PWD/android-toolchain;
     fi

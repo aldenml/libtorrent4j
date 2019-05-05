@@ -25641,7 +25641,7 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_LIBTORRENT_1V
   
   (void)jenv;
   (void)jcls;
-  result = (int)(0);
+  result = (int)(1);
   jresult = (jint)result; 
   return jresult;
 }
@@ -25653,7 +25653,7 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_LIBTORRENT_1V
   
   (void)jenv;
   (void)jcls;
-  result = (int)(((1*10000) +(2*100) +0));
+  result = (int)(((1*10000) +(2*100) +1));
   jresult = (jint)result; 
   return jresult;
 }
@@ -25665,7 +25665,7 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_LIBTORRENT
   
   (void)jenv;
   (void)jcls;
-  result = (char *)("1.2.0.0");
+  result = (char *)("1.2.1.0");
   if (result) jresult = jenv->NewStringUTF((const char *)result);
   return jresult;
 }
@@ -25677,7 +25677,7 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_LIBTORRENT
   
   (void)jenv;
   (void)jcls;
-  result = (char *)("c76e9cc5e");
+  result = (char *)("f21a39496");
   if (result) jresult = jenv->NewStringUTF((const char *)result);
   return jresult;
 }
@@ -65749,39 +65749,7 @@ SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1con
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1connection_1handle_1send_1buffer_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3, jlong jarg4) {
-  libtorrent::peer_connection_handle *arg1 = (libtorrent::peer_connection_handle *) 0 ;
-  char *arg2 = (char *) 0 ;
-  int arg3 ;
-  std::uint32_t arg4 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::peer_connection_handle **)&jarg1; 
-  arg2 = 0;
-  if (jarg2) {
-    arg2 = (char *)jenv->GetStringUTFChars(jarg2, 0);
-    if (!arg2) return ;
-  }
-  arg3 = (int)jarg3; 
-  arg4 = (std::uint32_t)jarg4; 
-  {
-    try {
-      (arg1)->send_buffer((char const *)arg2,arg3,arg4);
-    } catch (std::exception& e) {
-      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
-      return ;
-    } catch (...) {
-      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
-      return ;
-    }
-  }
-  if (arg2) jenv->ReleaseStringUTFChars(jarg2, (const char *)arg2);
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1connection_1handle_1send_1buffer_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3) {
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1connection_1handle_1send_1buffer(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3) {
   libtorrent::peer_connection_handle *arg1 = (libtorrent::peer_connection_handle *) 0 ;
   char *arg2 = (char *) 0 ;
   int arg3 ;
