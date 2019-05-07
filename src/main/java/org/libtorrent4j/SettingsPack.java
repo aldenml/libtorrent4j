@@ -412,7 +412,7 @@ public final class SettingsPack {
      * @return the current value
      */
     public int cacheSize() {
-        return sp.get_int(settings_pack.int_types.cache_size.swigValue());
+        return sp.get_int(settings_pack.int_types.deprecated_cache_size.swigValue());
     }
 
     /**
@@ -429,7 +429,7 @@ public final class SettingsPack {
      * @return this
      */
     public SettingsPack cacheSize(int value) {
-        sp.set_int(settings_pack.int_types.cache_size.swigValue(), value);
+        sp.set_int(settings_pack.int_types.deprecated_cache_size.swigValue(), value);
         return this;
     }
 
