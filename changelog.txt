@@ -1,7 +1,22 @@
-1.2.2.0 (WIP)
+1.2.2.0
 
+  * updated to boost 1.71.0
+  * updated to OpenSSL 1.1.1d
+  * using android NDK r20b
   * using SWIG 4.0.1
   * libtorrent release 1.2.2
+  * lt:fix cases where the disable_hash_checks setting was not honored
+  * lt:fix updating of is_finished torrent status, when changing piece priorities
+  * lt:fix regression in &left= reporting when adding a seeding torrent
+  * lt:fix integer overflow in http parser
+  * lt:improve sanitation of symlinks, to support more complex link targets
+  * lt:add DHT routing table affinity for BEP 42 nodes
+  * lt:add torrent_info constructor overloads to control torrent file limits
+  * lt:feature to disable DHT, PEX and LSD per torrent
+  * lt:fix issue where trackers from magnet links were not included in create_torrent()
+  * lt:pick contiguous pieces from peers with high download rate
+  * lt:fix error handling of moving storage to a drive letter that isn't mounted
+  * lt:fix HTTP Host header when using proxy
   * lt:source code cleanup, performance and stability
 
 1.2.1.0
