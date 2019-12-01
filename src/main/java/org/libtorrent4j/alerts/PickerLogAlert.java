@@ -33,6 +33,7 @@ public final class PickerLogAlert extends PeerAlert<picker_log_alert> {
     public static final picker_flags_t BACKUP1 = picker_log_alert.backup1;
     public static final picker_flags_t BACKUP2 = picker_log_alert.backup2;
     public static final picker_flags_t END_GAME = picker_log_alert.end_game;
+    public static final picker_flags_t EXTENT_AFFINITY = picker_log_alert.extent_affinity;
 
     /**
      * This is a bitmask of which features were enabled for this particular

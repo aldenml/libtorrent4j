@@ -618,7 +618,7 @@ namespace libtorrent {
                 return *$self < n;
             }
 
-            static int compare(sha1_hash const& h1, sha1_hash const& h2) const {
+            static int compare(sha1_hash const& h1, sha1_hash const& h2) {
                 return h1 == h2 ? 0 : (h1 < h2 ? -1 : 1);
             }
         }
@@ -1112,6 +1112,7 @@ namespace libtorrent {
 %ignore libtorrent::dht_direct_response_alert::userdata;
 %ignore libtorrent::from_span;
 %ignore libtorrent::from_span_t;
+%ignore libtorrent::load_torrent_limits;
 %ignore libtorrent::torrent_info::torrent_info(char const*, int, error_code&);
 %ignore libtorrent::torrent_info::torrent_info(char const*, int, error_code&, int);
 %ignore libtorrent::torrent_info::torrent_info(span<char const>, error_code&, from_span_t);
@@ -1153,6 +1154,7 @@ namespace libtorrent {
 %ignore libtorrent::save_settings_to_dict;
 %ignore libtorrent::run_all_updates;
 %ignore libtorrent::error_code;
+%ignore libtorrent::apply_pack_impl;
 %ignore libtorrent::settings_pack::settings_pack(settings_pack&&);
 %ignore libtorrent::settings_pack::deprecated;
 %ignore libtorrent::settings_pack::deprecated_ignore_limits_on_local_network;
@@ -1269,6 +1271,7 @@ namespace libtorrent {
 %ignore libtorrent::dht::save_dht_state;
 %ignore libtorrent::dht::read_dht_settings;
 %ignore libtorrent::dht::save_dht_settings;
+%ignore libtorrent::dht::settings;
 %ignore libtorrent::find_metric_idx;
 
 %ignore libtorrent::errors::deprecated_120;
