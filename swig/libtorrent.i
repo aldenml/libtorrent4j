@@ -1126,6 +1126,9 @@ namespace libtorrent {
 %ignore libtorrent::torrent_info::build_merkle_list;
 %ignore libtorrent::torrent_info::parse_torrent_file;
 %ignore libtorrent::torrent_info::piece_range;
+%ignore libtorrent::torrent_info::internal_set_creator;
+%ignore libtorrent::torrent_info::internal_set_creation_date;
+%ignore libtorrent::torrent_info::internal_set_comment;
 %ignore libtorrent::sanitize_append_path_element;
 %ignore libtorrent::verify_encoding;
 %ignore libtorrent::read_piece_alert::read_piece_alert;

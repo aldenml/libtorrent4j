@@ -25582,7 +25582,7 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_LIBTORRENT_1V
   
   (void)jenv;
   (void)jcls;
-  result = (int)(2);
+  result = (int)(3);
   jresult = (jint)result; 
   return jresult;
 }
@@ -25594,7 +25594,7 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_LIBTORRENT_1V
   
   (void)jenv;
   (void)jcls;
-  result = (int)(((1*10000) +(2*100) +2));
+  result = (int)(((1*10000) +(2*100) +3));
   jresult = (jint)result; 
   return jresult;
 }
@@ -25606,7 +25606,7 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_LIBTORRENT
   
   (void)jenv;
   (void)jcls;
-  result = (char *)("1.2.2.0");
+  result = (char *)("1.2.3.0");
   if (result) jresult = jenv->NewStringUTF((const char *)result);
   return jresult;
 }
@@ -25618,7 +25618,7 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_LIBTORRENT
   
   (void)jenv;
   (void)jcls;
-  result = (char *)("b2c3b4dbf");
+  result = (char *)("922aefbd5");
   if (result) jresult = jenv->NewStringUTF((const char *)result);
   return jresult;
 }
