@@ -182,7 +182,7 @@ TORRENT_VERSION_NAMESPACE_2
 		// ``torrent_handle::prioritize_files()``. The file priorities specified
 		// in here take precedence over those specified in the resume data, if
 		// any.
-		std::vector<download_priority_t> file_priorities;
+// 		std::vector<download_priority_t> file_priorities;
 
 		// torrent extension construction functions can be added to this vector
 		// to have them be added immediately when the torrent is constructed.
@@ -314,7 +314,7 @@ TORRENT_VERSION_NAMESPACE_2
 		// element in the vector represent the piece with the same index. If you
 		// set both file- and piece priorities, file priorities will take
 		// precedence.
-		std::vector<download_priority_t> piece_priorities;
+// 		std::vector<download_priority_t> piece_priorities;
 
 #if TORRENT_ABI_VERSION <= 2
 		// support for BEP 30 merkle torrents has been removed
@@ -326,12 +326,12 @@ TORRENT_VERSION_NAMESPACE_2
 #endif
 
 		// v2 hashes, if known
-		aux::vector<std::vector<sha256_hash>, file_index_t> merkle_trees;
+// 		aux::vector<std::vector<sha256_hash>, file_index_t> merkle_trees;
 
 		// bit-fields indicating which v2 leaf hashes have been verified
 		// against the root hash. If this vector is empty and merkle_trees is
 		// non-empty it implies that all hashes in merkle_trees are verified.
-		aux::vector<std::vector<bool>, file_index_t> verified_leaf_hashes;
+// 		aux::vector<std::vector<bool>, file_index_t> verified_leaf_hashes;
 
 		// this is a map of file indices in the torrent and new filenames to be
 		// applied before the torrent is added.
@@ -387,8 +387,44 @@ TORRENT_VERSION_NAMESPACE_2_END
 
     void set_file_priorities(std::vector<std::int8_t>& v)
     {
-        auto* tmp = reinterpret_cast<std::vector<download_priority_t>*>(&v);
-        $self->file_priorities = *tmp;
+        auto* t = reinterpret_cast<std::vector<download_priority_t>*>(&v);
+        $self->file_priorities = *t;
+    }
+
+    std::vector<std::int8_t> get_piece_priorities()
+    {
+        auto* v = &$self->piece_priorities;
+        return *reinterpret_cast<std::vector<std::int8_t>*>(v);
+    }
+
+    void set_piece_priorities(std::vector<std::int8_t>& v)
+    {
+        auto* t = reinterpret_cast<std::vector<download_priority_t>*>(&v);
+        $self->piece_priorities = *t;
+    }
+
+    std::vector<std::vector<sha256_hash>> get_merkle_trees()
+    {
+        auto* v = &$self->merkle_trees;
+        return *reinterpret_cast<std::vector<std::vector<sha256_hash>>*>(v);
+    }
+
+    void set_merkle_trees(std::vector<std::vector<sha256_hash>>& v)
+    {
+        auto* t = reinterpret_cast<aux::vector<std::vector<sha256_hash>, file_index_t>*>(&v);
+        $self->merkle_trees = *t;
+    }
+
+    std::vector<std::vector<bool>> get_verified_leaf_hashes()
+    {
+        auto* v = &$self->verified_leaf_hashes;
+        return *reinterpret_cast<std::vector<std::vector<bool>>*>(v);
+    }
+
+    void set_verified_leaf_hashes(std::vector<std::vector<bool>>& v)
+    {
+        auto* t = reinterpret_cast<aux::vector<std::vector<bool>, file_index_t>*>(&v);
+        $self->verified_leaf_hashes = *t;
     }
 }
 

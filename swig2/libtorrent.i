@@ -27,8 +27,11 @@
 
 #include "libtorrent/torrent_info.hpp"
 #include "libtorrent/client_data.hpp"
+#include "libtorrent/sha1_hash.hpp"
 #include "libtorrent/info_hash.hpp"
 #include "libtorrent/add_torrent_params.hpp"
+
+#include "libtorrent/hex.hpp"
 
 using namespace libtorrent;
 
@@ -41,7 +44,9 @@ using namespace libtorrent;
 %include <std_pair.i>
 %include <std_vector.i>
 
+%apply std::int8_t { char };
 %apply std::int64_t { void* };
+%apply std::int32_t { std::ptrdiff_t };
 %apply std::int64_t { std::time_t };
 
 // template definitions
@@ -50,9 +55,13 @@ using namespace libtorrent;
 %template(string_vector) std::vector<std::string>;
 %template(int_vector) std::vector<int>;
 %template(byte_vector) std::vector<std::int8_t>;
+%template(bool_vector) std::vector<bool>;
 %template(string_int_pair_vector) std::vector<std::pair<std::string, int>>;
 
 %template(tcp_endpoint_vector) std::vector<tcp::endpoint>;
+
+%template(bool_vector_vector) std::vector<std::vector<bool>>;
+%template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;
 
 // ignore of operators
 %ignore operator=;
@@ -64,8 +73,18 @@ using namespace libtorrent;
 %rename(op_gt) operator>;
 %rename(op_lte) operator<=;
 %rename(op_gte) operator>=;
+%rename(op_neg) operator~;
+%rename(op_xor) operator^;
+%rename(op_xor_mut) operator^=;
+%rename(op_and) operator&;
+%rename(op_and_mut) operator&=;
+%rename(op_or_mut) operator|=;
+%rename(op_shl_mut) operator<<=;
+%rename(op_shr_mut) operator>>=;
+%rename(op_at) operator[];
 
 // includes
 %include "libtorrent/client_data.i"
+%include "libtorrent/sha1_hash.i"
 %include "libtorrent/info_hash.hpp"
 %include "libtorrent/add_torrent_params.i"
