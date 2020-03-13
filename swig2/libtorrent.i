@@ -29,6 +29,7 @@
 #include "libtorrent/client_data.hpp"
 #include "libtorrent/sha1_hash.hpp"
 #include "libtorrent/info_hash.hpp"
+#include "libtorrent/storage_defs.hpp"
 #include "libtorrent/add_torrent_params.hpp"
 
 #include "libtorrent/hex.hpp"
@@ -87,4 +88,5 @@ using namespace libtorrent;
 %include "libtorrent/client_data.i"
 %include "libtorrent/sha1_hash.i"
 %include "libtorrent/info_hash.hpp"
+%include "libtorrent/storage_defs.i"
 %include "libtorrent/add_torrent_params.i"
