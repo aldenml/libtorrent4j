@@ -26,6 +26,7 @@
 // BEGIN common set include ----------------------------------------------------
 
 #include "libtorrent/torrent_info.hpp"
+#include "libtorrent/client_data.hpp"
 #include "libtorrent/add_torrent_params.hpp"
 
 using namespace libtorrent;
@@ -39,6 +40,7 @@ using namespace libtorrent;
 %include <std_pair.i>
 %include <std_vector.i>
 
+%apply std::int64_t { void* };
 %apply std::int64_t { std::time_t };
 
 %template(string_int_pair) std::pair<std::string, int>;
@@ -49,4 +51,5 @@ using namespace libtorrent;
 
 %template(tcp_endpoint_vector) std::vector<tcp::endpoint>;
 
+%include "libtorrent/client_data.i"
 %include "libtorrent/add_torrent_params.hpp"
