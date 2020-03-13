@@ -92,7 +92,7 @@ TORRENT_VERSION_NAMESPACE_2
 		~add_torrent_params();
 		add_torrent_params(add_torrent_params&&) noexcept;
 		add_torrent_params& operator=(add_torrent_params&&) &;
-//		add_torrent_params(add_torrent_params const&);
+// 		add_torrent_params(add_torrent_params const&);
 		add_torrent_params& operator=(add_torrent_params const&) &;
 
 		// These are all deprecated. use torrent_flags_t instead (in
@@ -376,6 +376,22 @@ TORRENT_VERSION_NAMESPACE_2
 	};
 
 TORRENT_VERSION_NAMESPACE_2_END
+
+%extend add_torrent_params
+{
+    std::vector<std::int8_t> get_file_priorities()
+    {
+        auto* v = &$self->file_priorities;
+        return *reinterpret_cast<std::vector<std::int8_t>*>(v);
+    }
+
+    void set_file_priorities(std::vector<std::int8_t>& v)
+    {
+        auto* tmp = reinterpret_cast<std::vector<download_priority_t>*>(&v);
+        $self->file_priorities = *tmp;
+    }
+}
+
 }
 
 #endif
