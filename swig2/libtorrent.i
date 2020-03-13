@@ -27,6 +27,7 @@
 
 #include "libtorrent/torrent_info.hpp"
 #include "libtorrent/client_data.hpp"
+#include "libtorrent/info_hash.hpp"
 #include "libtorrent/add_torrent_params.hpp"
 
 using namespace libtorrent;
@@ -43,6 +44,7 @@ using namespace libtorrent;
 %apply std::int64_t { void* };
 %apply std::int64_t { std::time_t };
 
+// template definitions
 %template(string_int_pair) std::pair<std::string, int>;
 
 %template(string_vector) std::vector<std::string>;
@@ -51,5 +53,18 @@ using namespace libtorrent;
 
 %template(tcp_endpoint_vector) std::vector<tcp::endpoint>;
 
+// ignore of operators
+%ignore operator=;
+
+// rename of operators
+%rename(op_eq) operator==;
+%rename(op_ne) operator!=;
+%rename(op_lt) operator<;
+%rename(op_gt) operator>;
+%rename(op_lte) operator<=;
+%rename(op_gte) operator>=;
+
+// includes
 %include "libtorrent/client_data.i"
+%include "libtorrent/info_hash.hpp"
 %include "libtorrent/add_torrent_params.hpp"
