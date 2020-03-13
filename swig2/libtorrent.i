@@ -49,6 +49,7 @@ using namespace libtorrent;
 
 %template(string_vector) std::vector<std::string>;
 %template(int_vector) std::vector<int>;
+%template(byte_vector) std::vector<std::int8_t>;
 %template(string_int_pair_vector) std::vector<std::pair<std::string, int>>;
 
 %template(tcp_endpoint_vector) std::vector<tcp::endpoint>;
