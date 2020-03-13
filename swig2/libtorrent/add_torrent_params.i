@@ -299,7 +299,7 @@ TORRENT_VERSION_NAMESPACE_2
 		// this is a map of partially downloaded piece. The key is the piece index
 		// and the value is a bitfield where each bit represents a 16 kiB block.
 		// A set bit means we have that block.
-		std::map<piece_index_t, bitfield> unfinished_pieces;
+// 		std::map<piece_index_t, bitfield> unfinished_pieces;
 
 		// this is a bitfield indicating which pieces we already have of this
 		// torrent.
@@ -335,7 +335,7 @@ TORRENT_VERSION_NAMESPACE_2
 
 		// this is a map of file indices in the torrent and new filenames to be
 		// applied before the torrent is added.
-		std::map<file_index_t, std::string> renamed_files;
+// 		std::map<file_index_t, std::string> renamed_files;
 
 		// the posix time of the last time payload was received or sent for this
 		// torrent, respectively.
@@ -425,6 +425,30 @@ TORRENT_VERSION_NAMESPACE_2_END
     {
         auto* t = reinterpret_cast<aux::vector<std::vector<bool>, file_index_t>*>(&v);
         $self->verified_leaf_hashes = *t;
+    }
+
+    std::map<int, bitfield> get_unfinished_pieces()
+    {
+        auto* v = &$self->unfinished_pieces;
+        return *reinterpret_cast<std::map<int, bitfield>*>(v);
+    }
+
+    void set_unfinished_pieces(std::map<int, bitfield>& m)
+    {
+        auto* t = reinterpret_cast<std::map<piece_index_t, bitfield>*>(&m);
+        $self->unfinished_pieces = *t;
+    }
+
+    std::map<int, std::string> get_renamed_files()
+    {
+        auto* v = &$self->renamed_files;
+        return *reinterpret_cast<std::map<int, std::string>*>(v);
+    }
+
+    void set_renamed_files(std::map<int, std::string>& m)
+    {
+        auto* t = reinterpret_cast<std::map<file_index_t, std::string>*>(&m);
+        $self->renamed_files = *t;
     }
 }
 

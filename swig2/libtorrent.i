@@ -44,6 +44,8 @@ using namespace libtorrent;
 %include <std_string.i>
 %include <std_pair.i>
 %include <std_vector.i>
+%include <std_map.i>
+%include <std_shared_ptr.i>
 
 %apply std::int8_t { char };
 %apply std::int64_t { void* };
@@ -63,6 +65,11 @@ using namespace libtorrent;
 
 %template(bool_vector_vector) std::vector<std::vector<bool>>;
 %template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;
+
+%template(int_string_map) std::map<int, std::string>;
+%template(int_bitfield_map) std::map<int, bitfield>;
+
+%shared_ptr(torrent_info)
 
 // ignore of operators
 %ignore operator=;
