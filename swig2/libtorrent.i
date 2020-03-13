@@ -67,4 +67,4 @@ using namespace libtorrent;
 // includes
 %include "libtorrent/client_data.i"
 %include "libtorrent/info_hash.hpp"
-%include "libtorrent/add_torrent_params.hpp"
+%include "libtorrent/add_torrent_params.i"
