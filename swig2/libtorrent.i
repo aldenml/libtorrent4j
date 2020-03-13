@@ -33,4 +33,20 @@ using namespace libtorrent;
 // END common set include ------------------------------------------------------
 %}
 
+%include <stdint.i>
+%include <typemaps.i>
+%include <std_string.i>
+%include <std_pair.i>
+%include <std_vector.i>
+
+%apply std::int64_t { std::time_t };
+
+%template(string_int_pair) std::pair<std::string, int>;
+
+%template(string_vector) std::vector<std::string>;
+%template(int_vector) std::vector<int>;
+%template(string_int_pair_vector) std::vector<std::pair<std::string, int>>;
+
+%template(tcp_endpoint_vector) std::vector<tcp::endpoint>;
+
 %include "libtorrent/add_torrent_params.hpp"
