@@ -287,7 +287,7 @@ public class libtorrent_jni {
   public final static native long new_client_data_t__SWIG_1(long jarg1);
   public final static native long client_data_t_get(long jarg1, client_data_t jarg1_);
   public final static native void delete_client_data_t(long jarg1);
-  public final static native int sha1_hash_size();
+  public final static native long sha1_hash_size();
   public final static native long new_sha1_hash__SWIG_0();
   public final static native long new_sha1_hash__SWIG_1(long jarg1, sha1_hash jarg1_);
   public final static native long sha1_hash_max();
@@ -314,7 +314,7 @@ public class libtorrent_jni {
   public final static native long sha1_hash_from_hex(String jarg1);
   public final static native int sha1_hash_compare(long jarg1, sha1_hash jarg1_, long jarg2, sha1_hash jarg2_);
   public final static native void delete_sha1_hash(long jarg1);
-  public final static native int sha256_hash_size();
+  public final static native long sha256_hash_size();
   public final static native long new_sha256_hash__SWIG_0();
   public final static native long new_sha256_hash__SWIG_1(long jarg1, sha256_hash jarg1_);
   public final static native long sha256_hash_max();
@@ -441,12 +441,6 @@ public class libtorrent_jni {
   public final static native int add_torrent_params_version_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_ti_set(long jarg1, add_torrent_params jarg1_, long jarg2, torrent_info jarg2_);
   public final static native long add_torrent_params_ti_get(long jarg1, add_torrent_params jarg1_);
-  public final static native void add_torrent_params_trackers_set(long jarg1, add_torrent_params jarg1_, long jarg2, string_vector jarg2_);
-  public final static native long add_torrent_params_trackers_get(long jarg1, add_torrent_params jarg1_);
-  public final static native void add_torrent_params_tracker_tiers_set(long jarg1, add_torrent_params jarg1_, long jarg2, int_vector jarg2_);
-  public final static native long add_torrent_params_tracker_tiers_get(long jarg1, add_torrent_params jarg1_);
-  public final static native void add_torrent_params_dht_nodes_set(long jarg1, add_torrent_params jarg1_, long jarg2, string_int_pair_vector jarg2_);
-  public final static native long add_torrent_params_dht_nodes_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_name_set(long jarg1, add_torrent_params jarg1_, String jarg2);
   public final static native String add_torrent_params_name_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_save_path_set(long jarg1, add_torrent_params jarg1_, String jarg2);
@@ -491,18 +485,16 @@ public class libtorrent_jni {
   public final static native int add_torrent_params_num_incomplete_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_num_downloaded_set(long jarg1, add_torrent_params jarg1_, int jarg2);
   public final static native int add_torrent_params_num_downloaded_get(long jarg1, add_torrent_params jarg1_);
-  public final static native void add_torrent_params_http_seeds_set(long jarg1, add_torrent_params jarg1_, long jarg2, string_vector jarg2_);
-  public final static native long add_torrent_params_http_seeds_get(long jarg1, add_torrent_params jarg1_);
-  public final static native void add_torrent_params_url_seeds_set(long jarg1, add_torrent_params jarg1_, long jarg2, string_vector jarg2_);
-  public final static native long add_torrent_params_url_seeds_get(long jarg1, add_torrent_params jarg1_);
-  public final static native void add_torrent_params_peers_set(long jarg1, add_torrent_params jarg1_, long jarg2, tcp_endpoint_vector jarg2_);
-  public final static native long add_torrent_params_peers_get(long jarg1, add_torrent_params jarg1_);
-  public final static native void add_torrent_params_banned_peers_set(long jarg1, add_torrent_params jarg1_, long jarg2, tcp_endpoint_vector jarg2_);
-  public final static native long add_torrent_params_banned_peers_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_last_download_set(long jarg1, add_torrent_params jarg1_, long jarg2);
   public final static native long add_torrent_params_last_download_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_last_upload_set(long jarg1, add_torrent_params jarg1_, long jarg2);
   public final static native long add_torrent_params_last_upload_get(long jarg1, add_torrent_params jarg1_);
+  public final static native long add_torrent_params_get_trackers(long jarg1, add_torrent_params jarg1_);
+  public final static native void add_torrent_params_set_trackers(long jarg1, add_torrent_params jarg1_, long jarg2, string_vector jarg2_);
+  public final static native long add_torrent_params_get_tracker_tiers(long jarg1, add_torrent_params jarg1_);
+  public final static native void add_torrent_params_set_tracker_tiers(long jarg1, add_torrent_params jarg1_, long jarg2, int_vector jarg2_);
+  public final static native long add_torrent_params_get_dht_nodes(long jarg1, add_torrent_params jarg1_);
+  public final static native void add_torrent_params_set_dht_nodes(long jarg1, add_torrent_params jarg1_, long jarg2, string_int_pair_vector jarg2_);
   public final static native long add_torrent_params_get_file_priorities(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_set_file_priorities(long jarg1, add_torrent_params jarg1_, long jarg2, byte_vector jarg2_);
   public final static native long add_torrent_params_get_piece_priorities(long jarg1, add_torrent_params jarg1_);
@@ -519,4 +511,12 @@ public class libtorrent_jni {
   public final static native void add_torrent_params_set_have_pieces(long jarg1, add_torrent_params jarg1_, long jarg2, bitfield jarg2_);
   public final static native long add_torrent_params_get_verified_pieces(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_set_verified_pieces(long jarg1, add_torrent_params jarg1_, long jarg2, bitfield jarg2_);
+  public final static native long add_torrent_params_get_http_seeds(long jarg1, add_torrent_params jarg1_);
+  public final static native void add_torrent_params_set_http_seeds(long jarg1, add_torrent_params jarg1_, long jarg2, string_vector jarg2_);
+  public final static native long add_torrent_params_get_url_seeds(long jarg1, add_torrent_params jarg1_);
+  public final static native void add_torrent_params_set_url_seeds(long jarg1, add_torrent_params jarg1_, long jarg2, string_vector jarg2_);
+  public final static native long add_torrent_params_get_peers(long jarg1, add_torrent_params jarg1_);
+  public final static native void add_torrent_params_set_peers(long jarg1, add_torrent_params jarg1_, long jarg2, tcp_endpoint_vector jarg2_);
+  public final static native long add_torrent_params_get_banned_peers(long jarg1, add_torrent_params jarg1_);
+  public final static native void add_torrent_params_set_banned_peers(long jarg1, add_torrent_params jarg1_, long jarg2, tcp_endpoint_vector jarg2_);
 }

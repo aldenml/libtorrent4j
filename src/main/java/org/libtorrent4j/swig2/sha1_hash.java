@@ -36,7 +36,7 @@ public class sha1_hash {
     }
   }
 
-  public static int size() {
+  public static long size() {
     return libtorrent_jni.sha1_hash_size();
   }
 

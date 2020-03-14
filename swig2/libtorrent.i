@@ -1,5 +1,8 @@
 %module (jniclassname="libtorrent_jni", directors="1") libtorrent
 
+// Overloaded method <name> ignored, using <name> instead.
+#pragma SWIG nowarn=516
+
 %pragma(java) jniclasscode=%{
 
     static {
@@ -52,7 +55,7 @@ using namespace libtorrent;
 
 %apply std::int8_t { char };
 %apply std::int64_t { void* };
-%apply std::int32_t { std::ptrdiff_t };
+%apply std::int64_t { std::ptrdiff_t };
 %apply std::int64_t { std::time_t };
 
 %define TYPE_INTEGRAL_CONVERSION_EX(name, underlying_type, api_type, java_type)

@@ -36,7 +36,7 @@ public class sha256_hash {
     }
   }
 
-  public static int size() {
+  public static long size() {
     return libtorrent_jni.sha256_hash_size();
   }
 
