@@ -26,11 +26,14 @@
 // BEGIN common set include ----------------------------------------------------
 
 #include "libtorrent/torrent_info.hpp"
+
 #include "libtorrent/client_data.hpp"
 #include "libtorrent/sha1_hash.hpp"
 #include "libtorrent/info_hash.hpp"
 #include "libtorrent/storage_defs.hpp"
 #include "libtorrent/bitfield.hpp"
+#include "libtorrent/address.hpp"
+#include "libtorrent/socket.hpp"
 #include "libtorrent/add_torrent_params.hpp"
 
 #include "libtorrent/hex.hpp"
@@ -53,6 +56,35 @@ using namespace libtorrent;
 %apply std::int32_t { std::ptrdiff_t };
 %apply std::int64_t { std::time_t };
 
+%define TYPE_INTEGRAL_CONVERSION_EX(name, underlying_type, api_type, java_type)
+%typemap(jni) name, const name& "java_type"
+%typemap(jtype) name, const name& "java_type"
+%typemap(jstype) name, const name& "java_type"
+
+%typemap(in) name {
+    $1 = name(static_cast<underlying_type>($input));
+}
+%typemap(out) name {
+    $result = static_cast<api_type>(static_cast<underlying_type>($1));
+}
+%typemap(javain) name, const name& "$javainput"
+%typemap(javaout) name, const name& {
+    return $jnicall;
+  }
+%enddef
+
+%define TYPE_INTEGRAL_CONVERSION(name, underlying_type, java_type)
+TYPE_INTEGRAL_CONVERSION_EX(name, underlying_type, underlying_type, java_type)
+%enddef
+
+TYPE_INTEGRAL_CONVERSION(torrent_flags_t, std::uint64_t, long)
+// TYPE_INTEGRAL_CONVERSION(piece_index_t, std::int32_t, int)
+// TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
+// TYPE_INTEGRAL_CONVERSION_EX(peer_class_t, std::uint32_t, std::int32_t, int)
+// TYPE_INTEGRAL_CONVERSION(port_mapping_t, int, int)
+// TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
+// TYPE_INTEGRAL_CONVERSION(disconnect_severity_t, std::uint8_t, int)
+
 // template definitions
 %template(string_int_pair) std::pair<std::string, int>;
 
@@ -62,7 +94,7 @@ using namespace libtorrent;
 %template(bool_vector) std::vector<bool>;
 %template(string_int_pair_vector) std::vector<std::pair<std::string, int>>;
 
-%template(tcp_endpoint_vector) std::vector<tcp::endpoint>;
+%template(tcp_endpoint_vector) std::vector<libtorrent::tcp::endpoint>;
 
 %template(bool_vector_vector) std::vector<std::vector<bool>>;
 %template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;
@@ -91,11 +123,16 @@ using namespace libtorrent;
 %rename(op_shl_mut) operator<<=;
 %rename(op_shr_mut) operator>>=;
 %rename(op_at) operator[];
+%rename(op_bool) operator bool;
 
 // includes
+%include "boost/system/error_code.i"
+
 %include "libtorrent/client_data.i"
 %include "libtorrent/sha1_hash.i"
 %include "libtorrent/info_hash.hpp"
 %include "libtorrent/storage_defs.i"
 %include "libtorrent/bitfield.i"
+%include "libtorrent/address.i"
+%include "libtorrent/socket.i"
 %include "libtorrent/add_torrent_params.i"

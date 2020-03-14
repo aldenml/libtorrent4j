@@ -1,5 +1,6 @@
 #!/bin/bash
 
+BOOST_ROOT=$DEVELOPMENT_ROOT/boost_1_72_0
 LIBTORRENT_ROOT=$DEVELOPMENT_ROOT/libtorrent
 
 JAVA_SRC_OUTPUT=../src/main/java/org/libtorrent4j/swig2
@@ -10,6 +11,7 @@ mkdir -p ${JAVA_SRC_OUTPUT}
 swig -c++ -java -o libtorrent_jni.cpp \
     -outdir ${JAVA_SRC_OUTPUT} \
     -package org.libtorrent4j.swig2 \
+    -I${BOOST_ROOT} \
     -I${LIBTORRENT_ROOT}/include \
     -DBOOST_ASIO_DECL="" \
     -DBOOST_NO_TYPEID=1 \
