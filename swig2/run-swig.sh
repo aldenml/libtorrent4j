@@ -3,10 +3,24 @@
 BOOST_ROOT=$DEVELOPMENT_ROOT/boost_1_72_0
 LIBTORRENT_ROOT=$DEVELOPMENT_ROOT/libtorrent
 
+function fixCode() {
+    sed -i '' 's/) &;/)  ;/g' ${LIBTORRENT_ROOT}/include/libtorrent/file_storage.hpp
+    sed -i '' 's/) & noexcept;/)   noexcept;/g' ${LIBTORRENT_ROOT}/include/libtorrent/file_storage.hpp
+    sed -i '' 's/(time_point32::min)();/time_point32::min();/g' ${LIBTORRENT_ROOT}/include/libtorrent/announce_entry.hpp
+}
+
+function refixCode() {
+    sed -i '' 's/)  ;/) \&;/g' ${LIBTORRENT_ROOT}/include/libtorrent/file_storage.hpp
+    sed -i '' 's/)   noexcept;/) \& noexcept;/g' ${LIBTORRENT_ROOT}/include/libtorrent/file_storage.hpp
+    sed -i '' 's/time_point32::min();/(time_point32::min)();/g' ${LIBTORRENT_ROOT}/include/libtorrent/announce_entry.hpp
+}
+
 JAVA_SRC_OUTPUT=../src/main/java/org/libtorrent4j/swig2
 
 rm -rf ${JAVA_SRC_OUTPUT}
 mkdir -p ${JAVA_SRC_OUTPUT}
+
+fixCode
 
 swig -c++ -java -o libtorrent_jni.cpp \
     -outdir ${JAVA_SRC_OUTPUT} \
@@ -39,9 +53,12 @@ swig -c++ -java -o libtorrent_jni.cpp \
     -DTORRENT_DEPRECATED_ENUM="" \
     -DTORRENT_DEPRECATED \
     -DTORRENT_EXPORT="" \
+    -DTORRENT_UNEXPORT \
     -DTORRENT_EXTRA_EXPORT="" \
     -DTORRENT_FORMAT\(x,y\)="" \
     -DNDEBUG=1 \
     -D_bit="" \
     -Dfinal="" \
     libtorrent.i
+
+refixCode

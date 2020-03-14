@@ -33,4 +33,8 @@ public class libtorrent {
     return libtorrent_jni.op_eq(info_hash_t.getCPtr(lhs), lhs, info_hash_t.getCPtr(rhs), rhs);
   }
 
+  public static String operation_name(operation_t op) {
+    return libtorrent_jni.operation_name(op.swigValue());
+  }
+
 }

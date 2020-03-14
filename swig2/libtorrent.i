@@ -35,6 +35,12 @@
 #include "libtorrent/bitfield.hpp"
 #include "libtorrent/address.hpp"
 #include "libtorrent/socket.hpp"
+#include "libtorrent/operations.hpp"
+#include "libtorrent/error_code.hpp"
+#include "libtorrent/announce_entry.hpp"
+#include "libtorrent/file_storage.hpp"
+#include "libtorrent/peer_request.hpp"
+#include "libtorrent/bdecode.hpp"
 #include "libtorrent/torrent_info.hpp"
 #include "libtorrent/add_torrent_params.hpp"
 
@@ -80,8 +86,8 @@ TYPE_INTEGRAL_CONVERSION_EX(name, underlying_type, underlying_type, java_type)
 %enddef
 
 TYPE_INTEGRAL_CONVERSION(torrent_flags_t, std::uint64_t, long)
-// TYPE_INTEGRAL_CONVERSION(piece_index_t, std::int32_t, int)
-// TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
+TYPE_INTEGRAL_CONVERSION(piece_index_t, std::int32_t, int)
+TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
 // TYPE_INTEGRAL_CONVERSION_EX(peer_class_t, std::uint32_t, std::int32_t, int)
 // TYPE_INTEGRAL_CONVERSION(port_mapping_t, int, int)
 // TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
@@ -89,14 +95,20 @@ TYPE_INTEGRAL_CONVERSION(torrent_flags_t, std::uint64_t, long)
 
 // template definitions
 %template(string_int_pair) std::pair<std::string, int>;
+%template(string_string_pair) std::pair<std::string, std::string>;
 
 %template(string_vector) std::vector<std::string>;
 %template(int_vector) std::vector<int>;
 %template(byte_vector) std::vector<std::int8_t>;
 %template(bool_vector) std::vector<bool>;
 %template(string_int_pair_vector) std::vector<std::pair<std::string, int>>;
+%template(string_string_pair_vector) std::vector<std::pair<std::string, std::string>>;
 
 %template(tcp_endpoint_vector) std::vector<libtorrent::tcp::endpoint>;
+%template(announce_endpoint_vector) std::vector<libtorrent::announce_endpoint>;
+%template(announce_entry_vector) std::vector<libtorrent::announce_entry>;
+%template(web_seed_entry_vector) std::vector<libtorrent::web_seed_entry>;
+%template(file_slice_vector) std::vector<libtorrent::file_slice>;
 
 %template(bool_vector_vector) std::vector<std::vector<bool>>;
 %template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;
@@ -135,5 +147,11 @@ TYPE_INTEGRAL_CONVERSION(torrent_flags_t, std::uint64_t, long)
 %include "libtorrent/bitfield.i"
 %include "libtorrent/address.i"
 %include "libtorrent/socket.i"
+%include "libtorrent/operations.i"
+%include "libtorrent/error_code.i"
+%include "libtorrent/announce_entry.i"
+%include "libtorrent/file_storage.i"
+%include "libtorrent/peer_request.i"
+%include "libtorrent/bdecode.i"
 %include "libtorrent/torrent_info.i"
 %include "libtorrent/add_torrent_params.i"
