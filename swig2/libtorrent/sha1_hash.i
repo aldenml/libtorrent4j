@@ -366,8 +366,8 @@ namespace libtorrent {
 
 %extend digest32<256> {
 
-    digest32<256>(std::vector<std::int8_t> const& s) {
-        return new digest32<256>({reinterpret_cast<char const*>(s.data()), static_cast<long>(s.size())});
+    digest32<256>(std::vector<std::int8_t> const& v) {
+        return new digest32<256>({reinterpret_cast<char const*>(v.data()), static_cast<long>(v.size())});
     }
 
     void assign(std::vector<std::int8_t> const& v)

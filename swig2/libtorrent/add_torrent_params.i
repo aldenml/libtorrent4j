@@ -303,12 +303,12 @@ TORRENT_VERSION_NAMESPACE_2
 
 		// this is a bitfield indicating which pieces we already have of this
 		// torrent.
-		typed_bitfield<piece_index_t> have_pieces;
+// 		typed_bitfield<piece_index_t> have_pieces;
 
 		// when in seed_mode, pieces with a set bit in this bitfield have been
 		// verified to be valid. Other pieces will be verified the first time a
 		// peer requests it.
-		typed_bitfield<piece_index_t> verified_pieces;
+// 		typed_bitfield<piece_index_t> verified_pieces;
 
 		// this sets the priorities for each individual piece in the torrent. Each
 		// element in the vector represent the piece with the same index. If you
@@ -433,9 +433,9 @@ TORRENT_VERSION_NAMESPACE_2_END
         return *reinterpret_cast<std::map<int, bitfield>*>(v);
     }
 
-    void set_unfinished_pieces(std::map<int, bitfield>& m)
+    void set_unfinished_pieces(std::map<int, bitfield>& v)
     {
-        auto* t = reinterpret_cast<std::map<piece_index_t, bitfield>*>(&m);
+        auto* t = reinterpret_cast<std::map<piece_index_t, bitfield>*>(&v);
         $self->unfinished_pieces = *t;
     }
 
@@ -445,10 +445,34 @@ TORRENT_VERSION_NAMESPACE_2_END
         return *reinterpret_cast<std::map<int, std::string>*>(v);
     }
 
-    void set_renamed_files(std::map<int, std::string>& m)
+    void set_renamed_files(std::map<int, std::string>& v)
     {
-        auto* t = reinterpret_cast<std::map<file_index_t, std::string>*>(&m);
+        auto* t = reinterpret_cast<std::map<file_index_t, std::string>*>(&v);
         $self->renamed_files = *t;
+    }
+
+    bitfield get_have_pieces()
+    {
+        auto* v = &$self->have_pieces;
+        return *reinterpret_cast<bitfield*>(v);
+    }
+
+    void set_have_pieces(bitfield& v)
+    {
+        auto* t = reinterpret_cast<typed_bitfield<piece_index_t>*>(&v);
+        $self->have_pieces = *t;
+    }
+
+    bitfield get_verified_pieces()
+    {
+        auto* v = &$self->verified_pieces;
+        return *reinterpret_cast<bitfield*>(v);
+    }
+
+    void set_verified_pieces(bitfield& v)
+    {
+        auto* t = reinterpret_cast<typed_bitfield<piece_index_t>*>(&v);
+        $self->verified_pieces = *t;
     }
 }
 

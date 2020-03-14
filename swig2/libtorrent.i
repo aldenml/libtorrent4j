@@ -30,6 +30,7 @@
 #include "libtorrent/sha1_hash.hpp"
 #include "libtorrent/info_hash.hpp"
 #include "libtorrent/storage_defs.hpp"
+#include "libtorrent/bitfield.hpp"
 #include "libtorrent/add_torrent_params.hpp"
 
 #include "libtorrent/hex.hpp"
@@ -67,7 +68,7 @@ using namespace libtorrent;
 %template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;
 
 %template(int_string_map) std::map<int, std::string>;
-%template(int_bitfield_map) std::map<int, bitfield>;
+%template(int_bitfield_map) std::map<int, libtorrent::bitfield>;
 
 %shared_ptr(torrent_info)
 
@@ -96,4 +97,5 @@ using namespace libtorrent;
 %include "libtorrent/sha1_hash.i"
 %include "libtorrent/info_hash.hpp"
 %include "libtorrent/storage_defs.i"
+%include "libtorrent/bitfield.i"
 %include "libtorrent/add_torrent_params.i"

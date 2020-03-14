@@ -74,4 +74,17 @@ public class AddTorrentParamsTest {
         sha256_hash_vector_vector rt = params.get_merkle_trees();
         assertTrue(hash.op_eq(rt.get(1).get(2)));
     }
+
+    @Test
+    public void testSetHavePieces() {
+        add_torrent_params params = new add_torrent_params();
+
+        bitfield bf = new bitfield(8);
+        bf.set_bit(5);
+
+        params.set_have_pieces(bf);
+        bitfield r = params.get_have_pieces();
+
+        assertTrue(r.get_bit(5));
+    }
 }
