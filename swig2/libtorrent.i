@@ -25,8 +25,6 @@
 %{
 // BEGIN common set include ----------------------------------------------------
 
-#include "libtorrent/torrent_info.hpp"
-
 #include "libtorrent/client_data.hpp"
 #include "libtorrent/sha1_hash.hpp"
 #include "libtorrent/info_hash.hpp"
@@ -34,6 +32,7 @@
 #include "libtorrent/bitfield.hpp"
 #include "libtorrent/address.hpp"
 #include "libtorrent/socket.hpp"
+#include "libtorrent/torrent_info.hpp"
 #include "libtorrent/add_torrent_params.hpp"
 
 #include "libtorrent/hex.hpp"
@@ -102,8 +101,6 @@ TYPE_INTEGRAL_CONVERSION(torrent_flags_t, std::uint64_t, long)
 %template(int_string_map) std::map<int, std::string>;
 %template(int_bitfield_map) std::map<int, libtorrent::bitfield>;
 
-%shared_ptr(torrent_info)
-
 // ignore of operators
 %ignore operator=;
 
@@ -135,4 +132,5 @@ TYPE_INTEGRAL_CONVERSION(torrent_flags_t, std::uint64_t, long)
 %include "libtorrent/bitfield.i"
 %include "libtorrent/address.i"
 %include "libtorrent/socket.i"
+%include "libtorrent/torrent_info.i"
 %include "libtorrent/add_torrent_params.i"
