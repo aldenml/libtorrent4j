@@ -88,8 +88,8 @@ public class sha1_hash {
     return libtorrent_jni.sha1_hash_count_leading_zeroes(swigCPtr, this);
   }
 
-  public sha1_hash op_neg() {
-    return new sha1_hash(libtorrent_jni.sha1_hash_op_neg(swigCPtr, this), true);
+  public sha1_hash op_inv() {
+    return new sha1_hash(libtorrent_jni.sha1_hash_op_inv(swigCPtr, this), true);
   }
 
   public sha1_hash op_xor(sha1_hash n) {

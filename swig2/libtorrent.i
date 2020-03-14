@@ -28,6 +28,7 @@
 %{
 // BEGIN common set include ----------------------------------------------------
 
+#include "libtorrent/flags.hpp"
 #include "libtorrent/client_data.hpp"
 #include "libtorrent/sha1_hash.hpp"
 #include "libtorrent/info_hash.hpp"
@@ -42,7 +43,9 @@
 #include "libtorrent/peer_request.hpp"
 #include "libtorrent/bdecode.hpp"
 #include "libtorrent/torrent_info.hpp"
+#include "libtorrent/torrent_flags.hpp"
 #include "libtorrent/add_torrent_params.hpp"
+#include "libtorrent/alert.hpp"
 
 #include "libtorrent/hex.hpp"
 
@@ -85,7 +88,6 @@ using namespace libtorrent;
 TYPE_INTEGRAL_CONVERSION_EX(name, underlying_type, underlying_type, java_type)
 %enddef
 
-TYPE_INTEGRAL_CONVERSION(torrent_flags_t, std::uint64_t, long)
 TYPE_INTEGRAL_CONVERSION(piece_index_t, std::int32_t, int)
 TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
 // TYPE_INTEGRAL_CONVERSION_EX(peer_class_t, std::uint32_t, std::int32_t, int)
@@ -126,7 +128,7 @@ TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
 %rename(op_gt) operator>;
 %rename(op_lte) operator<=;
 %rename(op_gte) operator>=;
-%rename(op_neg) operator~;
+%rename(op_inv) operator~;
 %rename(op_xor) operator^;
 %rename(op_xor_mut) operator^=;
 %rename(op_and) operator&;
@@ -140,6 +142,7 @@ TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
 // includes
 %include "boost/system/error_code.i"
 
+%include "libtorrent/flags.i"
 %include "libtorrent/client_data.i"
 %include "libtorrent/sha1_hash.i"
 %include "libtorrent/info_hash.hpp"
@@ -154,4 +157,6 @@ TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
 %include "libtorrent/peer_request.i"
 %include "libtorrent/bdecode.i"
 %include "libtorrent/torrent_info.i"
+%include "libtorrent/torrent_flags.i"
 %include "libtorrent/add_torrent_params.i"
+%include "libtorrent/alert.i"

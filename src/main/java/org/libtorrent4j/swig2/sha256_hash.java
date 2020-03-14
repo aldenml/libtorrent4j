@@ -88,8 +88,8 @@ public class sha256_hash {
     return libtorrent_jni.sha256_hash_count_leading_zeroes(swigCPtr, this);
   }
 
-  public sha256_hash op_neg() {
-    return new sha256_hash(libtorrent_jni.sha256_hash_op_neg(swigCPtr, this), true);
+  public sha256_hash op_inv() {
+    return new sha256_hash(libtorrent_jni.sha256_hash_op_inv(swigCPtr, this), true);
   }
 
   public sha256_hash op_xor(sha256_hash n) {
