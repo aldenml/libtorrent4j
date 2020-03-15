@@ -132,4 +132,24 @@ public class libtorrent {
     return (cPtr == 0) ? null : new torrent_flags_t(cPtr, false);
   }
 
+  public static close_reason_t error_to_close_reason(error_code ec) {
+    return close_reason_t.swigToEnum(libtorrent_jni.error_to_close_reason(error_code.getCPtr(ec), ec));
+  }
+
+  public static String alert_name(int alert_type) {
+    return libtorrent_jni.alert_name(alert_type);
+  }
+
+  public static int getUser_alert_id() {
+    return libtorrent_jni.user_alert_id_get();
+  }
+
+  public static int getNum_alert_types() {
+    return libtorrent_jni.num_alert_types_get();
+  }
+
+  public static int getAbi_alert_count() {
+    return libtorrent_jni.abi_alert_count_get();
+  }
+
 }

@@ -2,6 +2,8 @@
 
 // Overloaded method <name> ignored, using <name> instead.
 #pragma SWIG nowarn=516
+// Specialization of non-template '<name>'.
+#pragma SWIG nowarn=317
 
 %pragma(java) jniclasscode=%{
 
@@ -45,11 +47,20 @@
 #include "libtorrent/torrent_info.hpp"
 #include "libtorrent/torrent_flags.hpp"
 #include "libtorrent/add_torrent_params.hpp"
+#include "libtorrent/close_reason.hpp"
+#include "libtorrent/torrent_handle.hpp"
+#include "libtorrent/torrent_status.hpp"
+#include "libtorrent/performance_counters.hpp"
+#include "libtorrent/portmap.hpp"
+#include "libtorrent/piece_block.hpp"
 #include "libtorrent/alert.hpp"
+#include "libtorrent/alert_types.hpp"
 
 #include "libtorrent/hex.hpp"
 
-using namespace libtorrent;
+using piece_index_t = libtorrent::piece_index_t;
+using file_index_t = libtorrent::file_index_t;
+using port_mapping_t = libtorrent::port_mapping_t;
 
 // END common set include ------------------------------------------------------
 %}
@@ -90,9 +101,9 @@ TYPE_INTEGRAL_CONVERSION_EX(name, underlying_type, underlying_type, java_type)
 
 TYPE_INTEGRAL_CONVERSION(piece_index_t, std::int32_t, int)
 TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
-// TYPE_INTEGRAL_CONVERSION_EX(peer_class_t, std::uint32_t, std::int32_t, int)
-// TYPE_INTEGRAL_CONVERSION(port_mapping_t, int, int)
+TYPE_INTEGRAL_CONVERSION(port_mapping_t, int, int)
 // TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
+// TYPE_INTEGRAL_CONVERSION_EX(peer_class_t, std::uint32_t, std::int32_t, int)
 // TYPE_INTEGRAL_CONVERSION(disconnect_severity_t, std::uint8_t, int)
 
 // template definitions
@@ -111,6 +122,8 @@ TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
 %template(announce_entry_vector) std::vector<libtorrent::announce_entry>;
 %template(web_seed_entry_vector) std::vector<libtorrent::web_seed_entry>;
 %template(file_slice_vector) std::vector<libtorrent::file_slice>;
+%template(piece_block_vector) std::vector<libtorrent::piece_block>;
+%template(torrent_status_vector) std::vector<libtorrent::torrent_status>;
 
 %template(bool_vector_vector) std::vector<std::vector<bool>>;
 %template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;
@@ -159,4 +172,11 @@ TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
 %include "libtorrent/torrent_info.i"
 %include "libtorrent/torrent_flags.i"
 %include "libtorrent/add_torrent_params.i"
+%include "libtorrent/close_reason.i"
+%include "libtorrent/torrent_handle.i"
+%include "libtorrent/torrent_status.i"
+%include "libtorrent/performance_counters.i"
+%include "libtorrent/portmap.i"
+%include "libtorrent/piece_block.i"
 %include "libtorrent/alert.i"
+%include "libtorrent/alert_types.i"

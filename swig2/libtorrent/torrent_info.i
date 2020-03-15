@@ -32,13 +32,13 @@ namespace libtorrent {
     std::vector<std::vector<sha256_hash>>& get_merkle_trees()
     {
         auto* v = &$self->merkle_trees();
-        return *reinterpret_cast<std::vector<std::vector<sha256_hash>>*>(v);
+        return *reinterpret_cast<std::vector<std::vector<libtorrent::sha256_hash>>*>(v);
     }
 
     std::vector<sha256_hash>& get_file_merkle_tree(int file)
     {
-        auto* v = &$self->file_merkle_tree(file_index_t{file});
-        return *reinterpret_cast<std::vector<sha256_hash>*>(v);
+        auto* v = &$self->file_merkle_tree(libtorrent::file_index_t{file});
+        return *reinterpret_cast<std::vector<libtorrent::sha256_hash>*>(v);
     }
 };
 

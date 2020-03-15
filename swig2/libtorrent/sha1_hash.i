@@ -52,7 +52,7 @@ using sha256_hash = digest32<256>;
 
     digest32<160>(std::vector<std::int8_t> const& v)
     {
-        return new digest32<160>({reinterpret_cast<char const*>(v.data()), static_cast<long>(v.size())});
+        return new libtorrent::digest32<160>({reinterpret_cast<char const*>(v.data()), static_cast<long>(v.size())});
     }
 
     void assign(std::vector<std::int8_t> const& v)
@@ -84,7 +84,7 @@ using sha256_hash = digest32<256>;
 
     static digest32<160> from_hex(std::string s)
     {
-        digest32<160> hash;
+        libtorrent::digest32<160> hash;
         libtorrent::aux::from_hex(s, hash.data());
         return hash;
     }
@@ -98,7 +98,7 @@ using sha256_hash = digest32<256>;
 %extend digest32<256> {
 
     digest32<256>(std::vector<std::int8_t> const& v) {
-        return new digest32<256>({reinterpret_cast<char const*>(v.data()), static_cast<long>(v.size())});
+        return new libtorrent::digest32<256>({reinterpret_cast<char const*>(v.data()), static_cast<long>(v.size())});
     }
 
     void assign(std::vector<std::int8_t> const& v)
@@ -130,7 +130,7 @@ using sha256_hash = digest32<256>;
 
     static digest32<256> from_hex(std::string s)
     {
-        digest32<256> hash;
+        libtorrent::digest32<256> hash;
         libtorrent::aux::from_hex(s, hash.data());
         return hash;
     }
