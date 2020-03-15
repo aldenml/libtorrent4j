@@ -61,6 +61,7 @@
 #include "libtorrent/alert_types.hpp"
 
 #include "libtorrent/hex.hpp"
+#include "libtorrent/bencode.hpp"
 
 using piece_index_t = libtorrent::piece_index_t;
 using file_index_t = libtorrent::file_index_t;
@@ -136,6 +137,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(torrent_status_vector) std::vector<libtorrent::torrent_status>;
 %template(dht_lookup_vector) std::vector<libtorrent::dht_lookup>;
 %template(dht_routing_bucket_vector) std::vector<libtorrent::dht_routing_bucket>;
+%template(entry_vector) std::vector<libtorrent::entry>;
 
 %template(bool_vector_vector) std::vector<std::vector<bool>>;
 %template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;
@@ -148,6 +150,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 
 %template(int_string_map) std::map<int, std::string>;
 %template(int_bitfield_map) std::map<int, libtorrent::bitfield>;
+%template(string_entry_map) std::map<std::string, libtorrent::entry>;
 
 %template(bitset_128) std::bitset<128>;
 
