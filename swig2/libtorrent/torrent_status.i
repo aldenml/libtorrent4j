@@ -30,6 +30,12 @@
 %ignore libtorrent::torrent_status::deprecated_seed_mode;
 %ignore libtorrent::torrent_status::deprecated_stop_when_ready;
 
+namespace libtorrent {
+
+struct torrent_handle;
+
+}
+
 %include "libtorrent/torrent_status.hpp"
 
 namespace libtorrent {

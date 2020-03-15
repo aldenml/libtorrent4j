@@ -48,8 +48,10 @@
 #include "libtorrent/torrent_flags.hpp"
 #include "libtorrent/add_torrent_params.hpp"
 #include "libtorrent/close_reason.hpp"
-#include "libtorrent/torrent_handle.hpp"
+#include "libtorrent/peer_info.hpp"
+#include "libtorrent/pex_flags.hpp"
 #include "libtorrent/torrent_status.hpp"
+#include "libtorrent/torrent_handle.hpp"
 #include "libtorrent/performance_counters.hpp"
 #include "libtorrent/portmap.hpp"
 #include "libtorrent/piece_block.hpp"
@@ -115,6 +117,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 // TYPE_INTEGRAL_CONVERSION(disconnect_severity_t, std::uint8_t, int)
 
 // template definitions
+%template(int_int_pair) std::pair<int, int>;
 %template(string_int_pair) std::pair<std::string, int>;
 %template(string_string_pair) std::pair<std::string, std::string>;
 
@@ -123,8 +126,10 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 
 %template(string_vector) std::vector<std::string>;
 %template(int_vector) std::vector<int>;
+%template(int64_vector) std::vector<long long>;
 %template(byte_vector) std::vector<std::int8_t>;
 %template(bool_vector) std::vector<bool>;
+%template(int_int_pair_vector) std::vector<std::pair<int, int>>;
 %template(string_int_pair_vector) std::vector<std::pair<std::string, int>>;
 %template(string_string_pair_vector) std::vector<std::pair<std::string, std::string>>;
 
@@ -138,6 +143,8 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(dht_lookup_vector) std::vector<libtorrent::dht_lookup>;
 %template(dht_routing_bucket_vector) std::vector<libtorrent::dht_routing_bucket>;
 %template(entry_vector) std::vector<libtorrent::entry>;
+%template(partial_piece_info_vector) std::vector<libtorrent::partial_piece_info>;
+%template(peer_info_vector) std::vector<libtorrent::peer_info>;
 
 %template(bool_vector_vector) std::vector<std::vector<bool>>;
 %template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;
@@ -199,8 +206,10 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %include "libtorrent/torrent_flags.i"
 %include "libtorrent/add_torrent_params.i"
 %include "libtorrent/close_reason.i"
-%include "libtorrent/torrent_handle.i"
+%include "libtorrent/peer_info.i"
+%include "libtorrent/pex_flags.i"
 %include "libtorrent/torrent_status.i"
+%include "libtorrent/torrent_handle.i"
 %include "libtorrent/performance_counters.i"
 %include "libtorrent/portmap.i"
 %include "libtorrent/piece_block.i"

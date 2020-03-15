@@ -148,6 +148,31 @@ public class libtorrent {
     return close_reason_t.swigToEnum(libtorrent_jni.error_to_close_reason(error_code.getCPtr(ec), ec));
   }
 
+  public static pex_flags_t getPex_encryption() {
+    long cPtr = libtorrent_jni.pex_encryption_get();
+    return (cPtr == 0) ? null : new pex_flags_t(cPtr, false);
+  }
+
+  public static pex_flags_t getPex_seed() {
+    long cPtr = libtorrent_jni.pex_seed_get();
+    return (cPtr == 0) ? null : new pex_flags_t(cPtr, false);
+  }
+
+  public static pex_flags_t getPex_utp() {
+    long cPtr = libtorrent_jni.pex_utp_get();
+    return (cPtr == 0) ? null : new pex_flags_t(cPtr, false);
+  }
+
+  public static pex_flags_t getPex_holepunch() {
+    long cPtr = libtorrent_jni.pex_holepunch_get();
+    return (cPtr == 0) ? null : new pex_flags_t(cPtr, false);
+  }
+
+  public static pex_flags_t getPex_lt_v2() {
+    long cPtr = libtorrent_jni.pex_lt_v2_get();
+    return (cPtr == 0) ? null : new pex_flags_t(cPtr, false);
+  }
+
   public static String socket_type_name(socket_type_t arg0) {
     return libtorrent_jni.socket_type_name(arg0.swigValue());
   }
