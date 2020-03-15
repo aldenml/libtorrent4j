@@ -37,6 +37,18 @@ public class libtorrent {
     return libtorrent_jni.operation_name(op.swigValue());
   }
 
+  public static String print_entry(bdecode_node e, boolean single_line, int indent) {
+    return libtorrent_jni.print_entry__SWIG_0(bdecode_node.getCPtr(e), e, single_line, indent);
+  }
+
+  public static String print_entry(bdecode_node e, boolean single_line) {
+    return libtorrent_jni.print_entry__SWIG_1(bdecode_node.getCPtr(e), e, single_line);
+  }
+
+  public static String print_entry(bdecode_node e) {
+    return libtorrent_jni.print_entry__SWIG_2(bdecode_node.getCPtr(e), e);
+  }
+
   public static torrent_flags_t getSeed_mode() {
     long cPtr = libtorrent_jni.seed_mode_get();
     return (cPtr == 0) ? null : new torrent_flags_t(cPtr, false);

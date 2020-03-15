@@ -118,6 +118,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(string_string_pair) std::pair<std::string, std::string>;
 
 %template(sha1_hash_udp_endpoint_pair) std::pair<libtorrent::digest32<160>, libtorrent::udp::endpoint>;
+%template(bdecode_node_bdecode_node_pair) std::pair<libtorrent::bdecode_node, libtorrent::bdecode_node>;
 
 %template(string_vector) std::vector<std::string>;
 %template(int_vector) std::vector<int>;
@@ -170,6 +171,9 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %rename(op_shr_mut) operator>>=;
 %rename(op_at) operator[];
 %rename(op_bool) operator bool;
+
+// general ignores
+%ignore libtorrent::aux;
 
 // includes
 %include "boost/system/error_code.i"
