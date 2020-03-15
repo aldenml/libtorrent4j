@@ -384,6 +384,15 @@ public class libtorrent_jni {
   public final static native void int_bitfield_map_putUnchecked(long jarg1, int_bitfield_map jarg1_, int jarg2, long jarg3, bitfield jarg3_);
   public final static native void int_bitfield_map_removeUnchecked(long jarg1, int_bitfield_map jarg1_, long jarg2, int_bitfield_map.Iterator jarg2_);
   public final static native void delete_int_bitfield_map(long jarg1);
+  public final static native boolean bitset_128_test(long jarg1, bitset_128 jarg1_, long jarg2);
+  public final static native boolean bitset_128_all(long jarg1, bitset_128 jarg1_);
+  public final static native boolean bitset_128_any(long jarg1, bitset_128 jarg1_);
+  public final static native boolean bitset_128_none(long jarg1, bitset_128 jarg1_);
+  public final static native long bitset_128_count(long jarg1, bitset_128 jarg1_);
+  public final static native long bitset_128_size(long jarg1, bitset_128 jarg1_);
+  public final static native boolean bitset_128_get(long jarg1, bitset_128 jarg1_, long jarg2);
+  public final static native long new_bitset_128();
+  public final static native void delete_bitset_128(long jarg1);
   public final static native int success_get();
   public final static native int address_family_not_supported_get();
   public final static native int address_in_use_get();
@@ -1232,8 +1241,6 @@ public class libtorrent_jni {
   public final static native long peer_alert_get_endpoint(long jarg1, peer_alert jarg1_);
   public final static native void delete_peer_alert(long jarg1);
   public final static native String tracker_alert_message(long jarg1, tracker_alert jarg1_);
-  public final static native void tracker_alert_local_endpoint_set(long jarg1, tracker_alert jarg1_, long jarg2);
-  public final static native long tracker_alert_local_endpoint_get(long jarg1, tracker_alert jarg1_);
   public final static native String tracker_alert_tracker_url(long jarg1, tracker_alert jarg1_);
   public final static native long tracker_alert_get_local_endpoint(long jarg1, tracker_alert jarg1_);
   public final static native void delete_tracker_alert(long jarg1);
@@ -1678,7 +1685,6 @@ public class libtorrent_jni {
   public final static native long listen_failed_alert_error_get(long jarg1, listen_failed_alert jarg1_);
   public final static native void listen_failed_alert_op_set(long jarg1, listen_failed_alert jarg1_, int jarg2);
   public final static native int listen_failed_alert_op_get(long jarg1, listen_failed_alert jarg1_);
-  public final static native long listen_failed_alert_socket_type_get(long jarg1, listen_failed_alert jarg1_);
   public final static native int listen_failed_alert_port_get(long jarg1, listen_failed_alert jarg1_);
   public final static native long listen_failed_alert_get_address(long jarg1, listen_failed_alert jarg1_);
   public final static native void delete_listen_failed_alert(long jarg1);
@@ -1690,7 +1696,6 @@ public class libtorrent_jni {
   public final static native long listen_succeeded_alert_static_category_get();
   public final static native String listen_succeeded_alert_message(long jarg1, listen_succeeded_alert jarg1_);
   public final static native int listen_succeeded_alert_port_get(long jarg1, listen_succeeded_alert jarg1_);
-  public final static native long listen_succeeded_alert_socket_type_get(long jarg1, listen_succeeded_alert jarg1_);
   public final static native long listen_succeeded_alert_get_address(long jarg1, listen_succeeded_alert jarg1_);
   public final static native void delete_listen_succeeded_alert(long jarg1);
   public final static native int portmap_error_alert_priority_get();
@@ -1700,11 +1705,8 @@ public class libtorrent_jni {
   public final static native String portmap_error_alert_what(long jarg1, portmap_error_alert jarg1_);
   public final static native long portmap_error_alert_static_category_get();
   public final static native String portmap_error_alert_message(long jarg1, portmap_error_alert jarg1_);
-  public final static native long portmap_error_alert_mapping_get(long jarg1, portmap_error_alert jarg1_);
   public final static native void portmap_error_alert_map_transport_set(long jarg1, portmap_error_alert jarg1_, int jarg2);
   public final static native int portmap_error_alert_map_transport_get(long jarg1, portmap_error_alert jarg1_);
-  public final static native void portmap_error_alert_local_address_set(long jarg1, portmap_error_alert jarg1_, long jarg2);
-  public final static native long portmap_error_alert_local_address_get(long jarg1, portmap_error_alert jarg1_);
   public final static native long portmap_error_alert_error_get(long jarg1, portmap_error_alert jarg1_);
   public final static native void delete_portmap_error_alert(long jarg1);
   public final static native int portmap_alert_priority_get();
@@ -1714,12 +1716,9 @@ public class libtorrent_jni {
   public final static native String portmap_alert_what(long jarg1, portmap_alert jarg1_);
   public final static native long portmap_alert_static_category_get();
   public final static native String portmap_alert_message(long jarg1, portmap_alert jarg1_);
-  public final static native long portmap_alert_mapping_get(long jarg1, portmap_alert jarg1_);
   public final static native int portmap_alert_external_port_get(long jarg1, portmap_alert jarg1_);
   public final static native int portmap_alert_map_protocol_get(long jarg1, portmap_alert jarg1_);
   public final static native int portmap_alert_map_transport_get(long jarg1, portmap_alert jarg1_);
-  public final static native void portmap_alert_local_address_set(long jarg1, portmap_alert jarg1_, long jarg2);
-  public final static native long portmap_alert_local_address_get(long jarg1, portmap_alert jarg1_);
   public final static native void delete_portmap_alert(long jarg1);
   public final static native int portmap_log_alert_priority_get();
   public final static native int portmap_log_alert_alert_type_get();
@@ -1729,8 +1728,6 @@ public class libtorrent_jni {
   public final static native long portmap_log_alert_static_category_get();
   public final static native String portmap_log_alert_message(long jarg1, portmap_log_alert jarg1_);
   public final static native int portmap_log_alert_map_transport_get(long jarg1, portmap_log_alert jarg1_);
-  public final static native void portmap_log_alert_local_address_set(long jarg1, portmap_log_alert jarg1_, long jarg2);
-  public final static native long portmap_log_alert_local_address_get(long jarg1, portmap_log_alert jarg1_);
   public final static native String portmap_log_alert_log_message(long jarg1, portmap_log_alert jarg1_);
   public final static native void delete_portmap_log_alert(long jarg1);
   public final static native int fastresume_rejected_alert_priority_get();
@@ -2002,8 +1999,6 @@ public class libtorrent_jni {
   public final static native String lsd_error_alert_what(long jarg1, lsd_error_alert jarg1_);
   public final static native long lsd_error_alert_static_category_get();
   public final static native String lsd_error_alert_message(long jarg1, lsd_error_alert jarg1_);
-  public final static native void lsd_error_alert_local_address_set(long jarg1, lsd_error_alert jarg1_, long jarg2);
-  public final static native long lsd_error_alert_local_address_get(long jarg1, lsd_error_alert jarg1_);
   public final static native void lsd_error_alert_error_set(long jarg1, lsd_error_alert jarg1_, long jarg2, error_code jarg2_);
   public final static native long lsd_error_alert_error_get(long jarg1, lsd_error_alert jarg1_);
   public final static native void delete_lsd_error_alert(long jarg1);
@@ -2038,8 +2033,6 @@ public class libtorrent_jni {
   public final static native long dht_stats_alert_routing_table_get(long jarg1, dht_stats_alert jarg1_);
   public final static native void dht_stats_alert_nid_set(long jarg1, dht_stats_alert jarg1_, long jarg2, sha1_hash jarg2_);
   public final static native long dht_stats_alert_nid_get(long jarg1, dht_stats_alert jarg1_);
-  public final static native void dht_stats_alert_local_endpoint_set(long jarg1, dht_stats_alert jarg1_, long jarg2);
-  public final static native long dht_stats_alert_local_endpoint_get(long jarg1, dht_stats_alert jarg1_);
   public final static native void delete_dht_stats_alert(long jarg1);
   public final static native long incoming_request_alert_static_category_get();
   public final static native int incoming_request_alert_priority_get();
@@ -2185,7 +2178,7 @@ public class libtorrent_jni {
   public final static native String alerts_dropped_alert_what(long jarg1, alerts_dropped_alert jarg1_);
   public final static native long alerts_dropped_alert_static_category_get();
   public final static native String alerts_dropped_alert_message(long jarg1, alerts_dropped_alert jarg1_);
-  public final static native void alerts_dropped_alert_dropped_alerts_set(long jarg1, alerts_dropped_alert jarg1_, long jarg2);
+  public final static native void alerts_dropped_alert_dropped_alerts_set(long jarg1, alerts_dropped_alert jarg1_, long jarg2, bitset_128 jarg2_);
   public final static native long alerts_dropped_alert_dropped_alerts_get(long jarg1, alerts_dropped_alert jarg1_);
   public final static native void delete_alerts_dropped_alert(long jarg1);
   public final static native int socks5_alert_priority_get();
@@ -2199,8 +2192,6 @@ public class libtorrent_jni {
   public final static native long socks5_alert_error_get(long jarg1, socks5_alert jarg1_);
   public final static native void socks5_alert_op_set(long jarg1, socks5_alert jarg1_, int jarg2);
   public final static native int socks5_alert_op_get(long jarg1, socks5_alert jarg1_);
-  public final static native void socks5_alert_ip_set(long jarg1, socks5_alert jarg1_, long jarg2);
-  public final static native long socks5_alert_ip_get(long jarg1, socks5_alert jarg1_);
   public final static native void delete_socks5_alert(long jarg1);
   public final static native long picker_flags_t_all();
   public final static native boolean picker_flags_t_op_bool(long jarg1, picker_flags_t jarg1_);

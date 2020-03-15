@@ -16,6 +16,17 @@
 %ignore libtorrent::dht_outgoing_get_peers_alert::endpoint;
 %ignore libtorrent::dht_pkt_alert::node;
 %ignore libtorrent::udp_error_alert::endpoint;
+%ignore libtorrent::portmap_alert::mapping;
+%ignore libtorrent::portmap_error_alert::mapping;
+%ignore libtorrent::listen_failed_alert::socket_type;
+%ignore libtorrent::listen_succeeded_alert::socket_type;
+%ignore libtorrent::lsd_error_alert::local_address;
+%ignore libtorrent::portmap_alert::local_address;
+%ignore libtorrent::portmap_error_alert::local_address;
+%ignore libtorrent::portmap_log_alert::local_address;
+%ignore libtorrent::socks5_alert::ip;
+%ignore libtorrent::tracker_alert::local_endpoint;
+%ignore libtorrent::dht_stats_alert::local_endpoint;
 
 %rename("$ignore", regextarget=1, %$isconstructor) ".*_alert$";
 

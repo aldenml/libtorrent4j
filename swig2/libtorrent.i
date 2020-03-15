@@ -78,6 +78,7 @@ using queue_position_t = libtorrent::queue_position_t;
 %include <std_map.i>
 %include <std_array.i>
 %include <std_shared_ptr.i>
+%include <std_bitset.i>
 
 %apply std::int8_t { char };
 %apply std::int64_t { void* };
@@ -146,6 +147,8 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 
 %template(int_string_map) std::map<int, std::string>;
 %template(int_bitfield_map) std::map<int, libtorrent::bitfield>;
+
+%template(bitset_128) std::bitset<128>;
 
 // ignore of operators
 %ignore operator=;
