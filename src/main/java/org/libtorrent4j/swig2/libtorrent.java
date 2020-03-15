@@ -193,4 +193,20 @@ public class libtorrent {
     return libtorrent_jni.abi_alert_count_get();
   }
 
+  public static settings_pack load_pack_from_dict(bdecode_node settings) {
+    return new settings_pack(libtorrent_jni.load_pack_from_dict(bdecode_node.getCPtr(settings), settings), true);
+  }
+
+  public static void save_settings_to_dict(settings_pack sett, string_entry_map out) {
+    libtorrent_jni.save_settings_to_dict(settings_pack.getCPtr(sett), sett, string_entry_map.getCPtr(out), out);
+  }
+
+  public static String name_for_setting(int s) {
+    return libtorrent_jni.name_for_setting(s);
+  }
+
+  public static settings_pack default_settings() {
+    return new settings_pack(libtorrent_jni.default_settings(), true);
+  }
+
 }

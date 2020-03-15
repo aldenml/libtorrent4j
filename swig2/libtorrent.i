@@ -61,6 +61,7 @@
 #include "libtorrent/tracker_manager.hpp"
 #include "libtorrent/alert.hpp"
 #include "libtorrent/alert_types.hpp"
+#include "libtorrent/settings_pack.hpp"
 
 #include "libtorrent/hex.hpp"
 #include "libtorrent/bencode.hpp"
@@ -219,3 +220,4 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %include "libtorrent/tracker_manager.i"
 %include "libtorrent/alert.i"
 %include "libtorrent/alert_types.i"
+%include "libtorrent/settings_pack.i"
