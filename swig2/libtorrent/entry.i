@@ -1,0 +1,7 @@
+namespace libtorrent {
+
+class entry
+{
+};
+
+}

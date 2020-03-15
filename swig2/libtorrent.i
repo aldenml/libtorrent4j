@@ -53,6 +53,10 @@
 #include "libtorrent/performance_counters.hpp"
 #include "libtorrent/portmap.hpp"
 #include "libtorrent/piece_block.hpp"
+#include "libtorrent/socket_type.hpp"
+#include "libtorrent/entry.hpp"
+#include "libtorrent/peer_id.hpp"
+#include "libtorrent/tracker_manager.hpp"
 #include "libtorrent/alert.hpp"
 #include "libtorrent/alert_types.hpp"
 
@@ -61,6 +65,7 @@
 using piece_index_t = libtorrent::piece_index_t;
 using file_index_t = libtorrent::file_index_t;
 using port_mapping_t = libtorrent::port_mapping_t;
+using queue_position_t = libtorrent::queue_position_t;
 
 // END common set include ------------------------------------------------------
 %}
@@ -71,6 +76,7 @@ using port_mapping_t = libtorrent::port_mapping_t;
 %include <std_pair.i>
 %include <std_vector.i>
 %include <std_map.i>
+%include <std_array.i>
 %include <std_shared_ptr.i>
 
 %apply std::int8_t { char };
@@ -102,13 +108,15 @@ TYPE_INTEGRAL_CONVERSION_EX(name, underlying_type, underlying_type, java_type)
 TYPE_INTEGRAL_CONVERSION(piece_index_t, std::int32_t, int)
 TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
 TYPE_INTEGRAL_CONVERSION(port_mapping_t, int, int)
-// TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
+TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 // TYPE_INTEGRAL_CONVERSION_EX(peer_class_t, std::uint32_t, std::int32_t, int)
 // TYPE_INTEGRAL_CONVERSION(disconnect_severity_t, std::uint8_t, int)
 
 // template definitions
 %template(string_int_pair) std::pair<std::string, int>;
 %template(string_string_pair) std::pair<std::string, std::string>;
+
+%template(sha1_hash_udp_endpoint_pair) std::pair<libtorrent::digest32<160>, libtorrent::udp::endpoint>;
 
 %template(string_vector) std::vector<std::string>;
 %template(int_vector) std::vector<int>;
@@ -124,9 +132,17 @@ TYPE_INTEGRAL_CONVERSION(port_mapping_t, int, int)
 %template(file_slice_vector) std::vector<libtorrent::file_slice>;
 %template(piece_block_vector) std::vector<libtorrent::piece_block>;
 %template(torrent_status_vector) std::vector<libtorrent::torrent_status>;
+%template(dht_lookup_vector) std::vector<libtorrent::dht_lookup>;
+%template(dht_routing_bucket_vector) std::vector<libtorrent::dht_routing_bucket>;
 
 %template(bool_vector_vector) std::vector<std::vector<bool>>;
 %template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;
+%template(sha1_hash_udp_endpoint_pair_vector) std::vector<std::pair<libtorrent::digest32<160>, libtorrent::udp::endpoint>>;
+
+%template(char_array_32) std::array<char, 32>;
+%template(char_array_64) std::array<char, 64>;
+
+%template(int_array_stats_alert_num_channels) std::array<int, libtorrent::stats_alert::num_channels>;
 
 %template(int_string_map) std::map<int, std::string>;
 %template(int_bitfield_map) std::map<int, libtorrent::bitfield>;
@@ -178,5 +194,9 @@ TYPE_INTEGRAL_CONVERSION(port_mapping_t, int, int)
 %include "libtorrent/performance_counters.i"
 %include "libtorrent/portmap.i"
 %include "libtorrent/piece_block.i"
+%include "libtorrent/socket_type.i"
+%include "libtorrent/entry.i"
+%include "libtorrent/peer_id.i"
+%include "libtorrent/tracker_manager.i"
 %include "libtorrent/alert.i"
 %include "libtorrent/alert_types.i"

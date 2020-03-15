@@ -136,6 +136,10 @@ public class libtorrent {
     return close_reason_t.swigToEnum(libtorrent_jni.error_to_close_reason(error_code.getCPtr(ec), ec));
   }
 
+  public static String socket_type_name(socket_type_t arg0) {
+    return libtorrent_jni.socket_type_name(arg0.swigValue());
+  }
+
   public static String alert_name(int alert_type) {
     return libtorrent_jni.alert_name(alert_type);
   }
