@@ -217,4 +217,12 @@ public class libtorrent {
     return new entry(libtorrent_jni.write_session_params__SWIG_1(session_params.getCPtr(sp), sp), true);
   }
 
+  public static settings_pack min_memory_usage() {
+    return new settings_pack(libtorrent_jni.min_memory_usage(), true);
+  }
+
+  public static settings_pack high_performance_seed() {
+    return new settings_pack(libtorrent_jni.high_performance_seed(), true);
+  }
+
 }

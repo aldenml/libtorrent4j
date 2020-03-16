@@ -3079,6 +3079,16 @@ public class libtorrent_jni {
   public final static native long session_handle_wait_for_alert_ms(long jarg1, session_handle jarg1_, long jarg2);
   public final static native void session_handle_set_alert_notify_callback(long jarg1, session_handle jarg1_, long jarg2, alert_notify_callback jarg2_);
   public final static native void delete_session_handle(long jarg1);
+  public final static native long min_memory_usage();
+  public final static native long high_performance_seed();
+  public final static native long new_session_proxy__SWIG_0();
+  public final static native void delete_session_proxy(long jarg1);
+  public final static native long new_session_proxy__SWIG_1(long jarg1, session_proxy jarg1_);
+  public final static native long new_session__SWIG_0(long jarg1, session_params jarg1_);
+  public final static native long new_session__SWIG_1();
+  public final static native long new_session__SWIG_2(long jarg1, session jarg1_);
+  public final static native void delete_session(long jarg1);
+  public final static native long session_abort(long jarg1, session jarg1_);
   public final static native void delete_alert_notify_callback(long jarg1);
   public final static native void alert_notify_callback_on_alert(long jarg1, alert_notify_callback jarg1_);
   public final static native void alert_notify_callback_on_alertSwigExplicitalert_notify_callback(long jarg1, alert_notify_callback jarg1_);
@@ -3177,6 +3187,7 @@ public class libtorrent_jni {
   public final static native long alerts_dropped_alert_SWIGUpcast(long jarg1);
   public final static native long socks5_alert_SWIGUpcast(long jarg1);
   public final static native long settings_pack_SWIGUpcast(long jarg1);
+  public final static native long session_SWIGUpcast(long jarg1);
 
   public static void SwigDirector_alert_notify_callback_on_alert(alert_notify_callback jself) {
     jself.on_alert();
