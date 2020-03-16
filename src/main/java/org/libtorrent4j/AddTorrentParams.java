@@ -24,10 +24,10 @@ import java.util.List;
  * name should be assigned to the torrent. In case it's not, the name is
  * used for the torrent as long as it doesn't have metadata.
  *
- * @author gubatron
  * @author aldenml
  */
-public final class AddTorrentParams {
+public final class AddTorrentParams
+    extends SwigObject<add_torrent_params> {
 
     private final add_torrent_params p;
 
@@ -37,6 +37,7 @@ public final class AddTorrentParams {
      * @param p the native object
      */
     public AddTorrentParams(add_torrent_params p) {
+        super(p);
         this.p = p;
     }
 
@@ -44,14 +45,7 @@ public final class AddTorrentParams {
      * Creates an empty parameters object with the default storage.
      */
     public AddTorrentParams() {
-        this(add_torrent_params.create_instance());
-    }
-
-    /**
-     * @return the native object
-     */
-    public add_torrent_params swig() {
-        return p;
+        this(new add_torrent_params());
     }
 
     /**
@@ -69,7 +63,7 @@ public final class AddTorrentParams {
      * @return the torrent info or null if not set
      */
     public TorrentInfo torrentInfo() {
-        torrent_info ti = p.ti_ptr();
+        torrent_info ti = p.getTi();
         return ti != null && ti.is_valid() ? new TorrentInfo(ti) : null;
     }
 
@@ -79,7 +73,7 @@ public final class AddTorrentParams {
      * @param ti the torrent info
      */
     public void torrentInfo(TorrentInfo ti) {
-        p.set_ti(ti.swig());
+        p.setTi(ti.swig());
     }
 
     /**
@@ -503,27 +497,6 @@ public final class AddTorrentParams {
         }
 
         p.set_banned_peers(v);
-    }
-
-    /**
-     * @return an instance with the default storage
-     */
-    public static AddTorrentParams createInstance() {
-        return new AddTorrentParams(add_torrent_params.create_instance());
-    }
-
-    /**
-     * @return an instance with a disabled storage
-     */
-    public static AddTorrentParams createInstanceDisabledStorage() {
-        return new AddTorrentParams(add_torrent_params.create_instance_disabled_storage());
-    }
-
-    /**
-     * @return an instance with a zero storage
-     */
-    public static AddTorrentParams createInstanceZeroStorage() {
-        return new AddTorrentParams(add_torrent_params.create_instance_zero_storage());
     }
 
     /**

@@ -6,18 +6,16 @@ import org.libtorrent4j.swig.session_params;
  * This is a parameters pack for configuring the session
  * before it's started.
  *
- * @author gubatron
  * @author aldenml
  */
-public class SessionParams {
-
-    private final session_params p;
+public class SessionParams
+    extends SwigObject<session_params> {
 
     /**
      * @param p the native object
      */
     public SessionParams(session_params p) {
-        this.p = p;
+        super(p);
     }
 
     /**
@@ -43,16 +41,9 @@ public class SessionParams {
     }
 
     /**
-     * @return the native object
-     */
-    public session_params swig() {
-        return p;
-    }
-
-    /**
      * @return the settings pack
      */
     public SettingsPack settings() {
-        return new SettingsPack(p.getSettings());
+        return new SettingsPack(swig.getSettings());
     }
 }

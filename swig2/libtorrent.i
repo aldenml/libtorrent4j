@@ -76,8 +76,11 @@
 #include "libtorrent/create_torrent.hpp"
 #include "libtorrent/session_stats.hpp"
 
-#include "libtorrent/hex.hpp"
-#include "libtorrent/bencode.hpp"
+#include <libtorrent/hex.hpp>
+#include <libtorrent/bencode.hpp>
+#include <libtorrent/read_resume_data.hpp>
+#include <libtorrent/write_resume_data.hpp>
+#include <libtorrent/magnet_uri.hpp>
 
 #include "libtorrent.hpp"
 
