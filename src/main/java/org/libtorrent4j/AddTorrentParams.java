@@ -111,7 +111,7 @@ public final class AddTorrentParams {
         string_vector v = new string_vector();
 
         for (String s : value) {
-            v.push_back(s);
+            v.add(s);
         }
 
         p.set_trackers(v);
@@ -151,7 +151,7 @@ public final class AddTorrentParams {
         int_vector v = new int_vector();
 
         for (Integer t : value) {
-            v.push_back(t);
+            v.add(t);
         }
 
         p.set_tracker_tiers(v);
@@ -186,7 +186,7 @@ public final class AddTorrentParams {
         string_int_pair_vector v = new string_int_pair_vector();
 
         for (Pair<String, Integer> p : value) {
-            v.push_back(p.to_string_int_pair());
+            v.add(p.to_string_int_pair());
         }
 
         p.set_dht_nodes(v);
@@ -400,14 +400,14 @@ public final class AddTorrentParams {
         string_vector v = new string_vector();
 
         for (String s : value) {
-            v.push_back(s);
+            v.add(s);
         }
 
         p.set_url_seeds(v);
     }
 
     public Priority[] filePriorities() {
-        int_vector v = p.get_file_priorities2();
+        byte_vector v = p.get_file_priorities();
         return Priority.vector2array(v);
     }
 
@@ -419,11 +419,11 @@ public final class AddTorrentParams {
      * @param priorities the priorities
      */
     public void filePriorities(Priority[] priorities) {
-        p.set_file_priorities2(Priority.array2byte_vector(priorities));
+        p.set_file_priorities(Priority.array2byte_vector(priorities));
     }
 
     public Priority[] piecePriorities() {
-        int_vector v = p.get_piece_priorities2();
+        byte_vector v = p.get_piece_priorities();
         return Priority.vector2array(v);
     }
 
@@ -436,7 +436,7 @@ public final class AddTorrentParams {
      * @param priorities the priorities
      */
     public void piecePriorities(Priority[] priorities) {
-        p.set_piece_priorities2(Priority.array2byte_vector(priorities));
+        p.set_piece_priorities(Priority.array2byte_vector(priorities));
     }
 
     /**
@@ -467,7 +467,7 @@ public final class AddTorrentParams {
         tcp_endpoint_vector v = new tcp_endpoint_vector();
 
         for (TcpEndpoint endp : value) {
-            v.push_back(endp.swig());
+            v.add(endp.swig());
         }
 
         p.set_peers(v);
@@ -499,7 +499,7 @@ public final class AddTorrentParams {
         tcp_endpoint_vector v = new tcp_endpoint_vector();
 
         for (TcpEndpoint endp : value) {
-            v.push_back(endp.swig());
+            v.add(endp.swig());
         }
 
         p.set_banned_peers(v);

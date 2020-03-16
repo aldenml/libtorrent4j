@@ -138,7 +138,7 @@ public final class Entry {
 
         @Override
         public boolean add(Entry entry) {
-            v.push_back(entry.swig());
+            v.add(entry.swig());
             return true;
         }
 
@@ -154,7 +154,7 @@ public final class Entry {
 
         @Override
         public boolean isEmpty() {
-            return v.empty();
+            return v.isEmpty();
         }
     }
 

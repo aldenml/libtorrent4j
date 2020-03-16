@@ -259,7 +259,7 @@ public final class TorrentInfo {
         string_string_pair_vector v = new string_string_pair_vector();
 
         for (Pair<String, String> p : extraHeaders) {
-            v.push_back(p.to_string_string_pair());
+            v.add(p.to_string_string_pair());
         }
 
         ti.add_url_seed(url, externAuth, v);
@@ -311,7 +311,7 @@ public final class TorrentInfo {
         string_string_pair_vector v = new string_string_pair_vector();
 
         for (Pair<String, String> p : extraHeaders) {
-            v.push_back(p.to_string_string_pair());
+            v.add(p.to_string_string_pair());
         }
 
         ti.add_url_seed(url, externAuth, v);
@@ -345,7 +345,7 @@ public final class TorrentInfo {
         web_seed_entry_vector v = new web_seed_entry_vector();
 
         for (WebSeedEntry e : seeds) {
-            v.push_back(e.swig());
+            v.add(e.swig());
         }
 
         ti.set_web_seeds(v);
@@ -527,7 +527,7 @@ public final class TorrentInfo {
         sha1_hash_vector v = new sha1_hash_vector();
 
         for (Sha1Hash h : tree) {
-            v.push_back(h.swig());
+            v.add(h.swig());
         }
 
         ti.set_merkle_tree(v);

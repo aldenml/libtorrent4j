@@ -111,7 +111,7 @@ public enum Priority {
         return v;
     }
 
-    static Priority[] vector2array(int_vector v) {
+    static Priority[] vector2array(byte_vector v) {
         int size = (int) v.size();
         Priority[] arr = new Priority[size];
         for (int i = 0; i < size; i++) {

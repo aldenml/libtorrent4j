@@ -27,7 +27,7 @@ public class PriorityTest {
         int_vector v = new int_vector();
 
         for (int i = 0; i < 10; i++) {
-            v.push_back(Priority.DEFAULT.swig());
+            v.add(Priority.DEFAULT.swig());
         }
 
         Priority[] arr = Priority.vector2array(v);

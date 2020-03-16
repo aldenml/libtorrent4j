@@ -943,7 +943,7 @@ public final class TorrentHandle {
         announce_entry_vector v = new announce_entry_vector();
 
         for (AnnounceEntry t : trackers) {
-            v.push_back(t.swig());
+            v.add(t.swig());
         }
 
         th.replace_trackers(v);

@@ -72,14 +72,14 @@ public class ChangeTrackersTest {
         // add trackers
         String[] tks = new String[]{"http://a:6969/announce", "http://b:6969/announce"};
         entry_vector l = new entry_vector();
-        l.push_back(new entry(tks[0]));
+        l.add(new entry(tks[0]));
         m.set("announce", new entry(l));
 
         entry_vector tl = new entry_vector();
         for (int i = 0; i < tks.length; i++) {
             l.clear();
-            l.push_back(new entry(tks[i]));
-            tl.push_back(new entry(l));
+            l.add(new entry(tks[i]));
+            tl.add(new entry(l));
         }
         m.set("announce-list", new entry(tl));
 
