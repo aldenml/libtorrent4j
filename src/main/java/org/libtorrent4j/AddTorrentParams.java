@@ -285,8 +285,8 @@ public final class AddTorrentParams {
      *
      * @return the info-hash
      */
-    public Sha1Hash infoHash() {
-        return new Sha1Hash(p.getInfo_hash());
+    public InfoHash infoHash() {
+        return new InfoHash(p.getInfo_hash());
     }
 
     /**
@@ -296,7 +296,7 @@ public final class AddTorrentParams {
      *
      * @param value the info-hash
      */
-    public void infoHash(Sha1Hash value) {
+    public void infoHash(InfoHash value) {
         p.setInfo_hash(value.swig());
     }
 
