@@ -209,4 +209,12 @@ public class libtorrent {
     return new settings_pack(libtorrent_jni.default_settings(), true);
   }
 
+  public static entry write_session_params(session_params sp, save_state_flags_t flags) {
+    return new entry(libtorrent_jni.write_session_params__SWIG_0(session_params.getCPtr(sp), sp, save_state_flags_t.getCPtr(flags), flags), true);
+  }
+
+  public static entry write_session_params(session_params sp) {
+    return new entry(libtorrent_jni.write_session_params__SWIG_1(session_params.getCPtr(sp), sp), true);
+  }
+
 }

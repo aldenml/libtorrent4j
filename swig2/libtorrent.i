@@ -31,13 +31,16 @@
 // BEGIN common set include ----------------------------------------------------
 
 #include "libtorrent/flags.hpp"
+#include "libtorrent/address.hpp"
+#include "libtorrent/socket.hpp"
+#include "libtorrent/kademlia/announce_flags.hpp"
+#include "libtorrent/kademlia/node_id.hpp"
+#include "libtorrent/kademlia/dht_state.hpp"
 #include "libtorrent/client_data.hpp"
 #include "libtorrent/sha1_hash.hpp"
 #include "libtorrent/info_hash.hpp"
 #include "libtorrent/storage_defs.hpp"
 #include "libtorrent/bitfield.hpp"
-#include "libtorrent/address.hpp"
-#include "libtorrent/socket.hpp"
 #include "libtorrent/operations.hpp"
 #include "libtorrent/error_code.hpp"
 #include "libtorrent/announce_entry.hpp"
@@ -62,9 +65,17 @@
 #include "libtorrent/alert.hpp"
 #include "libtorrent/alert_types.hpp"
 #include "libtorrent/settings_pack.hpp"
+#include "libtorrent/peer_class.hpp"
+#include "libtorrent/peer_class_type_filter.hpp"
+#include "libtorrent/ip_filter.hpp"
+#include "libtorrent/session_types.hpp"
+#include "libtorrent/session_params.hpp"
+#include "libtorrent/session_handle.hpp"
 
 #include "libtorrent/hex.hpp"
 #include "libtorrent/bencode.hpp"
+
+#include "libtorrent.hpp"
 
 using piece_index_t = libtorrent::piece_index_t;
 using file_index_t = libtorrent::file_index_t;
@@ -124,6 +135,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 
 %template(sha1_hash_udp_endpoint_pair) std::pair<libtorrent::digest32<160>, libtorrent::udp::endpoint>;
 %template(bdecode_node_bdecode_node_pair) std::pair<libtorrent::bdecode_node, libtorrent::bdecode_node>;
+%template(address_node_id_pair) std::pair<libtorrent::address, libtorrent::dht::node_id>;
 
 %template(string_vector) std::vector<std::string>;
 %template(int_vector) std::vector<int>;
@@ -135,6 +147,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(string_string_pair_vector) std::vector<std::pair<std::string, std::string>>;
 
 %template(tcp_endpoint_vector) std::vector<libtorrent::tcp::endpoint>;
+%template(udp_endpoint_vector) std::vector<libtorrent::udp::endpoint>;
 %template(announce_endpoint_vector) std::vector<libtorrent::announce_endpoint>;
 %template(announce_entry_vector) std::vector<libtorrent::announce_entry>;
 %template(web_seed_entry_vector) std::vector<libtorrent::web_seed_entry>;
@@ -146,10 +159,13 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(entry_vector) std::vector<libtorrent::entry>;
 %template(partial_piece_info_vector) std::vector<libtorrent::partial_piece_info>;
 %template(peer_info_vector) std::vector<libtorrent::peer_info>;
+%template(torrent_handle_vector) std::vector<libtorrent::torrent_handle>;
+%template(alert_ptr_vector) std::vector<libtorrent::alert*>;
 
 %template(bool_vector_vector) std::vector<std::vector<bool>>;
 %template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;
 %template(sha1_hash_udp_endpoint_pair_vector) std::vector<std::pair<libtorrent::digest32<160>, libtorrent::udp::endpoint>>;
+%template(address_node_id_pair_vector) std::vector<std::pair<libtorrent::address, libtorrent::dht::node_id>>;
 
 %template(char_array_32) std::array<char, 32>;
 %template(char_array_64) std::array<char, 64>;
@@ -157,6 +173,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(int_array_stats_alert_num_channels) std::array<int, libtorrent::stats_alert::num_channels>;
 
 %template(int_string_map) std::map<int, std::string>;
+%template(string_string_map) std::map<std::string, std::string>;
 %template(int_bitfield_map) std::map<int, libtorrent::bitfield>;
 %template(string_entry_map) std::map<std::string, libtorrent::entry>;
 
@@ -186,17 +203,23 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 // general ignores
 %ignore libtorrent::aux;
 
+// directors
+%feature("director") alert_notify_callback;
+
 // includes
 %include "boost/system/error_code.i"
 
 %include "libtorrent/flags.i"
+%include "libtorrent/address.i"
+%include "libtorrent/socket.i"
+%include "libtorrent/kademlia/announce_flags.i"
+%include "libtorrent/kademlia/node_id.i"
+%include "libtorrent/kademlia/dht_state.i"
 %include "libtorrent/client_data.i"
 %include "libtorrent/sha1_hash.i"
 %include "libtorrent/info_hash.hpp"
 %include "libtorrent/storage_defs.i"
 %include "libtorrent/bitfield.i"
-%include "libtorrent/address.i"
-%include "libtorrent/socket.i"
 %include "libtorrent/operations.i"
 %include "libtorrent/error_code.i"
 %include "libtorrent/announce_entry.i"
@@ -221,3 +244,11 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %include "libtorrent/alert.i"
 %include "libtorrent/alert_types.i"
 %include "libtorrent/settings_pack.i"
+%include "libtorrent/peer_class.i"
+%include "libtorrent/peer_class_type_filter.i"
+%include "libtorrent/ip_filter.i"
+%include "libtorrent/session_types.i"
+%include "libtorrent/session_params.i"
+%include "libtorrent/session_handle.i"
+
+%include "libtorrent.hpp"
