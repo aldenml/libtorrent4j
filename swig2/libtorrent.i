@@ -74,6 +74,7 @@
 #include "libtorrent/session.hpp"
 #include "libtorrent/file_storage.hpp"
 #include "libtorrent/create_torrent.hpp"
+#include "libtorrent/session_stats.hpp"
 
 #include "libtorrent/hex.hpp"
 #include "libtorrent/bencode.hpp"
@@ -164,6 +165,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(peer_info_vector) std::vector<libtorrent::peer_info>;
 %template(torrent_handle_vector) std::vector<libtorrent::torrent_handle>;
 %template(alert_ptr_vector) std::vector<libtorrent::alert*>;
+%template(stats_metric_vector) std::vector<libtorrent::stats_metric>;
 
 %template(bool_vector_vector) std::vector<std::vector<bool>>;
 %template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;
@@ -256,5 +258,6 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %include "libtorrent/session.i"
 %include "libtorrent/file_storage.i"
 %include "libtorrent/create_torrent.i"
+%include "libtorrent/session_stats.i"
 
 %include "libtorrent.hpp"

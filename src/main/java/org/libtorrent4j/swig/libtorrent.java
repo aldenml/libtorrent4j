@@ -237,4 +237,12 @@ public class libtorrent {
     libtorrent_jni.set_piece_hashes(create_torrent.getCPtr(t), t, p, error_code.getCPtr(ec), ec);
   }
 
+  public static stats_metric_vector session_stats_metrics() {
+    return new stats_metric_vector(libtorrent_jni.session_stats_metrics(), true);
+  }
+
+  public static int find_metric_idx_ex(String name) {
+    return libtorrent_jni.find_metric_idx_ex(name);
+  }
+
 }

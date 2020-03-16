@@ -813,6 +813,7 @@ namespace Swig {
 #include "libtorrent/session.hpp"
 #include "libtorrent/file_storage.hpp"
 #include "libtorrent/create_torrent.hpp"
+#include "libtorrent/session_stats.hpp"
 
 #include "libtorrent/hex.hpp"
 #include "libtorrent/bencode.hpp"
@@ -2135,6 +2136,60 @@ SWIGINTERN std::vector< libtorrent::alert * >::value_type std_vector_Sl_libtorre
           throw std::out_of_range("vector index out of range");
       }
 SWIGINTERN void std_vector_Sl_libtorrent_alert_Sm__Sg__doRemoveRange(std::vector< libtorrent::alert * > *self,jint fromIndex,jint toIndex){
+        jint size = static_cast<jint>(self->size());
+        if (0 <= fromIndex && fromIndex <= toIndex && toIndex <= size) {
+          self->erase(self->begin() + fromIndex, self->begin() + toIndex);
+        } else {
+          throw std::out_of_range("vector index out of range");
+        }
+      }
+SWIGINTERN std::vector< libtorrent::stats_metric > *new_std_vector_Sl_libtorrent_stats_metric_Sg___SWIG_2(jint count,libtorrent::stats_metric const &value){
+        if (count < 0)
+          throw std::out_of_range("vector count must be positive");
+        return new std::vector< libtorrent::stats_metric >(static_cast<std::vector< libtorrent::stats_metric >::size_type>(count), value);
+      }
+SWIGINTERN jint std_vector_Sl_libtorrent_stats_metric_Sg__doSize(std::vector< libtorrent::stats_metric > const *self){
+        return SWIG_VectorSize(self->size());
+      }
+SWIGINTERN void std_vector_Sl_libtorrent_stats_metric_Sg__doAdd__SWIG_0(std::vector< libtorrent::stats_metric > *self,std::vector< libtorrent::stats_metric >::value_type const &x){
+        self->push_back(x);
+      }
+SWIGINTERN void std_vector_Sl_libtorrent_stats_metric_Sg__doAdd__SWIG_1(std::vector< libtorrent::stats_metric > *self,jint index,std::vector< libtorrent::stats_metric >::value_type const &x){
+        jint size = static_cast<jint>(self->size());
+        if (0 <= index && index <= size) {
+          self->insert(self->begin() + index, x);
+        } else {
+          throw std::out_of_range("vector index out of range");
+        }
+      }
+SWIGINTERN std::vector< libtorrent::stats_metric >::value_type std_vector_Sl_libtorrent_stats_metric_Sg__doRemove(std::vector< libtorrent::stats_metric > *self,jint index){
+        jint size = static_cast<jint>(self->size());
+        if (0 <= index && index < size) {
+          libtorrent::stats_metric const old_value = (*self)[index];
+          self->erase(self->begin() + index);
+          return old_value;
+        } else {
+          throw std::out_of_range("vector index out of range");
+        }
+      }
+SWIGINTERN std::vector< libtorrent::stats_metric >::value_type const &std_vector_Sl_libtorrent_stats_metric_Sg__doGet(std::vector< libtorrent::stats_metric > *self,jint index){
+        jint size = static_cast<jint>(self->size());
+        if (index >= 0 && index < size)
+          return (*self)[index];
+        else
+          throw std::out_of_range("vector index out of range");
+      }
+SWIGINTERN std::vector< libtorrent::stats_metric >::value_type std_vector_Sl_libtorrent_stats_metric_Sg__doSet(std::vector< libtorrent::stats_metric > *self,jint index,std::vector< libtorrent::stats_metric >::value_type const &val){
+        jint size = static_cast<jint>(self->size());
+        if (index >= 0 && index < size) {
+          libtorrent::stats_metric const old_value = (*self)[index];
+          (*self)[index] = val;
+          return old_value;
+        }
+        else
+          throw std::out_of_range("vector index out of range");
+      }
+SWIGINTERN void std_vector_Sl_libtorrent_stats_metric_Sg__doRemoveRange(std::vector< libtorrent::stats_metric > *self,jint fromIndex,jint toIndex){
         jint size = static_cast<jint>(self->size());
         if (0 <= fromIndex && fromIndex <= toIndex && toIndex <= size) {
           self->erase(self->begin() + fromIndex, self->begin() + toIndex);
@@ -3690,6 +3745,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_fl
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_create_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint32_t>(*self));
         }
+SWIGINTERN std::string libtorrent_stats_metric_get_name(libtorrent::stats_metric *self){
+        return std::string(self->name);
+    }
 
 
 /* ---------------------------------------------------
@@ -10979,6 +11037,288 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1alert
   (void)jenv;
   (void)jcls;
   arg1 = *(std::vector< libtorrent::alert * > **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1stats_1metric_1vector_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::vector< libtorrent::stats_metric > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::vector< libtorrent::stats_metric > *)new std::vector< libtorrent::stats_metric >();
+  *(std::vector< libtorrent::stats_metric > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1stats_1metric_1vector_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::vector< libtorrent::stats_metric > *arg1 = 0 ;
+  std::vector< libtorrent::stats_metric > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< libtorrent::stats_metric > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< libtorrent::stats_metric > const & reference is null");
+    return 0;
+  } 
+  result = (std::vector< libtorrent::stats_metric > *)new std::vector< libtorrent::stats_metric >((std::vector< libtorrent::stats_metric > const &)*arg1);
+  *(std::vector< libtorrent::stats_metric > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1vector_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::vector< libtorrent::stats_metric > *arg1 = (std::vector< libtorrent::stats_metric > *) 0 ;
+  std::vector< libtorrent::stats_metric >::size_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< libtorrent::stats_metric > **)&jarg1; 
+  result = ((std::vector< libtorrent::stats_metric > const *)arg1)->capacity();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1vector_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  std::vector< libtorrent::stats_metric > *arg1 = (std::vector< libtorrent::stats_metric > *) 0 ;
+  std::vector< libtorrent::stats_metric >::size_type arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< libtorrent::stats_metric > **)&jarg1; 
+  arg2 = (std::vector< libtorrent::stats_metric >::size_type)jarg2; 
+  try {
+    (arg1)->reserve(arg2);
+  } catch(std::length_error &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1vector_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  std::vector< libtorrent::stats_metric > *arg1 = (std::vector< libtorrent::stats_metric > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< libtorrent::stats_metric > **)&jarg1; 
+  result = (bool)((std::vector< libtorrent::stats_metric > const *)arg1)->empty();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1vector_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  std::vector< libtorrent::stats_metric > *arg1 = (std::vector< libtorrent::stats_metric > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< libtorrent::stats_metric > **)&jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1stats_1metric_1vector_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jint jarg1, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  jint arg1 ;
+  libtorrent::stats_metric *arg2 = 0 ;
+  std::vector< libtorrent::stats_metric > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg2_;
+  arg1 = jarg1; 
+  arg2 = *(libtorrent::stats_metric **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::stats_metric const & reference is null");
+    return 0;
+  } 
+  try {
+    result = (std::vector< libtorrent::stats_metric > *)new_std_vector_Sl_libtorrent_stats_metric_Sg___SWIG_2(arg1,(libtorrent::stats_metric const &)*arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  *(std::vector< libtorrent::stats_metric > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1vector_1doSize(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  std::vector< libtorrent::stats_metric > *arg1 = (std::vector< libtorrent::stats_metric > *) 0 ;
+  jint result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< libtorrent::stats_metric > **)&jarg1; 
+  try {
+    result = std_vector_Sl_libtorrent_stats_metric_Sg__doSize((std::vector< libtorrent::stats_metric > const *)arg1);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1vector_1doAdd_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  std::vector< libtorrent::stats_metric > *arg1 = (std::vector< libtorrent::stats_metric > *) 0 ;
+  std::vector< libtorrent::stats_metric >::value_type *arg2 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(std::vector< libtorrent::stats_metric > **)&jarg1; 
+  arg2 = *(std::vector< libtorrent::stats_metric >::value_type **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< libtorrent::stats_metric >::value_type const & reference is null");
+    return ;
+  } 
+  std_vector_Sl_libtorrent_stats_metric_Sg__doAdd__SWIG_0(arg1,(libtorrent::stats_metric const &)*arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1vector_1doAdd_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+  std::vector< libtorrent::stats_metric > *arg1 = (std::vector< libtorrent::stats_metric > *) 0 ;
+  jint arg2 ;
+  std::vector< libtorrent::stats_metric >::value_type *arg3 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg3_;
+  arg1 = *(std::vector< libtorrent::stats_metric > **)&jarg1; 
+  arg2 = jarg2; 
+  arg3 = *(std::vector< libtorrent::stats_metric >::value_type **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< libtorrent::stats_metric >::value_type const & reference is null");
+    return ;
+  } 
+  try {
+    std_vector_Sl_libtorrent_stats_metric_Sg__doAdd__SWIG_1(arg1,arg2,(libtorrent::stats_metric const &)*arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1vector_1doRemove(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jlong jresult = 0 ;
+  std::vector< libtorrent::stats_metric > *arg1 = (std::vector< libtorrent::stats_metric > *) 0 ;
+  jint arg2 ;
+  std::vector< libtorrent::stats_metric >::value_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< libtorrent::stats_metric > **)&jarg1; 
+  arg2 = jarg2; 
+  try {
+    result = std_vector_Sl_libtorrent_stats_metric_Sg__doRemove(arg1,arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  *(std::vector< libtorrent::stats_metric >::value_type **)&jresult = new std::vector< libtorrent::stats_metric >::value_type((const std::vector< libtorrent::stats_metric >::value_type &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1vector_1doGet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jlong jresult = 0 ;
+  std::vector< libtorrent::stats_metric > *arg1 = (std::vector< libtorrent::stats_metric > *) 0 ;
+  jint arg2 ;
+  std::vector< libtorrent::stats_metric >::value_type *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< libtorrent::stats_metric > **)&jarg1; 
+  arg2 = jarg2; 
+  try {
+    result = (std::vector< libtorrent::stats_metric >::value_type *) &std_vector_Sl_libtorrent_stats_metric_Sg__doGet(arg1,arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  *(std::vector< libtorrent::stats_metric >::value_type **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1vector_1doSet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+  jlong jresult = 0 ;
+  std::vector< libtorrent::stats_metric > *arg1 = (std::vector< libtorrent::stats_metric > *) 0 ;
+  jint arg2 ;
+  std::vector< libtorrent::stats_metric >::value_type *arg3 = 0 ;
+  std::vector< libtorrent::stats_metric >::value_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg3_;
+  arg1 = *(std::vector< libtorrent::stats_metric > **)&jarg1; 
+  arg2 = jarg2; 
+  arg3 = *(std::vector< libtorrent::stats_metric >::value_type **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< libtorrent::stats_metric >::value_type const & reference is null");
+    return 0;
+  } 
+  try {
+    result = std_vector_Sl_libtorrent_stats_metric_Sg__doSet(arg1,arg2,(libtorrent::stats_metric const &)*arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  *(std::vector< libtorrent::stats_metric >::value_type **)&jresult = new std::vector< libtorrent::stats_metric >::value_type((const std::vector< libtorrent::stats_metric >::value_type &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1vector_1doRemoveRange(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+  std::vector< libtorrent::stats_metric > *arg1 = (std::vector< libtorrent::stats_metric > *) 0 ;
+  jint arg2 ;
+  jint arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< libtorrent::stats_metric > **)&jarg1; 
+  arg2 = jarg2; 
+  arg3 = jarg3; 
+  try {
+    std_vector_Sl_libtorrent_stats_metric_Sg__doRemoveRange(arg1,arg2,arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1stats_1metric_1vector(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::vector< libtorrent::stats_metric > *arg1 = (std::vector< libtorrent::stats_metric > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::vector< libtorrent::stats_metric > **)&jarg1; 
   delete arg1;
 }
 
@@ -52709,6 +53049,111 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1creat
 }
 
 
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1value_1index_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  libtorrent::stats_metric *arg1 = (libtorrent::stats_metric *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::stats_metric **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->value_index = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1value_1index_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  libtorrent::stats_metric *arg1 = (libtorrent::stats_metric *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::stats_metric **)&jarg1; 
+  result = (int) ((arg1)->value_index);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1type_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  libtorrent::stats_metric *arg1 = (libtorrent::stats_metric *) 0 ;
+  libtorrent::metric_type_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::stats_metric **)&jarg1; 
+  arg2 = (libtorrent::metric_type_t)jarg2; 
+  if (arg1) (arg1)->type = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1type_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  libtorrent::stats_metric *arg1 = (libtorrent::stats_metric *) 0 ;
+  libtorrent::metric_type_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::stats_metric **)&jarg1; 
+  result = (libtorrent::metric_type_t) ((arg1)->type);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1metric_1get_1name(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jstring jresult = 0 ;
+  libtorrent::stats_metric *arg1 = (libtorrent::stats_metric *) 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::stats_metric **)&jarg1; 
+  result = libtorrent_stats_metric_get_name(arg1);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1stats_1metric(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::stats_metric *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::stats_metric *)new libtorrent::stats_metric();
+  *(libtorrent::stats_metric **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1stats_1metric(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  libtorrent::stats_metric *arg1 = (libtorrent::stats_metric *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(libtorrent::stats_metric **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1stats_1metrics(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::vector< libtorrent::stats_metric > result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = libtorrent::session_stats_metrics();
+  *(std::vector< libtorrent::stats_metric > **)&jresult = new std::vector< libtorrent::stats_metric >((const std::vector< libtorrent::stats_metric > &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1alert_1notify_1callback(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   alert_notify_callback *arg1 = (alert_notify_callback *) 0 ;
   
@@ -52768,6 +53213,27 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_alert_1notify
   if (director) {
     director->swig_java_change_ownership(jenv, jself, jtake_or_release ? true : false);
   }
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_find_1metric_1idx_1ex(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jint jresult = 0 ;
+  std::string arg1 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  (&arg1)->assign(arg1_pstr);
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = (int)find_metric_idx_ex(arg1);
+  jresult = (jint)result; 
+  return jresult;
 }
 
 
