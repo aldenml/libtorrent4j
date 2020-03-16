@@ -25,15 +25,6 @@ public final class AnnounceEntry {
     }
 
     /**
-     * Constructs a tracker announce entry with {@code u} as the URL.
-     *
-     * @param url the tracker url
-     */
-    public AnnounceEntry(String url) {
-        this(new announce_entry(Vectors.ascii2byte_vector(url)));
-    }
-
-    /**
      * @return the native object
      */
     public announce_entry swig() {
@@ -58,11 +49,11 @@ public final class AnnounceEntry {
      * @return the tracker url
      */
     public String url() {
-        return Vectors.byte_vector2ascii(e.get_url());
+        return e.getUrl();
     }
 
     public void url(String value) {
-        e.set_url(Vectors.ascii2byte_vector(value));
+        e.setUrl(value);
     }
 
     /**
@@ -73,11 +64,11 @@ public final class AnnounceEntry {
      * @return the trackerid url argument
      */
     public String trackerId() {
-        return Vectors.byte_vector2ascii(e.get_trackerid());
+        return e.getTrackerid();
     }
 
     public void trackerId(String value) {
-        e.set_trackerid(Vectors.ascii2byte_vector(value));
+        e.setTrackerid(value);
     }
 
     /**
