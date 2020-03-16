@@ -72,6 +72,8 @@
 #include "libtorrent/session_params.hpp"
 #include "libtorrent/session_handle.hpp"
 #include "libtorrent/session.hpp"
+#include "libtorrent/file_storage.hpp"
+#include "libtorrent/create_torrent.hpp"
 
 #include "libtorrent/hex.hpp"
 #include "libtorrent/bencode.hpp"
@@ -252,5 +254,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %include "libtorrent/session_params.i"
 %include "libtorrent/session_handle.i"
 %include "libtorrent/session.i"
+%include "libtorrent/file_storage.i"
+%include "libtorrent/create_torrent.i"
 
 %include "libtorrent.hpp"

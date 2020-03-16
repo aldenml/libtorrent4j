@@ -225,4 +225,16 @@ public class libtorrent {
     return new settings_pack(libtorrent_jni.high_performance_seed(), true);
   }
 
+  public static void add_files(file_storage fs, String file, create_flags_t flags) {
+    libtorrent_jni.add_files__SWIG_0(file_storage.getCPtr(fs), fs, file, create_flags_t.getCPtr(flags), flags);
+  }
+
+  public static void add_files(file_storage fs, String file) {
+    libtorrent_jni.add_files__SWIG_1(file_storage.getCPtr(fs), fs, file);
+  }
+
+  public static void set_piece_hashes(create_torrent t, String p, error_code ec) {
+    libtorrent_jni.set_piece_hashes(create_torrent.getCPtr(t), t, p, error_code.getCPtr(ec), ec);
+  }
+
 }
