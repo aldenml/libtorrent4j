@@ -481,10 +481,10 @@ public class SessionManager {
         }
 
         if (p == null) {
-            p = add_torrent_params.create_instance();
+            p = new add_torrent_params();
         }
 
-        p.set_ti(ti.swig());
+        p.setTi(ti.swig());
         if (saveDir != null) {
             p.setSave_path(saveDir.getAbsolutePath());
         }
