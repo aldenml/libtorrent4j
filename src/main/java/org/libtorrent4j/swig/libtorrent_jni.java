@@ -11,6 +11,11 @@ package org.libtorrent4j.swig;
 public class libtorrent_jni {
 
 
+    public static String libtorrent4jVersion() {
+        // extracted from the gradle with the run-swig step
+        return "$LIBTORRENT4J_VERSION$";
+    }
+
     static {
         try {
             String path = System.getProperty("libtorrent4j.jni.path", "");
@@ -3220,6 +3225,18 @@ public class libtorrent_jni {
   public final static native long new_stats_metric();
   public final static native void delete_stats_metric(long jarg1);
   public final static native long session_stats_metrics();
+  public final static native int LIBTORRENT_VERSION_MAJOR_get();
+  public final static native int LIBTORRENT_VERSION_MINOR_get();
+  public final static native int LIBTORRENT_VERSION_TINY_get();
+  public final static native int LIBTORRENT_VERSION_NUM_get();
+  public final static native String LIBTORRENT_VERSION_get();
+  public final static native String LIBTORRENT_REVISION_get();
+  public final static native int version_major_get();
+  public final static native int version_minor_get();
+  public final static native int version_tiny_get();
+  public final static native String version_str_get();
+  public final static native java.math.BigInteger version_revision_get();
+  public final static native String version();
   public final static native void delete_alert_notify_callback(long jarg1);
   public final static native void alert_notify_callback_on_alert(long jarg1, alert_notify_callback jarg1_);
   public final static native void alert_notify_callback_on_alertSwigExplicitalert_notify_callback(long jarg1, alert_notify_callback jarg1_);
@@ -3227,6 +3244,11 @@ public class libtorrent_jni {
   public final static native void alert_notify_callback_director_connect(alert_notify_callback obj, long cptr, boolean mem_own, boolean weak_global);
   public final static native void alert_notify_callback_change_ownership(alert_notify_callback obj, long cptr, boolean take_or_release);
   public final static native int find_metric_idx_ex(String jarg1);
+  public final static native int boost_version();
+  public final static native String boost_lib_version();
+  public final static native int openssl_version_number();
+  public final static native String openssl_version_text();
+  public final static native boolean arm_neon_support();
   public final static native long torrent_alert_SWIGUpcast(long jarg1);
   public final static native long peer_alert_SWIGUpcast(long jarg1);
   public final static native long tracker_alert_SWIGUpcast(long jarg1);

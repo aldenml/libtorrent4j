@@ -23,7 +23,7 @@ public final class TrackerAnnounceAlert extends TrackerAlert<tracker_announce_al
      * @return
      */
     public TrackerAnnounceEvent getEvent() {
-        return TrackerAnnounceEvent.fromSwig(alert.getEvent());
+        return TrackerAnnounceEvent.fromSwig(alert.getEvent().swigValue());
     }
 
     public enum TrackerAnnounceEvent {

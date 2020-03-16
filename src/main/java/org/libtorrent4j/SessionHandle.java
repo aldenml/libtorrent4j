@@ -361,9 +361,6 @@ public class SessionHandle {
     // and false
     // otherwise.
 
-    void setDhtSettings(DhtSettings settings) {
-        s.set_dht_settings(settings.swig());
-    }
 
     public boolean isDhtRunning() {
         return s.is_dht_running();

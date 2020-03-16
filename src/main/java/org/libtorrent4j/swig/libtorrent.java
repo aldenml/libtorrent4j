@@ -8,7 +8,7 @@
 
 package org.libtorrent4j.swig;
 
-public class libtorrent {
+public class libtorrent implements libtorrentConstants {
   public static boolean op_eq(error_code lhs, error_code rhs) {
     return libtorrent_jni.op_eq__SWIG_1(error_code.getCPtr(lhs), lhs, error_code.getCPtr(rhs), rhs);
   }
@@ -241,8 +241,52 @@ public class libtorrent {
     return new stats_metric_vector(libtorrent_jni.session_stats_metrics(), true);
   }
 
+  public static int getVersion_major() {
+    return libtorrent_jni.version_major_get();
+  }
+
+  public static int getVersion_minor() {
+    return libtorrent_jni.version_minor_get();
+  }
+
+  public static int getVersion_tiny() {
+    return libtorrent_jni.version_tiny_get();
+  }
+
+  public static String getVersion_str() {
+    return libtorrent_jni.version_str_get();
+  }
+
+  public static java.math.BigInteger getVersion_revision() {
+    return libtorrent_jni.version_revision_get();
+  }
+
+  public static String version() {
+    return libtorrent_jni.version();
+  }
+
   public static int find_metric_idx_ex(String name) {
     return libtorrent_jni.find_metric_idx_ex(name);
+  }
+
+  public static int boost_version() {
+    return libtorrent_jni.boost_version();
+  }
+
+  public static String boost_lib_version() {
+    return libtorrent_jni.boost_lib_version();
+  }
+
+  public static int openssl_version_number() {
+    return libtorrent_jni.openssl_version_number();
+  }
+
+  public static String openssl_version_text() {
+    return libtorrent_jni.openssl_version_text();
+  }
+
+  public static boolean arm_neon_support() {
+    return libtorrent_jni.arm_neon_support();
   }
 
 }

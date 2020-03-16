@@ -7,6 +7,11 @@
 
 %pragma(java) jniclasscode=%{
 
+    public static String libtorrent4jVersion() {
+        // extracted from the gradle with the run-swig step
+        return "$LIBTORRENT4J_VERSION$";
+    }
+
     static {
         try {
             String path = System.getProperty("libtorrent4j.jni.path", "");
@@ -75,6 +80,7 @@
 #include "libtorrent/file_storage.hpp"
 #include "libtorrent/create_torrent.hpp"
 #include "libtorrent/session_stats.hpp"
+#include "libtorrent/version.hpp"
 
 #include <libtorrent/hex.hpp>
 #include <libtorrent/bencode.hpp>
@@ -262,5 +268,6 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %include "libtorrent/file_storage.i"
 %include "libtorrent/create_torrent.i"
 %include "libtorrent/session_stats.i"
+%include "libtorrent/version.i"
 
 %include "libtorrent.hpp"

@@ -26,7 +26,7 @@ public final class IncomingConnectionAlert extends AbstractAlert<incoming_connec
      * @return the socket type
      */
     public SocketType socketType() {
-        return SocketType.fromSwig(alert.getSocket_type());
+        return SocketType.fromSwig(alert.getSocket_type().swigValue());
     }
 
     /**

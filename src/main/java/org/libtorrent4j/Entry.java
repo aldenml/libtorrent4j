@@ -169,13 +169,13 @@ public final class Entry {
         @Override
         public org.libtorrent4j.Entry get(Object key) {
             String k = key.toString();
-            return m.has_key(k) ? new org.libtorrent4j.Entry(m.get(key.toString())) : null;
+            return m.containsKey(k) ? new org.libtorrent4j.Entry(m.get(key.toString())) : null;
         }
 
         @Override
         public org.libtorrent4j.Entry put(String key, org.libtorrent4j.Entry value) {
             org.libtorrent4j.Entry r = get(key);
-            m.set(key, value.swig());
+            m.put(key, value.swig());
             return r;
         }
 
@@ -191,7 +191,7 @@ public final class Entry {
 
         @Override
         public boolean containsKey(Object key) {
-            return m.has_key(key.toString());
+            return m.containsKey(key.toString());
         }
 
         @Override
@@ -201,16 +201,7 @@ public final class Entry {
 
         @Override
         public Set<String> keySet() {
-            HashSet<String> s = new HashSet<>();
-
-            string_vector v = m.keys();
-            int size = (int) v.size();
-
-            for (int i = 0; i < size; i++) {
-                s.add(v.get(i));
-            }
-
-            return s;
+            return m.keySet();
         }
 
         @Override

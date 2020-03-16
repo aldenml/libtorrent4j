@@ -1,6 +1,7 @@
 package org.libtorrent4j.alerts;
 
 import org.libtorrent4j.swig.peer_connect_alert;
+import org.libtorrent4j.swig.socket_type_t;
 
 /**
  * This alert is posted every time an outgoing peer connect attempts succeeds.
@@ -14,7 +15,7 @@ public final class PeerConnectAlert extends PeerAlert<peer_connect_alert> {
         super(alert);
     }
 
-    public int socketType() {
+    public socket_type_t socketType() {
         return alert.getSocket_type();
     }
 }

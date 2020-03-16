@@ -596,9 +596,10 @@ public class SessionManager {
             throw new IllegalArgumentException(ec.message());
         }
 
-        p.set_disabled_storage();
+        // TODO: review
+        //p.set_disabled_storage();
 
-        final sha1_hash info_hash = p.getInfo_hash();
+        final sha1_hash info_hash = p.getInfo_hash().get_best();
         final byte[][] data = {null};
         final CountDownLatch signal = new CountDownLatch(1);
 

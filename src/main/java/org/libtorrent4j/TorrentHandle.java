@@ -1348,7 +1348,7 @@ public final class TorrentHandle {
          * have passed the hash check into account, so progress cannot
          * regress in this mode.
          */
-        PIECE_GRANULARITY(torrent_handle.file_progress_flags_t.piece_granularity.swigValue());
+        PIECE_GRANULARITY(torrent_handle.piece_granularity.to_int());
 
         FileProgressFlags(int swigValue) {
             this.swigValue = swigValue;

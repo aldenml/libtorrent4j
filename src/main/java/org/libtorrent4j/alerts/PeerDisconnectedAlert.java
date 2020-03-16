@@ -23,7 +23,7 @@ public final class PeerDisconnectedAlert extends PeerAlert<peer_disconnected_ale
      * @return the socket type.
      */
     public int socketType() {
-        return alert.getSocket_type();
+        return alert.getSocket_type().swigValue();
     }
 
     /**

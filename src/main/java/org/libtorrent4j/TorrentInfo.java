@@ -388,8 +388,8 @@ public final class TorrentInfo {
      *
      * @return
      */
-    public Sha1Hash infoHash() {
-        return new Sha1Hash(ti.info_hash());
+    public InfoHash infoHash() {
+        return new InfoHash(ti.info_hash());
     }
 
     /**
@@ -434,18 +434,6 @@ public final class TorrentInfo {
      */
     public PeerRequest mapFile(int file, long offset, int size) {
         return new PeerRequest(ti.map_file(file, offset, size));
-    }
-
-    /**
-     * Returns the SSL root certificate for the torrent, if it is an SSL
-     * torrent. Otherwise returns an empty string. The certificate is
-     * the the public certificate in x509 format.
-     *
-     * @return the cert as a byte array
-     */
-    byte[] sslCert() {
-        byte_vector v = ti.ssl_cert().to_bytes();
-        return Vectors.byte_vector2bytes(v);
     }
 
     /**
