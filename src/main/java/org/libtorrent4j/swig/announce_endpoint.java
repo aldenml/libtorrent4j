@@ -36,15 +36,6 @@ public class announce_endpoint {
     }
   }
 
-  public void setLast_error(error_code value) {
-    libtorrent_jni.announce_endpoint_last_error_set(swigCPtr, this, error_code.getCPtr(value), value);
-  }
-
-  public error_code getLast_error() {
-    long cPtr = libtorrent_jni.announce_endpoint_last_error_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new error_code(cPtr, false);
-  }
-
   public void setLocal_endpoint(tcp_endpoint value) {
     libtorrent_jni.announce_endpoint_local_endpoint_set(swigCPtr, this, tcp_endpoint.getCPtr(value), value);
   }
@@ -54,60 +45,16 @@ public class announce_endpoint {
     return (cPtr == 0) ? null : new tcp_endpoint(cPtr, false);
   }
 
-  public void setScrape_incomplete(int value) {
-    libtorrent_jni.announce_endpoint_scrape_incomplete_set(swigCPtr, this, value);
+  public void setEnabled(boolean value) {
+    libtorrent_jni.announce_endpoint_enabled_set(swigCPtr, this, value);
   }
 
-  public int getScrape_incomplete() {
-    return libtorrent_jni.announce_endpoint_scrape_incomplete_get(swigCPtr, this);
+  public boolean getEnabled() {
+    return libtorrent_jni.announce_endpoint_enabled_get(swigCPtr, this);
   }
 
-  public void setScrape_complete(int value) {
-    libtorrent_jni.announce_endpoint_scrape_complete_set(swigCPtr, this, value);
-  }
-
-  public int getScrape_complete() {
-    return libtorrent_jni.announce_endpoint_scrape_complete_get(swigCPtr, this);
-  }
-
-  public void setScrape_downloaded(int value) {
-    libtorrent_jni.announce_endpoint_scrape_downloaded_set(swigCPtr, this, value);
-  }
-
-  public int getScrape_downloaded() {
-    return libtorrent_jni.announce_endpoint_scrape_downloaded_get(swigCPtr, this);
-  }
-
-  public void setFails(short value) {
-    libtorrent_jni.announce_endpoint_fails_set(swigCPtr, this, value);
-  }
-
-  public short getFails() {
-    return libtorrent_jni.announce_endpoint_fails_get(swigCPtr, this);
-  }
-
-  public void setUpdating(boolean value) {
-    libtorrent_jni.announce_endpoint_updating_set(swigCPtr, this, value);
-  }
-
-  public boolean getUpdating() {
-    return libtorrent_jni.announce_endpoint_updating_get(swigCPtr, this);
-  }
-
-  public boolean is_working() {
-    return libtorrent_jni.announce_endpoint_is_working(swigCPtr, this);
-  }
-
-  public byte_vector get_message() {
-    return new byte_vector(libtorrent_jni.announce_endpoint_get_message(swigCPtr, this), true);
-  }
-
-  public long get_next_announce() {
-    return libtorrent_jni.announce_endpoint_get_next_announce(swigCPtr, this);
-  }
-
-  public long get_min_announce() {
-    return libtorrent_jni.announce_endpoint_get_min_announce(swigCPtr, this);
+  public announce_endpoint() {
+    this(libtorrent_jni.new_announce_endpoint(), true);
   }
 
 }

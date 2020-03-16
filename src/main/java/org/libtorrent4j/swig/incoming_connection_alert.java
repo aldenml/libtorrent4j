@@ -52,15 +52,19 @@ public class incoming_connection_alert extends alert {
     return libtorrent_jni.incoming_connection_alert_message(swigCPtr, this);
   }
 
-  public int getSocket_type() {
-    return libtorrent_jni.incoming_connection_alert_socket_type_get(swigCPtr, this);
+  public void setSocket_type(socket_type_t value) {
+    libtorrent_jni.incoming_connection_alert_socket_type_set(swigCPtr, this, value.swigValue());
+  }
+
+  public socket_type_t getSocket_type() {
+    return socket_type_t.swigToEnum(libtorrent_jni.incoming_connection_alert_socket_type_get(swigCPtr, this));
   }
 
   public tcp_endpoint get_endpoint() {
     return new tcp_endpoint(libtorrent_jni.incoming_connection_alert_get_endpoint(swigCPtr, this), true);
   }
 
-  public final static int priority = libtorrent_jni.incoming_connection_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.incoming_connection_alert_priority_get());
   public final static int alert_type = libtorrent_jni.incoming_connection_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.incoming_connection_alert_static_category_get(), false);
 }

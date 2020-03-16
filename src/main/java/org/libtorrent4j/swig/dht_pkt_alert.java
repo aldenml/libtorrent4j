@@ -52,10 +52,6 @@ public class dht_pkt_alert extends alert {
     return libtorrent_jni.dht_pkt_alert_message(swigCPtr, this);
   }
 
-  public byte_const_span pkt_buf() {
-    return new byte_const_span(libtorrent_jni.dht_pkt_alert_pkt_buf(swigCPtr, this), true);
-  }
-
   public void setDirection(dht_pkt_alert.direction_t value) {
     libtorrent_jni.dht_pkt_alert_direction_set(swigCPtr, this, value.swigValue());
   }
@@ -113,6 +109,6 @@ public class dht_pkt_alert extends alert {
   }
 
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.dht_pkt_alert_static_category_get(), false);
-  public final static int priority = libtorrent_jni.dht_pkt_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.dht_pkt_alert_priority_get());
   public final static int alert_type = libtorrent_jni.dht_pkt_alert_alert_type_get();
 }

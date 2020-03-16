@@ -70,7 +70,16 @@ public class dht_stats_alert extends alert {
     return (cPtr == 0) ? null : new dht_routing_bucket_vector(cPtr, false);
   }
 
-  public final static int priority = libtorrent_jni.dht_stats_alert_priority_get();
+  public void setNid(sha1_hash value) {
+    libtorrent_jni.dht_stats_alert_nid_set(swigCPtr, this, sha1_hash.getCPtr(value), value);
+  }
+
+  public sha1_hash getNid() {
+    long cPtr = libtorrent_jni.dht_stats_alert_nid_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new sha1_hash(cPtr, false);
+  }
+
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.dht_stats_alert_priority_get());
   public final static int alert_type = libtorrent_jni.dht_stats_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.dht_stats_alert_static_category_get(), false);
 }

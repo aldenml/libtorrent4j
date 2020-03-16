@@ -52,19 +52,24 @@ public class dht_direct_response_alert extends alert {
     return libtorrent_jni.dht_direct_response_alert_message(swigCPtr, this);
   }
 
-  public bdecode_node response() {
-    return new bdecode_node(libtorrent_jni.dht_direct_response_alert_response(swigCPtr, this), true);
+  public void setUserdata(client_data_t value) {
+    libtorrent_jni.dht_direct_response_alert_userdata_set(swigCPtr, this, client_data_t.getCPtr(value), value);
   }
 
-  public long get_userdata() {
-    return libtorrent_jni.dht_direct_response_alert_get_userdata(swigCPtr, this);
+  public client_data_t getUserdata() {
+    long cPtr = libtorrent_jni.dht_direct_response_alert_userdata_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new client_data_t(cPtr, false);
+  }
+
+  public bdecode_node response() {
+    return new bdecode_node(libtorrent_jni.dht_direct_response_alert_response(swigCPtr, this), true);
   }
 
   public udp_endpoint get_endpoint() {
     return new udp_endpoint(libtorrent_jni.dht_direct_response_alert_get_endpoint(swigCPtr, this), true);
   }
 
-  public final static int priority = libtorrent_jni.dht_direct_response_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.dht_direct_response_alert_priority_get());
   public final static int alert_type = libtorrent_jni.dht_direct_response_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.dht_direct_response_alert_static_category_get(), false);
 }

@@ -8,7 +8,7 @@
 
 package org.libtorrent4j.swig;
 
-public class announce_endpoint_vector {
+public class announce_endpoint_vector extends java.util.AbstractList<announce_endpoint> implements java.util.RandomAccess {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -36,12 +36,61 @@ public class announce_endpoint_vector {
     }
   }
 
-  public announce_endpoint_vector() {
-    this(libtorrent_jni.new_announce_endpoint_vector(), true);
+  public announce_endpoint_vector(announce_endpoint[] initialElements) {
+    this();
+    reserve(initialElements.length);
+
+    for (announce_endpoint element : initialElements) {
+      add(element);
+    }
   }
 
-  public long size() {
-    return libtorrent_jni.announce_endpoint_vector_size(swigCPtr, this);
+  public announce_endpoint_vector(Iterable<announce_endpoint> initialElements) {
+    this();
+    for (announce_endpoint element : initialElements) {
+      add(element);
+    }
+  }
+
+  public announce_endpoint get(int index) {
+    return doGet(index);
+  }
+
+  public announce_endpoint set(int index, announce_endpoint e) {
+    return doSet(index, e);
+  }
+
+  public boolean add(announce_endpoint e) {
+    modCount++;
+    doAdd(e);
+    return true;
+  }
+
+  public void add(int index, announce_endpoint e) {
+    modCount++;
+    doAdd(index, e);
+  }
+
+  public announce_endpoint remove(int index) {
+    modCount++;
+    return doRemove(index);
+  }
+
+  protected void removeRange(int fromIndex, int toIndex) {
+    modCount++;
+    doRemoveRange(fromIndex, toIndex);
+  }
+
+  public int size() {
+    return doSize();
+  }
+
+  public announce_endpoint_vector() {
+    this(libtorrent_jni.new_announce_endpoint_vector__SWIG_0(), true);
+  }
+
+  public announce_endpoint_vector(announce_endpoint_vector other) {
+    this(libtorrent_jni.new_announce_endpoint_vector__SWIG_1(announce_endpoint_vector.getCPtr(other), other), true);
   }
 
   public long capacity() {
@@ -52,24 +101,44 @@ public class announce_endpoint_vector {
     libtorrent_jni.announce_endpoint_vector_reserve(swigCPtr, this, n);
   }
 
-  public boolean empty() {
-    return libtorrent_jni.announce_endpoint_vector_empty(swigCPtr, this);
+  public boolean isEmpty() {
+    return libtorrent_jni.announce_endpoint_vector_isEmpty(swigCPtr, this);
   }
 
   public void clear() {
     libtorrent_jni.announce_endpoint_vector_clear(swigCPtr, this);
   }
 
-  public void push_back(announce_endpoint x) {
-    libtorrent_jni.announce_endpoint_vector_push_back(swigCPtr, this, announce_endpoint.getCPtr(x), x);
+  public announce_endpoint_vector(int count, announce_endpoint value) {
+    this(libtorrent_jni.new_announce_endpoint_vector__SWIG_2(count, announce_endpoint.getCPtr(value), value), true);
   }
 
-  public announce_endpoint get(int i) {
-    return new announce_endpoint(libtorrent_jni.announce_endpoint_vector_get(swigCPtr, this, i), false);
+  private int doSize() {
+    return libtorrent_jni.announce_endpoint_vector_doSize(swigCPtr, this);
   }
 
-  public void set(int i, announce_endpoint val) {
-    libtorrent_jni.announce_endpoint_vector_set(swigCPtr, this, i, announce_endpoint.getCPtr(val), val);
+  private void doAdd(announce_endpoint x) {
+    libtorrent_jni.announce_endpoint_vector_doAdd__SWIG_0(swigCPtr, this, announce_endpoint.getCPtr(x), x);
+  }
+
+  private void doAdd(int index, announce_endpoint x) {
+    libtorrent_jni.announce_endpoint_vector_doAdd__SWIG_1(swigCPtr, this, index, announce_endpoint.getCPtr(x), x);
+  }
+
+  private announce_endpoint doRemove(int index) {
+    return new announce_endpoint(libtorrent_jni.announce_endpoint_vector_doRemove(swigCPtr, this, index), true);
+  }
+
+  private announce_endpoint doGet(int index) {
+    return new announce_endpoint(libtorrent_jni.announce_endpoint_vector_doGet(swigCPtr, this, index), false);
+  }
+
+  private announce_endpoint doSet(int index, announce_endpoint val) {
+    return new announce_endpoint(libtorrent_jni.announce_endpoint_vector_doSet(swigCPtr, this, index, announce_endpoint.getCPtr(val), val), true);
+  }
+
+  private void doRemoveRange(int fromIndex, int toIndex) {
+    libtorrent_jni.announce_endpoint_vector_doRemoveRange(swigCPtr, this, fromIndex, toIndex);
   }
 
 }

@@ -94,7 +94,7 @@ public enum Priority {
 
         for (int i = 0; i < arr.length; i++) {
             Priority p = arr[i];
-            v.push_back(p.swig());
+            v.add(p.swig());
         }
 
         return v;
@@ -105,7 +105,7 @@ public enum Priority {
 
         for (int i = 0; i < arr.length; i++) {
             Priority p = arr[i];
-            v.push_back((byte) p.swig());
+            v.add((byte) p.swig());
         }
 
         return v;

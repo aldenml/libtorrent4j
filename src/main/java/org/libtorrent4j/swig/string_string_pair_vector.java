@@ -8,7 +8,7 @@
 
 package org.libtorrent4j.swig;
 
-public class string_string_pair_vector {
+public class string_string_pair_vector extends java.util.AbstractList<string_string_pair> implements java.util.RandomAccess {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -36,12 +36,61 @@ public class string_string_pair_vector {
     }
   }
 
-  public string_string_pair_vector() {
-    this(libtorrent_jni.new_string_string_pair_vector(), true);
+  public string_string_pair_vector(string_string_pair[] initialElements) {
+    this();
+    reserve(initialElements.length);
+
+    for (string_string_pair element : initialElements) {
+      add(element);
+    }
   }
 
-  public long size() {
-    return libtorrent_jni.string_string_pair_vector_size(swigCPtr, this);
+  public string_string_pair_vector(Iterable<string_string_pair> initialElements) {
+    this();
+    for (string_string_pair element : initialElements) {
+      add(element);
+    }
+  }
+
+  public string_string_pair get(int index) {
+    return doGet(index);
+  }
+
+  public string_string_pair set(int index, string_string_pair e) {
+    return doSet(index, e);
+  }
+
+  public boolean add(string_string_pair e) {
+    modCount++;
+    doAdd(e);
+    return true;
+  }
+
+  public void add(int index, string_string_pair e) {
+    modCount++;
+    doAdd(index, e);
+  }
+
+  public string_string_pair remove(int index) {
+    modCount++;
+    return doRemove(index);
+  }
+
+  protected void removeRange(int fromIndex, int toIndex) {
+    modCount++;
+    doRemoveRange(fromIndex, toIndex);
+  }
+
+  public int size() {
+    return doSize();
+  }
+
+  public string_string_pair_vector() {
+    this(libtorrent_jni.new_string_string_pair_vector__SWIG_0(), true);
+  }
+
+  public string_string_pair_vector(string_string_pair_vector other) {
+    this(libtorrent_jni.new_string_string_pair_vector__SWIG_1(string_string_pair_vector.getCPtr(other), other), true);
   }
 
   public long capacity() {
@@ -52,24 +101,44 @@ public class string_string_pair_vector {
     libtorrent_jni.string_string_pair_vector_reserve(swigCPtr, this, n);
   }
 
-  public boolean empty() {
-    return libtorrent_jni.string_string_pair_vector_empty(swigCPtr, this);
+  public boolean isEmpty() {
+    return libtorrent_jni.string_string_pair_vector_isEmpty(swigCPtr, this);
   }
 
   public void clear() {
     libtorrent_jni.string_string_pair_vector_clear(swigCPtr, this);
   }
 
-  public void push_back(string_string_pair x) {
-    libtorrent_jni.string_string_pair_vector_push_back(swigCPtr, this, string_string_pair.getCPtr(x), x);
+  public string_string_pair_vector(int count, string_string_pair value) {
+    this(libtorrent_jni.new_string_string_pair_vector__SWIG_2(count, string_string_pair.getCPtr(value), value), true);
   }
 
-  public string_string_pair get(int i) {
-    return new string_string_pair(libtorrent_jni.string_string_pair_vector_get(swigCPtr, this, i), false);
+  private int doSize() {
+    return libtorrent_jni.string_string_pair_vector_doSize(swigCPtr, this);
   }
 
-  public void set(int i, string_string_pair val) {
-    libtorrent_jni.string_string_pair_vector_set(swigCPtr, this, i, string_string_pair.getCPtr(val), val);
+  private void doAdd(string_string_pair x) {
+    libtorrent_jni.string_string_pair_vector_doAdd__SWIG_0(swigCPtr, this, string_string_pair.getCPtr(x), x);
+  }
+
+  private void doAdd(int index, string_string_pair x) {
+    libtorrent_jni.string_string_pair_vector_doAdd__SWIG_1(swigCPtr, this, index, string_string_pair.getCPtr(x), x);
+  }
+
+  private string_string_pair doRemove(int index) {
+    return new string_string_pair(libtorrent_jni.string_string_pair_vector_doRemove(swigCPtr, this, index), true);
+  }
+
+  private string_string_pair doGet(int index) {
+    return new string_string_pair(libtorrent_jni.string_string_pair_vector_doGet(swigCPtr, this, index), false);
+  }
+
+  private string_string_pair doSet(int index, string_string_pair val) {
+    return new string_string_pair(libtorrent_jni.string_string_pair_vector_doSet(swigCPtr, this, index, string_string_pair.getCPtr(val), val), true);
+  }
+
+  private void doRemoveRange(int fromIndex, int toIndex) {
+    libtorrent_jni.string_string_pair_vector_doRemoveRange(swigCPtr, this, fromIndex, toIndex);
   }
 
 }

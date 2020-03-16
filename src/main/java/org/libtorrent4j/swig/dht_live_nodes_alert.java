@@ -69,7 +69,7 @@ public class dht_live_nodes_alert extends alert {
     return new sha1_hash_udp_endpoint_pair_vector(libtorrent_jni.dht_live_nodes_alert_nodes(swigCPtr, this), true);
   }
 
-  public final static int priority = libtorrent_jni.dht_live_nodes_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.dht_live_nodes_alert_priority_get());
   public final static int alert_type = libtorrent_jni.dht_live_nodes_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.dht_live_nodes_alert_static_category_get(), false);
 }

@@ -56,7 +56,7 @@ public class trackerid_alert extends tracker_alert {
     return libtorrent_jni.trackerid_alert_tracker_id(swigCPtr, this);
   }
 
-  public final static int priority = libtorrent_jni.trackerid_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.trackerid_alert_priority_get());
   public final static int alert_type = libtorrent_jni.trackerid_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.trackerid_alert_static_category_get(), false);
 }

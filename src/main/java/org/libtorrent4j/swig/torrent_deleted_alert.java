@@ -52,16 +52,16 @@ public class torrent_deleted_alert extends torrent_alert {
     return libtorrent_jni.torrent_deleted_alert_message(swigCPtr, this);
   }
 
-  public void setInfo_hash(sha1_hash value) {
-    libtorrent_jni.torrent_deleted_alert_info_hash_set(swigCPtr, this, sha1_hash.getCPtr(value), value);
+  public void setInfo_hash(info_hash_t value) {
+    libtorrent_jni.torrent_deleted_alert_info_hash_set(swigCPtr, this, info_hash_t.getCPtr(value), value);
   }
 
-  public sha1_hash getInfo_hash() {
+  public info_hash_t getInfo_hash() {
     long cPtr = libtorrent_jni.torrent_deleted_alert_info_hash_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new sha1_hash(cPtr, false);
+    return (cPtr == 0) ? null : new info_hash_t(cPtr, false);
   }
 
-  public final static int priority = libtorrent_jni.torrent_deleted_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.torrent_deleted_alert_priority_get());
   public final static int alert_type = libtorrent_jni.torrent_deleted_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.torrent_deleted_alert_static_category_get(), false);
 }

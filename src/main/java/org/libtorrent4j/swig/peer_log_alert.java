@@ -64,10 +64,6 @@ public class peer_log_alert extends peer_alert {
     return libtorrent_jni.peer_log_alert_log_message(swigCPtr, this);
   }
 
-  public String get_event_type() {
-    return libtorrent_jni.peer_log_alert_get_event_type(swigCPtr, this);
-  }
-
   public final static class direction_t {
     public final static peer_log_alert.direction_t incoming_message = new peer_log_alert.direction_t("incoming_message");
     public final static peer_log_alert.direction_t outgoing_message = new peer_log_alert.direction_t("outgoing_message");
@@ -115,7 +111,7 @@ public class peer_log_alert extends peer_alert {
     private final String swigName;
   }
 
-  public final static int priority = libtorrent_jni.peer_log_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.peer_log_alert_priority_get());
   public final static int alert_type = libtorrent_jni.peer_log_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.peer_log_alert_static_category_get(), false);
 }

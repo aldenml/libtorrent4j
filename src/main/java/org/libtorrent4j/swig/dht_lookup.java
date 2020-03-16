@@ -101,10 +101,6 @@ public class dht_lookup {
     return (cPtr == 0) ? null : new sha1_hash(cPtr, false);
   }
 
-  public String get_type() {
-    return libtorrent_jni.dht_lookup_get_type(swigCPtr, this);
-  }
-
   public dht_lookup() {
     this(libtorrent_jni.new_dht_lookup(), true);
   }

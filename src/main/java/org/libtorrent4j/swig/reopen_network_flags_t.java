@@ -40,24 +40,24 @@ public class reopen_network_flags_t {
     return new reopen_network_flags_t(libtorrent_jni.reopen_network_flags_t_all(), true);
   }
 
-  public boolean nonZero() {
-    return libtorrent_jni.reopen_network_flags_t_nonZero(swigCPtr, this);
+  public boolean op_bool() {
+    return libtorrent_jni.reopen_network_flags_t_op_bool(swigCPtr, this);
   }
 
-  public boolean eq(reopen_network_flags_t f) {
-    return libtorrent_jni.reopen_network_flags_t_eq(swigCPtr, this, reopen_network_flags_t.getCPtr(f), f);
+  public boolean op_eq(reopen_network_flags_t f) {
+    return libtorrent_jni.reopen_network_flags_t_op_eq(swigCPtr, this, reopen_network_flags_t.getCPtr(f), f);
   }
 
-  public boolean ne(reopen_network_flags_t f) {
-    return libtorrent_jni.reopen_network_flags_t_ne(swigCPtr, this, reopen_network_flags_t.getCPtr(f), f);
+  public boolean op_ne(reopen_network_flags_t f) {
+    return libtorrent_jni.reopen_network_flags_t_op_ne(swigCPtr, this, reopen_network_flags_t.getCPtr(f), f);
   }
 
-  public reopen_network_flags_t or_(reopen_network_flags_t other) {
-    return new reopen_network_flags_t(libtorrent_jni.reopen_network_flags_t_or_(swigCPtr, this, reopen_network_flags_t.getCPtr(other), other), true);
+  public reopen_network_flags_t op_or(reopen_network_flags_t other) {
+    return new reopen_network_flags_t(libtorrent_jni.reopen_network_flags_t_op_or(swigCPtr, this, reopen_network_flags_t.getCPtr(other), other), true);
   }
 
-  public reopen_network_flags_t and_(reopen_network_flags_t other) {
-    return new reopen_network_flags_t(libtorrent_jni.reopen_network_flags_t_and_(swigCPtr, this, reopen_network_flags_t.getCPtr(other), other), true);
+  public reopen_network_flags_t op_and(reopen_network_flags_t other) {
+    return new reopen_network_flags_t(libtorrent_jni.reopen_network_flags_t_op_and(swigCPtr, this, reopen_network_flags_t.getCPtr(other), other), true);
   }
 
   public reopen_network_flags_t xor(reopen_network_flags_t other) {

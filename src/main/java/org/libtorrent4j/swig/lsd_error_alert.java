@@ -61,7 +61,7 @@ public class lsd_error_alert extends alert {
     return (cPtr == 0) ? null : new error_code(cPtr, false);
   }
 
-  public final static int priority = libtorrent_jni.lsd_error_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.lsd_error_alert_priority_get());
   public final static int alert_type = libtorrent_jni.lsd_error_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.lsd_error_alert_static_category_get(), false);
 }

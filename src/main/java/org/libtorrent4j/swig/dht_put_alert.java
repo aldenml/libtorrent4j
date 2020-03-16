@@ -61,6 +61,40 @@ public class dht_put_alert extends alert {
     return (cPtr == 0) ? null : new sha1_hash(cPtr, false);
   }
 
+  public void setPublic_key(char_array_32 value) {
+    libtorrent_jni.dht_put_alert_public_key_set(swigCPtr, this, char_array_32.getCPtr(value), value);
+  }
+
+  public char_array_32 getPublic_key() {
+    long cPtr = libtorrent_jni.dht_put_alert_public_key_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new char_array_32(cPtr, false);
+  }
+
+  public void setSignature(char_array_64 value) {
+    libtorrent_jni.dht_put_alert_signature_set(swigCPtr, this, char_array_64.getCPtr(value), value);
+  }
+
+  public char_array_64 getSignature() {
+    long cPtr = libtorrent_jni.dht_put_alert_signature_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new char_array_64(cPtr, false);
+  }
+
+  public void setSalt(String value) {
+    libtorrent_jni.dht_put_alert_salt_set(swigCPtr, this, value);
+  }
+
+  public String getSalt() {
+    return libtorrent_jni.dht_put_alert_salt_get(swigCPtr, this);
+  }
+
+  public void setSeq(long value) {
+    libtorrent_jni.dht_put_alert_seq_set(swigCPtr, this, value);
+  }
+
+  public long getSeq() {
+    return libtorrent_jni.dht_put_alert_seq_get(swigCPtr, this);
+  }
+
   public void setNum_success(int value) {
     libtorrent_jni.dht_put_alert_num_success_set(swigCPtr, this, value);
   }
@@ -69,23 +103,7 @@ public class dht_put_alert extends alert {
     return libtorrent_jni.dht_put_alert_num_success_get(swigCPtr, this);
   }
 
-  public byte_vector get_public_key() {
-    return new byte_vector(libtorrent_jni.dht_put_alert_get_public_key(swigCPtr, this), true);
-  }
-
-  public byte_vector get_signature() {
-    return new byte_vector(libtorrent_jni.dht_put_alert_get_signature(swigCPtr, this), true);
-  }
-
-  public byte_vector get_salt() {
-    return new byte_vector(libtorrent_jni.dht_put_alert_get_salt(swigCPtr, this), true);
-  }
-
-  public long get_seq() {
-    return libtorrent_jni.dht_put_alert_get_seq(swigCPtr, this);
-  }
-
-  public final static int priority = libtorrent_jni.dht_put_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.dht_put_alert_priority_get());
   public final static int alert_type = libtorrent_jni.dht_put_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.dht_put_alert_static_category_get(), false);
 }

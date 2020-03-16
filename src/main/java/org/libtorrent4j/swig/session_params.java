@@ -57,15 +57,6 @@ public class session_params {
     return (cPtr == 0) ? null : new settings_pack(cPtr, false);
   }
 
-  public void setDht_settings(dht_settings value) {
-    libtorrent_jni.session_params_dht_settings_set(swigCPtr, this, dht_settings.getCPtr(value), value);
-  }
-
-  public dht_settings getDht_settings() {
-    long cPtr = libtorrent_jni.session_params_dht_settings_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new dht_settings(cPtr, false);
-  }
-
   public void setDht_state(dht_state value) {
     libtorrent_jni.session_params_dht_state_set(swigCPtr, this, dht_state.getCPtr(value), value);
   }
@@ -73,6 +64,24 @@ public class session_params {
   public dht_state getDht_state() {
     long cPtr = libtorrent_jni.session_params_dht_state_get(swigCPtr, this);
     return (cPtr == 0) ? null : new dht_state(cPtr, false);
+  }
+
+  public void setExt_state(string_string_map value) {
+    libtorrent_jni.session_params_ext_state_set(swigCPtr, this, string_string_map.getCPtr(value), value);
+  }
+
+  public string_string_map getExt_state() {
+    long cPtr = libtorrent_jni.session_params_ext_state_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new string_string_map(cPtr, false);
+  }
+
+  public void setIp_filter(ip_filter value) {
+    libtorrent_jni.session_params_ip_filter_set(swigCPtr, this, ip_filter.getCPtr(value), value);
+  }
+
+  public ip_filter getIp_filter() {
+    long cPtr = libtorrent_jni.session_params_ip_filter_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new ip_filter(cPtr, false);
   }
 
 }

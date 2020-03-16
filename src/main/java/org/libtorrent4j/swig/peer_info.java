@@ -36,15 +36,6 @@ public class peer_info {
     }
   }
 
-  public void setPieces(piece_index_bitfield value) {
-    libtorrent_jni.peer_info_pieces_set(swigCPtr, this, piece_index_bitfield.getCPtr(value), value);
-  }
-
-  public piece_index_bitfield getPieces() {
-    long cPtr = libtorrent_jni.peer_info_pieces_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new piece_index_bitfield(cPtr, false);
-  }
-
   public void setTotal_download(long value) {
     libtorrent_jni.peer_info_total_download_set(swigCPtr, this, value);
   }
@@ -272,12 +263,13 @@ public class peer_info {
     return libtorrent_jni.peer_info_downloading_total_get(swigCPtr, this);
   }
 
-  public void setConnection_type(int value) {
-    libtorrent_jni.peer_info_connection_type_set(swigCPtr, this, value);
+  public void setConnection_type(connection_type_t value) {
+    libtorrent_jni.peer_info_connection_type_set(swigCPtr, this, connection_type_t.getCPtr(value), value);
   }
 
-  public int getConnection_type() {
-    return libtorrent_jni.peer_info_connection_type_get(swigCPtr, this);
+  public connection_type_t getConnection_type() {
+    long cPtr = libtorrent_jni.peer_info_connection_type_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new connection_type_t(cPtr, false);
   }
 
   public void setPending_disk_bytes(int value) {
@@ -466,51 +458,9 @@ public class peer_info {
   public final static peer_source_flags_t lsd = new peer_source_flags_t(libtorrent_jni.peer_info_lsd_get(), false);
   public final static peer_source_flags_t resume_data = new peer_source_flags_t(libtorrent_jni.peer_info_resume_data_get(), false);
   public final static peer_source_flags_t incoming = new peer_source_flags_t(libtorrent_jni.peer_info_incoming_get(), false);
-  public final static class connection_type_t {
-    public final static peer_info.connection_type_t standard_bittorrent = new peer_info.connection_type_t("standard_bittorrent", libtorrent_jni.peer_info_standard_bittorrent_get());
-    public final static peer_info.connection_type_t web_seed = new peer_info.connection_type_t("web_seed", libtorrent_jni.peer_info_web_seed_get());
-    public final static peer_info.connection_type_t http_seed = new peer_info.connection_type_t("http_seed", libtorrent_jni.peer_info_http_seed_get());
-
-    public final int swigValue() {
-      return swigValue;
-    }
-
-    public String toString() {
-      return swigName;
-    }
-
-    public static connection_type_t swigToEnum(int swigValue) {
-      if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-        return swigValues[swigValue];
-      for (int i = 0; i < swigValues.length; i++)
-        if (swigValues[i].swigValue == swigValue)
-          return swigValues[i];
-      throw new IllegalArgumentException("No enum " + connection_type_t.class + " with value " + swigValue);
-    }
-
-    private connection_type_t(String swigName) {
-      this.swigName = swigName;
-      this.swigValue = swigNext++;
-    }
-
-    private connection_type_t(String swigName, int swigValue) {
-      this.swigName = swigName;
-      this.swigValue = swigValue;
-      swigNext = swigValue+1;
-    }
-
-    private connection_type_t(String swigName, connection_type_t swigEnum) {
-      this.swigName = swigName;
-      this.swigValue = swigEnum.swigValue;
-      swigNext = this.swigValue+1;
-    }
-
-    private static connection_type_t[] swigValues = { standard_bittorrent, web_seed, http_seed };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
-  }
-
+  public final static connection_type_t standard_bittorrent = new connection_type_t(libtorrent_jni.peer_info_standard_bittorrent_get(), false);
+  public final static connection_type_t web_seed = new connection_type_t(libtorrent_jni.peer_info_web_seed_get(), false);
+  public final static connection_type_t http_seed = new connection_type_t(libtorrent_jni.peer_info_http_seed_get(), false);
   public final static bandwidth_state_flags_t bw_idle = new bandwidth_state_flags_t(libtorrent_jni.peer_info_bw_idle_get(), false);
   public final static bandwidth_state_flags_t bw_limit = new bandwidth_state_flags_t(libtorrent_jni.peer_info_bw_limit_get(), false);
   public final static bandwidth_state_flags_t bw_network = new bandwidth_state_flags_t(libtorrent_jni.peer_info_bw_network_get(), false);

@@ -36,13 +36,13 @@ public class dht_state {
     }
   }
 
-  public void setNids(address_sha1_hash_pair_vector value) {
-    libtorrent_jni.dht_state_nids_set(swigCPtr, this, address_sha1_hash_pair_vector.getCPtr(value), value);
+  public void setNids(address_node_id_pair_vector value) {
+    libtorrent_jni.dht_state_nids_set(swigCPtr, this, address_node_id_pair_vector.getCPtr(value), value);
   }
 
-  public address_sha1_hash_pair_vector getNids() {
+  public address_node_id_pair_vector getNids() {
     long cPtr = libtorrent_jni.dht_state_nids_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new address_sha1_hash_pair_vector(cPtr, false);
+    return (cPtr == 0) ? null : new address_node_id_pair_vector(cPtr, false);
   }
 
   public void setNodes(udp_endpoint_vector value) {

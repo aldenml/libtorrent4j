@@ -48,20 +48,12 @@ public class session_handle {
     return libtorrent_jni.session_handle_is_valid(swigCPtr, this);
   }
 
-  public void save_state(entry e, save_state_flags_t flags) {
-    libtorrent_jni.session_handle_save_state__SWIG_0(swigCPtr, this, entry.getCPtr(e), e, save_state_flags_t.getCPtr(flags), flags);
+  public session_params session_state(save_state_flags_t flags) {
+    return new session_params(libtorrent_jni.session_handle_session_state__SWIG_0(swigCPtr, this, save_state_flags_t.getCPtr(flags), flags), true);
   }
 
-  public void save_state(entry e) {
-    libtorrent_jni.session_handle_save_state__SWIG_1(swigCPtr, this, entry.getCPtr(e), e);
-  }
-
-  public void load_state(bdecode_node e, save_state_flags_t flags) {
-    libtorrent_jni.session_handle_load_state__SWIG_0(swigCPtr, this, bdecode_node.getCPtr(e), e, save_state_flags_t.getCPtr(flags), flags);
-  }
-
-  public void load_state(bdecode_node e) {
-    libtorrent_jni.session_handle_load_state__SWIG_1(swigCPtr, this, bdecode_node.getCPtr(e), e);
+  public session_params session_state() {
+    return new session_params(libtorrent_jni.session_handle_session_state__SWIG_1(swigCPtr, this), true);
   }
 
   public void refresh_torrent_status(torrent_status_vector ret, status_flags_t flags) {
@@ -86,6 +78,10 @@ public class session_handle {
 
   public void post_dht_stats() {
     libtorrent_jni.session_handle_post_dht_stats(swigCPtr, this);
+  }
+
+  public void set_dht_state(dht_state st) {
+    libtorrent_jni.session_handle_set_dht_state__SWIG_0(swigCPtr, this, dht_state.getCPtr(st), st);
   }
 
   public torrent_handle find_torrent(sha1_hash info_hash) {
@@ -116,16 +112,8 @@ public class session_handle {
     return libtorrent_jni.session_handle_is_paused(swigCPtr, this);
   }
 
-  public void set_dht_settings(dht_settings settings) {
-    libtorrent_jni.session_handle_set_dht_settings(swigCPtr, this, dht_settings.getCPtr(settings), settings);
-  }
-
   public boolean is_dht_running() {
     return libtorrent_jni.session_handle_is_dht_running(swigCPtr, this);
-  }
-
-  public dht_settings get_dht_settings() {
-    return new dht_settings(libtorrent_jni.session_handle_get_dht_settings(swigCPtr, this), true);
   }
 
   public void add_dht_node(string_int_pair node) {
@@ -144,18 +132,6 @@ public class session_handle {
     libtorrent_jni.session_handle_dht_get_peers(swigCPtr, this, sha1_hash.getCPtr(info_hash), info_hash);
   }
 
-  public void dht_announce(sha1_hash info_hash, int port, int flags) {
-    libtorrent_jni.session_handle_dht_announce__SWIG_0(swigCPtr, this, sha1_hash.getCPtr(info_hash), info_hash, port, flags);
-  }
-
-  public void dht_announce(sha1_hash info_hash, int port) {
-    libtorrent_jni.session_handle_dht_announce__SWIG_1(swigCPtr, this, sha1_hash.getCPtr(info_hash), info_hash, port);
-  }
-
-  public void dht_announce(sha1_hash info_hash) {
-    libtorrent_jni.session_handle_dht_announce__SWIG_2(swigCPtr, this, sha1_hash.getCPtr(info_hash), info_hash);
-  }
-
   public void dht_live_nodes(sha1_hash nid) {
     libtorrent_jni.session_handle_dht_live_nodes(swigCPtr, this, sha1_hash.getCPtr(nid), nid);
   }
@@ -164,8 +140,12 @@ public class session_handle {
     libtorrent_jni.session_handle_dht_sample_infohashes(swigCPtr, this, udp_endpoint.getCPtr(ep), ep, sha1_hash.getCPtr(target), target);
   }
 
+  public void dht_direct_request(udp_endpoint ep, entry e, client_data_t userdata) {
+    libtorrent_jni.session_handle_dht_direct_request__SWIG_0(swigCPtr, this, udp_endpoint.getCPtr(ep), ep, entry.getCPtr(e), e, client_data_t.getCPtr(userdata), userdata);
+  }
+
   public void dht_direct_request(udp_endpoint ep, entry e) {
-    libtorrent_jni.session_handle_dht_direct_request__SWIG_0(swigCPtr, this, udp_endpoint.getCPtr(ep), ep, entry.getCPtr(e), e);
+    libtorrent_jni.session_handle_dht_direct_request__SWIG_1(swigCPtr, this, udp_endpoint.getCPtr(ep), ep, entry.getCPtr(e), e);
   }
 
   public void set_ip_filter(ip_filter f) {
@@ -178,18 +158,6 @@ public class session_handle {
 
   public void set_port_filter(port_filter f) {
     libtorrent_jni.session_handle_set_port_filter(swigCPtr, this, port_filter.getCPtr(f), f);
-  }
-
-  public static int getGlobal_peer_class_id() {
-    return libtorrent_jni.session_handle_global_peer_class_id_get();
-  }
-
-  public static int getTcp_peer_class_id() {
-    return libtorrent_jni.session_handle_tcp_peer_class_id_get();
-  }
-
-  public static int getLocal_peer_class_id() {
-    return libtorrent_jni.session_handle_local_peer_class_id_get();
   }
 
   public int listen_port() {
@@ -220,32 +188,16 @@ public class session_handle {
     return new peer_class_type_filter(libtorrent_jni.session_handle_get_peer_class_type_filter(swigCPtr, this), true);
   }
 
-  public int create_peer_class(String name) {
-    return libtorrent_jni.session_handle_create_peer_class(swigCPtr, this, name);
+  public void remove_torrent(torrent_handle arg0, remove_flags_t arg1) {
+    libtorrent_jni.session_handle_remove_torrent__SWIG_0(swigCPtr, this, torrent_handle.getCPtr(arg0), arg0, remove_flags_t.getCPtr(arg1), arg1);
   }
 
-  public void delete_peer_class(int cid) {
-    libtorrent_jni.session_handle_delete_peer_class(swigCPtr, this, cid);
+  public void remove_torrent(torrent_handle arg0) {
+    libtorrent_jni.session_handle_remove_torrent__SWIG_1(swigCPtr, this, torrent_handle.getCPtr(arg0), arg0);
   }
 
-  public peer_class_info get_peer_class(int cid) {
-    return new peer_class_info(libtorrent_jni.session_handle_get_peer_class(swigCPtr, this, cid), true);
-  }
-
-  public void set_peer_class(int cid, peer_class_info pci) {
-    libtorrent_jni.session_handle_set_peer_class(swigCPtr, this, cid, peer_class_info.getCPtr(pci), pci);
-  }
-
-  public void remove_torrent(torrent_handle h, remove_flags_t options) {
-    libtorrent_jni.session_handle_remove_torrent__SWIG_0(swigCPtr, this, torrent_handle.getCPtr(h), h, remove_flags_t.getCPtr(options), options);
-  }
-
-  public void remove_torrent(torrent_handle h) {
-    libtorrent_jni.session_handle_remove_torrent__SWIG_1(swigCPtr, this, torrent_handle.getCPtr(h), h);
-  }
-
-  public void apply_settings(settings_pack s) {
-    libtorrent_jni.session_handle_apply_settings(swigCPtr, this, settings_pack.getCPtr(s), s);
+  public void apply_settings(settings_pack arg0) {
+    libtorrent_jni.session_handle_apply_settings(swigCPtr, this, settings_pack.getCPtr(arg0), arg0);
   }
 
   public settings_pack get_settings() {
@@ -254,14 +206,6 @@ public class session_handle {
 
   public void pop_alerts(alert_ptr_vector alerts) {
     libtorrent_jni.session_handle_pop_alerts(swigCPtr, this, alert_ptr_vector.getCPtr(alerts), alerts);
-  }
-
-  public port_mapping_t_vector add_port_mapping(portmap_protocol t, int external_port, int local_port) {
-    return new port_mapping_t_vector(libtorrent_jni.session_handle_add_port_mapping(swigCPtr, this, t.swigValue(), external_port, local_port), true);
-  }
-
-  public void delete_port_mapping(int handle) {
-    libtorrent_jni.session_handle_delete_port_mapping(swigCPtr, this, handle);
   }
 
   public void reopen_network_sockets(reopen_network_flags_t options) {
@@ -281,7 +225,7 @@ public class session_handle {
   }
 
   public void dht_direct_request(udp_endpoint ep, entry e, long userdata) {
-    libtorrent_jni.session_handle_dht_direct_request__SWIG_1(swigCPtr, this, udp_endpoint.getCPtr(ep), ep, entry.getCPtr(e), e, userdata);
+    libtorrent_jni.session_handle_dht_direct_request__SWIG_2(swigCPtr, this, udp_endpoint.getCPtr(ep), ep, entry.getCPtr(e), e, userdata);
   }
 
   public alert wait_for_alert_ms(long max_wait) {
@@ -293,18 +237,12 @@ public class session_handle {
     libtorrent_jni.session_handle_set_alert_notify_callback(swigCPtr, this, alert_notify_callback.getCPtr(cb), cb);
   }
 
-  public void add_extension(swig_plugin ext) {
-    libtorrent_jni.session_handle_add_extension(swigCPtr, this, swig_plugin.getCPtr(ext), ext);
-  }
-
   public final static save_state_flags_t save_settings = new save_state_flags_t(libtorrent_jni.session_handle_save_settings_get(), false);
-  public final static save_state_flags_t save_dht_settings = new save_state_flags_t(libtorrent_jni.session_handle_save_dht_settings_get(), false);
   public final static save_state_flags_t save_dht_state = new save_state_flags_t(libtorrent_jni.session_handle_save_dht_state_get(), false);
-  public final static int disk_cache_no_pieces = libtorrent_jni.session_handle_disk_cache_no_pieces_get();
-
+  public final static save_state_flags_t save_extension_state = new save_state_flags_t(libtorrent_jni.session_handle_save_extension_state_get(), false);
+  public final static save_state_flags_t save_ip_filter = new save_state_flags_t(libtorrent_jni.session_handle_save_ip_filter_get(), false);
   public final static remove_flags_t delete_files = new remove_flags_t(libtorrent_jni.session_handle_delete_files_get(), false);
   public final static remove_flags_t delete_partfile = new remove_flags_t(libtorrent_jni.session_handle_delete_partfile_get(), false);
-  public final static session_flags_t add_default_plugins = new session_flags_t(libtorrent_jni.session_handle_add_default_plugins_get(), false);
   public final static portmap_protocol udp = portmap_protocol.swigToEnum(libtorrent_jni.session_handle_udp_get());
   public final static portmap_protocol tcp = portmap_protocol.swigToEnum(libtorrent_jni.session_handle_tcp_get());
   public final static reopen_network_flags_t reopen_map_ports = new reopen_network_flags_t(libtorrent_jni.session_handle_reopen_map_ports_get(), false);

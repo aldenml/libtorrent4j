@@ -38,7 +38,7 @@ public final class Vectors {
         byte_vector v = new byte_vector();
 
         for (int i = 0; i < arr.length; i++) {
-            v.push_back(arr[i]);
+            v.add(arr[i]);
         }
 
         return v;
@@ -72,22 +72,11 @@ public final class Vectors {
         return arr;
     }
 
-    public static byte[] byte_span2bytes(byte_const_span v) {
-        int size = (int) v.size();
-        byte[] arr = new byte[size];
-
-        for (int i = 0; i < size; i++) {
-            arr[i] = v.get(i);
-        }
-
-        return arr;
-    }
-
     public static byte_vector new_byte_vector(int size) {
         byte_vector v = new byte_vector();
         byte z = (byte) 0;
         for (int i = 0; i < size; i++) {
-            v.push_back(z);
+            v.add(z);
         }
 
         return v;

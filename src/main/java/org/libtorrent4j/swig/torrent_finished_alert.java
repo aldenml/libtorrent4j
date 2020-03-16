@@ -52,7 +52,7 @@ public class torrent_finished_alert extends torrent_alert {
     return libtorrent_jni.torrent_finished_alert_message(swigCPtr, this);
   }
 
-  public final static int priority = libtorrent_jni.torrent_finished_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.torrent_finished_alert_priority_get());
   public final static int alert_type = libtorrent_jni.torrent_finished_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.torrent_finished_alert_static_category_get(), false);
 }

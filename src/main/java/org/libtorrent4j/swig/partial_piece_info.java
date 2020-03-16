@@ -76,6 +76,15 @@ public class partial_piece_info {
     return libtorrent_jni.partial_piece_info_requested_get(swigCPtr, this);
   }
 
+  public void setBlocks(block_info value) {
+    libtorrent_jni.partial_piece_info_blocks_set(swigCPtr, this, block_info.getCPtr(value), value);
+  }
+
+  public block_info getBlocks() {
+    long cPtr = libtorrent_jni.partial_piece_info_blocks_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new block_info(cPtr, false);
+  }
+
   public partial_piece_info() {
     this(libtorrent_jni.new_partial_piece_info(), true);
   }

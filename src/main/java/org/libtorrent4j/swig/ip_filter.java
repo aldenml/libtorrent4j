@@ -36,16 +36,24 @@ public class ip_filter {
     }
   }
 
+  public ip_filter() {
+    this(libtorrent_jni.new_ip_filter__SWIG_0(), true);
+  }
+
+  public ip_filter(ip_filter arg0) {
+    this(libtorrent_jni.new_ip_filter__SWIG_1(ip_filter.getCPtr(arg0), arg0), true);
+  }
+
+  public boolean empty() {
+    return libtorrent_jni.ip_filter_empty(swigCPtr, this);
+  }
+
   public void add_rule(address first, address last, long flags) {
     libtorrent_jni.ip_filter_add_rule(swigCPtr, this, address.getCPtr(first), first, address.getCPtr(last), last, flags);
   }
 
   public long access(address addr) {
     return libtorrent_jni.ip_filter_access(swigCPtr, this, address.getCPtr(addr), addr);
-  }
-
-  public ip_filter() {
-    this(libtorrent_jni.new_ip_filter(), true);
   }
 
   public final static class access_flags {

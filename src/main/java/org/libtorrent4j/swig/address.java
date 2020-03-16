@@ -52,8 +52,8 @@ public class address {
     return libtorrent_jni.address_is_v6(swigCPtr, this);
   }
 
-  public String to_string(error_code ec) {
-    return libtorrent_jni.address_to_string(swigCPtr, this, error_code.getCPtr(ec), ec);
+  public String to_string() {
+    return libtorrent_jni.address_to_string(swigCPtr, this);
   }
 
   public boolean is_loopback() {

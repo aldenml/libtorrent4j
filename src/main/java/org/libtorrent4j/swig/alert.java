@@ -52,6 +52,10 @@ public class alert {
     return new alert_category_t(libtorrent_jni.alert_category(swigCPtr, this), true);
   }
 
+  public long get_timestamp() {
+    return libtorrent_jni.alert_get_timestamp(swigCPtr, this);
+  }
+
   public static torrent_removed_alert cast_to_torrent_removed_alert(alert a) {
     long cPtr = libtorrent_jni.alert_cast_to_torrent_removed_alert(alert.getCPtr(a), a);
     return (cPtr == 0) ? null : new torrent_removed_alert(cPtr, false);
@@ -487,8 +491,9 @@ public class alert {
     return (cPtr == 0) ? null : new alerts_dropped_alert(cPtr, false);
   }
 
-  public long get_timestamp() {
-    return libtorrent_jni.alert_get_timestamp(swigCPtr, this);
+  public static socks5_alert cast_to_socks5_alert(alert a) {
+    long cPtr = libtorrent_jni.alert_cast_to_socks5_alert(alert.getCPtr(a), a);
+    return (cPtr == 0) ? null : new socks5_alert(cPtr, false);
   }
 
   public final static alert_category_t error_notification = new alert_category_t(libtorrent_jni.alert_error_notification_get(), false);

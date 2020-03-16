@@ -52,6 +52,10 @@ public class bdecode_node {
     return libtorrent_jni.bdecode_node_op_bool(swigCPtr, this);
   }
 
+  public long data_offset() {
+    return libtorrent_jni.bdecode_node_data_offset(swigCPtr, this);
+  }
+
   public bdecode_node list_at(int i) {
     return new bdecode_node(libtorrent_jni.bdecode_node_list_at(swigCPtr, this, i), true);
   }
@@ -68,8 +72,8 @@ public class bdecode_node {
     return libtorrent_jni.bdecode_node_list_size(swigCPtr, this);
   }
 
-  public string_view_bdecode_node_pair dict_at(int i) {
-    return new string_view_bdecode_node_pair(libtorrent_jni.bdecode_node_dict_at(swigCPtr, this, i), true);
+  public bdecode_node_bdecode_node_pair dict_at_node(int i) {
+    return new bdecode_node_bdecode_node_pair(libtorrent_jni.bdecode_node_dict_at_node(swigCPtr, this, i), true);
   }
 
   public int dict_size() {
@@ -82,6 +86,10 @@ public class bdecode_node {
 
   public int string_length() {
     return libtorrent_jni.bdecode_node_string_length(swigCPtr, this);
+  }
+
+  public long string_offset() {
+    return libtorrent_jni.bdecode_node_string_offset(swigCPtr, this);
   }
 
   public void clear() {

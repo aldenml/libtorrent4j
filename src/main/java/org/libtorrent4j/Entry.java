@@ -77,19 +77,19 @@ public final class Entry {
         entry_vector d = e.list();
         for (Object v : list) {
             if (v instanceof String) {
-                d.push_back(new entry((String) v));
+                d.add(new entry((String) v));
             } else if (v instanceof Integer) {
-                d.push_back(new entry((Integer) v));
+                d.add(new entry((Integer) v));
             } else if (v instanceof Entry) {
-                d.push_back(((Entry) v).swig());
+                d.add(((Entry) v).swig());
             } else if (v instanceof entry) {
-                d.push_back((entry) v);
+                d.add((entry) v);
             } else if (v instanceof List) {
-                d.push_back(fromList((List<?>) v).swig());
+                d.add(fromList((List<?>) v).swig());
             } else if (v instanceof Map) {
-                d.push_back(fromMap((Map<String, ?>) v).swig());
+                d.add(fromMap((Map<String, ?>) v).swig());
             } else {
-                d.push_back(new entry(v.toString()));
+                d.add(new entry(v.toString()));
             }
         }
 
@@ -104,19 +104,19 @@ public final class Entry {
             Object v = map.get(k);
 
             if (v instanceof String) {
-                d.set(k, new entry((String) v));
+                d.put(k, new entry((String) v));
             } else if (v instanceof Integer) {
-                d.set(k, new entry((Integer) v));
+                d.put(k, new entry((Integer) v));
             } else if (v instanceof Entry) {
-                d.set(k, ((Entry) v).swig());
+                d.put(k, ((Entry) v).swig());
             } else if (v instanceof entry) {
-                d.set(k, (entry) v);
+                d.put(k, (entry) v);
             } else if (v instanceof List) {
-                d.set(k, fromList((List<?>) v).swig());
+                d.put(k, fromList((List<?>) v).swig());
             } else if (v instanceof Map) {
-                d.set(k, fromMap((Map<String, ?>) v).swig());
+                d.put(k, fromMap((Map<String, ?>) v).swig());
             } else {
-                d.set(k, new entry(v.toString()));
+                d.put(k, new entry(v.toString()));
             }
         }
 
@@ -196,7 +196,7 @@ public final class Entry {
 
         @Override
         public boolean isEmpty() {
-            return m.empty();
+            return m.isEmpty();
         }
 
         @Override

@@ -49,6 +49,10 @@ public final class operation_t {
   public final static operation_t partfile_write = new operation_t("partfile_write");
   public final static operation_t hostname_lookup = new operation_t("hostname_lookup");
   public final static operation_t symlink = new operation_t("symlink");
+  public final static operation_t handshake = new operation_t("handshake");
+  public final static operation_t sock_option = new operation_t("sock_option");
+  public final static operation_t enum_route = new operation_t("enum_route");
+  public final static operation_t file_seek = new operation_t("file_seek");
 
   public final int swigValue() {
     return swigValue;
@@ -84,7 +88,7 @@ public final class operation_t {
     swigNext = this.swigValue+1;
   }
 
-  private static operation_t[] swigValues = { unknown, bittorrent, iocontrol, getpeername, getname, alloc_recvbuf, alloc_sndbuf, file_write, file_read, file, sock_write, sock_read, sock_open, sock_bind, available, encryption, connect, ssl_handshake, get_interface, sock_listen, sock_bind_to_device, sock_accept, parse_address, enum_if, file_stat, file_copy, file_fallocate, file_hard_link, file_remove, file_rename, file_open, mkdir, check_resume, exception, alloc_cache_piece, partfile_move, partfile_read, partfile_write, hostname_lookup, symlink };
+  private static operation_t[] swigValues = { unknown, bittorrent, iocontrol, getpeername, getname, alloc_recvbuf, alloc_sndbuf, file_write, file_read, file, sock_write, sock_read, sock_open, sock_bind, available, encryption, connect, ssl_handshake, get_interface, sock_listen, sock_bind_to_device, sock_accept, parse_address, enum_if, file_stat, file_copy, file_fallocate, file_hard_link, file_remove, file_rename, file_open, mkdir, check_resume, exception, alloc_cache_piece, partfile_move, partfile_read, partfile_write, hostname_lookup, symlink, handshake, sock_option, enum_route, file_seek };
   private static int swigNext = 0;
   private final int swigValue;
   private final String swigName;

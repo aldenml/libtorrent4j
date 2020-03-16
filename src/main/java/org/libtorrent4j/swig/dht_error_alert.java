@@ -69,7 +69,7 @@ public class dht_error_alert extends alert {
     return operation_t.swigToEnum(libtorrent_jni.dht_error_alert_op_get(swigCPtr, this));
   }
 
-  public final static int priority = libtorrent_jni.dht_error_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.dht_error_alert_priority_get());
   public final static int alert_type = libtorrent_jni.dht_error_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.dht_error_alert_static_category_get(), false);
 }

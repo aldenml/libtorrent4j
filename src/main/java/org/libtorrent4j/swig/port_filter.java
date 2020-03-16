@@ -36,16 +36,20 @@ public class port_filter {
     }
   }
 
+  public port_filter() {
+    this(libtorrent_jni.new_port_filter__SWIG_0(), true);
+  }
+
+  public port_filter(port_filter arg0) {
+    this(libtorrent_jni.new_port_filter__SWIG_1(port_filter.getCPtr(arg0), arg0), true);
+  }
+
   public void add_rule(int first, int last, long flags) {
     libtorrent_jni.port_filter_add_rule(swigCPtr, this, first, last, flags);
   }
 
   public long access(int port) {
     return libtorrent_jni.port_filter_access(swigCPtr, this, port);
-  }
-
-  public port_filter() {
-    this(libtorrent_jni.new_port_filter(), true);
   }
 
   public final static class access_flags {

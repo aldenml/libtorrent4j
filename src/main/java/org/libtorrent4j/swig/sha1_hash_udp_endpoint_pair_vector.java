@@ -8,7 +8,7 @@
 
 package org.libtorrent4j.swig;
 
-public class sha1_hash_udp_endpoint_pair_vector {
+public class sha1_hash_udp_endpoint_pair_vector extends java.util.AbstractList<sha1_hash_udp_endpoint_pair> implements java.util.RandomAccess {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -36,12 +36,61 @@ public class sha1_hash_udp_endpoint_pair_vector {
     }
   }
 
-  public sha1_hash_udp_endpoint_pair_vector() {
-    this(libtorrent_jni.new_sha1_hash_udp_endpoint_pair_vector(), true);
+  public sha1_hash_udp_endpoint_pair_vector(sha1_hash_udp_endpoint_pair[] initialElements) {
+    this();
+    reserve(initialElements.length);
+
+    for (sha1_hash_udp_endpoint_pair element : initialElements) {
+      add(element);
+    }
   }
 
-  public long size() {
-    return libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_size(swigCPtr, this);
+  public sha1_hash_udp_endpoint_pair_vector(Iterable<sha1_hash_udp_endpoint_pair> initialElements) {
+    this();
+    for (sha1_hash_udp_endpoint_pair element : initialElements) {
+      add(element);
+    }
+  }
+
+  public sha1_hash_udp_endpoint_pair get(int index) {
+    return doGet(index);
+  }
+
+  public sha1_hash_udp_endpoint_pair set(int index, sha1_hash_udp_endpoint_pair e) {
+    return doSet(index, e);
+  }
+
+  public boolean add(sha1_hash_udp_endpoint_pair e) {
+    modCount++;
+    doAdd(e);
+    return true;
+  }
+
+  public void add(int index, sha1_hash_udp_endpoint_pair e) {
+    modCount++;
+    doAdd(index, e);
+  }
+
+  public sha1_hash_udp_endpoint_pair remove(int index) {
+    modCount++;
+    return doRemove(index);
+  }
+
+  protected void removeRange(int fromIndex, int toIndex) {
+    modCount++;
+    doRemoveRange(fromIndex, toIndex);
+  }
+
+  public int size() {
+    return doSize();
+  }
+
+  public sha1_hash_udp_endpoint_pair_vector() {
+    this(libtorrent_jni.new_sha1_hash_udp_endpoint_pair_vector__SWIG_0(), true);
+  }
+
+  public sha1_hash_udp_endpoint_pair_vector(sha1_hash_udp_endpoint_pair_vector other) {
+    this(libtorrent_jni.new_sha1_hash_udp_endpoint_pair_vector__SWIG_1(sha1_hash_udp_endpoint_pair_vector.getCPtr(other), other), true);
   }
 
   public long capacity() {
@@ -52,24 +101,44 @@ public class sha1_hash_udp_endpoint_pair_vector {
     libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_reserve(swigCPtr, this, n);
   }
 
-  public boolean empty() {
-    return libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_empty(swigCPtr, this);
+  public boolean isEmpty() {
+    return libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_isEmpty(swigCPtr, this);
   }
 
   public void clear() {
     libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_clear(swigCPtr, this);
   }
 
-  public void push_back(sha1_hash_udp_endpoint_pair x) {
-    libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_push_back(swigCPtr, this, sha1_hash_udp_endpoint_pair.getCPtr(x), x);
+  public sha1_hash_udp_endpoint_pair_vector(int count, sha1_hash_udp_endpoint_pair value) {
+    this(libtorrent_jni.new_sha1_hash_udp_endpoint_pair_vector__SWIG_2(count, sha1_hash_udp_endpoint_pair.getCPtr(value), value), true);
   }
 
-  public sha1_hash_udp_endpoint_pair get(int i) {
-    return new sha1_hash_udp_endpoint_pair(libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_get(swigCPtr, this, i), false);
+  private int doSize() {
+    return libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_doSize(swigCPtr, this);
   }
 
-  public void set(int i, sha1_hash_udp_endpoint_pair val) {
-    libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_set(swigCPtr, this, i, sha1_hash_udp_endpoint_pair.getCPtr(val), val);
+  private void doAdd(sha1_hash_udp_endpoint_pair x) {
+    libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_doAdd__SWIG_0(swigCPtr, this, sha1_hash_udp_endpoint_pair.getCPtr(x), x);
+  }
+
+  private void doAdd(int index, sha1_hash_udp_endpoint_pair x) {
+    libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_doAdd__SWIG_1(swigCPtr, this, index, sha1_hash_udp_endpoint_pair.getCPtr(x), x);
+  }
+
+  private sha1_hash_udp_endpoint_pair doRemove(int index) {
+    return new sha1_hash_udp_endpoint_pair(libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_doRemove(swigCPtr, this, index), true);
+  }
+
+  private sha1_hash_udp_endpoint_pair doGet(int index) {
+    return new sha1_hash_udp_endpoint_pair(libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_doGet(swigCPtr, this, index), false);
+  }
+
+  private sha1_hash_udp_endpoint_pair doSet(int index, sha1_hash_udp_endpoint_pair val) {
+    return new sha1_hash_udp_endpoint_pair(libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_doSet(swigCPtr, this, index, sha1_hash_udp_endpoint_pair.getCPtr(val), val), true);
+  }
+
+  private void doRemoveRange(int fromIndex, int toIndex) {
+    libtorrent_jni.sha1_hash_udp_endpoint_pair_vector_doRemoveRange(swigCPtr, this, fromIndex, toIndex);
   }
 
 }
