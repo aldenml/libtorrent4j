@@ -1,6 +1,7 @@
 namespace libtorrent {
 
-    class address {
+    class address
+    {
     public:
 
         address();
@@ -15,12 +16,15 @@ namespace libtorrent {
         bool is_unspecified();
         bool is_multicast();
 
-        %extend {
-            bool op_lt(const address& a2) {
+        %extend
+        {
+            bool op_lt(const address& a2)
+            {
                 return *$self < a2;
             }
 
-            static int compare(const address& a1, const address& a2) {
+            static int compare(const address& a1, const address& a2)
+            {
                 return a1 == a2 ? 0 : (a1 < a2 ? -1 : 1);
             }
 

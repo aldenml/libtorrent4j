@@ -44,6 +44,6 @@ public class SessionParams
      * @return the settings pack
      */
     public SettingsPack settings() {
-        return new SettingsPack(swig.getSettings());
+        return new SettingsPack(h.getSettings());
     }
 }

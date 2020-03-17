@@ -7,29 +7,15 @@ import org.libtorrent4j.swig.error_code;
  * @author gubatron
  * @author aldenml
  */
-public final class Address implements Comparable<Address>, Cloneable {
-
-    private final address addr;
+public final class Address
+    extends SwigObject<address>
+    implements Comparable<Address> {
 
     /**
      * @param addr the native object
      */
     public Address(address addr) {
-        this.addr = addr;
-    }
-
-    /**
-     * Create an address from an IPv4 address string in dotted decimal form,
-     * or from an IPv6 address in hexadecimal notation.
-     *
-     * @param ip the ip string representation
-     */
-    public Address(String ip) {
-        error_code ec = new error_code();
-        this.addr = address.from_string(ip, ec);
-        if (ec.value() != 0) {
-            throw new IllegalArgumentException(ec.message());
-        }
+        super(addr);
     }
 
     /**
@@ -40,19 +26,12 @@ public final class Address implements Comparable<Address>, Cloneable {
     }
 
     /**
-     * @return native object
-     */
-    public address swig() {
-        return addr;
-    }
-
-    /**
      * Get whether the address is an IP version 4 address.
      *
      * @return if it's an IPv4 address
      */
     public boolean isV4() {
-        return addr.is_v4();
+        return h.is_v4();
     }
 
     /**
@@ -61,7 +40,7 @@ public final class Address implements Comparable<Address>, Cloneable {
      * @return if it's an IPv6 address
      */
     public boolean isV6() {
-        return addr.is_v6();
+        return h.is_v6();
     }
 
     /**
@@ -70,7 +49,7 @@ public final class Address implements Comparable<Address>, Cloneable {
      * @return if it's a loopback address
      */
     public boolean isLoopback() {
-        return addr.is_loopback();
+        return h.is_loopback();
     }
 
     /**
@@ -79,7 +58,7 @@ public final class Address implements Comparable<Address>, Cloneable {
      * @return if it's an unspecified address
      */
     public boolean isUnspecified() {
-        return addr.is_unspecified();
+        return h.is_unspecified();
     }
 
     /**
@@ -88,7 +67,7 @@ public final class Address implements Comparable<Address>, Cloneable {
      * @return if it's an multicast address
      */
     public boolean isMulticast() {
-        return addr.is_multicast();
+        return h.is_multicast();
     }
 
     /**
@@ -99,7 +78,7 @@ public final class Address implements Comparable<Address>, Cloneable {
      */
     @Override
     public int compareTo(Address o) {
-        return address.compare(this.addr, o.addr);
+        return address.compare(this.h, o.h);
     }
 
     /**
@@ -109,15 +88,25 @@ public final class Address implements Comparable<Address>, Cloneable {
      */
     @Override
     public String toString() {
-        return toString(addr);
+        return h.to_string();
     }
 
-    @Override
-    public Address clone() {
-        return new Address(new address(addr));
+    public Address copy() {
+        return new Address(new address(h));
     }
 
-    static String toString(address a) {
-        return a.to_string();
+    /**
+     * Create an address from an IPv4 address string in dotted decimal form,
+     * or from an IPv6 address in hexadecimal notation.
+     *
+     * @param ip the ip string representation
+     */
+    public static Address parseIp(String ip) {
+        error_code ec = new error_code();
+        address h = address.from_string(ip, ec);
+        if (ec.value() != 0) {
+            throw new IllegalArgumentException(ec.message());
+        }
+        return new Address(h);
     }
 }
