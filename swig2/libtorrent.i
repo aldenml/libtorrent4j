@@ -81,12 +81,12 @@
 #include "libtorrent/create_torrent.hpp"
 #include "libtorrent/session_stats.hpp"
 #include "libtorrent/version.hpp"
+#include "libtorrent/magnet_uri.hpp"
 
 #include <libtorrent/hex.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/read_resume_data.hpp>
 #include <libtorrent/write_resume_data.hpp>
-#include <libtorrent/magnet_uri.hpp>
 
 #include "libtorrent.hpp"
 
@@ -94,6 +94,9 @@ using piece_index_t = libtorrent::piece_index_t;
 using file_index_t = libtorrent::file_index_t;
 using port_mapping_t = libtorrent::port_mapping_t;
 using queue_position_t = libtorrent::queue_position_t;
+
+template <typename IndexType>
+using typed_bitfield = libtorrent::typed_bitfield<IndexType>;
 
 // END common set include ------------------------------------------------------
 %}
@@ -270,5 +273,6 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %include "libtorrent/create_torrent.i"
 %include "libtorrent/session_stats.i"
 %include "libtorrent/version.i"
+%include "libtorrent/magnet_uri.i"
 
 %include "libtorrent.hpp"

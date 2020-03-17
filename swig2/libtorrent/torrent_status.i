@@ -74,6 +74,18 @@ namespace libtorrent {
     {
         return static_cast<int>($self->queue_position);
     }
+
+    bitfield get_pieces()
+    {
+        auto* v = &$self->pieces;
+        return *reinterpret_cast<libtorrent::bitfield*>(v);
+    }
+
+    bitfield get_verified_pieces()
+    {
+        auto* v = &$self->verified_pieces;
+        return *reinterpret_cast<libtorrent::bitfield*>(v);
+    }
 }
 
 }

@@ -1,4 +1,4 @@
-package org.libtorrent4j.swig2;
+package org.libtorrent4j.swig;
 
 import org.junit.Test;
 

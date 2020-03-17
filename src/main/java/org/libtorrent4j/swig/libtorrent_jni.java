@@ -1583,6 +1583,8 @@ public class libtorrent_jni {
   public final static native long torrent_status_get_finished_duration(long jarg1, torrent_status jarg1_);
   public final static native long torrent_status_get_seeding_duration(long jarg1, torrent_status jarg1_);
   public final static native int torrent_status_get_queue_position(long jarg1, torrent_status jarg1_);
+  public final static native long torrent_status_get_pieces(long jarg1, torrent_status jarg1_);
+  public final static native long torrent_status_get_verified_pieces(long jarg1, torrent_status jarg1_);
   public final static native void block_info_set_peer(long jarg1, block_info jarg1_, long jarg2, tcp_endpoint jarg2_);
   public final static native long block_info_peer(long jarg1, block_info jarg1_);
   public final static native void block_info_bytes_progress_set(long jarg1, block_info jarg1_, long jarg2);
@@ -3246,6 +3248,8 @@ public class libtorrent_jni {
   public final static native String version_str_get();
   public final static native java.math.BigInteger version_revision_get();
   public final static native String version();
+  public final static native String make_magnet_uri__SWIG_0(long jarg1, torrent_handle jarg1_);
+  public final static native String make_magnet_uri__SWIG_1(long jarg1, torrent_info jarg1_);
   public final static native void delete_alert_notify_callback(long jarg1);
   public final static native void alert_notify_callback_on_alert(long jarg1, alert_notify_callback jarg1_);
   public final static native void alert_notify_callback_on_alertSwigExplicitalert_notify_callback(long jarg1, alert_notify_callback jarg1_);

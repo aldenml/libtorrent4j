@@ -815,12 +815,12 @@ namespace Swig {
 #include "libtorrent/create_torrent.hpp"
 #include "libtorrent/session_stats.hpp"
 #include "libtorrent/version.hpp"
+#include "libtorrent/magnet_uri.hpp"
 
 #include <libtorrent/hex.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/read_resume_data.hpp>
 #include <libtorrent/write_resume_data.hpp>
-#include <libtorrent/magnet_uri.hpp>
 
 #include "libtorrent.hpp"
 
@@ -828,6 +828,9 @@ using piece_index_t = libtorrent::piece_index_t;
 using file_index_t = libtorrent::file_index_t;
 using port_mapping_t = libtorrent::port_mapping_t;
 using queue_position_t = libtorrent::queue_position_t;
+
+template <typename IndexType>
+using typed_bitfield = libtorrent::typed_bitfield<IndexType>;
 
 // END common set include ------------------------------------------------------
 
@@ -3165,6 +3168,14 @@ SWIGINTERN int64_t libtorrent_torrent_status_get_seeding_duration(libtorrent::to
     }
 SWIGINTERN int libtorrent_torrent_status_get_queue_position(libtorrent::torrent_status *self){
         return static_cast<int>(self->queue_position);
+    }
+SWIGINTERN libtorrent::bitfield libtorrent_torrent_status_get_pieces(libtorrent::torrent_status *self){
+        auto* v = &self->pieces;
+        return *reinterpret_cast<libtorrent::bitfield*>(v);
+    }
+SWIGINTERN libtorrent::bitfield libtorrent_torrent_status_get_verified_pieces(libtorrent::torrent_status *self){
+        auto* v = &self->verified_pieces;
+        return *reinterpret_cast<libtorrent::bitfield*>(v);
     }
 SWIGINTERN void libtorrent_torrent_handle_add_piece_bytes__SWIG_0(libtorrent::torrent_handle *self,int piece,std::vector< int8_t > const &data,libtorrent::add_piece_flags_t flags={}){
         self->add_piece(piece_index_t(piece), (char const*)&data[0], flags);
@@ -29310,6 +29321,36 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1stat
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1status_1get_1pieces(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::torrent_status *arg1 = (libtorrent::torrent_status *) 0 ;
+  libtorrent::bitfield result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::torrent_status **)&jarg1; 
+  result = libtorrent_torrent_status_get_pieces(arg1);
+  *(libtorrent::bitfield **)&jresult = new libtorrent::bitfield((const libtorrent::bitfield &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1status_1get_1verified_1pieces(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::torrent_status *arg1 = (libtorrent::torrent_status *) 0 ;
+  libtorrent::bitfield result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::torrent_status **)&jarg1; 
+  result = libtorrent_torrent_status_get_verified_pieces(arg1);
+  *(libtorrent::bitfield **)&jresult = new libtorrent::bitfield((const libtorrent::bitfield &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_block_1info_1set_1peer(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   libtorrent::block_info *arg1 = (libtorrent::block_info *) 0 ;
   libtorrent::tcp::endpoint *arg2 = 0 ;
@@ -53599,6 +53640,45 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_version(JN
   (void)jcls;
   result = (char *)libtorrent::version();
   if (result) jresult = jenv->NewStringUTF((const char *)result);
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_make_1magnet_1uri_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jstring jresult = 0 ;
+  libtorrent::torrent_handle *arg1 = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::torrent_handle **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::torrent_handle const & reference is null");
+    return 0;
+  } 
+  result = libtorrent::make_magnet_uri((libtorrent::torrent_handle const &)*arg1);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_make_1magnet_1uri_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jstring jresult = 0 ;
+  libtorrent::torrent_info *arg1 = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  
+  arg1 = (libtorrent::torrent_info *)((*(std::shared_ptr< const libtorrent::torrent_info > **)&jarg1) ? (*(std::shared_ptr< const libtorrent::torrent_info > **)&jarg1)->get() : 0);
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::torrent_info const & reference is null");
+    return 0;
+  } 
+  result = libtorrent::make_magnet_uri((libtorrent::torrent_info const &)*arg1);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 

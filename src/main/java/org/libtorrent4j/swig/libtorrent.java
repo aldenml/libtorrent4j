@@ -265,6 +265,14 @@ public class libtorrent implements libtorrentConstants {
     return libtorrent_jni.version();
   }
 
+  public static String make_magnet_uri(torrent_handle handle) {
+    return libtorrent_jni.make_magnet_uri__SWIG_0(torrent_handle.getCPtr(handle), handle);
+  }
+
+  public static String make_magnet_uri(torrent_info info) {
+    return libtorrent_jni.make_magnet_uri__SWIG_1(torrent_info.getCPtr(info), info);
+  }
+
   public static int find_metric_idx_ex(String name) {
     return libtorrent_jni.find_metric_idx_ex(name);
   }

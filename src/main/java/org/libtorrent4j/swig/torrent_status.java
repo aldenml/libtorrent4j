@@ -577,6 +577,14 @@ public class torrent_status {
     return libtorrent_jni.torrent_status_get_queue_position(swigCPtr, this);
   }
 
+  public bitfield get_pieces() {
+    return new bitfield(libtorrent_jni.torrent_status_get_pieces(swigCPtr, this), true);
+  }
+
+  public bitfield get_verified_pieces() {
+    return new bitfield(libtorrent_jni.torrent_status_get_verified_pieces(swigCPtr, this), true);
+  }
+
   public final static class state_t {
     public final static torrent_status.state_t checking_files = new torrent_status.state_t("checking_files", libtorrent_jni.torrent_status_checking_files_get());
     public final static torrent_status.state_t downloading_metadata = new torrent_status.state_t("downloading_metadata");
