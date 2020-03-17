@@ -31,8 +31,8 @@ rule libtorrent_linking ( properties * )
     result += <deprecated-functions>off ;
     result += <logging>on ;
     result += <crypto>openssl ;
+    result += <rtti>off ;
     result += <optimization>off ;
-    result += <cxxstd>14 ;
 
     if <target-os>freebsd in $(properties)
     {
