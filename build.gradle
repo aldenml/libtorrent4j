@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'signing'
 apply plugin: 'maven'
+apply plugin: 'jacoco'
 
 group 'org.libtorrent4j'
 archivesBaseName = 'libtorrent4j'
@@ -17,12 +18,18 @@ if (!hasProperty('ossrhPassword')) {
     ext.ossrhPassword = ''
 }
 
+configurations {
+    codacy
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
     testCompile 'junit:junit:4.12'
+
+    codacy "com.codacy:codacy-coverage-reporter:7.1.0"
 }
 
 test {
@@ -237,4 +244,22 @@ def addDependency(root) {
     depNode.appendNode('groupId', group)
     depNode.appendNode('artifactId', archivesBaseName)
     depNode.appendNode('version', version)
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+
+task codacyCoverage(type: JavaExec, dependsOn: jacocoTestReport) {
+    main = "com.codacy.CodacyCoverageReporter"
+    classpath = configurations.codacy
+    args = [
+            "report",
+            "-l",
+            "Java",
+            "-r",
+            "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+    ]
 }
