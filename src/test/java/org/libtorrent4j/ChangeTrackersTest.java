@@ -25,11 +25,11 @@ public class ChangeTrackersTest {
 
         entry e = entry.bdecode(Vectors.bytes2byte_vector(torrentBytes));
         string_entry_map m = e.dict();
-        if (m.has_key("announce")) {
-            m.erase("announce");
+        if (m.containsKey("announce")) {
+            m.remove("announce");
         }
-        if (m.has_key("announce-list")) {
-            m.erase("announce-list");
+        if (m.containsKey("announce-list")) {
+            m.remove("announce-list");
         }
 
         ti = TorrentInfo.bdecode(Vectors.byte_vector2bytes(e.bencode()));
@@ -62,18 +62,18 @@ public class ChangeTrackersTest {
         string_entry_map m = e.dict();
 
         // remove trackers
-        if (m.has_key("announce")) {
-            m.erase("announce");
+        if (m.containsKey("announce")) {
+            m.remove("announce");
         }
-        if (m.has_key("announce-list")) {
-            m.erase("announce-list");
+        if (m.containsKey("announce-list")) {
+            m.remove("announce-list");
         }
 
         // add trackers
         String[] tks = new String[]{"http://a:6969/announce", "http://b:6969/announce"};
         entry_vector l = new entry_vector();
         l.add(new entry(tks[0]));
-        m.set("announce", new entry(l));
+        m.put("announce", new entry(l));
 
         entry_vector tl = new entry_vector();
         for (int i = 0; i < tks.length; i++) {
@@ -81,7 +81,7 @@ public class ChangeTrackersTest {
             l.add(new entry(tks[i]));
             tl.add(new entry(l));
         }
-        m.set("announce-list", new entry(tl));
+        m.put("announce-list", new entry(tl));
 
         ti = TorrentInfo.bdecode(Vectors.byte_vector2bytes(e.bencode()));
         ArrayList<AnnounceEntry> trackers = ti.trackers();

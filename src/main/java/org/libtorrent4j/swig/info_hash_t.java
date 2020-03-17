@@ -94,4 +94,12 @@ public class info_hash_t {
     return (cPtr == 0) ? null : new sha256_hash(cPtr, false);
   }
 
+  public boolean op_eq(info_hash_t n) {
+    return libtorrent_jni.info_hash_t_op_eq(swigCPtr, this, info_hash_t.getCPtr(n), n);
+  }
+
+  public boolean op_ne(info_hash_t n) {
+    return libtorrent_jni.info_hash_t_op_ne(swigCPtr, this, info_hash_t.getCPtr(n), n);
+  }
+
 }

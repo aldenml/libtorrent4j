@@ -235,7 +235,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %include "libtorrent/kademlia/dht_state.i"
 %include "libtorrent/client_data.i"
 %include "libtorrent/sha1_hash.i"
-%include "libtorrent/info_hash.hpp"
+%include "libtorrent/info_hash.i"
 %include "libtorrent/storage_defs.i"
 %include "libtorrent/bitfield.i"
 %include "libtorrent/operations.i"

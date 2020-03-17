@@ -497,7 +497,7 @@ public class SessionManager {
             for (int i = 0; i < priorities.length; i++) {
                 v.add((byte) priorities[i].swig());
             }
-            p.set_file_priorities2(v);
+            p.set_file_priorities(v);
         }
 
         if (peers != null && !peers.isEmpty()) {
@@ -599,7 +599,7 @@ public class SessionManager {
         // TODO: review
         //p.set_disabled_storage();
 
-        final sha1_hash info_hash = p.getInfo_hash().get_best();
+        final info_hash_t info_hash = p.getInfo_hash();
         final byte[][] data = {null};
         final CountDownLatch signal = new CountDownLatch(1);
 
@@ -640,7 +640,7 @@ public class SessionManager {
             syncMagnet.lock();
 
             try {
-                th = session.find_torrent(info_hash);
+                th = session.find_torrent(info_hash.get_best());
                 if (th != null && th.is_valid()) {
                     // we have a download with the same info-hash
                     add = false;
@@ -873,15 +873,15 @@ public class SessionManager {
         return result;
     }
 
-    public void dhtAnnounce(Sha1Hash sha1, int port, int flags) {
+    public void dhtAnnounce(Sha1Hash sha1, int port, byte flags) {
         if (session != null) {
-            session.dht_announce(sha1.swig(), port, flags);
+            session.dht_announce_ex(sha1.swig(), port, flags);
         }
     }
 
     public void dhtAnnounce(Sha1Hash sha1) {
         if (session != null) {
-            session.dht_announce(sha1.swig());
+            session.dht_announce_ex(sha1.swig());
         }
     }
 
@@ -908,16 +908,6 @@ public class SessionManager {
             }
         } catch (Throwable e) {
             LOG.error("Error changing save path for session", e);
-        }
-    }
-
-    public byte[] saveState() {
-        return session != null ? new SessionHandle(session).saveState() : null;
-    }
-
-    public void loadState(byte[] data) {
-        if (session != null) {
-            new SessionHandle(session).loadState(data);
         }
     }
 

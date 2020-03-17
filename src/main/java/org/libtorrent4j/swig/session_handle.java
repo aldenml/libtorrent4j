@@ -237,6 +237,18 @@ public class session_handle {
     libtorrent_jni.session_handle_set_alert_notify_callback(swigCPtr, this, alert_notify_callback.getCPtr(cb), cb);
   }
 
+  public void dht_announce_ex(sha1_hash info_hash, int port, byte flags) {
+    libtorrent_jni.session_handle_dht_announce_ex__SWIG_0(swigCPtr, this, sha1_hash.getCPtr(info_hash), info_hash, port, flags);
+  }
+
+  public void dht_announce_ex(sha1_hash info_hash, int port) {
+    libtorrent_jni.session_handle_dht_announce_ex__SWIG_1(swigCPtr, this, sha1_hash.getCPtr(info_hash), info_hash, port);
+  }
+
+  public void dht_announce_ex(sha1_hash info_hash) {
+    libtorrent_jni.session_handle_dht_announce_ex__SWIG_2(swigCPtr, this, sha1_hash.getCPtr(info_hash), info_hash);
+  }
+
   public final static save_state_flags_t save_settings = new save_state_flags_t(libtorrent_jni.session_handle_save_settings_get(), false);
   public final static save_state_flags_t save_dht_state = new save_state_flags_t(libtorrent_jni.session_handle_save_dht_state_get(), false);
   public final static save_state_flags_t save_extension_state = new save_state_flags_t(libtorrent_jni.session_handle_save_extension_state_get(), false);

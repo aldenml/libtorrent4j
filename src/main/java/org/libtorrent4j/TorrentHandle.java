@@ -1088,7 +1088,7 @@ public final class TorrentHandle {
     }
 
     public Priority[] piecePriorities() {
-        int_vector v = th.get_piece_priorities2();
+        byte_vector v = th.get_piece_priorities_ex();
         return Priority.vector2array(v);
     }
 
@@ -1143,7 +1143,7 @@ public final class TorrentHandle {
      * @return the array of priorities.
      */
     public Priority[] filePriorities() {
-        int_vector v = th.get_file_priorities2();
+        byte_vector v = th.get_file_priorities_ex();
         return Priority.vector2array(v);
     }
 

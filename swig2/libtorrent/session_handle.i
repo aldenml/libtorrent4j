@@ -78,6 +78,10 @@ namespace libtorrent {
         $self->set_alert_notify(std::bind(&alert_notify_callback::on_alert, cb));
     }
 
+    void dht_announce_ex(sha1_hash const& info_hash, int port = 0, std::int8_t flags = {})
+    {
+        $self->dht_announce(info_hash, port, libtorrent::dht::announce_flags_t{static_cast<std::uint8_t>(flags)});
+    }
 }
 
 }

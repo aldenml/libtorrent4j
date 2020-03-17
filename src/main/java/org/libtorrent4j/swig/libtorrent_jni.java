@@ -843,6 +843,8 @@ public class libtorrent_jni {
   public final static native long info_hash_t_v1_get(long jarg1, info_hash_t jarg1_);
   public final static native void info_hash_t_v2_set(long jarg1, info_hash_t jarg1_, long jarg2, sha256_hash jarg2_);
   public final static native long info_hash_t_v2_get(long jarg1, info_hash_t jarg1_);
+  public final static native boolean info_hash_t_op_eq(long jarg1, info_hash_t jarg1_, long jarg2, info_hash_t jarg2_);
+  public final static native boolean info_hash_t_op_ne(long jarg1, info_hash_t jarg1_, long jarg2, info_hash_t jarg2_);
   public final static native void delete_info_hash_t(long jarg1);
   public final static native long new_bitfield__SWIG_0();
   public final static native long new_bitfield__SWIG_1(int jarg1);
@@ -1709,11 +1711,11 @@ public class libtorrent_jni {
   public final static native void torrent_handle_piece_priority2__SWIG_1(long jarg1, torrent_handle jarg1_, int jarg2, int jarg3);
   public final static native void torrent_handle_prioritize_pieces2__SWIG_0(long jarg1, torrent_handle jarg1_, long jarg2, int_vector jarg2_);
   public final static native void torrent_handle_prioritize_pieces2__SWIG_1(long jarg1, torrent_handle jarg1_, long jarg2, int_int_pair_vector jarg2_);
-  public final static native long torrent_handle_get_piece_priorities2(long jarg1, torrent_handle jarg1_);
+  public final static native long torrent_handle_get_piece_priorities_ex(long jarg1, torrent_handle jarg1_);
   public final static native int torrent_handle_file_priority2__SWIG_0(long jarg1, torrent_handle jarg1_, int jarg2);
   public final static native void torrent_handle_file_priority2__SWIG_1(long jarg1, torrent_handle jarg1_, int jarg2, int jarg3);
   public final static native void torrent_handle_prioritize_files2(long jarg1, torrent_handle jarg1_, long jarg2, int_vector jarg2_);
-  public final static native long torrent_handle_get_file_priorities2(long jarg1, torrent_handle jarg1_);
+  public final static native long torrent_handle_get_file_priorities_ex(long jarg1, torrent_handle jarg1_);
   public final static native void delete_torrent_handle(long jarg1);
   public final static native long add_piece_flags_t_all();
   public final static native boolean add_piece_flags_t_op_bool(long jarg1, add_piece_flags_t jarg1_);
@@ -3191,6 +3193,9 @@ public class libtorrent_jni {
   public final static native void session_handle_dht_direct_request__SWIG_2(long jarg1, session_handle jarg1_, long jarg2, udp_endpoint jarg2_, long jarg3, entry jarg3_, long jarg4);
   public final static native long session_handle_wait_for_alert_ms(long jarg1, session_handle jarg1_, long jarg2);
   public final static native void session_handle_set_alert_notify_callback(long jarg1, session_handle jarg1_, long jarg2, alert_notify_callback jarg2_);
+  public final static native void session_handle_dht_announce_ex__SWIG_0(long jarg1, session_handle jarg1_, long jarg2, sha1_hash jarg2_, int jarg3, byte jarg4);
+  public final static native void session_handle_dht_announce_ex__SWIG_1(long jarg1, session_handle jarg1_, long jarg2, sha1_hash jarg2_, int jarg3);
+  public final static native void session_handle_dht_announce_ex__SWIG_2(long jarg1, session_handle jarg1_, long jarg2, sha1_hash jarg2_);
   public final static native void delete_session_handle(long jarg1);
   public final static native long min_memory_usage();
   public final static native long high_performance_seed();

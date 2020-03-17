@@ -112,12 +112,12 @@ struct status_flags_tag;
         $self->prioritize_pieces(v);
     }
 
-    std::vector<int> get_piece_priorities2() const
+    std::vector<std::int8_t> get_piece_priorities_ex() const
     {
         std::vector<libtorrent::download_priority_t> v = $self->get_piece_priorities();
-        std::vector<int> r(v.size());
+        std::vector<std::int8_t> r(v.size());
         for (std::size_t i = 0; i < v.size(); i++)
-            r[i] = int(static_cast<std::uint8_t>(v[i]));
+            r[i] = std::int8_t(static_cast<std::uint8_t>(v[i]));
         return r;
     }
 
@@ -139,12 +139,12 @@ struct status_flags_tag;
         $self->prioritize_files(v);
     }
 
-    std::vector<int> get_file_priorities2() const
+    std::vector<std::int8_t> get_file_priorities_ex() const
     {
         std::vector<libtorrent::download_priority_t> v = $self->get_file_priorities();
-        std::vector<int> r(v.size());
+        std::vector<std::int8_t> r(v.size());
         for (std::size_t i = 0; i < v.size(); i++)
-            r[i] = int(static_cast<std::uint8_t>(v[i]));
+            r[i] = std::int8_t(static_cast<std::uint8_t>(v[i]));
         return r;
     }
 }
