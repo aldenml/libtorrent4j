@@ -37,4 +37,23 @@ public class AddTorrentParamsTest {
         assertTrue(r.contains("http://tracker1"));
         assertTrue(r.contains("http://tracker2"));
     }
+
+    @Test
+    public void testTrackerTiers() {
+        AddTorrentParams params = new AddTorrentParams();
+
+        assertTrue(params.trackerTiers().isEmpty());
+
+        List<Integer> tiers = new ArrayList<>(2);
+        tiers.add(10);
+        tiers.add(20);
+
+        params.trackerTiers(tiers);
+
+        List<Integer> r = params.trackerTiers();
+
+        assertEquals(2, r.size());
+        assertTrue(r.contains(10));
+        assertTrue(r.contains(20));
+    }
 }
