@@ -29,16 +29,13 @@ import java.util.List;
 public final class AddTorrentParams
     extends SwigObject<add_torrent_params> {
 
-    private final add_torrent_params p;
-
     /**
      * The native object
      *
-     * @param p the native object
+     * @param params the native object
      */
-    public AddTorrentParams(add_torrent_params p) {
-        super(p);
-        this.p = p;
+    public AddTorrentParams(add_torrent_params params) {
+        super(params);
     }
 
     /**
@@ -54,7 +51,7 @@ public final class AddTorrentParams
      * @return the version
      */
     public int version() {
-        return p.getVersion();
+        return h.getVersion();
     }
 
     /**
@@ -63,7 +60,7 @@ public final class AddTorrentParams
      * @return the torrent info or null if not set
      */
     public TorrentInfo torrentInfo() {
-        torrent_info ti = p.ti_ptr();
+        torrent_info ti = h.ti_ptr();
         return ti != null && ti.is_valid() ? new TorrentInfo(ti) : null;
     }
 
@@ -73,7 +70,7 @@ public final class AddTorrentParams
      * @param ti the torrent info
      */
     public void torrentInfo(TorrentInfo ti) {
-        p.set_ti(ti.swig());
+        h.set_ti(ti.swig());
     }
 
     /**
@@ -83,16 +80,8 @@ public final class AddTorrentParams
      *
      * @return the list of trackers
      */
-    public ArrayList<String> trackers() {
-        string_vector v = p.get_trackers();
-        int size = (int) v.size();
-        ArrayList<String> l = new ArrayList<>();
-
-        for (int i = 0; i < size; i++) {
-            l.add(v.get(i));
-        }
-
-        return l;
+    public List<String> trackers() {
+        return new ArrayList<>(h.get_trackers());
     }
 
     /**
@@ -102,13 +91,8 @@ public final class AddTorrentParams
      * @param value the list of trackers
      */
     public void trackers(List<String> value) {
-        string_vector v = new string_vector();
-
-        for (String s : value) {
-            v.add(s);
-        }
-
-        p.set_trackers(v);
+        string_vector v = new string_vector(value);
+        h.set_trackers(v);
     }
 
     /**
@@ -121,7 +105,7 @@ public final class AddTorrentParams
      * @return the list of trackers tiers
      */
     public ArrayList<Integer> trackerTiers() {
-        int_vector v = p.get_tracker_tiers();
+        int_vector v = h.get_tracker_tiers();
         int size = (int) v.size();
         ArrayList<Integer> l = new ArrayList<>();
 
@@ -148,7 +132,7 @@ public final class AddTorrentParams
             v.add(t);
         }
 
-        p.set_tracker_tiers(v);
+        h.set_tracker_tiers(v);
     }
 
     /**
@@ -158,7 +142,7 @@ public final class AddTorrentParams
      * @return the list of DHT nodes
      */
     public ArrayList<Pair<String, Integer>> dhtNodes() {
-        string_int_pair_vector v = p.get_dht_nodes();
+        string_int_pair_vector v = h.get_dht_nodes();
         int size = (int) v.size();
         ArrayList<Pair<String, Integer>> l = new ArrayList<>();
 
@@ -183,21 +167,21 @@ public final class AddTorrentParams
             v.add(p.to_string_int_pair());
         }
 
-        p.set_dht_nodes(v);
+        h.set_dht_nodes(v);
     }
 
     /**
      * @return the name
      */
     public String name() {
-        return p.getName();
+        return h.getName();
     }
 
     /**
      * @param value the name
      */
     public void name(String value) {
-        p.setName(value);
+        h.setName(value);
     }
 
     /**
@@ -213,7 +197,7 @@ public final class AddTorrentParams
      * @return the save path
      */
     public String savePath() {
-        return p.getSave_path();
+        return h.getSave_path();
     }
 
     /**
@@ -229,7 +213,7 @@ public final class AddTorrentParams
      * @param value the save path
      */
     public void savePath(String value) {
-        p.setSave_path(value);
+        h.setSave_path(value);
     }
 
     /**
@@ -237,7 +221,7 @@ public final class AddTorrentParams
      * @see StorageMode
      */
     public StorageMode storageMode() {
-        return StorageMode.fromSwig(p.getStorage_mode().swigValue());
+        return StorageMode.fromSwig(h.getStorage_mode().swigValue());
     }
 
     /**
@@ -245,7 +229,7 @@ public final class AddTorrentParams
      * @see StorageMode
      */
     public void storageMode(StorageMode value) {
-        p.setStorage_mode(storage_mode_t.swigToEnum(value.swig()));
+        h.setStorage_mode(storage_mode_t.swigToEnum(value.swig()));
     }
 
     /**
@@ -257,7 +241,7 @@ public final class AddTorrentParams
      * @return the trackerid url parameter
      */
     public String trackerId() {
-        return p.getTrackerid();
+        return h.getTrackerid();
     }
 
     /**
@@ -269,7 +253,7 @@ public final class AddTorrentParams
      * @param value the trackerid url parameter
      */
     public void trackerId(String value) {
-        p.setTrackerid(value);
+        h.setTrackerid(value);
     }
 
     /**
@@ -280,7 +264,7 @@ public final class AddTorrentParams
      * @return the info-hash
      */
     public InfoHash infoHash() {
-        return new InfoHash(p.getInfo_hash());
+        return new InfoHash(h.getInfo_hash());
     }
 
     /**
@@ -291,63 +275,63 @@ public final class AddTorrentParams
      * @param value the info-hash
      */
     public void infoHash(InfoHash value) {
-        p.setInfo_hash(value.swig());
+        h.setInfo_hash(value.swig());
     }
 
     /**
      * @return max uploads limit
      */
     public int maxUploads() {
-        return p.getMax_uploads();
+        return h.getMax_uploads();
     }
 
     /**
      * @param value max uploads limit
      */
     public void maxUploads(int value) {
-        p.setMax_uploads(value);
+        h.setMax_uploads(value);
     }
 
     /**
      * @return max connections limit
      */
     public int maxConnections() {
-        return p.getMax_connections();
+        return h.getMax_connections();
     }
 
     /**
      * @param value max connections limit
      */
     public void maxConnections(int value) {
-        p.setMax_connections(value);
+        h.setMax_connections(value);
     }
 
     /**
      * @return upload limit
      */
     public int uploadLimit() {
-        return p.getUpload_limit();
+        return h.getUpload_limit();
     }
 
     /**
      * @param value upload limit
      */
     public void uploadLimit(int value) {
-        p.setUpload_limit(value);
+        h.setUpload_limit(value);
     }
 
     /**
      * @return download limit
      */
     public int downloadLimit() {
-        return p.getDownload_limit();
+        return h.getDownload_limit();
     }
 
     /**
      * @param value download limit
      */
     public void downloadLimit(int value) {
-        p.setDownload_limit(value);
+        h.setDownload_limit(value);
     }
 
     /**
@@ -356,7 +340,7 @@ public final class AddTorrentParams
      * @return the flags
      */
     public torrent_flags_t flags() {
-        return p.getFlags();
+        return h.getFlags();
     }
 
     /**
@@ -365,7 +349,7 @@ public final class AddTorrentParams
      * @param flags the flags
      */
     public void flags(torrent_flags_t flags) {
-        p.setFlags(flags);
+        h.setFlags(flags);
     }
 
     /**
@@ -374,7 +358,7 @@ public final class AddTorrentParams
      * @return the url seeds
      */
     public ArrayList<String> urlSeeds() {
-        string_vector v = p.get_url_seeds();
+        string_vector v = h.get_url_seeds();
         int size = (int) v.size();
         ArrayList<String> l = new ArrayList<>();
 
@@ -397,11 +381,11 @@ public final class AddTorrentParams
             v.add(s);
         }
 
-        p.set_url_seeds(v);
+        h.set_url_seeds(v);
     }
 
     public Priority[] filePriorities() {
-        byte_vector v = p.get_file_priorities();
+        byte_vector v = h.get_file_priorities();
         return Priority.vector2array(v);
     }
 
@@ -413,11 +397,11 @@ public final class AddTorrentParams
      * @param priorities the priorities
      */
     public void filePriorities(Priority[] priorities) {
-        p.set_file_priorities(Priority.array2byte_vector(priorities));
+        h.set_file_priorities(Priority.array2byte_vector(priorities));
     }
 
     public Priority[] piecePriorities() {
-        byte_vector v = p.get_piece_priorities();
+        byte_vector v = h.get_piece_priorities();
         return Priority.vector2array(v);
     }
 
@@ -430,7 +414,7 @@ public final class AddTorrentParams
      * @param priorities the priorities
      */
     public void piecePriorities(Priority[] priorities) {
-        p.set_piece_priorities(Priority.array2byte_vector(priorities));
+        h.set_piece_priorities(Priority.array2byte_vector(priorities));
     }
 
     /**
@@ -440,7 +424,7 @@ public final class AddTorrentParams
      * @return the peers list
      */
     public ArrayList<TcpEndpoint> peers() {
-        tcp_endpoint_vector v = p.get_peers();
+        tcp_endpoint_vector v = h.get_peers();
         int size = (int) v.size();
         ArrayList<TcpEndpoint> l = new ArrayList<>();
 
@@ -464,7 +448,7 @@ public final class AddTorrentParams
             v.add(endp.swig());
         }
 
-        p.set_peers(v);
+        h.set_peers(v);
     }
 
     /**
@@ -473,7 +457,7 @@ public final class AddTorrentParams
      * @return the peers list
      */
     public ArrayList<TcpEndpoint> bannedPeers() {
-        tcp_endpoint_vector v = p.get_banned_peers();
+        tcp_endpoint_vector v = h.get_banned_peers();
         int size = (int) v.size();
         ArrayList<TcpEndpoint> l = new ArrayList<>();
 
@@ -496,7 +480,7 @@ public final class AddTorrentParams
             v.add(endp.swig());
         }
 
-        p.set_banned_peers(v);
+        h.set_banned_peers(v);
     }
 
     /**
