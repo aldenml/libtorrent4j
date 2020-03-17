@@ -4232,6 +4232,135 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1strin
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1byte_1vector_1byte_1vector_1pair_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *)new std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > >();
+  *(std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1byte_1vector_1byte_1vector_1pair_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  std::vector< std::int8_t > arg1 ;
+  std::vector< std::int8_t > arg2 ;
+  std::vector< std::int8_t > *argp1 ;
+  std::vector< std::int8_t > *argp2 ;
+  std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  argp1 = *(std::vector< std::int8_t > **)&jarg1; 
+  if (!argp1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null std::vector< std::int8_t >");
+    return 0;
+  }
+  arg1 = *argp1; 
+  argp2 = *(std::vector< std::int8_t > **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null std::vector< std::int8_t >");
+    return 0;
+  }
+  arg2 = *argp2; 
+  result = (std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *)new std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > >(arg1,arg2);
+  *(std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1byte_1vector_1byte_1vector_1pair_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *arg1 = 0 ;
+  std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > const & reference is null");
+    return 0;
+  } 
+  result = (std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *)new std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > >((std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > const &)*arg1);
+  *(std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_byte_1vector_1byte_1vector_1pair_1first_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *arg1 = (std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *) 0 ;
+  std::vector< std::int8_t > *arg2 = (std::vector< std::int8_t > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > **)&jarg1; 
+  arg2 = *(std::vector< std::int8_t > **)&jarg2; 
+  if (arg1) (arg1)->first = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_byte_1vector_1byte_1vector_1pair_1first_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *arg1 = (std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *) 0 ;
+  std::vector< std::int8_t > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > **)&jarg1; 
+  result = (std::vector< std::int8_t > *)& ((arg1)->first);
+  *(std::vector< std::int8_t > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_byte_1vector_1byte_1vector_1pair_1second_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *arg1 = (std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *) 0 ;
+  std::vector< std::int8_t > *arg2 = (std::vector< std::int8_t > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > **)&jarg1; 
+  arg2 = *(std::vector< std::int8_t > **)&jarg2; 
+  if (arg1) (arg1)->second = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_byte_1vector_1byte_1vector_1pair_1second_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *arg1 = (std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *) 0 ;
+  std::vector< std::int8_t > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > **)&jarg1; 
+  result = (std::vector< std::int8_t > *)& ((arg1)->second);
+  *(std::vector< std::int8_t > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1byte_1vector_1byte_1vector_1pair(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *arg1 = (std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::pair< std::vector< std::int8_t >,std::vector< std::int8_t > > **)&jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1sha1_1hash_1udp_1endpoint_1pair_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   std::pair< libtorrent::digest32< 160 >,libtorrent::udp::endpoint > *result = 0 ;
@@ -53593,6 +53722,181 @@ SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_arm_1neon
   (void)jcls;
   result = (bool)arm_neon_support();
   jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_ed25519_1create_1seed(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::vector< int8_t > result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = ed25519_create_seed();
+  *(std::vector< int8_t > **)&jresult = new std::vector< int8_t >((const std::vector< int8_t > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_ed25519_1create_1keypair(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::vector< int8_t > *arg1 = 0 ;
+  std::pair< std::vector< int8_t >,std::vector< int8_t > > result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< int8_t > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    return 0;
+  } 
+  result = ed25519_create_keypair(*arg1);
+  *(std::pair< std::vector< int8_t >,std::vector< int8_t > > **)&jresult = new std::pair< std::vector< int8_t >,std::vector< int8_t > >((const std::pair< std::vector< int8_t >,std::vector< int8_t > > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_ed25519_1sign(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_) {
+  jlong jresult = 0 ;
+  std::vector< int8_t > *arg1 = 0 ;
+  std::vector< int8_t > *arg2 = 0 ;
+  std::vector< int8_t > *arg3 = 0 ;
+  std::vector< int8_t > result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  (void)jarg3_;
+  arg1 = *(std::vector< int8_t > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    return 0;
+  } 
+  arg2 = *(std::vector< int8_t > **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    return 0;
+  } 
+  arg3 = *(std::vector< int8_t > **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    return 0;
+  } 
+  result = ed25519_sign(*arg1,*arg2,*arg3);
+  *(std::vector< int8_t > **)&jresult = new std::vector< int8_t >((const std::vector< int8_t > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_ed25519_1verify(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_) {
+  jboolean jresult = 0 ;
+  std::vector< int8_t > *arg1 = 0 ;
+  std::vector< int8_t > *arg2 = 0 ;
+  std::vector< int8_t > *arg3 = 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  (void)jarg3_;
+  arg1 = *(std::vector< int8_t > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    return 0;
+  } 
+  arg2 = *(std::vector< int8_t > **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    return 0;
+  } 
+  arg3 = *(std::vector< int8_t > **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    return 0;
+  } 
+  result = (bool)ed25519_verify(*arg1,*arg2,*arg3);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_ed25519_1add_1scalar_1public(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  std::vector< int8_t > *arg1 = 0 ;
+  std::vector< int8_t > *arg2 = 0 ;
+  std::vector< int8_t > result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(std::vector< int8_t > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    return 0;
+  } 
+  arg2 = *(std::vector< int8_t > **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    return 0;
+  } 
+  result = ed25519_add_scalar_public(*arg1,*arg2);
+  *(std::vector< int8_t > **)&jresult = new std::vector< int8_t >((const std::vector< int8_t > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_ed25519_1add_1scalar_1secret(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  std::vector< int8_t > *arg1 = 0 ;
+  std::vector< int8_t > *arg2 = 0 ;
+  std::vector< int8_t > result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(std::vector< int8_t > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    return 0;
+  } 
+  arg2 = *(std::vector< int8_t > **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    return 0;
+  } 
+  result = ed25519_add_scalar_secret(*arg1,*arg2);
+  *(std::vector< int8_t > **)&jresult = new std::vector< int8_t >((const std::vector< int8_t > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_ed25519_1key_1exchange(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  std::vector< int8_t > *arg1 = 0 ;
+  std::vector< int8_t > *arg2 = 0 ;
+  std::vector< int8_t > result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(std::vector< int8_t > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    return 0;
+  } 
+  arg2 = *(std::vector< int8_t > **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    return 0;
+  } 
+  result = ed25519_key_exchange(*arg1,*arg2);
+  *(std::vector< int8_t > **)&jresult = new std::vector< int8_t >((const std::vector< int8_t > &)result); 
   return jresult;
 }
 

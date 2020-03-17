@@ -289,4 +289,32 @@ public class libtorrent implements libtorrentConstants {
     return libtorrent_jni.arm_neon_support();
   }
 
+  public static byte_vector ed25519_create_seed() {
+    return new byte_vector(libtorrent_jni.ed25519_create_seed(), true);
+  }
+
+  public static byte_vector_byte_vector_pair ed25519_create_keypair(byte_vector seed) {
+    return new byte_vector_byte_vector_pair(libtorrent_jni.ed25519_create_keypair(byte_vector.getCPtr(seed), seed), true);
+  }
+
+  public static byte_vector ed25519_sign(byte_vector msg, byte_vector pk, byte_vector sk) {
+    return new byte_vector(libtorrent_jni.ed25519_sign(byte_vector.getCPtr(msg), msg, byte_vector.getCPtr(pk), pk, byte_vector.getCPtr(sk), sk), true);
+  }
+
+  public static boolean ed25519_verify(byte_vector sig, byte_vector msg, byte_vector pk) {
+    return libtorrent_jni.ed25519_verify(byte_vector.getCPtr(sig), sig, byte_vector.getCPtr(msg), msg, byte_vector.getCPtr(pk), pk);
+  }
+
+  public static byte_vector ed25519_add_scalar_public(byte_vector pk, byte_vector scalar) {
+    return new byte_vector(libtorrent_jni.ed25519_add_scalar_public(byte_vector.getCPtr(pk), pk, byte_vector.getCPtr(scalar), scalar), true);
+  }
+
+  public static byte_vector ed25519_add_scalar_secret(byte_vector sk, byte_vector scalar) {
+    return new byte_vector(libtorrent_jni.ed25519_add_scalar_secret(byte_vector.getCPtr(sk), sk, byte_vector.getCPtr(scalar), scalar), true);
+  }
+
+  public static byte_vector ed25519_key_exchange(byte_vector pk, byte_vector sk) {
+    return new byte_vector(libtorrent_jni.ed25519_key_exchange(byte_vector.getCPtr(pk), pk, byte_vector.getCPtr(sk), sk), true);
+  }
+
 }

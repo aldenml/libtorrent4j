@@ -145,6 +145,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(int_int_pair) std::pair<int, int>;
 %template(string_int_pair) std::pair<std::string, int>;
 %template(string_string_pair) std::pair<std::string, std::string>;
+%template(byte_vector_byte_vector_pair) std::pair<std::vector<std::int8_t>, std::vector<std::int8_t>>;
 
 %template(sha1_hash_udp_endpoint_pair) std::pair<libtorrent::digest32<160>, libtorrent::udp::endpoint>;
 %template(bdecode_node_bdecode_node_pair) std::pair<libtorrent::bdecode_node, libtorrent::bdecode_node>;

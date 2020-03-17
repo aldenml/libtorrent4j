@@ -59,6 +59,14 @@ public class libtorrent_jni {
   public final static native void string_string_pair_second_set(long jarg1, string_string_pair jarg1_, String jarg2);
   public final static native String string_string_pair_second_get(long jarg1, string_string_pair jarg1_);
   public final static native void delete_string_string_pair(long jarg1);
+  public final static native long new_byte_vector_byte_vector_pair__SWIG_0();
+  public final static native long new_byte_vector_byte_vector_pair__SWIG_1(long jarg1, byte_vector jarg1_, long jarg2, byte_vector jarg2_);
+  public final static native long new_byte_vector_byte_vector_pair__SWIG_2(long jarg1, byte_vector_byte_vector_pair jarg1_);
+  public final static native void byte_vector_byte_vector_pair_first_set(long jarg1, byte_vector_byte_vector_pair jarg1_, long jarg2, byte_vector jarg2_);
+  public final static native long byte_vector_byte_vector_pair_first_get(long jarg1, byte_vector_byte_vector_pair jarg1_);
+  public final static native void byte_vector_byte_vector_pair_second_set(long jarg1, byte_vector_byte_vector_pair jarg1_, long jarg2, byte_vector jarg2_);
+  public final static native long byte_vector_byte_vector_pair_second_get(long jarg1, byte_vector_byte_vector_pair jarg1_);
+  public final static native void delete_byte_vector_byte_vector_pair(long jarg1);
   public final static native long new_sha1_hash_udp_endpoint_pair__SWIG_0();
   public final static native long new_sha1_hash_udp_endpoint_pair__SWIG_1(long jarg1, sha1_hash jarg1_, long jarg2, udp_endpoint jarg2_);
   public final static native long new_sha1_hash_udp_endpoint_pair__SWIG_2(long jarg1, sha1_hash_udp_endpoint_pair jarg1_);
@@ -3249,6 +3257,13 @@ public class libtorrent_jni {
   public final static native int openssl_version_number();
   public final static native String openssl_version_text();
   public final static native boolean arm_neon_support();
+  public final static native long ed25519_create_seed();
+  public final static native long ed25519_create_keypair(long jarg1, byte_vector jarg1_);
+  public final static native long ed25519_sign(long jarg1, byte_vector jarg1_, long jarg2, byte_vector jarg2_, long jarg3, byte_vector jarg3_);
+  public final static native boolean ed25519_verify(long jarg1, byte_vector jarg1_, long jarg2, byte_vector jarg2_, long jarg3, byte_vector jarg3_);
+  public final static native long ed25519_add_scalar_public(long jarg1, byte_vector jarg1_, long jarg2, byte_vector jarg2_);
+  public final static native long ed25519_add_scalar_secret(long jarg1, byte_vector jarg1_, long jarg2, byte_vector jarg2_);
+  public final static native long ed25519_key_exchange(long jarg1, byte_vector jarg1_, long jarg2, byte_vector jarg2_);
   public final static native long torrent_alert_SWIGUpcast(long jarg1);
   public final static native long peer_alert_SWIGUpcast(long jarg1);
   public final static native long tracker_alert_SWIGUpcast(long jarg1);
