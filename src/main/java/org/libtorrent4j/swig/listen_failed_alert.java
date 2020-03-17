@@ -69,10 +69,6 @@ public class listen_failed_alert extends alert {
     return operation_t.swigToEnum(libtorrent_jni.listen_failed_alert_op_get(swigCPtr, this));
   }
 
-  public socket_type_t getSocket_type() {
-    return socket_type_t.swigToEnum(libtorrent_jni.listen_failed_alert_socket_type_get(swigCPtr, this));
-  }
-
   public int getPort() {
     return libtorrent_jni.listen_failed_alert_port_get(swigCPtr, this);
   }
@@ -81,7 +77,11 @@ public class listen_failed_alert extends alert {
     return new address(libtorrent_jni.listen_failed_alert_get_address(swigCPtr, this), true);
   }
 
-  public final static int priority = libtorrent_jni.listen_failed_alert_priority_get();
+  public int get_socket_type() {
+    return libtorrent_jni.listen_failed_alert_get_socket_type(swigCPtr, this);
+  }
+
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.listen_failed_alert_priority_get());
   public final static int alert_type = libtorrent_jni.listen_failed_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.listen_failed_alert_static_category_get(), false);
 }

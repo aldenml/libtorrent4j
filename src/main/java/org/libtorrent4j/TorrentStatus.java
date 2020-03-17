@@ -161,7 +161,7 @@ public final class TorrentStatus implements Cloneable {
      * @return the bitfield of pieces
      */
     public PieceIndexBitfield pieces() {
-        return new PieceIndexBitfield(ts.getPieces(), ts);
+        return new PieceIndexBitfield(ts.get_pieces(), ts);
     }
 
     /**
@@ -172,7 +172,7 @@ public final class TorrentStatus implements Cloneable {
      * @return the bitfield of verified pieces
      */
     public PieceIndexBitfield verifiedPieces() {
-        return new PieceIndexBitfield(ts.getVerified_pieces(), ts);
+        return new PieceIndexBitfield(ts.get_verified_pieces(), ts);
     }
 
     /**
@@ -662,8 +662,8 @@ public final class TorrentStatus implements Cloneable {
      *
      * @return
      */
-    public Sha1Hash infoHash() {
-        return new Sha1Hash(ts.getInfo_hash());
+    public InfoHash infoHash() {
+        return new InfoHash(ts.getInfo_hash());
     }
 
     public long lastUpload() {

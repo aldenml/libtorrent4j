@@ -447,7 +447,7 @@ public class SessionManager {
             throw new IllegalArgumentException("torrent info not valid");
         }
 
-        torrent_handle th = session.find_torrent(ti.swig().info_hash());
+        torrent_handle th = session.find_torrent(ti.swig().info_hash().get_best());
 
         if (th != null && th.is_valid()) {
             // found a download with the same hash, just adjust the priorities if needed
@@ -481,10 +481,10 @@ public class SessionManager {
         }
 
         if (p == null) {
-            p = add_torrent_params.create_instance();
+            p = new add_torrent_params();
         }
 
-        p.set_ti(ti.swig());
+        p.setTi(ti.swig());
         if (saveDir != null) {
             p.setSave_path(saveDir.getAbsolutePath());
         }
@@ -495,22 +495,22 @@ public class SessionManager {
             }
             byte_vector v = new byte_vector();
             for (int i = 0; i < priorities.length; i++) {
-                v.push_back((byte) priorities[i].swig());
+                v.add((byte) priorities[i].swig());
             }
-            p.set_file_priorities2(v);
+            p.set_file_priorities(v);
         }
 
         if (peers != null && !peers.isEmpty()) {
             tcp_endpoint_vector v = new tcp_endpoint_vector();
             for (TcpEndpoint endp : peers) {
-                v.push_back(endp.swig());
+                v.add(endp.swig());
             }
             p.set_peers(v);
         }
 
         torrent_flags_t flags = p.getFlags();
 
-        flags = flags.and_(TorrentFlags.AUTO_MANAGED.inv());
+        flags = flags.op_and(TorrentFlags.AUTO_MANAGED.inv());
 
         p.setFlags(flags);
 
@@ -535,7 +535,7 @@ public class SessionManager {
             throw new IllegalArgumentException(ec.message());
         }
 
-        sha1_hash info_hash = p.getInfo_hash();
+        sha1_hash info_hash = p.getInfo_hash().get_best();
 
         torrent_handle th = session.find_torrent(info_hash);
 
@@ -550,7 +550,7 @@ public class SessionManager {
 
         torrent_flags_t flags = p.getFlags();
 
-        flags = flags.and_(TorrentFlags.AUTO_MANAGED.inv());
+        flags = flags.op_and(TorrentFlags.AUTO_MANAGED.inv());
 
         p.setFlags(flags);
 
@@ -596,9 +596,10 @@ public class SessionManager {
             throw new IllegalArgumentException(ec.message());
         }
 
-        p.set_disabled_storage();
+        // TODO: review
+        //p.set_disabled_storage();
 
-        final sha1_hash info_hash = p.getInfo_hash();
+        final info_hash_t info_hash = p.getInfo_hash();
         final byte[][] data = {null};
         final CountDownLatch signal = new CountDownLatch(1);
 
@@ -639,7 +640,7 @@ public class SessionManager {
             syncMagnet.lock();
 
             try {
-                th = session.find_torrent(info_hash);
+                th = session.find_torrent(info_hash.get_best());
                 if (th != null && th.is_valid()) {
                     // we have a download with the same info-hash
                     add = false;
@@ -664,9 +665,9 @@ public class SessionManager {
                     p.setSave_path(FETCH_MAGNET_DOWNLOAD_KEY + uri);
 
                     torrent_flags_t flags = p.getFlags();
-                    flags = flags.and_(TorrentFlags.AUTO_MANAGED.inv());
-                    flags = flags.or_(TorrentFlags.UPLOAD_MODE);
-                    flags = flags.or_(TorrentFlags.STOP_WHEN_READY);
+                    flags = flags.op_and(TorrentFlags.AUTO_MANAGED.inv());
+                    flags = flags.op_or(TorrentFlags.UPLOAD_MODE);
+                    flags = flags.op_or(TorrentFlags.STOP_WHEN_READY);
                     p.setFlags(flags);
 
                     ec.clear();
@@ -872,15 +873,15 @@ public class SessionManager {
         return result;
     }
 
-    public void dhtAnnounce(Sha1Hash sha1, int port, int flags) {
+    public void dhtAnnounce(Sha1Hash sha1, int port, byte flags) {
         if (session != null) {
-            session.dht_announce(sha1.swig(), port, flags);
+            session.dht_announce_ex(sha1.swig(), port, flags);
         }
     }
 
     public void dhtAnnounce(Sha1Hash sha1) {
         if (session != null) {
-            session.dht_announce(sha1.swig());
+            session.dht_announce_ex(sha1.swig());
         }
     }
 
@@ -907,16 +908,6 @@ public class SessionManager {
             }
         } catch (Throwable e) {
             LOG.error("Error changing save path for session", e);
-        }
-    }
-
-    public byte[] saveState() {
-        return session != null ? new SessionHandle(session).saveState() : null;
-    }
-
-    public void loadState(byte[] data) {
-        if (session != null) {
-            new SessionHandle(session).loadState(data);
         }
     }
 
@@ -1103,13 +1094,13 @@ public class SessionManager {
         alert_category_t mask = alert.all_categories;
         if (!logging) {
             alert_category_t log_mask = alert.session_log_notification;
-            log_mask = log_mask.or_(alert.torrent_log_notification);
-            log_mask = log_mask.or_(alert.peer_log_notification);
-            log_mask = log_mask.or_(alert.dht_log_notification);
-            log_mask = log_mask.or_(alert.port_mapping_log_notification);
-            log_mask = log_mask.or_(alert.picker_log_notification);
+            log_mask = log_mask.op_or(alert.torrent_log_notification);
+            log_mask = log_mask.op_or(alert.peer_log_notification);
+            log_mask = log_mask.op_or(alert.dht_log_notification);
+            log_mask = log_mask.op_or(alert.port_mapping_log_notification);
+            log_mask = log_mask.op_or(alert.picker_log_notification);
 
-            mask = mask.and_(log_mask.inv());
+            mask = mask.op_and(log_mask.inv());
         }
         return mask;
     }

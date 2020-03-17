@@ -309,8 +309,8 @@ public final class TorrentHandle {
      *
      * @return the torrent info hash
      */
-    public Sha1Hash infoHash() {
-        return new Sha1Hash(th.info_hash());
+    public InfoHash infoHash() {
+        return new InfoHash(th.info_hash());
     }
 
     /**
@@ -943,7 +943,7 @@ public final class TorrentHandle {
         announce_entry_vector v = new announce_entry_vector();
 
         for (AnnounceEntry t : trackers) {
-            v.push_back(t.swig());
+            v.add(t.swig());
         }
 
         th.replace_trackers(v);
@@ -1088,7 +1088,7 @@ public final class TorrentHandle {
     }
 
     public Priority[] piecePriorities() {
-        int_vector v = th.get_piece_priorities2();
+        byte_vector v = th.get_piece_priorities_ex();
         return Priority.vector2array(v);
     }
 
@@ -1143,7 +1143,7 @@ public final class TorrentHandle {
      * @return the array of priorities.
      */
     public Priority[] filePriorities() {
-        int_vector v = th.get_file_priorities2();
+        byte_vector v = th.get_file_priorities_ex();
         return Priority.vector2array(v);
     }
 
@@ -1237,9 +1237,9 @@ public final class TorrentHandle {
      * @param flags
      * @return the file progress
      */
-    public long[] fileProgress(FileProgressFlags flags) {
+    public long[] fileProgress(file_progress_flags_t flags) {
         int64_vector v = new int64_vector();
-        th.file_progress(v, flags.swig());
+        th.file_progress(v, flags);
         return Vectors.int64_vector2longs(v);
     }
 
@@ -1348,7 +1348,7 @@ public final class TorrentHandle {
          * have passed the hash check into account, so progress cannot
          * regress in this mode.
          */
-        PIECE_GRANULARITY(torrent_handle.file_progress_flags_t.piece_granularity.swigValue());
+        PIECE_GRANULARITY(torrent_handle.piece_granularity.to_int());
 
         FileProgressFlags(int swigValue) {
             this.swigValue = swigValue;

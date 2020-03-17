@@ -8,7 +8,7 @@
 
 package org.libtorrent4j.swig;
 
-public class string_int_pair_vector {
+public class string_int_pair_vector extends java.util.AbstractList<string_int_pair> implements java.util.RandomAccess {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -36,12 +36,61 @@ public class string_int_pair_vector {
     }
   }
 
-  public string_int_pair_vector() {
-    this(libtorrent_jni.new_string_int_pair_vector(), true);
+  public string_int_pair_vector(string_int_pair[] initialElements) {
+    this();
+    reserve(initialElements.length);
+
+    for (string_int_pair element : initialElements) {
+      add(element);
+    }
   }
 
-  public long size() {
-    return libtorrent_jni.string_int_pair_vector_size(swigCPtr, this);
+  public string_int_pair_vector(Iterable<string_int_pair> initialElements) {
+    this();
+    for (string_int_pair element : initialElements) {
+      add(element);
+    }
+  }
+
+  public string_int_pair get(int index) {
+    return doGet(index);
+  }
+
+  public string_int_pair set(int index, string_int_pair e) {
+    return doSet(index, e);
+  }
+
+  public boolean add(string_int_pair e) {
+    modCount++;
+    doAdd(e);
+    return true;
+  }
+
+  public void add(int index, string_int_pair e) {
+    modCount++;
+    doAdd(index, e);
+  }
+
+  public string_int_pair remove(int index) {
+    modCount++;
+    return doRemove(index);
+  }
+
+  protected void removeRange(int fromIndex, int toIndex) {
+    modCount++;
+    doRemoveRange(fromIndex, toIndex);
+  }
+
+  public int size() {
+    return doSize();
+  }
+
+  public string_int_pair_vector() {
+    this(libtorrent_jni.new_string_int_pair_vector__SWIG_0(), true);
+  }
+
+  public string_int_pair_vector(string_int_pair_vector other) {
+    this(libtorrent_jni.new_string_int_pair_vector__SWIG_1(string_int_pair_vector.getCPtr(other), other), true);
   }
 
   public long capacity() {
@@ -52,24 +101,44 @@ public class string_int_pair_vector {
     libtorrent_jni.string_int_pair_vector_reserve(swigCPtr, this, n);
   }
 
-  public boolean empty() {
-    return libtorrent_jni.string_int_pair_vector_empty(swigCPtr, this);
+  public boolean isEmpty() {
+    return libtorrent_jni.string_int_pair_vector_isEmpty(swigCPtr, this);
   }
 
   public void clear() {
     libtorrent_jni.string_int_pair_vector_clear(swigCPtr, this);
   }
 
-  public void push_back(string_int_pair x) {
-    libtorrent_jni.string_int_pair_vector_push_back(swigCPtr, this, string_int_pair.getCPtr(x), x);
+  public string_int_pair_vector(int count, string_int_pair value) {
+    this(libtorrent_jni.new_string_int_pair_vector__SWIG_2(count, string_int_pair.getCPtr(value), value), true);
   }
 
-  public string_int_pair get(int i) {
-    return new string_int_pair(libtorrent_jni.string_int_pair_vector_get(swigCPtr, this, i), false);
+  private int doSize() {
+    return libtorrent_jni.string_int_pair_vector_doSize(swigCPtr, this);
   }
 
-  public void set(int i, string_int_pair val) {
-    libtorrent_jni.string_int_pair_vector_set(swigCPtr, this, i, string_int_pair.getCPtr(val), val);
+  private void doAdd(string_int_pair x) {
+    libtorrent_jni.string_int_pair_vector_doAdd__SWIG_0(swigCPtr, this, string_int_pair.getCPtr(x), x);
+  }
+
+  private void doAdd(int index, string_int_pair x) {
+    libtorrent_jni.string_int_pair_vector_doAdd__SWIG_1(swigCPtr, this, index, string_int_pair.getCPtr(x), x);
+  }
+
+  private string_int_pair doRemove(int index) {
+    return new string_int_pair(libtorrent_jni.string_int_pair_vector_doRemove(swigCPtr, this, index), true);
+  }
+
+  private string_int_pair doGet(int index) {
+    return new string_int_pair(libtorrent_jni.string_int_pair_vector_doGet(swigCPtr, this, index), false);
+  }
+
+  private string_int_pair doSet(int index, string_int_pair val) {
+    return new string_int_pair(libtorrent_jni.string_int_pair_vector_doSet(swigCPtr, this, index, string_int_pair.getCPtr(val), val), true);
+  }
+
+  private void doRemoveRange(int fromIndex, int toIndex) {
+    libtorrent_jni.string_int_pair_vector_doRemoveRange(swigCPtr, this, fromIndex, toIndex);
   }
 
 }

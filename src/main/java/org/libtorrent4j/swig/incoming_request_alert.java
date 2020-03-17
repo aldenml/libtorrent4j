@@ -62,6 +62,6 @@ public class incoming_request_alert extends peer_alert {
   }
 
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.incoming_request_alert_static_category_get(), false);
-  public final static int priority = libtorrent_jni.incoming_request_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.incoming_request_alert_priority_get());
   public final static int alert_type = libtorrent_jni.incoming_request_alert_alert_type_get();
 }

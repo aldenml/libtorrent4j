@@ -9,9 +9,10 @@
 package org.libtorrent4j.swig;
 
 public final class alert_priority {
-  public final static alert_priority alert_priority_normal = new alert_priority("alert_priority_normal", libtorrent_jni.alert_priority_normal_get());
-  public final static alert_priority alert_priority_high = new alert_priority("alert_priority_high");
-  public final static alert_priority alert_priority_critical = new alert_priority("alert_priority_critical");
+  public final static alert_priority normal = new alert_priority("normal", libtorrent_jni.alert_priority_normal_get());
+  public final static alert_priority high = new alert_priority("high");
+  public final static alert_priority critical = new alert_priority("critical");
+  public final static alert_priority meta = new alert_priority("meta");
 
   public final int swigValue() {
     return swigValue;
@@ -47,7 +48,7 @@ public final class alert_priority {
     swigNext = this.swigValue+1;
   }
 
-  private static alert_priority[] swigValues = { alert_priority_normal, alert_priority_high, alert_priority_critical };
+  private static alert_priority[] swigValues = { normal, high, critical, meta };
   private static int swigNext = 0;
   private final int swigValue;
   private final String swigName;

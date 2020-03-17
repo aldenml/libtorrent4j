@@ -118,11 +118,6 @@ public final class Address implements Comparable<Address>, Cloneable {
     }
 
     static String toString(address a) {
-        error_code ec = new error_code();
-        String s = a.to_string(ec);
-        if (ec.value() != 0) {
-            s = "<invalid address>";
-        }
-        return s;
+        return a.to_string();
     }
 }

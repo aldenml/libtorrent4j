@@ -52,11 +52,11 @@ public class peer_connect_alert extends peer_alert {
     return libtorrent_jni.peer_connect_alert_message(swigCPtr, this);
   }
 
-  public int getSocket_type() {
-    return libtorrent_jni.peer_connect_alert_socket_type_get(swigCPtr, this);
+  public socket_type_t getSocket_type() {
+    return socket_type_t.swigToEnum(libtorrent_jni.peer_connect_alert_socket_type_get(swigCPtr, this));
   }
 
-  public final static int priority = libtorrent_jni.peer_connect_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.peer_connect_alert_priority_get());
   public final static int alert_type = libtorrent_jni.peer_connect_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.peer_connect_alert_static_category_get(), false);
 }

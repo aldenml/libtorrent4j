@@ -20,7 +20,7 @@ public enum SocketType {
     /**
      *
      */
-    UDP(socket_type_t.udp.swigValue()),
+    UTP(socket_type_t.utp.swigValue()),
 
     /**
      *

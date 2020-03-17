@@ -52,89 +52,10 @@ public class SessionHandle {
     public static final save_state_flags_t SAVE_SETTINGS = session_handle.save_settings;
 
     /**
-     * Saves {@link DhtSettings}.
-     */
-    public static final save_state_flags_t SAVE_DHT_SETTINGS = session_handle.save_dht_settings;
-
-    /**
      * Saves dht state such as nodes and node-id, possibly accelerating
      * joining the DHT if provided at next session startup.
      */
     public static final save_state_flags_t SAVE_DHT_STATE = session_handle.save_dht_state;
-
-    /**
-     * Loads and saves all session settings, including dht settings,
-     * encryption settings and proxy settings. This method
-     * internally writes all keys to an {@link entry} that is returned
-     * as a bencoded byte array.
-     * <p>
-     * The {@code flags} argument passed in to this method can be used to
-     * filter which parts of the session state to save. By default, all state
-     * is saved (except for the individual torrents).
-     *
-     * @return the bencoded byte array
-     */
-    public byte[] saveState(save_state_flags_t flags) {
-        entry e = new entry();
-        s.save_state(e, flags);
-        return Vectors.byte_vector2bytes(e.bencode());
-    }
-
-    /**
-     * Same as calling {@link #saveState(save_state_flags_t)} with all save state flags.
-     *
-     * @return the bencoded byte array
-     */
-    public byte[] saveState() {
-        entry e = new entry();
-        s.save_state(e);
-        return Vectors.byte_vector2bytes(e.bencode());
-    }
-
-    /**
-     * Loads all session settings, including DHT settings,
-     * encryption settings and proxy settings.
-     * <p>
-     * This method expects a byte array that it is a
-     * bencoded buffer.
-     * <p>
-     * The {@code flags} argument passed in to this method can be used to
-     * filter which parts of the session state to load. By default, all state
-     * is restored (except for the individual torrents).
-     *
-     * @param data the bencoded byte array
-     */
-    public void loadState(byte[] data, save_state_flags_t flags) {
-        byte_vector buffer = Vectors.bytes2byte_vector(data);
-        bdecode_node n = new bdecode_node();
-        error_code ec = new error_code();
-        int ret = bdecode_node.bdecode(buffer, n, ec);
-
-        if (ret == 0) {
-            s.load_state(n, flags);
-            buffer.clear(); // prevents GC
-        } else {
-            LOG.error("failed to decode bencoded data: " + ec.message());
-        }
-    }
-
-    /**
-     * Same as calling {@link #loadState(byte[], save_state_flags_t)} with all
-     * save state flags.
-     */
-    public void loadState(byte[] data) {
-        byte_vector buffer = Vectors.bytes2byte_vector(data);
-        bdecode_node n = new bdecode_node();
-        error_code ec = new error_code();
-        int ret = bdecode_node.bdecode(buffer, n, ec);
-
-        if (ret == 0) {
-            s.load_state(n);
-            buffer.clear(); // prevents GC
-        } else {
-            LOG.error("failed to decode bencoded data: " + ec.message());
-        }
-    }
 
     /**
      * This functions instructs the session to post the
@@ -361,9 +282,6 @@ public class SessionHandle {
     // and false
     // otherwise.
 
-    void setDhtSettings(DhtSettings settings) {
-        s.set_dht_settings(settings.swig());
-    }
 
     public boolean isDhtRunning() {
         return s.is_dht_running();
@@ -398,6 +316,7 @@ public class SessionHandle {
         return new SettingsPack(s.get_settings());
     }
 
+    // TODO: review
     /**
      * Adds a port forwarding on UPnP and/or NAT-PMP, using PCP if supported,
      * whichever is enabled. The return value is a handle referring to the
@@ -409,22 +328,23 @@ public class SessionHandle {
      * @param localPort    the local port
      * @return the array of port mapping ids
      */
-    public int[] addPortMapping(PortmapProtocol t, int externalPort, int localPort) {
-        port_mapping_t_vector v = s.add_port_mapping(portmap_protocol.swigToEnum(t.swig()), externalPort, localPort);
+//    public int[] addPortMapping(PortmapProtocol t, int externalPort, int localPort) {
+//        port_mapping_t_vector v = s.add_port_mapping(portmap_protocol.swigToEnum(t.swig()), externalPort, localPort);
+//
+//        int size = (int) v.size();
+//        int[] arr = new int[size];
+//
+//        for (int i = 0; i < size; i++) {
+//            arr[i] = v.get(i);
+//        }
+//
+//        return arr;
+//    }
 
-        int size = (int) v.size();
-        int[] arr = new int[size];
-
-        for (int i = 0; i < size; i++) {
-            arr[i] = v.get(i);
-        }
-
-        return arr;
-    }
-
-    public void deletePortMapping(int handle) {
-        s.delete_port_mapping(handle);
-    }
+    // TODO: review
+//    public void deletePortMapping(int handle) {
+//        s.delete_port_mapping(handle);
+//    }
 
     /**
      * This option indicates if the ports are mapped using natpmp
@@ -558,15 +478,15 @@ public class SessionHandle {
      * @param port
      * @param flags
      */
-    public void dhtAnnounce(Sha1Hash infoHash, int port, int flags) {
-        s.dht_announce(infoHash.swig(), port, flags);
+    public void dhtAnnounce(Sha1Hash infoHash, int port, byte flags) {
+        s.dht_announce_ex(infoHash.swig(), port, flags);
     }
 
     /**
      * @param infoHash
      */
     public void dhtAnnounce(Sha1Hash infoHash) {
-        s.dht_announce(infoHash.swig());
+        s.dht_announce_ex(infoHash.swig());
     }
 
     /**
@@ -612,14 +532,5 @@ public class SessionHandle {
      */
     public boolean isListening() {
         return s.is_listening();
-    }
-
-    /**
-     *
-     */
-    public void addExtension(Plugin plugin) {
-        SwigPlugin p = new SwigPlugin(plugin);
-        s.add_extension(p);
-        p.swigReleaseOwnership();
     }
 }

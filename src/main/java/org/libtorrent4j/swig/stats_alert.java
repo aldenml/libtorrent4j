@@ -52,6 +52,11 @@ public class stats_alert extends torrent_alert {
     return libtorrent_jni.stats_alert_message(swigCPtr, this);
   }
 
+  public int_array_stats_alert_num_channels getTransferred() {
+    long cPtr = libtorrent_jni.stats_alert_transferred_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new int_array_stats_alert_num_channels(cPtr, false);
+  }
+
   public int getInterval() {
     return libtorrent_jni.stats_alert_interval_get(swigCPtr, this);
   }
@@ -60,7 +65,7 @@ public class stats_alert extends torrent_alert {
     return libtorrent_jni.stats_alert_get_transferred(swigCPtr, this, index);
   }
 
-  public final static int priority = libtorrent_jni.stats_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.stats_alert_priority_get());
   public final static int alert_type = libtorrent_jni.stats_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.stats_alert_static_category_get(), false);
   public final static class stats_channel {
@@ -69,8 +74,12 @@ public class stats_alert extends torrent_alert {
     public final static stats_alert.stats_channel download_payload = new stats_alert.stats_channel("download_payload");
     public final static stats_alert.stats_channel download_protocol = new stats_alert.stats_channel("download_protocol");
     public final static stats_alert.stats_channel upload_ip_protocol = new stats_alert.stats_channel("upload_ip_protocol");
-    public final static stats_alert.stats_channel download_ip_protocol = new stats_alert.stats_channel("download_ip_protocol", libtorrent_jni.stats_alert_download_ip_protocol_get());
-    public final static stats_alert.stats_channel num_channels = new stats_alert.stats_channel("num_channels", libtorrent_jni.stats_alert_num_channels_get());
+    public final static stats_alert.stats_channel deprecated1 = new stats_alert.stats_channel("deprecated1");
+    public final static stats_alert.stats_channel deprecated2 = new stats_alert.stats_channel("deprecated2");
+    public final static stats_alert.stats_channel download_ip_protocol = new stats_alert.stats_channel("download_ip_protocol");
+    public final static stats_alert.stats_channel deprecated3 = new stats_alert.stats_channel("deprecated3");
+    public final static stats_alert.stats_channel deprecated4 = new stats_alert.stats_channel("deprecated4");
+    public final static stats_alert.stats_channel num_channels = new stats_alert.stats_channel("num_channels");
 
     public final int swigValue() {
       return swigValue;
@@ -106,7 +115,7 @@ public class stats_alert extends torrent_alert {
       swigNext = this.swigValue+1;
     }
 
-    private static stats_channel[] swigValues = { upload_payload, upload_protocol, download_payload, download_protocol, upload_ip_protocol, download_ip_protocol, num_channels };
+    private static stats_channel[] swigValues = { upload_payload, upload_protocol, download_payload, download_protocol, upload_ip_protocol, deprecated1, deprecated2, download_ip_protocol, deprecated3, deprecated4, num_channels };
     private static int swigNext = 0;
     private final int swigValue;
     private final String swigName;

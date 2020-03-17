@@ -22,6 +22,7 @@ public final class EnumNet {
     private EnumNet() {
     }
 
+    /*
     public static List<IpInterface> enumInterfaces(SessionManager session) {
         if (session.swig() == null) {
             return Collections.emptyList();
@@ -181,4 +182,6 @@ public final class EnumNet {
             return sb.toString();
         }
     }
+
+     */
 }

@@ -60,7 +60,7 @@ public class state_changed_alert extends torrent_alert {
     return torrent_status.state_t.swigToEnum(libtorrent_jni.state_changed_alert_prev_state_get(swigCPtr, this));
   }
 
-  public final static int priority = libtorrent_jni.state_changed_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.state_changed_alert_priority_get());
   public final static int alert_type = libtorrent_jni.state_changed_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.state_changed_alert_static_category_get(), false);
 }

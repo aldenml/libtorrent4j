@@ -1,6 +1,7 @@
 package org.libtorrent4j;
 
 import org.junit.Test;
+import org.libtorrent4j.swig.byte_vector;
 import org.libtorrent4j.swig.int_vector;
 
 import static org.junit.Assert.assertEquals;
@@ -18,16 +19,16 @@ public class PriorityTest {
         assertEquals(arr.length, vec.size());
 
         for (int i = 0; i < arr.length; i++) {
-            assertEquals(Priority.DEFAULT.swig(), vec.get(i));
+            assertEquals(Priority.DEFAULT.swig(), (int)vec.get(i));
         }
     }
 
     @Test
     public void testVector2Array() {
-        int_vector v = new int_vector();
+        byte_vector v = new byte_vector();
 
         for (int i = 0; i < 10; i++) {
-            v.push_back(Priority.DEFAULT.swig());
+            v.add((byte)Priority.DEFAULT.swig());
         }
 
         Priority[] arr = Priority.vector2array(v);

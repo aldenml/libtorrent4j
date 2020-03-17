@@ -52,16 +52,16 @@ public class alerts_dropped_alert extends alert {
     return libtorrent_jni.alerts_dropped_alert_message(swigCPtr, this);
   }
 
-  public void setDropped_alerts(bitset_96 value) {
-    libtorrent_jni.alerts_dropped_alert_dropped_alerts_set(swigCPtr, this, bitset_96.getCPtr(value), value);
+  public void setDropped_alerts(bitset_128 value) {
+    libtorrent_jni.alerts_dropped_alert_dropped_alerts_set(swigCPtr, this, bitset_128.getCPtr(value), value);
   }
 
-  public bitset_96 getDropped_alerts() {
+  public bitset_128 getDropped_alerts() {
     long cPtr = libtorrent_jni.alerts_dropped_alert_dropped_alerts_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new bitset_96(cPtr, false);
+    return (cPtr == 0) ? null : new bitset_128(cPtr, false);
   }
 
-  public final static int priority = libtorrent_jni.alerts_dropped_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.alerts_dropped_alert_priority_get());
   public final static int alert_type = libtorrent_jni.alerts_dropped_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.alerts_dropped_alert_static_category_get(), false);
 }

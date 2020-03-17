@@ -57,7 +57,11 @@ public class picker_log_alert extends peer_alert {
     return (cPtr == 0) ? null : new picker_flags_t(cPtr, false);
   }
 
-  public final static int priority = libtorrent_jni.picker_log_alert_priority_get();
+  public piece_block_vector blocks() {
+    return new piece_block_vector(libtorrent_jni.picker_log_alert_blocks(swigCPtr, this), true);
+  }
+
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.picker_log_alert_priority_get());
   public final static int alert_type = libtorrent_jni.picker_log_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.picker_log_alert_static_category_get(), false);
   public final static picker_flags_t partial_ratio = new picker_flags_t(libtorrent_jni.picker_log_alert_partial_ratio_get(), false);

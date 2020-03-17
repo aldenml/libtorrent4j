@@ -77,19 +77,19 @@ public final class Entry {
         entry_vector d = e.list();
         for (Object v : list) {
             if (v instanceof String) {
-                d.push_back(new entry((String) v));
+                d.add(new entry((String) v));
             } else if (v instanceof Integer) {
-                d.push_back(new entry((Integer) v));
+                d.add(new entry((Integer) v));
             } else if (v instanceof Entry) {
-                d.push_back(((Entry) v).swig());
+                d.add(((Entry) v).swig());
             } else if (v instanceof entry) {
-                d.push_back((entry) v);
+                d.add((entry) v);
             } else if (v instanceof List) {
-                d.push_back(fromList((List<?>) v).swig());
+                d.add(fromList((List<?>) v).swig());
             } else if (v instanceof Map) {
-                d.push_back(fromMap((Map<String, ?>) v).swig());
+                d.add(fromMap((Map<String, ?>) v).swig());
             } else {
-                d.push_back(new entry(v.toString()));
+                d.add(new entry(v.toString()));
             }
         }
 
@@ -104,19 +104,19 @@ public final class Entry {
             Object v = map.get(k);
 
             if (v instanceof String) {
-                d.set(k, new entry((String) v));
+                d.put(k, new entry((String) v));
             } else if (v instanceof Integer) {
-                d.set(k, new entry((Integer) v));
+                d.put(k, new entry((Integer) v));
             } else if (v instanceof Entry) {
-                d.set(k, ((Entry) v).swig());
+                d.put(k, ((Entry) v).swig());
             } else if (v instanceof entry) {
-                d.set(k, (entry) v);
+                d.put(k, (entry) v);
             } else if (v instanceof List) {
-                d.set(k, fromList((List<?>) v).swig());
+                d.put(k, fromList((List<?>) v).swig());
             } else if (v instanceof Map) {
-                d.set(k, fromMap((Map<String, ?>) v).swig());
+                d.put(k, fromMap((Map<String, ?>) v).swig());
             } else {
-                d.set(k, new entry(v.toString()));
+                d.put(k, new entry(v.toString()));
             }
         }
 
@@ -138,7 +138,7 @@ public final class Entry {
 
         @Override
         public boolean add(Entry entry) {
-            v.push_back(entry.swig());
+            v.add(entry.swig());
             return true;
         }
 
@@ -154,7 +154,7 @@ public final class Entry {
 
         @Override
         public boolean isEmpty() {
-            return v.empty();
+            return v.isEmpty();
         }
     }
 
@@ -169,13 +169,13 @@ public final class Entry {
         @Override
         public org.libtorrent4j.Entry get(Object key) {
             String k = key.toString();
-            return m.has_key(k) ? new org.libtorrent4j.Entry(m.get(key.toString())) : null;
+            return m.containsKey(k) ? new org.libtorrent4j.Entry(m.get(key.toString())) : null;
         }
 
         @Override
         public org.libtorrent4j.Entry put(String key, org.libtorrent4j.Entry value) {
             org.libtorrent4j.Entry r = get(key);
-            m.set(key, value.swig());
+            m.put(key, value.swig());
             return r;
         }
 
@@ -191,26 +191,17 @@ public final class Entry {
 
         @Override
         public boolean containsKey(Object key) {
-            return m.has_key(key.toString());
+            return m.containsKey(key.toString());
         }
 
         @Override
         public boolean isEmpty() {
-            return m.empty();
+            return m.isEmpty();
         }
 
         @Override
         public Set<String> keySet() {
-            HashSet<String> s = new HashSet<>();
-
-            string_vector v = m.keys();
-            int size = (int) v.size();
-
-            for (int i = 0; i < size; i++) {
-                s.add(v.get(i));
-            }
-
-            return s;
+            return m.keySet();
         }
 
         @Override

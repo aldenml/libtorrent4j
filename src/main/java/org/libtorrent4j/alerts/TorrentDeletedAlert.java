@@ -1,5 +1,6 @@
 package org.libtorrent4j.alerts;
 
+import org.libtorrent4j.InfoHash;
 import org.libtorrent4j.Sha1Hash;
 import org.libtorrent4j.swig.torrent_deleted_alert;
 
@@ -23,7 +24,7 @@ public final class TorrentDeletedAlert extends TorrentAlert<torrent_deleted_aler
         super(alert);
     }
 
-    public Sha1Hash getInfoHash() {
-        return new Sha1Hash(alert.getInfo_hash());
+    public InfoHash getInfoHash() {
+        return new InfoHash(alert.getInfo_hash());
     }
 }

@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static org.libtorrent4j.swig.libtorrent.add_files_ex;
-import static org.libtorrent4j.swig.libtorrent.set_piece_hashes_ex;
 import static org.junit.Assert.*;
 
 /**
@@ -20,6 +18,7 @@ import static org.junit.Assert.*;
  */
 public class CreateTorrentTest {
 
+    /*
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 

@@ -40,24 +40,24 @@ public class bandwidth_state_flags_t {
     return new bandwidth_state_flags_t(libtorrent_jni.bandwidth_state_flags_t_all(), true);
   }
 
-  public boolean nonZero() {
-    return libtorrent_jni.bandwidth_state_flags_t_nonZero(swigCPtr, this);
+  public boolean op_bool() {
+    return libtorrent_jni.bandwidth_state_flags_t_op_bool(swigCPtr, this);
   }
 
-  public boolean eq(bandwidth_state_flags_t f) {
-    return libtorrent_jni.bandwidth_state_flags_t_eq(swigCPtr, this, bandwidth_state_flags_t.getCPtr(f), f);
+  public boolean op_eq(bandwidth_state_flags_t f) {
+    return libtorrent_jni.bandwidth_state_flags_t_op_eq(swigCPtr, this, bandwidth_state_flags_t.getCPtr(f), f);
   }
 
-  public boolean ne(bandwidth_state_flags_t f) {
-    return libtorrent_jni.bandwidth_state_flags_t_ne(swigCPtr, this, bandwidth_state_flags_t.getCPtr(f), f);
+  public boolean op_ne(bandwidth_state_flags_t f) {
+    return libtorrent_jni.bandwidth_state_flags_t_op_ne(swigCPtr, this, bandwidth_state_flags_t.getCPtr(f), f);
   }
 
-  public bandwidth_state_flags_t or_(bandwidth_state_flags_t other) {
-    return new bandwidth_state_flags_t(libtorrent_jni.bandwidth_state_flags_t_or_(swigCPtr, this, bandwidth_state_flags_t.getCPtr(other), other), true);
+  public bandwidth_state_flags_t op_or(bandwidth_state_flags_t other) {
+    return new bandwidth_state_flags_t(libtorrent_jni.bandwidth_state_flags_t_op_or(swigCPtr, this, bandwidth_state_flags_t.getCPtr(other), other), true);
   }
 
-  public bandwidth_state_flags_t and_(bandwidth_state_flags_t other) {
-    return new bandwidth_state_flags_t(libtorrent_jni.bandwidth_state_flags_t_and_(swigCPtr, this, bandwidth_state_flags_t.getCPtr(other), other), true);
+  public bandwidth_state_flags_t op_and(bandwidth_state_flags_t other) {
+    return new bandwidth_state_flags_t(libtorrent_jni.bandwidth_state_flags_t_op_and(swigCPtr, this, bandwidth_state_flags_t.getCPtr(other), other), true);
   }
 
   public bandwidth_state_flags_t xor(bandwidth_state_flags_t other) {

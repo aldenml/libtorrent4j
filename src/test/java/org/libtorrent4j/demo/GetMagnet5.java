@@ -143,14 +143,14 @@ public final class GetMagnet5 {
             s.download(ti, saveDir);
             log("torrent added with name = " + ti.name());
             //storrent.addTh(s.find(ti.infoHash()), name);
-            log(s.find(ti.infoHash()).isValid() + " isvalid");
+            log(s.find(ti.infoHash().getBest()).isValid() + " isvalid");
             log("torrent added to session");
             //this.videoname = ti.name();
             int i = 0;
             while (i < 20) {
                 TimeUnit.SECONDS.sleep(1);
-                log(s.find(ti.infoHash()).status().state() + " state");
-                log(s.find(ti.infoHash()).status().progress() * 100 + " progress");
+                log(s.find(ti.infoHash().getBest()).status().state() + " state");
+                log(s.find(ti.infoHash().getBest()).status().progress() * 100 + " progress");
                 i++;
             }
         }

@@ -36,6 +36,30 @@ public class announce_entry {
     }
   }
 
+  public announce_entry() {
+    this(libtorrent_jni.new_announce_entry__SWIG_0(), true);
+  }
+
+  public announce_entry(announce_entry arg0) {
+    this(libtorrent_jni.new_announce_entry__SWIG_1(announce_entry.getCPtr(arg0), arg0), true);
+  }
+
+  public void setUrl(String value) {
+    libtorrent_jni.announce_entry_url_set(swigCPtr, this, value);
+  }
+
+  public String getUrl() {
+    return libtorrent_jni.announce_entry_url_get(swigCPtr, this);
+  }
+
+  public void setTrackerid(String value) {
+    libtorrent_jni.announce_entry_trackerid_set(swigCPtr, this, value);
+  }
+
+  public String getTrackerid() {
+    return libtorrent_jni.announce_entry_trackerid_get(swigCPtr, this);
+  }
+
   public void setEndpoints(announce_endpoint_vector value) {
     libtorrent_jni.announce_entry_endpoints_set(swigCPtr, this, announce_endpoint_vector.getCPtr(value), value);
   }
@@ -75,26 +99,6 @@ public class announce_entry {
 
   public boolean getVerified() {
     return libtorrent_jni.announce_entry_verified_get(swigCPtr, this);
-  }
-
-  public announce_entry(byte_vector u) {
-    this(libtorrent_jni.new_announce_entry(byte_vector.getCPtr(u), u), true);
-  }
-
-  public byte_vector get_url() {
-    return new byte_vector(libtorrent_jni.announce_entry_get_url(swigCPtr, this), true);
-  }
-
-  public void set_url(byte_vector s) {
-    libtorrent_jni.announce_entry_set_url(swigCPtr, this, byte_vector.getCPtr(s), s);
-  }
-
-  public byte_vector get_trackerid() {
-    return new byte_vector(libtorrent_jni.announce_entry_get_trackerid(swigCPtr, this), true);
-  }
-
-  public void set_trackerid(byte_vector s) {
-    libtorrent_jni.announce_entry_set_trackerid(swigCPtr, this, byte_vector.getCPtr(s), s);
   }
 
   public final static class tracker_source {

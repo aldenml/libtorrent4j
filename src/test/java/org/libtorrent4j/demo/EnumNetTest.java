@@ -13,6 +13,7 @@ import java.util.List;
  */
 public final class EnumNetTest {
 
+    /*
     public static void main(String[] args) throws Throwable {
 
         SessionManager s = new SessionManager();
@@ -50,4 +51,6 @@ public final class EnumNetTest {
 
         s.stop();
     }
+
+     */
 }

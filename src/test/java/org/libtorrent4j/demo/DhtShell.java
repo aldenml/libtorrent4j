@@ -13,6 +13,7 @@ import java.util.Scanner;
  */
 public final class DhtShell {
 
+    /*
     public static void main(String[] args) throws Throwable {
 
         AlertListener mainListener = new AlertListener() {
@@ -237,4 +238,6 @@ public final class DhtShell {
     private static void invalid(String s) {
         print("Invalid command: " + s + "\n" + "Try ? for help");
     }
+
+     */
 }

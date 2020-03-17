@@ -8,7 +8,7 @@
 
 package org.libtorrent4j.swig;
 
-public class int64_vector {
+public class int64_vector extends java.util.AbstractList<Long> implements java.util.RandomAccess {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -36,12 +36,61 @@ public class int64_vector {
     }
   }
 
-  public int64_vector() {
-    this(libtorrent_jni.new_int64_vector(), true);
+  public int64_vector(long[] initialElements) {
+    this();
+    reserve(initialElements.length);
+
+    for (long element : initialElements) {
+      add(element);
+    }
   }
 
-  public long size() {
-    return libtorrent_jni.int64_vector_size(swigCPtr, this);
+  public int64_vector(Iterable<Long> initialElements) {
+    this();
+    for (long element : initialElements) {
+      add(element);
+    }
+  }
+
+  public Long get(int index) {
+    return doGet(index);
+  }
+
+  public Long set(int index, Long e) {
+    return doSet(index, e);
+  }
+
+  public boolean add(Long e) {
+    modCount++;
+    doAdd(e);
+    return true;
+  }
+
+  public void add(int index, Long e) {
+    modCount++;
+    doAdd(index, e);
+  }
+
+  public Long remove(int index) {
+    modCount++;
+    return doRemove(index);
+  }
+
+  protected void removeRange(int fromIndex, int toIndex) {
+    modCount++;
+    doRemoveRange(fromIndex, toIndex);
+  }
+
+  public int size() {
+    return doSize();
+  }
+
+  public int64_vector() {
+    this(libtorrent_jni.new_int64_vector__SWIG_0(), true);
+  }
+
+  public int64_vector(int64_vector other) {
+    this(libtorrent_jni.new_int64_vector__SWIG_1(int64_vector.getCPtr(other), other), true);
   }
 
   public long capacity() {
@@ -52,24 +101,44 @@ public class int64_vector {
     libtorrent_jni.int64_vector_reserve(swigCPtr, this, n);
   }
 
-  public boolean empty() {
-    return libtorrent_jni.int64_vector_empty(swigCPtr, this);
+  public boolean isEmpty() {
+    return libtorrent_jni.int64_vector_isEmpty(swigCPtr, this);
   }
 
   public void clear() {
     libtorrent_jni.int64_vector_clear(swigCPtr, this);
   }
 
-  public void push_back(long x) {
-    libtorrent_jni.int64_vector_push_back(swigCPtr, this, x);
+  public int64_vector(int count, long value) {
+    this(libtorrent_jni.new_int64_vector__SWIG_2(count, value), true);
   }
 
-  public long get(int i) {
-    return libtorrent_jni.int64_vector_get(swigCPtr, this, i);
+  private int doSize() {
+    return libtorrent_jni.int64_vector_doSize(swigCPtr, this);
   }
 
-  public void set(int i, long val) {
-    libtorrent_jni.int64_vector_set(swigCPtr, this, i, val);
+  private void doAdd(long x) {
+    libtorrent_jni.int64_vector_doAdd__SWIG_0(swigCPtr, this, x);
+  }
+
+  private void doAdd(int index, long x) {
+    libtorrent_jni.int64_vector_doAdd__SWIG_1(swigCPtr, this, index, x);
+  }
+
+  private long doRemove(int index) {
+    return libtorrent_jni.int64_vector_doRemove(swigCPtr, this, index);
+  }
+
+  private long doGet(int index) {
+    return libtorrent_jni.int64_vector_doGet(swigCPtr, this, index);
+  }
+
+  private long doSet(int index, long val) {
+    return libtorrent_jni.int64_vector_doSet(swigCPtr, this, index, val);
+  }
+
+  private void doRemoveRange(int fromIndex, int toIndex) {
+    libtorrent_jni.int64_vector_doRemoveRange(swigCPtr, this, fromIndex, toIndex);
   }
 
 }

@@ -8,7 +8,7 @@
 
 package org.libtorrent4j.swig;
 
-public class udp_endpoint_vector {
+public class udp_endpoint_vector extends java.util.AbstractList<udp_endpoint> implements java.util.RandomAccess {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -36,12 +36,61 @@ public class udp_endpoint_vector {
     }
   }
 
-  public udp_endpoint_vector() {
-    this(libtorrent_jni.new_udp_endpoint_vector(), true);
+  public udp_endpoint_vector(udp_endpoint[] initialElements) {
+    this();
+    reserve(initialElements.length);
+
+    for (udp_endpoint element : initialElements) {
+      add(element);
+    }
   }
 
-  public long size() {
-    return libtorrent_jni.udp_endpoint_vector_size(swigCPtr, this);
+  public udp_endpoint_vector(Iterable<udp_endpoint> initialElements) {
+    this();
+    for (udp_endpoint element : initialElements) {
+      add(element);
+    }
+  }
+
+  public udp_endpoint get(int index) {
+    return doGet(index);
+  }
+
+  public udp_endpoint set(int index, udp_endpoint e) {
+    return doSet(index, e);
+  }
+
+  public boolean add(udp_endpoint e) {
+    modCount++;
+    doAdd(e);
+    return true;
+  }
+
+  public void add(int index, udp_endpoint e) {
+    modCount++;
+    doAdd(index, e);
+  }
+
+  public udp_endpoint remove(int index) {
+    modCount++;
+    return doRemove(index);
+  }
+
+  protected void removeRange(int fromIndex, int toIndex) {
+    modCount++;
+    doRemoveRange(fromIndex, toIndex);
+  }
+
+  public int size() {
+    return doSize();
+  }
+
+  public udp_endpoint_vector() {
+    this(libtorrent_jni.new_udp_endpoint_vector__SWIG_0(), true);
+  }
+
+  public udp_endpoint_vector(udp_endpoint_vector other) {
+    this(libtorrent_jni.new_udp_endpoint_vector__SWIG_1(udp_endpoint_vector.getCPtr(other), other), true);
   }
 
   public long capacity() {
@@ -52,24 +101,44 @@ public class udp_endpoint_vector {
     libtorrent_jni.udp_endpoint_vector_reserve(swigCPtr, this, n);
   }
 
-  public boolean empty() {
-    return libtorrent_jni.udp_endpoint_vector_empty(swigCPtr, this);
+  public boolean isEmpty() {
+    return libtorrent_jni.udp_endpoint_vector_isEmpty(swigCPtr, this);
   }
 
   public void clear() {
     libtorrent_jni.udp_endpoint_vector_clear(swigCPtr, this);
   }
 
-  public void push_back(udp_endpoint x) {
-    libtorrent_jni.udp_endpoint_vector_push_back(swigCPtr, this, udp_endpoint.getCPtr(x), x);
+  public udp_endpoint_vector(int count, udp_endpoint value) {
+    this(libtorrent_jni.new_udp_endpoint_vector__SWIG_2(count, udp_endpoint.getCPtr(value), value), true);
   }
 
-  public udp_endpoint get(int i) {
-    return new udp_endpoint(libtorrent_jni.udp_endpoint_vector_get(swigCPtr, this, i), false);
+  private int doSize() {
+    return libtorrent_jni.udp_endpoint_vector_doSize(swigCPtr, this);
   }
 
-  public void set(int i, udp_endpoint val) {
-    libtorrent_jni.udp_endpoint_vector_set(swigCPtr, this, i, udp_endpoint.getCPtr(val), val);
+  private void doAdd(udp_endpoint x) {
+    libtorrent_jni.udp_endpoint_vector_doAdd__SWIG_0(swigCPtr, this, udp_endpoint.getCPtr(x), x);
+  }
+
+  private void doAdd(int index, udp_endpoint x) {
+    libtorrent_jni.udp_endpoint_vector_doAdd__SWIG_1(swigCPtr, this, index, udp_endpoint.getCPtr(x), x);
+  }
+
+  private udp_endpoint doRemove(int index) {
+    return new udp_endpoint(libtorrent_jni.udp_endpoint_vector_doRemove(swigCPtr, this, index), true);
+  }
+
+  private udp_endpoint doGet(int index) {
+    return new udp_endpoint(libtorrent_jni.udp_endpoint_vector_doGet(swigCPtr, this, index), false);
+  }
+
+  private udp_endpoint doSet(int index, udp_endpoint val) {
+    return new udp_endpoint(libtorrent_jni.udp_endpoint_vector_doSet(swigCPtr, this, index, udp_endpoint.getCPtr(val), val), true);
+  }
+
+  private void doRemoveRange(int fromIndex, int toIndex) {
+    libtorrent_jni.udp_endpoint_vector_doRemoveRange(swigCPtr, this, fromIndex, toIndex);
   }
 
 }

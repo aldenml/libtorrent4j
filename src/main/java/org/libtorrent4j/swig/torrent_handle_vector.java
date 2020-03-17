@@ -8,7 +8,7 @@
 
 package org.libtorrent4j.swig;
 
-public class torrent_handle_vector {
+public class torrent_handle_vector extends java.util.AbstractList<torrent_handle> implements java.util.RandomAccess {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -36,12 +36,61 @@ public class torrent_handle_vector {
     }
   }
 
-  public torrent_handle_vector() {
-    this(libtorrent_jni.new_torrent_handle_vector(), true);
+  public torrent_handle_vector(torrent_handle[] initialElements) {
+    this();
+    reserve(initialElements.length);
+
+    for (torrent_handle element : initialElements) {
+      add(element);
+    }
   }
 
-  public long size() {
-    return libtorrent_jni.torrent_handle_vector_size(swigCPtr, this);
+  public torrent_handle_vector(Iterable<torrent_handle> initialElements) {
+    this();
+    for (torrent_handle element : initialElements) {
+      add(element);
+    }
+  }
+
+  public torrent_handle get(int index) {
+    return doGet(index);
+  }
+
+  public torrent_handle set(int index, torrent_handle e) {
+    return doSet(index, e);
+  }
+
+  public boolean add(torrent_handle e) {
+    modCount++;
+    doAdd(e);
+    return true;
+  }
+
+  public void add(int index, torrent_handle e) {
+    modCount++;
+    doAdd(index, e);
+  }
+
+  public torrent_handle remove(int index) {
+    modCount++;
+    return doRemove(index);
+  }
+
+  protected void removeRange(int fromIndex, int toIndex) {
+    modCount++;
+    doRemoveRange(fromIndex, toIndex);
+  }
+
+  public int size() {
+    return doSize();
+  }
+
+  public torrent_handle_vector() {
+    this(libtorrent_jni.new_torrent_handle_vector__SWIG_0(), true);
+  }
+
+  public torrent_handle_vector(torrent_handle_vector other) {
+    this(libtorrent_jni.new_torrent_handle_vector__SWIG_1(torrent_handle_vector.getCPtr(other), other), true);
   }
 
   public long capacity() {
@@ -52,24 +101,44 @@ public class torrent_handle_vector {
     libtorrent_jni.torrent_handle_vector_reserve(swigCPtr, this, n);
   }
 
-  public boolean empty() {
-    return libtorrent_jni.torrent_handle_vector_empty(swigCPtr, this);
+  public boolean isEmpty() {
+    return libtorrent_jni.torrent_handle_vector_isEmpty(swigCPtr, this);
   }
 
   public void clear() {
     libtorrent_jni.torrent_handle_vector_clear(swigCPtr, this);
   }
 
-  public void push_back(torrent_handle x) {
-    libtorrent_jni.torrent_handle_vector_push_back(swigCPtr, this, torrent_handle.getCPtr(x), x);
+  public torrent_handle_vector(int count, torrent_handle value) {
+    this(libtorrent_jni.new_torrent_handle_vector__SWIG_2(count, torrent_handle.getCPtr(value), value), true);
   }
 
-  public torrent_handle get(int i) {
-    return new torrent_handle(libtorrent_jni.torrent_handle_vector_get(swigCPtr, this, i), false);
+  private int doSize() {
+    return libtorrent_jni.torrent_handle_vector_doSize(swigCPtr, this);
   }
 
-  public void set(int i, torrent_handle val) {
-    libtorrent_jni.torrent_handle_vector_set(swigCPtr, this, i, torrent_handle.getCPtr(val), val);
+  private void doAdd(torrent_handle x) {
+    libtorrent_jni.torrent_handle_vector_doAdd__SWIG_0(swigCPtr, this, torrent_handle.getCPtr(x), x);
+  }
+
+  private void doAdd(int index, torrent_handle x) {
+    libtorrent_jni.torrent_handle_vector_doAdd__SWIG_1(swigCPtr, this, index, torrent_handle.getCPtr(x), x);
+  }
+
+  private torrent_handle doRemove(int index) {
+    return new torrent_handle(libtorrent_jni.torrent_handle_vector_doRemove(swigCPtr, this, index), true);
+  }
+
+  private torrent_handle doGet(int index) {
+    return new torrent_handle(libtorrent_jni.torrent_handle_vector_doGet(swigCPtr, this, index), false);
+  }
+
+  private torrent_handle doSet(int index, torrent_handle val) {
+    return new torrent_handle(libtorrent_jni.torrent_handle_vector_doSet(swigCPtr, this, index, torrent_handle.getCPtr(val), val), true);
+  }
+
+  private void doRemoveRange(int fromIndex, int toIndex) {
+    libtorrent_jni.torrent_handle_vector_doRemoveRange(swigCPtr, this, fromIndex, toIndex);
   }
 
 }

@@ -56,7 +56,7 @@ public class log_alert extends alert {
     return libtorrent_jni.log_alert_log_message(swigCPtr, this);
   }
 
-  public final static int priority = libtorrent_jni.log_alert_priority_get();
+  public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.log_alert_priority_get());
   public final static int alert_type = libtorrent_jni.log_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.log_alert_static_category_get(), false);
 }

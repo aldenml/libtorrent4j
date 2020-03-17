@@ -40,22 +40,6 @@ public class peer_class_type_filter {
     this(libtorrent_jni.new_peer_class_type_filter(), true);
   }
 
-  public void add(peer_class_type_filter.socket_type_t st, int peer_class) {
-    libtorrent_jni.peer_class_type_filter_add(swigCPtr, this, st.swigValue(), peer_class);
-  }
-
-  public void remove(peer_class_type_filter.socket_type_t st, int peer_class) {
-    libtorrent_jni.peer_class_type_filter_remove(swigCPtr, this, st.swigValue(), peer_class);
-  }
-
-  public void disallow(peer_class_type_filter.socket_type_t st, int peer_class) {
-    libtorrent_jni.peer_class_type_filter_disallow(swigCPtr, this, st.swigValue(), peer_class);
-  }
-
-  public void allow(peer_class_type_filter.socket_type_t st, int peer_class) {
-    libtorrent_jni.peer_class_type_filter_allow(swigCPtr, this, st.swigValue(), peer_class);
-  }
-
   public long apply(peer_class_type_filter.socket_type_t st, long peer_class_mask) {
     return libtorrent_jni.peer_class_type_filter_apply(swigCPtr, this, st.swigValue(), peer_class_mask);
   }

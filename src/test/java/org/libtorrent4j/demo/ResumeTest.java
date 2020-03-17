@@ -63,7 +63,7 @@ public final class ResumeTest {
         signal.await();
 
         // save resume data just before restarting session
-        s.find(ti.infoHash()).saveResumeData(TorrentHandle.SAVE_INFO_DICT);
+        s.find(ti.infoHash().getBest()).saveResumeData(TorrentHandle.SAVE_INFO_DICT);
 
         signalResumeData.await();
 

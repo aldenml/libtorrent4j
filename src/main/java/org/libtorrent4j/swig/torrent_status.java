@@ -166,24 +166,6 @@ public class torrent_status {
     return libtorrent_jni.torrent_status_total_redundant_bytes_get(swigCPtr, this);
   }
 
-  public void setPieces(piece_index_bitfield value) {
-    libtorrent_jni.torrent_status_pieces_set(swigCPtr, this, piece_index_bitfield.getCPtr(value), value);
-  }
-
-  public piece_index_bitfield getPieces() {
-    long cPtr = libtorrent_jni.torrent_status_pieces_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new piece_index_bitfield(cPtr, false);
-  }
-
-  public void setVerified_pieces(piece_index_bitfield value) {
-    libtorrent_jni.torrent_status_verified_pieces_set(swigCPtr, this, piece_index_bitfield.getCPtr(value), value);
-  }
-
-  public piece_index_bitfield getVerified_pieces() {
-    long cPtr = libtorrent_jni.torrent_status_verified_pieces_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new piece_index_bitfield(cPtr, false);
-  }
-
   public void setTotal_done(long value) {
     libtorrent_jni.torrent_status_total_done_set(swigCPtr, this, value);
   }
@@ -544,13 +526,13 @@ public class torrent_status {
     return libtorrent_jni.torrent_status_announcing_to_dht_get(swigCPtr, this);
   }
 
-  public void setInfo_hash(sha1_hash value) {
-    libtorrent_jni.torrent_status_info_hash_set(swigCPtr, this, sha1_hash.getCPtr(value), value);
+  public void setInfo_hash(info_hash_t value) {
+    libtorrent_jni.torrent_status_info_hash_set(swigCPtr, this, info_hash_t.getCPtr(value), value);
   }
 
-  public sha1_hash getInfo_hash() {
+  public info_hash_t getInfo_hash() {
     long cPtr = libtorrent_jni.torrent_status_info_hash_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new sha1_hash(cPtr, false);
+    return (cPtr == 0) ? null : new info_hash_t(cPtr, false);
   }
 
   public void setFlags(torrent_flags_t value) {
@@ -564,7 +546,7 @@ public class torrent_status {
 
   public torrent_info torrent_file_ptr() {
     long cPtr = libtorrent_jni.torrent_status_torrent_file_ptr(swigCPtr, this);
-    return (cPtr == 0) ? null : new torrent_info(cPtr, false);
+    return (cPtr == 0) ? null : new torrent_info(cPtr, true);
   }
 
   public long get_next_announce() {
@@ -593,6 +575,14 @@ public class torrent_status {
 
   public int get_queue_position() {
     return libtorrent_jni.torrent_status_get_queue_position(swigCPtr, this);
+  }
+
+  public bitfield get_pieces() {
+    return new bitfield(libtorrent_jni.torrent_status_get_pieces(swigCPtr, this), true);
+  }
+
+  public bitfield get_verified_pieces() {
+    return new bitfield(libtorrent_jni.torrent_status_get_verified_pieces(swigCPtr, this), true);
   }
 
   public final static class state_t {

@@ -24,10 +24,10 @@ import java.util.List;
  * name should be assigned to the torrent. In case it's not, the name is
  * used for the torrent as long as it doesn't have metadata.
  *
- * @author gubatron
  * @author aldenml
  */
-public final class AddTorrentParams {
+public final class AddTorrentParams
+    extends SwigObject<add_torrent_params> {
 
     private final add_torrent_params p;
 
@@ -37,6 +37,7 @@ public final class AddTorrentParams {
      * @param p the native object
      */
     public AddTorrentParams(add_torrent_params p) {
+        super(p);
         this.p = p;
     }
 
@@ -44,14 +45,7 @@ public final class AddTorrentParams {
      * Creates an empty parameters object with the default storage.
      */
     public AddTorrentParams() {
-        this(add_torrent_params.create_instance());
-    }
-
-    /**
-     * @return the native object
-     */
-    public add_torrent_params swig() {
-        return p;
+        this(new add_torrent_params());
     }
 
     /**
@@ -69,7 +63,7 @@ public final class AddTorrentParams {
      * @return the torrent info or null if not set
      */
     public TorrentInfo torrentInfo() {
-        torrent_info ti = p.ti_ptr();
+        torrent_info ti = p.getTi();
         return ti != null && ti.is_valid() ? new TorrentInfo(ti) : null;
     }
 
@@ -79,7 +73,7 @@ public final class AddTorrentParams {
      * @param ti the torrent info
      */
     public void torrentInfo(TorrentInfo ti) {
-        p.set_ti(ti.swig());
+        p.setTi(ti.swig());
     }
 
     /**
@@ -111,7 +105,7 @@ public final class AddTorrentParams {
         string_vector v = new string_vector();
 
         for (String s : value) {
-            v.push_back(s);
+            v.add(s);
         }
 
         p.set_trackers(v);
@@ -151,7 +145,7 @@ public final class AddTorrentParams {
         int_vector v = new int_vector();
 
         for (Integer t : value) {
-            v.push_back(t);
+            v.add(t);
         }
 
         p.set_tracker_tiers(v);
@@ -186,7 +180,7 @@ public final class AddTorrentParams {
         string_int_pair_vector v = new string_int_pair_vector();
 
         for (Pair<String, Integer> p : value) {
-            v.push_back(p.to_string_int_pair());
+            v.add(p.to_string_int_pair());
         }
 
         p.set_dht_nodes(v);
@@ -285,8 +279,8 @@ public final class AddTorrentParams {
      *
      * @return the info-hash
      */
-    public Sha1Hash infoHash() {
-        return new Sha1Hash(p.getInfo_hash());
+    public InfoHash infoHash() {
+        return new InfoHash(p.getInfo_hash());
     }
 
     /**
@@ -296,7 +290,7 @@ public final class AddTorrentParams {
      *
      * @param value the info-hash
      */
-    public void infoHash(Sha1Hash value) {
+    public void infoHash(InfoHash value) {
         p.setInfo_hash(value.swig());
     }
 
@@ -400,14 +394,14 @@ public final class AddTorrentParams {
         string_vector v = new string_vector();
 
         for (String s : value) {
-            v.push_back(s);
+            v.add(s);
         }
 
         p.set_url_seeds(v);
     }
 
     public Priority[] filePriorities() {
-        int_vector v = p.get_file_priorities2();
+        byte_vector v = p.get_file_priorities();
         return Priority.vector2array(v);
     }
 
@@ -419,11 +413,11 @@ public final class AddTorrentParams {
      * @param priorities the priorities
      */
     public void filePriorities(Priority[] priorities) {
-        p.set_file_priorities2(Priority.array2byte_vector(priorities));
+        p.set_file_priorities(Priority.array2byte_vector(priorities));
     }
 
     public Priority[] piecePriorities() {
-        int_vector v = p.get_piece_priorities2();
+        byte_vector v = p.get_piece_priorities();
         return Priority.vector2array(v);
     }
 
@@ -436,7 +430,7 @@ public final class AddTorrentParams {
      * @param priorities the priorities
      */
     public void piecePriorities(Priority[] priorities) {
-        p.set_piece_priorities2(Priority.array2byte_vector(priorities));
+        p.set_piece_priorities(Priority.array2byte_vector(priorities));
     }
 
     /**
@@ -467,7 +461,7 @@ public final class AddTorrentParams {
         tcp_endpoint_vector v = new tcp_endpoint_vector();
 
         for (TcpEndpoint endp : value) {
-            v.push_back(endp.swig());
+            v.add(endp.swig());
         }
 
         p.set_peers(v);
@@ -499,31 +493,10 @@ public final class AddTorrentParams {
         tcp_endpoint_vector v = new tcp_endpoint_vector();
 
         for (TcpEndpoint endp : value) {
-            v.push_back(endp.swig());
+            v.add(endp.swig());
         }
 
         p.set_banned_peers(v);
-    }
-
-    /**
-     * @return an instance with the default storage
-     */
-    public static AddTorrentParams createInstance() {
-        return new AddTorrentParams(add_torrent_params.create_instance());
-    }
-
-    /**
-     * @return an instance with a disabled storage
-     */
-    public static AddTorrentParams createInstanceDisabledStorage() {
-        return new AddTorrentParams(add_torrent_params.create_instance_disabled_storage());
-    }
-
-    /**
-     * @return an instance with a zero storage
-     */
-    public static AddTorrentParams createInstanceZeroStorage() {
-        return new AddTorrentParams(add_torrent_params.create_instance_zero_storage());
     }
 
     /**

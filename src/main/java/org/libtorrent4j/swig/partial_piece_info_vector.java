@@ -8,7 +8,7 @@
 
 package org.libtorrent4j.swig;
 
-public class partial_piece_info_vector {
+public class partial_piece_info_vector extends java.util.AbstractList<partial_piece_info> implements java.util.RandomAccess {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -36,12 +36,61 @@ public class partial_piece_info_vector {
     }
   }
 
-  public partial_piece_info_vector() {
-    this(libtorrent_jni.new_partial_piece_info_vector(), true);
+  public partial_piece_info_vector(partial_piece_info[] initialElements) {
+    this();
+    reserve(initialElements.length);
+
+    for (partial_piece_info element : initialElements) {
+      add(element);
+    }
   }
 
-  public long size() {
-    return libtorrent_jni.partial_piece_info_vector_size(swigCPtr, this);
+  public partial_piece_info_vector(Iterable<partial_piece_info> initialElements) {
+    this();
+    for (partial_piece_info element : initialElements) {
+      add(element);
+    }
+  }
+
+  public partial_piece_info get(int index) {
+    return doGet(index);
+  }
+
+  public partial_piece_info set(int index, partial_piece_info e) {
+    return doSet(index, e);
+  }
+
+  public boolean add(partial_piece_info e) {
+    modCount++;
+    doAdd(e);
+    return true;
+  }
+
+  public void add(int index, partial_piece_info e) {
+    modCount++;
+    doAdd(index, e);
+  }
+
+  public partial_piece_info remove(int index) {
+    modCount++;
+    return doRemove(index);
+  }
+
+  protected void removeRange(int fromIndex, int toIndex) {
+    modCount++;
+    doRemoveRange(fromIndex, toIndex);
+  }
+
+  public int size() {
+    return doSize();
+  }
+
+  public partial_piece_info_vector() {
+    this(libtorrent_jni.new_partial_piece_info_vector__SWIG_0(), true);
+  }
+
+  public partial_piece_info_vector(partial_piece_info_vector other) {
+    this(libtorrent_jni.new_partial_piece_info_vector__SWIG_1(partial_piece_info_vector.getCPtr(other), other), true);
   }
 
   public long capacity() {
@@ -52,24 +101,44 @@ public class partial_piece_info_vector {
     libtorrent_jni.partial_piece_info_vector_reserve(swigCPtr, this, n);
   }
 
-  public boolean empty() {
-    return libtorrent_jni.partial_piece_info_vector_empty(swigCPtr, this);
+  public boolean isEmpty() {
+    return libtorrent_jni.partial_piece_info_vector_isEmpty(swigCPtr, this);
   }
 
   public void clear() {
     libtorrent_jni.partial_piece_info_vector_clear(swigCPtr, this);
   }
 
-  public void push_back(partial_piece_info x) {
-    libtorrent_jni.partial_piece_info_vector_push_back(swigCPtr, this, partial_piece_info.getCPtr(x), x);
+  public partial_piece_info_vector(int count, partial_piece_info value) {
+    this(libtorrent_jni.new_partial_piece_info_vector__SWIG_2(count, partial_piece_info.getCPtr(value), value), true);
   }
 
-  public partial_piece_info get(int i) {
-    return new partial_piece_info(libtorrent_jni.partial_piece_info_vector_get(swigCPtr, this, i), false);
+  private int doSize() {
+    return libtorrent_jni.partial_piece_info_vector_doSize(swigCPtr, this);
   }
 
-  public void set(int i, partial_piece_info val) {
-    libtorrent_jni.partial_piece_info_vector_set(swigCPtr, this, i, partial_piece_info.getCPtr(val), val);
+  private void doAdd(partial_piece_info x) {
+    libtorrent_jni.partial_piece_info_vector_doAdd__SWIG_0(swigCPtr, this, partial_piece_info.getCPtr(x), x);
+  }
+
+  private void doAdd(int index, partial_piece_info x) {
+    libtorrent_jni.partial_piece_info_vector_doAdd__SWIG_1(swigCPtr, this, index, partial_piece_info.getCPtr(x), x);
+  }
+
+  private partial_piece_info doRemove(int index) {
+    return new partial_piece_info(libtorrent_jni.partial_piece_info_vector_doRemove(swigCPtr, this, index), true);
+  }
+
+  private partial_piece_info doGet(int index) {
+    return new partial_piece_info(libtorrent_jni.partial_piece_info_vector_doGet(swigCPtr, this, index), false);
+  }
+
+  private partial_piece_info doSet(int index, partial_piece_info val) {
+    return new partial_piece_info(libtorrent_jni.partial_piece_info_vector_doSet(swigCPtr, this, index, partial_piece_info.getCPtr(val), val), true);
+  }
+
+  private void doRemoveRange(int fromIndex, int toIndex) {
+    libtorrent_jni.partial_piece_info_vector_doRemoveRange(swigCPtr, this, fromIndex, toIndex);
   }
 
 }

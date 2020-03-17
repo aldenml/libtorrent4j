@@ -52,42 +52,6 @@ public class file_storage {
     libtorrent_jni.file_storage_reserve(swigCPtr, this, num_files);
   }
 
-  public void add_file_borrow(string_view filename, String path, long file_size, file_flags_t file_flags, String filehash, long mtime, string_view symlink_path) {
-    libtorrent_jni.file_storage_add_file_borrow__SWIG_0(swigCPtr, this, string_view.getCPtr(filename), filename, path, file_size, file_flags_t.getCPtr(file_flags), file_flags, filehash, mtime, string_view.getCPtr(symlink_path), symlink_path);
-  }
-
-  public void add_file_borrow(string_view filename, String path, long file_size, file_flags_t file_flags, String filehash, long mtime) {
-    libtorrent_jni.file_storage_add_file_borrow__SWIG_1(swigCPtr, this, string_view.getCPtr(filename), filename, path, file_size, file_flags_t.getCPtr(file_flags), file_flags, filehash, mtime);
-  }
-
-  public void add_file_borrow(string_view filename, String path, long file_size, file_flags_t file_flags, String filehash) {
-    libtorrent_jni.file_storage_add_file_borrow__SWIG_2(swigCPtr, this, string_view.getCPtr(filename), filename, path, file_size, file_flags_t.getCPtr(file_flags), file_flags, filehash);
-  }
-
-  public void add_file_borrow(string_view filename, String path, long file_size, file_flags_t file_flags) {
-    libtorrent_jni.file_storage_add_file_borrow__SWIG_3(swigCPtr, this, string_view.getCPtr(filename), filename, path, file_size, file_flags_t.getCPtr(file_flags), file_flags);
-  }
-
-  public void add_file_borrow(string_view filename, String path, long file_size) {
-    libtorrent_jni.file_storage_add_file_borrow__SWIG_4(swigCPtr, this, string_view.getCPtr(filename), filename, path, file_size);
-  }
-
-  public void add_file(String path, long file_size, file_flags_t file_flags, long mtime, string_view symlink_path) {
-    libtorrent_jni.file_storage_add_file__SWIG_0(swigCPtr, this, path, file_size, file_flags_t.getCPtr(file_flags), file_flags, mtime, string_view.getCPtr(symlink_path), symlink_path);
-  }
-
-  public void add_file(String path, long file_size, file_flags_t file_flags, long mtime) {
-    libtorrent_jni.file_storage_add_file__SWIG_1(swigCPtr, this, path, file_size, file_flags_t.getCPtr(file_flags), file_flags, mtime);
-  }
-
-  public void add_file(String path, long file_size, file_flags_t file_flags) {
-    libtorrent_jni.file_storage_add_file__SWIG_2(swigCPtr, this, path, file_size, file_flags_t.getCPtr(file_flags), file_flags);
-  }
-
-  public void add_file(String path, long file_size) {
-    libtorrent_jni.file_storage_add_file__SWIG_3(swigCPtr, this, path, file_size);
-  }
-
   public void rename_file(int index, String new_filename) {
     libtorrent_jni.file_storage_rename_file(swigCPtr, this, index, new_filename);
   }
@@ -140,6 +104,14 @@ public class file_storage {
     return libtorrent_jni.file_storage_piece_size(swigCPtr, this, index);
   }
 
+  public int piece_size2(int index) {
+    return libtorrent_jni.file_storage_piece_size2(swigCPtr, this, index);
+  }
+
+  public int blocks_in_piece2(int index) {
+    return libtorrent_jni.file_storage_blocks_in_piece2(swigCPtr, this, index);
+  }
+
   public void set_name(String n) {
     libtorrent_jni.file_storage_set_name(swigCPtr, this, n);
   }
@@ -152,24 +124,16 @@ public class file_storage {
     libtorrent_jni.file_storage_swap(swigCPtr, this, file_storage.getCPtr(ti), ti);
   }
 
-  public void optimize(int pad_file_limit, int alignment, boolean tail_padding) {
-    libtorrent_jni.file_storage_optimize__SWIG_0(swigCPtr, this, pad_file_limit, alignment, tail_padding);
-  }
-
-  public void optimize(int pad_file_limit, int alignment) {
-    libtorrent_jni.file_storage_optimize__SWIG_1(swigCPtr, this, pad_file_limit, alignment);
-  }
-
-  public void optimize(int pad_file_limit) {
-    libtorrent_jni.file_storage_optimize__SWIG_2(swigCPtr, this, pad_file_limit);
-  }
-
-  public void optimize() {
-    libtorrent_jni.file_storage_optimize__SWIG_3(swigCPtr, this);
+  public void canonicalize() {
+    libtorrent_jni.file_storage_canonicalize(swigCPtr, this);
   }
 
   public sha1_hash hash(int index) {
     return new sha1_hash(libtorrent_jni.file_storage_hash(swigCPtr, this, index), true);
+  }
+
+  public sha256_hash root(int index) {
+    return new sha256_hash(libtorrent_jni.file_storage_root(swigCPtr, this, index), true);
   }
 
   public String symlink(int index) {
@@ -188,10 +152,6 @@ public class file_storage {
     return libtorrent_jni.file_storage_file_path__SWIG_1(swigCPtr, this, index);
   }
 
-  public string_view file_name(int index) {
-    return new string_view(libtorrent_jni.file_storage_file_name(swigCPtr, this, index), true);
-  }
-
   public long file_size(int index) {
     return libtorrent_jni.file_storage_file_size(swigCPtr, this, index);
   }
@@ -204,8 +164,20 @@ public class file_storage {
     return libtorrent_jni.file_storage_file_offset(swigCPtr, this, index);
   }
 
-  public string_vector paths() {
-    return new string_vector(libtorrent_jni.file_storage_paths(swigCPtr, this), false);
+  public int file_num_pieces(int index) {
+    return libtorrent_jni.file_storage_file_num_pieces(swigCPtr, this, index);
+  }
+
+  public int file_num_blocks(int index) {
+    return libtorrent_jni.file_storage_file_num_blocks(swigCPtr, this, index);
+  }
+
+  public int file_first_piece_node(int index) {
+    return libtorrent_jni.file_storage_file_first_piece_node(swigCPtr, this, index);
+  }
+
+  public int file_first_block_node(int index) {
+    return libtorrent_jni.file_storage_file_first_block_node(swigCPtr, this, index);
   }
 
   public file_flags_t file_flags(int index) {
@@ -220,10 +192,32 @@ public class file_storage {
     return libtorrent_jni.file_storage_file_index_at_offset(swigCPtr, this, offset);
   }
 
-  public void add_file(String path, long file_size, file_flags_t file_flags, long mtime, String symlink_path) {
-    libtorrent_jni.file_storage_add_file__SWIG_4(swigCPtr, this, path, file_size, file_flags_t.getCPtr(file_flags), file_flags, mtime, symlink_path);
+  public int file_index_at_piece(int piece) {
+    return libtorrent_jni.file_storage_file_index_at_piece(swigCPtr, this, piece);
   }
 
+  public int file_index_for_root(sha256_hash root_hash) {
+    return libtorrent_jni.file_storage_file_index_for_root(swigCPtr, this, sha256_hash.getCPtr(root_hash), root_hash);
+  }
+
+  public int piece_index_at_file(int f) {
+    return libtorrent_jni.file_storage_piece_index_at_file(swigCPtr, this, f);
+  }
+
+  public void rebase_pointers(String current_base, String new_base) {
+    libtorrent_jni.file_storage_rebase_pointers(swigCPtr, this, current_base, new_base);
+  }
+
+  public void add_file2(String path, long file_size, file_flags_t file_flags, long mtime, String symlink_path) {
+    libtorrent_jni.file_storage_add_file2(swigCPtr, this, path, file_size, file_flags_t.getCPtr(file_flags), file_flags, mtime, symlink_path);
+  }
+
+  public String file_name_ex(int index) {
+    return libtorrent_jni.file_storage_file_name_ex(swigCPtr, this, index);
+  }
+
+  public final static long max_file_size = libtorrent_jni.file_storage_max_file_size_get();
+  public final static long max_file_offset = libtorrent_jni.file_storage_max_file_offset_get();
   public final static file_flags_t flag_pad_file = new file_flags_t(libtorrent_jni.file_storage_flag_pad_file_get(), false);
   public final static file_flags_t flag_hidden = new file_flags_t(libtorrent_jni.file_storage_flag_hidden_get(), false);
   public final static file_flags_t flag_executable = new file_flags_t(libtorrent_jni.file_storage_flag_executable_get(), false);

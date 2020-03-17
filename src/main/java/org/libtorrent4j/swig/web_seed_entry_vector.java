@@ -8,7 +8,7 @@
 
 package org.libtorrent4j.swig;
 
-public class web_seed_entry_vector {
+public class web_seed_entry_vector extends java.util.AbstractList<web_seed_entry> implements java.util.RandomAccess {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -36,12 +36,61 @@ public class web_seed_entry_vector {
     }
   }
 
-  public web_seed_entry_vector() {
-    this(libtorrent_jni.new_web_seed_entry_vector(), true);
+  public web_seed_entry_vector(web_seed_entry[] initialElements) {
+    this();
+    reserve(initialElements.length);
+
+    for (web_seed_entry element : initialElements) {
+      add(element);
+    }
   }
 
-  public long size() {
-    return libtorrent_jni.web_seed_entry_vector_size(swigCPtr, this);
+  public web_seed_entry_vector(Iterable<web_seed_entry> initialElements) {
+    this();
+    for (web_seed_entry element : initialElements) {
+      add(element);
+    }
+  }
+
+  public web_seed_entry get(int index) {
+    return doGet(index);
+  }
+
+  public web_seed_entry set(int index, web_seed_entry e) {
+    return doSet(index, e);
+  }
+
+  public boolean add(web_seed_entry e) {
+    modCount++;
+    doAdd(e);
+    return true;
+  }
+
+  public void add(int index, web_seed_entry e) {
+    modCount++;
+    doAdd(index, e);
+  }
+
+  public web_seed_entry remove(int index) {
+    modCount++;
+    return doRemove(index);
+  }
+
+  protected void removeRange(int fromIndex, int toIndex) {
+    modCount++;
+    doRemoveRange(fromIndex, toIndex);
+  }
+
+  public int size() {
+    return doSize();
+  }
+
+  public web_seed_entry_vector() {
+    this(libtorrent_jni.new_web_seed_entry_vector__SWIG_0(), true);
+  }
+
+  public web_seed_entry_vector(web_seed_entry_vector other) {
+    this(libtorrent_jni.new_web_seed_entry_vector__SWIG_1(web_seed_entry_vector.getCPtr(other), other), true);
   }
 
   public long capacity() {
@@ -52,24 +101,44 @@ public class web_seed_entry_vector {
     libtorrent_jni.web_seed_entry_vector_reserve(swigCPtr, this, n);
   }
 
-  public boolean empty() {
-    return libtorrent_jni.web_seed_entry_vector_empty(swigCPtr, this);
+  public boolean isEmpty() {
+    return libtorrent_jni.web_seed_entry_vector_isEmpty(swigCPtr, this);
   }
 
   public void clear() {
     libtorrent_jni.web_seed_entry_vector_clear(swigCPtr, this);
   }
 
-  public void push_back(web_seed_entry x) {
-    libtorrent_jni.web_seed_entry_vector_push_back(swigCPtr, this, web_seed_entry.getCPtr(x), x);
+  public web_seed_entry_vector(int count, web_seed_entry value) {
+    this(libtorrent_jni.new_web_seed_entry_vector__SWIG_2(count, web_seed_entry.getCPtr(value), value), true);
   }
 
-  public web_seed_entry get(int i) {
-    return new web_seed_entry(libtorrent_jni.web_seed_entry_vector_get(swigCPtr, this, i), false);
+  private int doSize() {
+    return libtorrent_jni.web_seed_entry_vector_doSize(swigCPtr, this);
   }
 
-  public void set(int i, web_seed_entry val) {
-    libtorrent_jni.web_seed_entry_vector_set(swigCPtr, this, i, web_seed_entry.getCPtr(val), val);
+  private void doAdd(web_seed_entry x) {
+    libtorrent_jni.web_seed_entry_vector_doAdd__SWIG_0(swigCPtr, this, web_seed_entry.getCPtr(x), x);
+  }
+
+  private void doAdd(int index, web_seed_entry x) {
+    libtorrent_jni.web_seed_entry_vector_doAdd__SWIG_1(swigCPtr, this, index, web_seed_entry.getCPtr(x), x);
+  }
+
+  private web_seed_entry doRemove(int index) {
+    return new web_seed_entry(libtorrent_jni.web_seed_entry_vector_doRemove(swigCPtr, this, index), true);
+  }
+
+  private web_seed_entry doGet(int index) {
+    return new web_seed_entry(libtorrent_jni.web_seed_entry_vector_doGet(swigCPtr, this, index), false);
+  }
+
+  private web_seed_entry doSet(int index, web_seed_entry val) {
+    return new web_seed_entry(libtorrent_jni.web_seed_entry_vector_doSet(swigCPtr, this, index, web_seed_entry.getCPtr(val), val), true);
+  }
+
+  private void doRemoveRange(int fromIndex, int toIndex) {
+    libtorrent_jni.web_seed_entry_vector_doRemoveRange(swigCPtr, this, fromIndex, toIndex);
   }
 
 }

@@ -100,7 +100,7 @@ public final class LibTorrent {
      * @return the index of the metric
      */
     public static int findMetricIdx(String name) {
-        return libtorrent.find_metric_idx_s(name);
+        return libtorrent.find_metric_idx_ex(name);
     }
 
     /**

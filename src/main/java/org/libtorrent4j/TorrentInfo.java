@@ -47,6 +47,9 @@ public final class TorrentInfo {
     }
 
     public TorrentInfo(MappedByteBuffer buffer) {
+        // TODO: review
+        this.ti = null;
+        /*
         try {
             long ptr = libtorrent_jni.directBufferAddress(buffer);
             long size = libtorrent_jni.directBufferCapacity(buffer);
@@ -60,6 +63,7 @@ public final class TorrentInfo {
         } catch (Throwable e) {
             throw new IllegalArgumentException("Can't decode data mapped buffer: " + e.getMessage(), e);
         }
+        */
     }
 
     /**
@@ -259,7 +263,7 @@ public final class TorrentInfo {
         string_string_pair_vector v = new string_string_pair_vector();
 
         for (Pair<String, String> p : extraHeaders) {
-            v.push_back(p.to_string_string_pair());
+            v.add(p.to_string_string_pair());
         }
 
         ti.add_url_seed(url, externAuth, v);
@@ -311,7 +315,7 @@ public final class TorrentInfo {
         string_string_pair_vector v = new string_string_pair_vector();
 
         for (Pair<String, String> p : extraHeaders) {
-            v.push_back(p.to_string_string_pair());
+            v.add(p.to_string_string_pair());
         }
 
         ti.add_url_seed(url, externAuth, v);
@@ -345,7 +349,7 @@ public final class TorrentInfo {
         web_seed_entry_vector v = new web_seed_entry_vector();
 
         for (WebSeedEntry e : seeds) {
-            v.push_back(e.swig());
+            v.add(e.swig());
         }
 
         ti.set_web_seeds(v);
@@ -388,8 +392,8 @@ public final class TorrentInfo {
      *
      * @return
      */
-    public Sha1Hash infoHash() {
-        return new Sha1Hash(ti.info_hash());
+    public InfoHash infoHash() {
+        return new InfoHash(ti.info_hash());
     }
 
     /**
@@ -434,18 +438,6 @@ public final class TorrentInfo {
      */
     public PeerRequest mapFile(int file, long offset, int size) {
         return new PeerRequest(ti.map_file(file, offset, size));
-    }
-
-    /**
-     * Returns the SSL root certificate for the torrent, if it is an SSL
-     * torrent. Otherwise returns an empty string. The certificate is
-     * the the public certificate in x509 format.
-     *
-     * @return the cert as a byte array
-     */
-    byte[] sslCert() {
-        byte_vector v = ti.ssl_cert().to_bytes();
-        return Vectors.byte_vector2bytes(v);
     }
 
     /**
@@ -500,37 +492,6 @@ public final class TorrentInfo {
 
     public boolean isLoaded() {
         return ti.is_loaded();
-    }
-
-    /**
-     * Returns a copy to the merkle tree for this
-     * torrent, if any.
-     *
-     * @return
-     */
-    public ArrayList<Sha1Hash> merkleTree() {
-        return Sha1Hash.convert(ti.merkle_tree());
-    }
-
-    /**
-     * Copies the passed in merkle tree into the torrent info object.
-     * <p>
-     * You need to set the merkle tree for a torrent that you've just created
-     * (as a merkle torrent). The merkle tree is retrieved from the
-     * {@link #merkleTree()} function, and need to be saved
-     * separately from the torrent file itself. Once it's added to
-     * libtorrent, the merkle tree will be persisted in the resume data.
-     *
-     * @param tree
-     */
-    public void merkleTree(List<Sha1Hash> tree) {
-        sha1_hash_vector v = new sha1_hash_vector();
-
-        for (Sha1Hash h : tree) {
-            v.push_back(h.swig());
-        }
-
-        ti.set_merkle_tree(v);
     }
 
     /**
@@ -618,16 +579,6 @@ public final class TorrentInfo {
      */
     public bdecode_node info(String key) {
         return ti.info(key);
-    }
-
-    /**
-     * Returns whether or not this is a merkle torrent.
-     * See BEP30: http://bittorrent.org/beps/bep_0030.html
-     *
-     * @return
-     */
-    public boolean isMerkleTorrent() {
-        return ti.is_merkle_torrent();
     }
 
     /**
