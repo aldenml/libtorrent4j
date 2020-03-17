@@ -1,22 +1,22 @@
 language: cpp
-dist: xenial
 
 matrix:
   include:
-    - env: os_build=android os_arch=arm android_api=16
-    - env: os_build=android os_arch=arm64 android_api=21
-    - env: os_build=android os_arch=x86 android_api=16
-    - env: os_build=android os_arch=x86_64 android_api=21
-    - env: os_build=linux os_arch=x86
-    - env: os_build=linux os_arch=x86_64
-    - env: os_build=windows os_arch=x86
-    - env: os_build=windows os_arch=x86_64
+    #- env: os_build=android os_arch=arm android_api=16
+    #- env: os_build=android os_arch=arm64 android_api=21
+    #- env: os_build=android os_arch=x86 android_api=16
+    #- env: os_build=android os_arch=x86_64 android_api=21
+    #- env: os_build=linux os_arch=x86
+    #- env: os_build=linux os_arch=x86_64
+    #- env: os_build=windows os_arch=x86
+    #- env: os_build=windows os_arch=x86_64
     - os: osx
       env: os_build=macosx os_arch=x86_64
 
 branches:
   only:
     - master
+    - RC_1_2
 
 before_install:
 # boost: download and bootstrap
@@ -42,7 +42,8 @@ before_install:
 # libtorrent: download and checkout revision
   - git clone https://github.com/arvidn/libtorrent
   - cd libtorrent
-  - git checkout 078f7b956ef0d992948852a801e626b1118a1fc5
+#  - git checkout 078f7b956ef0d992948852a801e626b1118a1fc5
+  - git checkout master
   - cd ..
   - export LIBTORRENT_ROOT=$PWD/libtorrent
   # perform android specific modifications for posix calls
@@ -230,7 +231,7 @@ script:
   - $run_bjam
   - $run_objcopy
   - $run_strip
-  - if [ $os_build == "macosx" ]; then
+  - if [ $os_build == "macosx-no-run" ]; then
       cd ..;
       cp swig/bin/release/macosx/x86_64/libtorrent4j.dylib .;
       gradle test;
