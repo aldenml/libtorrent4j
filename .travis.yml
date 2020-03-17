@@ -233,7 +233,7 @@ script:
   - $run_bjam
   - $run_objcopy
   - $run_strip
-  - if [ $os_build == "macosx-no-run" ]; then
+  - if [ $os_build == "macosx" ]; then
       cd ..;
       cp swig/bin/release/macosx/x86_64/libtorrent4j.dylib .;
       gradle test;

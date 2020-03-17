@@ -24642,6 +24642,47 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_error_1to_1cl
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1peer_1info_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::peer_info *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::peer_info *)new libtorrent::peer_info();
+  *(libtorrent::peer_info **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1peer_1info(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  libtorrent::peer_info *arg1 = (libtorrent::peer_info *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(libtorrent::peer_info **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1peer_1info_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::peer_info *arg1 = 0 ;
+  libtorrent::peer_info *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::peer_info **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::peer_info const & reference is null");
+    return 0;
+  } 
+  result = (libtorrent::peer_info *)new libtorrent::peer_info((libtorrent::peer_info const &)*arg1);
+  *(libtorrent::peer_info **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1info_1total_1download_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   libtorrent::peer_info *arg1 = (libtorrent::peer_info *) 0 ;
   std::int64_t arg2 ;
@@ -26090,34 +26131,6 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1info_1p
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1info_1estimated_1reciprocation_1rate_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
-  libtorrent::peer_info *arg1 = (libtorrent::peer_info *) 0 ;
-  int arg2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::peer_info **)&jarg1; 
-  arg2 = (int)jarg2; 
-  if (arg1) (arg1)->estimated_reciprocation_rate = arg2;
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1info_1estimated_1reciprocation_1rate_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
-  libtorrent::peer_info *arg1 = (libtorrent::peer_info *) 0 ;
-  int result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::peer_info **)&jarg1; 
-  result = (int) ((arg1)->estimated_reciprocation_rate);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1info_1ip_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   libtorrent::peer_info *arg1 = (libtorrent::peer_info *) 0 ;
   libtorrent::tcp::endpoint *arg2 = (libtorrent::tcp::endpoint *) 0 ;
@@ -26399,28 +26412,6 @@ SWIGEXPORT jbyte JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1info_1
   result = (std::int8_t)libtorrent_peer_info_get_write_state(arg1);
   jresult = (jbyte)result; 
   return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1peer_1info(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
-  libtorrent::peer_info *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (libtorrent::peer_info *)new libtorrent::peer_info();
-  *(libtorrent::peer_info **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1peer_1info(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  libtorrent::peer_info *arg1 = (libtorrent::peer_info *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(libtorrent::peer_info **)&jarg1; 
-  delete arg1;
 }
 
 
@@ -50165,18 +50156,6 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pac
   (void)jenv;
   (void)jcls;
   result = (libtorrent::settings_pack::choking_algorithm_t)libtorrent::settings_pack::rate_based_choker;
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pack_1bittyrant_1choker_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
-  libtorrent::settings_pack::choking_algorithm_t result;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (libtorrent::settings_pack::choking_algorithm_t)libtorrent::settings_pack::bittyrant_choker;
   jresult = (jint)result; 
   return jresult;
 }
