@@ -16,4 +16,8 @@ public class InfoHash
     public InfoHash(info_hash_t ih) {
         super(ih);
     }
+
+    public Sha1Hash getBest() {
+        return new Sha1Hash(swig.get_best());
+    }
 }
