@@ -36,7 +36,8 @@ public final class TorrentBuilder {
     public TorrentBuilder() {
         this.pieceSize = 0;
         this.padFileLimit = -1;
-        this.flags = OPTIMIZE_ALIGNMENT;
+        // TODO: review
+        //this.flags = OPTIMIZE_ALIGNMENT;
         this.alignment = -1;
 
         this.urlSeeds = new LinkedList<>();
@@ -564,15 +565,6 @@ public final class TorrentBuilder {
     public static final create_flags_t SYMLINKS = create_torrent.symlinks;
 
     /**
-     * To create a torrent that can be updated via a *mutable torrent*
-     * (see BEP38_). This also needs to be enabled for torrents that update
-     * another torrent.
-     * <p>
-     * BEP38: http://www.bittorrent.org/beps/bep_0038.html
-     */
-    public static final create_flags_t MUTABLE_TORRENT_SUPPORT = create_torrent.mutable_torrent_support;
-
-    /**
      *
      */
     public interface Listener {
@@ -630,22 +622,6 @@ public final class TorrentBuilder {
          */
         public int pieceSize(int index) {
             return t.piece_size(index);
-        }
-
-        /**
-         * This function returns the merkle hash tree, if the torrent was created
-         * as a merkle torrent. The tree is created by {@link #generate()} and won't
-         * be valid until that function has been called.
-         * <p>
-         * When creating a merkle tree torrent, the actual tree itself has to
-         * be saved off separately and fed into libtorrent the first time you start
-         * seeding it, through the {@link TorrentInfo#merkleTree(List)} function.
-         * From that point onwards, the tree will be saved in the resume data.
-         *
-         * @return
-         */
-        public ArrayList<Sha1Hash> merkleTree() {
-            return Sha1Hash.convert(t.merkle_tree());
         }
     }
 }

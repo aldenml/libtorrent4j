@@ -52,6 +52,10 @@ public class session_stats_alert extends alert {
     return libtorrent_jni.session_stats_alert_message(swigCPtr, this);
   }
 
+  public long get_value(int index) {
+    return libtorrent_jni.session_stats_alert_get_value(swigCPtr, this, index);
+  }
+
   public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.session_stats_alert_priority_get());
   public final static int alert_type = libtorrent_jni.session_stats_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.session_stats_alert_static_category_get(), false);

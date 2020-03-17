@@ -64,6 +64,10 @@ public class portmap_alert extends alert {
     return portmap_transport.swigToEnum(libtorrent_jni.portmap_alert_map_transport_get(swigCPtr, this));
   }
 
+  public int get_mapping() {
+    return libtorrent_jni.portmap_alert_get_mapping(swigCPtr, this);
+  }
+
   public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.portmap_alert_priority_get());
   public final static int alert_type = libtorrent_jni.portmap_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.portmap_alert_static_category_get(), false);

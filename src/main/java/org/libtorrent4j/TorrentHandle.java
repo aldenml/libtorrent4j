@@ -1237,9 +1237,9 @@ public final class TorrentHandle {
      * @param flags
      * @return the file progress
      */
-    public long[] fileProgress(FileProgressFlags flags) {
+    public long[] fileProgress(file_progress_flags_t flags) {
         int64_vector v = new int64_vector();
-        th.file_progress(v, flags.swig());
+        th.file_progress(v, flags);
         return Vectors.int64_vector2longs(v);
     }
 

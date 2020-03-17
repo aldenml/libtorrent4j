@@ -61,6 +61,10 @@ public class stats_alert extends torrent_alert {
     return libtorrent_jni.stats_alert_interval_get(swigCPtr, this);
   }
 
+  public int get_transferred(int index) {
+    return libtorrent_jni.stats_alert_get_transferred(swigCPtr, this, index);
+  }
+
   public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.stats_alert_priority_get());
   public final static int alert_type = libtorrent_jni.stats_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.stats_alert_static_category_get(), false);

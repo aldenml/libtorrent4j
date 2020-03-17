@@ -64,6 +64,10 @@ public class peer_log_alert extends peer_alert {
     return libtorrent_jni.peer_log_alert_log_message(swigCPtr, this);
   }
 
+  public String get_event_type() {
+    return libtorrent_jni.peer_log_alert_get_event_type(swigCPtr, this);
+  }
+
   public final static class direction_t {
     public final static peer_log_alert.direction_t incoming_message = new peer_log_alert.direction_t("incoming_message");
     public final static peer_log_alert.direction_t outgoing_message = new peer_log_alert.direction_t("outgoing_message");

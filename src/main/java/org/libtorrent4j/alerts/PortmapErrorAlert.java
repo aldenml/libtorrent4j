@@ -28,7 +28,7 @@ public final class PortmapErrorAlert extends AbstractAlert<portmap_error_alert> 
      * @return the mapping index
      */
     public int mapping() {
-        return alert.getMapping();
+        return alert.get_mapping();
     }
 
     public PortmapTransport mapTransport() {

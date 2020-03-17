@@ -60,6 +60,10 @@ public class listen_succeeded_alert extends alert {
     return new address(libtorrent_jni.listen_succeeded_alert_get_address(swigCPtr, this), true);
   }
 
+  public int get_socket_type() {
+    return libtorrent_jni.listen_succeeded_alert_get_socket_type(swigCPtr, this);
+  }
+
   public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.listen_succeeded_alert_priority_get());
   public final static int alert_type = libtorrent_jni.listen_succeeded_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.listen_succeeded_alert_static_category_get(), false);

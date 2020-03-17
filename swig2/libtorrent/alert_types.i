@@ -125,4 +125,110 @@ struct picker_flags_tag;
     }
 }
 
+%extend dht_lookup {
+
+    std::string get_type() {
+        return std::string($self->type);
+    }
+}
+
+%extend portmap_alert {
+
+    int get_mapping() {
+        return static_cast<int>($self->mapping);
+    }
+}
+
+%extend portmap_error_alert {
+
+    int get_mapping() {
+        return static_cast<int>($self->mapping);
+    }
+}
+
+%extend dht_mutable_item_alert {
+
+    std::vector<int8_t> get_key() {
+        std::array<char, 32> arr = $self->key;
+        return std::vector<int8_t>(arr.begin(), arr.end());
+    }
+
+    std::vector<int8_t> get_signature() {
+        std::array<char, 64> arr = $self->signature;
+        return std::vector<int8_t>(arr.begin(), arr.end());
+    }
+
+    int64_t get_seq() {
+        return int64_t($self->seq);
+    }
+
+    std::vector<int8_t> get_salt() {
+        std::string s = $self->salt;
+        return std::vector<int8_t>(s.begin(), s.end());
+    }
+}
+
+%extend dht_put_alert {
+
+    std::vector<int8_t> get_public_key() {
+        std::array<char, 32> arr = $self->public_key;
+        return std::vector<int8_t>(arr.begin(), arr.end());
+    }
+
+    std::vector<int8_t> get_signature() {
+        std::array<char, 64> arr = $self->signature;
+        return std::vector<int8_t>(arr.begin(), arr.end());
+    }
+
+    std::vector<int8_t> get_salt() {
+        std::string s = $self->salt;
+        return std::vector<int8_t>(s.begin(), s.end());
+    }
+
+    int64_t get_seq() {
+        return int64_t($self->seq);
+    }
+}
+
+%extend stats_alert {
+    int get_transferred(int index) {
+        return $self->transferred[index];
+    }
+}
+
+%extend session_stats_alert {
+    long long get_value(int index) {
+        return $self->counters()[index];
+    }
+}
+
+%extend read_piece_alert {
+
+    int64_t buffer_ptr() {
+        return reinterpret_cast<int64_t>($self->buffer.get());
+    }
+}
+
+%extend peer_log_alert {
+    std::string get_event_type() {
+        return std::string($self->event_type);
+    }
+}
+
+%extend listen_failed_alert
+{
+    int get_socket_type()
+    {
+        return static_cast<int>($self->socket_type);
+    }
+}
+
+%extend listen_succeeded_alert
+{
+    int get_socket_type()
+    {
+        return static_cast<int>($self->socket_type);
+    }
+}
+
 }

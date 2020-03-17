@@ -65,6 +65,10 @@ public class portmap_error_alert extends alert {
     return (cPtr == 0) ? null : new error_code(cPtr, false);
   }
 
+  public int get_mapping() {
+    return libtorrent_jni.portmap_error_alert_get_mapping(swigCPtr, this);
+  }
+
   public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.portmap_error_alert_priority_get());
   public final static int alert_type = libtorrent_jni.portmap_error_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.portmap_error_alert_static_category_get(), false);

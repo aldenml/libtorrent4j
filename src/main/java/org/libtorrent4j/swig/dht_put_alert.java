@@ -103,6 +103,22 @@ public class dht_put_alert extends alert {
     return libtorrent_jni.dht_put_alert_num_success_get(swigCPtr, this);
   }
 
+  public byte_vector get_public_key() {
+    return new byte_vector(libtorrent_jni.dht_put_alert_get_public_key(swigCPtr, this), true);
+  }
+
+  public byte_vector get_signature() {
+    return new byte_vector(libtorrent_jni.dht_put_alert_get_signature(swigCPtr, this), true);
+  }
+
+  public byte_vector get_salt() {
+    return new byte_vector(libtorrent_jni.dht_put_alert_get_salt(swigCPtr, this), true);
+  }
+
+  public long get_seq() {
+    return libtorrent_jni.dht_put_alert_get_seq(swigCPtr, this);
+  }
+
   public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.dht_put_alert_priority_get());
   public final static int alert_type = libtorrent_jni.dht_put_alert_alert_type_get();
   public final static alert_category_t static_category = new alert_category_t(libtorrent_jni.dht_put_alert_static_category_get(), false);
