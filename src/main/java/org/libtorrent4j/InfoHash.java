@@ -18,6 +18,6 @@ public class InfoHash
     }
 
     public Sha1Hash getBest() {
-        return new Sha1Hash(swig.get_best());
+        return new Sha1Hash(h.get_best());
     }
 }

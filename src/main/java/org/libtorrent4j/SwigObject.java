@@ -9,19 +9,19 @@ package org.libtorrent4j;
 public class SwigObject<T> {
 
     // the native object handler
-    protected T swig;
+    protected T h;
 
     /**
-     * @param swig the native object handler
+     * @param handler the native object handler
      */
-    public SwigObject(T swig) {
-        this.swig = swig;
+    public SwigObject(T handler) {
+        this.h = handler;
     }
 
     /**
      * Returns a reference to the native object handler
      */
     public T swig() {
-        return swig;
+        return h;
     }
 }
