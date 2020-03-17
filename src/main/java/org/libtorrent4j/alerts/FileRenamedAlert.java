@@ -23,7 +23,7 @@ public final class FileRenamedAlert extends TorrentAlert<file_renamed_alert> {
     /**
      * Refers to the index of the file that was renamed.
      *
-     * @return
+     *
      */
     public int index() {
         return alert.getIndex();

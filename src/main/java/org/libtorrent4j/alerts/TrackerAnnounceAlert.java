@@ -20,7 +20,7 @@ public final class TrackerAnnounceAlert extends TrackerAlert<tracker_announce_al
     /**
      * Specifies what event was sent to the tracker.
      *
-     * @return
+     *
      */
     public TrackerAnnounceEvent getEvent() {
         return TrackerAnnounceEvent.fromSwig(alert.getEvent().swigValue());

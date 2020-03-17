@@ -192,7 +192,7 @@ public final class FileStorage {
      * @param piece
      * @param offset
      * @param size
-     * @return
+     *
      */
     public ArrayList<FileSlice> mapBlock(int piece, long offset, int size) {
         return mapBlock(fs.map_block(piece, offset, size));
@@ -211,7 +211,7 @@ public final class FileStorage {
      * @param file
      * @param offset
      * @param size
-     * @return
+     *
      */
     public PeerRequest mapFile(int file, long offset, int size) {
         return new PeerRequest(fs.map_file(file, offset, size));
@@ -220,7 +220,7 @@ public final class FileStorage {
     /**
      * Returns the number of files in the file_storage.
      *
-     * @return
+     *
      */
     public int numFiles() {
         return fs.num_files();
@@ -229,7 +229,7 @@ public final class FileStorage {
     /**
      * Returns the total number of bytes all the files in this torrent spans.
      *
-     * @return
+     *
      */
     public long totalSize() {
         return fs.total_size();
@@ -257,7 +257,7 @@ public final class FileStorage {
      * Get the size of each piece in this torrent. This size is typically an even power
      * of 2. It doesn't have to be though. It should be divisible by 16kiB however.
      *
-     * @return
+     *
      */
     public int pieceLength() {
         return fs.piece_length();
@@ -278,7 +278,7 @@ public final class FileStorage {
      * except for the last piece, which may be shorter.
      *
      * @param index
-     * @return
+     *
      */
     public int pieceSize(int index) {
         return fs.piece_size(index);
@@ -288,7 +288,7 @@ public final class FileStorage {
      * Get the name of this torrent. For multi-file torrents, this is also
      * the name of the root directory all the files are stored in.
      *
-     * @return
+     *
      */
     public String name() {
         return fs.name();
@@ -310,7 +310,7 @@ public final class FileStorage {
      * join a bittorrent network with other file sharing networks.
      *
      * @param index
-     * @return
+     *
      */
     public Sha1Hash hash(int index) {
         return new Sha1Hash(fs.hash(index));
@@ -321,7 +321,7 @@ public final class FileStorage {
      *
      * @param index
      * @param savePath
-     * @return
+     *
      */
     public String filePath(int index, String savePath) {
         // not calling the corresponding swig function because internally,
@@ -356,7 +356,7 @@ public final class FileStorage {
      * returns the size of a file.
      *
      * @param index
-     * @return
+     *
      */
     public long fileSize(int index) {
         return fs.file_size(index);
@@ -367,7 +367,7 @@ public final class FileStorage {
      * index is a pad-file.
      *
      * @param index
-     * @return
+     *
      */
     public boolean padFileAt(int index) {
         return fs.pad_file_at(index);
@@ -379,7 +379,7 @@ public final class FileStorage {
      * index (given the piece size).
      *
      * @param index
-     * @return
+     *
      */
     public long fileOffset(int index) {
         return fs.file_offset(index);
@@ -429,7 +429,7 @@ public final class FileStorage {
      * torrent.
      *
      * @param index
-     * @return
+     *
      */
     public boolean fileAbsolutePath(int index) {
         return fs.file_absolute_path(index);
@@ -439,7 +439,7 @@ public final class FileStorage {
      * Returns the index of the file at the given offset in the torrent.
      *
      * @param offset
-     * @return
+     *
      */
     public int fileIndexAtOffset(long offset) {
         return fs.file_index_at_offset(offset);

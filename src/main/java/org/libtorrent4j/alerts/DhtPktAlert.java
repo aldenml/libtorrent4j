@@ -24,7 +24,7 @@ public final class DhtPktAlert extends AbstractAlert<dht_pkt_alert> {
      * is valid, which is owned by libtorrent and reclaimed whenever
      * pop_alerts() is called on the session.
      *
-     * @return
+     *
      */
     public byte[] pktBuf() {
         // TODO: review

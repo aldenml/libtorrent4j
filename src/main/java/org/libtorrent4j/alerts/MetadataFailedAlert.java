@@ -21,7 +21,7 @@ public final class MetadataFailedAlert extends TorrentAlert<metadata_failed_aler
     /**
      * The error that occurred.
      *
-     * @return
+     *
      */
     public ErrorCode getError() {
         return new ErrorCode(alert.getError());

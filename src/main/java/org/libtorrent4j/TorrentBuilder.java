@@ -50,7 +50,7 @@ public final class TorrentBuilder {
     }
 
     /**
-     * @return
+     *
      */
     public File path() {
         return path;
@@ -60,7 +60,7 @@ public final class TorrentBuilder {
      * Adds the file specified by {@code value}
      *
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder path(File value) {
         this.path = value;
@@ -68,7 +68,7 @@ public final class TorrentBuilder {
     }
 
     /**
-     * @return
+     *
      */
     public int pieceSize() {
         return pieceSize;
@@ -80,7 +80,7 @@ public final class TorrentBuilder {
      * {@code pieceSize} will be calculated such that the torrent file is roughly 40 kB.
      *
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder pieceSize(int value) {
         this.pieceSize = value;
@@ -88,7 +88,7 @@ public final class TorrentBuilder {
     }
 
     /**
-     * @return
+     *
      */
     public int padFileLimit() {
         return padFileLimit;
@@ -102,7 +102,7 @@ public final class TorrentBuilder {
      * to set this any lower than 4kiB.
      *
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder padFileLimit(int value) {
         this.padFileLimit = value;
@@ -110,7 +110,7 @@ public final class TorrentBuilder {
     }
 
     /**
-     * @return
+     *
      */
     public create_flags_t flags() {
         return flags;
@@ -121,7 +121,7 @@ public final class TorrentBuilder {
      * be any combination of the flags defined by {@link create_flags_t}
      *
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder flags(create_flags_t value) {
         this.flags = value;
@@ -129,7 +129,7 @@ public final class TorrentBuilder {
     }
 
     /**
-     * @return
+     *
      */
     public int alignment() {
         return alignment;
@@ -141,7 +141,7 @@ public final class TorrentBuilder {
      * piece size of the torrent.
      *
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder alignment(int value) {
         this.alignment = value;
@@ -151,7 +151,7 @@ public final class TorrentBuilder {
     /**
      * The comment for the torrent. The comment in a torrent file is optional.
      *
-     * @return
+     *
      */
     public String comment() {
         return comment;
@@ -161,7 +161,7 @@ public final class TorrentBuilder {
      * Sets the comment for the torrent. The comment in a torrent file is optional.
      *
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder comment(String value) {
         this.comment = value;
@@ -171,7 +171,7 @@ public final class TorrentBuilder {
     /**
      * The creator of the torrent. This is optional.
      *
-     * @return
+     *
      */
     public String creator() {
         return creator;
@@ -181,7 +181,7 @@ public final class TorrentBuilder {
      * Sets the creator of the torrent. This is optional.
      *
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder creator(String value) {
         this.creator = value;
@@ -189,7 +189,7 @@ public final class TorrentBuilder {
     }
 
     /**
-     * @return
+     *
      */
     public List<String> urlSeeds() {
         return urlSeeds;
@@ -197,7 +197,7 @@ public final class TorrentBuilder {
 
     /**
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder addUrlSeeds(List<String> value) {
         if (value != null) {
@@ -214,7 +214,7 @@ public final class TorrentBuilder {
      * files of the torrent in it.
      *
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder addUrlSeed(String value) {
         if (value != null) {
@@ -224,7 +224,7 @@ public final class TorrentBuilder {
     }
 
     /**
-     * @return
+     *
      */
     public List<String> httpSeeds() {
         return httpSeeds;
@@ -232,7 +232,7 @@ public final class TorrentBuilder {
 
     /**
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder addHttpSeeds(List<String> value) {
         if (value != null) {
@@ -249,7 +249,7 @@ public final class TorrentBuilder {
      * files of the torrent in it.
      *
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder addHttpSeed(String value) {
         if (value != null) {
@@ -259,7 +259,7 @@ public final class TorrentBuilder {
     }
 
     /**
-     * @return
+     *
      */
     public List<Pair<String, Integer>> nodes() {
         return nodes;
@@ -267,7 +267,7 @@ public final class TorrentBuilder {
 
     /**
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder addNodes(List<Pair<String, Integer>> value) {
         if (value != null) {
@@ -283,7 +283,7 @@ public final class TorrentBuilder {
      * You can have any number of DHT nodes in a torrent.
      *
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder addNode(Pair<String, Integer> value) {
         if (value != null) {
@@ -293,7 +293,7 @@ public final class TorrentBuilder {
     }
 
     /**
-     * @return
+     *
      */
     public List<Pair<String, Integer>> trackers() {
         return trackers;
@@ -301,7 +301,7 @@ public final class TorrentBuilder {
 
     /**
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder addTrackers(List<Pair<String, Integer>> value) {
         if (value != null) {
@@ -312,7 +312,7 @@ public final class TorrentBuilder {
 
     /**
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder addTracker(Pair<String, Integer> value) {
         if (value != null) {
@@ -331,7 +331,7 @@ public final class TorrentBuilder {
      *
      * @param url
      * @param tier
-     * @return
+     *
      */
     public TorrentBuilder addTracker(String url, int tier) {
         return addTracker(new Pair<>(url, tier));
@@ -339,14 +339,14 @@ public final class TorrentBuilder {
 
     /**
      * @param url
-     * @return
+     *
      */
     public TorrentBuilder addTracker(String url) {
         return addTracker(url, 0);
     }
 
     /**
-     * @return
+     *
      */
     public boolean isPrivate() {
         return priv;
@@ -360,7 +360,7 @@ public final class TorrentBuilder {
      * apart from the tracker.
      *
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder setPrivate(boolean value) {
         this.priv = value;
@@ -368,7 +368,7 @@ public final class TorrentBuilder {
     }
 
     /**
-     * @return
+     *
      */
     public List<Sha1Hash> similarTorrents() {
         return similarTorrents;
@@ -376,7 +376,7 @@ public final class TorrentBuilder {
 
     /**
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder addSimilarTorrents(List<Sha1Hash> value) {
         if (value != null) {
@@ -397,7 +397,7 @@ public final class TorrentBuilder {
      * BEP 38: http://www.bittorrent.org/beps/bep_0038.html
      *
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder addSimilarTorrent(Sha1Hash value) {
         if (value != null) {
@@ -407,7 +407,7 @@ public final class TorrentBuilder {
     }
 
     /**
-     * @return
+     *
      */
     public List<String> collections() {
         return collections;
@@ -415,7 +415,7 @@ public final class TorrentBuilder {
 
     /**
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder addCollections(List<String> value) {
         if (value != null) {
@@ -436,7 +436,7 @@ public final class TorrentBuilder {
      * BEP 38: http://www.bittorrent.org/beps/bep_0038.html
      *
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder addCollection(String value) {
         if (value != null) {
@@ -446,7 +446,7 @@ public final class TorrentBuilder {
     }
 
     /**
-     * @return
+     *
      */
     public Listener listener() {
         return listener;
@@ -454,7 +454,7 @@ public final class TorrentBuilder {
 
     /**
      * @param value
-     * @return
+     *
      */
     public TorrentBuilder listener(Listener value) {
         this.listener = value;
@@ -464,7 +464,7 @@ public final class TorrentBuilder {
     /**
      * This function will generate a result withe the .torrent file as a bencode tree.
      *
-     * @return
+     *
      * @throws IOException
      */
     public Result generate() throws IOException {
@@ -571,7 +571,7 @@ public final class TorrentBuilder {
 
         /**
          * @param filename
-         * @return
+         *
          */
         boolean accept(String filename);
 
@@ -596,21 +596,21 @@ public final class TorrentBuilder {
         }
 
         /**
-         * @return
+         *
          */
         public Entry entry() {
             return entry;
         }
 
         /**
-         * @return
+         *
          */
         public int numPieces() {
             return t.num_pieces();
         }
 
         /**
-         * @return
+         *
          */
         public int pieceLength() {
             return t.piece_length();
@@ -618,7 +618,7 @@ public final class TorrentBuilder {
 
         /**
          * @param index
-         * @return
+         *
          */
         public int pieceSize(int index) {
             return t.piece_size(index);

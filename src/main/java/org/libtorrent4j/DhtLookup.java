@@ -36,7 +36,7 @@ public final class DhtLookup {
     /**
      * string literal indicating which kind of lookup this is.
      *
-     * @return
+     *
      */
     public String type() {
         return l.get_type();
@@ -46,7 +46,7 @@ public final class DhtLookup {
      * the number of outstanding request to individual nodes
      * this lookup has right now.
      *
-     * @return
+     *
      */
     public int outstandingRequests() {
         return l.getOutstanding_requests();
@@ -56,7 +56,7 @@ public final class DhtLookup {
      * the total number of requests that have timed out so far
      * for this lookup.
      *
-     * @return
+     *
      */
     public int timeouts() {
         return l.getTimeouts();
@@ -66,7 +66,7 @@ public final class DhtLookup {
      * the total number of responses we have received for this
      * lookup so far for this lookup.
      *
-     * @return
+     *
      */
     public int responses() {
         return l.getResponses();
@@ -77,7 +77,7 @@ public final class DhtLookup {
      * nodes we keep outstanding requests to in parallel by default.
      * when nodes time out we may increase this.
      *
-     * @return
+     *
      */
     public int branchFactor() {
         return l.getBranch_factor();
@@ -89,7 +89,7 @@ public final class DhtLookup {
      * while performing the lookup and would never end up actually
      * being queried.
      *
-     * @return
+     *
      */
     public int nodesLeft() {
         return l.getNodes_left();
@@ -100,7 +100,7 @@ public final class DhtLookup {
      * last message was sent that's still
      * outstanding.
      *
-     * @return
+     *
      */
     public int lastSent() {
         return l.getLast_sent();
@@ -113,7 +113,7 @@ public final class DhtLookup {
      * sense that they increased the branch
      * factor.
      *
-     * @return
+     *
      */
     public int firstTimeout() {
         return l.getFirst_timeout();

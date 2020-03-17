@@ -257,7 +257,7 @@ public class SessionManager {
      * If the current internal session is null, returns
      * null.
      *
-     * @return
+     *
      */
     public SettingsPack settings() {
         return session != null ? new SettingsPack(session.get_settings()) : null;

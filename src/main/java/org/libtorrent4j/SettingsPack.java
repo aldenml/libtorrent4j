@@ -32,7 +32,7 @@ public final class SettingsPack {
     }
 
     /**
-     * @return
+     *
      */
     public settings_pack swig() {
         return sp;
@@ -40,7 +40,7 @@ public final class SettingsPack {
 
     /**
      * @param name
-     * @return
+     *
      */
     public boolean getBoolean(int name) {
         return sp.get_bool(name);
@@ -57,7 +57,7 @@ public final class SettingsPack {
 
     /**
      * @param name
-     * @return
+     *
      */
     public int getInteger(int name) {
         return sp.get_int(name);
@@ -74,7 +74,7 @@ public final class SettingsPack {
 
     /**
      * @param name
-     * @return
+     *
      */
     public String getString(int name) {
         return sp.get_str(name);
@@ -166,7 +166,7 @@ public final class SettingsPack {
      * limits. If there are non-auto managed torrents that use up all the
      * slots, no auto managed torrent will be activated.
      *
-     * @return
+     *
      */
     public int activeDownloads() {
         return sp.get_int(settings_pack.int_types.active_downloads.swigValue());
@@ -185,7 +185,7 @@ public final class SettingsPack {
      * {@code active_seeds} controls how many active seeding
      * torrents the queuing mechanism allows.
      *
-     * @return
+     *
      * @see #activeDownloads()
      */
     public int activeSeeds() {
@@ -205,7 +205,7 @@ public final class SettingsPack {
      * {@code active_checking} is the limit of number of simultaneous checking
      * torrents.
      *
-     * @return
+     *
      * @see #activeDownloads()
      */
     public int activeChecking() {
@@ -246,7 +246,7 @@ public final class SettingsPack {
      * to their trackers. By default this is 360, which is no more than
      * one announce every 5 seconds.
      *
-     * @return
+     *
      * @see #activeDownloads()
      */
     public int activeTrackerLimit() {
@@ -268,7 +268,7 @@ public final class SettingsPack {
      * default this is 80, which is no more than one announce every 5
      * seconds (assuming the default announce interval of 5 minutes).
      *
-     * @return
+     *
      * @see #activeDownloads()
      */
     public int activeLsdLimit() {
@@ -400,7 +400,7 @@ public final class SettingsPack {
     }
 
     /**
-     * @return
+     *
      */
     public int tickInterval() {
         return sp.get_int(settings_pack.int_types.tick_interval.swigValue());
@@ -421,7 +421,7 @@ public final class SettingsPack {
     }
 
     /**
-     * @return
+     *
      */
     public int inactivityTimeout() {
         return sp.get_int(settings_pack.int_types.inactivity_timeout.swigValue());
@@ -439,7 +439,7 @@ public final class SettingsPack {
     }
 
     /**
-     * @return
+     *
      */
     public boolean seedingOutgoingConnections() {
         return sp.get_bool(settings_pack.bool_types.seeding_outgoing_connections.swigValue());
@@ -461,7 +461,7 @@ public final class SettingsPack {
     }
 
     /**
-     * @return
+     *
      */
     public boolean anonymousMode() {
         return sp.get_bool(settings_pack.bool_types.anonymous_mode.swigValue());
@@ -485,7 +485,7 @@ public final class SettingsPack {
     }
 
     /**
-     * @return
+     *
      */
     public boolean enableDht() {
         return sp.get_bool(settings_pack.bool_types.enable_dht.swigValue());
@@ -504,7 +504,7 @@ public final class SettingsPack {
     }
 
     /**
-     * @return
+     *
      */
     public String listenInterfaces() {
         return sp.get_str(settings_pack.string_types.listen_interfaces.swigValue());

@@ -18,7 +18,7 @@ public final class DhtReplyAlert extends TrackerAlert<dht_reply_alert> {
     }
 
     /**
-     * @return
+     *
      */
     public int numPeers() {
         return alert.getNum_peers();

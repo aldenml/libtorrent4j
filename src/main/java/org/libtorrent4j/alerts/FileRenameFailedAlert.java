@@ -19,7 +19,7 @@ public final class FileRenameFailedAlert extends TorrentAlert<file_rename_failed
     /**
      * refers to the index of the file that was supposed to be renamed.
      *
-     * @return
+     *
      */
     public int getIndex() {
         return alert.getIndex();
@@ -28,7 +28,7 @@ public final class FileRenameFailedAlert extends TorrentAlert<file_rename_failed
     /**
      * is the error code returned from the filesystem.
      *
-     * @return
+     *
      */
     public ErrorCode getError() {
         return new ErrorCode(alert.getError());

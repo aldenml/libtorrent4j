@@ -25,7 +25,7 @@ public abstract class AbstractAlert<T extends alert> implements Alert<T> {
     /**
      * A timestamp is automatically created in the constructor (in milliseconds).
      *
-     * @return
+     *
      */
     @Override
     public long timestamp() {
@@ -71,7 +71,7 @@ public abstract class AbstractAlert<T extends alert> implements Alert<T> {
      * Returns a string literal describing the type of the alert. It does
      * not include any information that might be bundled with the alert.
      *
-     * @return
+     *
      */
     @Override
     public String what() {

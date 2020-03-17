@@ -725,7 +725,7 @@ public final class TorrentHandle {
      * file_error_alert is generated and all handles that refers to that
      * torrent will become invalid.
      *
-     * @return
+     *
      */
     public boolean isValid() {
         return th.is_valid();
@@ -735,7 +735,7 @@ public final class TorrentHandle {
      * Generates a magnet URI from the specified torrent. If the torrent
      * handle is invalid, null is returned.
      *
-     * @return
+     *
      */
     public String makeMagnetUri() {
         return th.is_valid() ? libtorrent.make_magnet_uri(th) : null;
@@ -1119,7 +1119,7 @@ public final class TorrentHandle {
      * queries or sets the priority of file index.
      *
      * @param index
-     * @return
+     *
      */
     public Priority filePriority(int index) {
         return Priority.fromSwig(th.file_priority2(index));
@@ -1264,7 +1264,7 @@ public final class TorrentHandle {
      * It's typically the path as was given to async_add_torrent() or
      * add_torrent() when this torrent was started.
      *
-     * @return
+     *
      */
     public String savePath() {
         torrent_status ts = th.status(torrent_handle.query_save_path);

@@ -15,7 +15,7 @@ public final class DhtLogAlert extends AbstractAlert<dht_log_alert> {
     /**
      * The log message.
      *
-     * @return
+     *
      */
     public String logMessage() {
         return alert.log_message();

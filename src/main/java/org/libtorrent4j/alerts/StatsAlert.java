@@ -29,7 +29,7 @@ public final class StatsAlert extends TorrentAlert<stats_alert> {
      * This is typically just above 1000, but if CPU is limited, it may be
      * higher than that.
      *
-     * @return
+     *
      */
     public int interval() {
         return alert.getInterval();
@@ -82,14 +82,14 @@ public final class StatsAlert extends TorrentAlert<stats_alert> {
         private final int swigValue;
 
         /**
-         * @return
+         *
          */
         public int swig() {
             return swigValue;
         }
 
         /**
-         * @return
+         *
          */
         public int getIndex() {
             return swigValue;

@@ -79,7 +79,7 @@ public interface Alert<T extends alert> {
      * Returns a string literal describing the type of the alert. It does
      * not include any information that might be bundled with the alert.
      *
-     * @return
+     *
      */
     String what();
 
@@ -90,7 +90,7 @@ public interface Alert<T extends alert> {
      * type individually and extract and render the information from the alert depending
      * on the locale.
      *
-     * @return
+     *
      */
     String message();
 

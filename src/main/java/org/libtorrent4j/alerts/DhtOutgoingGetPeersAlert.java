@@ -20,7 +20,7 @@ public final class DhtOutgoingGetPeersAlert extends AbstractAlert<dht_outgoing_g
     /**
      * the info_hash of the torrent we're looking for peers for.
      *
-     * @return
+     *
      */
     public Sha1Hash infoHash() {
         return new Sha1Hash(alert.getInfo_hash());
@@ -30,7 +30,7 @@ public final class DhtOutgoingGetPeersAlert extends AbstractAlert<dht_outgoing_g
      * if this was an obfuscated lookup, this is the info-hash target
      * actually sent to the node.
      *
-     * @return
+     *
      */
     public Sha1Hash obfuscatedInfoHash() {
         return new Sha1Hash(alert.getObfuscated_info_hash());

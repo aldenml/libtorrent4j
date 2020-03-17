@@ -29,7 +29,7 @@ public final class WebSeedEntry {
     /**
      * The URL of the web seed.
      *
-     * @return
+     *
      */
     public String url() {
         return e.getUrl();
@@ -40,7 +40,7 @@ public final class WebSeedEntry {
      * in as HTTP basic auth to the web seed. The format is:
      * username:password.
      *
-     * @return
+     *
      */
     public String auth() {
         return e.getAuth();
@@ -49,7 +49,7 @@ public final class WebSeedEntry {
     /**
      * Any extra HTTP headers that need to be passed to the web seed.
      *
-     * @return
+     *
      */
     public ArrayList<Pair<String, String>> extraHeaders() {
         string_string_pair_vector v = e.getExtra_headers();
@@ -67,7 +67,7 @@ public final class WebSeedEntry {
     /**
      * The type of web seed.
      *
-     * @return
+     *
      * @see Type
      */
     public Type type() {
@@ -103,7 +103,7 @@ public final class WebSeedEntry {
         private final int swigValue;
 
         /**
-         * @return
+         *
          */
         public int swig() {
             return swigValue;
@@ -111,7 +111,7 @@ public final class WebSeedEntry {
 
         /**
          * @param swigValue
-         * @return
+         *
          */
         public static Type fromSwig(int swigValue) {
             Type[] enumValues = Type.class.getEnumConstants();

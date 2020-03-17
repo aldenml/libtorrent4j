@@ -18,7 +18,7 @@ public final class FileCompletedAlert extends TorrentAlert<file_completed_alert>
     /**
      * Refers to the index of the file that completed.
      *
-     * @return
+     *
      */
     public int index() {
         return alert.getIndex();

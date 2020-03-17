@@ -111,7 +111,7 @@ public class SessionHandle {
      * In case the torrent cannot be found, a null is returned.
      *
      * @param infoHash
-     * @return
+     *
      */
     public TorrentHandle findTorrent(Sha1Hash infoHash) {
         torrent_handle th = s.find_torrent(infoHash.swig());
@@ -123,7 +123,7 @@ public class SessionHandle {
      * Returns a list of torrent handles to all the
      * torrents currently in the session.
      *
-     * @return
+     *
      */
     public List<TorrentHandle> torrents() {
         torrent_handle_vector v = s.get_torrents();
@@ -410,7 +410,7 @@ public class SessionHandle {
      * structure.
      *
      * @param entry
-     * @return
+     *
      */
     public Sha1Hash dhtPutItem(Entry entry) {
         return new Sha1Hash(s.dht_put_item(entry.swig()));
@@ -512,7 +512,7 @@ public class SessionHandle {
      * know which port it ended up using, you have to ask the session using
      * this function.
      *
-     * @return
+     *
      */
     public int getListenPort() {
         return s.listen_port();

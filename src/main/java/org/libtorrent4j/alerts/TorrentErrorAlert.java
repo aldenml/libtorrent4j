@@ -18,7 +18,7 @@ public final class TorrentErrorAlert extends TorrentAlert<torrent_error_alert> {
     /**
      * Specifies which error the torrent encountered.
      *
-     * @return
+     *
      */
     public ErrorCode error() {
         return new ErrorCode(alert.getError());
@@ -27,7 +27,7 @@ public final class TorrentErrorAlert extends TorrentAlert<torrent_error_alert> {
     /**
      * Returns the filename (or object) the error occurred on.
      *
-     * @return
+     *
      */
     public String filename() {
         return alert.filename();

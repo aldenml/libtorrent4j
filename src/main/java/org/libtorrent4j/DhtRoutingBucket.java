@@ -23,7 +23,7 @@ public final class DhtRoutingBucket {
     /**
      * The total number of nodes in the routing table.
      *
-     * @return
+     *
      */
     public int numNodes() {
         return t.getNum_nodes();
@@ -32,7 +32,7 @@ public final class DhtRoutingBucket {
     /**
      * The total number of replacement nodes in the routing table.
      *
-     * @return
+     *
      */
     public int numReplacements() {
         return t.getNum_replacements();
@@ -41,7 +41,7 @@ public final class DhtRoutingBucket {
     /**
      * Number of seconds since last activity.
      *
-     * @return
+     *
      */
     public int lastActive() {
         return t.getLast_active();

@@ -93,7 +93,7 @@ public final class PeerLogAlert extends PeerAlert<peer_log_alert> {
 
         /**
          * @param swigValue
-         * @return
+         *
          */
         public static Direction fromSwig(int swigValue) {
             Direction[] enumValues = Direction.class.getEnumConstants();

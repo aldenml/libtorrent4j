@@ -178,7 +178,7 @@ public final class TorrentInfo {
      * <p>
      * BEP38: http://www.bittorrent.org/beps/bep_0038.html
      *
-     * @return
+     *
      */
     public ArrayList<Sha1Hash> similarTorrents() {
         return Sha1Hash.convert(ti.similar_torrents());
@@ -192,7 +192,7 @@ public final class TorrentInfo {
      * <p>
      * BEP38: http://www.bittorrent.org/beps/bep_0038.html
      *
-     * @return
+     *
      */
     public ArrayList<String> collections() {
         string_vector v = ti.collections();
@@ -358,7 +358,7 @@ public final class TorrentInfo {
     /**
      * The total number of bytes the torrent-file represents (all the files in it).
      *
-     * @return
+     *
      */
     public long totalSize() {
         return ti.total_size();
@@ -372,7 +372,7 @@ public final class TorrentInfo {
      * of that piece. It will always be the same as {@link #pieceLength()} except in the case
      * of the last piece, which may be smaller.
      *
-     * @return
+     *
      */
     public int pieceLength() {
         return ti.piece_length();
@@ -381,7 +381,7 @@ public final class TorrentInfo {
     /**
      * The total number of pieces.
      *
-     * @return
+     *
      */
     public int numPieces() {
         return ti.num_pieces();
@@ -390,7 +390,7 @@ public final class TorrentInfo {
     /**
      * returns the info-hash of the torrent.
      *
-     * @return
+     *
      */
     public InfoHash infoHash() {
         return new InfoHash(ti.info_hash());
@@ -400,7 +400,7 @@ public final class TorrentInfo {
      * If you need index-access to files you can use this method
      * to access files using indices.
      *
-     * @return
+     *
      */
     public int numFiles() {
         return ti.num_files();
@@ -414,7 +414,7 @@ public final class TorrentInfo {
      * @param piece
      * @param offset
      * @param size
-     * @return
+     *
      * @see FileSlice
      */
     public ArrayList<FileSlice> mapBlock(int piece, long offset, int size) {
@@ -433,7 +433,7 @@ public final class TorrentInfo {
      * @param file
      * @param offset
      * @param size
-     * @return
+     *
      * @see PeerRequest
      */
     public PeerRequest mapFile(int file, long offset, int size) {
@@ -446,7 +446,7 @@ public final class TorrentInfo {
      * This is primarily used to determine if a magnet link has had its
      * metadata resolved yet or not.
      *
-     * @return
+     *
      */
     public boolean isValid() {
         return ti.is_valid();
@@ -456,7 +456,7 @@ public final class TorrentInfo {
      * Returns true if this torrent is private. i.e., it should not be
      * distributed on the trackerless network (the kademlia DHT).
      *
-     * @return
+     *
      */
     public boolean isPrivate() {
         return ti.priv();
@@ -468,7 +468,7 @@ public final class TorrentInfo {
      * torrents disable the DHT and local peer discovery as well as talking
      * to peers over anything other than the i2p network.
      *
-     * @return
+     *
      */
     public boolean isI2p() {
         return ti.is_i2p();
@@ -484,7 +484,7 @@ public final class TorrentInfo {
      * torrent file.
      *
      * @param index
-     * @return
+     *
      */
     public Sha1Hash hashForPiece(int index) {
         return new Sha1Hash(ti.hash_for_piece(index));
@@ -499,7 +499,7 @@ public final class TorrentInfo {
      * <p>
      * the name is an UTF-8 encoded strings.
      *
-     * @return
+     *
      */
     public String name() {
         return ti.name();
@@ -542,7 +542,7 @@ public final class TorrentInfo {
      * If this torrent contains any DHT nodes, they are returned in
      * their original form (host name and port number).
      *
-     * @return
+     *
      */
     public ArrayList<Pair<String, Integer>> nodes() {
         string_int_pair_vector v = ti.nodes();
@@ -575,7 +575,7 @@ public final class TorrentInfo {
      * .torrent file. If the specified key cannot be found, it returns NULL.
      *
      * @param key
-     * @return
+     *
      */
     public bdecode_node info(String key) {
         return ti.info(key);
@@ -587,7 +587,7 @@ public final class TorrentInfo {
      * <p>
      * For more information about magnet links, see magnet-links_.
      *
-     * @return
+     *
      */
     public String makeMagnetUri() {
         return ti.is_valid() ? libtorrent.make_magnet_uri(ti) : null;

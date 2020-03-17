@@ -21,7 +21,7 @@ public final class TorrentDeleteFailedAlert extends TorrentAlert<torrent_delete_
     /**
      * tells you why it failed.
      *
-     * @return
+     *
      */
     public ErrorCode getError() {
         return new ErrorCode(alert.getError());
@@ -30,7 +30,7 @@ public final class TorrentDeleteFailedAlert extends TorrentAlert<torrent_delete_
     /**
      * the info hash of the torrent whose files failed to be deleted.
      *
-     * @return
+     *
      */
     public InfoHash getInfoHash() {
         return new InfoHash(alert.getInfo_hash());

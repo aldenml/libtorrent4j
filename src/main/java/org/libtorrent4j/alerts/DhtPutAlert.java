@@ -21,7 +21,7 @@ public final class DhtPutAlert extends AbstractAlert<dht_put_alert> {
      * The target hash the item was stored under if this was an *immutable*
      * item.
      *
-     * @return
+     *
      */
     public Sha1Hash target() {
         return new Sha1Hash(alert.getTarget());
@@ -31,7 +31,7 @@ public final class DhtPutAlert extends AbstractAlert<dht_put_alert> {
      * if a mutable item was stored, these are the public key, signature,
      * salt and sequence number the item was stored under.
      *
-     * @return
+     *
      */
     public byte[] publicKey() {
         return Vectors.byte_vector2bytes(alert.get_public_key());
@@ -41,7 +41,7 @@ public final class DhtPutAlert extends AbstractAlert<dht_put_alert> {
      * if a mutable item was stored, these are the public key, signature,
      * salt and sequence number the item was stored under.
      *
-     * @return
+     *
      */
     public byte[] signature() {
         return Vectors.byte_vector2bytes(alert.get_signature());
@@ -51,7 +51,7 @@ public final class DhtPutAlert extends AbstractAlert<dht_put_alert> {
      * if a mutable item was stored, these are the public key, signature,
      * salt and sequence number the item was stored under.
      *
-     * @return
+     *
      */
     public byte[] salt() {
         return Vectors.byte_vector2bytes(alert.get_salt());
@@ -61,7 +61,7 @@ public final class DhtPutAlert extends AbstractAlert<dht_put_alert> {
      * if a mutable item was stored, these are the public key, signature,
      * salt and sequence number the item was stored under.
      *
-     * @return
+     *
      */
     public long seq() {
         return alert.get_seq();

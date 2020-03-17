@@ -22,7 +22,7 @@ public final class ScrapeFailedAlert extends TrackerAlert<scrape_failed_alert> {
      * message (``error::tracker_failure``), in which case it can be
      * retrieved by calling {@link #errorMessage()}.
      *
-     * @return
+     *
      */
     public ErrorCode error() {
         return new ErrorCode(alert.getError());
@@ -32,7 +32,7 @@ public final class ScrapeFailedAlert extends TrackerAlert<scrape_failed_alert> {
      * If the error indicates there is an associated message, this returns
      * that message. Otherwise and empty string.
      *
-     * @return
+     *
      */
     public String errorMessage() {
         return alert.error_message();

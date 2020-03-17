@@ -20,7 +20,7 @@ public final class DhtMutableItemAlert extends AbstractAlert<dht_mutable_item_al
     /**
      * The public key that was looked up.
      *
-     * @return
+     *
      */
     public byte[] key() {
         return Vectors.byte_vector2bytes(alert.get_key());
@@ -33,7 +33,7 @@ public final class DhtMutableItemAlert extends AbstractAlert<dht_mutable_item_al
      * information. This is primarily useful for echoing back in a store
      * request.
      *
-     * @return
+     *
      */
     public byte[] signature() {
         return Vectors.byte_vector2bytes(alert.get_signature());
@@ -42,7 +42,7 @@ public final class DhtMutableItemAlert extends AbstractAlert<dht_mutable_item_al
     /**
      * The sequence number of this item.
      *
-     * @return
+     *
      */
     public long seq() {
         return alert.get_seq();
@@ -52,7 +52,7 @@ public final class DhtMutableItemAlert extends AbstractAlert<dht_mutable_item_al
      * The salt, if any, used to lookup and store this item. If no
      * salt was used, this is an empty string.
      *
-     * @return
+     *
      */
     public byte[] salt() {
         return Vectors.byte_vector2bytes(alert.get_salt());
@@ -61,7 +61,7 @@ public final class DhtMutableItemAlert extends AbstractAlert<dht_mutable_item_al
     /**
      * The data for this item.
      *
-     * @return
+     *
      */
     public Entry item() {
         return new Entry(alert.getItem());

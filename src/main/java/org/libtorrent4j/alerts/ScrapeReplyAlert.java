@@ -18,7 +18,7 @@ public final class ScrapeReplyAlert extends TrackerAlert<scrape_reply_alert> {
      * the data returned in the scrape response. These numbers
      * may be -1 if the reponse was malformed.
      *
-     * @return
+     *
      */
     public int getIncomplete() {
         return alert.getIncomplete();
@@ -28,7 +28,7 @@ public final class ScrapeReplyAlert extends TrackerAlert<scrape_reply_alert> {
      * the data returned in the scrape response. These numbers
      * may be -1 if the reponse was malformed.
      *
-     * @return
+     *
      */
     public int getComplete() {
         return alert.getComplete();

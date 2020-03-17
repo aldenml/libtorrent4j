@@ -18,7 +18,7 @@ public final class I2pAlert extends AbstractAlert<i2p_alert> {
     /**
      * the error that occurred in the i2p SAM connection.
      *
-     * @return
+     *
      */
     public ErrorCode getError() {
         return new ErrorCode(alert.getError());

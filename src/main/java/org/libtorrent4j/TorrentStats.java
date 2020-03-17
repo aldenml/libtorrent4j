@@ -107,7 +107,7 @@ public final class TorrentStats {
      * the actual payload data (i.e the interesting data), these counters
      * ignore any protocol overhead.
      *
-     * @return
+     *
      */
     public long totalPayloadDownload() {
         return totalPayloadDownload;
@@ -118,7 +118,7 @@ public final class TorrentStats {
      * the actual payload data (i.e the interesting data), these counters
      * ignore any protocol overhead.
      *
-     * @return
+     *
      */
     public long totalPayloadUpload() {
         return totalPayloadUpload;
@@ -301,7 +301,7 @@ public final class TorrentStats {
      * to its download state and statistics since the last resume data
      * was saved.
      *
-     * @return
+     *
      */
     public boolean needSaveResume() {
         return needSaveResume;
@@ -314,7 +314,7 @@ public final class TorrentStats {
      * torrent is active or not, you need to inspect both
      * ``torrent_status::paused`` and ``session::is_paused()``.
      *
-     * @return
+     *
      */
     public boolean isPaused() {
         return isPaused;
@@ -324,7 +324,7 @@ public final class TorrentStats {
      * true when the torrent is in sequential download mode. In this mode
      * pieces are downloaded in order rather than rarest first.
      *
-     * @return
+     *
      */
     public boolean isSequentialDownload() {
         return isSequentialDownload;
@@ -333,7 +333,7 @@ public final class TorrentStats {
     /**
      * true if all pieces have been downloaded.
      *
-     * @return
+     *
      */
     public boolean isSeeding() {
         return isSeeding;

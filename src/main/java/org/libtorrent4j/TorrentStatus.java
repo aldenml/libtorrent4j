@@ -70,7 +70,7 @@ public final class TorrentStatus implements Cloneable {
      * the URL of the last working tracker. If no tracker request has
      * been successful yet, it's set to an empty string.
      *
-     * @return
+     *
      */
     public String currentTracker() {
         return ts.getCurrent_tracker();
@@ -101,7 +101,7 @@ public final class TorrentStatus implements Cloneable {
      * the actual payload data (i.e the interesting data), these counters
      * ignore any protocol overhead.
      *
-     * @return
+     *
      */
     public long totalPayloadDownload() {
         return ts.getTotal_payload_download();
@@ -112,7 +112,7 @@ public final class TorrentStatus implements Cloneable {
      * the actual payload data (i.e the interesting data), these counters
      * ignore any protocol overhead.
      *
-     * @return
+     *
      */
     public long totalPayloadUpload() {
         return ts.getTotal_payload_upload();
@@ -123,7 +123,7 @@ public final class TorrentStatus implements Cloneable {
      * piece hash test. In other words, this is just how much crap that has
      * been downloaded.
      *
-     * @return
+     *
      */
     public long totalFailedBytes() {
         return ts.getTotal_failed_bytes();
@@ -285,7 +285,7 @@ public final class TorrentStatus implements Cloneable {
      * the position this torrent has in the download
      * queue. If the torrent is a seed or finished, this is -1.
      *
-     * @return
+     *
      */
     public int queuePosition() {
         return ts.get_queue_position();
@@ -350,7 +350,7 @@ public final class TorrentStatus implements Cloneable {
      * the total number of peers that are still downloading. set to -1 if the
      * tracker did not send any scrape data in its announce reply.
      *
-     * @return
+     *
      */
     public int numComplete() {
         return ts.getNum_complete();
@@ -362,7 +362,7 @@ public final class TorrentStatus implements Cloneable {
      * the total number of peers that are still downloading. set to -1 if the
      * tracker did not send any scrape data in its announce reply.
      *
-     * @return
+     *
      */
     public int numIncomplete() {
         return ts.getNum_incomplete();
@@ -394,7 +394,7 @@ public final class TorrentStatus implements Cloneable {
      * count, it is not a seed if we are a seed, it is not banned etc. If
      * this is 0, it means we don't know of any more peers that we can try.
      *
-     * @return
+     *
      */
     public int connectCandidates() {
         return ts.getConnect_candidates();
@@ -417,7 +417,7 @@ public final class TorrentStatus implements Cloneable {
      * currently of the rarest piece(s) among the peers this client is
      * connected to.
      *
-     * @return
+     *
      */
     public int distributedFullCopies() {
         return ts.getDistributed_full_copies();
@@ -436,7 +436,7 @@ public final class TorrentStatus implements Cloneable {
      * // and piece availability is no longer tracked. In this case the
      * // distributed copies members are set to -1.
      *
-     * @return
+     *
      */
     public int distributedFraction() {
         return ts.getDistributed_fraction();
@@ -453,7 +453,7 @@ public final class TorrentStatus implements Cloneable {
      * the fractional part tells the fraction of pieces that
      * have more copies than the rarest piece(s).
      *
-     * @return
+     *
      */
     public float distributedCopies() {
         return ts.getDistributed_copies();
@@ -466,7 +466,7 @@ public final class TorrentStatus implements Cloneable {
      * see get_download_queue(). This is typically 16 kB, but it may be
      * larger if the pieces are larger.
      *
-     * @return
+     *
      */
     public int blockSize() {
         return ts.getBlock_size();
@@ -475,7 +475,7 @@ public final class TorrentStatus implements Cloneable {
     /**
      * the number of unchoked peers in this torrent.
      *
-     * @return
+     *
      */
     public int numUploads() {
         return ts.getNum_uploads();
@@ -497,7 +497,7 @@ public final class TorrentStatus implements Cloneable {
     /**
      * get limit of upload slots (unchoked peers) for this torrent.
      *
-     * @return
+     *
      */
     public int uploadsLimit() {
         return ts.getUploads_limit();
@@ -506,7 +506,7 @@ public final class TorrentStatus implements Cloneable {
     /**
      * get limit of number of connections for this torrent.
      *
-     * @return
+     *
      */
     public int connectionsLimit() {
         return ts.getConnections_limit();
@@ -518,7 +518,7 @@ public final class TorrentStatus implements Cloneable {
      * If there is no limit set on this torrent, the peers might still be waiting for bandwidth quota from the global limiter,
      * but then they are counted in the ``session_status`` object.
      *
-     * @return
+     *
      */
     public int upBandwidthQueue() {
         return ts.getUp_bandwidth_queue();
@@ -530,7 +530,7 @@ public final class TorrentStatus implements Cloneable {
      * If there is no limit set on this torrent, the peers might still be waiting for bandwidth quota from the global limiter,
      * but then they are counted in the ``session_status`` object.
      *
-     * @return
+     *
      */
     public int downBandwidthQueue() {
         return ts.getDown_bandwidth_queue();
@@ -560,7 +560,7 @@ public final class TorrentStatus implements Cloneable {
      * to its download state and statistics since the last resume data
      * was saved.
      *
-     * @return
+     *
      */
     public boolean needSaveResume() {
         return ts.getNeed_save_resume();
@@ -569,7 +569,7 @@ public final class TorrentStatus implements Cloneable {
     /**
      * true if all pieces have been downloaded.
      *
-     * @return
+     *
      */
     public boolean isSeeding() {
         return ts.getIs_seeding();
@@ -594,7 +594,7 @@ public final class TorrentStatus implements Cloneable {
      * (i.e. with just an info-hash and tracker ip, a magnet link for
      * instance).
      *
-     * @return
+     *
      */
     public boolean hasMetadata() {
         return ts.getHas_metadata();
@@ -604,7 +604,7 @@ public final class TorrentStatus implements Cloneable {
      * true if there has ever been an incoming connection attempt to this
      * torrent.
      *
-     * @return
+     *
      */
     public boolean hasIncoming() {
         return ts.getHas_incoming();
@@ -615,7 +615,7 @@ public final class TorrentStatus implements Cloneable {
      * one location to another. This may potentially be a long operation
      * if a large file ends up being copied from one drive to another.
      *
-     * @return
+     *
      */
     public boolean isMovingStorage() {
         return ts.getMoving_storage();
@@ -627,7 +627,7 @@ public final class TorrentStatus implements Cloneable {
      * the queue logic/auto manager. Torrents that are not auto managed will
      * always be allowed to announce to all peer sources.
      *
-     * @return
+     *
      */
     public boolean announcingToTrackers() {
         return ts.getAnnouncing_to_trackers();
@@ -639,7 +639,7 @@ public final class TorrentStatus implements Cloneable {
      * the queue logic/auto manager. Torrents that are not auto managed will
      * always be allowed to announce to all peer sources.
      *
-     * @return
+     *
      */
     public boolean announcingToLsd() {
         return ts.getAnnouncing_to_lsd();
@@ -651,7 +651,7 @@ public final class TorrentStatus implements Cloneable {
      * the queue logic/auto manager. Torrents that are not auto managed will
      * always be allowed to announce to all peer sources.
      *
-     * @return
+     *
      */
     public boolean announcingToDht() {
         return ts.getAnnouncing_to_dht();
@@ -660,7 +660,7 @@ public final class TorrentStatus implements Cloneable {
     /**
      * the info-hash for this torrent.
      *
-     * @return
+     *
      */
     public InfoHash infoHash() {
         return new InfoHash(ts.getInfo_hash());
@@ -772,7 +772,7 @@ public final class TorrentStatus implements Cloneable {
 
         /**
          * @param swigValue
-         * @return
+         *
          */
         public static State fromSwig(int swigValue) {
             State[] enumValues = State.class.getEnumConstants();

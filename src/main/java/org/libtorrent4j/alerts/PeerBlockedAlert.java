@@ -24,7 +24,7 @@ public final class PeerBlockedAlert extends TorrentAlert<peer_blocked_alert> {
     /**
      * The reason for the peer being blocked.
      *
-     * @return
+     *
      */
     public Reason reason() {
         return Reason.fromSwig(alert.getReason());
@@ -82,7 +82,7 @@ public final class PeerBlockedAlert extends TorrentAlert<peer_blocked_alert> {
         private final int swigValue;
 
         /**
-         * @return
+         *
          */
         public int swig() {
             return swigValue;
@@ -90,7 +90,7 @@ public final class PeerBlockedAlert extends TorrentAlert<peer_blocked_alert> {
 
         /**
          * @param swigValue
-         * @return
+         *
          */
         public static Reason fromSwig(int swigValue) {
             Reason[] enumValues = Reason.class.getEnumConstants();

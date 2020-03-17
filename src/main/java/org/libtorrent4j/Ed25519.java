@@ -22,7 +22,7 @@ public final class Ed25519 {
     }
 
     /**
-     * @return
+     *
      */
     public static byte[] createSeed() {
         byte_vector seed = ed25519_create_seed();
@@ -32,7 +32,7 @@ public final class Ed25519 {
 
     /**
      * @param seed
-     * @return
+     *
      */
     public static Pair<byte[], byte[]> createKeypair(byte[] seed) {
         if (seed == null || seed.length != SEED_SIZE) {
@@ -49,7 +49,7 @@ public final class Ed25519 {
      * @param message
      * @param publicKey
      * @param secretKey
-     * @return
+     *
      */
     public static byte[] sign(byte[] message, byte[] publicKey, byte[] secretKey) {
         if (publicKey == null || publicKey.length != PUBLIC_KEY_SIZE) {
@@ -70,7 +70,7 @@ public final class Ed25519 {
      * @param signature
      * @param message
      * @param publicKey
-     * @return
+     *
      */
     public static boolean verify(byte[] signature, byte[] message, byte[] publicKey) {
         if (signature == null || signature.length != SIGNATURE_SIZE) {
@@ -86,7 +86,7 @@ public final class Ed25519 {
     /**
      * @param publicKey
      * @param scalar
-     * @return
+     *
      */
     public static byte[] addScalarPublic(byte[] publicKey, byte[] scalar) {
         if (publicKey == null || publicKey.length != PUBLIC_KEY_SIZE) {
@@ -104,7 +104,7 @@ public final class Ed25519 {
     /**
      * @param secretKey
      * @param scalar
-     * @return
+     *
      */
     public static byte[] addScalarSecret(byte[] secretKey, byte[] scalar) {
         if (secretKey == null || secretKey.length != SECRET_KEY_SIZE) {
@@ -122,7 +122,7 @@ public final class Ed25519 {
     /**
      * @param publicKey
      * @param secretKey
-     * @return
+     *
      */
     public byte[] keyExchange(byte[] publicKey, byte[] secretKey) {
         if (publicKey == null || publicKey.length != PUBLIC_KEY_SIZE) {

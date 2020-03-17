@@ -21,7 +21,7 @@ public final class IncomingRequestAlert extends PeerAlert<incoming_request_alert
     /**
      * The request this peer sent to us.
      *
-     * @return
+     *
      */
     public PeerRequest request() {
         return new PeerRequest(alert.getReq());
