@@ -322,7 +322,7 @@ public class torrent_handle {
 
   public torrent_info torrent_file_ptr() {
     long cPtr = libtorrent_jni.torrent_handle_torrent_file_ptr(swigCPtr, this);
-    return (cPtr == 0) ? null : new torrent_info(cPtr, true);
+    return (cPtr == 0) ? null : new torrent_info(cPtr, false);
   }
 
   public string_vector get_url_seeds() {

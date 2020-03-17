@@ -63,7 +63,7 @@ public final class AddTorrentParams
      * @return the torrent info or null if not set
      */
     public TorrentInfo torrentInfo() {
-        torrent_info ti = p.getTi();
+        torrent_info ti = p.ti_ptr();
         return ti != null && ti.is_valid() ? new TorrentInfo(ti) : null;
     }
 
@@ -73,7 +73,7 @@ public final class AddTorrentParams
      * @param ti the torrent info
      */
     public void torrentInfo(TorrentInfo ti) {
-        p.setTi(ti.swig());
+        p.set_ti(ti.swig());
     }
 
     /**

@@ -43,5 +43,3 @@ namespace libtorrent {
 };
 
 }
-
-%shared_ptr(libtorrent::torrent_info)

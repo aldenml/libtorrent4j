@@ -1170,8 +1170,6 @@ public class libtorrent_jni {
   public final static native long new_add_torrent_params__SWIG_1(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_version_set(long jarg1, add_torrent_params jarg1_, int jarg2);
   public final static native int add_torrent_params_version_get(long jarg1, add_torrent_params jarg1_);
-  public final static native void add_torrent_params_ti_set(long jarg1, add_torrent_params jarg1_, long jarg2, torrent_info jarg2_);
-  public final static native long add_torrent_params_ti_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_name_set(long jarg1, add_torrent_params jarg1_, String jarg2);
   public final static native String add_torrent_params_name_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_save_path_set(long jarg1, add_torrent_params jarg1_, String jarg2);
@@ -1220,6 +1218,8 @@ public class libtorrent_jni {
   public final static native long add_torrent_params_last_download_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_last_upload_set(long jarg1, add_torrent_params jarg1_, long jarg2);
   public final static native long add_torrent_params_last_upload_get(long jarg1, add_torrent_params jarg1_);
+  public final static native long add_torrent_params_ti_ptr(long jarg1, add_torrent_params jarg1_);
+  public final static native void add_torrent_params_set_ti(long jarg1, add_torrent_params jarg1_, long jarg2, torrent_info jarg2_);
   public final static native long add_torrent_params_get_trackers(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_set_trackers(long jarg1, add_torrent_params jarg1_, long jarg2, string_vector jarg2_);
   public final static native long add_torrent_params_get_tracker_tiers(long jarg1, add_torrent_params jarg1_);

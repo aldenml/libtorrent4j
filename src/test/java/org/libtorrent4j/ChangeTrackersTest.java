@@ -17,6 +17,10 @@ public class ChangeTrackersTest {
 
     @Test
     public void testChangeTrackersUsingCreateTorrent() throws IOException {
+        // this line is important to link native ahead of time
+        // while debugging, any static method will do it
+        libtorrent.version();
+
         byte[] torrentBytes = Utils.resourceBytes("test4.torrent");
         TorrentInfo ti = TorrentInfo.bdecode(torrentBytes);
 

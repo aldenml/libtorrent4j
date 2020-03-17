@@ -52,15 +52,6 @@ public class add_torrent_params {
     return libtorrent_jni.add_torrent_params_version_get(swigCPtr, this);
   }
 
-  public void setTi(torrent_info value) {
-    libtorrent_jni.add_torrent_params_ti_set(swigCPtr, this, torrent_info.getCPtr(value), value);
-  }
-
-  public torrent_info getTi() {
-    long cPtr = libtorrent_jni.add_torrent_params_ti_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new torrent_info(cPtr, true);
-  }
-
   public void setName(String value) {
     libtorrent_jni.add_torrent_params_name_set(swigCPtr, this, value);
   }
@@ -254,6 +245,15 @@ public class add_torrent_params {
 
   public long getLast_upload() {
     return libtorrent_jni.add_torrent_params_last_upload_get(swigCPtr, this);
+  }
+
+  public torrent_info ti_ptr() {
+    long cPtr = libtorrent_jni.add_torrent_params_ti_ptr(swigCPtr, this);
+    return (cPtr == 0) ? null : new torrent_info(cPtr, false);
+  }
+
+  public void set_ti(torrent_info ti) {
+    libtorrent_jni.add_torrent_params_set_ti(swigCPtr, this, torrent_info.getCPtr(ti), ti);
   }
 
   public string_vector get_trackers() {

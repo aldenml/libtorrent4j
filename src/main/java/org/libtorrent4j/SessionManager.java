@@ -484,7 +484,7 @@ public class SessionManager {
             p = new add_torrent_params();
         }
 
-        p.setTi(ti.swig());
+        p.set_ti(ti.swig());
         if (saveDir != null) {
             p.setSave_path(saveDir.getAbsolutePath());
         }

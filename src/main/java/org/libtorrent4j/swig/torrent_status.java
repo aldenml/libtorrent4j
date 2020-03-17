@@ -546,7 +546,7 @@ public class torrent_status {
 
   public torrent_info torrent_file_ptr() {
     long cPtr = libtorrent_jni.torrent_status_torrent_file_ptr(swigCPtr, this);
-    return (cPtr == 0) ? null : new torrent_info(cPtr, true);
+    return (cPtr == 0) ? null : new torrent_info(cPtr, false);
   }
 
   public long get_next_announce() {
