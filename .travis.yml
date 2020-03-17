@@ -236,7 +236,7 @@ script:
   - if [ $os_build == "macosx" ]; then
       cd ..;
       cp swig/bin/release/macosx/x86_64/libtorrent4j.dylib .;
-      gradle test;
+      gradle test codacyCoverage;
       cd swig;
     fi
   - $run_readelf
