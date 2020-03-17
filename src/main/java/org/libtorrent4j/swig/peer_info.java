@@ -36,6 +36,14 @@ public class peer_info {
     }
   }
 
+  public peer_info() {
+    this(libtorrent_jni.new_peer_info__SWIG_0(), true);
+  }
+
+  public peer_info(peer_info arg0) {
+    this(libtorrent_jni.new_peer_info__SWIG_1(peer_info.getCPtr(arg0), arg0), true);
+  }
+
   public void setTotal_download(long value) {
     libtorrent_jni.peer_info_total_download_set(swigCPtr, this, value);
   }
@@ -352,14 +360,6 @@ public class peer_info {
     return libtorrent_jni.peer_info_progress_ppm_get(swigCPtr, this);
   }
 
-  public void setEstimated_reciprocation_rate(int value) {
-    libtorrent_jni.peer_info_estimated_reciprocation_rate_set(swigCPtr, this, value);
-  }
-
-  public int getEstimated_reciprocation_rate() {
-    return libtorrent_jni.peer_info_estimated_reciprocation_rate_get(swigCPtr, this);
-  }
-
   public void setIp(tcp_endpoint value) {
     libtorrent_jni.peer_info_ip_set(swigCPtr, this, tcp_endpoint.getCPtr(value), value);
   }
@@ -426,10 +426,6 @@ public class peer_info {
 
   public byte get_write_state() {
     return libtorrent_jni.peer_info_get_write_state(swigCPtr, this);
-  }
-
-  public peer_info() {
-    this(libtorrent_jni.new_peer_info(), true);
   }
 
   public final static peer_flags_t interesting = new peer_flags_t(libtorrent_jni.peer_info_interesting_get(), false);

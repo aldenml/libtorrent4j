@@ -14,6 +14,7 @@
 %ignore libtorrent::add_torrent_params::url_seeds;
 %ignore libtorrent::add_torrent_params::peers;
 %ignore libtorrent::add_torrent_params::banned_peers;
+%ignore libtorrent::add_torrent_params::ti;
 
 %include "libtorrent/add_torrent_params.hpp"
 
@@ -21,6 +22,16 @@ namespace libtorrent {
 
 %extend add_torrent_params
 {
+    libtorrent::torrent_info const* ti_ptr()
+    {
+        return $self->ti.get();
+    }
+
+    void set_ti(libtorrent::torrent_info const& ti)
+    {
+        $self->ti = std::make_shared<libtorrent::torrent_info>(ti);
+    }
+
     std::vector<std::string> get_trackers()
     {
         return $self->trackers;

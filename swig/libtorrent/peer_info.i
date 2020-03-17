@@ -4,6 +4,7 @@
 %ignore libtorrent::peer_info::download_queue_time;
 %ignore libtorrent::peer_info::deprecated_dl_rate;
 %ignore libtorrent::peer_info::pieces;
+%ignore libtorrent::peer_info::deprecated_estimated_reciprocation_rate;
 
 namespace libtorrent {
 

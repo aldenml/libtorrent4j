@@ -108,7 +108,6 @@ using typed_bitfield = libtorrent::typed_bitfield<IndexType>;
 %include <std_vector.i>
 %include <std_map.i>
 %include <std_array.i>
-%include <std_shared_ptr.i>
 %include <std_bitset.i>
 
 %apply std::int8_t { char };

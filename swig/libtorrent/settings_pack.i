@@ -30,6 +30,7 @@
 %ignore libtorrent::settings_pack::deprecated_force_proxy;
 %ignore libtorrent::settings_pack::deprecated_aio_max;
 %ignore libtorrent::settings_pack::deprecated_disable_os_cache_for_aligned_files;
+%ignore libtorrent::settings_pack::deprecated_bittyrant_choker;
 %ignore libtorrent::apply_pack_impl;
 %ignore libtorrent::setting_by_name;
 %ignore libtorrent::non_default_settings;
