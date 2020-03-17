@@ -1,4 +1,5 @@
 language: cpp
+dist: bionic
 
 matrix:
   include:
@@ -42,8 +43,9 @@ before_install:
 # libtorrent: download and checkout revision
   - git clone https://github.com/arvidn/libtorrent
   - cd libtorrent
-#  - git checkout 078f7b956ef0d992948852a801e626b1118a1fc5
   - git checkout master
+  - git submodule update --depth=1 --init --recursive
+#  - git checkout 078f7b956ef0d992948852a801e626b1118a1fc5
   - cd ..
   - export LIBTORRENT_ROOT=$PWD/libtorrent
   # perform android specific modifications for posix calls
