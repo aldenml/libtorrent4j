@@ -46,6 +46,8 @@ public final class TorrentInfo {
         this(bdecode0(data));
     }
 
+    // TODO: review
+    /*
     public TorrentInfo(MappedByteBuffer buffer) {
         try {
             long ptr = libtorrent_jni.directBufferAddress(buffer);
@@ -61,6 +63,7 @@ public final class TorrentInfo {
             throw new IllegalArgumentException("Can't decode data mapped buffer: " + e.getMessage(), e);
         }
     }
+     */
 
     /**
      * @return the native object
@@ -491,37 +494,6 @@ public final class TorrentInfo {
     }
 
     /**
-     * Returns a copy to the merkle tree for this
-     * torrent, if any.
-     *
-     * @return
-     */
-    public ArrayList<Sha1Hash> merkleTree() {
-        return Sha1Hash.convert(ti.merkle_tree());
-    }
-
-    /**
-     * Copies the passed in merkle tree into the torrent info object.
-     * <p>
-     * You need to set the merkle tree for a torrent that you've just created
-     * (as a merkle torrent). The merkle tree is retrieved from the
-     * {@link #merkleTree()} function, and need to be saved
-     * separately from the torrent file itself. Once it's added to
-     * libtorrent, the merkle tree will be persisted in the resume data.
-     *
-     * @param tree
-     */
-    public void merkleTree(List<Sha1Hash> tree) {
-        sha1_hash_vector v = new sha1_hash_vector();
-
-        for (Sha1Hash h : tree) {
-            v.add(h.swig());
-        }
-
-        ti.set_merkle_tree(v);
-    }
-
-    /**
      * returns the name of the torrent.
      * <p>
      * the name is an UTF-8 encoded strings.
@@ -606,16 +578,6 @@ public final class TorrentInfo {
      */
     public bdecode_node info(String key) {
         return ti.info(key);
-    }
-
-    /**
-     * Returns whether or not this is a merkle torrent.
-     * See BEP30: http://bittorrent.org/beps/bep_0030.html
-     *
-     * @return
-     */
-    public boolean isMerkleTorrent() {
-        return ti.is_merkle_torrent();
     }
 
     /**

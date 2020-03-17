@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.libtorrent4j.swig.libtorrent.add_files_ex;
-import static org.libtorrent4j.swig.libtorrent.set_piece_hashes_ex;
-
 /**
  * @author gubatron
  * @author aldenml
@@ -470,6 +467,9 @@ public final class TorrentBuilder {
      * @throws IOException
      */
     public Result generate() throws IOException {
+        return null;
+        // TODO: review
+        /*
         if (path == null) {
             throw new IOException("path can't be null");
         }
@@ -541,26 +541,9 @@ public final class TorrentBuilder {
         }
 
         return new Result(t);
+
+         */
     }
-
-    /**
-     * This will insert pad files to align the files to piece boundaries, for
-     * optimized disk-I/O. This will minimize the number of bytes of pad-
-     * files, to keep the impact down for clients that don't support
-     * them.
-     */
-    public static final create_flags_t OPTIMIZE_ALIGNMENT = create_torrent.optimize_alignment;
-
-    /**
-     * This will create a merkle hash tree torrent. A merkle torrent cannot
-     * be opened in clients that don't specifically support merkle torrents.
-     * The benefit is that the resulting torrent file will be much smaller and
-     * not grow with more pieces. When this option is specified, it is
-     * recommended to have a fairly small piece size, say 64 kiB.
-     * When creating merkle torrents, the full hash tree is also generated
-     * and should be saved off separately.
-     */
-    public static final create_flags_t MERKLE = create_torrent.merkle;
 
     /**
      * This will include the file modification time as part of the torrent.

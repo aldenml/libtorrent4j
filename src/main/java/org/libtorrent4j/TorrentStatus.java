@@ -662,8 +662,8 @@ public final class TorrentStatus implements Cloneable {
      *
      * @return
      */
-    public Sha1Hash infoHash() {
-        return new Sha1Hash(ts.getInfo_hash());
+    public InfoHash infoHash() {
+        return new InfoHash(ts.getInfo_hash());
     }
 
     public long lastUpload() {

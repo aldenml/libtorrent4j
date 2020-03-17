@@ -212,6 +212,10 @@ public class file_storage {
     libtorrent_jni.file_storage_add_file2(swigCPtr, this, path, file_size, file_flags_t.getCPtr(file_flags), file_flags, mtime, symlink_path);
   }
 
+  public String file_name_ex(int index) {
+    return libtorrent_jni.file_storage_file_name_ex(swigCPtr, this, index);
+  }
+
   public final static long max_file_size = libtorrent_jni.file_storage_max_file_size_get();
   public final static long max_file_offset = libtorrent_jni.file_storage_max_file_offset_get();
   public final static file_flags_t flag_pad_file = new file_flags_t(libtorrent_jni.file_storage_flag_pad_file_get(), false);

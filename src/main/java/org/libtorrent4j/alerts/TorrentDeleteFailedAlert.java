@@ -1,6 +1,7 @@
 package org.libtorrent4j.alerts;
 
 import org.libtorrent4j.ErrorCode;
+import org.libtorrent4j.InfoHash;
 import org.libtorrent4j.Sha1Hash;
 import org.libtorrent4j.swig.torrent_delete_failed_alert;
 
@@ -31,7 +32,7 @@ public final class TorrentDeleteFailedAlert extends TorrentAlert<torrent_delete_
      *
      * @return
      */
-    public Sha1Hash getInfoHash() {
-        return new Sha1Hash(alert.getInfo_hash());
+    public InfoHash getInfoHash() {
+        return new InfoHash(alert.getInfo_hash());
     }
 }

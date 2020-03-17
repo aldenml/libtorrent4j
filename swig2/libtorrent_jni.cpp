@@ -2773,6 +2773,9 @@ SWIGINTERN void libtorrent_bitfield_assign(libtorrent::bitfield *self,std::vecto
 SWIGINTERN void libtorrent_file_storage_add_file2(libtorrent::file_storage *self,std::string const &path,std::int64_t file_size,libtorrent::file_flags_t file_flags,std::time_t mtime,std::string const &symlink_path){
         self->add_file(path, file_size, file_flags, mtime, symlink_path);
     }
+SWIGINTERN std::string libtorrent_file_storage_file_name_ex(libtorrent::file_storage *self,int index){
+        return self->file_name(libtorrent::file_index_t{index}).to_string();
+    }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_file_flags_tag_Sg__op_bool(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > *self){
             return self->operator bool();
         }
@@ -20403,6 +20406,23 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1storage
   arg6 = &arg6_str;
   jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
   libtorrent_file_storage_add_file2(arg1,(std::string const &)*arg2,arg3,arg4,arg5,(std::string const &)*arg6);
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1storage_1file_1name_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jstring jresult = 0 ;
+  libtorrent::file_storage *arg1 = (libtorrent::file_storage *) 0 ;
+  int arg2 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::file_storage **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_file_storage_file_name_ex(arg1,arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
 }
 
 

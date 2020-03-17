@@ -100,7 +100,8 @@ public final class FileStorage {
      * @param symlink the symlink
      */
     public void addFile(String path, long size, file_flags_t flags, int mtime, String symlink) {
-        fs.add_file(path, size, flags, mtime, symlink);
+        // TODO: review
+        //fs.add_file(path, size, flags, mtime, symlink);
     }
 
     /**
@@ -123,7 +124,8 @@ public final class FileStorage {
      * @param mtime the time
      */
     public void addFile(String path, long size, file_flags_t flags, int mtime) {
-        fs.add_file(path, size, flags, mtime);
+        // TODO: review
+        //fs.add_file(path, size, flags, mtime);
     }
 
     /**
@@ -145,7 +147,8 @@ public final class FileStorage {
      * @param flags the file flags
      */
     public void addFile(String path, long size, file_flags_t flags) {
-        fs.add_file(path, size, flags);
+        // TODO: review
+        //fs.add_file(path, size, flags);
     }
 
     /**
@@ -165,7 +168,8 @@ public final class FileStorage {
      * @param size
      */
     public void addFile(String p, long size) {
-        fs.add_file(p, size);
+        // TODO: review
+        //fs.add_file(p, size);
     }
 
     /**
@@ -345,8 +349,7 @@ public final class FileStorage {
      * @return the file name
      */
     public String fileName(int index) {
-        byte_vector v = fs.file_name(index).to_bytes();
-        return Vectors.byte_vector2utf8(v);
+        return fs.file_name_ex(index);
     }
 
     /**
@@ -380,21 +383,6 @@ public final class FileStorage {
      */
     public long fileOffset(int index) {
         return fs.file_offset(index);
-    }
-
-    /**
-     * @return
-     */
-    public ArrayList<String> paths() {
-        string_vector v = fs.paths();
-        int size = (int) v.size();
-        ArrayList<String> l = new ArrayList<>(size);
-
-        for (int i = 0; i < size; i++) {
-            l.add(v.get(i));
-        }
-
-        return l;
     }
 
     /**
