@@ -329,4 +329,16 @@ public class libtorrent implements libtorrentConstants {
     return new ip_interface_vector(libtorrent_jni.enum_net_interfaces(session.getCPtr(s), s), true);
   }
 
+  public static ip_route_vector enum_routes(session s) {
+    return new ip_route_vector(libtorrent_jni.enum_routes(session.getCPtr(s), s), true);
+  }
+
+  public static address get_gateway(ip_interface iface, ip_route_vector routes) {
+    return new address(libtorrent_jni.get_gateway(ip_interface.getCPtr(iface), iface, ip_route_vector.getCPtr(routes), routes), true);
+  }
+
+  public static String device_for_address(session s, address addr, error_code ec) {
+    return libtorrent_jni.device_for_address(session.getCPtr(s), s, address.getCPtr(addr), addr, error_code.getCPtr(ec), ec);
+  }
+
 }

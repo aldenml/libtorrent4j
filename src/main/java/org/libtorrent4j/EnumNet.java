@@ -32,44 +32,35 @@ public final class EnumNet {
         return l;
     }
 
-    /*
-    public static List<IpRoute> enumRoutes(SessionManager session) {
-        if (session.swig() == null) {
-            return Collections.emptyList();
-        }
-
-        ip_route_vector v = libtorrent.enum_routes(session.swig());
-        int size = (int) v.size();
+    public static List<IpRoute> enumRoutes(session s) {
+        ip_route_vector v = libtorrent.enum_routes(s);
+        int size = v.size();
         ArrayList<IpRoute> l = new ArrayList<>(size);
 
-        for (int i = 0; i < size; i++) {
-            l.add(new IpRoute(v.get(i)));
+        for (ip_route ip_route : v) {
+            l.add(new IpRoute(ip_route));
         }
 
         return l;
     }
 
-    public static Address defaultGateway(SessionManager session, String device,
-                                         boolean v6) {
-        if (session.swig() == null) {
-            return new Address();
+    public static Address getGateway(IpInterface iface, List<IpRoute> routes) {
+        ip_route_vector v = new ip_route_vector();
+        for (IpRoute route : routes) {
+            v.add(route.toSwig());
         }
-
-        if (device == null) {
-            device = "";
-        }
-
-        byte[] device_arr;
-        try {
-            device_arr = device.getBytes("ASCII");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
-
-        return new Address(libtorrent.get_default_gateway(session.swig(),
-                Vectors.bytes2byte_vector(device_arr), v6));
+        address addr = libtorrent.get_gateway(iface.toSwig(), v);
+        return new Address(addr);
     }
-    */
+
+    public static String deviceForAddress(session s, Address addr) {
+        error_code ec = new error_code();
+        String dev = libtorrent.device_for_address(s, addr.swig(), ec);
+        if (ec.value() != 0) {
+            throw new IllegalArgumentException(ec.message());
+        }
+        return dev;
+    }
 
     public static final class IpInterface {
 
@@ -111,6 +102,18 @@ public final class EnumNet {
 
         public boolean preferred() {
             return preferred;
+        }
+
+        ip_interface toSwig() {
+            ip_interface r = new ip_interface();
+            r.setInterface_address(interfaceAddress.swig());
+            r.setNetmask(netmask.swig());
+            r.setName(Vectors.ascii2byte_vector(name));
+            ;
+            r.setFriendly_name(Vectors.ascii2byte_vector(friendlyName));
+            r.setDescription(Vectors.ascii2byte_vector(description));
+            r.setPreferred(preferred);
+            return r;
         }
 
         @Override
@@ -158,12 +161,27 @@ public final class EnumNet {
             return gateway;
         }
 
+        public Address sourceHint() {
+            return sourceHint;
+        }
+
         public String name() {
             return name;
         }
 
         public int mtu() {
             return mtu;
+        }
+
+        ip_route toSwig() {
+            ip_route r = new ip_route();
+            r.setDestination(destination.swig());
+            r.setNetmask(netmask.swig());
+            r.setGateway(gateway.swig());
+            r.setSource_hint(sourceHint.swig());
+            r.setName(Vectors.ascii2byte_vector(name));
+            r.setMtu(mtu);
+            return r;
         }
 
         @Override

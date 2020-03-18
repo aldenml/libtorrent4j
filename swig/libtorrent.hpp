@@ -171,4 +171,64 @@ std::vector<ip_interface> enum_net_interfaces(libtorrent::session* s)
     return ret;
 }
 
+std::vector<ip_route> enum_routes(libtorrent::session* s)
+{
+    std::vector<ip_route> ret;
+    boost::system::error_code ec;
+    auto v = libtorrent::enum_routes(s->get_context(), ec);
+    for (auto& e : v)
+    {
+        ip_route r;
+        r.destination = e.destination;
+        r.netmask = e.netmask;
+        r.gateway = e.gateway;
+        r.source_hint = e.source_hint;
+        r.name = {e.name, e.name + sizeof(e.name)};
+        r.mtu = e.mtu;
+        ret.push_back(r);
+    }
+    return ret;
+}
+
+void mem_copy(std::vector<std::int8_t> source
+    , char* target, std::size_t target_size)
+{
+    std::memset(target, 0, target_size);
+    std::memcpy(target, source.data(), std::min(source.size(), target_size));
+}
+
+libtorrent::address get_gateway(ip_interface const& iface
+    , std::vector<ip_route>& routes)
+{
+    lt::ip_interface lt_iface{};
+    lt_iface.interface_address = iface.interface_address;
+    lt_iface.netmask = iface.netmask;
+    lt_iface.preferred = iface.preferred;
+
+    mem_copy(iface.name, lt_iface.name, 64);
+    mem_copy(iface.friendly_name, lt_iface.friendly_name, 128);
+    mem_copy(iface.description, lt_iface.description, 128);
+
+    std::vector<lt::ip_route> lt_routes;
+    for (auto const& r : routes) {
+        lt::ip_route lt_ip_route{};
+        lt_ip_route.destination = r.destination;
+        lt_ip_route.netmask = r.netmask;
+        lt_ip_route.gateway = r.gateway;
+        lt_ip_route.source_hint = r.source_hint;
+        lt_ip_route.mtu = r.mtu;
+        mem_copy(r.name, lt_ip_route.name, 64);
+        lt_routes.push_back(lt_ip_route);
+    }
+
+    return lt::get_gateway(lt_iface, lt_routes)
+        .value_or(lt::address{});
+}
+
+std::string device_for_address(libtorrent::session* s
+    , libtorrent::address addr, boost::system::error_code& ec)
+{
+    return lt::device_for_address(addr, s->get_context(), ec);
+}
+
 #endif

@@ -90,33 +90,6 @@ void dht_put_item_cb(libtorrent::entry& e, std::array<char, 64>& sig, std::int64
     sig = sign.bytes;
 }
 
-std::vector<ip_route> enum_routes(libtorrent::session* s)
-{
-    std::vector<ip_route> ret;
-    boost::system::error_code ec;
-    auto v = libtorrent::enum_routes(s->get_io_service(), ec);
-    for (auto& e : v)
-    {
-        ip_route r;
-        r.destination = e.destination;
-        r.netmask = e.netmask;
-        r.gateway = e.gateway;
-        r.name = {e.name, e.name + sizeof(e.name)};
-        r.mtu = e.mtu;
-        ret.push_back(r);
-    }
-    return ret;
-}
-
-libtorrent::address get_default_gateway(libtorrent::session* s
-    , std::vector<std::int8_t> device, bool v6)
-{
-    boost::system::error_code ec;
-    return libtorrent::get_default_gateway(s->get_io_service()
-        , {reinterpret_cast<char const*>(device.data()), device.size()}
-        , v6, ec);
-}
-
 bool arm_neon_support()
 {
     return libtorrent::aux::arm_neon_support;
