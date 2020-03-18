@@ -104,16 +104,8 @@ public final class AddTorrentParams
      *
      * @return the list of trackers tiers
      */
-    public ArrayList<Integer> trackerTiers() {
-        int_vector v = h.get_tracker_tiers();
-        int size = (int) v.size();
-        ArrayList<Integer> l = new ArrayList<>();
-
-        for (int i = 0; i < size; i++) {
-            l.add(v.get(i));
-        }
-
-        return l;
+    public List<Integer> trackerTiers() {
+        return new ArrayList<>(h.get_tracker_tiers());
     }
 
     /**
@@ -126,12 +118,7 @@ public final class AddTorrentParams
      * @param value the list of trackers tiers
      */
     public void trackerTiers(List<Integer> value) {
-        int_vector v = new int_vector();
-
-        for (Integer t : value) {
-            v.add(t);
-        }
-
+        int_vector v = new int_vector(value);
         h.set_tracker_tiers(v);
     }
 
