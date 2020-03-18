@@ -27,8 +27,7 @@ public final class DhtPktAlert extends AbstractAlert<dht_pkt_alert> {
      *
      */
     public byte[] pktBuf() {
-        // TODO: review
-        return null;//Vectors.byte_span2bytes(alert.pkt_buf());
+        return Vectors.byte_vector2bytes(alert.get_pkt_buf());
     }
 
     /**

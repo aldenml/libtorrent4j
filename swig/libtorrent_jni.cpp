@@ -3800,6 +3800,10 @@ SWIGINTERN std::string libtorrent_dht_lookup_get_type(libtorrent::dht_lookup *se
 SWIGINTERN libtorrent::udp::endpoint libtorrent_dht_pkt_alert_get_node(libtorrent::dht_pkt_alert *self){
         return self->node;
     }
+SWIGINTERN std::vector< std::int8_t > libtorrent_dht_pkt_alert_get_pkt_buf(libtorrent::dht_pkt_alert *self){
+        auto buf = self->pkt_buf();
+        return {buf.begin(), buf.end()};
+    }
 SWIGINTERN libtorrent::udp::endpoint libtorrent_dht_direct_response_alert_get_endpoint(libtorrent::dht_direct_response_alert *self){
         return self->endpoint;
     }
@@ -48176,6 +48180,21 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1pkt_1al
   arg1 = *(libtorrent::dht_pkt_alert **)&jarg1; 
   result = libtorrent_dht_pkt_alert_get_node(arg1);
   *(libtorrent::udp::endpoint **)&jresult = new libtorrent::udp::endpoint((const libtorrent::udp::endpoint &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1pkt_1alert_1get_1pkt_1buf(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::dht_pkt_alert *arg1 = (libtorrent::dht_pkt_alert *) 0 ;
+  std::vector< std::int8_t > result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::dht_pkt_alert **)&jarg1; 
+  result = libtorrent_dht_pkt_alert_get_pkt_buf(arg1);
+  *(std::vector< std::int8_t > **)&jresult = new std::vector< std::int8_t >((const std::vector< std::int8_t > &)result); 
   return jresult;
 }
 

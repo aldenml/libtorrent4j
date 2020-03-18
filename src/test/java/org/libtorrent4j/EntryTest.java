@@ -1,14 +1,10 @@
 package org.libtorrent4j;
 
+import org.junit.Test;
 import org.libtorrent4j.swig.entry;
 import org.libtorrent4j.swig.string_entry_map;
-import org.libtorrent4j.swig.string_vector;
-import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -29,7 +25,7 @@ public class EntryTest {
 
         Entry e = Entry.fromMap(m);
 
-        List<Object> l = new ArrayList<Object>();
+        List<Object> l = new ArrayList<>();
 
         l.add("l1");
         l.add("l2");
@@ -41,12 +37,10 @@ public class EntryTest {
         assertNotNull(e);
 
         string_entry_map dict = e.swig().dict();
-        // TODO: review
-//        string_vector keys = dict.keys();
-//        for (int i = 0; i < keys.size(); i++) {
-//            String k = keys.get(i);
-//            assertNotNull(dict.get(k).to_string());
-//        }
+        Set<String> keys = dict.keySet();
+        for (String k : keys) {
+            assertNotNull(dict.get(k).to_string());
+        }
     }
 
     @Test
@@ -61,10 +55,10 @@ public class EntryTest {
         final String oldSchoolBencodedMapString = new String(e.bencode());
 
         //now using Java's collection API
-        final List<String> urlList = new ArrayList<String>();
+        final List<String> urlList = new ArrayList<>();
         urlList.add("http://server1.com");
         urlList.add("http://server2.com");
-        final Map<String, Object> urlListMap = new HashMap<String, Object>();
+        final Map<String, Object> urlListMap = new HashMap<>();
         urlListMap.put("url-list", urlList);
         final String javaAPIBencodedMapString = new String(Entry.fromMap(urlListMap).bencode());
 
@@ -72,21 +66,21 @@ public class EntryTest {
         assertEquals(expectedBencodedList, oldSchoolBencodedMapString);
         assertEquals(expectedBencodedList, javaAPIBencodedMapString);
 
-        final Map<String, entry> torrentMap = new HashMap<String, entry>();
-        torrentMap.put("Comment", new entry("Torrent created with FrostWire"));
+//        final Map<String, entry> torrentMap = new HashMap<>();
+//        torrentMap.put("Comment", new entry("Torrent created with FrostWire"));
 
-        final Map<String, Object> ccMap = new HashMap<String, Object>();
+        final Map<String, Object> ccMap = new HashMap<>();
         ccMap.put("attributionAuthor", new entry("FrostWire LLC"));
         ccMap.put("attributionTitle", new entry("FrostWire 5.7.7"));
         ccMap.put("attributionUrl", "http://www.frostwire.com"); //on purpose not an entry
         ccMap.put("licenseUrl", new entry("https://www.gnu.org/licenses/gpl.html"));
 
-        final Map<String, Object> openSourceMap = new HashMap<String, Object>();
+        final Map<String, Object> openSourceMap = new HashMap<>();
         //works both with an entry object created out of a Map, or straight up with the Map.
         //openSourceMap.put("open-source", Entry.fromMap(ccMap).getSwig());
         openSourceMap.put("open-source", ccMap);
 
-        final Map<String, entry> licenseMap = new HashMap<String, entry>();
+        final Map<String, entry> licenseMap = new HashMap<>();
         licenseMap.put("license", Entry.fromMap(openSourceMap).swig());
 
         final String expectedLicenseBencoded = "d7:licensed11:open-sourced17:attributionAuthor13:FrostWire LLC16:attributionTitle15:FrostWire 5.7.714:attributionUrl24:http://www.frostwire.com10:licenseUrl37:https://www.gnu.org/licenses/gpl.htmleee";
