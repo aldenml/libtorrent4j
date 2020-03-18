@@ -601,6 +601,12 @@ public final class Alerts {
                 return new AlertsDroppedAlert(cast_to_alerts_dropped_alert(a));
             }
         };
+        arr[96] = new CastLambda() {
+            @Override
+            public Alert<?> cast(alert a) {
+                return new Socks5Alert(cast_to_socks5_alert(a));
+            }
+        };
 
         return arr;
     }

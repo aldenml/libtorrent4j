@@ -16,7 +16,7 @@ public final class Vectors {
     }
 
     public static byte[] byte_vector2bytes(byte_vector v) {
-        int size = (int) v.size();
+        int size = v.size();
         byte[] arr = new byte[size];
 
         for (int i = 0; i < size; i++) {
