@@ -40,6 +40,10 @@ namespace libtorrent {
         auto* v = &$self->file_merkle_tree(libtorrent::file_index_t{file});
         return *reinterpret_cast<std::vector<libtorrent::sha256_hash>*>(v);
     }
+
+    torrent_info(int64_t buffer_ptr, int size, error_code& ec) {
+        return new libtorrent::torrent_info(reinterpret_cast<char const*>(buffer_ptr), size, ec);
+    }
 };
 
 }

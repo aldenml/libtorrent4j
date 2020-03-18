@@ -47,9 +47,6 @@ public final class TorrentInfo {
     }
 
     public TorrentInfo(MappedByteBuffer buffer) {
-        // TODO: review
-        this.ti = null;
-        /*
         try {
             long ptr = libtorrent_jni.directBufferAddress(buffer);
             long size = libtorrent_jni.directBufferCapacity(buffer);
@@ -63,7 +60,6 @@ public final class TorrentInfo {
         } catch (Throwable e) {
             throw new IllegalArgumentException("Can't decode data mapped buffer: " + e.getMessage(), e);
         }
-        */
     }
 
     /**

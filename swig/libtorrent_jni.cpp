@@ -835,6 +835,39 @@ using typed_bitfield = libtorrent::typed_bitfield<IndexType>;
 // END common set include ------------------------------------------------------
 
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBufferAddress(JNIEnv *jenv, jclass jcls, jobject jbuf) {
+    try {
+        return reinterpret_cast<jlong>(jenv->GetDirectBufferAddress(jbuf));
+    } catch (std::exception& e) {
+        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+    } catch (...) {
+        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+    }
+
+    return 0;
+}
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBufferCapacity(JNIEnv *jenv, jclass jcls, jobject jbuf) {
+    try {
+        return reinterpret_cast<jlong>(jenv->GetDirectBufferCapacity(jbuf));
+    } catch (std::exception& e) {
+        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+    } catch (...) {
+        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+    }
+
+    return 0;
+}
+
+#ifdef __cplusplus
+}
+#endif
+
+
 #include <stdint.h>		// Use the C99 official header
 
 
@@ -2957,6 +2990,9 @@ SWIGINTERN std::vector< std::vector< libtorrent::sha256_hash > > &libtorrent_tor
 SWIGINTERN std::vector< libtorrent::sha256_hash > &libtorrent_torrent_info_get_file_merkle_tree(libtorrent::torrent_info *self,int file){
         auto* v = &self->file_merkle_tree(libtorrent::file_index_t{file});
         return *reinterpret_cast<std::vector<libtorrent::sha256_hash>*>(v);
+    }
+SWIGINTERN libtorrent::torrent_info *new_libtorrent_torrent_info__SWIG_4(int64_t buffer_ptr,int size,libtorrent::error_code &ec){
+        return new libtorrent::torrent_info(reinterpret_cast<char const*>(buffer_ptr), size, ec);
     }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint64_t_Sc_libtorrent_torrent_flags_tag_Sg__op_bool(libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > *self){
             return self->operator bool();
@@ -23425,6 +23461,29 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1inf
   arg2 = (int)jarg2; 
   result = (std::vector< libtorrent::sha256_hash > *) &libtorrent_torrent_info_get_file_merkle_tree(arg1,arg2);
   *(std::vector< libtorrent::sha256_hash > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1torrent_1info_1_1SWIG_14(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jobject jarg3_) {
+  jlong jresult = 0 ;
+  int64_t arg1 ;
+  int arg2 ;
+  libtorrent::error_code *arg3 = 0 ;
+  libtorrent::torrent_info *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg3_;
+  arg1 = (int64_t)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = *(libtorrent::error_code **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::error_code & reference is null");
+    return 0;
+  } 
+  result = (libtorrent::torrent_info *)new_libtorrent_torrent_info__SWIG_4(arg1,arg2,*arg3);
+  *(libtorrent::torrent_info **)&jresult = result; 
   return jresult;
 }
 

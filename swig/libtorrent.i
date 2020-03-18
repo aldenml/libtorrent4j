@@ -30,6 +30,9 @@
                 "Look for your architecture binary instructions at: https://github.com/aldenml/libtorrent4j", e);
         }
     }
+
+    public static final native long directBufferAddress(java.nio.Buffer buffer);
+    public static final native long directBufferCapacity(java.nio.Buffer buffer);
 %}
 
 %{
@@ -99,6 +102,41 @@ template <typename IndexType>
 using typed_bitfield = libtorrent::typed_bitfield<IndexType>;
 
 // END common set include ------------------------------------------------------
+%}
+
+// direct buffer code
+%{
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBufferAddress(JNIEnv *jenv, jclass jcls, jobject jbuf) {
+    try {
+        return reinterpret_cast<jlong>(jenv->GetDirectBufferAddress(jbuf));
+    } catch (std::exception& e) {
+        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+    } catch (...) {
+        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+    }
+
+    return 0;
+}
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBufferCapacity(JNIEnv *jenv, jclass jcls, jobject jbuf) {
+    try {
+        return reinterpret_cast<jlong>(jenv->GetDirectBufferCapacity(jbuf));
+    } catch (std::exception& e) {
+        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+    } catch (...) {
+        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+    }
+
+    return 0;
+}
+
+#ifdef __cplusplus
+}
+#endif
 %}
 
 %include <stdint.i>

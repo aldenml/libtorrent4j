@@ -35,6 +35,9 @@ public class libtorrent_jni {
         }
     }
 
+    public static final native long directBufferAddress(java.nio.Buffer buffer);
+    public static final native long directBufferCapacity(java.nio.Buffer buffer);
+
   public final static native long new_int_int_pair__SWIG_0();
   public final static native long new_int_int_pair__SWIG_1(int jarg1, int jarg2);
   public final static native long new_int_int_pair__SWIG_2(long jarg1, int_int_pair jarg1_);
@@ -1165,6 +1168,7 @@ public class libtorrent_jni {
   public final static native int torrent_info_metadata_size(long jarg1, torrent_info jarg1_);
   public final static native long torrent_info_get_merkle_trees(long jarg1, torrent_info jarg1_);
   public final static native long torrent_info_get_file_merkle_tree(long jarg1, torrent_info jarg1_, int jarg2);
+  public final static native long new_torrent_info__SWIG_4(long jarg1, int jarg2, long jarg3, error_code jarg3_);
   public final static native long seed_mode_get();
   public final static native long upload_mode_get();
   public final static native long share_mode_get();
