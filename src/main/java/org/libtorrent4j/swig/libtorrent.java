@@ -325,4 +325,8 @@ public class libtorrent implements libtorrentConstants {
     return new byte_vector(libtorrent_jni.ed25519_key_exchange(byte_vector.getCPtr(pk), pk, byte_vector.getCPtr(sk), sk), true);
   }
 
+  public static ip_interface_vector enum_net_interfaces(session s) {
+    return new ip_interface_vector(libtorrent_jni.enum_net_interfaces(session.getCPtr(s), s), true);
+  }
+
 }

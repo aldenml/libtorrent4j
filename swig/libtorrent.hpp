@@ -6,6 +6,7 @@
 
 #include <libtorrent/aux_/cpuid.hpp>
 #include <libtorrent/kademlia/ed25519.hpp>
+#include <libtorrent/enum_net.hpp>
 
 namespace lt = libtorrent;
 
@@ -128,6 +129,46 @@ std::vector<int8_t> ed25519_key_exchange(std::vector<int8_t>& pk,
 
     std::array<char, 32> secret = ed25519_key_exchange(pk1, sk1);
     return std::vector<int8_t>(secret.begin(), secret.end());
+}
+
+// enum_net functions, very useful for networking
+struct ip_interface
+{
+    libtorrent::address interface_address;
+    libtorrent::address netmask;
+    std::vector<std::int8_t> name;
+    std::vector<std::int8_t> friendly_name;
+    std::vector<std::int8_t> description;
+    bool preferred;
+};
+
+struct ip_route
+{
+    libtorrent::address destination;
+    libtorrent::address netmask;
+    libtorrent::address gateway;
+    libtorrent::address source_hint;
+    std::vector<std::int8_t> name;
+    int mtu;
+};
+
+std::vector<ip_interface> enum_net_interfaces(libtorrent::session* s)
+{
+    std::vector<ip_interface> ret;
+    boost::system::error_code ec;
+    auto v = libtorrent::enum_net_interfaces(s->get_context(), ec);
+    for (auto& e : v)
+    {
+        ip_interface iface;
+        iface.interface_address = e.interface_address;
+        iface.netmask = e.netmask;
+        iface.name = {e.name, e.name + sizeof(e.name)};
+        iface.friendly_name = {e.friendly_name, e.friendly_name + sizeof(e.friendly_name)};
+        iface.description = {e.description, e.description + sizeof(e.description)};
+        iface.preferred = e.preferred;
+        ret.push_back(iface);
+    }
+    return ret;
 }
 
 #endif
