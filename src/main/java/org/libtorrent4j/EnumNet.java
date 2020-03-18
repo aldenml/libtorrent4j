@@ -104,12 +104,11 @@ public final class EnumNet {
             return preferred;
         }
 
-        ip_interface toSwig() {
+        public ip_interface toSwig() {
             ip_interface r = new ip_interface();
             r.setInterface_address(interfaceAddress.swig());
             r.setNetmask(netmask.swig());
             r.setName(Vectors.ascii2byte_vector(name));
-            ;
             r.setFriendly_name(Vectors.ascii2byte_vector(friendlyName));
             r.setDescription(Vectors.ascii2byte_vector(description));
             r.setPreferred(preferred);
@@ -173,7 +172,7 @@ public final class EnumNet {
             return mtu;
         }
 
-        ip_route toSwig() {
+        public ip_route toSwig() {
             ip_route r = new ip_route();
             r.setDestination(destination.swig());
             r.setNetmask(netmask.swig());
