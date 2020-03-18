@@ -14,8 +14,6 @@ import java.nio.channels.FileChannel;
 public final class ReadTorrent {
 
     public static void main(String[] args) throws Throwable {
-        args = new String[]{"/Users/aldenml/Downloads/Honey_Larochelle_Hijack_FrostClick_FrostWire_MP3_May_06_2016.torrent"};
-
         File torrentFile = new File(args[0]);
 
         System.out.println("Reading all in memory");

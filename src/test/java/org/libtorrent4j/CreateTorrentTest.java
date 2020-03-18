@@ -18,6 +18,7 @@ import static org.junit.Assert.*;
  */
 public class CreateTorrentTest {
 
+    // TODO: review
     /*
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();

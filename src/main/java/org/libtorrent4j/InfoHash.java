@@ -20,4 +20,8 @@ public class InfoHash
     public Sha1Hash getBest() {
         return new Sha1Hash(h.get_best());
     }
+
+    public Sha1Hash getV1() {
+        return new Sha1Hash(h.getV1());
+    }
 }

@@ -232,4 +232,8 @@ public class torrent_info {
     return new sha256_hash_vector(libtorrent_jni.torrent_info_get_file_merkle_tree(swigCPtr, this, file), false);
   }
 
+  public torrent_info(long buffer_ptr, int size, error_code ec) {
+    this(libtorrent_jni.new_torrent_info__SWIG_4(buffer_ptr, size, error_code.getCPtr(ec), ec), true);
+  }
+
 }
