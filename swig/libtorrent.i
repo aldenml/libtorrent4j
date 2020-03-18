@@ -178,6 +178,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(torrent_handle_vector) std::vector<libtorrent::torrent_handle>;
 %template(alert_ptr_vector) std::vector<libtorrent::alert*>;
 %template(stats_metric_vector) std::vector<libtorrent::stats_metric>;
+%template(ip_interface_vector) std::vector<ip_interface>;
 
 %template(bool_vector_vector) std::vector<std::vector<bool>>;
 %template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;

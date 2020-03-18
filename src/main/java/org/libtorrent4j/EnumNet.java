@@ -8,9 +8,7 @@ package org.libtorrent4j;
 
 import org.libtorrent4j.swig.*;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,23 +20,19 @@ public final class EnumNet {
     private EnumNet() {
     }
 
-    /*
-    public static List<IpInterface> enumInterfaces(SessionManager session) {
-        if (session.swig() == null) {
-            return Collections.emptyList();
-        }
-
-        ip_interface_vector v = libtorrent.enum_net_interfaces(session.swig());
-        int size = (int) v.size();
+    public static List<IpInterface> enumInterfaces(session s) {
+        ip_interface_vector v = libtorrent.enum_net_interfaces(s);
+        int size = v.size();
         ArrayList<IpInterface> l = new ArrayList<>(size);
 
-        for (int i = 0; i < size; i++) {
-            l.add(new IpInterface(v.get(i)));
+        for (ip_interface iface : v) {
+            l.add(new IpInterface(iface));
         }
 
         return l;
     }
 
+    /*
     public static List<IpRoute> enumRoutes(SessionManager session) {
         if (session.swig() == null) {
             return Collections.emptyList();
@@ -75,6 +69,7 @@ public final class EnumNet {
         return new Address(libtorrent.get_default_gateway(session.swig(),
                 Vectors.bytes2byte_vector(device_arr), v6));
     }
+    */
 
     public static final class IpInterface {
 
@@ -138,6 +133,7 @@ public final class EnumNet {
         private final Address destination;
         private final Address netmask;
         private final Address gateway;
+        private final Address sourceHint;
         private final String name;
         private final int mtu;
 
@@ -145,6 +141,7 @@ public final class EnumNet {
             this.destination = new Address(route.getDestination());
             this.netmask = new Address(route.getNetmask());
             this.gateway = new Address(route.getGateway());
+            this.sourceHint = new Address(route.getSource_hint());
             this.name = Vectors.byte_vector2ascii(route.getName());
             this.mtu = route.getMtu();
         }
@@ -182,6 +179,4 @@ public final class EnumNet {
             return sb.toString();
         }
     }
-
-     */
 }
