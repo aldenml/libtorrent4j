@@ -100,8 +100,11 @@ public final class FileStorage {
      * @param symlink the symlink
      */
     public void addFile(String path, long size, file_flags_t flags, int mtime, String symlink) {
-        // TODO: review
-        //fs.add_file(path, size, flags, mtime, symlink);
+        error_code ec = new error_code();
+        fs.add_file_ex(ec, path, size, flags, mtime, symlink);
+        if (ec.value() != 0) {
+            throw new IllegalArgumentException(ec.message());
+        }
     }
 
     /**
@@ -124,8 +127,11 @@ public final class FileStorage {
      * @param mtime the time
      */
     public void addFile(String path, long size, file_flags_t flags, int mtime) {
-        // TODO: review
-        //fs.add_file(path, size, flags, mtime);
+        error_code ec = new error_code();
+        fs.add_file_ex(ec, path, size, flags, mtime);
+        if (ec.value() != 0) {
+            throw new IllegalArgumentException(ec.message());
+        }
     }
 
     /**
@@ -147,8 +153,11 @@ public final class FileStorage {
      * @param flags the file flags
      */
     public void addFile(String path, long size, file_flags_t flags) {
-        // TODO: review
-        //fs.add_file(path, size, flags);
+        error_code ec = new error_code();
+        fs.add_file_ex(ec, path, size, flags);
+        if (ec.value() != 0) {
+            throw new IllegalArgumentException(ec.message());
+        }
     }
 
     /**
@@ -168,8 +177,11 @@ public final class FileStorage {
      * @param size
      */
     public void addFile(String p, long size) {
-        // TODO: review
-        //fs.add_file(p, size);
+        error_code ec = new error_code();
+        fs.add_file_ex(ec, p, size);
+        if (ec.value() != 0) {
+            throw new IllegalArgumentException(ec.message());
+        }
     }
 
     /**

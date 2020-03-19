@@ -1048,7 +1048,10 @@ public class libtorrent_jni {
   public final static native int file_storage_file_index_for_root(long jarg1, file_storage jarg1_, long jarg2, sha256_hash jarg2_);
   public final static native int file_storage_piece_index_at_file(long jarg1, file_storage jarg1_, int jarg2);
   public final static native void file_storage_rebase_pointers(long jarg1, file_storage jarg1_, String jarg2, String jarg3);
-  public final static native void file_storage_add_file2(long jarg1, file_storage jarg1_, String jarg2, long jarg3, long jarg4, file_flags_t jarg4_, long jarg5, String jarg6);
+  public final static native void file_storage_add_file_ex__SWIG_0(long jarg1, file_storage jarg1_, long jarg2, error_code jarg2_, String jarg3, long jarg4, long jarg5, file_flags_t jarg5_, long jarg6, String jarg7);
+  public final static native void file_storage_add_file_ex__SWIG_1(long jarg1, file_storage jarg1_, long jarg2, error_code jarg2_, String jarg3, long jarg4, long jarg5, file_flags_t jarg5_, long jarg6);
+  public final static native void file_storage_add_file_ex__SWIG_2(long jarg1, file_storage jarg1_, long jarg2, error_code jarg2_, String jarg3, long jarg4, long jarg5, file_flags_t jarg5_);
+  public final static native void file_storage_add_file_ex__SWIG_3(long jarg1, file_storage jarg1_, long jarg2, error_code jarg2_, String jarg3, long jarg4);
   public final static native String file_storage_file_name_ex(long jarg1, file_storage jarg1_, int jarg2);
   public final static native long file_flags_t_all();
   public final static native boolean file_flags_t_op_bool(long jarg1, file_flags_t jarg1_);

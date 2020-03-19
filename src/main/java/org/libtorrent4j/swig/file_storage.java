@@ -208,8 +208,20 @@ public class file_storage {
     libtorrent_jni.file_storage_rebase_pointers(swigCPtr, this, current_base, new_base);
   }
 
-  public void add_file2(String path, long file_size, file_flags_t file_flags, long mtime, String symlink_path) {
-    libtorrent_jni.file_storage_add_file2(swigCPtr, this, path, file_size, file_flags_t.getCPtr(file_flags), file_flags, mtime, symlink_path);
+  public void add_file_ex(error_code ec, String path, long file_size, file_flags_t file_flags, long mtime, String symlink_path) {
+    libtorrent_jni.file_storage_add_file_ex__SWIG_0(swigCPtr, this, error_code.getCPtr(ec), ec, path, file_size, file_flags_t.getCPtr(file_flags), file_flags, mtime, symlink_path);
+  }
+
+  public void add_file_ex(error_code ec, String path, long file_size, file_flags_t file_flags, long mtime) {
+    libtorrent_jni.file_storage_add_file_ex__SWIG_1(swigCPtr, this, error_code.getCPtr(ec), ec, path, file_size, file_flags_t.getCPtr(file_flags), file_flags, mtime);
+  }
+
+  public void add_file_ex(error_code ec, String path, long file_size, file_flags_t file_flags) {
+    libtorrent_jni.file_storage_add_file_ex__SWIG_2(swigCPtr, this, error_code.getCPtr(ec), ec, path, file_size, file_flags_t.getCPtr(file_flags), file_flags);
+  }
+
+  public void add_file_ex(error_code ec, String path, long file_size) {
+    libtorrent_jni.file_storage_add_file_ex__SWIG_3(swigCPtr, this, error_code.getCPtr(ec), ec, path, file_size);
   }
 
   public String file_name_ex(int index) {

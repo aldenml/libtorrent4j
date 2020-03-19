@@ -2919,8 +2919,8 @@ SWIGINTERN libtorrent::bitfield *new_libtorrent_bitfield__SWIG_4(std::vector< st
 SWIGINTERN void libtorrent_bitfield_assign(libtorrent::bitfield *self,std::vector< std::int8_t > const &v){
         self->assign(reinterpret_cast<char const*>(v.data()), static_cast<int>(v.size()));
     }
-SWIGINTERN void libtorrent_file_storage_add_file2(libtorrent::file_storage *self,std::string const &path,std::int64_t file_size,libtorrent::file_flags_t file_flags,std::time_t mtime,std::string const &symlink_path){
-        self->add_file(path, file_size, file_flags, mtime, symlink_path);
+SWIGINTERN void libtorrent_file_storage_add_file_ex__SWIG_0(libtorrent::file_storage *self,libtorrent::error_code &ec,std::string const &path,std::int64_t file_size,libtorrent::file_flags_t file_flags={},std::time_t mtime=0,std::string symlink_path={}){
+        self->add_file(ec, path, file_size, file_flags, mtime, symlink_path);
     }
 SWIGINTERN std::string libtorrent_file_storage_file_name_ex(libtorrent::file_storage *self,int index){
         return self->file_name(libtorrent::file_index_t{index}).to_string();
@@ -21203,47 +21203,163 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1storage
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1storage_1add_1file2(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jlong jarg3, jlong jarg4, jobject jarg4_, jlong jarg5, jstring jarg6) {
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1storage_1add_1file_1ex_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jstring jarg3, jlong jarg4, jlong jarg5, jobject jarg5_, jlong jarg6, jstring jarg7) {
   libtorrent::file_storage *arg1 = (libtorrent::file_storage *) 0 ;
-  std::string *arg2 = 0 ;
-  std::int64_t arg3 ;
-  libtorrent::file_flags_t arg4 ;
-  std::time_t arg5 ;
-  std::string *arg6 = 0 ;
-  libtorrent::file_flags_t *argp4 ;
+  libtorrent::error_code *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::int64_t arg4 ;
+  libtorrent::file_flags_t arg5 ;
+  std::time_t arg6 ;
+  std::string arg7 ;
+  libtorrent::file_flags_t *argp5 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  (void)jarg4_;
+  (void)jarg2_;
+  (void)jarg5_;
   arg1 = *(libtorrent::file_storage **)&jarg1; 
-  if(!jarg2) {
+  arg2 = *(libtorrent::error_code **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::error_code & reference is null");
+    return ;
+  } 
+  if(!jarg3) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return ;
   }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return ;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  arg3 = (std::int64_t)jarg3; 
-  argp4 = *(libtorrent::file_flags_t **)&jarg4; 
-  if (!argp4) {
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return ;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  arg4 = (std::int64_t)jarg4; 
+  argp5 = *(libtorrent::file_flags_t **)&jarg5; 
+  if (!argp5) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null libtorrent::file_flags_t");
     return ;
   }
-  arg4 = *argp4; 
-  arg5 = (std::time_t)jarg5; 
-  if(!jarg6) {
+  arg5 = *argp5; 
+  arg6 = (std::time_t)jarg6; 
+  if(!jarg7) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  } 
+  const char *arg7_pstr = (const char *)jenv->GetStringUTFChars(jarg7, 0); 
+  if (!arg7_pstr) return ;
+  (&arg7)->assign(arg7_pstr);
+  jenv->ReleaseStringUTFChars(jarg7, arg7_pstr); 
+  libtorrent_file_storage_add_file_ex__SWIG_0(arg1,*arg2,(std::string const &)*arg3,arg4,arg5,arg6,arg7);
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1storage_1add_1file_1ex_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jstring jarg3, jlong jarg4, jlong jarg5, jobject jarg5_, jlong jarg6) {
+  libtorrent::file_storage *arg1 = (libtorrent::file_storage *) 0 ;
+  libtorrent::error_code *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::int64_t arg4 ;
+  libtorrent::file_flags_t arg5 ;
+  std::time_t arg6 ;
+  libtorrent::file_flags_t *argp5 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  (void)jarg5_;
+  arg1 = *(libtorrent::file_storage **)&jarg1; 
+  arg2 = *(libtorrent::error_code **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::error_code & reference is null");
+    return ;
+  } 
+  if(!jarg3) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return ;
   }
-  const char *arg6_pstr = (const char *)jenv->GetStringUTFChars(jarg6, 0); 
-  if (!arg6_pstr) return ;
-  std::string arg6_str(arg6_pstr);
-  arg6 = &arg6_str;
-  jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  libtorrent_file_storage_add_file2(arg1,(std::string const &)*arg2,arg3,arg4,arg5,(std::string const &)*arg6);
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return ;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  arg4 = (std::int64_t)jarg4; 
+  argp5 = *(libtorrent::file_flags_t **)&jarg5; 
+  if (!argp5) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null libtorrent::file_flags_t");
+    return ;
+  }
+  arg5 = *argp5; 
+  arg6 = (std::time_t)jarg6; 
+  libtorrent_file_storage_add_file_ex__SWIG_0(arg1,*arg2,(std::string const &)*arg3,arg4,arg5,arg6);
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1storage_1add_1file_1ex_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jstring jarg3, jlong jarg4, jlong jarg5, jobject jarg5_) {
+  libtorrent::file_storage *arg1 = (libtorrent::file_storage *) 0 ;
+  libtorrent::error_code *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::int64_t arg4 ;
+  libtorrent::file_flags_t arg5 ;
+  libtorrent::file_flags_t *argp5 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  (void)jarg5_;
+  arg1 = *(libtorrent::file_storage **)&jarg1; 
+  arg2 = *(libtorrent::error_code **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::error_code & reference is null");
+    return ;
+  } 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return ;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  arg4 = (std::int64_t)jarg4; 
+  argp5 = *(libtorrent::file_flags_t **)&jarg5; 
+  if (!argp5) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null libtorrent::file_flags_t");
+    return ;
+  }
+  arg5 = *argp5; 
+  libtorrent_file_storage_add_file_ex__SWIG_0(arg1,*arg2,(std::string const &)*arg3,arg4,arg5);
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1storage_1add_1file_1ex_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jstring jarg3, jlong jarg4) {
+  libtorrent::file_storage *arg1 = (libtorrent::file_storage *) 0 ;
+  libtorrent::error_code *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::int64_t arg4 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(libtorrent::file_storage **)&jarg1; 
+  arg2 = *(libtorrent::error_code **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::error_code & reference is null");
+    return ;
+  } 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return ;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  arg4 = (std::int64_t)jarg4; 
+  libtorrent_file_storage_add_file_ex__SWIG_0(arg1,*arg2,(std::string const &)*arg3,arg4);
 }
 
 
