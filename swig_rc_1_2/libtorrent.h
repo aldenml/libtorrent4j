@@ -42,40 +42,6 @@
 
 #include <libtorrent/aux_/cpuid.hpp>
 
-
-struct add_files_listener {
-
-    virtual ~add_files_listener() {
-    }
-
-    virtual bool pred(std::string const& p) {
-        return true;
-    }
-};
-
-void add_files_ex(libtorrent::file_storage& fs, std::string const& file,
-                add_files_listener* listener, libtorrent::create_flags_t flags) {
-    add_files(fs, file, std::bind(&add_files_listener::pred, listener, std::placeholders::_1), flags);
-}
-
-struct set_piece_hashes_listener {
-
-    virtual ~set_piece_hashes_listener() {
-    }
-
-    virtual void progress(int i) {
-    }
-
-    void progress_index(libtorrent::piece_index_t i) {
-        progress(static_cast<int>(i));
-    }
-};
-
-void set_piece_hashes_ex(libtorrent::create_torrent& t, std::string const& p,
-                        set_piece_hashes_listener* listener, libtorrent::error_code& ec) {
-    set_piece_hashes(t, p, std::bind(&set_piece_hashes_listener::progress_index, listener, std::placeholders::_1), ec);
-}
-
 void dht_put_item_cb(libtorrent::entry& e, std::array<char, 64>& sig, std::int64_t& seq,
     std::string salt, libtorrent::dht::public_key pk, libtorrent::dht::secret_key sk,
     libtorrent::entry data) {
@@ -88,11 +54,6 @@ void dht_put_item_cb(libtorrent::entry& e, std::array<char, 64>& sig, std::int64
 	++seq;
 	sign = sign_mutable_item(buf, salt, sequence_number(seq), pk, sk);
     sig = sign.bytes;
-}
-
-bool arm_neon_support()
-{
-    return libtorrent::aux::arm_neon_support;
 }
 
 #if defined TORRENT_ANDROID
