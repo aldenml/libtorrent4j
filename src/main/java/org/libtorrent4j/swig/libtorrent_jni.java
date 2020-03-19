@@ -2115,6 +2115,8 @@ public class libtorrent_jni {
   public final static native String tracker_error_alert_message(long jarg1, tracker_error_alert jarg1_);
   public final static native int tracker_error_alert_times_in_row_get(long jarg1, tracker_error_alert jarg1_);
   public final static native long tracker_error_alert_error_get(long jarg1, tracker_error_alert jarg1_);
+  public final static native void tracker_error_alert_op_set(long jarg1, tracker_error_alert jarg1_, int jarg2);
+  public final static native int tracker_error_alert_op_get(long jarg1, tracker_error_alert jarg1_);
   public final static native String tracker_error_alert_error_message(long jarg1, tracker_error_alert jarg1_);
   public final static native void delete_tracker_error_alert(long jarg1);
   public final static native int tracker_warning_alert_priority_get();
