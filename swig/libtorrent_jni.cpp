@@ -826,7 +826,6 @@ namespace Swig {
 
 using piece_index_t = libtorrent::piece_index_t;
 using file_index_t = libtorrent::file_index_t;
-using port_mapping_t = libtorrent::port_mapping_t;
 using queue_position_t = libtorrent::queue_position_t;
 
 template <typename IndexType>
@@ -3948,6 +3947,16 @@ SWIGINTERN void libtorrent_session_handle_set_alert_notify_callback(libtorrent::
     }
 SWIGINTERN void libtorrent_session_handle_dht_announce_ex__SWIG_0(libtorrent::session_handle *self,libtorrent::sha1_hash const &info_hash,int port=0,std::int8_t flags={}){
         self->dht_announce(info_hash, port, libtorrent::dht::announce_flags_t{static_cast<std::uint8_t>(flags)});
+    }
+SWIGINTERN std::vector< int > libtorrent_session_handle_add_port_mapping_ex(libtorrent::session_handle *self,libtorrent::portmap_protocol t,int external_port,int local_port){
+        auto mapping = self->add_port_mapping(t, external_port, local_port);
+        std::vector<int> r;
+        for (auto m : mapping)
+            r.push_back(static_cast<int>(m));
+        return r;
+    }
+SWIGINTERN void libtorrent_session_handle_delete_port_mapping_ex(libtorrent::session_handle *self,int handle){
+        self->delete_port_mapping(libtorrent::port_mapping_t{handle});
     }
 SWIGINTERN void libtorrent_create_torrent_add_url_seed(libtorrent::create_torrent *self,std::string const &url){
         self->add_url_seed(url);
@@ -53579,6 +53588,40 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1hand
     return ;
   } 
   libtorrent_session_handle_dht_announce_ex__SWIG_0(arg1,(libtorrent::digest32< 160 > const &)*arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1handle_1add_1port_1mapping_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jint jarg4) {
+  jlong jresult = 0 ;
+  libtorrent::session_handle *arg1 = (libtorrent::session_handle *) 0 ;
+  libtorrent::portmap_protocol arg2 ;
+  int arg3 ;
+  int arg4 ;
+  std::vector< int > result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::session_handle **)&jarg1; 
+  arg2 = (libtorrent::portmap_protocol)jarg2; 
+  arg3 = (int)jarg3; 
+  arg4 = (int)jarg4; 
+  result = libtorrent_session_handle_add_port_mapping_ex(arg1,arg2,arg3,arg4);
+  *(std::vector< int > **)&jresult = new std::vector< int >((const std::vector< int > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1handle_1delete_1port_1mapping_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  libtorrent::session_handle *arg1 = (libtorrent::session_handle *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::session_handle **)&jarg1; 
+  arg2 = (int)jarg2; 
+  libtorrent_session_handle_delete_port_mapping_ex(arg1,arg2);
 }
 
 

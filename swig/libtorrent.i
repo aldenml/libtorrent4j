@@ -95,7 +95,6 @@
 
 using piece_index_t = libtorrent::piece_index_t;
 using file_index_t = libtorrent::file_index_t;
-using port_mapping_t = libtorrent::port_mapping_t;
 using queue_position_t = libtorrent::queue_position_t;
 
 template <typename IndexType>
@@ -176,7 +175,6 @@ TYPE_INTEGRAL_CONVERSION_EX(name, underlying_type, underlying_type, java_type)
 
 TYPE_INTEGRAL_CONVERSION(piece_index_t, std::int32_t, int)
 TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
-TYPE_INTEGRAL_CONVERSION(port_mapping_t, int, int)
 TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 // TYPE_INTEGRAL_CONVERSION_EX(peer_class_t, std::uint32_t, std::int32_t, int)
 // TYPE_INTEGRAL_CONVERSION(disconnect_severity_t, std::uint8_t, int)
