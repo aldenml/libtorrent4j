@@ -596,9 +596,6 @@ public class SessionManager {
             throw new IllegalArgumentException(ec.message());
         }
 
-        // TODO: review
-        //p.set_disabled_storage();
-
         final info_hash_t info_hash = p.getInfo_hash();
         final byte[][] data = {null};
         final CountDownLatch signal = new CountDownLatch(1);
@@ -662,7 +659,9 @@ public class SessionManager {
 
                 if (add) {
                     p.setName(FETCH_MAGNET_DOWNLOAD_KEY + uri);
-                    p.setSave_path(FETCH_MAGNET_DOWNLOAD_KEY + uri);
+
+                    String tempDir = System.getProperty("java.io.tmpdir");
+                    p.setSave_path(tempDir);
 
                     torrent_flags_t flags = p.getFlags();
                     flags = flags.op_and(TorrentFlags.AUTO_MANAGED.inv());

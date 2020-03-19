@@ -12,7 +12,7 @@ import java.util.concurrent.CountDownLatch;
 public final class ResumeTest {
 
     public static void main(String[] args) throws Throwable {
-        File torrentFile = new File("/Users/aldenml/Downloads/FROSTCLICK_FROSTWIRE_CREATIVE_COMMONS_MIXTAPE_VOL_6__MP3__December_2017.torrent");
+        File torrentFile = new File("/Users/aldenml/Downloads/ubuntu-19.10-desktop-amd64.iso.torrent");
 
         final SessionManager s = new SessionManager();
         final CountDownLatch signal = new CountDownLatch(10);

@@ -15,7 +15,7 @@ public final class PieceMap {
     public static void main(String[] args) throws Throwable {
 
         // comment this line for a real application
-        args = new String[]{"/Users/aldenml/Downloads/ReSet_Resynthformation_SOSEP051_FrostClick_FrostWire_6_28_2014.torrent"};
+        args = new String[]{"/Users/aldenml/Downloads/ubuntu-19.10-desktop-amd64.iso.torrent"};
 
         File torrentFile = new File(args[0]);
 

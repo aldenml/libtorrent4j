@@ -12,7 +12,7 @@ import java.io.File;
 public final class ReadBEncoded {
 
     public static void main(String[] args) throws Throwable {
-        args = new String[]{"/Users/aldenml/Downloads/303dde355f99c9b903efaeba57e23194a7a6713f.resume"};
+        args = new String[]{"/Users/aldenml/Downloads/ubuntu-19.10-desktop-amd64.iso.torrent"};
 
         byte[] data = Utils.readFileToByteArray(new File(args[0]));
 
