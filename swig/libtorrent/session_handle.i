@@ -82,6 +82,21 @@ namespace libtorrent {
     {
         $self->dht_announce(info_hash, port, libtorrent::dht::announce_flags_t{static_cast<std::uint8_t>(flags)});
     }
+
+    std::vector<int> add_port_mapping_ex(libtorrent::portmap_protocol t
+        , int external_port, int local_port)
+    {
+        auto mapping = $self->add_port_mapping(t, external_port, local_port);
+        std::vector<int> r;
+        for (auto m : mapping)
+            r.push_back(static_cast<int>(m));
+        return r;
+    }
+
+    void delete_port_mapping_ex(int handle)
+    {
+        $self->delete_port_mapping(libtorrent::port_mapping_t{handle});
+    }
 }
 
 }

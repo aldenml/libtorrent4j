@@ -249,6 +249,14 @@ public class session_handle {
     libtorrent_jni.session_handle_dht_announce_ex__SWIG_2(swigCPtr, this, sha1_hash.getCPtr(info_hash), info_hash);
   }
 
+  public int_vector add_port_mapping_ex(portmap_protocol t, int external_port, int local_port) {
+    return new int_vector(libtorrent_jni.session_handle_add_port_mapping_ex(swigCPtr, this, t.swigValue(), external_port, local_port), true);
+  }
+
+  public void delete_port_mapping_ex(int handle) {
+    libtorrent_jni.session_handle_delete_port_mapping_ex(swigCPtr, this, handle);
+  }
+
   public final static save_state_flags_t save_settings = new save_state_flags_t(libtorrent_jni.session_handle_save_settings_get(), false);
   public final static save_state_flags_t save_dht_state = new save_state_flags_t(libtorrent_jni.session_handle_save_dht_state_get(), false);
   public final static save_state_flags_t save_extension_state = new save_state_flags_t(libtorrent_jni.session_handle_save_extension_state_get(), false);

@@ -3229,6 +3229,8 @@ public class libtorrent_jni {
   public final static native void session_handle_dht_announce_ex__SWIG_0(long jarg1, session_handle jarg1_, long jarg2, sha1_hash jarg2_, int jarg3, byte jarg4);
   public final static native void session_handle_dht_announce_ex__SWIG_1(long jarg1, session_handle jarg1_, long jarg2, sha1_hash jarg2_, int jarg3);
   public final static native void session_handle_dht_announce_ex__SWIG_2(long jarg1, session_handle jarg1_, long jarg2, sha1_hash jarg2_);
+  public final static native long session_handle_add_port_mapping_ex(long jarg1, session_handle jarg1_, int jarg2, int jarg3, int jarg4);
+  public final static native void session_handle_delete_port_mapping_ex(long jarg1, session_handle jarg1_, int jarg2);
   public final static native void delete_session_handle(long jarg1);
   public final static native long min_memory_usage();
   public final static native long high_performance_seed();

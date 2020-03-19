@@ -28,6 +28,10 @@ public class SessionHandle {
 
     protected final session_handle s;
 
+    // protocols used by add_port_mapping()
+    public static final portmap_protocol UDP = session_handle.udp;
+    public static final portmap_protocol TCP = session_handle.tcp;
+
     /**
      * @param s the native object
      */
@@ -316,7 +320,6 @@ public class SessionHandle {
         return new SettingsPack(s.get_settings());
     }
 
-    // TODO: review
     /**
      * Adds a port forwarding on UPnP and/or NAT-PMP, using PCP if supported,
      * whichever is enabled. The return value is a handle referring to the
@@ -328,23 +331,22 @@ public class SessionHandle {
      * @param localPort    the local port
      * @return the array of port mapping ids
      */
-//    public int[] addPortMapping(PortmapProtocol t, int externalPort, int localPort) {
-//        port_mapping_t_vector v = s.add_port_mapping(portmap_protocol.swigToEnum(t.swig()), externalPort, localPort);
-//
-//        int size = (int) v.size();
-//        int[] arr = new int[size];
-//
-//        for (int i = 0; i < size; i++) {
-//            arr[i] = v.get(i);
-//        }
-//
-//        return arr;
-//    }
+    public int[] addPortMapping(PortmapProtocol t, int externalPort, int localPort) {
+        int_vector v = s.add_port_mapping_ex(portmap_protocol.swigToEnum(t.swig()), externalPort, localPort);
 
-    // TODO: review
-//    public void deletePortMapping(int handle) {
-//        s.delete_port_mapping(handle);
-//    }
+        int size = v.size();
+        int[] arr = new int[size];
+
+        for (int i = 0; i < size; i++) {
+            arr[i] = v.get(i);
+        }
+
+        return arr;
+    }
+
+    public void deletePortMapping(int handle) {
+        s.delete_port_mapping_ex(handle);
+    }
 
     /**
      * This option indicates if the ports are mapped using natpmp
