@@ -61,6 +61,14 @@ public class tracker_error_alert extends tracker_alert {
     return (cPtr == 0) ? null : new error_code(cPtr, false);
   }
 
+  public void setOp(operation_t value) {
+    libtorrent_jni.tracker_error_alert_op_set(swigCPtr, this, value.swigValue());
+  }
+
+  public operation_t getOp() {
+    return operation_t.swigToEnum(libtorrent_jni.tracker_error_alert_op_get(swigCPtr, this));
+  }
+
   public String error_message() {
     return libtorrent_jni.tracker_error_alert_error_message(swigCPtr, this);
   }

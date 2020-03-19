@@ -38144,6 +38144,34 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_tracker_1err
 }
 
 
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_tracker_1error_1alert_1op_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  libtorrent::tracker_error_alert *arg1 = (libtorrent::tracker_error_alert *) 0 ;
+  libtorrent::operation_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::tracker_error_alert **)&jarg1; 
+  arg2 = (libtorrent::operation_t)jarg2; 
+  if (arg1) (arg1)->op = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_tracker_1error_1alert_1op_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  libtorrent::tracker_error_alert *arg1 = (libtorrent::tracker_error_alert *) 0 ;
+  libtorrent::operation_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::tracker_error_alert **)&jarg1; 
+  result = (libtorrent::operation_t) ((arg1)->op);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_tracker_1error_1alert_1error_1message(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jstring jresult = 0 ;
   libtorrent::tracker_error_alert *arg1 = (libtorrent::tracker_error_alert *) 0 ;
