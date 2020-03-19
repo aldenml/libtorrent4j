@@ -341,4 +341,12 @@ public class libtorrent implements libtorrentConstants {
     return libtorrent_jni.device_for_address(session.getCPtr(s), s, address.getCPtr(addr), addr, error_code.getCPtr(ec), ec);
   }
 
+  public static void add_files_ex(file_storage fs, String file, add_files_listener listener, create_flags_t flags) {
+    libtorrent_jni.add_files_ex(file_storage.getCPtr(fs), fs, file, add_files_listener.getCPtr(listener), listener, create_flags_t.getCPtr(flags), flags);
+  }
+
+  public static void set_piece_hashes_ex(create_torrent t, String p, set_piece_hashes_listener listener, error_code ec) {
+    libtorrent_jni.set_piece_hashes_ex(create_torrent.getCPtr(t), t, p, set_piece_hashes_listener.getCPtr(listener), listener, error_code.getCPtr(ec), ec);
+  }
+
 }

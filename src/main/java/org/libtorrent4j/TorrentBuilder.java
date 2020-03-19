@@ -4,9 +4,11 @@ import org.libtorrent4j.swig.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import static org.libtorrent4j.swig.libtorrent.add_files_ex;
+import static org.libtorrent4j.swig.libtorrent.set_piece_hashes_ex;
 
 /**
  * @author gubatron
@@ -36,8 +38,7 @@ public final class TorrentBuilder {
     public TorrentBuilder() {
         this.pieceSize = 0;
         this.padFileLimit = -1;
-        // TODO: review
-        //this.flags = OPTIMIZE_ALIGNMENT;
+        this.flags = new create_flags_t();
         this.alignment = -1;
 
         this.urlSeeds = new LinkedList<>();
@@ -468,9 +469,6 @@ public final class TorrentBuilder {
      * @throws IOException
      */
     public Result generate() throws IOException {
-        return null;
-        // TODO: review
-        /*
         if (path == null) {
             throw new IOException("path can't be null");
         }
@@ -481,14 +479,14 @@ public final class TorrentBuilder {
         add_files_listener l1 = new add_files_listener() {
             @Override
             public boolean pred(String p) {
-                return listener != null ? listener.accept(p) : true;
+                return listener == null || listener.accept(p);
             }
         };
         add_files_ex(fs, absPath.getPath(), l1, flags);
         if (fs.total_size() == 0) {
             throw new IOException("content total size can't be 0");
         }
-        create_torrent t = new create_torrent(fs, pieceSize, padFileLimit, flags, alignment);
+        create_torrent t = new create_torrent(fs, pieceSize, flags);
         final int numPieces = t.num_pieces();
         set_piece_hashes_listener l2 = new set_piece_hashes_listener() {
             @Override
@@ -542,8 +540,6 @@ public final class TorrentBuilder {
         }
 
         return new Result(t);
-
-         */
     }
 
     /**

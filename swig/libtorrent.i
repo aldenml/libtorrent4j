@@ -91,11 +91,11 @@
 #include <libtorrent/read_resume_data.hpp>
 #include <libtorrent/write_resume_data.hpp>
 
-#include "libtorrent.hpp"
-
 using piece_index_t = libtorrent::piece_index_t;
 using file_index_t = libtorrent::file_index_t;
 using queue_position_t = libtorrent::queue_position_t;
+
+#include "libtorrent.hpp"
 
 template <typename IndexType>
 using typed_bitfield = libtorrent::typed_bitfield<IndexType>;
@@ -261,6 +261,8 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 
 // directors
 %feature("director") alert_notify_callback;
+%feature("director") add_files_listener;
+%feature("director") set_piece_hashes_listener;
 
 // includes
 %include "boost/system/error_code.i"
