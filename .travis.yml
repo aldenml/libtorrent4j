@@ -12,7 +12,7 @@ matrix:
     #- env: os_build=windows os_arch=x86
     #- env: os_build=windows os_arch=x86_64
     - os: osx
-      env: os_build=macosx os_arch=x86_64
+      env: os_build=macos os_arch=x86_64
 
 branches:
   only:
@@ -91,7 +91,7 @@ before_install:
     fi
 
 # install gradle in macOS to run the unit tests
-  - if [ $os_build == "macosx" ]; then
+  - if [ $os_build == "macos" ]; then
       brew update > /dev/null && brew install gradle;
     fi
 
@@ -143,8 +143,8 @@ before_install:
       export CC=x86_64-w64-mingw32-gcc-posix;
       export run_openssl_configure="./Configure mingw64 ${OPENSSL_NO_OPTS} --prefix=$OPENSSL_SOURCE/../openssl";
     fi
-  # macosx
-  - if [ $os_build == "macosx" ]; then
+  # macos
+  - if [ $os_build == "macos" ]; then
       export run_openssl_configure="./Configure darwin64-x86_64-cc ${OPENSSL_NO_OPTS} --prefix=$OPENSSL_SOURCE/../openssl";
     fi
 
@@ -212,11 +212,11 @@ before_install:
       export run_strip="x86_64-w64-mingw32-strip --strip-unneeded -x bin/release/windows/x86_64/libtorrent4j.dll";
       export run_readelf="eval objdump -p bin/release/windows/x86_64/libtorrent4j.dll | grep DLL";
     fi
-  # macosx
-  - if [ $os_build == "macosx" ]; then
-      export run_bjam="${BOOST_ROOT}/b2 --user-config=config/macosx-x86_64-config.jam variant=release toolset=darwin-x86_64 target-os=darwin location=bin/release/macosx/x86_64";
-      export run_strip="strip -S -x bin/release/macosx/x86_64/libtorrent4j.dylib";
-      export run_readelf="otool -L bin/release/macosx/x86_64/libtorrent4j.dylib";
+  # macos
+  - if [ $os_build == "macos" ]; then
+      export run_bjam="${BOOST_ROOT}/b2 --user-config=config/macos-x86_64-config.jam variant=release toolset=darwin-x86_64 target-os=darwin location=bin/release/macos/x86_64";
+      export run_strip="strip -S -x bin/release/macos/x86_64/libtorrent4j.dylib";
+      export run_readelf="otool -L bin/release/macos/x86_64/libtorrent4j.dylib";
     fi
 
 script:
@@ -233,9 +233,9 @@ script:
   - $run_bjam
   - $run_objcopy
   - $run_strip
-  - if [ $os_build == "macosx" ]; then
+  - if [ $os_build == "macos" ]; then
       cd ..;
-      cp swig/bin/release/macosx/x86_64/libtorrent4j.dylib .;
+      cp swig/bin/release/macos/x86_64/libtorrent4j.dylib .;
       gradle test codacyCoverage;
       cd swig;
     fi
