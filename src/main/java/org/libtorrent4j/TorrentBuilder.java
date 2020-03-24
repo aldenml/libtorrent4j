@@ -18,7 +18,6 @@ public final class TorrentBuilder {
 
     private File path;
     private int pieceSize;
-    private int padFileLimit;
     private create_flags_t flags;
     private int alignment;
 
@@ -37,7 +36,6 @@ public final class TorrentBuilder {
 
     public TorrentBuilder() {
         this.pieceSize = 0;
-        this.padFileLimit = -1;
         this.flags = new create_flags_t();
         this.alignment = -1;
 
@@ -85,28 +83,6 @@ public final class TorrentBuilder {
      */
     public TorrentBuilder pieceSize(int value) {
         this.pieceSize = value;
-        return this;
-    }
-
-    /**
-     *
-     */
-    public int padFileLimit() {
-        return padFileLimit;
-    }
-
-    /**
-     * If a ``pad_size_limit`` is specified (other than -1), any file larger than
-     * the specified number of bytes will be preceded by a pad file to align it
-     * with the start of a piece. The pad_file_limit is ignored unless the
-     * {@link OPTIMIZE_ALIGNMENT} flag is passed. Typically it doesn't make sense
-     * to set this any lower than 4kiB.
-     *
-     * @param value
-     *
-     */
-    public TorrentBuilder padFileLimit(int value) {
-        this.padFileLimit = value;
         return this;
     }
 

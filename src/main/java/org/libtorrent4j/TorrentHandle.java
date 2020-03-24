@@ -1338,7 +1338,7 @@ public final class TorrentHandle {
     }
 
     /**
-     * Flags to be passed in {@link #fileProgress(TorrentHandle.FileProgressFlags)}.
+     *
      */
     public enum FileProgressFlags {
 
