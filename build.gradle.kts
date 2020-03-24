@@ -39,8 +39,54 @@ tasks.test {
     environment("LD_LIBRARY_PATH", File(".").absolutePath)
 }
 
+tasks.register<Zip>("nativeMacOSJar") {
+    destinationDirectory.set(file("$buildDir/libs"))
+    archiveBaseName.set("libtorrent4j-macos")
+    archiveExtension.set("jar")
+
+    from("swig/bin/release/macos") {
+        include("**/*libtorrent4j.dylib")
+        exclude("**/ed25519", "**/src", "**/*.dSYM")
+        into("lib")
+    }
+}
+
 tasks.withType<GenerateModuleMetadata> {
     enabled = false
+}
+
+fun generatePom(pomName: String, addDeps: Boolean = false) = Action<org.gradle.api.publish.maven.MavenPom> {
+    name.set(pomName)
+    description.set("A swig Java interface for libtorrent")
+    url.set("https://github.com/aldenml/libtorrent4j")
+    scm {
+        connection.set("scm:git:git://github.com/aldenml/libtorrent4j.git")
+        developerConnection.set("scm:git:ssh:git@github.com/aldenml/libtorrent4j.git")
+        url.set("https://github.com/aldenml/libtorrent4j")
+    }
+    licenses {
+        license {
+            name.set("The MIT License")
+            url.set("https://github.com/aldenml/libtorrent4j/blob/master/LICENSE.md")
+        }
+    }
+    developers {
+        developer {
+            id.set("aldenml")
+            name.set("Alden Torres")
+            email.set("aldenml@gmail.com")
+        }
+    }
+
+    if (addDeps)
+        withXml {
+            val root = asNode()
+            val dependenciesNode = root.appendNode("dependencies")
+            val depNode = dependenciesNode.appendNode("dependency")
+            depNode.appendNode("groupId", group)
+            depNode.appendNode("artifactId", "libtorrent4j")
+            depNode.appendNode("version", version)
+        }
 }
 
 publishing {
@@ -48,29 +94,12 @@ publishing {
         create<MavenPublication>("mavenJava") {
             artifactId = "libtorrent4j"
             from(components["java"])
-            pom {
-                name.set("libtorrent4j")
-                description.set("A swig Java interface for libtorrent")
-                url.set("https://github.com/aldenml/libtorrent4j")
-                scm {
-                    connection.set("scm:git:git://github.com/aldenml/libtorrent4j.git")
-                    developerConnection.set("scm:git:ssh:git@github.com/aldenml/libtorrent4j.git")
-                    url.set("https://github.com/aldenml/libtorrent4j")
-                }
-                licenses {
-                    license {
-                        name.set("The MIT License")
-                        url.set("https://github.com/aldenml/libtorrent4j/blob/master/LICENSE.md")
-                    }
-                }
-                developers {
-                    developer {
-                        id.set("aldenml")
-                        name.set("Alden Torres")
-                        email.set("aldenml@gmail.com")
-                    }
-                }
-            }
+            pom(generatePom(artifactId))
+        }
+        create<MavenPublication>("mavenMacOS") {
+            artifactId = "libtorrent4j-macos"
+            artifact(tasks["nativeMacOSJar"])
+            pom(generatePom(artifactId, true))
         }
     }
 
@@ -89,6 +118,7 @@ publishing {
 
 signing {
     sign(publishing.publications["mavenJava"])
+    sign(publishing.publications["mavenMacOS"])
 }
 
 tasks.jacocoTestReport {
@@ -97,7 +127,7 @@ tasks.jacocoTestReport {
     }
 }
 
-tasks.register("codacyCoverage", JavaExec::class) {
+tasks.register<JavaExec>("codacyCoverage") {
     dependsOn(tasks.jacocoTestReport)
 
     main = "com.codacy.CodacyCoverageReporter"
