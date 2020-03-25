@@ -1,17 +1,16 @@
 import os ;
 
-ANDROID_TOOLCHAIN = [ os.environ ANDROID_TOOLCHAIN ] ;
-
-using clang : x86_64 : $(ANDROID_TOOLCHAIN)/bin/x86_64-linux-android-clang++ :
+using gcc : x86 : g++-5 :
     <cxxflags>-fPIC
-    <cxxflags>-std=c++11
-    <cxxflags>-DANDROID
+    <cxxflags>-m32
     <cxxflags>-fno-strict-aliasing
     <cxxflags>-fvisibility=hidden
+    <linkflags>-m32
     <linkflags>-static-libstdc++
+    <linkflags>-static-libgcc
+    <linkflags>"-z noexecstack"
     # debug information
     <cxxflags>-g
     <cxxflags>-gdwarf-4
-    <cxxflags>-fdebug-macro
     <cxxflags>-ggdb
     ;
