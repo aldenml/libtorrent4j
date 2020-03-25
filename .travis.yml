@@ -3,16 +3,18 @@ dist: bionic
 
 matrix:
   include:
-    - env: os_build=android os_arch=arm android_api=24
-    - env: os_build=android os_arch=arm64 android_api=24
-    - env: os_build=android os_arch=x86 android_api=24
-    - env: os_build=android os_arch=x86_64 android_api=24
-    - env: os_build=linux os_arch=x86
-    - env: os_build=linux os_arch=x86_64
+    - os: windows
+      env: os_build=windows os_arch=x86
+    #- env: os_build=android os_arch=arm android_api=24
+    #- env: os_build=android os_arch=arm64 android_api=24
+    #- env: os_build=android os_arch=x86 android_api=24
+    #- env: os_build=android os_arch=x86_64 android_api=24
+    #- env: os_build=linux os_arch=x86
+    #- env: os_build=linux os_arch=x86_64
     #- env: os_build=windows os_arch=x86
     #- env: os_build=windows os_arch=x86_64
-    - os: osx
-      env: os_build=macos os_arch=x86_64
+    #- os: osx
+    #  env: os_build=macos os_arch=x86_64
 
 branches:
   only:
@@ -29,15 +31,14 @@ before_install:
   - export BOOST_ROOT=$PWD/boost_1_72_0
 
 # openssl: download
-  - wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1d.tar.gz
+  - wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1e.tar.gz
   - tar xzf openssl.tar.gz
-  - export OPENSSL_SOURCE=$PWD/openssl-1.1.1d
+  - export OPENSSL_SOURCE=$PWD/openssl-1.1.1e
   # fix source code
   # this one avoid GDI dependency in windows and fix a syntax error
   - if [ $os_build == "windows" ]; then
       sed -i 's/if defined(_WIN32_WINNT) && _WIN32_WINNT>=0x0333/if 0/g' $OPENSSL_SOURCE/crypto/cryptlib.c;
       sed -i 's/MessageBox.*//g' $OPENSSL_SOURCE/crypto/cryptlib.c;
-      sed -i 's/return return 0;/return 0;/g' $OPENSSL_SOURCE/crypto/threads_none.c;
     fi
 
 # libtorrent: download and checkout revision
@@ -59,7 +60,7 @@ before_install:
       export ANDROID_TOOLCHAIN=$PWD/android-toolchain;
     fi
 
-  - if [[ $os_build == "linux" || $os_build == "windows" ]]; then
+  - if [[ $os_build == "linux" ]]; then
       sudo apt-get install -qq g++-5;
     fi
 
@@ -68,15 +69,6 @@ before_install:
       sudo apt-get install -qq lib32gcc-5-dev;
       sudo apt-get install -qq lib32stdc++-5-dev;
       sudo ln -s /usr/include/asm-generic /usr/include/asm;
-    fi
-
-# linux cross compilation tools for windows development
-  - if [[ $os_build == "windows" && $os_arch == "x86" ]]; then
-      sudo apt-get install -qq g++-mingw-w64-i686;
-    fi
-
-  - if [[ $os_build == "windows" && $os_arch == "x86_64" ]]; then
-      sudo apt-get install -qq g++-mingw-w64-x86-64;
     fi
 
 # install gradle in macOS to run the unit tests
@@ -124,8 +116,7 @@ before_install:
     fi
   # windows-x86
   - if [[ $os_build == "windows" && $os_arch == "x86" ]]; then
-      export CC=i686-w64-mingw32-gcc-posix;
-      export run_openssl_configure="./Configure mingw ${OPENSSL_NO_OPTS} --prefix=$OPENSSL_SOURCE/../openssl";
+      export run_openssl_configure="./Configure VC-WIN32 ${OPENSSL_NO_OPTS} --prefix=$OPENSSL_SOURCE/../openssl";
     fi
   # windows-x86_64
   - if [[ $os_build == "windows" && $os_arch == "x86_64" ]]; then
