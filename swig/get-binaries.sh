@@ -18,4 +18,4 @@ wget --no-check-certificate -P bin/release/windows/x86 https://s3.amazonaws.com/
 wget --no-check-certificate -P bin/release/windows/x86_64 https://s3.amazonaws.com/libtorrent4j/release/windows/x86_64/libtorrent4j.dll
 
 # macos
-wget --no-check-certificate -P bin/release/macosx/x86_64 https://s3.amazonaws.com/libtorrent4j/release/macosx/x86_64/libtorrent4j.dylib
+wget --no-check-certificate -P bin/release/macos/x86_64 https://s3.amazonaws.com/libtorrent4j/release/macos/x86_64/libtorrent4j.dylib
