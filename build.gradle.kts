@@ -6,9 +6,12 @@ plugins {
 }
 
 group = "org.libtorrent4j"
-version = "1.3.0"
+version = "1.3.0-alpha-1"
 
 java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+
     withJavadocJar()
     withSourcesJar()
 }
@@ -24,11 +27,6 @@ dependencies {
     testImplementation("junit:junit:4.12")
 
     codacy("com.codacy:codacy-coverage-reporter:7.1.0")
-}
-
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
 }
 
 tasks.test {
