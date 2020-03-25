@@ -49,6 +49,88 @@ tasks.register<Zip>("nativeMacOSJar") {
         exclude("**/ed25519", "**/src", "**/*.dSYM")
         into("lib")
     }
+
+    rename(".dylib", "-${archiveVersion.get()}.dylib")
+}
+
+tasks.register<Zip>("nativeWindowsJar") {
+    destinationDirectory.set(file("$buildDir/libs"))
+    archiveBaseName.set("libtorrent4j-windows")
+    archiveExtension.set("jar")
+
+    from("swig/bin/release/windows") {
+        include("**/*libtorrent4j.dll")
+        exclude("**/ed25519", "**/src")
+        into("lib")
+    }
+
+    rename(".dll", "-${archiveVersion.get()}.dll")
+}
+
+tasks.register<Zip>("nativeLinuxJar") {
+    destinationDirectory.set(file("$buildDir/libs"))
+    archiveBaseName.set("libtorrent4j-linux")
+    archiveExtension.set("jar")
+
+    from("swig/bin/release/linux") {
+        include("**/*libtorrent4j.so")
+        exclude("**/ed25519", "**/src")
+        into("lib")
+    }
+
+    rename(".so", "-${archiveVersion.get()}.so")
+}
+
+tasks.register<Zip>("nativeAndroidArmJar") {
+    destinationDirectory.set(file("$buildDir/libs"))
+    archiveBaseName.set("libtorrent4j-android-arm")
+    archiveExtension.set("jar")
+
+    from("swig/bin/release/android") {
+        include("armeabi-v7a/libtorrent4j.so")
+        into("lib")
+    }
+
+    rename(".so", "-${archiveVersion.get()}.so")
+}
+
+tasks.register<Zip>("nativeAndroidX86Jar") {
+    destinationDirectory.set(file("$buildDir/libs"))
+    archiveBaseName.set("libtorrent4j-android-x86")
+    archiveExtension.set("jar")
+
+    from("swig/bin/release/android") {
+        include("x86/libtorrent4j.so")
+        into("lib")
+    }
+
+    rename(".so", "-${archiveVersion.get()}.so")
+}
+
+tasks.register<Zip>("nativeAndroidArm64Jar") {
+    destinationDirectory.set(file("$buildDir/libs"))
+    archiveBaseName.set("libtorrent4j-android-arm64")
+    archiveExtension.set("jar")
+
+    from("swig/bin/release/android") {
+        include("arm64-v8a/libtorrent4j.so")
+        into("lib")
+    }
+
+    rename(".so", "-${archiveVersion.get()}.so")
+}
+
+tasks.register<Zip>("nativeAndroidX64Jar") {
+    destinationDirectory.set(file("$buildDir/libs"))
+    archiveBaseName.set("libtorrent4j-android-x86_64")
+    archiveExtension.set("jar")
+
+    from("swig/bin/release/android") {
+        include("x86_64/libtorrent4j.so")
+        into("lib")
+    }
+
+    rename(".so", "-${archiveVersion.get()}.so")
 }
 
 tasks.withType<GenerateModuleMetadata> {
@@ -101,6 +183,36 @@ publishing {
             artifact(tasks["nativeMacOSJar"])
             pom(generatePom(artifactId, true))
         }
+        create<MavenPublication>("mavenWindows") {
+            artifactId = "libtorrent4j-windows"
+            artifact(tasks["nativeWindowsJar"])
+            pom(generatePom(artifactId, true))
+        }
+        create<MavenPublication>("mavenLinux") {
+            artifactId = "libtorrent4j-linux"
+            artifact(tasks["nativeLinuxJar"])
+            pom(generatePom(artifactId, true))
+        }
+        create<MavenPublication>("mavenAndroidArm") {
+            artifactId = "libtorrent4j-android-arm"
+            artifact(tasks["nativeAndroidArmJar"])
+            pom(generatePom(artifactId, true))
+        }
+        create<MavenPublication>("mavenAndroidX86") {
+            artifactId = "libtorrent4j-android-x86"
+            artifact(tasks["nativeAndroidX86Jar"])
+            pom(generatePom(artifactId, true))
+        }
+        create<MavenPublication>("mavenAndroidArm64") {
+            artifactId = "libtorrent4j-android-arm64"
+            artifact(tasks["nativeAndroidArm64Jar"])
+            pom(generatePom(artifactId, true))
+        }
+        create<MavenPublication>("mavenAndroidX64") {
+            artifactId = "libtorrent4j-android-x86_64"
+            artifact(tasks["nativeAndroidX64Jar"])
+            pom(generatePom(artifactId, true))
+        }
     }
 
     repositories {
@@ -119,6 +231,12 @@ publishing {
 signing {
     sign(publishing.publications["mavenJava"])
     sign(publishing.publications["mavenMacOS"])
+    sign(publishing.publications["mavenWindows"])
+    sign(publishing.publications["mavenLinux"])
+    sign(publishing.publications["mavenAndroidArm"])
+    sign(publishing.publications["mavenAndroidX86"])
+    sign(publishing.publications["mavenAndroidArm64"])
+    sign(publishing.publications["mavenAndroidX64"])
 }
 
 tasks.jacocoTestReport {
