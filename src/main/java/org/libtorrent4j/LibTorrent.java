@@ -17,15 +17,6 @@ public final class LibTorrent {
     }
 
     /**
-     * The version number as reported by libtorrent
-     *
-     * @return the version number
-     */
-    public static int versionNum() {
-        return libtorrent.LIBTORRENT_VERSION_NUM;
-    }
-
-    /**
      * The version string as reported by libtorrent
      *
      * @return the version string
@@ -40,25 +31,16 @@ public final class LibTorrent {
      * This is not the internal revision libtorrent reports, since
      * that string is updated from time to time. This library can be
      * using an up to date revision, this string is manually
-     * hardcoded in each version of libtorrent4j. See
-     * {@link libtorrent#LIBTORRENT_REVISION} for the libtorrent string.
+     * hardcoded in each version of libtorrent4j.
      *
      * @return the git revision
      */
     public static String revision() {
-        return "078f7b956ef0d992948852a801e626b1118a1fc5";
-    }
-
-    public static int boostVersionNum() {
-        return libtorrent.boost_version();
+        return "d91e749fc0071acc2d8dc47e8c12abf565e67e55";
     }
 
     public static String boostVersion() {
         return libtorrent.boost_lib_version();
-    }
-
-    public static int opensslVersionNum() {
-        return libtorrent.openssl_version_number();
     }
 
     public static String opensslVersion() {
@@ -66,7 +48,7 @@ public final class LibTorrent {
     }
 
     public static String libtorrent4jVersion() {
-        return libtorrent_jni.libtorrent4jVersion();
+        return "1.3.0-alpha-1";
     }
 
     /**
