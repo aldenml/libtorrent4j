@@ -9,8 +9,8 @@ matrix:
     - env: os_build=android os_arch=x86_64 android_api=24
     - env: os_build=linux os_arch=x86
     - env: os_build=linux os_arch=x86_64
-    - env: os_build=windows os_arch=x86
-    - env: os_build=windows os_arch=x86_64
+    #- env: os_build=windows os_arch=x86
+    #- env: os_build=windows os_arch=x86_64
     - os: osx
       env: os_build=macos os_arch=x86_64
 
