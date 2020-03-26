@@ -258,6 +258,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %feature("director") alert_notify_callback;
 %feature("director") add_files_listener;
 %feature("director") set_piece_hashes_listener;
+%feature("director") posix_wrapper;
 
 // includes
 %include "boost/system/error_code.i"
@@ -309,5 +310,15 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %include "libtorrent/session_stats.i"
 %include "libtorrent/version.i"
 %include "libtorrent/magnet_uri.i"
+
+// for libtorrent.hpp
+%ignore set_piece_hashes_listener::progress_index;
+%ignore POSIX_WRAPPER;
+%ignore posix_opendir;
+%ignore posix_open;
+%ignore posix_stat;
+%ignore posix_mkdir;
+%ignore posix_remove;
+%ignore g_posix_wrapper;
 
 %include "libtorrent.hpp"

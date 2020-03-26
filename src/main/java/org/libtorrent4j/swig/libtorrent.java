@@ -321,4 +321,12 @@ public class libtorrent {
     libtorrent_jni.set_piece_hashes_ex(create_torrent.getCPtr(t), t, p, set_piece_hashes_listener.getCPtr(listener), listener, error_code.getCPtr(ec), ec);
   }
 
+  public static void set_posix_wrapper(posix_wrapper obj) {
+    libtorrent_jni.set_posix_wrapper(posix_wrapper.getCPtr(obj), obj);
+  }
+
+  public static void set_posix_errno(int val) {
+    libtorrent_jni.set_posix_errno(val);
+  }
+
 }

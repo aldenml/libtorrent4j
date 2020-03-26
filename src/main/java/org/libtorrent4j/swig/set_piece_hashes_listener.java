@@ -55,10 +55,6 @@ public class set_piece_hashes_listener {
     if (getClass() == set_piece_hashes_listener.class) libtorrent_jni.set_piece_hashes_listener_progress(swigCPtr, this, i); else libtorrent_jni.set_piece_hashes_listener_progressSwigExplicitset_piece_hashes_listener(swigCPtr, this, i);
   }
 
-  public void progress_index(int i) {
-    libtorrent_jni.set_piece_hashes_listener_progress_index(swigCPtr, this, i);
-  }
-
   public set_piece_hashes_listener() {
     this(libtorrent_jni.new_set_piece_hashes_listener(), true);
     libtorrent_jni.set_piece_hashes_listener_director_connect(this, swigCPtr, true, true);
