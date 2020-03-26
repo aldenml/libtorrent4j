@@ -67,10 +67,12 @@ before_install:
 # linux cross compilation tools for windows development
   - if [[ $os_build == "windows" && $os_arch == "x86" ]]; then
       sudo apt-get install -qq g++-mingw-w64-i686;
+      sudo ln -s /usr/i686-w64-mingw32/include/windows.h /usr/x86_64-w64-mingw32/include/Windows.h
     fi
 
   - if [[ $os_build == "windows" && $os_arch == "x86_64" ]]; then
       sudo apt-get install -qq g++-mingw-w64-x86-64;
+      sudo ln -s /usr/x86_64-w64-mingw32/include/windows.h /usr/x86_64-w64-mingw32/include/Windows.h
     fi
 
 # install gradle in macOS to run the unit tests
