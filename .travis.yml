@@ -67,7 +67,7 @@ before_install:
 # linux cross compilation tools for windows development
   - if [[ $os_build == "windows" && $os_arch == "x86" ]]; then
       sudo apt-get install -qq g++-mingw-w64-i686;
-      sudo ln -s /usr/i686-w64-mingw32/include/windows.h /usr/x86_64-w64-mingw32/include/Windows.h;
+      sudo ln -s /usr/share/mingw-w64/include/windows.h /usr/x86_64-w64-mingw32/include/Windows.h;
       ls -al /usr/i686-w64-mingw32/include/*dows.h;
     fi
 
