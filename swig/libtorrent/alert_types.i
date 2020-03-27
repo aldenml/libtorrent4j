@@ -27,6 +27,11 @@
 %ignore libtorrent::socks5_alert::ip;
 %ignore libtorrent::tracker_alert::local_endpoint;
 %ignore libtorrent::dht_stats_alert::local_endpoint;
+%ignore libtorrent::performance_alert::deprecated_bittyrant_with_no_uplimit;
+%ignore libtorrent::stats_alert::deprecated1;
+%ignore libtorrent::stats_alert::deprecated2;
+%ignore libtorrent::stats_alert::deprecated3;
+%ignore libtorrent::stats_alert::deprecated4;
 
 %rename("$ignore", regextarget=1, %$isconstructor) ".*_alert$";
 

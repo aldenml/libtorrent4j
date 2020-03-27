@@ -19449,18 +19449,6 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_libtorrent_1n
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_deprecated_1120_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
-  libtorrent::errors::error_code_enum result;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (libtorrent::errors::error_code_enum)libtorrent::errors::deprecated_120;
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
 SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_missing_1file_1sizes_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   libtorrent::errors::error_code_enum result;
@@ -37990,6 +37978,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1file_
 }
 
 
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_performance_1alert_1too_1few_1outgoing_1ports_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  libtorrent::performance_alert::performance_warning_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::performance_alert::performance_warning_t)libtorrent::performance_alert::too_few_outgoing_ports;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_performance_1alert_1priority_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   enum libtorrent::alert_priority result;
@@ -44664,6 +44664,30 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1ale
 }
 
 
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1alert_1download_1ip_1protocol_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  libtorrent::stats_alert::stats_channel result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::stats_alert::stats_channel)libtorrent::stats_alert::download_ip_protocol;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1alert_1num_1channels_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  libtorrent::stats_alert::stats_channel result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::stats_alert::stats_channel)libtorrent::stats_alert::num_channels;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_stats_1alert_1transferred_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   libtorrent::stats_alert *arg1 = (libtorrent::stats_alert *) 0 ;
@@ -51123,13 +51147,25 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pac
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pack_1deprecated_1flush_1write_1cache_1get(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pack_1use_1parole_1mode_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   libtorrent::settings_pack::bool_types result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::settings_pack::bool_types)libtorrent::settings_pack::deprecated_flush_write_cache;
+  result = (libtorrent::settings_pack::bool_types)libtorrent::settings_pack::use_parole_mode;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pack_1auto_1manage_1prefer_1seeds_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  libtorrent::settings_pack::bool_types result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::settings_pack::bool_types)libtorrent::settings_pack::auto_manage_prefer_seeds;
   jresult = (jint)result; 
   return jresult;
 }
@@ -51166,6 +51202,18 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pac
   (void)jenv;
   (void)jcls;
   result = (libtorrent::settings_pack::bool_types)libtorrent::settings_pack::no_atime_storage;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pack_1enable_1outgoing_1utp_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  libtorrent::settings_pack::bool_types result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::settings_pack::bool_types)libtorrent::settings_pack::enable_outgoing_utp;
   jresult = (jint)result; 
   return jresult;
 }
@@ -51219,6 +51267,18 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pac
 }
 
 
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pack_1report_1redundant_1bytes_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  libtorrent::settings_pack::bool_types result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::settings_pack::bool_types)libtorrent::settings_pack::report_redundant_bytes;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pack_1announce_1crypto_1support_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   libtorrent::settings_pack::bool_types result;
@@ -51243,13 +51303,13 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pac
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pack_1deprecated_1cache_1expiry_1get(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pack_1disk_1io_1write_1mode_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   libtorrent::settings_pack::int_types result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::settings_pack::int_types)libtorrent::settings_pack::deprecated_cache_expiry;
+  result = (libtorrent::settings_pack::int_types)libtorrent::settings_pack::disk_io_write_mode;
   jresult = (jint)result; 
   return jresult;
 }
@@ -51286,6 +51346,18 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pac
   (void)jenv;
   (void)jcls;
   result = (libtorrent::settings_pack::int_types)libtorrent::settings_pack::num_optimistic_unchoke_slots;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pack_1max_1pex_1peers_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  libtorrent::settings_pack::int_types result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::settings_pack::int_types)libtorrent::settings_pack::max_pex_peers;
   jresult = (jint)result; 
   return jresult;
 }
@@ -51346,6 +51418,18 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pac
   (void)jenv;
   (void)jcls;
   result = (libtorrent::settings_pack::int_types)libtorrent::settings_pack::tracker_backoff;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pack_1urlseed_1max_1request_1bytes_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  libtorrent::settings_pack::int_types result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::settings_pack::int_types)libtorrent::settings_pack::urlseed_max_request_bytes;
   jresult = (jint)result; 
   return jresult;
 }
