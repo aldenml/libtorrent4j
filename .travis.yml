@@ -25,6 +25,7 @@ before_install:
   - cd boost
   - git submodule update --depth=1 --init --recursive
   - ./bootstrap.sh
+  - ./b2 headers
   - cd ..
   - export BOOST_ROOT=$PWD/boost
 
