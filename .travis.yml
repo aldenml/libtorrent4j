@@ -21,12 +21,12 @@ branches:
 
 before_install:
 # boost: download and bootstrap
-  - wget -nv -O boost.zip https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.zip
-  - unzip -qq boost.zip
-  - cd boost_1_72_0
+  - git clone --depth=1 --branch=boost-1.72.0 https://github.com/boostorg/boost.git
+  - cd boost
+  - git submodule update --depth=1 --init --recursive
   - ./bootstrap.sh
   - cd ..
-  - export BOOST_ROOT=$PWD/boost_1_72_0
+  - export BOOST_ROOT=$PWD/boost
 
 # openssl: download
   - wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1e.tar.gz
