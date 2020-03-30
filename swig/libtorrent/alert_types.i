@@ -28,10 +28,6 @@
 %ignore libtorrent::tracker_alert::local_endpoint;
 %ignore libtorrent::dht_stats_alert::local_endpoint;
 %ignore libtorrent::performance_alert::deprecated_bittyrant_with_no_uplimit;
-%ignore libtorrent::stats_alert::deprecated1;
-%ignore libtorrent::stats_alert::deprecated2;
-%ignore libtorrent::stats_alert::deprecated3;
-%ignore libtorrent::stats_alert::deprecated4;
 
 %rename("$ignore", regextarget=1, %$isconstructor) ".*_alert$";
 
@@ -203,12 +199,6 @@ struct picker_flags_tag;
     }
 }
 
-%extend stats_alert {
-    int get_transferred(int index) {
-        return $self->transferred[index];
-    }
-}
-
 %extend session_stats_alert {
     long long get_value(int index) {
         return $self->counters()[index];
@@ -241,6 +231,14 @@ struct picker_flags_tag;
     int get_socket_type()
     {
         return static_cast<int>($self->socket_type);
+    }
+}
+
+%extend dht_stats_alert
+{
+    udp::endpoint get_local_endpoint()
+    {
+        return $self->local_endpoint;
     }
 }
 

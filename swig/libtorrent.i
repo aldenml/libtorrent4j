@@ -220,8 +220,6 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(char_array_32) std::array<char, 32>;
 %template(char_array_64) std::array<char, 64>;
 
-%template(int_array_stats_alert_num_channels) std::array<int, libtorrent::stats_alert::num_channels>;
-
 %template(int_string_map) std::map<int, std::string>;
 %template(string_string_map) std::map<std::string, std::string>;
 %template(int_bitfield_map) std::map<int, libtorrent::bitfield>;

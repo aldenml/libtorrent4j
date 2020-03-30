@@ -555,14 +555,6 @@ public class libtorrent_jni {
   public final static native char char_array_64_get(long jarg1, char_array_64 jarg1_, int jarg2);
   public final static native void char_array_64_set(long jarg1, char_array_64 jarg1_, int jarg2, char jarg3);
   public final static native void delete_char_array_64(long jarg1);
-  public final static native long new_int_array_stats_alert_num_channels__SWIG_0();
-  public final static native long new_int_array_stats_alert_num_channels__SWIG_1(long jarg1, int_array_stats_alert_num_channels jarg1_);
-  public final static native long int_array_stats_alert_num_channels_size(long jarg1, int_array_stats_alert_num_channels jarg1_);
-  public final static native boolean int_array_stats_alert_num_channels_isEmpty(long jarg1, int_array_stats_alert_num_channels jarg1_);
-  public final static native void int_array_stats_alert_num_channels_fill(long jarg1, int_array_stats_alert_num_channels jarg1_, int jarg2);
-  public final static native int int_array_stats_alert_num_channels_get(long jarg1, int_array_stats_alert_num_channels jarg1_, int jarg2);
-  public final static native void int_array_stats_alert_num_channels_set(long jarg1, int_array_stats_alert_num_channels jarg1_, int jarg2, int jarg3);
-  public final static native void delete_int_array_stats_alert_num_channels(long jarg1);
   public final static native long new_int_string_map__SWIG_0();
   public final static native long new_int_string_map__SWIG_1(long jarg1, int_string_map jarg1_);
   public final static native long int_string_map_Iterator_getNextUnchecked(long jarg1, int_string_map.Iterator jarg1_);
@@ -1881,7 +1873,6 @@ public class libtorrent_jni {
   public final static native long alert_ip_block_notification_get();
   public final static native long alert_performance_warning_get();
   public final static native long alert_dht_notification_get();
-  public final static native long alert_stats_notification_get();
   public final static native long alert_session_log_notification_get();
   public final static native long alert_torrent_log_notification_get();
   public final static native long alert_peer_log_notification_get();
@@ -1954,7 +1945,6 @@ public class libtorrent_jni {
   public final static native long alert_cast_to_peer_blocked_alert(long jarg1, alert jarg1_);
   public final static native long alert_cast_to_dht_announce_alert(long jarg1, alert jarg1_);
   public final static native long alert_cast_to_dht_get_peers_alert(long jarg1, alert jarg1_);
-  public final static native long alert_cast_to_stats_alert(long jarg1, alert jarg1_);
   public final static native long alert_cast_to_cache_flushed_alert(long jarg1, alert jarg1_);
   public final static native long alert_cast_to_lsd_peer_alert(long jarg1, alert jarg1_);
   public final static native long alert_cast_to_trackerid_alert(long jarg1, alert jarg1_);
@@ -2566,19 +2556,6 @@ public class libtorrent_jni {
   public final static native void dht_get_peers_alert_info_hash_set(long jarg1, dht_get_peers_alert jarg1_, long jarg2, sha1_hash jarg2_);
   public final static native long dht_get_peers_alert_info_hash_get(long jarg1, dht_get_peers_alert jarg1_);
   public final static native void delete_dht_get_peers_alert(long jarg1);
-  public final static native int stats_alert_priority_get();
-  public final static native int stats_alert_alert_type_get();
-  public final static native int stats_alert_type(long jarg1, stats_alert jarg1_);
-  public final static native long stats_alert_category(long jarg1, stats_alert jarg1_);
-  public final static native String stats_alert_what(long jarg1, stats_alert jarg1_);
-  public final static native long stats_alert_static_category_get();
-  public final static native String stats_alert_message(long jarg1, stats_alert jarg1_);
-  public final static native int stats_alert_download_ip_protocol_get();
-  public final static native int stats_alert_num_channels_get();
-  public final static native long stats_alert_transferred_get(long jarg1, stats_alert jarg1_);
-  public final static native int stats_alert_interval_get(long jarg1, stats_alert jarg1_);
-  public final static native int stats_alert_get_transferred(long jarg1, stats_alert jarg1_, int jarg2);
-  public final static native void delete_stats_alert(long jarg1);
   public final static native int cache_flushed_alert_priority_get();
   public final static native int cache_flushed_alert_alert_type_get();
   public final static native int cache_flushed_alert_type(long jarg1, cache_flushed_alert jarg1_);
@@ -2838,6 +2815,7 @@ public class libtorrent_jni {
   public final static native long dht_stats_alert_routing_table_get(long jarg1, dht_stats_alert jarg1_);
   public final static native void dht_stats_alert_nid_set(long jarg1, dht_stats_alert jarg1_, long jarg2, sha1_hash jarg2_);
   public final static native long dht_stats_alert_nid_get(long jarg1, dht_stats_alert jarg1_);
+  public final static native long dht_stats_alert_get_local_endpoint(long jarg1, dht_stats_alert jarg1_);
   public final static native void delete_dht_stats_alert(long jarg1);
   public final static native long incoming_request_alert_static_category_get();
   public final static native int incoming_request_alert_priority_get();
@@ -3450,7 +3428,6 @@ public class libtorrent_jni {
   public final static native long peer_blocked_alert_SWIGUpcast(long jarg1);
   public final static native long dht_announce_alert_SWIGUpcast(long jarg1);
   public final static native long dht_get_peers_alert_SWIGUpcast(long jarg1);
-  public final static native long stats_alert_SWIGUpcast(long jarg1);
   public final static native long cache_flushed_alert_SWIGUpcast(long jarg1);
   public final static native long lsd_peer_alert_SWIGUpcast(long jarg1);
   public final static native long trackerid_alert_SWIGUpcast(long jarg1);

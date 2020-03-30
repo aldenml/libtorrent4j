@@ -71,7 +71,6 @@ struct alert_category_tag;
     CAST_ALERT_METHOD(peer_blocked_alert)
     CAST_ALERT_METHOD(dht_announce_alert)
     CAST_ALERT_METHOD(dht_get_peers_alert)
-    CAST_ALERT_METHOD(stats_alert)
     CAST_ALERT_METHOD(cache_flushed_alert)
     CAST_ALERT_METHOD(lsd_peer_alert)
     CAST_ALERT_METHOD(trackerid_alert)
