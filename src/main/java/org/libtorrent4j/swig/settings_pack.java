@@ -400,7 +400,6 @@ public class settings_pack extends settings_interface {
     public final static settings_pack.int_types resolver_cache_timeout = new settings_pack.int_types("resolver_cache_timeout");
     public final static settings_pack.int_types send_not_sent_low_watermark = new settings_pack.int_types("send_not_sent_low_watermark");
     public final static settings_pack.int_types upnp_lease_duration = new settings_pack.int_types("upnp_lease_duration");
-    public final static settings_pack.int_types ssl_version = new settings_pack.int_types("ssl_version");
     public final static settings_pack.int_types dht_max_peers_reply = new settings_pack.int_types("dht_max_peers_reply");
     public final static settings_pack.int_types dht_search_branching = new settings_pack.int_types("dht_search_branching");
     public final static settings_pack.int_types dht_max_fail_count = new settings_pack.int_types("dht_max_fail_count");
@@ -449,7 +448,7 @@ public class settings_pack extends settings_interface {
       swigNext = this.swigValue+1;
     }
 
-    private static int_types[] swigValues = { tracker_completion_timeout, tracker_receive_timeout, stop_tracker_timeout, tracker_maximum_response_length, piece_timeout, request_timeout, request_queue_time, max_allowed_in_request_queue, max_out_request_queue, whole_pieces_threshold, peer_timeout, urlseed_timeout, urlseed_pipeline_size, urlseed_wait_retry, file_pool_size, max_failcount, min_reconnect_time, peer_connect_timeout, connection_speed, inactivity_timeout, unchoke_interval, optimistic_unchoke_interval, num_want, initial_picker_threshold, allowed_fast_set_size, suggest_mode, max_queued_disk_bytes, handshake_timeout, send_buffer_low_watermark, send_buffer_watermark, send_buffer_watermark_factor, choking_algorithm, seed_choking_algorithm, disk_io_write_mode, disk_io_read_mode, outgoing_port, num_outgoing_ports, peer_tos, active_downloads, active_seeds, active_checking, active_dht_limit, active_tracker_limit, active_lsd_limit, active_limit, auto_manage_interval, seed_time_limit, auto_scrape_interval, auto_scrape_min_interval, max_peerlist_size, max_paused_peerlist_size, min_announce_interval, auto_manage_startup, seeding_piece_quota, max_rejects, recv_socket_buffer_size, send_socket_buffer_size, max_peer_recv_buffer_size, read_cache_line_size, write_cache_line_size, optimistic_disk_retry, max_suggest_pieces, local_service_announce_interval, dht_announce_interval, udp_tracker_token_expiry, num_optimistic_unchoke_slots, max_pex_peers, tick_interval, share_mode_target, upload_rate_limit, download_rate_limit, dht_upload_rate_limit, unchoke_slots_limit, connections_limit, connections_slack, utp_target_delay, utp_gain_factor, utp_min_timeout, utp_syn_resends, utp_fin_resends, utp_num_resends, utp_connect_timeout, utp_loss_multiplier, mixed_mode_algorithm, listen_queue_size, torrent_connect_boost, alert_queue_size, max_metadata_size, checking_mem_usage, predictive_piece_announce, aio_threads, tracker_backoff, share_ratio_limit, seed_time_ratio_limit, peer_turnover, peer_turnover_cutoff, peer_turnover_interval, connect_seed_every_n_download, max_http_recv_buffer_size, max_retry_port_bind, alert_mask, out_enc_policy, in_enc_policy, allowed_enc_level, inactive_down_rate, inactive_up_rate, proxy_type, proxy_port, i2p_port, urlseed_max_request_bytes, web_seed_name_lookup_retry, close_file_interval, utp_cwnd_reduce_timer, max_web_seed_connections, resolver_cache_timeout, send_not_sent_low_watermark, upnp_lease_duration, ssl_version, dht_max_peers_reply, dht_search_branching, dht_max_fail_count, dht_max_torrents, dht_max_dht_items, dht_max_peers, dht_max_torrent_search_reply, dht_block_timeout, dht_block_ratelimit, dht_item_lifetime, dht_sample_infohashes_interval, dht_max_infohashes_sample_count, max_int_setting_internal };
+    private static int_types[] swigValues = { tracker_completion_timeout, tracker_receive_timeout, stop_tracker_timeout, tracker_maximum_response_length, piece_timeout, request_timeout, request_queue_time, max_allowed_in_request_queue, max_out_request_queue, whole_pieces_threshold, peer_timeout, urlseed_timeout, urlseed_pipeline_size, urlseed_wait_retry, file_pool_size, max_failcount, min_reconnect_time, peer_connect_timeout, connection_speed, inactivity_timeout, unchoke_interval, optimistic_unchoke_interval, num_want, initial_picker_threshold, allowed_fast_set_size, suggest_mode, max_queued_disk_bytes, handshake_timeout, send_buffer_low_watermark, send_buffer_watermark, send_buffer_watermark_factor, choking_algorithm, seed_choking_algorithm, disk_io_write_mode, disk_io_read_mode, outgoing_port, num_outgoing_ports, peer_tos, active_downloads, active_seeds, active_checking, active_dht_limit, active_tracker_limit, active_lsd_limit, active_limit, auto_manage_interval, seed_time_limit, auto_scrape_interval, auto_scrape_min_interval, max_peerlist_size, max_paused_peerlist_size, min_announce_interval, auto_manage_startup, seeding_piece_quota, max_rejects, recv_socket_buffer_size, send_socket_buffer_size, max_peer_recv_buffer_size, read_cache_line_size, write_cache_line_size, optimistic_disk_retry, max_suggest_pieces, local_service_announce_interval, dht_announce_interval, udp_tracker_token_expiry, num_optimistic_unchoke_slots, max_pex_peers, tick_interval, share_mode_target, upload_rate_limit, download_rate_limit, dht_upload_rate_limit, unchoke_slots_limit, connections_limit, connections_slack, utp_target_delay, utp_gain_factor, utp_min_timeout, utp_syn_resends, utp_fin_resends, utp_num_resends, utp_connect_timeout, utp_loss_multiplier, mixed_mode_algorithm, listen_queue_size, torrent_connect_boost, alert_queue_size, max_metadata_size, checking_mem_usage, predictive_piece_announce, aio_threads, tracker_backoff, share_ratio_limit, seed_time_ratio_limit, peer_turnover, peer_turnover_cutoff, peer_turnover_interval, connect_seed_every_n_download, max_http_recv_buffer_size, max_retry_port_bind, alert_mask, out_enc_policy, in_enc_policy, allowed_enc_level, inactive_down_rate, inactive_up_rate, proxy_type, proxy_port, i2p_port, urlseed_max_request_bytes, web_seed_name_lookup_retry, close_file_interval, utp_cwnd_reduce_timer, max_web_seed_connections, resolver_cache_timeout, send_not_sent_low_watermark, upnp_lease_duration, dht_max_peers_reply, dht_search_branching, dht_max_fail_count, dht_max_torrents, dht_max_dht_items, dht_max_peers, dht_max_torrent_search_reply, dht_block_timeout, dht_block_ratelimit, dht_item_lifetime, dht_sample_infohashes_interval, dht_max_infohashes_sample_count, max_int_setting_internal };
     private static int swigNext = 0;
     private final int swigValue;
     private final String swigName;
@@ -539,50 +538,6 @@ public class settings_pack extends settings_interface {
     }
 
     private static suggest_mode_t[] swigValues = { no_piece_suggestions, suggest_read_cache };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
-  }
-
-  public final static class ssl_version_t {
-    public final static settings_pack.ssl_version_t tls11 = new settings_pack.ssl_version_t("tls11");
-    public final static settings_pack.ssl_version_t tls12 = new settings_pack.ssl_version_t("tls12");
-
-    public final int swigValue() {
-      return swigValue;
-    }
-
-    public String toString() {
-      return swigName;
-    }
-
-    public static ssl_version_t swigToEnum(int swigValue) {
-      if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-        return swigValues[swigValue];
-      for (int i = 0; i < swigValues.length; i++)
-        if (swigValues[i].swigValue == swigValue)
-          return swigValues[i];
-      throw new IllegalArgumentException("No enum " + ssl_version_t.class + " with value " + swigValue);
-    }
-
-    private ssl_version_t(String swigName) {
-      this.swigName = swigName;
-      this.swigValue = swigNext++;
-    }
-
-    private ssl_version_t(String swigName, int swigValue) {
-      this.swigName = swigName;
-      this.swigValue = swigValue;
-      swigNext = swigValue+1;
-    }
-
-    private ssl_version_t(String swigName, ssl_version_t swigEnum) {
-      this.swigName = swigName;
-      this.swigValue = swigEnum.swigValue;
-      swigNext = this.swigValue+1;
-    }
-
-    private static ssl_version_t[] swigValues = { tls11, tls12 };
     private static int swigNext = 0;
     private final int swigValue;
     private final String swigName;

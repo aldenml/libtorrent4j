@@ -321,11 +321,6 @@ public class alert {
     return (cPtr == 0) ? null : new dht_get_peers_alert(cPtr, false);
   }
 
-  public static stats_alert cast_to_stats_alert(alert a) {
-    long cPtr = libtorrent_jni.alert_cast_to_stats_alert(alert.getCPtr(a), a);
-    return (cPtr == 0) ? null : new stats_alert(cPtr, false);
-  }
-
   public static cache_flushed_alert cast_to_cache_flushed_alert(alert a) {
     long cPtr = libtorrent_jni.alert_cast_to_cache_flushed_alert(alert.getCPtr(a), a);
     return (cPtr == 0) ? null : new cache_flushed_alert(cPtr, false);
@@ -506,7 +501,6 @@ public class alert {
   public final static alert_category_t ip_block_notification = new alert_category_t(libtorrent_jni.alert_ip_block_notification_get(), false);
   public final static alert_category_t performance_warning = new alert_category_t(libtorrent_jni.alert_performance_warning_get(), false);
   public final static alert_category_t dht_notification = new alert_category_t(libtorrent_jni.alert_dht_notification_get(), false);
-  public final static alert_category_t stats_notification = new alert_category_t(libtorrent_jni.alert_stats_notification_get(), false);
   public final static alert_category_t session_log_notification = new alert_category_t(libtorrent_jni.alert_session_log_notification_get(), false);
   public final static alert_category_t torrent_log_notification = new alert_category_t(libtorrent_jni.alert_torrent_log_notification_get(), false);
   public final static alert_category_t peer_log_notification = new alert_category_t(libtorrent_jni.alert_peer_log_notification_get(), false);

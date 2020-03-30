@@ -2,10 +2,11 @@ package org.libtorrent4j.alerts;
 
 import org.libtorrent4j.DhtLookup;
 import org.libtorrent4j.DhtRoutingBucket;
+import org.libtorrent4j.SessionHandle;
+import org.libtorrent4j.UdpEndpoint;
 import org.libtorrent4j.swig.dht_lookup_vector;
 import org.libtorrent4j.swig.dht_routing_bucket_vector;
 import org.libtorrent4j.swig.dht_stats_alert;
-import org.libtorrent4j.SessionHandle;
 
 import java.util.ArrayList;
 
@@ -56,5 +57,14 @@ public final class DhtStatsAlert extends AbstractAlert<dht_stats_alert> {
         }
 
         return l;
+    }
+
+    /**
+     * The local socket this DHT node is running on.
+     *
+     * @return the local socket endpoint.
+     */
+    public UdpEndpoint localEndpoint() {
+        return new UdpEndpoint(alert.get_local_endpoint());
     }
 }

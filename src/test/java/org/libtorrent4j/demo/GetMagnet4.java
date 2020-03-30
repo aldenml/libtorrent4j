@@ -3,7 +3,6 @@ package org.libtorrent4j.demo;
 import org.libtorrent4j.alerts.AddTorrentAlert;
 import org.libtorrent4j.alerts.Alert;
 import org.libtorrent4j.alerts.MetadataReceivedAlert;
-import org.libtorrent4j.alerts.StatsAlert;
 import org.libtorrent4j.*;
 
 import java.sql.Time;
@@ -53,21 +52,6 @@ public final class GetMagnet4 {
                                     ti.files().fileName(i)));
                         System.out.println();
                         th.prioritizeFiles(p);
-                        break;
-                    case STATS:
-                        th = ((StatsAlert) alert).handle();
-                        ti = th.torrentFile();
-                        // ti is null while the metadata is not received
-                        if (ti != null) {
-                            p = th.filePriorities();
-                            System.out.println(String.format("[%s] Current priorities:",
-                                    new Time(System.currentTimeMillis())));
-                            for (int i = 0; i < ti.numFiles(); i++)
-                                System.out.println(String.format("priority=%-8sfile=%s",
-                                        p[i],
-                                        ti.files().fileName(i)));
-                            System.out.println();
-                        }
                         break;
                     case TORRENT_FINISHED:
                         System.out.println("Torrent finished\n");

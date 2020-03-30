@@ -51,7 +51,6 @@ public enum AlertType {
     PERFORMANCE(performance_alert.alert_type),
     PIECE_FINISHED(piece_finished_alert.alert_type),
     SAVE_RESUME_DATA_FAILED(save_resume_data_failed_alert.alert_type),
-    STATS(stats_alert.alert_type),
     STORAGE_MOVED(storage_moved_alert.alert_type),
     TORRENT_DELETE_FAILED(torrent_delete_failed_alert.alert_type),
     URL_SEED(url_seed_alert.alert_type),
@@ -181,7 +180,7 @@ public enum AlertType {
         arr[54] = PEER_BLOCKED;
         arr[55] = DHT_ANNOUNCE;
         arr[56] = DHT_GET_PEERS;
-        arr[57] = STATS;
+        arr[57] = UNKNOWN;
         arr[58] = CACHE_FLUSHED;
         arr[59] = UNKNOWN;
         arr[60] = LSD_PEER;
