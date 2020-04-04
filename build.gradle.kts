@@ -6,11 +6,12 @@ plugins {
 }
 
 group = "org.libtorrent4j"
-version = "1.3.0-alpha-3"
+version = "1.3.0-alpha-4"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    // using java 8 for android compatibility
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
     withJavadocJar()
     withSourcesJar()

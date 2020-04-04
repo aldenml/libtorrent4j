@@ -26,8 +26,8 @@ public class PosixWrapperTest {
 
     @Test
     public void testSetPosixWrapper() throws IOException {
-        var called = new AtomicBoolean(false);
-        var p = new posix_wrapper() {
+        AtomicBoolean called = new AtomicBoolean(false);
+        posix_wrapper p = new posix_wrapper() {
 
             @Override
             public long opendir(String name) {

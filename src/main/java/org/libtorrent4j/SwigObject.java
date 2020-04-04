@@ -19,7 +19,9 @@ public class SwigObject<T> {
     }
 
     /**
-     * Returns a reference to the native object handler
+     * Returns a reference to the native object handler.
+     *
+     * @return the internal native handle.
      */
     public T swig() {
         return h;

@@ -53,6 +53,14 @@ public class announce_endpoint {
     return libtorrent_jni.announce_endpoint_enabled_get(swigCPtr, this);
   }
 
+  public announce_infohash get_infohash_v1() {
+    return new announce_infohash(libtorrent_jni.announce_endpoint_get_infohash_v1(swigCPtr, this), true);
+  }
+
+  public announce_infohash get_infohash_v2() {
+    return new announce_infohash(libtorrent_jni.announce_endpoint_get_infohash_v2(swigCPtr, this), true);
+  }
+
   public announce_endpoint() {
     this(libtorrent_jni.new_announce_endpoint(), true);
   }

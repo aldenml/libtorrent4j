@@ -12,16 +12,14 @@ import org.libtorrent4j.swig.announce_endpoint;
  *
  * @author aldenml
  */
-public class AnnounceEndpoint {
-
-    protected String localEndpoint;
-    protected boolean enabled;
+public final class AnnounceEndpoint
+    extends SwigObject<announce_endpoint> {
 
     /**
      * @param e the native object
      */
     public AnnounceEndpoint(announce_endpoint e) {
-        init(e);
+        super(e);
     }
 
     /**
@@ -29,26 +27,38 @@ public class AnnounceEndpoint {
      *
      * @return the local endpoint
      */
-    public String localEndpoint() {
-        return localEndpoint;
+    public TcpEndpoint localEndpoint() {
+        return new TcpEndpoint(h.getLocal_endpoint());
     }
 
     /**
-     * The time of next tracker announce in milliseconds.
-     *
-     * @return the time of next tracker announce in milliseconds
+     * Set to false to not announce from this endpoint.
      */
     public boolean enabled() {
-        return enabled;
+        return h.getEnabled();
     }
 
     /**
-     * NOTE: use this with care and only if necessary.
+     * Torrents can be announced using multiple info hashes
+     * for different protocol versions.
+     * <p>
+     * This is for version 1 (SHA1).
      *
-     * @param e the native object
+     * @return the V1 announce infohash
      */
-    protected void init(announce_endpoint e) {
-        localEndpoint = new TcpEndpoint(e.getLocal_endpoint()).toString();
-        enabled = e.getEnabled();
+    public AnnounceInfohash infohashV1() {
+        return new AnnounceInfohash(h.get_infohash_v1());
+    }
+
+    /**
+     * Torrents can be announced using multiple info hashes
+     * for different protocol versions.
+     * <p>
+     * This is for version 2 (truncated SHA-256).
+     *
+     * @return the V2 announce infohash
+     */
+    public AnnounceInfohash infohashV2() {
+        return new AnnounceInfohash(h.get_infohash_v2());
     }
 }

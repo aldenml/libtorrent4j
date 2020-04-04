@@ -1,5 +1,6 @@
 package org.libtorrent4j;
 
+import org.libtorrent4j.swig.announce_endpoint;
 import org.libtorrent4j.swig.announce_endpoint_vector;
 import org.libtorrent4j.swig.announce_entry;
 
@@ -13,31 +14,23 @@ import java.util.List;
  * @author gubatron
  * @author aldenml
  */
-public final class AnnounceEntry {
-
-    private final announce_entry e;
+public final class AnnounceEntry
+    extends SwigObject<announce_entry> {
 
     /**
      * @param e the native object
      */
     public AnnounceEntry(announce_entry e) {
-        this.e = e;
-    }
-
-    /**
-     * @return the native object
-     */
-    public announce_entry swig() {
-        return e;
+        super(e);
     }
 
     public List<AnnounceEndpoint> endpoints() {
-        announce_endpoint_vector v = e.getEndpoints();
-        int size = (int) v.size();
+        announce_endpoint_vector v = h.getEndpoints();
+        int size = v.size();
         ArrayList<AnnounceEndpoint> l = new ArrayList<>(size);
 
-        for (int i = 0; i < size; i++) {
-            l.add(new AnnounceEndpoint(v.get(i)));
+        for (announce_endpoint endp : v) {
+            l.add(new AnnounceEndpoint(endp));
         }
 
         return l;
@@ -49,11 +42,11 @@ public final class AnnounceEntry {
      * @return the tracker url
      */
     public String url() {
-        return e.getUrl();
+        return h.getUrl();
     }
 
     public void url(String value) {
-        e.setUrl(value);
+        h.setUrl(value);
     }
 
     /**
@@ -64,11 +57,11 @@ public final class AnnounceEntry {
      * @return the trackerid url argument
      */
     public String trackerId() {
-        return e.getTrackerid();
+        return h.getTrackerid();
     }
 
     public void trackerId(String value) {
-        e.setTrackerid(value);
+        h.setTrackerid(value);
     }
 
     /**
@@ -77,11 +70,11 @@ public final class AnnounceEntry {
      * @return the tier number
      */
     public int tier() {
-        return e.getTier();
+        return h.getTier();
     }
 
     public void tier(short value) {
-        e.setTier(value);
+        h.setTier(value);
     }
 
     /**
@@ -91,11 +84,11 @@ public final class AnnounceEntry {
      * @return the max number of failures allowed
      */
     public int failLimit() {
-        return e.getFail_limit();
+        return h.getFail_limit();
     }
 
     public void failLimit(short value) {
-        e.setFail_limit(value);
+        h.setFail_limit(value);
     }
 
     /**
@@ -104,7 +97,7 @@ public final class AnnounceEntry {
      * @return the source bitmask
      */
     public int source() {
-        return e.getSource();
+        return h.getSource();
     }
 
     /**
@@ -114,6 +107,6 @@ public final class AnnounceEntry {
      * @return if the tracker has received a valid response
      */
     public boolean isVerified() {
-        return e.getVerified();
+        return h.getVerified();
     }
 }

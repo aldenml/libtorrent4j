@@ -80,6 +80,7 @@
 #include "libtorrent/session_stats.hpp"
 #include "libtorrent/version.hpp"
 #include "libtorrent/magnet_uri.hpp"
+#include "libtorrent/fingerprint.hpp"
 
 #include <libtorrent/hex.hpp>
 #include <libtorrent/bencode.hpp>
@@ -308,6 +309,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %include "libtorrent/session_stats.i"
 %include "libtorrent/version.i"
 %include "libtorrent/magnet_uri.i"
+%include "libtorrent/fingerprint.i"
 
 // for libtorrent.hpp
 %ignore set_piece_hashes_listener::progress_index;

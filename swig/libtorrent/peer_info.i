@@ -62,6 +62,12 @@ struct peer_flags_tag;
     std::int8_t get_write_state() {
         return std::int8_t(static_cast<std::uint8_t>($self->write_state));
     }
+
+    lt::bitfield get_pieces()
+    {
+        auto* v = &$self->pieces;
+        return *reinterpret_cast<lt::bitfield*>(v);
+    }
 }
 
 }

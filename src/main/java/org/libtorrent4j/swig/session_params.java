@@ -84,4 +84,36 @@ public class session_params {
     return (cPtr == 0) ? null : new ip_filter(cPtr, false);
   }
 
+  public static session_params read_session_params(bdecode_node e, save_state_flags_t flags) {
+    return new session_params(libtorrent_jni.session_params_read_session_params__SWIG_0(bdecode_node.getCPtr(e), e, save_state_flags_t.getCPtr(flags), flags), true);
+  }
+
+  public static session_params read_session_params(bdecode_node e) {
+    return new session_params(libtorrent_jni.session_params_read_session_params__SWIG_1(bdecode_node.getCPtr(e), e), true);
+  }
+
+  public static session_params read_session_params(byte_vector buf, save_state_flags_t flags) {
+    return new session_params(libtorrent_jni.session_params_read_session_params__SWIG_2(byte_vector.getCPtr(buf), buf, save_state_flags_t.getCPtr(flags), flags), true);
+  }
+
+  public static session_params read_session_params(byte_vector buf) {
+    return new session_params(libtorrent_jni.session_params_read_session_params__SWIG_3(byte_vector.getCPtr(buf), buf), true);
+  }
+
+  public static entry write_session_params(session_params sp, save_state_flags_t flags) {
+    return new entry(libtorrent_jni.session_params_write_session_params__SWIG_0(session_params.getCPtr(sp), sp, save_state_flags_t.getCPtr(flags), flags), true);
+  }
+
+  public static entry write_session_params(session_params sp) {
+    return new entry(libtorrent_jni.session_params_write_session_params__SWIG_1(session_params.getCPtr(sp), sp), true);
+  }
+
+  public static byte_vector write_session_params_buf(session_params sp, save_state_flags_t flags) {
+    return new byte_vector(libtorrent_jni.session_params_write_session_params_buf__SWIG_0(session_params.getCPtr(sp), sp, save_state_flags_t.getCPtr(flags), flags), true);
+  }
+
+  public static byte_vector write_session_params_buf(session_params sp) {
+    return new byte_vector(libtorrent_jni.session_params_write_session_params_buf__SWIG_1(session_params.getCPtr(sp), sp), true);
+  }
+
 }
