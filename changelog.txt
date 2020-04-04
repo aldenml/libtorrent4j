@@ -1,5 +1,6 @@
 1.3.0-alpha-4
 
+  * updated to OpenSSL 1.1.1f
   * using Java 1.8 for source and bytecode target
   * better support for posix wrapper using custom branch
   * using libtorrent master

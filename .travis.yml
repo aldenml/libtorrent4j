@@ -30,9 +30,9 @@ before_install:
   - export BOOST_ROOT=$PWD/boost
 
 # openssl: download
-  - wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1e.tar.gz
+  - wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1f.tar.gz
   - tar xzf openssl.tar.gz
-  - export OPENSSL_SOURCE=$PWD/openssl-1.1.1e
+  - export OPENSSL_SOURCE=$PWD/openssl-1.1.1f
   # fix source code
   # this one avoid GDI dependency in windows and fix a syntax error
   - if [ $os_build == "windows" ]; then
