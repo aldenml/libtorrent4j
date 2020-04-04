@@ -209,14 +209,6 @@ public class libtorrent {
     return new settings_pack(libtorrent_jni.default_settings(), true);
   }
 
-  public static entry write_session_params(session_params sp, save_state_flags_t flags) {
-    return new entry(libtorrent_jni.write_session_params__SWIG_0(session_params.getCPtr(sp), sp, save_state_flags_t.getCPtr(flags), flags), true);
-  }
-
-  public static entry write_session_params(session_params sp) {
-    return new entry(libtorrent_jni.write_session_params__SWIG_1(session_params.getCPtr(sp), sp), true);
-  }
-
   public static settings_pack min_memory_usage() {
     return new settings_pack(libtorrent_jni.min_memory_usage(), true);
   }
@@ -251,6 +243,22 @@ public class libtorrent {
 
   public static String make_magnet_uri(torrent_info info) {
     return libtorrent_jni.make_magnet_uri__SWIG_1(torrent_info.getCPtr(info), info);
+  }
+
+  public static String generate_fingerprint(String name, int major, int minor, int revision, int tag) {
+    return libtorrent_jni.generate_fingerprint__SWIG_0(name, major, minor, revision, tag);
+  }
+
+  public static String generate_fingerprint(String name, int major, int minor, int revision) {
+    return libtorrent_jni.generate_fingerprint__SWIG_1(name, major, minor, revision);
+  }
+
+  public static String generate_fingerprint(String name, int major, int minor) {
+    return libtorrent_jni.generate_fingerprint__SWIG_2(name, major, minor);
+  }
+
+  public static String generate_fingerprint(String name, int major) {
+    return libtorrent_jni.generate_fingerprint__SWIG_3(name, major);
   }
 
   public static int find_metric_idx_ex(String name) {

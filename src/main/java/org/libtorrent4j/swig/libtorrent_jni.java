@@ -953,6 +953,8 @@ public class libtorrent_jni {
   public final static native long announce_endpoint_local_endpoint_get(long jarg1, announce_endpoint jarg1_);
   public final static native void announce_endpoint_enabled_set(long jarg1, announce_endpoint jarg1_, boolean jarg2);
   public final static native boolean announce_endpoint_enabled_get(long jarg1, announce_endpoint jarg1_);
+  public final static native long announce_endpoint_get_infohash_v1(long jarg1, announce_endpoint jarg1_);
+  public final static native long announce_endpoint_get_infohash_v2(long jarg1, announce_endpoint jarg1_);
   public final static native long new_announce_endpoint();
   public final static native void delete_announce_endpoint(long jarg1);
   public final static native long new_announce_entry__SWIG_0();
@@ -1411,6 +1413,7 @@ public class libtorrent_jni {
   public final static native byte peer_info_get_source(long jarg1, peer_info jarg1_);
   public final static native byte peer_info_get_read_state(long jarg1, peer_info jarg1_);
   public final static native byte peer_info_get_write_state(long jarg1, peer_info jarg1_);
+  public final static native long peer_info_get_pieces(long jarg1, peer_info jarg1_);
   public final static native long bandwidth_state_flags_t_all();
   public final static native boolean bandwidth_state_flags_t_op_bool(long jarg1, bandwidth_state_flags_t jarg1_);
   public final static native boolean bandwidth_state_flags_t_op_eq(long jarg1, bandwidth_state_flags_t jarg1_, long jarg2, bandwidth_state_flags_t jarg2_);
@@ -3150,8 +3153,14 @@ public class libtorrent_jni {
   public final static native long session_params_ext_state_get(long jarg1, session_params jarg1_);
   public final static native void session_params_ip_filter_set(long jarg1, session_params jarg1_, long jarg2, ip_filter jarg2_);
   public final static native long session_params_ip_filter_get(long jarg1, session_params jarg1_);
-  public final static native long write_session_params__SWIG_0(long jarg1, session_params jarg1_, long jarg2, save_state_flags_t jarg2_);
-  public final static native long write_session_params__SWIG_1(long jarg1, session_params jarg1_);
+  public final static native long session_params_read_session_params__SWIG_0(long jarg1, bdecode_node jarg1_, long jarg2, save_state_flags_t jarg2_);
+  public final static native long session_params_read_session_params__SWIG_1(long jarg1, bdecode_node jarg1_);
+  public final static native long session_params_read_session_params__SWIG_2(long jarg1, byte_vector jarg1_, long jarg2, save_state_flags_t jarg2_);
+  public final static native long session_params_read_session_params__SWIG_3(long jarg1, byte_vector jarg1_);
+  public final static native long session_params_write_session_params__SWIG_0(long jarg1, session_params jarg1_, long jarg2, save_state_flags_t jarg2_);
+  public final static native long session_params_write_session_params__SWIG_1(long jarg1, session_params jarg1_);
+  public final static native long session_params_write_session_params_buf__SWIG_0(long jarg1, session_params jarg1_, long jarg2, save_state_flags_t jarg2_);
+  public final static native long session_params_write_session_params_buf__SWIG_1(long jarg1, session_params jarg1_);
   public final static native long new_session_handle__SWIG_0();
   public final static native long new_session_handle__SWIG_1(long jarg1, session_handle jarg1_);
   public final static native boolean session_handle_is_valid(long jarg1, session_handle jarg1_);
@@ -3281,6 +3290,10 @@ public class libtorrent_jni {
   public final static native String version();
   public final static native String make_magnet_uri__SWIG_0(long jarg1, torrent_handle jarg1_);
   public final static native String make_magnet_uri__SWIG_1(long jarg1, torrent_info jarg1_);
+  public final static native String generate_fingerprint__SWIG_0(String jarg1, int jarg2, int jarg3, int jarg4, int jarg5);
+  public final static native String generate_fingerprint__SWIG_1(String jarg1, int jarg2, int jarg3, int jarg4);
+  public final static native String generate_fingerprint__SWIG_2(String jarg1, int jarg2, int jarg3);
+  public final static native String generate_fingerprint__SWIG_3(String jarg1, int jarg2);
   public final static native void delete_alert_notify_callback(long jarg1);
   public final static native void alert_notify_callback_on_alert(long jarg1, alert_notify_callback jarg1_);
   public final static native void alert_notify_callback_on_alertSwigExplicitalert_notify_callback(long jarg1, alert_notify_callback jarg1_);
