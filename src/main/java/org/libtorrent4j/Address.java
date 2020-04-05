@@ -19,7 +19,7 @@ public final class Address
     }
 
     /**
-     *
+     * Empty address.
      */
     public Address() {
         this(new address());
@@ -91,6 +91,11 @@ public final class Address
         return h.to_string();
     }
 
+    /**
+     * Returns a deep/native copy of this address.
+     *
+     * @return a copy of this address.
+     */
     public Address copy() {
         return new Address(new address(h));
     }
@@ -108,5 +113,19 @@ public final class Address
             throw new IllegalArgumentException(ec.message());
         }
         return new Address(h);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Address)) {
+            return false;
+        }
+
+        return compareTo((Address) obj) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return h.hash_code();
     }
 }

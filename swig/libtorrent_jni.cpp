@@ -2715,14 +2715,36 @@ SWIGINTERN bool std_bitset_Sl_128_Sg__get(std::bitset< 128 > *self,std::size_t p
             return (*self)[pos];
         }
 SWIGINTERN bool libtorrent_address_op_lt(libtorrent::address *self,libtorrent::address const &a2){
-                return *self < a2;
-            }
+            return *self < a2;
+        }
 SWIGINTERN int libtorrent_address_compare(libtorrent::address const &a1,libtorrent::address const &a2){
-                return a1 == a2 ? 0 : (a1 < a2 ? -1 : 1);
-            }
+            return a1 == a2 ? 0 : (a1 < a2 ? -1 : 1);
+        }
 SWIGINTERN libtorrent::address libtorrent_address_from_string(std::string const &str,boost::system::error_code &ec){
-                return boost::asio::ip::make_address(str, ec);
+            return boost::asio::ip::make_address(str, ec);
+        }
+SWIGINTERN int libtorrent_address_hash_code(libtorrent::address *self){
+            if (self->is_v4())
+            {
+                auto data = self->to_v4().to_bytes();
+                int result = 1;
+                for (int i = 0; i < int(data.size()); i++)
+                {
+                    result = 31 * result + data[i];
+                }
+                return result;
             }
+            else
+            {
+                auto data = self->to_v6().to_bytes();
+                int result = 1;
+                for (int i = 0; i < int(data.size()); i++)
+                {
+                    result = 31 * result + data[i];
+                }
+                return result;
+            }
+        }
 SWIGINTERN void *libtorrent_client_data_t_get(libtorrent::client_data_t *self){
         return self->get<void>();
     }
@@ -16695,6 +16717,21 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1fro
   } 
   result = libtorrent_address_from_string((std::string const &)*arg1,*arg2);
   *(libtorrent::address **)&jresult = new libtorrent::address((const libtorrent::address &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1hash_1code(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  libtorrent::address *arg1 = (libtorrent::address *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::address **)&jarg1; 
+  result = (int)libtorrent_address_hash_code(arg1);
+  jresult = (jint)result; 
   return jresult;
 }
 

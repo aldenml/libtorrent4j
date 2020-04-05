@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "org.libtorrent4j"
-version = "1.3.0-alpha-4"
+version = "1.3.0-alpha-5"
 
 java {
     // using java 8 for android compatibility
@@ -48,8 +48,6 @@ tasks.register<Zip>("nativeMacOSJar") {
         exclude("**/ed25519", "**/src", "**/*.dSYM")
         into("lib")
     }
-
-    rename(".dylib", "-${archiveVersion.get()}.dylib")
 }
 
 tasks.register<Zip>("nativeWindowsJar") {
@@ -62,8 +60,6 @@ tasks.register<Zip>("nativeWindowsJar") {
         exclude("**/ed25519", "**/src")
         into("lib")
     }
-
-    rename(".dll", "-${archiveVersion.get()}.dll")
 }
 
 tasks.register<Zip>("nativeLinuxJar") {
@@ -76,8 +72,6 @@ tasks.register<Zip>("nativeLinuxJar") {
         exclude("**/ed25519", "**/src")
         into("lib")
     }
-
-    rename(".so", "-${archiveVersion.get()}.so")
 }
 
 tasks.register<Zip>("nativeAndroidArmJar") {
@@ -89,8 +83,6 @@ tasks.register<Zip>("nativeAndroidArmJar") {
         include("armeabi-v7a/libtorrent4j.so")
         into("lib")
     }
-
-    rename(".so", "-${archiveVersion.get()}.so")
 }
 
 tasks.register<Zip>("nativeAndroidX86Jar") {
@@ -102,8 +94,6 @@ tasks.register<Zip>("nativeAndroidX86Jar") {
         include("x86/libtorrent4j.so")
         into("lib")
     }
-
-    rename(".so", "-${archiveVersion.get()}.so")
 }
 
 tasks.register<Zip>("nativeAndroidArm64Jar") {
@@ -115,8 +105,6 @@ tasks.register<Zip>("nativeAndroidArm64Jar") {
         include("arm64-v8a/libtorrent4j.so")
         into("lib")
     }
-
-    rename(".so", "-${archiveVersion.get()}.so")
 }
 
 tasks.register<Zip>("nativeAndroidX64Jar") {
@@ -128,8 +116,6 @@ tasks.register<Zip>("nativeAndroidX64Jar") {
         include("x86_64/libtorrent4j.so")
         into("lib")
     }
-
-    rename(".so", "-${archiveVersion.get()}.so")
 }
 
 tasks.withType<GenerateModuleMetadata> {
