@@ -21,7 +21,7 @@ public class TorrentInfoTest {
         bb.position(0);
 
         TorrentInfo ti = new TorrentInfo((MappedByteBuffer) bb);
-        assertEquals("83e37aea34581ce105af93c0955e7c7d4194ae47", ti.infoHash().getV1().toHex());
+        assertEquals("83e37aea34581ce105af93c0955e7c7d4194ae47", ti.infoHash().toHex());
         assertEquals("FrostWire 6.2.4 build 179", ti.creator());
     }
 }

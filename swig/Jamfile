@@ -32,7 +32,7 @@ rule libtorrent_linking ( properties * )
     result += <logging>on ;
     result += <crypto>openssl ;
     result += <optimization>off ;
-    result += <cxxstd>14 ;
+    result += <cxxstd>17 ;
 
     if <target-os>freebsd in $(properties)
     {
@@ -53,11 +53,6 @@ feature o2 : off s1 s2 : composite propagated link-incompatible ;
 feature.compose <o2>s1 : <cxxflags>-Os ;
 feature.compose <o2>s2 : <cxxflags>-Oz ;
 
-feature lto : off on gold : composite propagated link-incompatible ;
-feature.compose <lto>on : <cxxflags>-flto <linkflags>-flto ;
-feature.compose <lto>gold : <cxxflags>-flto <linkflags>-flto
-    <linkflags>-fuse-ld=gold ;
-
 feature ssl : on off : composite propagated link-incompatible ;
 feature.compose <ssl>on :
     <openssl-include>$(OPENSSL_ROOT)/include
@@ -77,11 +72,6 @@ lib torrent4j
     <target-os>android:<o2>s1
     <target-os>linux:<o2>s1
     <target-os>windows:<o2>s1
-    # lto
-    <target-os>darwin:<lto>off
-    <target-os>android:<lto>off
-    <target-os>linux:<lto>off
-    <target-os>windows:<lto>off
 
     : # default build
     <link>shared

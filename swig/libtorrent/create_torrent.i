@@ -1,4 +1,4 @@
-%ignore libtorrent::set_piece_hashes(create_torrent&, std::string const&, std::function<void(piece_index_t)> const&, error_code&);
+%ignore libtorrent::set_piece_hashes;
 %ignore libtorrent::create_torrent::add_url_seed(string_view);
 %ignore libtorrent::create_torrent::add_http_seed(string_view);
 %ignore libtorrent::create_torrent::add_tracker(string_view);

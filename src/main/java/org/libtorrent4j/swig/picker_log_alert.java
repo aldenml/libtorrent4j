@@ -52,6 +52,10 @@ public class picker_log_alert extends peer_alert {
     return libtorrent_jni.picker_log_alert_message(swigCPtr, this);
   }
 
+  public void setPicker_flags(picker_flags_t value) {
+    libtorrent_jni.picker_log_alert_picker_flags_set(swigCPtr, this, picker_flags_t.getCPtr(value), value);
+  }
+
   public picker_flags_t getPicker_flags() {
     long cPtr = libtorrent_jni.picker_log_alert_picker_flags_get(swigCPtr, this);
     return (cPtr == 0) ? null : new picker_flags_t(cPtr, false);

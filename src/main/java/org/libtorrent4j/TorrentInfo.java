@@ -388,8 +388,8 @@ public final class TorrentInfo {
      *
      *
      */
-    public InfoHash infoHash() {
-        return new InfoHash(ti.info_hash());
+    public Sha1Hash infoHash() {
+        return new Sha1Hash(ti.info_hash());
     }
 
     /**

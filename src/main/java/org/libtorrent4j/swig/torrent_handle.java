@@ -88,6 +88,14 @@ public class torrent_handle {
     libtorrent_jni.torrent_handle_file_progress__SWIG_1(swigCPtr, this, int64_vector.getCPtr(progress), progress);
   }
 
+  public int64_vector file_progress(file_progress_flags_t flags) {
+    return new int64_vector(libtorrent_jni.torrent_handle_file_progress__SWIG_2(swigCPtr, this, file_progress_flags_t.getCPtr(flags), flags), true);
+  }
+
+  public int64_vector file_progress() {
+    return new int64_vector(libtorrent_jni.torrent_handle_file_progress__SWIG_3(swigCPtr, this), true);
+  }
+
   public void clear_error() {
     libtorrent_jni.torrent_handle_clear_error(swigCPtr, this);
   }
@@ -260,6 +268,10 @@ public class torrent_handle {
     libtorrent_jni.torrent_handle_connect_peer__SWIG_2(swigCPtr, this, tcp_endpoint.getCPtr(adr), adr);
   }
 
+  public void clear_peers() {
+    libtorrent_jni.torrent_handle_clear_peers(swigCPtr, this);
+  }
+
   public void set_max_uploads(int max_uploads) {
     libtorrent_jni.torrent_handle_set_max_uploads(swigCPtr, this, max_uploads);
   }
@@ -288,8 +300,12 @@ public class torrent_handle {
     libtorrent_jni.torrent_handle_rename_file(swigCPtr, this, index, new_name);
   }
 
-  public info_hash_t info_hash() {
-    return new info_hash_t(libtorrent_jni.torrent_handle_info_hash(swigCPtr, this), true);
+  public sha1_hash info_hash() {
+    return new sha1_hash(libtorrent_jni.torrent_handle_info_hash(swigCPtr, this), true);
+  }
+
+  public info_hash_t info_hashes() {
+    return new info_hash_t(libtorrent_jni.torrent_handle_info_hashes(swigCPtr, this), true);
   }
 
   public boolean op_eq(torrent_handle h) {

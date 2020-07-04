@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BOOST_ROOT=$DEVELOPMENT_ROOT/boost_1_72_0
+BOOST_ROOT=$DEVELOPMENT_ROOT/boost_1_73_0
 LIBTORRENT_ROOT=$DEVELOPMENT_ROOT/libtorrent
 
 function fixCode() {

@@ -3,8 +3,9 @@ dist: bionic
 
 matrix:
   include:
-    - os: osx
-      env: os_build=macos os_arch=x86_64
+    - env: os_build=macos os_arch=x86_64
+      os: osx
+      osx_image: xcode11.2
     - env: os_build=android os_arch=arm android_api=24
     - env: os_build=android os_arch=arm64 android_api=24
     - env: os_build=android os_arch=x86 android_api=24
@@ -41,9 +42,9 @@ before_install:
     fi
 
 # libtorrent: download and checkout revision
-  - git clone https://github.com/aldenml/libtorrent
+  - git clone https://github.com/arvidn/libtorrent
   - cd libtorrent
-  - git checkout posix-wrapper
+  - git checkout master
   - git submodule update --depth=1 --init --recursive
   - cd ..
   - export LIBTORRENT_ROOT=$PWD/libtorrent

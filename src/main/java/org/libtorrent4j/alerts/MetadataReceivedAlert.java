@@ -71,7 +71,8 @@ public final class MetadataReceivedAlert extends TorrentAlert<metadata_received_
                 return -1;
             }
 
-            size = ti.metadata_size();
+            // TODO: restore here
+            size = -1;//ti.metadata_size();
 
         } catch (Throwable e) {
             invalid = true;
@@ -124,7 +125,8 @@ public final class MetadataReceivedAlert extends TorrentAlert<metadata_received_
                 return null;
             }
 
-            size = ti.metadata_size();
+            // TODO: restore here
+            size = -1; //ti.metadata_size();
             data = createTorrent(th, ti, extra);
 
         } catch (Throwable e) {
