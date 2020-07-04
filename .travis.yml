@@ -1,17 +1,17 @@
 language: cpp
-dist: bionic
+dist: focal
 
 matrix:
   include:
-    - env: os_build=macos os_arch=x86_64
-      os: osx
-      osx_image: xcode11.2
-    - env: os_build=android os_arch=arm android_api=24
-    - env: os_build=android os_arch=arm64 android_api=24
-    - env: os_build=android os_arch=x86 android_api=24
-    - env: os_build=android os_arch=x86_64 android_api=24
-    - env: os_build=linux os_arch=x86
-    - env: os_build=linux os_arch=x86_64
+#    - env: os_build=macos os_arch=x86_64
+#      os: osx
+#      osx_image: xcode11.2
+#    - env: os_build=android os_arch=arm android_api=24
+#    - env: os_build=android os_arch=arm64 android_api=24
+#    - env: os_build=android os_arch=x86 android_api=24
+#    - env: os_build=android os_arch=x86_64 android_api=24
+#    - env: os_build=linux os_arch=x86
+#    - env: os_build=linux os_arch=x86_64
     - env: os_build=windows os_arch=x86
     - env: os_build=windows os_arch=x86_64
 
@@ -61,8 +61,8 @@ before_install:
 
   - if [[ $os_build == "linux" && $os_arch == "x86" ]]; then
       sudo apt-get install -qq libc6-dev-i386;
-      sudo apt-get install -qq lib32gcc-7-dev;
-      sudo apt-get install -qq lib32stdc++-7-dev;
+      sudo apt-get install -qq lib32gcc-9-dev;
+      sudo apt-get install -qq lib32stdc++-9-dev;
       sudo ln -s /usr/include/asm-generic /usr/include/asm;
     fi
 
