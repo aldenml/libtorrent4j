@@ -9,6 +9,7 @@
 %ignore libtorrent::torrent_info::unload;
 %ignore libtorrent::torrent_info::hash_for_piece_ptr;
 %ignore libtorrent::torrent_info::parse_info_section;
+%ignore libtorrent::torrent_info::info_section;
 %ignore libtorrent::torrent_info::swap;
 %ignore libtorrent::torrent_info::add_merkle_nodes;
 %ignore libtorrent::torrent_info::build_merkle_list;
@@ -18,8 +19,7 @@
 %ignore libtorrent::torrent_info::internal_set_creation_date;
 %ignore libtorrent::torrent_info::internal_set_comment;
 %ignore libtorrent::torrent_info::ssl_cert;
-%ignore libtorrent::torrent_info::merkle_trees;
-%ignore libtorrent::torrent_info::file_merkle_tree;
+%ignore libtorrent::torrent_info::internal_merkle_trees;
 %ignore libtorrent::aux::sanitize_append_path_element;
 %ignore libtorrent::aux::verify_encoding;
 
@@ -29,18 +29,6 @@ namespace libtorrent {
 
 %extend torrent_info
 {
-    std::vector<std::vector<sha256_hash>>& get_merkle_trees()
-    {
-        auto* v = &$self->merkle_trees();
-        return *reinterpret_cast<std::vector<std::vector<libtorrent::sha256_hash>>*>(v);
-    }
-
-    std::vector<sha256_hash>& get_file_merkle_tree(int file)
-    {
-        auto* v = &$self->file_merkle_tree(libtorrent::file_index_t{file});
-        return *reinterpret_cast<std::vector<libtorrent::sha256_hash>*>(v);
-    }
-
     torrent_info(int64_t buffer_ptr, int size, error_code& ec) {
         return new libtorrent::torrent_info(reinterpret_cast<char const*>(buffer_ptr), size, ec);
     }

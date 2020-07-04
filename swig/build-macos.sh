@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export BOOST_ROOT=$DEVELOPMENT_ROOT/boost_1_72_0
+export BOOST_ROOT=$DEVELOPMENT_ROOT/boost_1_73_0
 export LIBTORRENT_ROOT=$DEVELOPMENT_ROOT/libtorrent
 export OPENSSL_ROOT=$DEVELOPMENT_ROOT/openssl-macos
 

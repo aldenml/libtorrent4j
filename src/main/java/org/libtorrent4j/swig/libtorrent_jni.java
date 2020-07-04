@@ -852,6 +852,7 @@ public class libtorrent_jni {
   public final static native long new_info_hash_t__SWIG_1(long jarg1, sha1_hash jarg1_);
   public final static native long new_info_hash_t__SWIG_2(long jarg1, sha256_hash jarg1_);
   public final static native long new_info_hash_t__SWIG_3(long jarg1, sha1_hash jarg1_, long jarg2, sha256_hash jarg2_);
+  public final static native long new_info_hash_t__SWIG_4(long jarg1, info_hash_t jarg1_);
   public final static native boolean info_hash_t_has_v1(long jarg1, info_hash_t jarg1_);
   public final static native boolean info_hash_t_has_v2(long jarg1, info_hash_t jarg1_);
   public final static native boolean info_hash_t_has(long jarg1, info_hash_t jarg1_, int jarg2);
@@ -995,7 +996,7 @@ public class libtorrent_jni {
   public final static native boolean file_storage_is_valid(long jarg1, file_storage jarg1_);
   public final static native void file_storage_reserve(long jarg1, file_storage jarg1_, int jarg2);
   public final static native void file_storage_rename_file(long jarg1, file_storage jarg1_, int jarg2, String jarg3);
-  public final static native long file_storage_map_block(long jarg1, file_storage jarg1_, int jarg2, long jarg3, int jarg4);
+  public final static native long file_storage_map_block(long jarg1, file_storage jarg1_, int jarg2, long jarg3, long jarg4);
   public final static native long file_storage_map_file(long jarg1, file_storage jarg1_, int jarg2, long jarg3, int jarg4);
   public final static native int file_storage_num_files(long jarg1, file_storage jarg1_);
   public final static native int file_storage_end_file(long jarg1, file_storage jarg1_);
@@ -1015,6 +1016,7 @@ public class libtorrent_jni {
   public final static native void file_storage_canonicalize(long jarg1, file_storage jarg1_);
   public final static native long file_storage_hash(long jarg1, file_storage jarg1_, int jarg2);
   public final static native long file_storage_root(long jarg1, file_storage jarg1_, int jarg2);
+  public final static native String file_storage_root_ptr(long jarg1, file_storage jarg1_, int jarg2);
   public final static native String file_storage_symlink(long jarg1, file_storage jarg1_, int jarg2);
   public final static native long file_storage_mtime(long jarg1, file_storage jarg1_, int jarg2);
   public final static native String file_storage_file_path__SWIG_0(long jarg1, file_storage jarg1_, int jarg2, String jarg3);
@@ -1036,7 +1038,6 @@ public class libtorrent_jni {
   public final static native int file_storage_file_index_at_piece(long jarg1, file_storage jarg1_, int jarg2);
   public final static native int file_storage_file_index_for_root(long jarg1, file_storage jarg1_, long jarg2, sha256_hash jarg2_);
   public final static native int file_storage_piece_index_at_file(long jarg1, file_storage jarg1_, int jarg2);
-  public final static native void file_storage_rebase_pointers(long jarg1, file_storage jarg1_, String jarg2, String jarg3);
   public final static native void file_storage_add_file_ex__SWIG_0(long jarg1, file_storage jarg1_, long jarg2, error_code jarg2_, String jarg3, long jarg4, long jarg5, file_flags_t jarg5_, long jarg6, String jarg7);
   public final static native void file_storage_add_file_ex__SWIG_1(long jarg1, file_storage jarg1_, long jarg2, error_code jarg2_, String jarg3, long jarg4, long jarg5, file_flags_t jarg5_, long jarg6);
   public final static native void file_storage_add_file_ex__SWIG_2(long jarg1, file_storage jarg1_, long jarg2, error_code jarg2_, String jarg3, long jarg4, long jarg5, file_flags_t jarg5_);
@@ -1140,6 +1141,7 @@ public class libtorrent_jni {
   public final static native int torrent_info_last_piece(long jarg1, torrent_info jarg1_);
   public final static native int torrent_info_end_piece(long jarg1, torrent_info jarg1_);
   public final static native long torrent_info_info_hash(long jarg1, torrent_info jarg1_);
+  public final static native long torrent_info_info_hashes(long jarg1, torrent_info jarg1_);
   public final static native int torrent_info_num_files(long jarg1, torrent_info jarg1_);
   public final static native long torrent_info_map_block(long jarg1, torrent_info jarg1_, int jarg2, long jarg3, int jarg4);
   public final static native long torrent_info_map_file(long jarg1, torrent_info jarg1_, int jarg2, long jarg3, int jarg4);
@@ -1157,9 +1159,7 @@ public class libtorrent_jni {
   public final static native long torrent_info_nodes(long jarg1, torrent_info jarg1_);
   public final static native void torrent_info_add_node(long jarg1, torrent_info jarg1_, long jarg2, string_int_pair jarg2_);
   public final static native long torrent_info_info(long jarg1, torrent_info jarg1_, String jarg2);
-  public final static native int torrent_info_metadata_size(long jarg1, torrent_info jarg1_);
-  public final static native long torrent_info_get_merkle_trees(long jarg1, torrent_info jarg1_);
-  public final static native long torrent_info_get_file_merkle_tree(long jarg1, torrent_info jarg1_, int jarg2);
+  public final static native void torrent_info_internal_load_merkle_trees(long jarg1, torrent_info jarg1_, long jarg2, sha256_hash_vector_vector jarg2_);
   public final static native long new_torrent_info__SWIG_4(long jarg1, int jarg2, long jarg3, error_code jarg3_);
   public final static native long seed_mode_get();
   public final static native long upload_mode_get();
@@ -1663,6 +1663,8 @@ public class libtorrent_jni {
   public final static native long torrent_handle_piece_granularity_get();
   public final static native void torrent_handle_file_progress__SWIG_0(long jarg1, torrent_handle jarg1_, long jarg2, int64_vector jarg2_, long jarg3, file_progress_flags_t jarg3_);
   public final static native void torrent_handle_file_progress__SWIG_1(long jarg1, torrent_handle jarg1_, long jarg2, int64_vector jarg2_);
+  public final static native long torrent_handle_file_progress__SWIG_2(long jarg1, torrent_handle jarg1_, long jarg2, file_progress_flags_t jarg2_);
+  public final static native long torrent_handle_file_progress__SWIG_3(long jarg1, torrent_handle jarg1_);
   public final static native void torrent_handle_clear_error(long jarg1, torrent_handle jarg1_);
   public final static native long torrent_handle_trackers(long jarg1, torrent_handle jarg1_);
   public final static native void torrent_handle_replace_trackers(long jarg1, torrent_handle jarg1_, long jarg2, announce_entry_vector jarg2_);
@@ -1712,6 +1714,7 @@ public class libtorrent_jni {
   public final static native void torrent_handle_connect_peer__SWIG_0(long jarg1, torrent_handle jarg1_, long jarg2, tcp_endpoint jarg2_, long jarg3, peer_source_flags_t jarg3_, long jarg4, pex_flags_t jarg4_);
   public final static native void torrent_handle_connect_peer__SWIG_1(long jarg1, torrent_handle jarg1_, long jarg2, tcp_endpoint jarg2_, long jarg3, peer_source_flags_t jarg3_);
   public final static native void torrent_handle_connect_peer__SWIG_2(long jarg1, torrent_handle jarg1_, long jarg2, tcp_endpoint jarg2_);
+  public final static native void torrent_handle_clear_peers(long jarg1, torrent_handle jarg1_);
   public final static native void torrent_handle_set_max_uploads(long jarg1, torrent_handle jarg1_, int jarg2);
   public final static native int torrent_handle_max_uploads(long jarg1, torrent_handle jarg1_);
   public final static native void torrent_handle_set_max_connections(long jarg1, torrent_handle jarg1_, int jarg2);
@@ -1720,6 +1723,7 @@ public class libtorrent_jni {
   public final static native void torrent_handle_move_storage__SWIG_1(long jarg1, torrent_handle jarg1_, String jarg2);
   public final static native void torrent_handle_rename_file(long jarg1, torrent_handle jarg1_, int jarg2, String jarg3);
   public final static native long torrent_handle_info_hash(long jarg1, torrent_handle jarg1_);
+  public final static native long torrent_handle_info_hashes(long jarg1, torrent_handle jarg1_);
   public final static native boolean torrent_handle_op_eq(long jarg1, torrent_handle jarg1_, long jarg2, torrent_handle jarg2_);
   public final static native boolean torrent_handle_op_ne(long jarg1, torrent_handle jarg1_, long jarg2, torrent_handle jarg2_);
   public final static native boolean torrent_handle_op_lt(long jarg1, torrent_handle jarg1_, long jarg2, torrent_handle jarg2_);
@@ -1867,6 +1871,29 @@ public class libtorrent_jni {
   public final static native long entry_from_preformatted_bytes(long jarg1, byte_vector jarg1_);
   public final static native long entry_bdecode(long jarg1, byte_vector jarg1_);
   public final static native void delete_entry(long jarg1);
+  public final static native long error_get();
+  public final static native long peer_get();
+  public final static native long port_mapping_get();
+  public final static native long storage_get();
+  public final static native long tracker_get();
+  public final static native long connect_get();
+  public final static native long status_get();
+  public final static native long ip_block_get();
+  public final static native long performance_warning_get();
+  public final static native long dht_get();
+  public final static native long stats_get();
+  public final static native long session_log_get();
+  public final static native long torrent_log_get();
+  public final static native long peer_log_get();
+  public final static native long incoming_request_get();
+  public final static native long dht_log_get();
+  public final static native long dht_operation_get();
+  public final static native long port_mapping_log_get();
+  public final static native long picker_log_get();
+  public final static native long file_progress_get();
+  public final static native long piece_progress_get();
+  public final static native long upload_get();
+  public final static native long block_progress_get();
   public final static native long alert_error_notification_get();
   public final static native long alert_peer_notification_get();
   public final static native long alert_port_mapping_notification_get();
@@ -2215,6 +2242,9 @@ public class libtorrent_jni {
   public final static native String peer_connect_alert_what(long jarg1, peer_connect_alert jarg1_);
   public final static native long peer_connect_alert_static_category_get();
   public final static native String peer_connect_alert_message(long jarg1, peer_connect_alert jarg1_);
+  public final static native void peer_connect_alert_direction_set(long jarg1, peer_connect_alert jarg1_, int jarg2);
+  public final static native int peer_connect_alert_direction_get(long jarg1, peer_connect_alert jarg1_);
+  public final static native void peer_connect_alert_socket_type_set(long jarg1, peer_connect_alert jarg1_, int jarg2);
   public final static native int peer_connect_alert_socket_type_get(long jarg1, peer_connect_alert jarg1_);
   public final static native void delete_peer_connect_alert(long jarg1);
   public final static native int peer_disconnected_alert_priority_get();
@@ -2902,6 +2932,7 @@ public class libtorrent_jni {
   public final static native long picker_log_alert_backup2_get();
   public final static native long picker_log_alert_end_game_get();
   public final static native long picker_log_alert_extent_affinity_get();
+  public final static native void picker_log_alert_picker_flags_set(long jarg1, picker_log_alert jarg1_, long jarg2, picker_flags_t jarg2_);
   public final static native long picker_log_alert_picker_flags_get(long jarg1, picker_log_alert jarg1_);
   public final static native long picker_log_alert_blocks(long jarg1, picker_log_alert jarg1_);
   public final static native void delete_picker_log_alert(long jarg1);
@@ -2941,6 +2972,8 @@ public class libtorrent_jni {
   public final static native long dht_sample_infohashes_alert_category(long jarg1, dht_sample_infohashes_alert jarg1_);
   public final static native String dht_sample_infohashes_alert_what(long jarg1, dht_sample_infohashes_alert jarg1_);
   public final static native String dht_sample_infohashes_alert_message(long jarg1, dht_sample_infohashes_alert jarg1_);
+  public final static native void dht_sample_infohashes_alert_node_id_set(long jarg1, dht_sample_infohashes_alert jarg1_, long jarg2, sha1_hash jarg2_);
+  public final static native long dht_sample_infohashes_alert_node_id_get(long jarg1, dht_sample_infohashes_alert jarg1_);
   public final static native int dht_sample_infohashes_alert_num_infohashes_get(long jarg1, dht_sample_infohashes_alert jarg1_);
   public final static native int dht_sample_infohashes_alert_num_samples(long jarg1, dht_sample_infohashes_alert jarg1_);
   public final static native long dht_sample_infohashes_alert_samples(long jarg1, dht_sample_infohashes_alert jarg1_);
@@ -3024,7 +3057,6 @@ public class libtorrent_jni {
   public final static native int settings_pack_allow_multiple_connections_per_ip_get();
   public final static native int settings_pack_send_redundant_have_get();
   public final static native int settings_pack_use_dht_as_fallback_get();
-  public final static native int settings_pack_use_parole_mode_get();
   public final static native int settings_pack_auto_manage_prefer_seeds_get();
   public final static native int settings_pack_disable_hash_checks_get();
   public final static native int settings_pack_volatile_read_cache_get();
@@ -3045,7 +3077,6 @@ public class libtorrent_jni {
   public final static native int settings_pack_dht_upload_rate_limit_get();
   public final static native int settings_pack_connections_limit_get();
   public final static native int settings_pack_utp_loss_multiplier_get();
-  public final static native int settings_pack_checking_mem_usage_get();
   public final static native int settings_pack_tracker_backoff_get();
   public final static native int settings_pack_urlseed_max_request_bytes_get();
   public final static native int settings_pack_num_string_settings_get();
@@ -3268,7 +3299,6 @@ public class libtorrent_jni {
   public final static native void create_torrent_set_root_cert2(long jarg1, create_torrent jarg1_, long jarg2, byte_vector jarg2_);
   public final static native void add_files__SWIG_0(long jarg1, file_storage jarg1_, String jarg2, long jarg3, create_flags_t jarg3_);
   public final static native void add_files__SWIG_1(long jarg1, file_storage jarg1_, String jarg2);
-  public final static native void set_piece_hashes(long jarg1, create_torrent jarg1_, String jarg2, long jarg3, error_code jarg3_);
   public final static native long create_flags_t_all();
   public final static native boolean create_flags_t_op_bool(long jarg1, create_flags_t jarg1_);
   public final static native boolean create_flags_t_op_eq(long jarg1, create_flags_t jarg1_, long jarg2, create_flags_t jarg2_);
@@ -3358,34 +3388,6 @@ public class libtorrent_jni {
   public final static native void set_piece_hashes_listener_director_connect(set_piece_hashes_listener obj, long cptr, boolean mem_own, boolean weak_global);
   public final static native void set_piece_hashes_listener_change_ownership(set_piece_hashes_listener obj, long cptr, boolean take_or_release);
   public final static native void set_piece_hashes_ex(long jarg1, create_torrent jarg1_, String jarg2, long jarg3, set_piece_hashes_listener jarg3_, long jarg4, error_code jarg4_);
-  public final static native void posix_stat_t_size_set(long jarg1, posix_stat_t jarg1_, long jarg2);
-  public final static native long posix_stat_t_size_get(long jarg1, posix_stat_t jarg1_);
-  public final static native void posix_stat_t_atime_set(long jarg1, posix_stat_t jarg1_, long jarg2);
-  public final static native long posix_stat_t_atime_get(long jarg1, posix_stat_t jarg1_);
-  public final static native void posix_stat_t_mtime_set(long jarg1, posix_stat_t jarg1_, long jarg2);
-  public final static native long posix_stat_t_mtime_get(long jarg1, posix_stat_t jarg1_);
-  public final static native void posix_stat_t_ctime_set(long jarg1, posix_stat_t jarg1_, long jarg2);
-  public final static native long posix_stat_t_ctime_get(long jarg1, posix_stat_t jarg1_);
-  public final static native void posix_stat_t_mode_set(long jarg1, posix_stat_t jarg1_, int jarg2);
-  public final static native int posix_stat_t_mode_get(long jarg1, posix_stat_t jarg1_);
-  public final static native long new_posix_stat_t();
-  public final static native void delete_posix_stat_t(long jarg1);
-  public final static native void delete_posix_wrapper(long jarg1);
-  public final static native long posix_wrapper_opendir(long jarg1, posix_wrapper jarg1_, String jarg2);
-  public final static native long posix_wrapper_opendirSwigExplicitposix_wrapper(long jarg1, posix_wrapper jarg1_, String jarg2);
-  public final static native int posix_wrapper_open(long jarg1, posix_wrapper jarg1_, String jarg2, int jarg3, int jarg4);
-  public final static native int posix_wrapper_openSwigExplicitposix_wrapper(long jarg1, posix_wrapper jarg1_, String jarg2, int jarg3, int jarg4);
-  public final static native int posix_wrapper_stat(long jarg1, posix_wrapper jarg1_, String jarg2, long jarg3, posix_stat_t jarg3_);
-  public final static native int posix_wrapper_statSwigExplicitposix_wrapper(long jarg1, posix_wrapper jarg1_, String jarg2, long jarg3, posix_stat_t jarg3_);
-  public final static native int posix_wrapper_mkdir(long jarg1, posix_wrapper jarg1_, String jarg2, int jarg3);
-  public final static native int posix_wrapper_mkdirSwigExplicitposix_wrapper(long jarg1, posix_wrapper jarg1_, String jarg2, int jarg3);
-  public final static native int posix_wrapper_remove(long jarg1, posix_wrapper jarg1_, String jarg2);
-  public final static native int posix_wrapper_removeSwigExplicitposix_wrapper(long jarg1, posix_wrapper jarg1_, String jarg2);
-  public final static native long new_posix_wrapper();
-  public final static native void posix_wrapper_director_connect(posix_wrapper obj, long cptr, boolean mem_own, boolean weak_global);
-  public final static native void posix_wrapper_change_ownership(posix_wrapper obj, long cptr, boolean take_or_release);
-  public final static native void set_posix_wrapper(long jarg1, posix_wrapper jarg1_);
-  public final static native void set_posix_errno(int jarg1);
   public final static native long torrent_alert_SWIGUpcast(long jarg1);
   public final static native long peer_alert_SWIGUpcast(long jarg1);
   public final static native long tracker_alert_SWIGUpcast(long jarg1);
@@ -3487,21 +3489,6 @@ public class libtorrent_jni {
   }
   public static void SwigDirector_set_piece_hashes_listener_progress(set_piece_hashes_listener jself, int i) {
     jself.progress(i);
-  }
-  public static long SwigDirector_posix_wrapper_opendir(posix_wrapper jself, String name) {
-    return jself.opendir(name);
-  }
-  public static int SwigDirector_posix_wrapper_open(posix_wrapper jself, String path, int flags, int mode) {
-    return jself.open(path, flags, mode);
-  }
-  public static int SwigDirector_posix_wrapper_stat(posix_wrapper jself, String path, long buf) {
-    return jself.stat(path, (buf == 0) ? null : new posix_stat_t(buf, false));
-  }
-  public static int SwigDirector_posix_wrapper_mkdir(posix_wrapper jself, String path, int mode) {
-    return jself.mkdir(path, mode);
-  }
-  public static int SwigDirector_posix_wrapper_remove(posix_wrapper jself, String path) {
-    return jself.remove(path);
   }
 
   private final static native void swig_module_init();

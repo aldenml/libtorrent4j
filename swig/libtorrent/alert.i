@@ -1,4 +1,5 @@
 %ignore libtorrent::alert::timestamp;
+%ignore libtorrent::alert_category::all;
 
 %include "libtorrent/alert.hpp"
 

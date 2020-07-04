@@ -52,8 +52,64 @@ public class peer_connect_alert extends peer_alert {
     return libtorrent_jni.peer_connect_alert_message(swigCPtr, this);
   }
 
+  public void setDirection(peer_connect_alert.direction_t value) {
+    libtorrent_jni.peer_connect_alert_direction_set(swigCPtr, this, value.swigValue());
+  }
+
+  public peer_connect_alert.direction_t getDirection() {
+    return peer_connect_alert.direction_t.swigToEnum(libtorrent_jni.peer_connect_alert_direction_get(swigCPtr, this));
+  }
+
+  public void setSocket_type(socket_type_t value) {
+    libtorrent_jni.peer_connect_alert_socket_type_set(swigCPtr, this, value.swigValue());
+  }
+
   public socket_type_t getSocket_type() {
     return socket_type_t.swigToEnum(libtorrent_jni.peer_connect_alert_socket_type_get(swigCPtr, this));
+  }
+
+  public final static class direction_t {
+    public final static peer_connect_alert.direction_t in = new peer_connect_alert.direction_t("in");
+    public final static peer_connect_alert.direction_t out = new peer_connect_alert.direction_t("out");
+
+    public final int swigValue() {
+      return swigValue;
+    }
+
+    public String toString() {
+      return swigName;
+    }
+
+    public static direction_t swigToEnum(int swigValue) {
+      if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+        return swigValues[swigValue];
+      for (int i = 0; i < swigValues.length; i++)
+        if (swigValues[i].swigValue == swigValue)
+          return swigValues[i];
+      throw new IllegalArgumentException("No enum " + direction_t.class + " with value " + swigValue);
+    }
+
+    private direction_t(String swigName) {
+      this.swigName = swigName;
+      this.swigValue = swigNext++;
+    }
+
+    private direction_t(String swigName, int swigValue) {
+      this.swigName = swigName;
+      this.swigValue = swigValue;
+      swigNext = swigValue+1;
+    }
+
+    private direction_t(String swigName, direction_t swigEnum) {
+      this.swigName = swigName;
+      this.swigValue = swigEnum.swigValue;
+      swigNext = this.swigValue+1;
+    }
+
+    private static direction_t[] swigValues = { in, out };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
   }
 
   public final static alert_priority priority = alert_priority.swigToEnum(libtorrent_jni.peer_connect_alert_priority_get());

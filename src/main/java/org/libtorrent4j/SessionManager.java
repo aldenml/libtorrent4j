@@ -447,7 +447,7 @@ public class SessionManager {
             throw new IllegalArgumentException("torrent info not valid");
         }
 
-        torrent_handle th = session.find_torrent(ti.swig().info_hash().get_best());
+        torrent_handle th = session.find_torrent(ti.swig().info_hash());
 
         if (th != null && th.is_valid()) {
             // found a download with the same hash, just adjust the priorities if needed
@@ -609,7 +609,7 @@ public class SessionManager {
             @Override
             public void alert(Alert<?> alert) {
                 torrent_handle th = ((TorrentAlert<?>) alert).swig().getHandle();
-                if (th == null || !th.is_valid() || th.info_hash().op_ne(info_hash)) {
+                if (th == null || !th.is_valid() || th.info_hash().op_ne(info_hash.getV1())) {
                     return;
                 }
 
@@ -647,7 +647,8 @@ public class SessionManager {
                         create_torrent ct = new create_torrent(ti);
                         entry e = ct.generate();
 
-                        int size = ti.metadata_size();
+                        // TODO: restore this
+                        int size = -1; //ti.metadata_size();
                         if (0 < size && size <= maxSize) {
                             data[0] = Vectors.byte_vector2bytes(e.bencode());
                         }

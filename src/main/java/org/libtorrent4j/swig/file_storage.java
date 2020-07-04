@@ -56,7 +56,7 @@ public class file_storage {
     libtorrent_jni.file_storage_rename_file(swigCPtr, this, index, new_filename);
   }
 
-  public file_slice_vector map_block(int piece, long offset, int size) {
+  public file_slice_vector map_block(int piece, long offset, long size) {
     return new file_slice_vector(libtorrent_jni.file_storage_map_block(swigCPtr, this, piece, offset, size), true);
   }
 
@@ -136,6 +136,10 @@ public class file_storage {
     return new sha256_hash(libtorrent_jni.file_storage_root(swigCPtr, this, index), true);
   }
 
+  public String root_ptr(int index) {
+    return libtorrent_jni.file_storage_root_ptr(swigCPtr, this, index);
+  }
+
   public String symlink(int index) {
     return libtorrent_jni.file_storage_symlink(swigCPtr, this, index);
   }
@@ -202,10 +206,6 @@ public class file_storage {
 
   public int piece_index_at_file(int f) {
     return libtorrent_jni.file_storage_piece_index_at_file(swigCPtr, this, f);
-  }
-
-  public void rebase_pointers(String current_base, String new_base) {
-    libtorrent_jni.file_storage_rebase_pointers(swigCPtr, this, current_base, new_base);
   }
 
   public void add_file_ex(error_code ec, String path, long file_size, file_flags_t file_flags, long mtime, String symlink_path) {

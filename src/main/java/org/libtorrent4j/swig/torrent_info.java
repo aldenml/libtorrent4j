@@ -148,8 +148,12 @@ public class torrent_info {
     return libtorrent_jni.torrent_info_end_piece(swigCPtr, this);
   }
 
-  public info_hash_t info_hash() {
-    return new info_hash_t(libtorrent_jni.torrent_info_info_hash(swigCPtr, this), false);
+  public sha1_hash info_hash() {
+    return new sha1_hash(libtorrent_jni.torrent_info_info_hash(swigCPtr, this), false);
+  }
+
+  public info_hash_t info_hashes() {
+    return new info_hash_t(libtorrent_jni.torrent_info_info_hashes(swigCPtr, this), false);
   }
 
   public int num_files() {
@@ -220,16 +224,8 @@ public class torrent_info {
     return new bdecode_node(libtorrent_jni.torrent_info_info(swigCPtr, this, key), true);
   }
 
-  public int metadata_size() {
-    return libtorrent_jni.torrent_info_metadata_size(swigCPtr, this);
-  }
-
-  public sha256_hash_vector_vector get_merkle_trees() {
-    return new sha256_hash_vector_vector(libtorrent_jni.torrent_info_get_merkle_trees(swigCPtr, this), false);
-  }
-
-  public sha256_hash_vector get_file_merkle_tree(int file) {
-    return new sha256_hash_vector(libtorrent_jni.torrent_info_get_file_merkle_tree(swigCPtr, this, file), false);
+  public void internal_load_merkle_trees(sha256_hash_vector_vector t) {
+    libtorrent_jni.torrent_info_internal_load_merkle_trees(swigCPtr, this, sha256_hash_vector_vector.getCPtr(t), t);
   }
 
   public torrent_info(long buffer_ptr, int size, error_code ec) {

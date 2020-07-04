@@ -52,6 +52,10 @@ public class info_hash_t {
     this(libtorrent_jni.new_info_hash_t__SWIG_3(sha1_hash.getCPtr(h1), h1, sha256_hash.getCPtr(h2), h2), true);
   }
 
+  public info_hash_t(info_hash_t arg0) {
+    this(libtorrent_jni.new_info_hash_t__SWIG_4(info_hash_t.getCPtr(arg0), arg0), true);
+  }
+
   public boolean has_v1() {
     return libtorrent_jni.info_hash_t_has_v1(swigCPtr, this);
   }
