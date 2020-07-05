@@ -5,6 +5,7 @@ using gcc : x86 : g++ :
     <cxxflags>-m32
     <cxxflags>-fno-strict-aliasing
     <cxxflags>-fvisibility=hidden
+    <cxxflags>-Wno-format-truncation
     <linkflags>-m32
     <linkflags>-static-libstdc++
     <linkflags>-static-libgcc
