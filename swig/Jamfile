@@ -31,27 +31,16 @@ rule libtorrent_linking ( properties * )
     result += <deprecated-functions>off ;
     result += <logging>on ;
     result += <crypto>openssl ;
-    result += <optimization>off ;
+    result += <optimization>speed ;
     result += <cxxstd>17 ;
 
-    if <target-os>freebsd in $(properties)
-    {
-        result += <library>/torrent//torrent/<link>shared ;
-    }
-    else
-    {
-        result += <library>/torrent//torrent/<link>static ;
-    }
+    result += <library>/torrent//torrent/<link>static ;
 
     return $(result) ;
 }
 
 feature iostream : off on : composite propagated link-incompatible ;
 feature.compose <iostream>off : <define>BOOST_NO_IOSTREAM ;
-
-feature o2 : off s1 s2 : composite propagated link-incompatible ;
-feature.compose <o2>s1 : <cxxflags>-Os ;
-feature.compose <o2>s2 : <cxxflags>-Oz ;
 
 feature ssl : on off : composite propagated link-incompatible ;
 feature.compose <ssl>on :
@@ -67,11 +56,6 @@ lib torrent4j
     : # requirements
     <conditional>@libtorrent_linking
     <include>.
-    # o2
-    <target-os>darwin:<o2>s1
-    <target-os>android:<o2>s1
-    <target-os>linux:<o2>s1
-    <target-os>windows:<o2>s1
 
     : # default build
     <link>shared
