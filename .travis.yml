@@ -6,10 +6,10 @@ matrix:
     - env: os_build=macos os_arch=x86_64
       os: osx
       osx_image: xcode11.2
-    - env: os_build=android os_arch=arm android_api=24
-    - env: os_build=android os_arch=arm64 android_api=24
-    - env: os_build=android os_arch=x86 android_api=24
-    - env: os_build=android os_arch=x86_64 android_api=24
+    - env: os_build=android os_arch=arm
+    - env: os_build=android os_arch=arm64
+    - env: os_build=android os_arch=x86
+    - env: os_build=android os_arch=x86_64
     - env: os_build=linux os_arch=x86
     - env: os_build=linux os_arch=x86_64
     - env: os_build=windows os_arch=x86
@@ -22,7 +22,7 @@ branches:
 
 before_install:
 # boost: download and bootstrap
-  - git clone --depth=1 --branch=boost-1.72.0 https://github.com/boostorg/boost.git
+  - git clone --depth=1 --branch=boost-1.73.0 https://github.com/boostorg/boost.git
   - cd boost
   - git submodule update --depth=1 --init --recursive
   - ./bootstrap.sh
@@ -31,15 +31,9 @@ before_install:
   - export BOOST_ROOT=$PWD/boost
 
 # openssl: download
-  - wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1f.tar.gz
+  - wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1g.tar.gz
   - tar xzf openssl.tar.gz
-  - export OPENSSL_SOURCE=$PWD/openssl-1.1.1f
-  # fix source code
-  # this one avoid GDI dependency in windows and fix a syntax error
-  - if [ $os_build == "windows" ]; then
-      sed -i 's/if defined(_WIN32_WINNT) && _WIN32_WINNT>=0x0333/if 0/g' $OPENSSL_SOURCE/crypto/cryptlib.c;
-      sed -i 's/MessageBox.*//g' $OPENSSL_SOURCE/crypto/cryptlib.c;
-    fi
+  - export OPENSSL_SOURCE=$PWD/openssl-1.1.1g
 
 # libtorrent: download and checkout revision
   - git clone https://github.com/arvidn/libtorrent
@@ -51,11 +45,11 @@ before_install:
 
 # android ndk: download and create toolchain
   - if [ $os_build == "android" ]; then
-      wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-r21-linux-x86_64.zip;
+      wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-r21d-linux-x86_64.zip;
       echo "Extracting NDK...wait";
       unzip -qq android-ndk.zip;
-      export NDK=$PWD/android-ndk-r21;
-      $NDK/build/tools/make_standalone_toolchain.py --arch $os_arch --api $android_api --stl libc++ --install-dir android-toolchain;
+      export NDK=$PWD/android-ndk-r21d;
+      $NDK/build/tools/make_standalone_toolchain.py --arch $os_arch --api 24 --stl libc++ --install-dir android-toolchain;
       export ANDROID_TOOLCHAIN=$PWD/android-toolchain;
     fi
 
@@ -89,7 +83,7 @@ before_install:
       no-makedepend no-multiblock no-nextprotoneg no-posix-io no-psk
       no-rdrand no-sctp no-shared no-sock no-srp no-srtp no-static-engine
       no-stdio no-threads no-ui-console no-zlib no-zlib-dynamic
-      -fno-strict-aliasing -fvisibility=hidden -Os"'
+      -fno-strict-aliasing -fvisibility=hidden -O3"'
   # android-arm
   - if [[ $os_build == "android" && $os_arch == "arm" ]]; then
       export CC=$ANDROID_TOOLCHAIN/bin/arm-linux-androideabi-clang;
@@ -112,12 +106,10 @@ before_install:
     fi
   # linux-x86
   - if [[ $os_build == "linux" && $os_arch == "x86" ]]; then
-      export CC=gcc;
       export run_openssl_configure="./Configure linux-elf ${OPENSSL_NO_OPTS} -fPIC -m32 --prefix=$OPENSSL_SOURCE/../openssl";
     fi
   # linux-x86_64
   - if [[ $os_build == "linux" && $os_arch == "x86_64" ]]; then
-      export CC=gcc;
       export run_openssl_configure="./Configure linux-x86_64 ${OPENSSL_NO_OPTS} -fPIC --prefix=$OPENSSL_SOURCE/../openssl";
     fi
   # windows-x86
