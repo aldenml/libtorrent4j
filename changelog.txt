@@ -1,4 +1,5 @@
 
+  * enable WebTorrent support in libtorrent
   * removed support for posix wrapper
 
 1.3.0-alpha-5
