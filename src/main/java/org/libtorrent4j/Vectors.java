@@ -1,6 +1,9 @@
 package org.libtorrent4j;
 
-import org.libtorrent4j.swig.*;
+import org.libtorrent4j.swig.byte_vector;
+import org.libtorrent4j.swig.int64_vector;
+import org.libtorrent4j.swig.int_vector;
+import org.libtorrent4j.swig.string_vector;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -27,7 +30,7 @@ public final class Vectors {
     }
 
     public static void byte_vector2bytes(byte_vector v, byte[] arr) {
-        int size = (int) v.size();
+        int size = v.size();
 
         for (int i = 0; i < size; i++) {
             arr[i] = v.get(i);
@@ -51,7 +54,7 @@ public final class Vectors {
     }
 
     public static int[] int_vector2ints(int_vector v) {
-        int size = (int) v.size();
+        int size = v.size();
         int[] arr = new int[size];
 
         for (int i = 0; i < size; i++) {
@@ -62,7 +65,7 @@ public final class Vectors {
     }
 
     public static long[] int64_vector2longs(int64_vector v) {
-        int size = (int) v.size();
+        int size = v.size();
         long[] arr = new long[size];
 
         for (int i = 0; i < size; i++) {
@@ -72,18 +75,8 @@ public final class Vectors {
         return arr;
     }
 
-    public static byte_vector new_byte_vector(int size) {
-        byte_vector v = new byte_vector();
-        byte z = (byte) 0;
-        for (int i = 0; i < size; i++) {
-            v.add(z);
-        }
-
-        return v;
-    }
-
     public static List<String> string_vector2list(string_vector v) {
-        int size = (int) v.size();
+        int size = v.size();
         ArrayList<String> l = new ArrayList<>(size);
 
         for (int i = 0; i < size; i++) {

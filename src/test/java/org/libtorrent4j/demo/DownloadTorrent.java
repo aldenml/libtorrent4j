@@ -21,7 +21,7 @@ public final class DownloadTorrent {
     public static void main(String[] args) throws Throwable {
 
         // comment this line for a real application
-        args = new String[]{"/Users/aldenml/Downloads/Honey_Larochelle_Hijack_FrostClick_FrostWire_MP3_May_06_2016.torrent"};
+        args = new String[]{"/Users/aldenml/Downloads/ubuntu-20.04-desktop-amd64.iso.torrent"};
 
         File torrentFile = new File(args[0]);
 

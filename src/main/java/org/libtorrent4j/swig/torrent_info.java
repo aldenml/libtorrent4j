@@ -232,4 +232,8 @@ public class torrent_info {
     this(libtorrent_jni.new_torrent_info__SWIG_4(buffer_ptr, size, error_code.getCPtr(ec), ec), true);
   }
 
+  public byte_span get_info_section() {
+    return new byte_span(libtorrent_jni.torrent_info_get_info_section(swigCPtr, this), true);
+  }
+
 }

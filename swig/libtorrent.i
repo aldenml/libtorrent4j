@@ -187,7 +187,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 
 %template(string_vector) std::vector<std::string>;
 %template(int_vector) std::vector<int>;
-%template(int64_vector) std::vector<long long>;
+%template(int64_vector) std::vector<std::int64_t>;
 %template(byte_vector) std::vector<std::int8_t>;
 %template(bool_vector) std::vector<bool>;
 %template(int_int_pair_vector) std::vector<std::pair<int, int>>;
@@ -261,6 +261,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 // includes
 %include "boost/system/error_code.i"
 
+%include "libtorrent/span.i"
 %include "libtorrent/flags.i"
 %include "libtorrent/address.i"
 %include "libtorrent/socket.i"
