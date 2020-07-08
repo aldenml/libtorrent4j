@@ -120,16 +120,24 @@ public class create_torrent {
     libtorrent_jni.create_torrent_add_http_seed(swigCPtr, this, url);
   }
 
+  public void add_tracker(String url) {
+    libtorrent_jni.create_torrent_add_tracker__SWIG_0(swigCPtr, this, url);
+  }
+
   public void add_tracker(String url, int tier) {
-    libtorrent_jni.create_torrent_add_tracker(swigCPtr, this, url, tier);
+    libtorrent_jni.create_torrent_add_tracker__SWIG_1(swigCPtr, this, url, tier);
   }
 
   public void add_collection(String c) {
     libtorrent_jni.create_torrent_add_collection(swigCPtr, this, c);
   }
 
-  public void set_root_cert2(byte_vector pem) {
-    libtorrent_jni.create_torrent_set_root_cert2(swigCPtr, this, byte_vector.getCPtr(pem), pem);
+  public void set_root_cert(byte_vector cert) {
+    libtorrent_jni.create_torrent_set_root_cert(swigCPtr, this, byte_vector.getCPtr(cert), cert);
+  }
+
+  public void set_hash2(int file, int piece, sha256_hash h) {
+    libtorrent_jni.create_torrent_set_hash2(swigCPtr, this, file, piece, sha256_hash.getCPtr(h), h);
   }
 
   public final static create_flags_t modification_time = new create_flags_t(libtorrent_jni.create_torrent_modification_time_get(), false);

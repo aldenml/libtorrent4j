@@ -1,12 +1,54 @@
 package org.libtorrent4j;
 
-import org.libtorrent4j.swig.*;
-import org.libtorrent4j.alerts.*;
+import org.libtorrent4j.alerts.AddTorrentAlert;
+import org.libtorrent4j.alerts.Alert;
+import org.libtorrent4j.alerts.AlertType;
+import org.libtorrent4j.alerts.Alerts;
+import org.libtorrent4j.alerts.DhtGetPeersReplyAlert;
+import org.libtorrent4j.alerts.DhtImmutableItemAlert;
+import org.libtorrent4j.alerts.DhtMutableItemAlert;
+import org.libtorrent4j.alerts.DhtStatsAlert;
+import org.libtorrent4j.alerts.ExternalIpAlert;
+import org.libtorrent4j.alerts.ListenSucceededAlert;
+import org.libtorrent4j.alerts.SessionStatsAlert;
+import org.libtorrent4j.alerts.SocketType;
+import org.libtorrent4j.alerts.StateUpdateAlert;
+import org.libtorrent4j.alerts.TorrentAlert;
+import org.libtorrent4j.swig.add_torrent_params;
+import org.libtorrent4j.swig.address;
+import org.libtorrent4j.swig.alert;
+import org.libtorrent4j.swig.alert_category_t;
+import org.libtorrent4j.swig.alert_ptr_vector;
+import org.libtorrent4j.swig.announce_entry;
+import org.libtorrent4j.swig.announce_entry_vector;
+import org.libtorrent4j.swig.byte_vector;
+import org.libtorrent4j.swig.create_torrent;
+import org.libtorrent4j.swig.entry;
+import org.libtorrent4j.swig.error_code;
+import org.libtorrent4j.swig.info_hash_t;
+import org.libtorrent4j.swig.port_filter;
+import org.libtorrent4j.swig.remove_flags_t;
+import org.libtorrent4j.swig.session;
+import org.libtorrent4j.swig.session_params;
+import org.libtorrent4j.swig.settings_pack;
+import org.libtorrent4j.swig.sha1_hash;
+import org.libtorrent4j.swig.string_vector;
+import org.libtorrent4j.swig.tcp_endpoint_vector;
+import org.libtorrent4j.swig.torrent_flags_t;
+import org.libtorrent4j.swig.torrent_handle;
+import org.libtorrent4j.swig.torrent_handle_vector;
+import org.libtorrent4j.swig.torrent_info;
+import org.libtorrent4j.swig.torrent_status;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -93,7 +135,9 @@ public class SessionManager {
 
             resetState();
 
-            params.settings().setInteger(settings_pack.int_types.alert_mask.swigValue(), alertMask(logging).to_int());
+            params.getSettings().setInteger(settings_pack.int_types.alert_mask.swigValue(), alertMask(logging).to_int());
+            params.getSettings().setInteger(settings_pack.int_types.max_metadata_size.swigValue(), 4 * 1024 * 1024);
+
             session = new session(params.swig());
             alertsLoop();
 
@@ -256,8 +300,6 @@ public class SessionManager {
      * <p>
      * If the current internal session is null, returns
      * null.
-     *
-     *
      */
     public SettingsPack settings() {
         return session != null ? new SettingsPack(session.get_settings()) : null;
@@ -580,11 +622,9 @@ public class SessionManager {
     /**
      * @param uri     magnet uri
      * @param timeout in seconds
-     * @param maxSize in bytes
-     * @param extra   if extra data is included
      * @return the bencoded info or null
      */
-    public byte[] fetchMagnet(String uri, int timeout, final boolean extra, final int maxSize) {
+    public byte[] fetchMagnet(String uri, int timeout) {
         if (session == null) {
             return null;
         }
@@ -597,7 +637,7 @@ public class SessionManager {
         }
 
         final info_hash_t info_hash = p.getInfo_hash();
-        final byte[][] data = {null};
+        final AtomicReference<byte[]> data = new AtomicReference<>();
         final CountDownLatch signal = new CountDownLatch(1);
 
         AlertListener listener = new AlertListener() {
@@ -609,17 +649,17 @@ public class SessionManager {
             @Override
             public void alert(Alert<?> alert) {
                 torrent_handle th = ((TorrentAlert<?>) alert).swig().getHandle();
-                if (th == null || !th.is_valid() || th.info_hash().op_ne(info_hash.getV1())) {
+                if (th == null || !th.is_valid() || th.info_hash().op_ne(info_hash.get_best())) {
                     return;
                 }
 
                 AlertType type = alert.type();
 
                 if (type.equals(AlertType.METADATA_RECEIVED)) {
-                    MetadataReceivedAlert a = ((MetadataReceivedAlert) alert);
-                    int size = a.metadataSize();
-                    if (0 < size && size <= maxSize) {
-                        data[0] = a.torrentData(extra);
+                    try {
+                        data.set(buildMagnetTorrentData(th));
+                    } catch (Throwable e) {
+                        Log.error("Error bulding magnet torrent data", e);
                     }
                 }
 
@@ -644,14 +684,8 @@ public class SessionManager {
 
                     torrent_info ti = th.torrent_file_ptr();
                     if (ti != null && ti.is_valid()) {
-                        create_torrent ct = new create_torrent(ti);
-                        entry e = ct.generate();
-
-                        // TODO: restore this
-                        int size = -1; //ti.metadata_size();
-                        if (0 < size && size <= maxSize) {
-                            data[0] = Vectors.byte_vector2bytes(e.bencode());
-                        }
+                        // torrent info is good, so is metadata
+                        data.set(buildMagnetTorrentData(th));
                         signal.countDown();
                     }
                 } else {
@@ -681,7 +715,7 @@ public class SessionManager {
             signal.await(timeout, TimeUnit.SECONDS);
 
         } catch (Throwable e) {
-            LOG.error("Error fetching magnet", e);
+            Log.error("Error fetching magnet", e);
         } finally {
             removeListener(listener);
             if (session != null && add && th != null && th.is_valid()) {
@@ -689,32 +723,7 @@ public class SessionManager {
             }
         }
 
-        return data[0];
-    }
-
-    /**
-     * Similar to call {@link #fetchMagnet(String, int, boolean, int)} with
-     * a maximum size of 2MB.
-     *
-     * @param uri     magnet uri
-     * @param timeout in seconds
-     * @param extra   if extra data is included
-     * @return the bencoded info or null
-     */
-    public byte[] fetchMagnet(String uri, int timeout, boolean extra) {
-        return fetchMagnet(uri, timeout, extra, 2 * 1024 * 1024);
-    }
-
-    /**
-     * Similar to call {@link #fetchMagnet(String, int, boolean)} with
-     * a maximum {@code extra = false}.
-     *
-     * @param uri
-     * @param timeout
-     * @return the bencoded info or null
-     */
-    public byte[] fetchMagnet(String uri, int timeout) {
-        return fetchMagnet(uri, timeout, false);
+        return data.get();
     }
 
     /**
@@ -1121,6 +1130,39 @@ public class SessionManager {
         return type == AlertType.SESSION_STATS.swig() ||
                 type == AlertType.STATE_UPDATE.swig() ||
                 type == AlertType.SESSION_STATS_HEADER.swig();
+    }
+
+    public static byte[] buildMagnetTorrentData(torrent_handle th) {
+        if (th == null || !th.is_valid()) {
+            return null;
+        }
+
+        torrent_info ti = th.torrent_file_ptr();
+        if (ti == null || !ti.is_valid()) {
+            return null;
+        }
+
+        create_torrent ct = new create_torrent(ti);
+
+        string_vector v = th.get_url_seeds();
+        int size = v.size();
+        for (int i = 0; i < size; i++) {
+            ct.add_url_seed(v.get(i));
+        }
+        v = th.get_http_seeds();
+        size = v.size();
+        for (int i = 0; i < size; i++) {
+            ct.add_http_seed(v.get(i));
+        }
+        announce_entry_vector trackers = th.trackers();
+        size = trackers.size();
+        for (int i = 0; i < size; i++) {
+            announce_entry t = trackers.get(i);
+            ct.add_tracker(t.getUrl(), t.getTier());
+        }
+
+        entry e = ct.generate();
+        return Vectors.byte_vector2bytes(e.bencode());
     }
 
     private void alertsLoop() {

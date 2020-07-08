@@ -1,12 +1,15 @@
 package org.libtorrent4j.demo;
 
+import org.libtorrent4j.AlertListener;
+import org.libtorrent4j.Priority;
+import org.libtorrent4j.SessionManager;
+import org.libtorrent4j.TorrentHandle;
+import org.libtorrent4j.TorrentInfo;
 import org.libtorrent4j.alerts.AddTorrentAlert;
 import org.libtorrent4j.alerts.Alert;
-import org.libtorrent4j.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.sql.Time;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.CountDownLatch;
@@ -26,7 +29,7 @@ public final class GetMagnet3 {
         // https://github.com/frostwire/frostwire-jlibtorrent/issues/180#issuecomment-345458935
         // author proninyaroslav
 
-        final String magnet = "<magnet here>";
+        final String magnet = "magnet:?xt=urn:btih:4JDHZPYCCGJMEQJWPOESEMG4DYC4AWAO";
 
         final SessionManager s = new SessionManager();
 
@@ -90,16 +93,16 @@ public final class GetMagnet3 {
         }
 
         System.out.println("Fetching the magnet uri, please wait...");
-        byte[] data = s.fetchMagnet(magnet, 30, true);
+        byte[] data = s.fetchMagnet(magnet, 30);
         if (data == null) {
             System.out.println("data == null");
             s.stop();
             return;
         }
-        File f = File.createTempFile("test", "torrent");
+        File f = new File("test.torrent");
         FileOutputStream fos = new FileOutputStream(f);
         fos.write(data);
-        s.download(new TorrentInfo(f), new File(System.getProperty("user.dir")));
+        s.download(new TorrentInfo(f), new File("."));
 
         System.in.read();
         s.stop();

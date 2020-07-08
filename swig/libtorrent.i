@@ -172,8 +172,6 @@ TYPE_INTEGRAL_CONVERSION_EX(name, underlying_type, underlying_type, java_type)
 TYPE_INTEGRAL_CONVERSION(piece_index_t, std::int32_t, int)
 TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
 TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
-// TYPE_INTEGRAL_CONVERSION_EX(peer_class_t, std::uint32_t, std::int32_t, int)
-// TYPE_INTEGRAL_CONVERSION(disconnect_severity_t, std::uint8_t, int)
 
 // template definitions
 %template(int_int_pair) std::pair<int, int>;
@@ -261,6 +259,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 // includes
 %include "boost/system/error_code.i"
 
+%include "libtorrent/span.i"
 %include "libtorrent/flags.i"
 %include "libtorrent/address.i"
 %include "libtorrent/socket.i"
