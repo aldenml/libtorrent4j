@@ -172,8 +172,6 @@ TYPE_INTEGRAL_CONVERSION_EX(name, underlying_type, underlying_type, java_type)
 TYPE_INTEGRAL_CONVERSION(piece_index_t, std::int32_t, int)
 TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
 TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
-// TYPE_INTEGRAL_CONVERSION_EX(peer_class_t, std::uint32_t, std::int32_t, int)
-// TYPE_INTEGRAL_CONVERSION(disconnect_severity_t, std::uint8_t, int)
 
 // template definitions
 %template(int_int_pair) std::pair<int, int>;
@@ -187,7 +185,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 
 %template(string_vector) std::vector<std::string>;
 %template(int_vector) std::vector<int>;
-%template(int64_vector) std::vector<std::int64_t>;
+%template(int64_vector) std::vector<long long>;
 %template(byte_vector) std::vector<std::int8_t>;
 %template(bool_vector) std::vector<bool>;
 %template(int_int_pair_vector) std::vector<std::pair<int, int>>;

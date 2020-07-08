@@ -1049,18 +1049,18 @@ SWIGINTERN void std_vector_Sl_int_Sg__doRemoveRange(std::vector< int > *self,jin
           throw std::out_of_range("vector index out of range");
         }
       }
-SWIGINTERN std::vector< std::int64_t > *new_std_vector_Sl_std_int64_t_Sg___SWIG_2(jint count,std::int64_t const &value){
+SWIGINTERN std::vector< long long > *new_std_vector_Sl_long_SS_long_Sg___SWIG_2(jint count,long long const &value){
         if (count < 0)
           throw std::out_of_range("vector count must be positive");
-        return new std::vector< std::int64_t >(static_cast<std::vector< std::int64_t >::size_type>(count), value);
+        return new std::vector< long long >(static_cast<std::vector< long long >::size_type>(count), value);
       }
-SWIGINTERN jint std_vector_Sl_std_int64_t_Sg__doSize(std::vector< std::int64_t > const *self){
+SWIGINTERN jint std_vector_Sl_long_SS_long_Sg__doSize(std::vector< long long > const *self){
         return SWIG_VectorSize(self->size());
       }
-SWIGINTERN void std_vector_Sl_std_int64_t_Sg__doAdd__SWIG_0(std::vector< std::int64_t > *self,std::vector< long long >::value_type const &x){
+SWIGINTERN void std_vector_Sl_long_SS_long_Sg__doAdd__SWIG_0(std::vector< long long > *self,std::vector< long long >::value_type const &x){
         self->push_back(x);
       }
-SWIGINTERN void std_vector_Sl_std_int64_t_Sg__doAdd__SWIG_1(std::vector< std::int64_t > *self,jint index,std::vector< long long >::value_type const &x){
+SWIGINTERN void std_vector_Sl_long_SS_long_Sg__doAdd__SWIG_1(std::vector< long long > *self,jint index,std::vector< long long >::value_type const &x){
         jint size = static_cast<jint>(self->size());
         if (0 <= index && index <= size) {
           self->insert(self->begin() + index, x);
@@ -1068,34 +1068,34 @@ SWIGINTERN void std_vector_Sl_std_int64_t_Sg__doAdd__SWIG_1(std::vector< std::in
           throw std::out_of_range("vector index out of range");
         }
       }
-SWIGINTERN std::vector< long long >::value_type std_vector_Sl_std_int64_t_Sg__doRemove(std::vector< std::int64_t > *self,jint index){
+SWIGINTERN std::vector< long long >::value_type std_vector_Sl_long_SS_long_Sg__doRemove(std::vector< long long > *self,jint index){
         jint size = static_cast<jint>(self->size());
         if (0 <= index && index < size) {
-          std::int64_t const old_value = (*self)[index];
+          long long const old_value = (*self)[index];
           self->erase(self->begin() + index);
           return old_value;
         } else {
           throw std::out_of_range("vector index out of range");
         }
       }
-SWIGINTERN std::vector< long long >::value_type const &std_vector_Sl_std_int64_t_Sg__doGet(std::vector< std::int64_t > *self,jint index){
+SWIGINTERN std::vector< long long >::value_type const &std_vector_Sl_long_SS_long_Sg__doGet(std::vector< long long > *self,jint index){
         jint size = static_cast<jint>(self->size());
         if (index >= 0 && index < size)
           return (*self)[index];
         else
           throw std::out_of_range("vector index out of range");
       }
-SWIGINTERN std::vector< long long >::value_type std_vector_Sl_std_int64_t_Sg__doSet(std::vector< std::int64_t > *self,jint index,std::vector< long long >::value_type const &val){
+SWIGINTERN std::vector< long long >::value_type std_vector_Sl_long_SS_long_Sg__doSet(std::vector< long long > *self,jint index,std::vector< long long >::value_type const &val){
         jint size = static_cast<jint>(self->size());
         if (index >= 0 && index < size) {
-          std::int64_t const old_value = (*self)[index];
+          long long const old_value = (*self)[index];
           (*self)[index] = val;
           return old_value;
         }
         else
           throw std::out_of_range("vector index out of range");
       }
-SWIGINTERN void std_vector_Sl_std_int64_t_Sg__doRemoveRange(std::vector< std::int64_t > *self,jint fromIndex,jint toIndex){
+SWIGINTERN void std_vector_Sl_long_SS_long_Sg__doRemoveRange(std::vector< long long > *self,jint fromIndex,jint toIndex){
         jint size = static_cast<jint>(self->size());
         if (0 <= fromIndex && fromIndex <= toIndex && toIndex <= size) {
           self->erase(self->begin() + fromIndex, self->begin() + toIndex);
@@ -5724,58 +5724,58 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1int_1
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1int64_1vector_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
-  std::vector< std::int64_t > *result = 0 ;
+  std::vector< long long > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  result = (std::vector< std::int64_t > *)new std::vector< std::int64_t >();
-  *(std::vector< std::int64_t > **)&jresult = result; 
+  result = (std::vector< long long > *)new std::vector< long long >();
+  *(std::vector< long long > **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1int64_1vector_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  std::vector< std::int64_t > *arg1 = 0 ;
-  std::vector< std::int64_t > *result = 0 ;
+  std::vector< long long > *arg1 = 0 ;
+  std::vector< long long > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::int64_t > **)&jarg1;
+  arg1 = *(std::vector< long long > **)&jarg1;
   if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::int64_t > const & reference is null");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< long long > const & reference is null");
     return 0;
   } 
-  result = (std::vector< std::int64_t > *)new std::vector< std::int64_t >((std::vector< std::int64_t > const &)*arg1);
-  *(std::vector< std::int64_t > **)&jresult = result; 
+  result = (std::vector< long long > *)new std::vector< long long >((std::vector< long long > const &)*arg1);
+  *(std::vector< long long > **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  std::vector< std::int64_t > *arg1 = (std::vector< std::int64_t > *) 0 ;
+  std::vector< long long > *arg1 = (std::vector< long long > *) 0 ;
   std::vector< long long >::size_type result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::int64_t > **)&jarg1; 
-  result = ((std::vector< std::int64_t > const *)arg1)->capacity();
+  arg1 = *(std::vector< long long > **)&jarg1; 
+  result = ((std::vector< long long > const *)arg1)->capacity();
   jresult = (jlong)result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  std::vector< std::int64_t > *arg1 = (std::vector< std::int64_t > *) 0 ;
+  std::vector< long long > *arg1 = (std::vector< long long > *) 0 ;
   std::vector< long long >::size_type arg2 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::int64_t > **)&jarg1; 
+  arg1 = *(std::vector< long long > **)&jarg1; 
   arg2 = (std::vector< long long >::size_type)jarg2; 
   try {
     (arg1)->reserve(arg2);
@@ -5788,26 +5788,26 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector
 
 SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jboolean jresult = 0 ;
-  std::vector< std::int64_t > *arg1 = (std::vector< std::int64_t > *) 0 ;
+  std::vector< long long > *arg1 = (std::vector< long long > *) 0 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::int64_t > **)&jarg1; 
-  result = (bool)((std::vector< std::int64_t > const *)arg1)->empty();
+  arg1 = *(std::vector< long long > **)&jarg1; 
+  result = (bool)((std::vector< long long > const *)arg1)->empty();
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  std::vector< std::int64_t > *arg1 = (std::vector< std::int64_t > *) 0 ;
+  std::vector< long long > *arg1 = (std::vector< long long > *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::int64_t > **)&jarg1; 
+  arg1 = *(std::vector< long long > **)&jarg1; 
   (arg1)->clear();
 }
 
@@ -5815,37 +5815,37 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1int64_1vector_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jint jarg1, jlong jarg2) {
   jlong jresult = 0 ;
   jint arg1 ;
-  std::int64_t *arg2 = 0 ;
-  std::int64_t temp2 ;
-  std::vector< std::int64_t > *result = 0 ;
+  long long *arg2 = 0 ;
+  long long temp2 ;
+  std::vector< long long > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = jarg1; 
-  temp2 = (std::int64_t)jarg2; 
+  temp2 = (long long)jarg2; 
   arg2 = &temp2; 
   try {
-    result = (std::vector< std::int64_t > *)new_std_vector_Sl_std_int64_t_Sg___SWIG_2(arg1,(long long const &)*arg2);
+    result = (std::vector< long long > *)new_std_vector_Sl_long_SS_long_Sg___SWIG_2(arg1,(long long const &)*arg2);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return 0;
   }
-  *(std::vector< std::int64_t > **)&jresult = result; 
+  *(std::vector< long long > **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector_1doSize(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jint jresult = 0 ;
-  std::vector< std::int64_t > *arg1 = (std::vector< std::int64_t > *) 0 ;
+  std::vector< long long > *arg1 = (std::vector< long long > *) 0 ;
   jint result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::int64_t > **)&jarg1; 
+  arg1 = *(std::vector< long long > **)&jarg1; 
   try {
-    result = std_vector_Sl_std_int64_t_Sg__doSize((std::vector< long long > const *)arg1);
+    result = std_vector_Sl_long_SS_long_Sg__doSize((std::vector< long long > const *)arg1);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return 0;
@@ -5856,22 +5856,22 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector
 
 
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector_1doAdd_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  std::vector< std::int64_t > *arg1 = (std::vector< std::int64_t > *) 0 ;
+  std::vector< long long > *arg1 = (std::vector< long long > *) 0 ;
   std::vector< long long >::value_type *arg2 = 0 ;
   std::vector< long long >::value_type temp2 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::int64_t > **)&jarg1; 
+  arg1 = *(std::vector< long long > **)&jarg1; 
   temp2 = (std::vector< long long >::value_type)jarg2; 
   arg2 = &temp2; 
-  std_vector_Sl_std_int64_t_Sg__doAdd__SWIG_0(arg1,(long long const &)*arg2);
+  std_vector_Sl_long_SS_long_Sg__doAdd__SWIG_0(arg1,(long long const &)*arg2);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector_1doAdd_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3) {
-  std::vector< std::int64_t > *arg1 = (std::vector< std::int64_t > *) 0 ;
+  std::vector< long long > *arg1 = (std::vector< long long > *) 0 ;
   jint arg2 ;
   std::vector< long long >::value_type *arg3 = 0 ;
   std::vector< long long >::value_type temp3 ;
@@ -5879,12 +5879,12 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::int64_t > **)&jarg1; 
+  arg1 = *(std::vector< long long > **)&jarg1; 
   arg2 = jarg2; 
   temp3 = (std::vector< long long >::value_type)jarg3; 
   arg3 = &temp3; 
   try {
-    std_vector_Sl_std_int64_t_Sg__doAdd__SWIG_1(arg1,arg2,(long long const &)*arg3);
+    std_vector_Sl_long_SS_long_Sg__doAdd__SWIG_1(arg1,arg2,(long long const &)*arg3);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return ;
@@ -5894,17 +5894,17 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector_1doRemove(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  std::vector< std::int64_t > *arg1 = (std::vector< std::int64_t > *) 0 ;
+  std::vector< long long > *arg1 = (std::vector< long long > *) 0 ;
   jint arg2 ;
   std::vector< long long >::value_type result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::int64_t > **)&jarg1; 
+  arg1 = *(std::vector< long long > **)&jarg1; 
   arg2 = jarg2; 
   try {
-    result = (std::vector< long long >::value_type)std_vector_Sl_std_int64_t_Sg__doRemove(arg1,arg2);
+    result = (std::vector< long long >::value_type)std_vector_Sl_long_SS_long_Sg__doRemove(arg1,arg2);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return 0;
@@ -5916,17 +5916,17 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vecto
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector_1doGet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  std::vector< std::int64_t > *arg1 = (std::vector< std::int64_t > *) 0 ;
+  std::vector< long long > *arg1 = (std::vector< long long > *) 0 ;
   jint arg2 ;
   std::vector< long long >::value_type *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::int64_t > **)&jarg1; 
+  arg1 = *(std::vector< long long > **)&jarg1; 
   arg2 = jarg2; 
   try {
-    result = (std::vector< long long >::value_type *) &std_vector_Sl_std_int64_t_Sg__doGet(arg1,arg2);
+    result = (std::vector< long long >::value_type *) &std_vector_Sl_long_SS_long_Sg__doGet(arg1,arg2);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return 0;
@@ -5938,7 +5938,7 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vecto
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector_1doSet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3) {
   jlong jresult = 0 ;
-  std::vector< std::int64_t > *arg1 = (std::vector< std::int64_t > *) 0 ;
+  std::vector< long long > *arg1 = (std::vector< long long > *) 0 ;
   jint arg2 ;
   std::vector< long long >::value_type *arg3 = 0 ;
   std::vector< long long >::value_type temp3 ;
@@ -5947,12 +5947,12 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vecto
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::int64_t > **)&jarg1; 
+  arg1 = *(std::vector< long long > **)&jarg1; 
   arg2 = jarg2; 
   temp3 = (std::vector< long long >::value_type)jarg3; 
   arg3 = &temp3; 
   try {
-    result = (std::vector< long long >::value_type)std_vector_Sl_std_int64_t_Sg__doSet(arg1,arg2,(long long const &)*arg3);
+    result = (std::vector< long long >::value_type)std_vector_Sl_long_SS_long_Sg__doSet(arg1,arg2,(long long const &)*arg3);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return 0;
@@ -5963,18 +5963,18 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vecto
 
 
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector_1doRemoveRange(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
-  std::vector< std::int64_t > *arg1 = (std::vector< std::int64_t > *) 0 ;
+  std::vector< long long > *arg1 = (std::vector< long long > *) 0 ;
   jint arg2 ;
   jint arg3 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::int64_t > **)&jarg1; 
+  arg1 = *(std::vector< long long > **)&jarg1; 
   arg2 = jarg2; 
   arg3 = jarg3; 
   try {
-    std_vector_Sl_std_int64_t_Sg__doRemoveRange(arg1,arg2,arg3);
+    std_vector_Sl_long_SS_long_Sg__doRemoveRange(arg1,arg2,arg3);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return ;
@@ -5983,11 +5983,11 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_int64_1vector
 
 
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1int64_1vector(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  std::vector< std::int64_t > *arg1 = (std::vector< std::int64_t > *) 0 ;
+  std::vector< long long > *arg1 = (std::vector< long long > *) 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = *(std::vector< std::int64_t > **)&jarg1; 
+  arg1 = *(std::vector< long long > **)&jarg1; 
   delete arg1;
 }
 
