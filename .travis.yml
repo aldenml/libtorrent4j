@@ -1,19 +1,19 @@
 language: cpp
-dist: focal
+dist: bionic
 
 matrix:
   include:
-    - env: os_build=macos os_arch=x86_64
-      os: osx
-      osx_image: xcode11.2
-    - env: os_build=android os_arch=arm
-    - env: os_build=android os_arch=arm64
-    - env: os_build=android os_arch=x86
-    - env: os_build=android os_arch=x86_64
-    - env: os_build=linux os_arch=x86
-    - env: os_build=linux os_arch=x86_64
+#    - env: os_build=macos os_arch=x86_64
+#      os: osx
+#      osx_image: xcode11.2
+#    - env: os_build=android os_arch=arm
+#    - env: os_build=android os_arch=arm64
+#    - env: os_build=android os_arch=x86
+#    - env: os_build=android os_arch=x86_64
+#    - env: os_build=linux os_arch=x86
+#    - env: os_build=linux os_arch=x86_64
     - env: os_build=windows os_arch=x86
-    - env: os_build=windows os_arch=x86_64
+#    - env: os_build=windows os_arch=x86_64
 
 branches:
   only:
@@ -55,8 +55,8 @@ before_install:
 
   - if [[ $os_build == "linux" && $os_arch == "x86" ]]; then
       sudo apt-get install -qq libc6-dev-i386;
-      sudo apt-get install -qq lib32gcc-9-dev;
-      sudo apt-get install -qq lib32stdc++-9-dev;
+      sudo apt-get install -qq lib32gcc-7-dev;
+      sudo apt-get install -qq lib32stdc++-7-dev;
       sudo ln -s /usr/include/asm-generic /usr/include/asm;
     fi
 
@@ -77,8 +77,9 @@ before_install:
     fi
 
 # openssl
+# NOTE: restore no-deprecated when updated libdatachannel with fix
   - 'export OPENSSL_NO_OPTS="no-afalgeng no-async no-autoalginit no-autoerrinit
-      no-capieng no-cms no-comp no-deprecated no-dgram no-dso no-dtls
+      no-capieng no-cms no-comp no-dgram no-dso no-dtls
       no-dynamic-engine no-egd no-engine no-err no-filenames no-gost no-hw
       no-makedepend no-multiblock no-nextprotoneg no-posix-io no-psk
       no-rdrand no-sctp no-shared no-sock no-srp no-srtp no-static-engine
@@ -106,10 +107,12 @@ before_install:
     fi
   # linux-x86
   - if [[ $os_build == "linux" && $os_arch == "x86" ]]; then
+      export CC=gcc-7;
       export run_openssl_configure="./Configure linux-elf ${OPENSSL_NO_OPTS} -fPIC -m32 --prefix=$OPENSSL_SOURCE/../openssl";
     fi
   # linux-x86_64
   - if [[ $os_build == "linux" && $os_arch == "x86_64" ]]; then
+      export CC=gcc-7;
       export run_openssl_configure="./Configure linux-x86_64 ${OPENSSL_NO_OPTS} -fPIC --prefix=$OPENSSL_SOURCE/../openssl";
     fi
   # windows-x86
