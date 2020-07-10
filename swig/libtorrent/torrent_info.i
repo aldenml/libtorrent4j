@@ -20,6 +20,7 @@
 %ignore libtorrent::torrent_info::internal_set_comment;
 %ignore libtorrent::torrent_info::ssl_cert;
 %ignore libtorrent::torrent_info::internal_merkle_trees;
+%ignore libtorrent::torrent_info::internal_load_merkle_trees;
 %ignore libtorrent::aux::sanitize_append_path_element;
 %ignore libtorrent::aux::verify_encoding;
 

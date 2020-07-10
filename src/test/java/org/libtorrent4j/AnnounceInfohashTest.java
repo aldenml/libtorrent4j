@@ -1,6 +1,7 @@
 package org.libtorrent4j;
 
 import org.junit.Test;
+import org.libtorrent4j.swig.announce_endpoint;
 import org.libtorrent4j.swig.announce_infohash;
 
 import static org.junit.Assert.*;
@@ -21,7 +22,8 @@ public class AnnounceInfohashTest {
     }
 
     private announce_infohash createNative() {
-        announce_infohash infohash = new announce_infohash();
+        announce_endpoint ae = new announce_endpoint();
+        announce_infohash infohash = ae.get_infohash_v1();
 
         infohash.setMessage("test");
         infohash.setFails((short) 1);

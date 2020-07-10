@@ -50,5 +50,7 @@
 %ignore libtorrent::non_default_settings;
 %ignore libtorrent::apply_pack;
 %ignore libtorrent::run_all_updates;
+%ignore libtorrent::save_settings_to_dict;
+%ignore libtorrent::load_pack_from_dict;
 
 %include "libtorrent/settings_pack.hpp"

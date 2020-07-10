@@ -69,6 +69,10 @@ public class tracker_error_alert extends tracker_alert {
     return operation_t.swigToEnum(libtorrent_jni.tracker_error_alert_op_get(swigCPtr, this));
   }
 
+  public String failure_reason() {
+    return libtorrent_jni.tracker_error_alert_failure_reason(swigCPtr, this);
+  }
+
   public String error_message() {
     return libtorrent_jni.tracker_error_alert_error_message(swigCPtr, this);
   }

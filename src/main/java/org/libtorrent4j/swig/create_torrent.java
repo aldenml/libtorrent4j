@@ -72,10 +72,6 @@ public class create_torrent {
     libtorrent_jni.create_torrent_set_hash(swigCPtr, this, index, sha1_hash.getCPtr(h), h);
   }
 
-  public void set_file_hash(int index, sha1_hash h) {
-    libtorrent_jni.create_torrent_set_file_hash(swigCPtr, this, index, sha1_hash.getCPtr(h), h);
-  }
-
   public void add_node(string_int_pair node) {
     libtorrent_jni.create_torrent_add_node(swigCPtr, this, string_int_pair.getCPtr(node), node);
   }
