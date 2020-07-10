@@ -3,15 +3,15 @@ dist: focal
 
 matrix:
   include:
-    - env: os_build=macos os_arch=x86_64
-      os: osx
-      osx_image: xcode11.2
-    - env: os_build=android os_arch=arm
-    - env: os_build=android os_arch=arm64
-    - env: os_build=android os_arch=x86
-    - env: os_build=android os_arch=x86_64
-    - env: os_build=linux os_arch=x86
-    - env: os_build=linux os_arch=x86_64
+#    - env: os_build=macos os_arch=x86_64
+#      os: osx
+#      osx_image: xcode11.2
+#    - env: os_build=android os_arch=arm
+#    - env: os_build=android os_arch=arm64
+#    - env: os_build=android os_arch=x86
+#    - env: os_build=android os_arch=x86_64
+#    - env: os_build=linux os_arch=x86
+#    - env: os_build=linux os_arch=x86_64
     - env: os_build=windows os_arch=x86
     - env: os_build=windows os_arch=x86_64
 
