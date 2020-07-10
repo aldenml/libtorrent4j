@@ -4,6 +4,7 @@
 %ignore libtorrent::add_torrent_params::file_priorities;
 %ignore libtorrent::add_torrent_params::piece_priorities;
 %ignore libtorrent::add_torrent_params::merkle_trees;
+%ignore libtorrent::add_torrent_params::merkle_tree_mask;
 %ignore libtorrent::add_torrent_params::verified_leaf_hashes;
 %ignore libtorrent::add_torrent_params::unfinished_pieces;
 %ignore libtorrent::add_torrent_params::renamed_files;
@@ -96,6 +97,18 @@ namespace libtorrent {
     {
         auto* t = reinterpret_cast<libtorrent::aux::vector<std::vector<libtorrent::sha256_hash>, libtorrent::file_index_t>*>(&v);
         $self->merkle_trees = *t;
+    }
+
+    std::vector<std::vector<bool>> get_merkle_tree_mask()
+    {
+        auto* v = &$self->merkle_tree_mask;
+        return *reinterpret_cast<std::vector<std::vector<bool>>*>(v);
+    }
+
+    void set_merkle_tree_mask(std::vector<std::vector<bool>>& v)
+    {
+        auto* t = reinterpret_cast<lt::aux::vector<std::vector<bool>, libtorrent::file_index_t>*>(&v);
+        $self->merkle_tree_mask = *t;
     }
 
     std::vector<std::vector<bool>> get_verified_leaf_hashes()

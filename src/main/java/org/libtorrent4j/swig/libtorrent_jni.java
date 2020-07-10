@@ -939,7 +939,6 @@ public class libtorrent_jni {
   public final static native void storage_error_operation_set(long jarg1, storage_error jarg1_, int jarg2);
   public final static native int storage_error_operation_get(long jarg1, storage_error jarg1_);
   public final static native void delete_storage_error(long jarg1);
-  public final static native long new_announce_infohash();
   public final static native void announce_infohash_message_set(long jarg1, announce_infohash jarg1_, String jarg2);
   public final static native String announce_infohash_message_get(long jarg1, announce_infohash jarg1_);
   public final static native void announce_infohash_last_error_set(long jarg1, announce_infohash jarg1_, long jarg2, error_code jarg2_);
@@ -1169,7 +1168,6 @@ public class libtorrent_jni {
   public final static native long torrent_info_nodes(long jarg1, torrent_info jarg1_);
   public final static native void torrent_info_add_node(long jarg1, torrent_info jarg1_, long jarg2, string_int_pair jarg2_);
   public final static native long torrent_info_info(long jarg1, torrent_info jarg1_, String jarg2);
-  public final static native void torrent_info_internal_load_merkle_trees(long jarg1, torrent_info jarg1_, long jarg2, sha256_hash_vector_vector jarg2_);
   public final static native long new_torrent_info__SWIG_4(long jarg1, int jarg2, long jarg3, error_code jarg3_);
   public final static native long torrent_info_get_info_section(long jarg1, torrent_info jarg1_);
   public final static native long seed_mode_get();
@@ -1269,6 +1267,8 @@ public class libtorrent_jni {
   public final static native void add_torrent_params_set_piece_priorities(long jarg1, add_torrent_params jarg1_, long jarg2, byte_vector jarg2_);
   public final static native long add_torrent_params_get_merkle_trees(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_set_merkle_trees(long jarg1, add_torrent_params jarg1_, long jarg2, sha256_hash_vector_vector jarg2_);
+  public final static native long add_torrent_params_get_merkle_tree_mask(long jarg1, add_torrent_params jarg1_);
+  public final static native void add_torrent_params_set_merkle_tree_mask(long jarg1, add_torrent_params jarg1_, long jarg2, bool_vector_vector jarg2_);
   public final static native long add_torrent_params_get_verified_leaf_hashes(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_set_verified_leaf_hashes(long jarg1, add_torrent_params jarg1_, long jarg2, bool_vector_vector jarg2_);
   public final static native long add_torrent_params_get_unfinished_pieces(long jarg1, add_torrent_params jarg1_);
@@ -1294,7 +1294,6 @@ public class libtorrent_jni {
   public final static native long add_torrent_params_parse_magnet_uri(String jarg1, long jarg2, error_code jarg2_);
   public final static native int close_reason_t_none_get();
   public final static native int close_reason_t_encryption_error_get();
-  public final static native int error_to_close_reason(long jarg1, error_code jarg1_);
   public final static native long new_peer_info__SWIG_0();
   public final static native void delete_peer_info(long jarg1);
   public final static native long new_peer_info__SWIG_1(long jarg1, peer_info jarg1_);
@@ -1856,7 +1855,6 @@ public class libtorrent_jni {
   public final static native boolean piece_block_op_eq(long jarg1, piece_block jarg1_, long jarg2, piece_block jarg2_);
   public final static native boolean piece_block_op_ne(long jarg1, piece_block jarg1_, long jarg2, piece_block jarg2_);
   public final static native void delete_piece_block(long jarg1);
-  public final static native String socket_type_name(int jarg1);
   public final static native int entry_type(long jarg1, entry jarg1_);
   public final static native long new_entry__SWIG_0(long jarg1, string_entry_map jarg1_);
   public final static native long new_entry__SWIG_1(String jarg1);
@@ -2144,6 +2142,7 @@ public class libtorrent_jni {
   public final static native long tracker_error_alert_error_get(long jarg1, tracker_error_alert jarg1_);
   public final static native void tracker_error_alert_op_set(long jarg1, tracker_error_alert jarg1_, int jarg2);
   public final static native int tracker_error_alert_op_get(long jarg1, tracker_error_alert jarg1_);
+  public final static native String tracker_error_alert_failure_reason(long jarg1, tracker_error_alert jarg1_);
   public final static native String tracker_error_alert_error_message(long jarg1, tracker_error_alert jarg1_);
   public final static native void delete_tracker_error_alert(long jarg1);
   public final static native int tracker_warning_alert_priority_get();
@@ -3036,8 +3035,6 @@ public class libtorrent_jni {
   public final static native int picker_flags_t_to_int(long jarg1, picker_flags_t jarg1_);
   public final static native long new_picker_flags_t();
   public final static native void delete_picker_flags_t(long jarg1);
-  public final static native long load_pack_from_dict(long jarg1, bdecode_node jarg1_);
-  public final static native void save_settings_to_dict(long jarg1, settings_pack jarg1_, long jarg2, string_entry_map jarg2_);
   public final static native String name_for_setting(int jarg1);
   public final static native long default_settings();
   public final static native void settings_interface_set_str(long jarg1, settings_interface jarg1_, int jarg2, String jarg3);
@@ -3121,19 +3118,6 @@ public class libtorrent_jni {
   public final static native int peer_class_info_download_priority_get(long jarg1, peer_class_info jarg1_);
   public final static native long new_peer_class_info();
   public final static native void delete_peer_class_info(long jarg1);
-  public final static native long new_peer_class(String jarg1);
-  public final static native void peer_class_clear(long jarg1, peer_class jarg1_);
-  public final static native void peer_class_set_info(long jarg1, peer_class jarg1_, long jarg2, peer_class_info jarg2_);
-  public final static native void peer_class_get_info(long jarg1, peer_class jarg1_, long jarg2, peer_class_info jarg2_);
-  public final static native void peer_class_set_upload_limit(long jarg1, peer_class jarg1_, int jarg2);
-  public final static native void peer_class_set_download_limit(long jarg1, peer_class jarg1_, int jarg2);
-  public final static native void peer_class_ignore_unchoke_slots_set(long jarg1, peer_class jarg1_, boolean jarg2);
-  public final static native boolean peer_class_ignore_unchoke_slots_get(long jarg1, peer_class jarg1_);
-  public final static native void peer_class_connection_limit_factor_set(long jarg1, peer_class jarg1_, int jarg2);
-  public final static native int peer_class_connection_limit_factor_get(long jarg1, peer_class jarg1_);
-  public final static native void peer_class_label_set(long jarg1, peer_class jarg1_, String jarg2);
-  public final static native String peer_class_label_get(long jarg1, peer_class jarg1_);
-  public final static native void delete_peer_class(long jarg1);
   public final static native long new_peer_class_type_filter();
   public final static native int peer_class_type_filter_tcp_socket_get();
   public final static native long peer_class_type_filter_apply(long jarg1, peer_class_type_filter jarg1_, int jarg2, long jarg3);
@@ -3293,7 +3277,6 @@ public class libtorrent_jni {
   public final static native void create_torrent_set_comment(long jarg1, create_torrent jarg1_, String jarg2);
   public final static native void create_torrent_set_creator(long jarg1, create_torrent jarg1_, String jarg2);
   public final static native void create_torrent_set_hash(long jarg1, create_torrent jarg1_, int jarg2, long jarg3, sha1_hash jarg3_);
-  public final static native void create_torrent_set_file_hash(long jarg1, create_torrent jarg1_, int jarg2, long jarg3, sha1_hash jarg3_);
   public final static native void create_torrent_add_node(long jarg1, create_torrent jarg1_, long jarg2, string_int_pair jarg2_);
   public final static native void create_torrent_set_priv(long jarg1, create_torrent jarg1_, boolean jarg2);
   public final static native boolean create_torrent_priv(long jarg1, create_torrent jarg1_);

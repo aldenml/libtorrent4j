@@ -1,3 +1,4 @@
+%ignore libtorrent::announce_infohash::announce_infohash;
 %ignore libtorrent::announce_infohash::next_announce;
 %ignore libtorrent::announce_infohash::min_announce;
 %ignore libtorrent::announce_entry::announce_entry(string_view);

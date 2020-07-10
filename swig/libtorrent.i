@@ -87,6 +87,8 @@
 #include <libtorrent/read_resume_data.hpp>
 #include <libtorrent/write_resume_data.hpp>
 
+namespace lt = libtorrent;
+
 using piece_index_t = libtorrent::piece_index_t;
 using file_index_t = libtorrent::file_index_t;
 using queue_position_t = libtorrent::queue_position_t;

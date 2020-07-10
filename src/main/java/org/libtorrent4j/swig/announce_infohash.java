@@ -36,10 +36,6 @@ public class announce_infohash {
     }
   }
 
-  public announce_infohash() {
-    this(libtorrent_jni.new_announce_infohash(), true);
-  }
-
   public void setMessage(String value) {
     libtorrent_jni.announce_infohash_message_set(swigCPtr, this, value);
   }

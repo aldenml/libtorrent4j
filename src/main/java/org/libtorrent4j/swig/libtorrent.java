@@ -144,10 +144,6 @@ public class libtorrent {
     return (cPtr == 0) ? null : new torrent_flags_t(cPtr, false);
   }
 
-  public static close_reason_t error_to_close_reason(error_code ec) {
-    return close_reason_t.swigToEnum(libtorrent_jni.error_to_close_reason(error_code.getCPtr(ec), ec));
-  }
-
   public static pex_flags_t getPex_encryption() {
     long cPtr = libtorrent_jni.pex_encryption_get();
     return (cPtr == 0) ? null : new pex_flags_t(cPtr, false);
@@ -171,10 +167,6 @@ public class libtorrent {
   public static pex_flags_t getPex_lt_v2() {
     long cPtr = libtorrent_jni.pex_lt_v2_get();
     return (cPtr == 0) ? null : new pex_flags_t(cPtr, false);
-  }
-
-  public static String socket_type_name(socket_type_t arg0) {
-    return libtorrent_jni.socket_type_name(arg0.swigValue());
   }
 
   public static alert_category_t getError() {
@@ -306,14 +298,6 @@ public class libtorrent {
 
   public static int getAbi_alert_count() {
     return libtorrent_jni.abi_alert_count_get();
-  }
-
-  public static settings_pack load_pack_from_dict(bdecode_node settings) {
-    return new settings_pack(libtorrent_jni.load_pack_from_dict(bdecode_node.getCPtr(settings), settings), true);
-  }
-
-  public static void save_settings_to_dict(settings_pack sett, string_entry_map out) {
-    libtorrent_jni.save_settings_to_dict(settings_pack.getCPtr(sett), sett, string_entry_map.getCPtr(out), out);
   }
 
   public static String name_for_setting(int s) {
