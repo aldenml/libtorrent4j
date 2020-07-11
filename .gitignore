@@ -2,6 +2,8 @@
 *~
 /.gradle
 /.idea
+/swig/.idea
+/swig/cmake-build-*
 /out
 /build
 
