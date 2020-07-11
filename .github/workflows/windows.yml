@@ -10,7 +10,7 @@ on:
 
 jobs:
 
-  windows-x86_64:
+  x86_64:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2

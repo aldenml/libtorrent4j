@@ -10,7 +10,7 @@ on:
 
 jobs:
 
-  macos-x86_64:
+  x86_64:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -29,4 +29,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: libtorrent4j.dylib
-          path: build/Release/libtorrent4j.dylib
+          path: build/libtorrent4j.dylib
