@@ -2938,7 +2938,7 @@ SWIGINTERN void libtorrent_file_storage_add_file_ex__SWIG_0(libtorrent::file_sto
         self->add_file(ec, path, file_size, file_flags, mtime, symlink_path);
     }
 SWIGINTERN std::string libtorrent_file_storage_file_name_ex(libtorrent::file_storage *self,int index){
-        return self->file_name(libtorrent::file_index_t{index}).to_string();
+        return std::string{self->file_name(lt::file_index_t{index})};
     }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_file_flags_tag_Sg__op_bool(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > *self){
             return self->operator bool();
@@ -2964,8 +2964,8 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_file_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint8_t>(*self));
         }
-SWIGINTERN std::string libtorrent_bdecode_node_list_string_value_at_s__SWIG_0(libtorrent::bdecode_node *self,int i,std::string default_val=""){
-        return self->list_string_value_at(i, default_val).to_string();
+SWIGINTERN std::string libtorrent_bdecode_node_list_string_value_at_ex__SWIG_0(libtorrent::bdecode_node *self,int i,std::string default_val=""){
+        return std::string{self->list_string_value_at(i, default_val)};
     }
 SWIGINTERN libtorrent::bdecode_node libtorrent_bdecode_node_dict_find_s(libtorrent::bdecode_node const *self,std::string key){
         return self->dict_find(key);
@@ -2982,14 +2982,14 @@ SWIGINTERN libtorrent::bdecode_node libtorrent_bdecode_node_dict_find_string_s(l
 SWIGINTERN libtorrent::bdecode_node libtorrent_bdecode_node_dict_find_int_s(libtorrent::bdecode_node const *self,std::string key){
         return self->dict_find_int(key);
     }
-SWIGINTERN std::string libtorrent_bdecode_node_dict_find_string_value_s__SWIG_0(libtorrent::bdecode_node const *self,std::string key,std::string default_value=""){
-        return self->dict_find_string_value(key, default_value).to_string();
+SWIGINTERN std::string libtorrent_bdecode_node_dict_find_string_value_ex__SWIG_0(libtorrent::bdecode_node const *self,std::string key,std::string default_value=""){
+        return std::string{self->dict_find_string_value(key, default_value)};
     }
 SWIGINTERN std::int64_t libtorrent_bdecode_node_dict_find_int_value_s__SWIG_0(libtorrent::bdecode_node const *self,std::string key,std::int64_t default_val=0){
         return self->dict_find_int_value(key, default_val);
     }
-SWIGINTERN std::string libtorrent_bdecode_node_string_value_s(libtorrent::bdecode_node const *self){
-        return self->string_value().to_string();
+SWIGINTERN std::string libtorrent_bdecode_node_string_value_ex(libtorrent::bdecode_node const *self){
+        return std::string{self->string_value()};
     }
 SWIGINTERN std::string libtorrent_bdecode_node_to_string(libtorrent::bdecode_node const &e,bool single_line,int indent){
         return libtorrent::print_entry(e, single_line, indent);
@@ -22331,7 +22331,7 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1list_1string_1value_1at_1s_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1list_1string_1value_1at_1ex_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   libtorrent::bdecode_node *arg1 = (libtorrent::bdecode_node *) 0 ;
   int arg2 ;
@@ -22351,13 +22351,13 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1n
   if (!arg3_pstr) return 0;
   (&arg3)->assign(arg3_pstr);
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = libtorrent_bdecode_node_list_string_value_at_s__SWIG_0(arg1,arg2,arg3);
+  result = libtorrent_bdecode_node_list_string_value_at_ex__SWIG_0(arg1,arg2,arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1list_1string_1value_1at_1s_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1list_1string_1value_1at_1ex_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jstring jresult = 0 ;
   libtorrent::bdecode_node *arg1 = (libtorrent::bdecode_node *) 0 ;
   int arg2 ;
@@ -22368,7 +22368,7 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1n
   (void)jarg1_;
   arg1 = *(libtorrent::bdecode_node **)&jarg1; 
   arg2 = (int)jarg2; 
-  result = libtorrent_bdecode_node_list_string_value_at_s__SWIG_0(arg1,arg2);
+  result = libtorrent_bdecode_node_list_string_value_at_ex__SWIG_0(arg1,arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
@@ -22494,7 +22494,7 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1nod
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1string_1value_1s_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1string_1value_1ex_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   libtorrent::bdecode_node *arg1 = (libtorrent::bdecode_node *) 0 ;
   std::string arg2 ;
@@ -22521,13 +22521,13 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1n
   if (!arg3_pstr) return 0;
   (&arg3)->assign(arg3_pstr);
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = libtorrent_bdecode_node_dict_find_string_value_s__SWIG_0((libtorrent::bdecode_node const *)arg1,arg2,arg3);
+  result = libtorrent_bdecode_node_dict_find_string_value_ex__SWIG_0((libtorrent::bdecode_node const *)arg1,arg2,arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1string_1value_1s_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1string_1value_1ex_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   jstring jresult = 0 ;
   libtorrent::bdecode_node *arg1 = (libtorrent::bdecode_node *) 0 ;
   std::string arg2 ;
@@ -22545,7 +22545,7 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1n
   if (!arg2_pstr) return 0;
   (&arg2)->assign(arg2_pstr);
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = libtorrent_bdecode_node_dict_find_string_value_s__SWIG_0((libtorrent::bdecode_node const *)arg1,arg2);
+  result = libtorrent_bdecode_node_dict_find_string_value_ex__SWIG_0((libtorrent::bdecode_node const *)arg1,arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
@@ -22601,7 +22601,7 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1nod
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1string_1value_1s(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1string_1value_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jstring jresult = 0 ;
   libtorrent::bdecode_node *arg1 = (libtorrent::bdecode_node *) 0 ;
   std::string result;
@@ -22610,7 +22610,7 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1n
   (void)jcls;
   (void)jarg1_;
   arg1 = *(libtorrent::bdecode_node **)&jarg1; 
-  result = libtorrent_bdecode_node_string_value_s((libtorrent::bdecode_node const *)arg1);
+  result = libtorrent_bdecode_node_string_value_ex((libtorrent::bdecode_node const *)arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }

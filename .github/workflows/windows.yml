@@ -14,6 +14,11 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
+      - name: choco cache
+        uses: actions/cache@v2
+        with:
+          path: C:\Users\runneradmin\AppData\Local\Temp\chocolatey
+          key: ${{ runner.os }}-chocolatey
       - name: install packages
         run: choco install openssl
       - name: submodules
@@ -23,7 +28,7 @@ jobs:
           $env:BOOST_ROOT=$env:BOOST_ROOT_1_72_0
           cmake -DCMAKE_BUILD_TYPE=Release -B build -G "Visual Studio 16 2019" -A x64 swig
       - name: build
-        run: cmake --build build --config Release -j 4
+        run: cmake --build build --config Release --parallel 2
       - uses: actions/upload-artifact@v2
         with:
           name: torrent4j.dll
