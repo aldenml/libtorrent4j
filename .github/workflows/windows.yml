@@ -1,0 +1,30 @@
+name: Windows
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+
+  windows-x86_64:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: install packages
+        run: choco install openssl
+      - name: submodules
+        run: git submodule update --depth=1 --init --recursive
+      - name: cmake
+        run: |
+          $env:BOOST_ROOT=$env:BOOST_ROOT_1_72_0
+          cmake -DCMAKE_BUILD_TYPE=Release -B build -G "Visual Studio 16 2019" -A x64 swig
+      - name: build
+        run: cmake --build build --config Release -j 4
+      - uses: actions/upload-artifact@v2
+        with:
+          name: torrent4j.dll
+          path: build/Release/torrent4j.dll

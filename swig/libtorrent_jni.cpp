@@ -842,27 +842,11 @@ extern "C" {
 #endif
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBufferAddress(JNIEnv *jenv, jclass jcls, jobject jbuf) {
-    try {
-        return reinterpret_cast<jlong>(jenv->GetDirectBufferAddress(jbuf));
-    } catch (std::exception& e) {
-        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
-    } catch (...) {
-        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
-    }
-
-    return 0;
+    return jlong(jenv->GetDirectBufferAddress(jbuf));
 }
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBufferCapacity(JNIEnv *jenv, jclass jcls, jobject jbuf) {
-    try {
-        return reinterpret_cast<jlong>(jenv->GetDirectBufferCapacity(jbuf));
-    } catch (std::exception& e) {
-        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
-    } catch (...) {
-        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
-    }
-
-    return 0;
+    return jlong(jenv->GetDirectBufferCapacity(jbuf));
 }
 
 #ifdef __cplusplus
@@ -2562,6 +2546,20 @@ SWIGINTERN void std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_n
         } else {
           throw std::out_of_range("vector index out of range");
         }
+      }
+SWIGINTERN std::array< signed char,32 >::const_reference std_array_Sl_std_int8_t_Sc_32_Sg__get(std::array< std::int8_t,32 > *self,int i){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          return (*self)[i];
+        else
+          throw std::out_of_range("array index out of range");
+      }
+SWIGINTERN void std_array_Sl_std_int8_t_Sc_32_Sg__set(std::array< std::int8_t,32 > *self,int i,std::array< signed char,32 >::value_type const &val){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          (*self)[i] = val;
+        else
+          throw std::out_of_range("array index out of range");
       }
 SWIGINTERN std::array< char,32 >::const_reference std_array_Sl_char_Sc_32_Sg__get(std::array< char,32 > *self,int i){
         int size = int(self->size());
@@ -13580,6 +13578,136 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1addre
   (void)jenv;
   (void)jcls;
   arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1byte_1array_132_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::array< std::int8_t,32 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::array< std::int8_t,32 > *)new std::array< std::int8_t,32 >();
+  *(std::array< std::int8_t,32 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1byte_1array_132_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< std::int8_t,32 > *arg1 = 0 ;
+  std::array< std::int8_t,32 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< std::int8_t,32 > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< std::int8_t,32 > const & reference is null");
+    return 0;
+  } 
+  result = (std::array< std::int8_t,32 > *)new std::array< std::int8_t,32 >((std::array< std::int8_t,32 > const &)*arg1);
+  *(std::array< std::int8_t,32 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_byte_1array_132_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< std::int8_t,32 > *arg1 = (std::array< std::int8_t,32 > *) 0 ;
+  std::array< signed char,32 >::size_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< std::int8_t,32 > **)&jarg1; 
+  result = ((std::array< std::int8_t,32 > const *)arg1)->size();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_byte_1array_132_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  std::array< std::int8_t,32 > *arg1 = (std::array< std::int8_t,32 > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< std::int8_t,32 > **)&jarg1; 
+  result = (bool)((std::array< std::int8_t,32 > const *)arg1)->empty();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_byte_1array_132_1fill(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyte jarg2) {
+  std::array< std::int8_t,32 > *arg1 = (std::array< std::int8_t,32 > *) 0 ;
+  std::int8_t *arg2 = 0 ;
+  std::int8_t temp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< std::int8_t,32 > **)&jarg1; 
+  temp2 = (std::int8_t)jarg2; 
+  arg2 = &temp2; 
+  (arg1)->fill((std::int8_t const &)*arg2);
+}
+
+
+SWIGEXPORT jbyte JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_byte_1array_132_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jbyte jresult = 0 ;
+  std::array< std::int8_t,32 > *arg1 = (std::array< std::int8_t,32 > *) 0 ;
+  int arg2 ;
+  std::array< signed char,32 >::value_type *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< std::int8_t,32 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::array< signed char,32 >::value_type *) &std_array_Sl_std_int8_t_Sc_32_Sg__get(arg1,arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  jresult = (jbyte)*result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_byte_1array_132_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jbyte jarg3) {
+  std::array< std::int8_t,32 > *arg1 = (std::array< std::int8_t,32 > *) 0 ;
+  int arg2 ;
+  std::array< signed char,32 >::value_type *arg3 = 0 ;
+  std::array< signed char,32 >::value_type temp3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< std::int8_t,32 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  temp3 = (std::array< signed char,32 >::value_type)jarg3; 
+  arg3 = &temp3; 
+  try {
+    std_array_Sl_std_int8_t_Sc_32_Sg__set(arg1,arg2,(signed char const &)*arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1byte_1array_132(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::array< std::int8_t,32 > *arg1 = (std::array< std::int8_t,32 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::array< std::int8_t,32 > **)&jarg1; 
   delete arg1;
 }
 
@@ -55569,12 +55697,12 @@ SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_arm_1neon
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_ed25519_1create_1seed(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
-  std::vector< int8_t > result;
+  std::array< std::int8_t,32 > result;
   
   (void)jenv;
   (void)jcls;
   result = ed25519_create_seed();
-  *(std::vector< int8_t > **)&jresult = new std::vector< int8_t >((const std::vector< int8_t > &)result); 
+  *(std::array< std::int8_t,32 > **)&jresult = new std::array< std::int8_t,32 >((const std::array< std::int8_t,32 > &)result); 
   return jresult;
 }
 

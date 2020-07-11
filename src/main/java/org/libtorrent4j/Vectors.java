@@ -1,5 +1,6 @@
 package org.libtorrent4j;
 
+import org.libtorrent4j.swig.byte_array_32;
 import org.libtorrent4j.swig.byte_vector;
 import org.libtorrent4j.swig.int64_vector;
 import org.libtorrent4j.swig.int_vector;
@@ -124,5 +125,16 @@ public final class Vectors {
 
     public static byte_vector ascii2byte_vector(String s) {
         return string2byte_vector(s, "US-ASCII");
+    }
+
+    public static byte[] byte_array2bytes(byte_array_32 v) {
+        int size = (int) v.size();
+        byte[] arr = new byte[size];
+
+        for (int i = 0; i < size; i++) {
+            arr[i] = v.get(i);
+        }
+
+        return arr;
     }
 }

@@ -539,6 +539,14 @@ public class libtorrent_jni {
   public final static native long address_node_id_pair_vector_doSet(long jarg1, address_node_id_pair_vector jarg1_, int jarg2, long jarg3, address_node_id_pair jarg3_);
   public final static native void address_node_id_pair_vector_doRemoveRange(long jarg1, address_node_id_pair_vector jarg1_, int jarg2, int jarg3);
   public final static native void delete_address_node_id_pair_vector(long jarg1);
+  public final static native long new_byte_array_32__SWIG_0();
+  public final static native long new_byte_array_32__SWIG_1(long jarg1, byte_array_32 jarg1_);
+  public final static native long byte_array_32_size(long jarg1, byte_array_32 jarg1_);
+  public final static native boolean byte_array_32_isEmpty(long jarg1, byte_array_32 jarg1_);
+  public final static native void byte_array_32_fill(long jarg1, byte_array_32 jarg1_, byte jarg2);
+  public final static native byte byte_array_32_get(long jarg1, byte_array_32 jarg1_, int jarg2);
+  public final static native void byte_array_32_set(long jarg1, byte_array_32 jarg1_, int jarg2, byte jarg3);
+  public final static native void delete_byte_array_32(long jarg1);
   public final static native long new_char_array_32__SWIG_0();
   public final static native long new_char_array_32__SWIG_1(long jarg1, char_array_32 jarg1_);
   public final static native long char_array_32_size(long jarg1, char_array_32 jarg1_);

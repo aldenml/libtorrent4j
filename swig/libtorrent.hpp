@@ -40,9 +40,10 @@ bool arm_neon_support()
     return libtorrent::aux::arm_neon_support;
 }
 
-std::vector<int8_t> ed25519_create_seed() {
-    std::array<char, 32> seed = libtorrent::dht::ed25519_create_seed();
-    return std::vector<int8_t>(seed.data(), seed.end());
+std::array<std::int8_t, 32> ed25519_create_seed()
+{
+    auto seed = lt::dht::ed25519_create_seed();
+    return *reinterpret_cast<std::array<std::int8_t, 32>*>(&seed);
 }
 
 std::pair<std::vector<int8_t>, std::vector<int8_t>> ed25519_create_keypair(
