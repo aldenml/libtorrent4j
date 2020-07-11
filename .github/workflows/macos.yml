@@ -1,4 +1,4 @@
-name: Windows
+name: macOS
 
 on:
   push:
@@ -11,20 +11,22 @@ on:
 jobs:
 
   x86_64:
-    runs-on: windows-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: install packages
-        run: choco install openssl
+        run: |
+          brew reinstall openssl@1.1
+          brew reinstall boost
       - name: submodules
         run: git submodule update --depth=1 --init --recursive
       - name: cmake
-        run: |
-          $env:BOOST_ROOT=$env:BOOST_ROOT_1_72_0
-          cmake -DCMAKE_BUILD_TYPE=Release -B build -G "Visual Studio 16 2019" -A x64 swig
+        run: cmake -DCMAKE_BUILD_TYPE=Release -B build -G "CodeBlocks - Unix Makefiles" swig
+        env:
+          OPENSSL_ROOT_DIR: /usr/local/opt/openssl
       - name: build
         run: cmake --build build --config Release --parallel 2
       - uses: actions/upload-artifact@v2
         with:
-          name: torrent4j.dll
-          path: build/Release/torrent4j.dll
+          name: libtorrent4j.dylib
+          path: build/libtorrent4j.dylib
