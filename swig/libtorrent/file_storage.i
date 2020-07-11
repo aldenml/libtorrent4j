@@ -40,7 +40,7 @@ struct file_flags_tag;
 
     std::string file_name_ex(int index)
     {
-        return $self->file_name(libtorrent::file_index_t{index}).to_string();
+        return std::string{$self->file_name(lt::file_index_t{index})};
     }
 }
 

@@ -30,11 +30,13 @@ namespace libtorrent {
 
 %extend bdecode_node {
 
-    std::string list_string_value_at_s(int i, std::string default_val = "") {
-        return $self->list_string_value_at(i, default_val).to_string();
+    std::string list_string_value_at_ex(int i, std::string default_val = "")
+    {
+        return std::string{$self->list_string_value_at(i, default_val)};
     }
 
-    bdecode_node dict_find_s(std::string key) const {
+    bdecode_node dict_find_s(std::string key) const
+    {
         return $self->dict_find(key);
     }
 
@@ -54,16 +56,18 @@ namespace libtorrent {
         return $self->dict_find_int(key);
     }
 
-    std::string dict_find_string_value_s(std::string key, std::string default_value = "") const {
-        return $self->dict_find_string_value(key, default_value).to_string();
+    std::string dict_find_string_value_ex(std::string key, std::string default_value = "") const
+    {
+        return std::string{$self->dict_find_string_value(key, default_value)};
     }
 
     std::int64_t dict_find_int_value_s(std::string key, std::int64_t default_val = 0) const {
         return $self->dict_find_int_value(key, default_val);
     }
 
-    std::string string_value_s() const {
-        return $self->string_value().to_string();
+    std::string string_value_ex() const
+    {
+        return std::string{$self->string_value()};
     }
 
     static std::string to_string(bdecode_node const& e, bool single_line, int indent) {

@@ -96,12 +96,12 @@ public class bdecode_node {
     libtorrent_jni.bdecode_node_clear(swigCPtr, this);
   }
 
-  public String list_string_value_at_s(int i, String default_val) {
-    return libtorrent_jni.bdecode_node_list_string_value_at_s__SWIG_0(swigCPtr, this, i, default_val);
+  public String list_string_value_at_ex(int i, String default_val) {
+    return libtorrent_jni.bdecode_node_list_string_value_at_ex__SWIG_0(swigCPtr, this, i, default_val);
   }
 
-  public String list_string_value_at_s(int i) {
-    return libtorrent_jni.bdecode_node_list_string_value_at_s__SWIG_1(swigCPtr, this, i);
+  public String list_string_value_at_ex(int i) {
+    return libtorrent_jni.bdecode_node_list_string_value_at_ex__SWIG_1(swigCPtr, this, i);
   }
 
   public bdecode_node dict_find_s(String key) {
@@ -124,12 +124,12 @@ public class bdecode_node {
     return new bdecode_node(libtorrent_jni.bdecode_node_dict_find_int_s(swigCPtr, this, key), true);
   }
 
-  public String dict_find_string_value_s(String key, String default_value) {
-    return libtorrent_jni.bdecode_node_dict_find_string_value_s__SWIG_0(swigCPtr, this, key, default_value);
+  public String dict_find_string_value_ex(String key, String default_value) {
+    return libtorrent_jni.bdecode_node_dict_find_string_value_ex__SWIG_0(swigCPtr, this, key, default_value);
   }
 
-  public String dict_find_string_value_s(String key) {
-    return libtorrent_jni.bdecode_node_dict_find_string_value_s__SWIG_1(swigCPtr, this, key);
+  public String dict_find_string_value_ex(String key) {
+    return libtorrent_jni.bdecode_node_dict_find_string_value_ex__SWIG_1(swigCPtr, this, key);
   }
 
   public long dict_find_int_value_s(String key, long default_val) {
@@ -140,8 +140,8 @@ public class bdecode_node {
     return libtorrent_jni.bdecode_node_dict_find_int_value_s__SWIG_1(swigCPtr, this, key);
   }
 
-  public String string_value_s() {
-    return libtorrent_jni.bdecode_node_string_value_s(swigCPtr, this);
+  public String string_value_ex() {
+    return libtorrent_jni.bdecode_node_string_value_ex(swigCPtr, this);
   }
 
   public static String to_string(bdecode_node e, boolean single_line, int indent) {
