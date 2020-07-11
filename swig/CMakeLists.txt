@@ -16,6 +16,9 @@ set(include_files
 set(source_files
     libtorrent_jni.cpp)
 
+include(ucm_flags)
+ucm_set_runtime(STATIC)
+
 add_library(torrent4j SHARED
     ${source_files}
     ${include_files})
@@ -34,9 +37,6 @@ option(USE_NETTLE "" OFF)
 set(Boost_USE_STATIC_LIBS ON)
 set(OPENSSL_USE_STATIC_LIBS ON)
 set(OPENSSL_MSVC_STATIC_RT ON)
-
-include(ucm_flags)
-ucm_set_runtime(STATIC)
 
 macro(install)
 endmacro()

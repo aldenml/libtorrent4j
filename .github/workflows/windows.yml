@@ -31,5 +31,5 @@ jobs:
         run: cmake --build build --config Release --parallel 2
       - uses: actions/upload-artifact@v2
         with:
-          name: libtorrent4j.dll
+          name: torrent4j.dll
           path: build/Release/torrent4j.dll
