@@ -19,7 +19,9 @@ jobs:
       - name: submodules
         run: git submodule update --depth=1 --init --recursive
       - name: cmake
-        run: cmake -DCMAKE_BUILD_TYPE=Release -B build -G "Visual Studio 16 2019" -A x64 swig
+        run: |
+          set BOOST_ROOT=%BOOST_ROOT_1_72_0%
+          cmake -DCMAKE_BUILD_TYPE=Release -B build -G "Visual Studio 16 2019" -A x64 swig
       - name: build
         run: |
           cd build
