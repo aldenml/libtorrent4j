@@ -23,8 +23,8 @@ jobs:
           $env:BOOST_ROOT=$env:BOOST_ROOT_1_72_0
           cmake -DCMAKE_BUILD_TYPE=Release -B build -G "Visual Studio 16 2019" -A x64 swig
       - name: build
-        run: cmake --build build --config Release -j 4
+        run: cmake --build build --config Release --parallel 2
       - uses: actions/upload-artifact@v2
         with:
-          name: torrent4j.dll
+          name: libtorrent4j.dll
           path: build/Release/torrent4j.dll
