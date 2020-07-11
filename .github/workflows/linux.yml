@@ -1,4 +1,4 @@
-name: Windows
+name: Linux
 
 on:
   push:
@@ -11,25 +11,25 @@ on:
 jobs:
 
   x86_64:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: install packages
         run: |
-          choco install openssl
-          choco install mingw
-          choco install grep
+          sudo apt install libboost-all-dev
+          sudo apt install libssl-dev
+          sudo apt install ninja-build
       - name: submodules
         run: git submodule update --depth=1 --init --recursive
       - name: cmake
-        run: |
-          $env:BOOST_ROOT=$env:BOOST_ROOT_1_72_0
-          cmake -DCMAKE_BUILD_TYPE=Release -B build -G "Visual Studio 16 2019" -A x64 swig
+        run: cmake -DCMAKE_BUILD_TYPE=Release -B build -G "Ninja" swig
       - name: build
         run: cmake --build build --config Release --parallel 2
+      - name: strip
+        run: strip --strip-unneeded -x build/libtorrent4j.so
       - name: dependencies
-        run: objdump -p build/Release/torrent4j.dll | grep DLL
+        run: readelf -d build/libtorrent4j.so
       - uses: actions/upload-artifact@v2
         with:
-          name: torrent4j.dll
-          path: build/Release/torrent4j.dll
+          name: libtorrent4j.so
+          path: build/libtorrent4j.so
