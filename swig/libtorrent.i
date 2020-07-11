@@ -108,27 +108,11 @@ extern "C" {
 #endif
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBufferAddress(JNIEnv *jenv, jclass jcls, jobject jbuf) {
-    try {
-        return reinterpret_cast<jlong>(jenv->GetDirectBufferAddress(jbuf));
-    } catch (std::exception& e) {
-        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
-    } catch (...) {
-        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
-    }
-
-    return 0;
+    return jlong(jenv->GetDirectBufferAddress(jbuf));
 }
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBufferCapacity(JNIEnv *jenv, jclass jcls, jobject jbuf) {
-    try {
-        return reinterpret_cast<jlong>(jenv->GetDirectBufferCapacity(jbuf));
-    } catch (std::exception& e) {
-        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
-    } catch (...) {
-        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
-    }
-
-    return 0;
+    return jlong(jenv->GetDirectBufferCapacity(jbuf));
 }
 
 #ifdef __cplusplus
@@ -218,6 +202,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(sha1_hash_udp_endpoint_pair_vector) std::vector<std::pair<libtorrent::digest32<160>, libtorrent::udp::endpoint>>;
 %template(address_node_id_pair_vector) std::vector<std::pair<libtorrent::address, libtorrent::dht::node_id>>;
 
+%template(byte_array_32) std::array<std::int8_t, 32>;
 %template(char_array_32) std::array<char, 32>;
 %template(char_array_64) std::array<char, 64>;
 

@@ -1,9 +1,16 @@
 package org.libtorrent4j;
 
+import org.libtorrent4j.swig.byte_array_32;
 import org.libtorrent4j.swig.byte_vector;
 import org.libtorrent4j.swig.byte_vector_byte_vector_pair;
 
-import static org.libtorrent4j.swig.libtorrent.*;
+import static org.libtorrent4j.swig.libtorrent.ed25519_add_scalar_public;
+import static org.libtorrent4j.swig.libtorrent.ed25519_add_scalar_secret;
+import static org.libtorrent4j.swig.libtorrent.ed25519_create_keypair;
+import static org.libtorrent4j.swig.libtorrent.ed25519_create_seed;
+import static org.libtorrent4j.swig.libtorrent.ed25519_key_exchange;
+import static org.libtorrent4j.swig.libtorrent.ed25519_sign;
+import static org.libtorrent4j.swig.libtorrent.ed25519_verify;
 
 /**
  * @author gubatron
@@ -25,9 +32,9 @@ public final class Ed25519 {
      *
      */
     public static byte[] createSeed() {
-        byte_vector seed = ed25519_create_seed();
+        byte_array_32 seed = ed25519_create_seed();
 
-        return Vectors.byte_vector2bytes(seed);
+        return Vectors.byte_array2bytes(seed);
     }
 
     /**

@@ -372,8 +372,8 @@ public class libtorrent {
     return libtorrent_jni.arm_neon_support();
   }
 
-  public static byte_vector ed25519_create_seed() {
-    return new byte_vector(libtorrent_jni.ed25519_create_seed(), true);
+  public static byte_array_32 ed25519_create_seed() {
+    return new byte_array_32(libtorrent_jni.ed25519_create_seed(), true);
   }
 
   public static byte_vector_byte_vector_pair ed25519_create_keypair(byte_vector seed) {
