@@ -17,8 +17,8 @@ jobs:
       - name: choco cache
         uses: actions/cache@v2
         with:
-          path: $env:TEMP/chocolatey
-          key: ${{ runner.os }}-choco
+          path: C:\Users\runneradmin\AppData\Local\Temp\chocolatey
+          key: ${{ runner.os }}-chocolatey
       - name: install packages
         run: choco install openssl
       - name: submodules
