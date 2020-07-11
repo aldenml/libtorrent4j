@@ -15,7 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: install packages
-        run: brew reinstall openssl@1.1
+        run: |
+          brew reinstall openssl@1.1
+          brew reinstall boost
       - name: submodules
         run: git submodule update --depth=1 --init --recursive
       - name: cmake
