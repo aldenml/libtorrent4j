@@ -10,7 +10,6 @@ matrix:
     - env: os_build=android os_arch=arm64
     - env: os_build=android os_arch=x86
     - env: os_build=android os_arch=x86_64
-    - env: os_build=linux os_arch=x86
     - env: os_build=linux os_arch=x86_64
 
 branches:
@@ -50,13 +49,6 @@ before_install:
       export ANDROID_TOOLCHAIN=$PWD/android-toolchain;
     fi
 
-  - if [[ $os_build == "linux" && $os_arch == "x86" ]]; then
-      sudo apt-get install -qq libc6-dev-i386;
-      sudo apt-get install -qq lib32gcc-9-dev;
-      sudo apt-get install -qq lib32stdc++-9-dev;
-      sudo ln -s /usr/include/asm-generic /usr/include/asm;
-    fi
-
 # install gradle in macOS to run the unit tests
   - if [ $os_build == "macos" ]; then
       brew update > /dev/null && brew install gradle;
@@ -90,10 +82,6 @@ before_install:
       export CC=$ANDROID_TOOLCHAIN/bin/x86_64-linux-android-clang;
       export run_openssl_configure="./Configure linux-x86_64 ${OPENSSL_NO_OPTS} -fPIC --prefix=$OPENSSL_SOURCE/../openssl";
     fi
-  # linux-x86
-  - if [[ $os_build == "linux" && $os_arch == "x86" ]]; then
-      export run_openssl_configure="./Configure linux-elf ${OPENSSL_NO_OPTS} -fPIC -m32 --prefix=$OPENSSL_SOURCE/../openssl";
-    fi
   # linux-x86_64
   - if [[ $os_build == "linux" && $os_arch == "x86_64" ]]; then
       export run_openssl_configure="./Configure linux-x86_64 ${OPENSSL_NO_OPTS} -fPIC --prefix=$OPENSSL_SOURCE/../openssl";
@@ -106,7 +94,7 @@ before_install:
 # libtorrent4j
   # android-arm
   - if [[ $os_build == "android" && $os_arch == "arm" ]]; then
-      export run_bjam="${BOOST_ROOT}/b2 --user-config=config/android-arm-config.jam variant=release toolset=clang-linux-arm target-os=android location=bin/release/android/armeabi-v7a";
+      export run_bjam="${BOOST_ROOT}/b2 -j2 --user-config=config/android-arm-config.jam variant=release toolset=clang-linux-arm target-os=android location=bin/release/android/armeabi-v7a";
       export run_objcopy="${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-objcopy --only-keep-debug bin/release/android/armeabi-v7a/libtorrent4j.so bin/release/android/armeabi-v7a/libtorrent4j.so.debug";
       export run_strip="${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-strip --strip-unneeded -x -g bin/release/android/armeabi-v7a/libtorrent4j.so";
       export run_readelf="${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-readelf -d bin/release/android/armeabi-v7a/libtorrent4j.so";
@@ -115,7 +103,7 @@ before_install:
     fi
   # android-arm64
   - if [[ $os_build == "android" && $os_arch == "arm64" ]]; then
-      export run_bjam="${BOOST_ROOT}/b2 --user-config=config/android-arm64-config.jam variant=release toolset=clang-arm64 target-os=android location=bin/release/android/arm64-v8a";
+      export run_bjam="${BOOST_ROOT}/b2 -j2 --user-config=config/android-arm64-config.jam variant=release toolset=clang-arm64 target-os=android location=bin/release/android/arm64-v8a";
       export run_objcopy="${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-objcopy --only-keep-debug bin/release/android/arm64-v8a/libtorrent4j.so bin/release/android/arm64-v8a/libtorrent4j.so.debug";
       export run_strip="${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-strip --strip-unneeded -x bin/release/android/arm64-v8a/libtorrent4j.so";
       export run_readelf="${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-readelf -d bin/release/android/arm64-v8a/libtorrent4j.so";
@@ -124,7 +112,7 @@ before_install:
     fi
   # android-x86
   - if [[ $os_build == "android" && $os_arch == "x86" ]]; then
-      export run_bjam="${BOOST_ROOT}/b2 --user-config=config/android-x86-config.jam variant=release toolset=clang-x86 target-os=android location=bin/release/android/x86";
+      export run_bjam="${BOOST_ROOT}/b2 -j2 --user-config=config/android-x86-config.jam variant=release toolset=clang-x86 target-os=android location=bin/release/android/x86";
       export run_objcopy="${ANDROID_TOOLCHAIN}/bin/i686-linux-android-objcopy --only-keep-debug bin/release/android/x86/libtorrent4j.so bin/release/android/x86/libtorrent4j.so.debug";
       export run_strip="${ANDROID_TOOLCHAIN}/bin/i686-linux-android-strip --strip-unneeded -x -g bin/release/android/x86/libtorrent4j.so";
       export run_readelf="${ANDROID_TOOLCHAIN}/bin/i686-linux-android-readelf -d bin/release/android/x86/libtorrent4j.so";
@@ -133,30 +121,23 @@ before_install:
     fi
   # android-x86_64
   - if [[ $os_build == "android" && $os_arch == "x86_64" ]]; then
-      export run_bjam="${BOOST_ROOT}/b2 --user-config=config/android-x86_64-config.jam variant=release toolset=clang-x86_64 target-os=android location=bin/release/android/x86_64";
+      export run_bjam="${BOOST_ROOT}/b2 -j2 --user-config=config/android-x86_64-config.jam variant=release toolset=clang-x86_64 target-os=android location=bin/release/android/x86_64";
       export run_objcopy="${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-objcopy --only-keep-debug bin/release/android/x86_64/libtorrent4j.so bin/release/android/x86_64/libtorrent4j.so.debug";
       export run_strip="${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-strip --strip-unneeded -x bin/release/android/x86_64/libtorrent4j.so";
       export run_readelf="${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-readelf -d bin/release/android/x86_64/libtorrent4j.so";
       export PATH=$ANDROID_TOOLCHAIN/x86_64-linux-android/bin:$PATH;
       sed -i 's/RANLIB = ranlib/RANLIB = "${ANDROID_TOOLCHAIN}\/bin\/x86_64-linux-android-ranlib"/g' ${BOOST_ROOT}/tools/build/src/tools/gcc.jam;
     fi
-  # linux-x86
-  - if [[ $os_build == "linux" && $os_arch == "x86" ]]; then
-      export run_bjam="${BOOST_ROOT}/b2 --user-config=config/linux-x86-config.jam variant=release toolset=gcc-x86 target-os=linux location=bin/release/linux/x86";
-      export run_objcopy="objcopy --only-keep-debug bin/release/linux/x86/libtorrent4j.so bin/release/linux/x86/libtorrent4j.so.debug";
-      export run_strip="strip --strip-unneeded -x bin/release/linux/x86/libtorrent4j.so";
-      export run_readelf="readelf -d bin/release/linux/x86/libtorrent4j.so";
-    fi
   # linux-x86_64
   - if [[ $os_build == "linux" && $os_arch == "x86_64" ]]; then
-      export run_bjam="${BOOST_ROOT}/b2 --user-config=config/linux-x86_64-config.jam variant=release toolset=gcc-x86_64 target-os=linux location=bin/release/linux/x86_64";
+      export run_bjam="${BOOST_ROOT}/b2 -j2 --user-config=config/linux-x86_64-config.jam variant=release toolset=gcc-x86_64 target-os=linux location=bin/release/linux/x86_64";
       export run_objcopy="objcopy --only-keep-debug bin/release/linux/x86_64/libtorrent4j.so bin/release/linux/x86_64/libtorrent4j.so.debug";
       export run_strip="strip --strip-unneeded -x bin/release/linux/x86_64/libtorrent4j.so";
       export run_readelf="readelf -d bin/release/linux/x86_64/libtorrent4j.so";
     fi
   # macos
   - if [ $os_build == "macos" ]; then
-      export run_bjam="${BOOST_ROOT}/b2 --user-config=config/macos-x86_64-config.jam variant=release toolset=darwin-x86_64 target-os=darwin location=bin/release/macos/x86_64";
+      export run_bjam="${BOOST_ROOT}/b2 -j2 --user-config=config/macos-x86_64-config.jam variant=release toolset=darwin-x86_64 target-os=darwin location=bin/release/macos/x86_64";
       export run_strip="strip -S -x bin/release/macos/x86_64/libtorrent4j.dylib";
       export run_readelf="otool -L bin/release/macos/x86_64/libtorrent4j.dylib";
     fi

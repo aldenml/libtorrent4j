@@ -31,6 +31,7 @@ rule libtorrent_linking ( properties * )
     result += <deprecated-functions>off ;
     result += <logging>on ;
     result += <crypto>openssl ;
+    result += <webtorrent>on ;
     result += <optimization>speed ;
     result += <cxxstd>17 ;
 
