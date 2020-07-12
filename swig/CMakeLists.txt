@@ -7,14 +7,6 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
-if (CMAKE_CXX_COMPILER_ID MATCHES Clang)
-    # nothing
-elseif (CMAKE_CXX_COMPILER_ID MATCHES GNU)
-    set(CMAKE_CXX_STANDARD_LIBRARIES "${CMAKE_CXX_STANDARD_LIBRARIES} -static-libgcc -static-libstdc++")
-elseif (MSVC)
-    # nothing
-endif ()
-
 project(libtorrent4j
     DESCRIPTION "libtorrent JNI SWIG binding"
     VERSION 2.0.0
@@ -55,3 +47,11 @@ endmacro()
 add_subdirectory(deps/libtorrent EXCLUDE_FROM_ALL)
 
 target_link_libraries(torrent4j PRIVATE torrent-rasterbar)
+
+if (CMAKE_CXX_COMPILER_ID MATCHES Clang)
+    # nothing
+elseif (CMAKE_CXX_COMPILER_ID MATCHES GNU)
+    target_link_libraries(torrent4j -static-libgcc -static-libstdc++)
+elseif (MSVC)
+    # nothing
+endif ()

@@ -35,7 +35,6 @@ jobs:
         run: |
           cp build/libtorrent4j.dylib .
           gradle test
-# codacyCoverage
       - uses: actions/upload-artifact@v2
         with:
           name: libtorrent4j.dylib
