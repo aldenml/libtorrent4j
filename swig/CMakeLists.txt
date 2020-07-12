@@ -51,7 +51,6 @@ target_link_libraries(torrent4j PRIVATE torrent-rasterbar)
 if (CMAKE_CXX_COMPILER_ID MATCHES Clang)
     # nothing
 elseif (CMAKE_CXX_COMPILER_ID MATCHES GNU)
-    set(CMAKE_EXE_LINKER_FLAGS " -static")
     target_link_libraries(torrent4j PRIVATE -static-libgcc -static-libstdc++)
 elseif (MSVC)
     # nothing

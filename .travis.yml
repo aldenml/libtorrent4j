@@ -1,5 +1,5 @@
 language: cpp
-dist: bionic
+dist: focal
 
 matrix:
   include:
@@ -131,6 +131,7 @@ before_install:
     fi
   # linux-x86_64
   - if [[ $os_build == "linux" && $os_arch == "x86_64" ]]; then
+      alias gcc = `gcc -Wno-format-truncation`;
       export run_bjam="${BOOST_ROOT}/b2 -j2 --user-config=config/linux-x86_64-config.jam variant=release toolset=gcc-x86_64 target-os=linux location=bin/release/linux/x86_64";
       export run_objcopy="objcopy --only-keep-debug bin/release/linux/x86_64/libtorrent4j.so bin/release/linux/x86_64/libtorrent4j.so.debug";
       export run_strip="strip --strip-unneeded -x bin/release/linux/x86_64/libtorrent4j.so";
