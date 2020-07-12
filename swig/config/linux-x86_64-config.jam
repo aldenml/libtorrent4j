@@ -2,7 +2,7 @@ import os ;
 
 using gcc : x86_64 : g++ :
     <cxxflags>-fPIC
-    <cxxflags>-Wno-error=format-truncation
+    <cxxflags>-Wno-error=format-truncation=
     <cxxflags>-fno-strict-aliasing
     <cxxflags>-fvisibility=hidden
     <linkflags>-static-libstdc++
