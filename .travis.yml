@@ -1,5 +1,5 @@
 language: cpp
-dist: bionic
+dist: focal
 
 matrix:
   include:
@@ -84,7 +84,7 @@ before_install:
     fi
   # linux-x86_64
   - if [[ $os_build == "linux" && $os_arch == "x86_64" ]]; then
-      export CC=gcc-7;
+      export CC=gcc;
       export run_openssl_configure="./Configure linux-x86_64 ${OPENSSL_NO_OPTS} -fPIC --prefix=$OPENSSL_SOURCE/../openssl";
     fi
   # macos
@@ -160,7 +160,7 @@ script:
   - if [ $os_build == "macos" ]; then
       cd ..;
       cp swig/bin/release/macos/x86_64/libtorrent4j.dylib .;
-      gradle test codacyCoverage;
+      gradle test codacyCoverage --no-daemon -Dorg.gradle.jvmargs="-Xmx1g -Xms256m";
       cd swig;
     fi
   - $run_readelf
