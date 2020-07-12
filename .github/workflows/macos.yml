@@ -16,8 +16,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: install packages
         run: |
-          brew reinstall openssl@1.1
           brew reinstall boost
+          brew reinstall openssl@1.1
+          brew reinstall gradle
       - name: submodules
         run: git submodule update --depth=1 --init --recursive
       - name: cmake
@@ -26,6 +27,14 @@ jobs:
           OPENSSL_ROOT_DIR: /usr/local/opt/openssl
       - name: build
         run: cmake --build build --config Release --parallel 2
+      - name: strip
+        run: strip -S -x build/libtorrent4j.dylib
+      - name: dependencies
+        run: otool -L build/libtorrent4j.dylib
+      - name: test
+        run: |
+          cp build/libtorrent4j.dylib .
+          gradle test codacyCoverage
       - uses: actions/upload-artifact@v2
         with:
           name: libtorrent4j.dylib
