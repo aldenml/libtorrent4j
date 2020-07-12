@@ -1,5 +1,5 @@
 language: cpp
-dist: focal
+dist: bionic
 
 matrix:
   include:
@@ -84,6 +84,7 @@ before_install:
     fi
   # linux-x86_64
   - if [[ $os_build == "linux" && $os_arch == "x86_64" ]]; then
+      export CC=gcc-7;
       export run_openssl_configure="./Configure linux-x86_64 ${OPENSSL_NO_OPTS} -fPIC --prefix=$OPENSSL_SOURCE/../openssl";
     fi
   # macos
