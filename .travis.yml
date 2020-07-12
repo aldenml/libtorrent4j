@@ -32,12 +32,9 @@ before_install:
   - export OPENSSL_SOURCE=$PWD/openssl-1.1.1g
 
 # libtorrent: download and checkout revision
-  - git clone https://github.com/arvidn/libtorrent
-  - cd libtorrent
-  - git checkout master
+  - cd $TRAVIS_BUILD_DIR;
   - git submodule update --depth=1 --init --recursive
-  - cd ..
-  - export LIBTORRENT_ROOT=$PWD/libtorrent
+  - export LIBTORRENT_ROOT=$PWD/swig/deps/libtorrent
 
 # android ndk: download and create toolchain
   - if [ $os_build == "android" ]; then
