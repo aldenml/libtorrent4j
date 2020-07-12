@@ -22,7 +22,7 @@ jobs:
       - name: submodules
         run: git submodule update --depth=1 --init --recursive
       - name: cmake
-        run: cmake -DCMAKE_BUILD_TYPE=Release -B build -G "Ninja" swig
+        run: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -B build -G "Ninja" swig
       - name: build
         run: cmake --build build --config Release --parallel 2
       - name: strip

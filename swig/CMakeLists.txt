@@ -3,12 +3,17 @@ cmake_minimum_required(VERSION 3.16)
 cmake_policy(SET CMP0077 NEW)
 cmake_policy(SET CMP0091 NEW)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/deps/libtorrent/cmake/Modules)
-
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-include(ucm_flags)
-ucm_set_runtime(STATIC)
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+
+if (CMAKE_CXX_COMPILER_ID MATCHES Clang)
+    # nothing
+elseif (CMAKE_CXX_COMPILER_ID MATCHES GNU)
+    set(CMAKE_CXX_STANDARD_LIBRARIES "${CMAKE_CXX_STANDARD_LIBRARIES} -static-libgcc -static-libstdc++")
+elseif (MSVC)
+    # nothing
+endif ()
 
 project(libtorrent4j
     DESCRIPTION "libtorrent JNI SWIG binding"
