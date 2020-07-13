@@ -18,7 +18,6 @@ jobs:
         run: |
           brew reinstall boost
           brew reinstall openssl@1.1
-          brew reinstall gradle
       - name: submodules
         run: git submodule update --depth=1 --init --recursive
       - name: cmake
@@ -34,7 +33,9 @@ jobs:
       - name: test
         run: |
           cp build/libtorrent4j.dylib .
-          gradle test
+          ./gradlew test codacyCoverage
+        env:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
       - uses: actions/upload-artifact@v2
         with:
           name: libtorrent4j.dylib

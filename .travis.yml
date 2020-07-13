@@ -46,11 +46,6 @@ before_install:
       export ANDROID_TOOLCHAIN=$PWD/android-toolchain;
     fi
 
-# install gradle in macOS to run the unit tests
-  - if [ $os_build == "macos" ]; then
-      brew update > /dev/null && brew install gradle;
-    fi
-
 # openssl
   - 'export OPENSSL_NO_OPTS="no-afalgeng no-async no-autoalginit no-autoerrinit
       no-capieng no-cms no-comp no-deprecated no-dgram no-dso no-dtls
@@ -153,12 +148,6 @@ script:
   - $run_bjam
   - $run_objcopy
   - $run_strip
-  - if [ $os_build == "macos" ]; then
-      cd ..;
-      cp swig/bin/release/macos/x86_64/libtorrent4j.dylib .;
-      gradle test codacyCoverage --no-daemon -Dorg.gradle.jvmargs="-Xmx1g -Xms256m";
-      cd swig;
-    fi
   - $run_readelf
   - cd ..
 

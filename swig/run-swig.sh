@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BOOST_ROOT=$DEVELOPMENT_ROOT/boost_1_73_0
-LIBTORRENT_ROOT=$DEVELOPMENT_ROOT/libtorrent
+LIBTORRENT_ROOT=deps/libtorrent
 
 function fixCode() {
     sed -i '' 's/) &;/)  ;/g' ${LIBTORRENT_ROOT}/include/libtorrent/file_storage.hpp
