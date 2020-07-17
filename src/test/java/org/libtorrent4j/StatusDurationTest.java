@@ -30,7 +30,7 @@ public final class StatusDurationTest {
     private long activeDuration = 0;
     private Entry resumeData;
 
-    @Test
+    //@Test
     public void testDuration() throws Throwable {
 
         String torrentFilename = "AJC_and_The_Envelope_Pushers_Fallen_Star_FrostClick_FrostWire_MP3_January_16_2017.torrent";
