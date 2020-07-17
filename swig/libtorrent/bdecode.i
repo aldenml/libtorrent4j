@@ -35,24 +35,24 @@ namespace libtorrent {
         return std::string{$self->list_string_value_at(i, default_val)};
     }
 
-    bdecode_node dict_find_s(std::string key) const
+    bdecode_node dict_find_ex(std::string key) const
     {
         return $self->dict_find(key);
     }
 
-    bdecode_node dict_find_dict_s(std::string key) const {
+    bdecode_node dict_find_dict_ex(std::string key) const {
         return $self->dict_find_dict(key);
     }
 
-    bdecode_node dict_find_list_s(std::string key) const {
+    bdecode_node dict_find_list_ex(std::string key) const {
         return $self->dict_find_list(key);
     }
 
-    bdecode_node dict_find_string_s(std::string key) const {
+    bdecode_node dict_find_string_ex(std::string key) const {
         return $self->dict_find_string(key);
     }
 
-    bdecode_node dict_find_int_s(std::string key) const {
+    bdecode_node dict_find_int_ex(std::string key) const {
         return $self->dict_find_int(key);
     }
 
@@ -61,7 +61,7 @@ namespace libtorrent {
         return std::string{$self->dict_find_string_value(key, default_value)};
     }
 
-    std::int64_t dict_find_int_value_s(std::string key, std::int64_t default_val = 0) const {
+    std::int64_t dict_find_int_value_ex(std::string key, std::int64_t default_val = 0) const {
         return $self->dict_find_int_value(key, default_val);
     }
 
@@ -74,7 +74,7 @@ namespace libtorrent {
         return libtorrent::print_entry(e, single_line, indent);
     }
 
-    static int bdecode(std::vector<int8_t>& buffer, bdecode_node& ret, error_code& ec) {
+    static int bdecode(std::vector<std::int8_t>& buffer, bdecode_node& ret, error_code& ec) {
         return libtorrent::bdecode((char const*)&buffer[0], (char const*)&buffer[0] + buffer.size(), ret, ec);
     }
 }

@@ -8,6 +8,19 @@
 
 namespace libtorrent {
 
+%extend announce_infohash
+{
+    std::int64_t get_next_announce()
+    {
+        return lt::total_milliseconds($self->next_announce.time_since_epoch());
+    }
+
+    std::int64_t get_min_announce()
+    {
+        return lt::total_milliseconds($self->min_announce.time_since_epoch());
+    }
+}
+
 %extend announce_endpoint
 {
     announce_infohash get_infohash_v1()

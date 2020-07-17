@@ -1,6 +1,6 @@
 namespace libtorrent {
 
-struct TORRENT_EXPORT ip_filter
+struct ip_filter
 {
 	ip_filter();
 	ip_filter(ip_filter const&);
@@ -51,7 +51,7 @@ struct TORRENT_EXPORT ip_filter
 // is primarily used to indicate whether a range of ports should
 // be connected to or not. The default is to have the full port
 // range (0-65535) set to flag 0.
-class TORRENT_EXPORT port_filter
+class port_filter
 {
 public:
 

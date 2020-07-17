@@ -6,6 +6,7 @@
 
 #include <libtorrent/aux_/cpuid.hpp>
 #include <libtorrent/kademlia/ed25519.hpp>
+#include <libtorrent/kademlia/item.hpp>
 #include <libtorrent/enum_net.hpp>
 
 namespace lt = libtorrent;
@@ -261,6 +262,20 @@ void set_piece_hashes_ex(libtorrent::create_torrent& t, std::string const& p
 {
     set_piece_hashes(t, p, std::bind(&set_piece_hashes_listener::progress_index
         , listener, std::placeholders::_1), ec);
+}
+
+void dht_put_item_cb(libtorrent::entry& e, std::array<char, 64>& sig, std::int64_t& seq,
+    std::string salt, libtorrent::dht::public_key pk, libtorrent::dht::secret_key sk,
+    libtorrent::entry data) {
+    using namespace libtorrent::dht;
+
+    e = data;
+    std::vector<char> buf;
+    bencode(std::back_inserter(buf), e);
+    signature sign;
+    ++seq;
+    sign = sign_mutable_item(buf, salt, sequence_number(seq), pk, sk);
+    sig = sign.bytes;
 }
 
 #endif

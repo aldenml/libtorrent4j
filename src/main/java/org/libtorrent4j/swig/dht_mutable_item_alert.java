@@ -52,24 +52,6 @@ public class dht_mutable_item_alert extends alert {
     return libtorrent_jni.dht_mutable_item_alert_message(swigCPtr, this);
   }
 
-  public void setKey(char_array_32 value) {
-    libtorrent_jni.dht_mutable_item_alert_key_set(swigCPtr, this, char_array_32.getCPtr(value), value);
-  }
-
-  public char_array_32 getKey() {
-    long cPtr = libtorrent_jni.dht_mutable_item_alert_key_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new char_array_32(cPtr, false);
-  }
-
-  public void setSignature(char_array_64 value) {
-    libtorrent_jni.dht_mutable_item_alert_signature_set(swigCPtr, this, char_array_64.getCPtr(value), value);
-  }
-
-  public char_array_64 getSignature() {
-    long cPtr = libtorrent_jni.dht_mutable_item_alert_signature_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new char_array_64(cPtr, false);
-  }
-
   public void setSeq(long value) {
     libtorrent_jni.dht_mutable_item_alert_seq_set(swigCPtr, this, value);
   }
@@ -103,12 +85,12 @@ public class dht_mutable_item_alert extends alert {
     return libtorrent_jni.dht_mutable_item_alert_authoritative_get(swigCPtr, this);
   }
 
-  public byte_vector get_key() {
-    return new byte_vector(libtorrent_jni.dht_mutable_item_alert_get_key(swigCPtr, this), true);
+  public byte_array_32 get_key() {
+    return new byte_array_32(libtorrent_jni.dht_mutable_item_alert_get_key(swigCPtr, this), true);
   }
 
-  public byte_vector get_signature() {
-    return new byte_vector(libtorrent_jni.dht_mutable_item_alert_get_signature(swigCPtr, this), true);
+  public byte_array_64 get_signature() {
+    return new byte_array_64(libtorrent_jni.dht_mutable_item_alert_get_signature(swigCPtr, this), true);
   }
 
   public long get_seq() {

@@ -117,4 +117,12 @@ public class announce_infohash {
     return libtorrent_jni.announce_infohash_triggered_manually_get(swigCPtr, this);
   }
 
+  public long get_next_announce() {
+    return libtorrent_jni.announce_infohash_get_next_announce(swigCPtr, this);
+  }
+
+  public long get_min_announce() {
+    return libtorrent_jni.announce_infohash_get_min_announce(swigCPtr, this);
+  }
+
 }

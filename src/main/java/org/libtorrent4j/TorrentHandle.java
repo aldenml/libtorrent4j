@@ -418,7 +418,7 @@ public final class TorrentHandle {
      * @return the queue position
      */
     public int queuePosition() {
-        return th.queue_position2();
+        return th.queue_position_ex();
     }
 
     /**
@@ -469,7 +469,7 @@ public final class TorrentHandle {
      * @param position the new position
      */
     public void queuePositionSet(int position) {
-        th.queue_position_set2(position);
+        th.queue_position_set_ex(position);
     }
 
     /**
@@ -547,7 +547,7 @@ public final class TorrentHandle {
         byte_vector cert = Vectors.bytes2byte_vector(certificate);
         byte_vector pk = Vectors.bytes2byte_vector(privateKey);
         byte_vector dh = Vectors.bytes2byte_vector(dhParams);
-        th.set_ssl_certificate_buffer2(cert, pk, dh);
+        th.set_ssl_certificate_buffer_ex(cert, pk, dh);
     }
 
     /**
@@ -1076,15 +1076,15 @@ public final class TorrentHandle {
     // ``piece_priorities`` returns a vector with one element for each piece
     // in the torrent. Each element is the current priority of that piece.
     public void piecePriority(int index, Priority priority) {
-        th.piece_priority2(index, priority.swig());
+        th.piece_priority_ex(index, priority.swig());
     }
 
     public Priority piecePriority(int index) {
-        return Priority.fromSwig(th.piece_priority2(index));
+        return Priority.fromSwig(th.piece_priority_ex(index));
     }
 
     public void prioritizePieces(Priority[] priorities) {
-        th.prioritize_pieces2(Priority.array2vector(priorities));
+        th.prioritize_pieces_ex(Priority.array2vector(priorities));
     }
 
     public Priority[] piecePriorities() {
@@ -1110,7 +1110,7 @@ public final class TorrentHandle {
      * @param priority
      */
     public void filePriority(int index, Priority priority) {
-        th.file_priority2(index, priority.swig());
+        th.file_priority_ex(index, priority.swig());
     }
 
     /**
@@ -1122,7 +1122,7 @@ public final class TorrentHandle {
      *
      */
     public Priority filePriority(int index) {
-        return Priority.fromSwig(th.file_priority2(index));
+        return Priority.fromSwig(th.file_priority_ex(index));
     }
 
     /**
@@ -1134,7 +1134,7 @@ public final class TorrentHandle {
      * @param priorities the array of priorities
      */
     public void prioritizeFiles(Priority[] priorities) {
-        th.prioritize_files2(Priority.array2vector(priorities));
+        th.prioritize_files_ex(Priority.array2vector(priorities));
     }
 
     /**

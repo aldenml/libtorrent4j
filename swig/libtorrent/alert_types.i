@@ -28,6 +28,10 @@
 %ignore libtorrent::tracker_alert::local_endpoint;
 %ignore libtorrent::dht_stats_alert::local_endpoint;
 %ignore libtorrent::performance_alert::deprecated_bittyrant_with_no_uplimit;
+%ignore libtorrent::dht_mutable_item_alert::key;
+%ignore libtorrent::dht_mutable_item_alert::signature;
+%ignore libtorrent::dht_put_alert::public_key;
+%ignore libtorrent::dht_put_alert::signature;
 
 %rename("$ignore", regextarget=1, %$isconstructor) ".*_alert$";
 
@@ -157,44 +161,52 @@ struct picker_flags_tag;
 
 %extend dht_mutable_item_alert {
 
-    std::vector<int8_t> get_key() {
+    std::array<std::int8_t, 32> get_key()
+    {
         std::array<char, 32> arr = $self->key;
-        return std::vector<int8_t>(arr.begin(), arr.end());
+        return *reinterpret_cast<std::array<std::int8_t, 32>*>(&arr);
     }
 
-    std::vector<int8_t> get_signature() {
+    std::array<std::int8_t, 64> get_signature()
+    {
         std::array<char, 64> arr = $self->signature;
-        return std::vector<int8_t>(arr.begin(), arr.end());
+        return *reinterpret_cast<std::array<std::int8_t, 64>*>(&arr);
     }
 
-    int64_t get_seq() {
+    int64_t get_seq()
+    {
         return int64_t($self->seq);
     }
 
-    std::vector<int8_t> get_salt() {
+    std::vector<std::int8_t> get_salt()
+    {
         std::string s = $self->salt;
-        return std::vector<int8_t>(s.begin(), s.end());
+        return std::vector<std::int8_t>(s.begin(), s.end());
     }
 }
 
 %extend dht_put_alert {
 
-    std::vector<int8_t> get_public_key() {
+    std::array<std::int8_t, 32> get_public_key()
+    {
         std::array<char, 32> arr = $self->public_key;
-        return std::vector<int8_t>(arr.begin(), arr.end());
+        return *reinterpret_cast<std::array<std::int8_t, 32>*>(&arr);
     }
 
-    std::vector<int8_t> get_signature() {
+    std::array<std::int8_t, 64> get_signature()
+    {
         std::array<char, 64> arr = $self->signature;
-        return std::vector<int8_t>(arr.begin(), arr.end());
+        return *reinterpret_cast<std::array<std::int8_t, 64>*>(&arr);
     }
 
-    std::vector<int8_t> get_salt() {
+    std::vector<std::int8_t> get_salt()
+    {
         std::string s = $self->salt;
-        return std::vector<int8_t>(s.begin(), s.end());
+        return std::vector<std::int8_t>(s.begin(), s.end());
     }
 
-    int64_t get_seq() {
+    int64_t get_seq()
+    {
         return int64_t($self->seq);
     }
 }

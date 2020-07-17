@@ -402,7 +402,7 @@ public class SessionHandle {
      * @param salt
      */
     public void dhtGetItem(byte[] key, byte[] salt) {
-        s.dht_get_item(Vectors.bytes2byte_vector(key), Vectors.bytes2byte_vector(salt));
+        s.dht_get_item(Vectors.bytes2byte_array_32(key), Vectors.bytes2byte_vector(salt));
     }
 
     /**
@@ -458,8 +458,8 @@ public class SessionHandle {
     // the DHT works, it is natural to always do a lookup before storing and
     // calling the callback in between is convenient.
     public void dhtPutItem(byte[] publicKey, byte[] privateKey, Entry entry, byte[] salt) {
-        s.dht_put_item(Vectors.bytes2byte_vector(publicKey),
-                Vectors.bytes2byte_vector(privateKey),
+        s.dht_put_item(Vectors.bytes2byte_array_32(publicKey),
+                Vectors.bytes2byte_array_64(privateKey),
                 entry.swig(),
                 Vectors.bytes2byte_vector(salt));
     }
