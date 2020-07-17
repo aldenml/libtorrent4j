@@ -1,14 +1,14 @@
+2.0.0-alpha-1
 
-  * removed support for posix wrapper
-
-1.3.0-alpha-5
-
+  * minimum supported Android API >= 24
+  * updated to boost 1.73.0
+  * using android NDK r21d
+  * updated to OpenSSL 1.1.1g
   * removed version suffix in binaries
-  * updated to OpenSSL 1.1.1f
   * using Java 1.8 for source and bytecode target
-  * better support for posix wrapper using custom branch
-  * using libtorrent master
+  * removed support for posix wrapper
   * major SWIG refactor
+  * using libtorrent master
 
 1.2.3.0
 
