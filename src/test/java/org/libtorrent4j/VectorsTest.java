@@ -46,6 +46,7 @@ public class VectorsTest {
         v.clear();
         v.add((byte) 194);
         v.add((byte) 181);
+        v.add((byte) 0);
         assertEquals(Vectors.byte_vector2utf8(v), "µ");
     }
 }

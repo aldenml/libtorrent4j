@@ -33,9 +33,15 @@ dependencies {
 tasks.test {
     testLogging {
         events("passed", "skipped", "failed")
+
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+        showExceptions = true
+        showCauses = true
+        showStackTraces = true
     }
 
     environment("LD_LIBRARY_PATH", File(".").absolutePath)
+    systemProperty("java.library.path", file(".").absolutePath)
 }
 
 tasks.register<Zip>("nativeMacOSJar") {
