@@ -1,6 +1,3 @@
-%ignore libtorrent::add_torrent_params::trackers;
-%ignore libtorrent::add_torrent_params::tracker_tiers;
-%ignore libtorrent::add_torrent_params::dht_nodes;
 %ignore libtorrent::add_torrent_params::file_priorities;
 %ignore libtorrent::add_torrent_params::piece_priorities;
 %ignore libtorrent::add_torrent_params::merkle_trees;
@@ -11,10 +8,6 @@
 %ignore libtorrent::add_torrent_params::have_pieces;
 %ignore libtorrent::add_torrent_params::verified_pieces;
 %ignore libtorrent::add_torrent_params::extensions;
-%ignore libtorrent::add_torrent_params::http_seeds;
-%ignore libtorrent::add_torrent_params::url_seeds;
-%ignore libtorrent::add_torrent_params::peers;
-%ignore libtorrent::add_torrent_params::banned_peers;
 %ignore libtorrent::add_torrent_params::ti;
 
 %include "libtorrent/add_torrent_params.hpp"
@@ -31,36 +24,6 @@ namespace libtorrent {
     void set_ti(libtorrent::torrent_info const& ti)
     {
         $self->ti = std::make_shared<libtorrent::torrent_info>(ti);
-    }
-
-    std::vector<std::string> get_trackers()
-    {
-        return $self->trackers;
-    }
-
-    void set_trackers(std::vector<std::string>& v)
-    {
-        $self->trackers = v;
-    }
-
-    std::vector<int> get_tracker_tiers()
-    {
-        return $self->tracker_tiers;
-    }
-
-    void set_tracker_tiers(std::vector<int>& v)
-    {
-        $self->tracker_tiers = v;
-    }
-
-    std::vector<std::pair<std::string, int>> get_dht_nodes()
-    {
-        return $self->dht_nodes;
-    }
-
-    void set_dht_nodes(std::vector<std::pair<std::string, int>>& v)
-    {
-        $self->dht_nodes = v;
     }
 
     std::vector<std::int8_t> get_file_priorities()
@@ -171,51 +134,11 @@ namespace libtorrent {
         $self->verified_pieces = *t;
     }
 
-    std::vector<std::string> get_http_seeds()
-    {
-        return $self->http_seeds;
-    }
-
-    void set_http_seeds(std::vector<std::string>& v)
-    {
-        $self->http_seeds = v;
-    }
-
-    std::vector<std::string> get_url_seeds()
-    {
-        return $self->url_seeds;
-    }
-
-    void set_url_seeds(std::vector<std::string>& v)
-    {
-        $self->url_seeds = v;
-    }
-
-    std::vector<tcp::endpoint> get_peers()
-    {
-        return $self->peers;
-    }
-
-    void set_peers(std::vector<tcp::endpoint>& v)
-    {
-        $self->peers = v;
-    }
-
-    std::vector<tcp::endpoint> get_banned_peers()
-    {
-        return $self->banned_peers;
-    }
-
-    void set_banned_peers(std::vector<tcp::endpoint>& v)
-    {
-        $self->banned_peers = v;
-    }
-
     static libtorrent::add_torrent_params read_resume_data(libtorrent::bdecode_node const& rd, error_code& ec) {
         return libtorrent::read_resume_data(rd, ec);
     }
 
-    static libtorrent::add_torrent_params read_resume_data(std::vector<int8_t> const& buffer, error_code& ec) {
+    static libtorrent::add_torrent_params read_resume_data(std::vector<std::int8_t> const& buffer, error_code& ec) {
         return libtorrent::read_resume_data({(char const*)&buffer[0], static_cast<long>(buffer.size())}, ec);
     }
 
@@ -223,7 +146,7 @@ namespace libtorrent {
         return libtorrent::write_resume_data(atp);
     }
 
-    static std::vector<int8_t> write_resume_data_buf(add_torrent_params const& atp) {
+    static std::vector<std::int8_t> write_resume_data_buf(add_torrent_params const& atp) {
         auto v = libtorrent::write_resume_data_buf(atp);
         return {v.begin(), v.end()};
     }

@@ -772,7 +772,6 @@ namespace Swig {
 #include "libtorrent/flags.hpp"
 #include "libtorrent/address.hpp"
 #include "libtorrent/socket.hpp"
-#include "libtorrent/kademlia/node_id.hpp"
 #include "libtorrent/kademlia/dht_state.hpp"
 #include "libtorrent/client_data.hpp"
 #include "libtorrent/sha1_hash.hpp"
@@ -798,7 +797,6 @@ namespace Swig {
 #include "libtorrent/piece_block.hpp"
 #include "libtorrent/socket_type.hpp"
 #include "libtorrent/entry.hpp"
-#include "libtorrent/peer_id.hpp"
 #include "libtorrent/tracker_manager.hpp"
 #include "libtorrent/alert.hpp"
 #include "libtorrent/alert_types.hpp"
@@ -2492,18 +2490,18 @@ SWIGINTERN void std_vector_Sl_std_pair_Sl_libtorrent_digest32_Sl_160_Sg__Sc_libt
           throw std::out_of_range("vector index out of range");
         }
       }
-SWIGINTERN std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *new_std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg___SWIG_2(jint count,std::pair< libtorrent::address,libtorrent::dht::node_id > const &value){
+SWIGINTERN std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *new_std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg___SWIG_2(jint count,std::pair< libtorrent::address,libtorrent::digest32< 160 > > const &value){
         if (count < 0)
           throw std::out_of_range("vector count must be positive");
-        return new std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >(static_cast<std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::size_type>(count), value);
+        return new std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >(static_cast<std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::size_type>(count), value);
       }
-SWIGINTERN jint std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg__doSize(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > const *self){
+SWIGINTERN jint std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg__doSize(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > const *self){
         return SWIG_VectorSize(self->size());
       }
-SWIGINTERN void std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg__doAdd__SWIG_0(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *self,std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type const &x){
+SWIGINTERN void std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg__doAdd__SWIG_0(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *self,std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type const &x){
         self->push_back(x);
       }
-SWIGINTERN void std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg__doAdd__SWIG_1(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *self,jint index,std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type const &x){
+SWIGINTERN void std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg__doAdd__SWIG_1(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *self,jint index,std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type const &x){
         jint size = static_cast<jint>(self->size());
         if (0 <= index && index <= size) {
           self->insert(self->begin() + index, x);
@@ -2511,34 +2509,34 @@ SWIGINTERN void std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_n
           throw std::out_of_range("vector index out of range");
         }
       }
-SWIGINTERN std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg__doRemove(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *self,jint index){
+SWIGINTERN std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg__doRemove(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *self,jint index){
         jint size = static_cast<jint>(self->size());
         if (0 <= index && index < size) {
-          std::pair< libtorrent::address,libtorrent::dht::node_id > const old_value = (*self)[index];
+          std::pair< libtorrent::address,libtorrent::digest32< 160 > > const old_value = (*self)[index];
           self->erase(self->begin() + index);
           return old_value;
         } else {
           throw std::out_of_range("vector index out of range");
         }
       }
-SWIGINTERN std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type const &std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg__doGet(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *self,jint index){
+SWIGINTERN std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type const &std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg__doGet(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *self,jint index){
         jint size = static_cast<jint>(self->size());
         if (index >= 0 && index < size)
           return (*self)[index];
         else
           throw std::out_of_range("vector index out of range");
       }
-SWIGINTERN std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg__doSet(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *self,jint index,std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type const &val){
+SWIGINTERN std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg__doSet(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *self,jint index,std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type const &val){
         jint size = static_cast<jint>(self->size());
         if (index >= 0 && index < size) {
-          std::pair< libtorrent::address,libtorrent::dht::node_id > const old_value = (*self)[index];
+          std::pair< libtorrent::address,libtorrent::digest32< 160 > > const old_value = (*self)[index];
           (*self)[index] = val;
           return old_value;
         }
         else
           throw std::out_of_range("vector index out of range");
       }
-SWIGINTERN void std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg__doRemoveRange(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *self,jint fromIndex,jint toIndex){
+SWIGINTERN void std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg__doRemoveRange(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *self,jint fromIndex,jint toIndex){
         jint size = static_cast<jint>(self->size());
         if (0 <= fromIndex && fromIndex <= toIndex && toIndex <= size) {
           self->erase(self->begin() + fromIndex, self->begin() + toIndex);
@@ -2560,28 +2558,14 @@ SWIGINTERN void std_array_Sl_std_int8_t_Sc_32_Sg__set(std::array< std::int8_t,32
         else
           throw std::out_of_range("array index out of range");
       }
-SWIGINTERN std::array< char,32 >::const_reference std_array_Sl_char_Sc_32_Sg__get(std::array< char,32 > *self,int i){
+SWIGINTERN std::array< signed char,64 >::const_reference std_array_Sl_std_int8_t_Sc_64_Sg__get(std::array< std::int8_t,64 > *self,int i){
         int size = int(self->size());
         if (i>=0 && i<size)
           return (*self)[i];
         else
           throw std::out_of_range("array index out of range");
       }
-SWIGINTERN void std_array_Sl_char_Sc_32_Sg__set(std::array< char,32 > *self,int i,std::array< char,32 >::value_type const &val){
-        int size = int(self->size());
-        if (i>=0 && i<size)
-          (*self)[i] = val;
-        else
-          throw std::out_of_range("array index out of range");
-      }
-SWIGINTERN std::array< char,64 >::const_reference std_array_Sl_char_Sc_64_Sg__get(std::array< char,64 > *self,int i){
-        int size = int(self->size());
-        if (i>=0 && i<size)
-          return (*self)[i];
-        else
-          throw std::out_of_range("array index out of range");
-      }
-SWIGINTERN void std_array_Sl_char_Sc_64_Sg__set(std::array< char,64 > *self,int i,std::array< char,64 >::value_type const &val){
+SWIGINTERN void std_array_Sl_std_int8_t_Sc_64_Sg__set(std::array< std::int8_t,64 > *self,int i,std::array< signed char,64 >::value_type const &val){
         int size = int(self->size());
         if (i>=0 && i<size)
           (*self)[i] = val;
@@ -2927,6 +2911,12 @@ SWIGINTERN libtorrent::bitfield *new_libtorrent_bitfield__SWIG_4(std::vector< st
 SWIGINTERN void libtorrent_bitfield_assign(libtorrent::bitfield *self,std::vector< std::int8_t > const &v){
         self->assign(reinterpret_cast<char const*>(v.data()), static_cast<int>(v.size()));
     }
+SWIGINTERN std::int64_t libtorrent_announce_infohash_get_next_announce(libtorrent::announce_infohash *self){
+        return lt::total_milliseconds(self->next_announce.time_since_epoch());
+    }
+SWIGINTERN std::int64_t libtorrent_announce_infohash_get_min_announce(libtorrent::announce_infohash *self){
+        return lt::total_milliseconds(self->min_announce.time_since_epoch());
+    }
 SWIGINTERN libtorrent::announce_infohash libtorrent_announce_endpoint_get_infohash_v1(libtorrent::announce_endpoint *self){
         return self->info_hashes[lt::protocol_version::V1];
     }
@@ -2966,25 +2956,25 @@ SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_file_
 SWIGINTERN std::string libtorrent_bdecode_node_list_string_value_at_ex__SWIG_0(libtorrent::bdecode_node *self,int i,std::string default_val=""){
         return std::string{self->list_string_value_at(i, default_val)};
     }
-SWIGINTERN libtorrent::bdecode_node libtorrent_bdecode_node_dict_find_s(libtorrent::bdecode_node const *self,std::string key){
+SWIGINTERN libtorrent::bdecode_node libtorrent_bdecode_node_dict_find_ex(libtorrent::bdecode_node const *self,std::string key){
         return self->dict_find(key);
     }
-SWIGINTERN libtorrent::bdecode_node libtorrent_bdecode_node_dict_find_dict_s(libtorrent::bdecode_node const *self,std::string key){
+SWIGINTERN libtorrent::bdecode_node libtorrent_bdecode_node_dict_find_dict_ex(libtorrent::bdecode_node const *self,std::string key){
         return self->dict_find_dict(key);
     }
-SWIGINTERN libtorrent::bdecode_node libtorrent_bdecode_node_dict_find_list_s(libtorrent::bdecode_node const *self,std::string key){
+SWIGINTERN libtorrent::bdecode_node libtorrent_bdecode_node_dict_find_list_ex(libtorrent::bdecode_node const *self,std::string key){
         return self->dict_find_list(key);
     }
-SWIGINTERN libtorrent::bdecode_node libtorrent_bdecode_node_dict_find_string_s(libtorrent::bdecode_node const *self,std::string key){
+SWIGINTERN libtorrent::bdecode_node libtorrent_bdecode_node_dict_find_string_ex(libtorrent::bdecode_node const *self,std::string key){
         return self->dict_find_string(key);
     }
-SWIGINTERN libtorrent::bdecode_node libtorrent_bdecode_node_dict_find_int_s(libtorrent::bdecode_node const *self,std::string key){
+SWIGINTERN libtorrent::bdecode_node libtorrent_bdecode_node_dict_find_int_ex(libtorrent::bdecode_node const *self,std::string key){
         return self->dict_find_int(key);
     }
 SWIGINTERN std::string libtorrent_bdecode_node_dict_find_string_value_ex__SWIG_0(libtorrent::bdecode_node const *self,std::string key,std::string default_value=""){
         return std::string{self->dict_find_string_value(key, default_value)};
     }
-SWIGINTERN std::int64_t libtorrent_bdecode_node_dict_find_int_value_s__SWIG_0(libtorrent::bdecode_node const *self,std::string key,std::int64_t default_val=0){
+SWIGINTERN std::int64_t libtorrent_bdecode_node_dict_find_int_value_ex__SWIG_0(libtorrent::bdecode_node const *self,std::string key,std::int64_t default_val=0){
         return self->dict_find_int_value(key, default_val);
     }
 SWIGINTERN std::string libtorrent_bdecode_node_string_value_ex(libtorrent::bdecode_node const *self){
@@ -2993,7 +2983,7 @@ SWIGINTERN std::string libtorrent_bdecode_node_string_value_ex(libtorrent::bdeco
 SWIGINTERN std::string libtorrent_bdecode_node_to_string(libtorrent::bdecode_node const &e,bool single_line,int indent){
         return libtorrent::print_entry(e, single_line, indent);
     }
-SWIGINTERN int libtorrent_bdecode_node_bdecode(std::vector< int8_t > &buffer,libtorrent::bdecode_node &ret,libtorrent::error_code &ec){
+SWIGINTERN int libtorrent_bdecode_node_bdecode(std::vector< std::int8_t > &buffer,libtorrent::bdecode_node &ret,libtorrent::error_code &ec){
         return libtorrent::bdecode((char const*)&buffer[0], (char const*)&buffer[0] + buffer.size(), ret, ec);
     }
 SWIGINTERN libtorrent::torrent_info *new_libtorrent_torrent_info__SWIG_4(std::int64_t buffer_ptr,int size,libtorrent::error_code &ec){
@@ -3032,24 +3022,6 @@ SWIGINTERN libtorrent::torrent_info const *libtorrent_add_torrent_params_ti_ptr(
     }
 SWIGINTERN void libtorrent_add_torrent_params_set_ti(libtorrent::add_torrent_params *self,libtorrent::torrent_info const &ti){
         self->ti = std::make_shared<libtorrent::torrent_info>(ti);
-    }
-SWIGINTERN std::vector< std::string > libtorrent_add_torrent_params_get_trackers(libtorrent::add_torrent_params *self){
-        return self->trackers;
-    }
-SWIGINTERN void libtorrent_add_torrent_params_set_trackers(libtorrent::add_torrent_params *self,std::vector< std::string > &v){
-        self->trackers = v;
-    }
-SWIGINTERN std::vector< int > libtorrent_add_torrent_params_get_tracker_tiers(libtorrent::add_torrent_params *self){
-        return self->tracker_tiers;
-    }
-SWIGINTERN void libtorrent_add_torrent_params_set_tracker_tiers(libtorrent::add_torrent_params *self,std::vector< int > &v){
-        self->tracker_tiers = v;
-    }
-SWIGINTERN std::vector< std::pair< std::string,int > > libtorrent_add_torrent_params_get_dht_nodes(libtorrent::add_torrent_params *self){
-        return self->dht_nodes;
-    }
-SWIGINTERN void libtorrent_add_torrent_params_set_dht_nodes(libtorrent::add_torrent_params *self,std::vector< std::pair< std::string,int > > &v){
-        self->dht_nodes = v;
     }
 SWIGINTERN std::vector< std::int8_t > libtorrent_add_torrent_params_get_file_priorities(libtorrent::add_torrent_params *self){
         auto* v = &self->file_priorities;
@@ -3123,40 +3095,16 @@ SWIGINTERN void libtorrent_add_torrent_params_set_verified_pieces(libtorrent::ad
         auto* t = reinterpret_cast<libtorrent::typed_bitfield<libtorrent::piece_index_t>*>(&v);
         self->verified_pieces = *t;
     }
-SWIGINTERN std::vector< std::string > libtorrent_add_torrent_params_get_http_seeds(libtorrent::add_torrent_params *self){
-        return self->http_seeds;
-    }
-SWIGINTERN void libtorrent_add_torrent_params_set_http_seeds(libtorrent::add_torrent_params *self,std::vector< std::string > &v){
-        self->http_seeds = v;
-    }
-SWIGINTERN std::vector< std::string > libtorrent_add_torrent_params_get_url_seeds(libtorrent::add_torrent_params *self){
-        return self->url_seeds;
-    }
-SWIGINTERN void libtorrent_add_torrent_params_set_url_seeds(libtorrent::add_torrent_params *self,std::vector< std::string > &v){
-        self->url_seeds = v;
-    }
-SWIGINTERN std::vector< libtorrent::tcp::endpoint > libtorrent_add_torrent_params_get_peers(libtorrent::add_torrent_params *self){
-        return self->peers;
-    }
-SWIGINTERN void libtorrent_add_torrent_params_set_peers(libtorrent::add_torrent_params *self,std::vector< libtorrent::tcp::endpoint > &v){
-        self->peers = v;
-    }
-SWIGINTERN std::vector< libtorrent::tcp::endpoint > libtorrent_add_torrent_params_get_banned_peers(libtorrent::add_torrent_params *self){
-        return self->banned_peers;
-    }
-SWIGINTERN void libtorrent_add_torrent_params_set_banned_peers(libtorrent::add_torrent_params *self,std::vector< libtorrent::tcp::endpoint > &v){
-        self->banned_peers = v;
-    }
 SWIGINTERN libtorrent::add_torrent_params libtorrent_add_torrent_params_read_resume_data__SWIG_0(libtorrent::bdecode_node const &rd,libtorrent::error_code &ec){
         return libtorrent::read_resume_data(rd, ec);
     }
-SWIGINTERN libtorrent::add_torrent_params libtorrent_add_torrent_params_read_resume_data__SWIG_1(std::vector< int8_t > const &buffer,libtorrent::error_code &ec){
+SWIGINTERN libtorrent::add_torrent_params libtorrent_add_torrent_params_read_resume_data__SWIG_1(std::vector< std::int8_t > const &buffer,libtorrent::error_code &ec){
         return libtorrent::read_resume_data({(char const*)&buffer[0], static_cast<long>(buffer.size())}, ec);
     }
 SWIGINTERN libtorrent::entry libtorrent_add_torrent_params_write_resume_data(libtorrent::add_torrent_params const &atp){
         return libtorrent::write_resume_data(atp);
     }
-SWIGINTERN std::vector< int8_t > libtorrent_add_torrent_params_write_resume_data_buf(libtorrent::add_torrent_params const &atp){
+SWIGINTERN std::vector< std::int8_t > libtorrent_add_torrent_params_write_resume_data_buf(libtorrent::add_torrent_params const &atp){
         auto v = libtorrent::write_resume_data_buf(atp);
         return {v.begin(), v.end()};
     }
@@ -3358,31 +3306,31 @@ SWIGINTERN std::vector< std::string > libtorrent_torrent_handle_get_http_seeds(l
         std::set<std::string> s = self->http_seeds();
         return {s.begin(), s.end()};
     }
-SWIGINTERN void libtorrent_torrent_handle_set_ssl_certificate_buffer2(libtorrent::torrent_handle *self,std::vector< int8_t > const &certificate,std::vector< int8_t > const &private_key,std::vector< int8_t > const &dh_params){
+SWIGINTERN void libtorrent_torrent_handle_set_ssl_certificate_buffer_ex(libtorrent::torrent_handle *self,std::vector< int8_t > const &certificate,std::vector< int8_t > const &private_key,std::vector< int8_t > const &dh_params){
         std::string cert{certificate.begin(), certificate.end()};
         std::string pk{private_key.begin(), private_key.end()};
         std::string dh{dh_params.begin(), dh_params.end()};
         self->set_ssl_certificate_buffer(cert, pk, dh);
     }
-SWIGINTERN int libtorrent_torrent_handle_queue_position2(libtorrent::torrent_handle const *self){
+SWIGINTERN int libtorrent_torrent_handle_queue_position_ex(libtorrent::torrent_handle const *self){
         return static_cast<int>(self->queue_position());
     }
-SWIGINTERN void libtorrent_torrent_handle_queue_position_set2(libtorrent::torrent_handle *self,int p){
+SWIGINTERN void libtorrent_torrent_handle_queue_position_set_ex(libtorrent::torrent_handle *self,int p){
         self->queue_position_set(queue_position_t{p});
     }
-SWIGINTERN int libtorrent_torrent_handle_piece_priority2__SWIG_0(libtorrent::torrent_handle *self,piece_index_t index){
+SWIGINTERN int libtorrent_torrent_handle_piece_priority_ex__SWIG_0(libtorrent::torrent_handle *self,piece_index_t index){
         return int(static_cast<std::uint8_t>(self->piece_priority(index)));
     }
-SWIGINTERN void libtorrent_torrent_handle_piece_priority2__SWIG_1(libtorrent::torrent_handle *self,piece_index_t index,int priority){
+SWIGINTERN void libtorrent_torrent_handle_piece_priority_ex__SWIG_1(libtorrent::torrent_handle *self,piece_index_t index,int priority){
         self->piece_priority(index, libtorrent::download_priority_t{std::uint8_t(priority)});
     }
-SWIGINTERN void libtorrent_torrent_handle_prioritize_pieces2__SWIG_0(libtorrent::torrent_handle *self,std::vector< int > const &pieces){
+SWIGINTERN void libtorrent_torrent_handle_prioritize_pieces_ex__SWIG_0(libtorrent::torrent_handle *self,std::vector< int > const &pieces){
         std::vector<libtorrent::download_priority_t> v(pieces.size());
         for (std::size_t i = 0; i < v.size(); i++)
             v[i] = libtorrent::download_priority_t{std::uint8_t(pieces[i])};
         self->prioritize_pieces(v);
     }
-SWIGINTERN void libtorrent_torrent_handle_prioritize_pieces2__SWIG_1(libtorrent::torrent_handle *self,std::vector< std::pair< int,int > > const &pieces){
+SWIGINTERN void libtorrent_torrent_handle_prioritize_pieces_ex__SWIG_1(libtorrent::torrent_handle *self,std::vector< std::pair< int,int > > const &pieces){
         std::vector<std::pair<piece_index_t, libtorrent::download_priority_t>> v(pieces.size());
         for (std::size_t i = 0; i < v.size(); i++)
             v[i] = std::pair<piece_index_t, libtorrent::download_priority_t>(piece_index_t{pieces[i].first}, libtorrent::download_priority_t{std::uint8_t(pieces[i].second)});
@@ -3395,13 +3343,13 @@ SWIGINTERN std::vector< std::int8_t > libtorrent_torrent_handle_get_piece_priori
             r[i] = std::int8_t(static_cast<std::uint8_t>(v[i]));
         return r;
     }
-SWIGINTERN int libtorrent_torrent_handle_file_priority2__SWIG_0(libtorrent::torrent_handle *self,file_index_t index){
+SWIGINTERN int libtorrent_torrent_handle_file_priority_ex__SWIG_0(libtorrent::torrent_handle *self,file_index_t index){
         return int(static_cast<std::uint8_t>(self->file_priority(index)));
     }
-SWIGINTERN void libtorrent_torrent_handle_file_priority2__SWIG_1(libtorrent::torrent_handle *self,file_index_t index,int priority){
+SWIGINTERN void libtorrent_torrent_handle_file_priority_ex__SWIG_1(libtorrent::torrent_handle *self,file_index_t index,int priority){
         self->file_priority(index, libtorrent::download_priority_t{std::uint8_t(priority)});
     }
-SWIGINTERN void libtorrent_torrent_handle_prioritize_files2(libtorrent::torrent_handle *self,std::vector< int > const &files){
+SWIGINTERN void libtorrent_torrent_handle_prioritize_files_ex(libtorrent::torrent_handle *self,std::vector< int > const &files){
         std::vector<libtorrent::download_priority_t> v(files.size());
         for (std::size_t i = 0; i < v.size(); i++)
             v[i] = libtorrent::download_priority_t{std::uint8_t(files[i])};
@@ -3775,32 +3723,32 @@ SWIGINTERN libtorrent::tcp::endpoint libtorrent_incoming_connection_alert_get_en
 SWIGINTERN long long libtorrent_session_stats_alert_get_value(libtorrent::session_stats_alert *self,int index){
         return self->counters()[index];
     }
-SWIGINTERN std::vector< int8_t > libtorrent_dht_mutable_item_alert_get_key(libtorrent::dht_mutable_item_alert *self){
+SWIGINTERN std::array< std::int8_t,32 > libtorrent_dht_mutable_item_alert_get_key(libtorrent::dht_mutable_item_alert *self){
         std::array<char, 32> arr = self->key;
-        return std::vector<int8_t>(arr.begin(), arr.end());
+        return *reinterpret_cast<std::array<std::int8_t, 32>*>(&arr);
     }
-SWIGINTERN std::vector< int8_t > libtorrent_dht_mutable_item_alert_get_signature(libtorrent::dht_mutable_item_alert *self){
+SWIGINTERN std::array< std::int8_t,64 > libtorrent_dht_mutable_item_alert_get_signature(libtorrent::dht_mutable_item_alert *self){
         std::array<char, 64> arr = self->signature;
-        return std::vector<int8_t>(arr.begin(), arr.end());
+        return *reinterpret_cast<std::array<std::int8_t, 64>*>(&arr);
     }
 SWIGINTERN int64_t libtorrent_dht_mutable_item_alert_get_seq(libtorrent::dht_mutable_item_alert *self){
         return int64_t(self->seq);
     }
-SWIGINTERN std::vector< int8_t > libtorrent_dht_mutable_item_alert_get_salt(libtorrent::dht_mutable_item_alert *self){
+SWIGINTERN std::vector< std::int8_t > libtorrent_dht_mutable_item_alert_get_salt(libtorrent::dht_mutable_item_alert *self){
         std::string s = self->salt;
-        return std::vector<int8_t>(s.begin(), s.end());
+        return std::vector<std::int8_t>(s.begin(), s.end());
     }
-SWIGINTERN std::vector< int8_t > libtorrent_dht_put_alert_get_public_key(libtorrent::dht_put_alert *self){
+SWIGINTERN std::array< std::int8_t,32 > libtorrent_dht_put_alert_get_public_key(libtorrent::dht_put_alert *self){
         std::array<char, 32> arr = self->public_key;
-        return std::vector<int8_t>(arr.begin(), arr.end());
+        return *reinterpret_cast<std::array<std::int8_t, 32>*>(&arr);
     }
-SWIGINTERN std::vector< int8_t > libtorrent_dht_put_alert_get_signature(libtorrent::dht_put_alert *self){
+SWIGINTERN std::array< std::int8_t,64 > libtorrent_dht_put_alert_get_signature(libtorrent::dht_put_alert *self){
         std::array<char, 64> arr = self->signature;
-        return std::vector<int8_t>(arr.begin(), arr.end());
+        return *reinterpret_cast<std::array<std::int8_t, 64>*>(&arr);
     }
-SWIGINTERN std::vector< int8_t > libtorrent_dht_put_alert_get_salt(libtorrent::dht_put_alert *self){
+SWIGINTERN std::vector< std::int8_t > libtorrent_dht_put_alert_get_salt(libtorrent::dht_put_alert *self){
         std::string s = self->salt;
-        return std::vector<int8_t>(s.begin(), s.end());
+        return std::vector<std::int8_t>(s.begin(), s.end());
     }
 SWIGINTERN int64_t libtorrent_dht_put_alert_get_seq(libtorrent::dht_put_alert *self){
         return int64_t(self->seq);
@@ -3944,23 +3892,13 @@ SWIGINTERN std::vector< std::int8_t > libtorrent_session_params_write_session_pa
         auto v = lt::write_session_params_buf(sp, flags);
         return {v.begin(), v.end()};
     }
-SWIGINTERN void libtorrent_session_handle_dht_get_item__SWIG_1(libtorrent::session_handle *self,std::vector< int8_t > &key,std::vector< int8_t > &salt){
-        if (key.size() != 32) {
-            throw std::invalid_argument("Public key must be of size 32");
-        }
+SWIGINTERN void libtorrent_session_handle_dht_get_item__SWIG_1(libtorrent::session_handle *self,std::array< std::int8_t,32 > &key,std::vector< std::int8_t > &salt){
         std::array<char, 32> pk;
         std::copy_n(key.begin(), 32, pk.begin());
 
         self->dht_get_item(pk, std::string(salt.begin(), salt.end()));
     }
-SWIGINTERN void libtorrent_session_handle_dht_put_item__SWIG_1(libtorrent::session_handle *self,std::vector< int8_t > &key,std::vector< int8_t > &sk,libtorrent::entry &data,std::vector< int8_t > &salt){
-        /*
-        if (key.size() != 32) {
-            throw std::invalid_argument("Public key must be of size 32");
-        }
-        if (sk.size() != 64) {
-            throw std::invalid_argument("Private key must be of size 64");
-        }
+SWIGINTERN void libtorrent_session_handle_dht_put_item__SWIG_1(libtorrent::session_handle *self,std::array< std::int8_t,32 > &key,std::array< std::int8_t,64 > &sk,libtorrent::entry &data,std::vector< int8_t > &salt){
         std::array<char, 32> pk;
         std::copy_n(key.begin(), 32, pk.begin());
 
@@ -3970,12 +3908,11 @@ SWIGINTERN void libtorrent_session_handle_dht_put_item__SWIG_1(libtorrent::sessi
         self->dht_put_item(pk, std::bind(&dht_put_item_cb, _1, _2, _3, _4,
             public_key((char*)key.data()), secret_key((char*)sk.data()), data),
             std::string(salt.begin(), salt.end()));
-            */
     }
-SWIGINTERN void libtorrent_session_handle_dht_direct_request__SWIG_2(libtorrent::session_handle *self,libtorrent::udp::endpoint const &ep,libtorrent::entry const &e,int64_t userdata){
-        //self->dht_direct_request(ep, e, (void*)userdata);
+SWIGINTERN void libtorrent_session_handle_dht_direct_request__SWIG_2(libtorrent::session_handle *self,libtorrent::udp::endpoint const &ep,libtorrent::entry const &e,std::int64_t userdata){
+        self->dht_direct_request(ep, e, lt::client_data_t{(void*)userdata});
     }
-SWIGINTERN libtorrent::alert *libtorrent_session_handle_wait_for_alert_ms(libtorrent::session_handle *self,int64_t max_wait){
+SWIGINTERN libtorrent::alert *libtorrent_session_handle_wait_for_alert_ms(libtorrent::session_handle *self,std::int64_t max_wait){
         return self->wait_for_alert(libtorrent::milliseconds(max_wait));
     }
 SWIGINTERN void libtorrent_session_handle_set_alert_notify_callback(libtorrent::session_handle *self,alert_notify_callback *cb){
@@ -5036,25 +4973,25 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1bdeco
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1address_1node_1id_1pair_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1address_1sha1_1hash_1pair_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
-  std::pair< libtorrent::address,libtorrent::dht::node_id > *result = 0 ;
+  std::pair< libtorrent::address,libtorrent::digest32< 160 > > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  result = (std::pair< libtorrent::address,libtorrent::dht::node_id > *)new std::pair< libtorrent::address,libtorrent::dht::node_id >();
-  *(std::pair< libtorrent::address,libtorrent::dht::node_id > **)&jresult = result; 
+  result = (std::pair< libtorrent::address,libtorrent::digest32< 160 > > *)new std::pair< libtorrent::address,libtorrent::digest32< 160 > >();
+  *(std::pair< libtorrent::address,libtorrent::digest32< 160 > > **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1address_1node_1id_1pair_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1address_1sha1_1hash_1pair_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   jlong jresult = 0 ;
   libtorrent::address arg1 ;
-  libtorrent::dht::node_id arg2 ;
+  libtorrent::digest32< 160 > arg2 ;
   libtorrent::address *argp1 ;
-  libtorrent::dht::node_id *argp2 ;
-  std::pair< libtorrent::address,libtorrent::dht::node_id > *result = 0 ;
+  libtorrent::digest32< 160 > *argp2 ;
+  std::pair< libtorrent::address,libtorrent::digest32< 160 > > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
@@ -5066,101 +5003,101 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1address
     return 0;
   }
   arg1 = *argp1; 
-  argp2 = *(libtorrent::dht::node_id **)&jarg2; 
+  argp2 = *(libtorrent::digest32< 160 > **)&jarg2; 
   if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null libtorrent::dht::node_id");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null libtorrent::digest32< 160 >");
     return 0;
   }
   arg2 = *argp2; 
-  result = (std::pair< libtorrent::address,libtorrent::dht::node_id > *)new std::pair< libtorrent::address,libtorrent::dht::node_id >(arg1,arg2);
-  *(std::pair< libtorrent::address,libtorrent::dht::node_id > **)&jresult = result; 
+  result = (std::pair< libtorrent::address,libtorrent::digest32< 160 > > *)new std::pair< libtorrent::address,libtorrent::digest32< 160 > >(arg1,arg2);
+  *(std::pair< libtorrent::address,libtorrent::digest32< 160 > > **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1address_1node_1id_1pair_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1address_1sha1_1hash_1pair_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  std::pair< libtorrent::address,libtorrent::dht::node_id > *arg1 = 0 ;
-  std::pair< libtorrent::address,libtorrent::dht::node_id > *result = 0 ;
+  std::pair< libtorrent::address,libtorrent::digest32< 160 > > *arg1 = 0 ;
+  std::pair< libtorrent::address,libtorrent::digest32< 160 > > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::pair< libtorrent::address,libtorrent::dht::node_id > **)&jarg1;
+  arg1 = *(std::pair< libtorrent::address,libtorrent::digest32< 160 > > **)&jarg1;
   if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::pair< libtorrent::address,libtorrent::dht::node_id > const & reference is null");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::pair< libtorrent::address,libtorrent::digest32< 160 > > const & reference is null");
     return 0;
   } 
-  result = (std::pair< libtorrent::address,libtorrent::dht::node_id > *)new std::pair< libtorrent::address,libtorrent::dht::node_id >((std::pair< libtorrent::address,libtorrent::dht::node_id > const &)*arg1);
-  *(std::pair< libtorrent::address,libtorrent::dht::node_id > **)&jresult = result; 
+  result = (std::pair< libtorrent::address,libtorrent::digest32< 160 > > *)new std::pair< libtorrent::address,libtorrent::digest32< 160 > >((std::pair< libtorrent::address,libtorrent::digest32< 160 > > const &)*arg1);
+  *(std::pair< libtorrent::address,libtorrent::digest32< 160 > > **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1first_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  std::pair< libtorrent::address,libtorrent::dht::node_id > *arg1 = (std::pair< libtorrent::address,libtorrent::dht::node_id > *) 0 ;
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1first_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  std::pair< libtorrent::address,libtorrent::digest32< 160 > > *arg1 = (std::pair< libtorrent::address,libtorrent::digest32< 160 > > *) 0 ;
   libtorrent::address *arg2 = (libtorrent::address *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
-  arg1 = *(std::pair< libtorrent::address,libtorrent::dht::node_id > **)&jarg1; 
+  arg1 = *(std::pair< libtorrent::address,libtorrent::digest32< 160 > > **)&jarg1; 
   arg2 = *(libtorrent::address **)&jarg2; 
   if (arg1) (arg1)->first = *arg2;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1first_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1first_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  std::pair< libtorrent::address,libtorrent::dht::node_id > *arg1 = (std::pair< libtorrent::address,libtorrent::dht::node_id > *) 0 ;
+  std::pair< libtorrent::address,libtorrent::digest32< 160 > > *arg1 = (std::pair< libtorrent::address,libtorrent::digest32< 160 > > *) 0 ;
   libtorrent::address *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::pair< libtorrent::address,libtorrent::dht::node_id > **)&jarg1; 
+  arg1 = *(std::pair< libtorrent::address,libtorrent::digest32< 160 > > **)&jarg1; 
   result = (libtorrent::address *)& ((arg1)->first);
   *(libtorrent::address **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1second_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  std::pair< libtorrent::address,libtorrent::dht::node_id > *arg1 = (std::pair< libtorrent::address,libtorrent::dht::node_id > *) 0 ;
-  libtorrent::dht::node_id *arg2 = (libtorrent::dht::node_id *) 0 ;
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1second_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  std::pair< libtorrent::address,libtorrent::digest32< 160 > > *arg1 = (std::pair< libtorrent::address,libtorrent::digest32< 160 > > *) 0 ;
+  libtorrent::digest32< 160 > *arg2 = (libtorrent::digest32< 160 > *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
-  arg1 = *(std::pair< libtorrent::address,libtorrent::dht::node_id > **)&jarg1; 
-  arg2 = *(libtorrent::dht::node_id **)&jarg2; 
+  arg1 = *(std::pair< libtorrent::address,libtorrent::digest32< 160 > > **)&jarg1; 
+  arg2 = *(libtorrent::digest32< 160 > **)&jarg2; 
   if (arg1) (arg1)->second = *arg2;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1second_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1second_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  std::pair< libtorrent::address,libtorrent::dht::node_id > *arg1 = (std::pair< libtorrent::address,libtorrent::dht::node_id > *) 0 ;
-  libtorrent::dht::node_id *result = 0 ;
+  std::pair< libtorrent::address,libtorrent::digest32< 160 > > *arg1 = (std::pair< libtorrent::address,libtorrent::digest32< 160 > > *) 0 ;
+  libtorrent::digest32< 160 > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::pair< libtorrent::address,libtorrent::dht::node_id > **)&jarg1; 
-  result = (libtorrent::dht::node_id *)& ((arg1)->second);
-  *(libtorrent::dht::node_id **)&jresult = result; 
+  arg1 = *(std::pair< libtorrent::address,libtorrent::digest32< 160 > > **)&jarg1; 
+  result = (libtorrent::digest32< 160 > *)& ((arg1)->second);
+  *(libtorrent::digest32< 160 > **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1address_1node_1id_1pair(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  std::pair< libtorrent::address,libtorrent::dht::node_id > *arg1 = (std::pair< libtorrent::address,libtorrent::dht::node_id > *) 0 ;
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1address_1sha1_1hash_1pair(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::pair< libtorrent::address,libtorrent::digest32< 160 > > *arg1 = (std::pair< libtorrent::address,libtorrent::digest32< 160 > > *) 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = *(std::pair< libtorrent::address,libtorrent::dht::node_id > **)&jarg1; 
+  arg1 = *(std::pair< libtorrent::address,libtorrent::digest32< 160 > > **)&jarg1; 
   delete arg1;
 }
 
@@ -13299,61 +13236,61 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1sha1_
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1address_1node_1id_1pair_1vector_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1address_1sha1_1hash_1pair_1vector_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *result = 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  result = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *)new std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >();
-  *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jresult = result; 
+  result = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *)new std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >();
+  *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1address_1node_1id_1pair_1vector_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1address_1sha1_1hash_1pair_1vector_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *arg1 = 0 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *result = 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *arg1 = 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jarg1;
+  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jarg1;
   if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > const & reference is null");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > const & reference is null");
     return 0;
   } 
-  result = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *)new std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >((std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > const &)*arg1);
-  *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jresult = result; 
+  result = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *)new std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >((std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > const &)*arg1);
+  *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1vector_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1vector_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *) 0 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::size_type result;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *) 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::size_type result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jarg1; 
-  result = ((std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > const *)arg1)->capacity();
+  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jarg1; 
+  result = ((std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > const *)arg1)->capacity();
   jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1vector_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *) 0 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::size_type arg2 ;
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1vector_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *) 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::size_type arg2 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jarg1; 
-  arg2 = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::size_type)jarg2; 
+  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jarg1; 
+  arg2 = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::size_type)jarg2; 
   try {
     (arg1)->reserve(arg2);
   } catch(std::length_error &_e) {
@@ -13363,69 +13300,69 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1vector_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1vector_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jboolean jresult = 0 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *) 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *) 0 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jarg1; 
-  result = (bool)((std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > const *)arg1)->empty();
+  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jarg1; 
+  result = (bool)((std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > const *)arg1)->empty();
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1vector_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *) 0 ;
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1vector_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jarg1; 
+  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jarg1; 
   (arg1)->clear();
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1address_1node_1id_1pair_1vector_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jint jarg1, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1address_1sha1_1hash_1pair_1vector_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jint jarg1, jlong jarg2, jobject jarg2_) {
   jlong jresult = 0 ;
   jint arg1 ;
-  std::pair< libtorrent::address,libtorrent::dht::node_id > *arg2 = 0 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *result = 0 ;
+  std::pair< libtorrent::address,libtorrent::digest32< 160 > > *arg2 = 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
   arg1 = jarg1; 
-  arg2 = *(std::pair< libtorrent::address,libtorrent::dht::node_id > **)&jarg2;
+  arg2 = *(std::pair< libtorrent::address,libtorrent::digest32< 160 > > **)&jarg2;
   if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::pair< libtorrent::address,libtorrent::dht::node_id > const & reference is null");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::pair< libtorrent::address,libtorrent::digest32< 160 > > const & reference is null");
     return 0;
   } 
   try {
-    result = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *)new_std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg___SWIG_2(arg1,(std::pair< libtorrent::address,libtorrent::dht::node_id > const &)*arg2);
+    result = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *)new_std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg___SWIG_2(arg1,(std::pair< libtorrent::address,libtorrent::digest32< 160 > > const &)*arg2);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return 0;
   }
-  *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jresult = result; 
+  *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1vector_1doSize(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1vector_1doSize(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jint jresult = 0 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *) 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *) 0 ;
   jint result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jarg1; 
+  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jarg1; 
   try {
-    result = std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg__doSize((std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > const *)arg1);
+    result = std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg__doSize((std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > const *)arg1);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return 0;
@@ -13435,42 +13372,42 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1vector_1doAdd_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *) 0 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type *arg2 = 0 ;
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1vector_1doAdd_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *) 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type *arg2 = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
-  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jarg1; 
-  arg2 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type **)&jarg2;
+  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jarg1; 
+  arg2 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type **)&jarg2;
   if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type const & reference is null");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type const & reference is null");
     return ;
   } 
-  std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg__doAdd__SWIG_0(arg1,(std::pair< libtorrent::address,libtorrent::dht::node_id > const &)*arg2);
+  std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg__doAdd__SWIG_0(arg1,(std::pair< libtorrent::address,libtorrent::digest32< 160 > > const &)*arg2);
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1vector_1doAdd_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *) 0 ;
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1vector_1doAdd_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *) 0 ;
   jint arg2 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type *arg3 = 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type *arg3 = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   (void)jarg3_;
-  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jarg1; 
+  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jarg1; 
   arg2 = jarg2; 
-  arg3 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type **)&jarg3;
+  arg3 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type **)&jarg3;
   if (!arg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type const & reference is null");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type const & reference is null");
     return ;
   } 
   try {
-    std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg__doAdd__SWIG_1(arg1,arg2,(std::pair< libtorrent::address,libtorrent::dht::node_id > const &)*arg3);
+    std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg__doAdd__SWIG_1(arg1,arg2,(std::pair< libtorrent::address,libtorrent::digest32< 160 > > const &)*arg3);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return ;
@@ -13478,92 +13415,92 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1vector_1doRemove(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1vector_1doRemove(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *) 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *) 0 ;
   jint arg2 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type result;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jarg1; 
+  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jarg1; 
   arg2 = jarg2; 
   try {
-    result = std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg__doRemove(arg1,arg2);
+    result = std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg__doRemove(arg1,arg2);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return 0;
   }
-  *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type **)&jresult = new std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type((const std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type &)result); 
+  *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type **)&jresult = new std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type((const std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1vector_1doGet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1vector_1doGet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *) 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *) 0 ;
   jint arg2 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type *result = 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jarg1; 
+  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jarg1; 
   arg2 = jarg2; 
   try {
-    result = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type *) &std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg__doGet(arg1,arg2);
+    result = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type *) &std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg__doGet(arg1,arg2);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return 0;
   }
-  *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type **)&jresult = result; 
+  *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1vector_1doSet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1vector_1doSet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
   jlong jresult = 0 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *) 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *) 0 ;
   jint arg2 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type *arg3 = 0 ;
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type result;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type *arg3 = 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   (void)jarg3_;
-  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jarg1; 
+  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jarg1; 
   arg2 = jarg2; 
-  arg3 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type **)&jarg3;
+  arg3 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type **)&jarg3;
   if (!arg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type const & reference is null");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type const & reference is null");
     return 0;
   } 
   try {
-    result = std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg__doSet(arg1,arg2,(std::pair< libtorrent::address,libtorrent::dht::node_id > const &)*arg3);
+    result = std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg__doSet(arg1,arg2,(std::pair< libtorrent::address,libtorrent::digest32< 160 > > const &)*arg3);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return 0;
   }
-  *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type **)&jresult = new std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type((const std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > >::value_type &)result); 
+  *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type **)&jresult = new std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type((const std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > >::value_type &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node_1id_1pair_1vector_1doRemoveRange(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *) 0 ;
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1sha1_1hash_1pair_1vector_1doRemoveRange(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *) 0 ;
   jint arg2 ;
   jint arg3 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jarg1; 
+  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jarg1; 
   arg2 = jarg2; 
   arg3 = jarg3; 
   try {
-    std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_dht_node_id_Sg__Sg__doRemoveRange(arg1,arg2,arg3);
+    std_vector_Sl_std_pair_Sl_libtorrent_address_Sc_libtorrent_digest32_Sl_160_Sg__Sg__Sg__doRemoveRange(arg1,arg2,arg3);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return ;
@@ -13571,12 +13508,12 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_address_1node
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1address_1node_1id_1pair_1vector(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > *) 0 ;
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1address_1sha1_1hash_1pair_1vector(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *arg1 = (std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > *) 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::dht::node_id > > **)&jarg1; 
+  arg1 = *(std::vector< std::pair< libtorrent::address,libtorrent::digest32< 160 > > > **)&jarg1; 
   delete arg1;
 }
 
@@ -13711,119 +13648,119 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1byte_
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1char_1array_132_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1byte_1array_164_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
-  std::array< char,32 > *result = 0 ;
+  std::array< std::int8_t,64 > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  result = (std::array< char,32 > *)new std::array< char,32 >();
-  *(std::array< char,32 > **)&jresult = result; 
+  result = (std::array< std::int8_t,64 > *)new std::array< std::int8_t,64 >();
+  *(std::array< std::int8_t,64 > **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1char_1array_132_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1byte_1array_164_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  std::array< char,32 > *arg1 = 0 ;
-  std::array< char,32 > *result = 0 ;
+  std::array< std::int8_t,64 > *arg1 = 0 ;
+  std::array< std::int8_t,64 > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::array< char,32 > **)&jarg1;
+  arg1 = *(std::array< std::int8_t,64 > **)&jarg1;
   if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< char,32 > const & reference is null");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< std::int8_t,64 > const & reference is null");
     return 0;
   } 
-  result = (std::array< char,32 > *)new std::array< char,32 >((std::array< char,32 > const &)*arg1);
-  *(std::array< char,32 > **)&jresult = result; 
+  result = (std::array< std::int8_t,64 > *)new std::array< std::int8_t,64 >((std::array< std::int8_t,64 > const &)*arg1);
+  *(std::array< std::int8_t,64 > **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_char_1array_132_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_byte_1array_164_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
-  std::array< char,32 > *arg1 = (std::array< char,32 > *) 0 ;
-  std::array< char,32 >::size_type result;
+  std::array< std::int8_t,64 > *arg1 = (std::array< std::int8_t,64 > *) 0 ;
+  std::array< signed char,64 >::size_type result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::array< char,32 > **)&jarg1; 
-  result = ((std::array< char,32 > const *)arg1)->size();
+  arg1 = *(std::array< std::int8_t,64 > **)&jarg1; 
+  result = ((std::array< std::int8_t,64 > const *)arg1)->size();
   jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_char_1array_132_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_byte_1array_164_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jboolean jresult = 0 ;
-  std::array< char,32 > *arg1 = (std::array< char,32 > *) 0 ;
+  std::array< std::int8_t,64 > *arg1 = (std::array< std::int8_t,64 > *) 0 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::array< char,32 > **)&jarg1; 
-  result = (bool)((std::array< char,32 > const *)arg1)->empty();
+  arg1 = *(std::array< std::int8_t,64 > **)&jarg1; 
+  result = (bool)((std::array< std::int8_t,64 > const *)arg1)->empty();
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_char_1array_132_1fill(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jchar jarg2) {
-  std::array< char,32 > *arg1 = (std::array< char,32 > *) 0 ;
-  char *arg2 = 0 ;
-  char temp2 ;
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_byte_1array_164_1fill(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyte jarg2) {
+  std::array< std::int8_t,64 > *arg1 = (std::array< std::int8_t,64 > *) 0 ;
+  std::int8_t *arg2 = 0 ;
+  std::int8_t temp2 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::array< char,32 > **)&jarg1; 
-  temp2 = (char)jarg2; 
+  arg1 = *(std::array< std::int8_t,64 > **)&jarg1; 
+  temp2 = (std::int8_t)jarg2; 
   arg2 = &temp2; 
-  (arg1)->fill((char const &)*arg2);
+  (arg1)->fill((std::int8_t const &)*arg2);
 }
 
 
-SWIGEXPORT jchar JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_char_1array_132_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
-  jchar jresult = 0 ;
-  std::array< char,32 > *arg1 = (std::array< char,32 > *) 0 ;
+SWIGEXPORT jbyte JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_byte_1array_164_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jbyte jresult = 0 ;
+  std::array< std::int8_t,64 > *arg1 = (std::array< std::int8_t,64 > *) 0 ;
   int arg2 ;
-  std::array< char,32 >::value_type *result = 0 ;
+  std::array< signed char,64 >::value_type *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::array< char,32 > **)&jarg1; 
+  arg1 = *(std::array< std::int8_t,64 > **)&jarg1; 
   arg2 = (int)jarg2; 
   try {
-    result = (std::array< char,32 >::value_type *) &std_array_Sl_char_Sc_32_Sg__get(arg1,arg2);
+    result = (std::array< signed char,64 >::value_type *) &std_array_Sl_std_int8_t_Sc_64_Sg__get(arg1,arg2);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return 0;
   }
-  jresult = (jchar)*result; 
+  jresult = (jbyte)*result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_char_1array_132_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jchar jarg3) {
-  std::array< char,32 > *arg1 = (std::array< char,32 > *) 0 ;
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_byte_1array_164_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jbyte jarg3) {
+  std::array< std::int8_t,64 > *arg1 = (std::array< std::int8_t,64 > *) 0 ;
   int arg2 ;
-  std::array< char,32 >::value_type *arg3 = 0 ;
-  std::array< char,32 >::value_type temp3 ;
+  std::array< signed char,64 >::value_type *arg3 = 0 ;
+  std::array< signed char,64 >::value_type temp3 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(std::array< char,32 > **)&jarg1; 
+  arg1 = *(std::array< std::int8_t,64 > **)&jarg1; 
   arg2 = (int)jarg2; 
-  temp3 = (std::array< char,32 >::value_type)jarg3; 
+  temp3 = (std::array< signed char,64 >::value_type)jarg3; 
   arg3 = &temp3; 
   try {
-    std_array_Sl_char_Sc_32_Sg__set(arg1,arg2,(char const &)*arg3);
+    std_array_Sl_std_int8_t_Sc_64_Sg__set(arg1,arg2,(signed char const &)*arg3);
   } catch(std::out_of_range &_e) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
     return ;
@@ -13831,142 +13768,12 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_char_1array_1
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1char_1array_132(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  std::array< char,32 > *arg1 = (std::array< char,32 > *) 0 ;
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1byte_1array_164(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::array< std::int8_t,64 > *arg1 = (std::array< std::int8_t,64 > *) 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = *(std::array< char,32 > **)&jarg1; 
-  delete arg1;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1char_1array_164_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
-  std::array< char,64 > *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (std::array< char,64 > *)new std::array< char,64 >();
-  *(std::array< char,64 > **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1char_1array_164_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  std::array< char,64 > *arg1 = 0 ;
-  std::array< char,64 > *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(std::array< char,64 > **)&jarg1;
-  if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< char,64 > const & reference is null");
-    return 0;
-  } 
-  result = (std::array< char,64 > *)new std::array< char,64 >((std::array< char,64 > const &)*arg1);
-  *(std::array< char,64 > **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_char_1array_164_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  std::array< char,64 > *arg1 = (std::array< char,64 > *) 0 ;
-  std::array< char,64 >::size_type result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(std::array< char,64 > **)&jarg1; 
-  result = ((std::array< char,64 > const *)arg1)->size();
-  jresult = (jlong)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_char_1array_164_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jboolean jresult = 0 ;
-  std::array< char,64 > *arg1 = (std::array< char,64 > *) 0 ;
-  bool result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(std::array< char,64 > **)&jarg1; 
-  result = (bool)((std::array< char,64 > const *)arg1)->empty();
-  jresult = (jboolean)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_char_1array_164_1fill(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jchar jarg2) {
-  std::array< char,64 > *arg1 = (std::array< char,64 > *) 0 ;
-  char *arg2 = 0 ;
-  char temp2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(std::array< char,64 > **)&jarg1; 
-  temp2 = (char)jarg2; 
-  arg2 = &temp2; 
-  (arg1)->fill((char const &)*arg2);
-}
-
-
-SWIGEXPORT jchar JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_char_1array_164_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
-  jchar jresult = 0 ;
-  std::array< char,64 > *arg1 = (std::array< char,64 > *) 0 ;
-  int arg2 ;
-  std::array< char,64 >::value_type *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(std::array< char,64 > **)&jarg1; 
-  arg2 = (int)jarg2; 
-  try {
-    result = (std::array< char,64 >::value_type *) &std_array_Sl_char_Sc_64_Sg__get(arg1,arg2);
-  } catch(std::out_of_range &_e) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
-    return 0;
-  }
-  jresult = (jchar)*result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_char_1array_164_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jchar jarg3) {
-  std::array< char,64 > *arg1 = (std::array< char,64 > *) 0 ;
-  int arg2 ;
-  std::array< char,64 >::value_type *arg3 = 0 ;
-  std::array< char,64 >::value_type temp3 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(std::array< char,64 > **)&jarg1; 
-  arg2 = (int)jarg2; 
-  temp3 = (std::array< char,64 >::value_type)jarg3; 
-  arg3 = &temp3; 
-  try {
-    std_array_Sl_char_Sc_64_Sg__set(arg1,arg2,(char const &)*arg3);
-  } catch(std::out_of_range &_e) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
-    return ;
-  }
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1char_1array_164(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  std::array< char,64 > *arg1 = (std::array< char,64 > *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(std::array< char,64 > **)&jarg1; 
+  arg1 = *(std::array< std::int8_t,64 > **)&jarg1; 
   delete arg1;
 }
 
@@ -17003,14 +16810,14 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1udp_1
 
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1state_1nids_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   libtorrent::dht::dht_state *arg1 = (libtorrent::dht::dht_state *) 0 ;
-  libtorrent::dht::node_ids_t *arg2 = (libtorrent::dht::node_ids_t *) 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::sha1_hash > > *arg2 = (std::vector< std::pair< libtorrent::address,libtorrent::sha1_hash > > *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
   arg1 = *(libtorrent::dht::dht_state **)&jarg1; 
-  arg2 = *(libtorrent::dht::node_ids_t **)&jarg2; 
+  arg2 = *(std::vector< std::pair< libtorrent::address,libtorrent::sha1_hash > > **)&jarg2; 
   if (arg1) (arg1)->nids = *arg2;
 }
 
@@ -17018,14 +16825,14 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1state_1n
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1state_1nids_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   libtorrent::dht::dht_state *arg1 = (libtorrent::dht::dht_state *) 0 ;
-  libtorrent::dht::node_ids_t *result = 0 ;
+  std::vector< std::pair< libtorrent::address,libtorrent::sha1_hash > > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(libtorrent::dht::dht_state **)&jarg1; 
-  result = (libtorrent::dht::node_ids_t *)& ((arg1)->nids);
-  *(libtorrent::dht::node_ids_t **)&jresult = result; 
+  result = (std::vector< std::pair< libtorrent::address,libtorrent::sha1_hash > > *)& ((arg1)->nids);
+  *(std::vector< std::pair< libtorrent::address,libtorrent::sha1_hash > > **)&jresult = result; 
   return jresult;
 }
 
@@ -20177,6 +19984,36 @@ SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_announce_
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_announce_1infohash_1get_1next_1announce(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::announce_infohash *arg1 = (libtorrent::announce_infohash *) 0 ;
+  std::int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::announce_infohash **)&jarg1; 
+  result = (std::int64_t)libtorrent_announce_infohash_get_next_announce(arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_announce_1infohash_1get_1min_1announce(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::announce_infohash *arg1 = (libtorrent::announce_infohash *) 0 ;
+  std::int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::announce_infohash **)&jarg1; 
+  result = (std::int64_t)libtorrent_announce_infohash_get_min_announce(arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1announce_1infohash(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   libtorrent::announce_infohash *arg1 = (libtorrent::announce_infohash *) 0 ;
   
@@ -22373,7 +22210,7 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1n
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1s(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   jlong jresult = 0 ;
   libtorrent::bdecode_node *arg1 = (libtorrent::bdecode_node *) 0 ;
   std::string arg2 ;
@@ -22391,13 +22228,13 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1nod
   if (!arg2_pstr) return 0;
   (&arg2)->assign(arg2_pstr);
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = libtorrent_bdecode_node_dict_find_s((libtorrent::bdecode_node const *)arg1,arg2);
+  result = libtorrent_bdecode_node_dict_find_ex((libtorrent::bdecode_node const *)arg1,arg2);
   *(libtorrent::bdecode_node **)&jresult = new libtorrent::bdecode_node((const libtorrent::bdecode_node &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1dict_1s(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1dict_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   jlong jresult = 0 ;
   libtorrent::bdecode_node *arg1 = (libtorrent::bdecode_node *) 0 ;
   std::string arg2 ;
@@ -22415,13 +22252,13 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1nod
   if (!arg2_pstr) return 0;
   (&arg2)->assign(arg2_pstr);
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = libtorrent_bdecode_node_dict_find_dict_s((libtorrent::bdecode_node const *)arg1,arg2);
+  result = libtorrent_bdecode_node_dict_find_dict_ex((libtorrent::bdecode_node const *)arg1,arg2);
   *(libtorrent::bdecode_node **)&jresult = new libtorrent::bdecode_node((const libtorrent::bdecode_node &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1list_1s(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1list_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   jlong jresult = 0 ;
   libtorrent::bdecode_node *arg1 = (libtorrent::bdecode_node *) 0 ;
   std::string arg2 ;
@@ -22439,13 +22276,13 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1nod
   if (!arg2_pstr) return 0;
   (&arg2)->assign(arg2_pstr);
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = libtorrent_bdecode_node_dict_find_list_s((libtorrent::bdecode_node const *)arg1,arg2);
+  result = libtorrent_bdecode_node_dict_find_list_ex((libtorrent::bdecode_node const *)arg1,arg2);
   *(libtorrent::bdecode_node **)&jresult = new libtorrent::bdecode_node((const libtorrent::bdecode_node &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1string_1s(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1string_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   jlong jresult = 0 ;
   libtorrent::bdecode_node *arg1 = (libtorrent::bdecode_node *) 0 ;
   std::string arg2 ;
@@ -22463,13 +22300,13 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1nod
   if (!arg2_pstr) return 0;
   (&arg2)->assign(arg2_pstr);
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = libtorrent_bdecode_node_dict_find_string_s((libtorrent::bdecode_node const *)arg1,arg2);
+  result = libtorrent_bdecode_node_dict_find_string_ex((libtorrent::bdecode_node const *)arg1,arg2);
   *(libtorrent::bdecode_node **)&jresult = new libtorrent::bdecode_node((const libtorrent::bdecode_node &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1int_1s(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1int_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   jlong jresult = 0 ;
   libtorrent::bdecode_node *arg1 = (libtorrent::bdecode_node *) 0 ;
   std::string arg2 ;
@@ -22487,7 +22324,7 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1nod
   if (!arg2_pstr) return 0;
   (&arg2)->assign(arg2_pstr);
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = libtorrent_bdecode_node_dict_find_int_s((libtorrent::bdecode_node const *)arg1,arg2);
+  result = libtorrent_bdecode_node_dict_find_int_ex((libtorrent::bdecode_node const *)arg1,arg2);
   *(libtorrent::bdecode_node **)&jresult = new libtorrent::bdecode_node((const libtorrent::bdecode_node &)result); 
   return jresult;
 }
@@ -22550,7 +22387,7 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1n
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1int_1value_1s_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1int_1value_1ex_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   libtorrent::bdecode_node *arg1 = (libtorrent::bdecode_node *) 0 ;
   std::string arg2 ;
@@ -22570,13 +22407,13 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1nod
   (&arg2)->assign(arg2_pstr);
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
   arg3 = (std::int64_t)jarg3; 
-  result = (std::int64_t)libtorrent_bdecode_node_dict_find_int_value_s__SWIG_0((libtorrent::bdecode_node const *)arg1,arg2,arg3);
+  result = (std::int64_t)libtorrent_bdecode_node_dict_find_int_value_ex__SWIG_0((libtorrent::bdecode_node const *)arg1,arg2,arg3);
   jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1int_1value_1s_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1dict_1find_1int_1value_1ex_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   jlong jresult = 0 ;
   libtorrent::bdecode_node *arg1 = (libtorrent::bdecode_node *) 0 ;
   std::string arg2 ;
@@ -22594,7 +22431,7 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1nod
   if (!arg2_pstr) return 0;
   (&arg2)->assign(arg2_pstr);
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (std::int64_t)libtorrent_bdecode_node_dict_find_int_value_s__SWIG_0((libtorrent::bdecode_node const *)arg1,arg2);
+  result = (std::int64_t)libtorrent_bdecode_node_dict_find_int_value_ex__SWIG_0((libtorrent::bdecode_node const *)arg1,arg2);
   jresult = (jlong)result; 
   return jresult;
 }
@@ -22640,7 +22477,7 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1n
 
 SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1bdecode(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_) {
   jint jresult = 0 ;
-  std::vector< int8_t > *arg1 = 0 ;
+  std::vector< std::int8_t > *arg1 = 0 ;
   libtorrent::bdecode_node *arg2 = 0 ;
   libtorrent::error_code *arg3 = 0 ;
   int result;
@@ -22650,9 +22487,9 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node
   (void)jarg1_;
   (void)jarg2_;
   (void)jarg3_;
-  arg1 = *(std::vector< int8_t > **)&jarg1;
+  arg1 = *(std::vector< std::int8_t > **)&jarg1;
   if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::int8_t > & reference is null");
     return 0;
   } 
   arg2 = *(libtorrent::bdecode_node **)&jarg2;
@@ -24471,6 +24308,93 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_
 }
 
 
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1trackers_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< std::string > *arg2 = (std::vector< std::string > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  arg2 = *(std::vector< std::string > **)&jarg2; 
+  if (arg1) (arg1)->trackers = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1trackers_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< std::string > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  result = (std::vector< std::string > *)& ((arg1)->trackers);
+  *(std::vector< std::string > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1tracker_1tiers_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< int > *arg2 = (std::vector< int > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  arg2 = *(std::vector< int > **)&jarg2; 
+  if (arg1) (arg1)->tracker_tiers = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1tracker_1tiers_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< int > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  result = (std::vector< int > *)& ((arg1)->tracker_tiers);
+  *(std::vector< int > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1dht_1nodes_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< std::pair< std::string,int > > *arg2 = (std::vector< std::pair< std::string,int > > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  arg2 = *(std::vector< std::pair< std::string,int > > **)&jarg2; 
+  if (arg1) (arg1)->dht_nodes = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1dht_1nodes_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< std::pair< std::string,int > > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  result = (std::vector< std::pair< std::string,int > > *)& ((arg1)->dht_nodes);
+  *(std::vector< std::pair< std::string,int > > **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1name_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
   std::string *arg2 = 0 ;
@@ -25114,6 +25038,122 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_
 }
 
 
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1http_1seeds_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< std::string > *arg2 = (std::vector< std::string > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  arg2 = *(std::vector< std::string > **)&jarg2; 
+  if (arg1) (arg1)->http_seeds = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1http_1seeds_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< std::string > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  result = (std::vector< std::string > *)& ((arg1)->http_seeds);
+  *(std::vector< std::string > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1url_1seeds_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< std::string > *arg2 = (std::vector< std::string > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  arg2 = *(std::vector< std::string > **)&jarg2; 
+  if (arg1) (arg1)->url_seeds = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1url_1seeds_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< std::string > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  result = (std::vector< std::string > *)& ((arg1)->url_seeds);
+  *(std::vector< std::string > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1peers_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< libtorrent::tcp::endpoint > *arg2 = (std::vector< libtorrent::tcp::endpoint > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  arg2 = *(std::vector< libtorrent::tcp::endpoint > **)&jarg2; 
+  if (arg1) (arg1)->peers = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1peers_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< libtorrent::tcp::endpoint > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  result = (std::vector< libtorrent::tcp::endpoint > *)& ((arg1)->peers);
+  *(std::vector< libtorrent::tcp::endpoint > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1banned_1peers_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< libtorrent::tcp::endpoint > *arg2 = (std::vector< libtorrent::tcp::endpoint > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  arg2 = *(std::vector< libtorrent::tcp::endpoint > **)&jarg2; 
+  if (arg1) (arg1)->banned_peers = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1banned_1peers_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
+  std::vector< libtorrent::tcp::endpoint > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
+  result = (std::vector< libtorrent::tcp::endpoint > *)& ((arg1)->banned_peers);
+  *(std::vector< libtorrent::tcp::endpoint > **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1last_1download_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
   std::time_t arg2 ;
@@ -25200,105 +25240,6 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_
     return ;
   } 
   libtorrent_add_torrent_params_set_ti(arg1,(libtorrent::torrent_info const &)*arg2);
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1get_1trackers(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
-  std::vector< std::string > result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
-  result = libtorrent_add_torrent_params_get_trackers(arg1);
-  *(std::vector< std::string > **)&jresult = new std::vector< std::string >((const std::vector< std::string > &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1set_1trackers(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
-  std::vector< std::string > *arg2 = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
-  arg2 = *(std::vector< std::string > **)&jarg2;
-  if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::string > & reference is null");
-    return ;
-  } 
-  libtorrent_add_torrent_params_set_trackers(arg1,*arg2);
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1get_1tracker_1tiers(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
-  std::vector< int > result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
-  result = libtorrent_add_torrent_params_get_tracker_tiers(arg1);
-  *(std::vector< int > **)&jresult = new std::vector< int >((const std::vector< int > &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1set_1tracker_1tiers(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
-  std::vector< int > *arg2 = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
-  arg2 = *(std::vector< int > **)&jarg2;
-  if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int > & reference is null");
-    return ;
-  } 
-  libtorrent_add_torrent_params_set_tracker_tiers(arg1,*arg2);
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1get_1dht_1nodes(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
-  std::vector< std::pair< std::string,int > > result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
-  result = libtorrent_add_torrent_params_get_dht_nodes(arg1);
-  *(std::vector< std::pair< std::string,int > > **)&jresult = new std::vector< std::pair< std::string,int > >((const std::vector< std::pair< std::string,int > > &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1set_1dht_1nodes(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
-  std::vector< std::pair< std::string,int > > *arg2 = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
-  arg2 = *(std::vector< std::pair< std::string,int > > **)&jarg2;
-  if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::pair< std::string,int > > & reference is null");
-    return ;
-  } 
-  libtorrent_add_torrent_params_set_dht_nodes(arg1,*arg2);
 }
 
 
@@ -25599,138 +25540,6 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1get_1http_1seeds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
-  std::vector< std::string > result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
-  result = libtorrent_add_torrent_params_get_http_seeds(arg1);
-  *(std::vector< std::string > **)&jresult = new std::vector< std::string >((const std::vector< std::string > &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1set_1http_1seeds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
-  std::vector< std::string > *arg2 = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
-  arg2 = *(std::vector< std::string > **)&jarg2;
-  if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::string > & reference is null");
-    return ;
-  } 
-  libtorrent_add_torrent_params_set_http_seeds(arg1,*arg2);
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1get_1url_1seeds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
-  std::vector< std::string > result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
-  result = libtorrent_add_torrent_params_get_url_seeds(arg1);
-  *(std::vector< std::string > **)&jresult = new std::vector< std::string >((const std::vector< std::string > &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1set_1url_1seeds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
-  std::vector< std::string > *arg2 = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
-  arg2 = *(std::vector< std::string > **)&jarg2;
-  if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::string > & reference is null");
-    return ;
-  } 
-  libtorrent_add_torrent_params_set_url_seeds(arg1,*arg2);
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1get_1peers(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
-  std::vector< libtorrent::tcp::endpoint > result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
-  result = libtorrent_add_torrent_params_get_peers(arg1);
-  *(std::vector< libtorrent::tcp::endpoint > **)&jresult = new std::vector< libtorrent::tcp::endpoint >((const std::vector< libtorrent::tcp::endpoint > &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1set_1peers(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
-  std::vector< libtorrent::tcp::endpoint > *arg2 = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
-  arg2 = *(std::vector< libtorrent::tcp::endpoint > **)&jarg2;
-  if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< libtorrent::tcp::endpoint > & reference is null");
-    return ;
-  } 
-  libtorrent_add_torrent_params_set_peers(arg1,*arg2);
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1get_1banned_1peers(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
-  std::vector< libtorrent::tcp::endpoint > result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
-  result = libtorrent_add_torrent_params_get_banned_peers(arg1);
-  *(std::vector< libtorrent::tcp::endpoint > **)&jresult = new std::vector< libtorrent::tcp::endpoint >((const std::vector< libtorrent::tcp::endpoint > &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1set_1banned_1peers(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  libtorrent::add_torrent_params *arg1 = (libtorrent::add_torrent_params *) 0 ;
-  std::vector< libtorrent::tcp::endpoint > *arg2 = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1; 
-  arg2 = *(std::vector< libtorrent::tcp::endpoint > **)&jarg2;
-  if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< libtorrent::tcp::endpoint > & reference is null");
-    return ;
-  } 
-  libtorrent_add_torrent_params_set_banned_peers(arg1,*arg2);
-}
-
-
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1read_1resume_1data_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   jlong jresult = 0 ;
   libtorrent::bdecode_node *arg1 = 0 ;
@@ -25759,7 +25568,7 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1read_1resume_1data_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   jlong jresult = 0 ;
-  std::vector< int8_t > *arg1 = 0 ;
+  std::vector< std::int8_t > *arg1 = 0 ;
   libtorrent::error_code *arg2 = 0 ;
   libtorrent::add_torrent_params result;
   
@@ -25767,9 +25576,9 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
-  arg1 = *(std::vector< int8_t > **)&jarg1;
+  arg1 = *(std::vector< std::int8_t > **)&jarg1;
   if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > const & reference is null");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::int8_t > const & reference is null");
     return 0;
   } 
   arg2 = *(libtorrent::error_code **)&jarg2;
@@ -25805,7 +25614,7 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1write_1resume_1data_1buf(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   libtorrent::add_torrent_params *arg1 = 0 ;
-  std::vector< int8_t > result;
+  std::vector< std::int8_t > result;
   
   (void)jenv;
   (void)jcls;
@@ -25816,7 +25625,7 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent
     return 0;
   } 
   result = libtorrent_add_torrent_params_write_resume_data_buf((libtorrent::add_torrent_params const &)*arg1);
-  *(std::vector< int8_t > **)&jresult = new std::vector< int8_t >((const std::vector< int8_t > &)result); 
+  *(std::vector< std::int8_t > **)&jresult = new std::vector< std::int8_t >((const std::vector< std::int8_t > &)result); 
   return jresult;
 }
 
@@ -32650,7 +32459,7 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1han
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1set_1ssl_1certificate_1buffer2(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jlong jarg4, jobject jarg4_) {
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1set_1ssl_1certificate_1buffer_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jlong jarg4, jobject jarg4_) {
   libtorrent::torrent_handle *arg1 = (libtorrent::torrent_handle *) 0 ;
   std::vector< int8_t > *arg2 = 0 ;
   std::vector< int8_t > *arg3 = 0 ;
@@ -32678,11 +32487,11 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1hand
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > const & reference is null");
     return ;
   } 
-  libtorrent_torrent_handle_set_ssl_certificate_buffer2(arg1,(std::vector< signed char > const &)*arg2,(std::vector< signed char > const &)*arg3,(std::vector< signed char > const &)*arg4);
+  libtorrent_torrent_handle_set_ssl_certificate_buffer_ex(arg1,(std::vector< signed char > const &)*arg2,(std::vector< signed char > const &)*arg3,(std::vector< signed char > const &)*arg4);
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1queue_1position2(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1queue_1position_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jint jresult = 0 ;
   libtorrent::torrent_handle *arg1 = (libtorrent::torrent_handle *) 0 ;
   int result;
@@ -32691,13 +32500,13 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1hand
   (void)jcls;
   (void)jarg1_;
   arg1 = *(libtorrent::torrent_handle **)&jarg1; 
-  result = (int)libtorrent_torrent_handle_queue_position2((libtorrent::torrent_handle const *)arg1);
+  result = (int)libtorrent_torrent_handle_queue_position_ex((libtorrent::torrent_handle const *)arg1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1queue_1position_1set2(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1queue_1position_1set_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   libtorrent::torrent_handle *arg1 = (libtorrent::torrent_handle *) 0 ;
   int arg2 ;
   
@@ -32706,11 +32515,11 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1hand
   (void)jarg1_;
   arg1 = *(libtorrent::torrent_handle **)&jarg1; 
   arg2 = (int)jarg2; 
-  libtorrent_torrent_handle_queue_position_set2(arg1,arg2);
+  libtorrent_torrent_handle_queue_position_set_ex(arg1,arg2);
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1piece_1priority2_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, int jarg2) {
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1piece_1priority_1ex_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, int jarg2) {
   jint jresult = 0 ;
   libtorrent::torrent_handle *arg1 = (libtorrent::torrent_handle *) 0 ;
   piece_index_t arg2 ;
@@ -32723,13 +32532,13 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1hand
   {
     arg2 = piece_index_t(static_cast<std::int32_t>(jarg2));
   }
-  result = (int)libtorrent_torrent_handle_piece_priority2__SWIG_0(arg1,arg2);
+  result = (int)libtorrent_torrent_handle_piece_priority_ex__SWIG_0(arg1,arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1piece_1priority2_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, int jarg2, jint jarg3) {
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1piece_1priority_1ex_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, int jarg2, jint jarg3) {
   libtorrent::torrent_handle *arg1 = (libtorrent::torrent_handle *) 0 ;
   piece_index_t arg2 ;
   int arg3 ;
@@ -32742,11 +32551,11 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1hand
     arg2 = piece_index_t(static_cast<std::int32_t>(jarg2));
   }
   arg3 = (int)jarg3; 
-  libtorrent_torrent_handle_piece_priority2__SWIG_1(arg1,arg2,arg3);
+  libtorrent_torrent_handle_piece_priority_ex__SWIG_1(arg1,arg2,arg3);
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1prioritize_1pieces2_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1prioritize_1pieces_1ex_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   libtorrent::torrent_handle *arg1 = (libtorrent::torrent_handle *) 0 ;
   std::vector< int > *arg2 = 0 ;
   
@@ -32760,11 +32569,11 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1hand
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int > const & reference is null");
     return ;
   } 
-  libtorrent_torrent_handle_prioritize_pieces2__SWIG_0(arg1,(std::vector< int > const &)*arg2);
+  libtorrent_torrent_handle_prioritize_pieces_ex__SWIG_0(arg1,(std::vector< int > const &)*arg2);
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1prioritize_1pieces2_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1prioritize_1pieces_1ex_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   libtorrent::torrent_handle *arg1 = (libtorrent::torrent_handle *) 0 ;
   std::vector< std::pair< int,int > > *arg2 = 0 ;
   
@@ -32778,7 +32587,7 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1hand
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::pair< int,int > > const & reference is null");
     return ;
   } 
-  libtorrent_torrent_handle_prioritize_pieces2__SWIG_1(arg1,(std::vector< std::pair< int,int > > const &)*arg2);
+  libtorrent_torrent_handle_prioritize_pieces_ex__SWIG_1(arg1,(std::vector< std::pair< int,int > > const &)*arg2);
 }
 
 
@@ -32797,7 +32606,7 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1han
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1file_1priority2_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, int jarg2) {
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1file_1priority_1ex_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, int jarg2) {
   jint jresult = 0 ;
   libtorrent::torrent_handle *arg1 = (libtorrent::torrent_handle *) 0 ;
   file_index_t arg2 ;
@@ -32810,13 +32619,13 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1hand
   {
     arg2 = file_index_t(static_cast<std::int32_t>(jarg2));
   }
-  result = (int)libtorrent_torrent_handle_file_priority2__SWIG_0(arg1,arg2);
+  result = (int)libtorrent_torrent_handle_file_priority_ex__SWIG_0(arg1,arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1file_1priority2_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, int jarg2, jint jarg3) {
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1file_1priority_1ex_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, int jarg2, jint jarg3) {
   libtorrent::torrent_handle *arg1 = (libtorrent::torrent_handle *) 0 ;
   file_index_t arg2 ;
   int arg3 ;
@@ -32829,11 +32638,11 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1hand
     arg2 = file_index_t(static_cast<std::int32_t>(jarg2));
   }
   arg3 = (int)jarg3; 
-  libtorrent_torrent_handle_file_priority2__SWIG_1(arg1,arg2,arg3);
+  libtorrent_torrent_handle_file_priority_ex__SWIG_1(arg1,arg2,arg3);
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1prioritize_1files2(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1prioritize_1files_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   libtorrent::torrent_handle *arg1 = (libtorrent::torrent_handle *) 0 ;
   std::vector< int > *arg2 = 0 ;
   
@@ -32847,7 +32656,7 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1hand
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int > const & reference is null");
     return ;
   } 
-  libtorrent_torrent_handle_prioritize_files2(arg1,(std::vector< int > const &)*arg2);
+  libtorrent_torrent_handle_prioritize_files_ex(arg1,(std::vector< int > const &)*arg2);
 }
 
 
@@ -46612,64 +46421,6 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1mutab
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1mutable_1item_1alert_1key_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  libtorrent::dht_mutable_item_alert *arg1 = (libtorrent::dht_mutable_item_alert *) 0 ;
-  std::array< char,32 > *arg2 = (std::array< char,32 > *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(libtorrent::dht_mutable_item_alert **)&jarg1; 
-  arg2 = *(std::array< char,32 > **)&jarg2; 
-  if (arg1) (arg1)->key = *arg2;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1mutable_1item_1alert_1key_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  libtorrent::dht_mutable_item_alert *arg1 = (libtorrent::dht_mutable_item_alert *) 0 ;
-  std::array< char,32 > *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::dht_mutable_item_alert **)&jarg1; 
-  result = (std::array< char,32 > *)& ((arg1)->key);
-  *(std::array< char,32 > **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1mutable_1item_1alert_1signature_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  libtorrent::dht_mutable_item_alert *arg1 = (libtorrent::dht_mutable_item_alert *) 0 ;
-  std::array< char,64 > *arg2 = (std::array< char,64 > *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(libtorrent::dht_mutable_item_alert **)&jarg1; 
-  arg2 = *(std::array< char,64 > **)&jarg2; 
-  if (arg1) (arg1)->signature = *arg2;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1mutable_1item_1alert_1signature_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  libtorrent::dht_mutable_item_alert *arg1 = (libtorrent::dht_mutable_item_alert *) 0 ;
-  std::array< char,64 > *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::dht_mutable_item_alert **)&jarg1; 
-  result = (std::array< char,64 > *)& ((arg1)->signature);
-  *(std::array< char,64 > **)&jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1mutable_1item_1alert_1seq_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   libtorrent::dht_mutable_item_alert *arg1 = (libtorrent::dht_mutable_item_alert *) 0 ;
   std::int64_t arg2 ;
@@ -46794,14 +46545,14 @@ SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1muta
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1mutable_1item_1alert_1get_1key(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   libtorrent::dht_mutable_item_alert *arg1 = (libtorrent::dht_mutable_item_alert *) 0 ;
-  std::vector< int8_t > result;
+  std::array< std::int8_t,32 > result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(libtorrent::dht_mutable_item_alert **)&jarg1; 
   result = libtorrent_dht_mutable_item_alert_get_key(arg1);
-  *(std::vector< int8_t > **)&jresult = new std::vector< int8_t >((const std::vector< int8_t > &)result); 
+  *(std::array< std::int8_t,32 > **)&jresult = new std::array< std::int8_t,32 >((const std::array< std::int8_t,32 > &)result); 
   return jresult;
 }
 
@@ -46809,14 +46560,14 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1mutable
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1mutable_1item_1alert_1get_1signature(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   libtorrent::dht_mutable_item_alert *arg1 = (libtorrent::dht_mutable_item_alert *) 0 ;
-  std::vector< int8_t > result;
+  std::array< std::int8_t,64 > result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(libtorrent::dht_mutable_item_alert **)&jarg1; 
   result = libtorrent_dht_mutable_item_alert_get_signature(arg1);
-  *(std::vector< int8_t > **)&jresult = new std::vector< int8_t >((const std::vector< int8_t > &)result); 
+  *(std::array< std::int8_t,64 > **)&jresult = new std::array< std::int8_t,64 >((const std::array< std::int8_t,64 > &)result); 
   return jresult;
 }
 
@@ -46839,14 +46590,14 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1mutable
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1mutable_1item_1alert_1get_1salt(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   libtorrent::dht_mutable_item_alert *arg1 = (libtorrent::dht_mutable_item_alert *) 0 ;
-  std::vector< int8_t > result;
+  std::vector< std::int8_t > result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(libtorrent::dht_mutable_item_alert **)&jarg1; 
   result = libtorrent_dht_mutable_item_alert_get_salt(arg1);
-  *(std::vector< int8_t > **)&jresult = new std::vector< int8_t >((const std::vector< int8_t > &)result); 
+  *(std::vector< std::int8_t > **)&jresult = new std::vector< std::int8_t >((const std::vector< std::int8_t > &)result); 
   return jresult;
 }
 
@@ -46986,64 +46737,6 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1put_1al
 }
 
 
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1put_1alert_1public_1key_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  libtorrent::dht_put_alert *arg1 = (libtorrent::dht_put_alert *) 0 ;
-  std::array< char,32 > *arg2 = (std::array< char,32 > *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(libtorrent::dht_put_alert **)&jarg1; 
-  arg2 = *(std::array< char,32 > **)&jarg2; 
-  if (arg1) (arg1)->public_key = *arg2;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1put_1alert_1public_1key_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  libtorrent::dht_put_alert *arg1 = (libtorrent::dht_put_alert *) 0 ;
-  std::array< char,32 > *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::dht_put_alert **)&jarg1; 
-  result = (std::array< char,32 > *)& ((arg1)->public_key);
-  *(std::array< char,32 > **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1put_1alert_1signature_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  libtorrent::dht_put_alert *arg1 = (libtorrent::dht_put_alert *) 0 ;
-  std::array< char,64 > *arg2 = (std::array< char,64 > *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(libtorrent::dht_put_alert **)&jarg1; 
-  arg2 = *(std::array< char,64 > **)&jarg2; 
-  if (arg1) (arg1)->signature = *arg2;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1put_1alert_1signature_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  libtorrent::dht_put_alert *arg1 = (libtorrent::dht_put_alert *) 0 ;
-  std::array< char,64 > *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::dht_put_alert **)&jarg1; 
-  result = (std::array< char,64 > *)& ((arg1)->signature);
-  *(std::array< char,64 > **)&jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1put_1alert_1salt_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   libtorrent::dht_put_alert *arg1 = (libtorrent::dht_put_alert *) 0 ;
   std::string *arg2 = 0 ;
@@ -47139,14 +46832,14 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1put_1ale
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1put_1alert_1get_1public_1key(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   libtorrent::dht_put_alert *arg1 = (libtorrent::dht_put_alert *) 0 ;
-  std::vector< int8_t > result;
+  std::array< std::int8_t,32 > result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(libtorrent::dht_put_alert **)&jarg1; 
   result = libtorrent_dht_put_alert_get_public_key(arg1);
-  *(std::vector< int8_t > **)&jresult = new std::vector< int8_t >((const std::vector< int8_t > &)result); 
+  *(std::array< std::int8_t,32 > **)&jresult = new std::array< std::int8_t,32 >((const std::array< std::int8_t,32 > &)result); 
   return jresult;
 }
 
@@ -47154,14 +46847,14 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1put_1al
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1put_1alert_1get_1signature(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   libtorrent::dht_put_alert *arg1 = (libtorrent::dht_put_alert *) 0 ;
-  std::vector< int8_t > result;
+  std::array< std::int8_t,64 > result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(libtorrent::dht_put_alert **)&jarg1; 
   result = libtorrent_dht_put_alert_get_signature(arg1);
-  *(std::vector< int8_t > **)&jresult = new std::vector< int8_t >((const std::vector< int8_t > &)result); 
+  *(std::array< std::int8_t,64 > **)&jresult = new std::array< std::int8_t,64 >((const std::array< std::int8_t,64 > &)result); 
   return jresult;
 }
 
@@ -47169,14 +46862,14 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1put_1al
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_dht_1put_1alert_1get_1salt(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   libtorrent::dht_put_alert *arg1 = (libtorrent::dht_put_alert *) 0 ;
-  std::vector< int8_t > result;
+  std::vector< std::int8_t > result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(libtorrent::dht_put_alert **)&jarg1; 
   result = libtorrent_dht_put_alert_get_salt(arg1);
-  *(std::vector< int8_t > **)&jresult = new std::vector< int8_t >((const std::vector< int8_t > &)result); 
+  *(std::vector< std::int8_t > **)&jresult = new std::vector< std::int8_t >((const std::vector< std::int8_t > &)result); 
   return jresult;
 }
 
@@ -54163,8 +53856,8 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1hand
 
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1handle_1dht_1get_1item_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_) {
   libtorrent::session_handle *arg1 = (libtorrent::session_handle *) 0 ;
-  std::vector< int8_t > *arg2 = 0 ;
-  std::vector< int8_t > *arg3 = 0 ;
+  std::array< std::int8_t,32 > *arg2 = 0 ;
+  std::vector< std::int8_t > *arg3 = 0 ;
   
   (void)jenv;
   (void)jcls;
@@ -54172,14 +53865,14 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1hand
   (void)jarg2_;
   (void)jarg3_;
   arg1 = *(libtorrent::session_handle **)&jarg1; 
-  arg2 = *(std::vector< int8_t > **)&jarg2;
+  arg2 = *(std::array< std::int8_t,32 > **)&jarg2;
   if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< std::int8_t,32 > & reference is null");
     return ;
   } 
-  arg3 = *(std::vector< int8_t > **)&jarg3;
+  arg3 = *(std::vector< std::int8_t > **)&jarg3;
   if (!arg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::int8_t > & reference is null");
     return ;
   } 
   libtorrent_session_handle_dht_get_item__SWIG_1(arg1,*arg2,*arg3);
@@ -54188,8 +53881,8 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1hand
 
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1handle_1dht_1put_1item_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jlong jarg4, jobject jarg4_, jlong jarg5, jobject jarg5_) {
   libtorrent::session_handle *arg1 = (libtorrent::session_handle *) 0 ;
-  std::vector< int8_t > *arg2 = 0 ;
-  std::vector< int8_t > *arg3 = 0 ;
+  std::array< std::int8_t,32 > *arg2 = 0 ;
+  std::array< std::int8_t,64 > *arg3 = 0 ;
   libtorrent::entry *arg4 = 0 ;
   std::vector< int8_t > *arg5 = 0 ;
   
@@ -54201,14 +53894,14 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1hand
   (void)jarg4_;
   (void)jarg5_;
   arg1 = *(libtorrent::session_handle **)&jarg1; 
-  arg2 = *(std::vector< int8_t > **)&jarg2;
+  arg2 = *(std::array< std::int8_t,32 > **)&jarg2;
   if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< std::int8_t,32 > & reference is null");
     return ;
   } 
-  arg3 = *(std::vector< int8_t > **)&jarg3;
+  arg3 = *(std::array< std::int8_t,64 > **)&jarg3;
   if (!arg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int8_t > & reference is null");
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< std::int8_t,64 > & reference is null");
     return ;
   } 
   arg4 = *(libtorrent::entry **)&jarg4;
@@ -54229,7 +53922,7 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1hand
   libtorrent::session_handle *arg1 = (libtorrent::session_handle *) 0 ;
   libtorrent::udp::endpoint *arg2 = 0 ;
   libtorrent::entry *arg3 = 0 ;
-  int64_t arg4 ;
+  std::int64_t arg4 ;
   
   (void)jenv;
   (void)jcls;
@@ -54247,7 +53940,7 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1hand
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::entry const & reference is null");
     return ;
   } 
-  arg4 = (int64_t)jarg4; 
+  arg4 = (std::int64_t)jarg4; 
   libtorrent_session_handle_dht_direct_request__SWIG_2(arg1,(libtorrent::udp::endpoint const &)*arg2,(libtorrent::entry const &)*arg3,arg4);
 }
 
@@ -54255,14 +53948,14 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1hand
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1handle_1wait_1for_1alert_1ms(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   jlong jresult = 0 ;
   libtorrent::session_handle *arg1 = (libtorrent::session_handle *) 0 ;
-  int64_t arg2 ;
+  std::int64_t arg2 ;
   libtorrent::alert *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(libtorrent::session_handle **)&jarg1; 
-  arg2 = (int64_t)jarg2; 
+  arg2 = (std::int64_t)jarg2; 
   result = (libtorrent::alert *)libtorrent_session_handle_wait_for_alert_ms(arg1,arg2);
   *(libtorrent::alert **)&jresult = result; 
   return jresult;

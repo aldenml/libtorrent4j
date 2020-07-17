@@ -497,11 +497,11 @@ public class SessionManager {
                 if (ti.numFiles() != priorities.length) {
                     throw new IllegalArgumentException("priorities count should be equals to the number of files");
                 }
-                th.prioritize_files2(Priority.array2vector(priorities));
+                th.prioritize_files_ex(Priority.array2vector(priorities));
             } else {
                 // did they just add the entire torrent (therefore not selecting any priorities)
                 priorities = Priority.array(Priority.DEFAULT, ti.numFiles());
-                th.prioritize_files2(Priority.array2vector(priorities));
+                th.prioritize_files_ex(Priority.array2vector(priorities));
             }
 
             return;
@@ -547,7 +547,7 @@ public class SessionManager {
             for (TcpEndpoint endp : peers) {
                 v.add(endp.swig());
             }
-            p.set_peers(v);
+            p.setPeers(v);
         }
 
         torrent_flags_t flags = p.getFlags();

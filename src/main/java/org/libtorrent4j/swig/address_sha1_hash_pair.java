@@ -8,16 +8,16 @@
 
 package org.libtorrent4j.swig;
 
-public class address_node_id_pair {
+public class address_sha1_hash_pair {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
-  protected address_node_id_pair(long cPtr, boolean cMemoryOwn) {
+  protected address_sha1_hash_pair(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(address_node_id_pair obj) {
+  protected static long getCPtr(address_sha1_hash_pair obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
@@ -30,39 +30,39 @@ public class address_node_id_pair {
     if (swigCPtr != 0) {
       if (swigCMemOwn) {
         swigCMemOwn = false;
-        libtorrent_jni.delete_address_node_id_pair(swigCPtr);
+        libtorrent_jni.delete_address_sha1_hash_pair(swigCPtr);
       }
       swigCPtr = 0;
     }
   }
 
-  public address_node_id_pair() {
-    this(libtorrent_jni.new_address_node_id_pair__SWIG_0(), true);
+  public address_sha1_hash_pair() {
+    this(libtorrent_jni.new_address_sha1_hash_pair__SWIG_0(), true);
   }
 
-  public address_node_id_pair(address first, sha1_hash second) {
-    this(libtorrent_jni.new_address_node_id_pair__SWIG_1(address.getCPtr(first), first, sha1_hash.getCPtr(second), second), true);
+  public address_sha1_hash_pair(address first, sha1_hash second) {
+    this(libtorrent_jni.new_address_sha1_hash_pair__SWIG_1(address.getCPtr(first), first, sha1_hash.getCPtr(second), second), true);
   }
 
-  public address_node_id_pair(address_node_id_pair other) {
-    this(libtorrent_jni.new_address_node_id_pair__SWIG_2(address_node_id_pair.getCPtr(other), other), true);
+  public address_sha1_hash_pair(address_sha1_hash_pair other) {
+    this(libtorrent_jni.new_address_sha1_hash_pair__SWIG_2(address_sha1_hash_pair.getCPtr(other), other), true);
   }
 
   public void setFirst(address value) {
-    libtorrent_jni.address_node_id_pair_first_set(swigCPtr, this, address.getCPtr(value), value);
+    libtorrent_jni.address_sha1_hash_pair_first_set(swigCPtr, this, address.getCPtr(value), value);
   }
 
   public address getFirst() {
-    long cPtr = libtorrent_jni.address_node_id_pair_first_get(swigCPtr, this);
+    long cPtr = libtorrent_jni.address_sha1_hash_pair_first_get(swigCPtr, this);
     return (cPtr == 0) ? null : new address(cPtr, false);
   }
 
   public void setSecond(sha1_hash value) {
-    libtorrent_jni.address_node_id_pair_second_set(swigCPtr, this, sha1_hash.getCPtr(value), value);
+    libtorrent_jni.address_sha1_hash_pair_second_set(swigCPtr, this, sha1_hash.getCPtr(value), value);
   }
 
   public sha1_hash getSecond() {
-    long cPtr = libtorrent_jni.address_node_id_pair_second_get(swigCPtr, this);
+    long cPtr = libtorrent_jni.address_sha1_hash_pair_second_get(swigCPtr, this);
     return (cPtr == 0) ? null : new sha1_hash(cPtr, false);
   }
 

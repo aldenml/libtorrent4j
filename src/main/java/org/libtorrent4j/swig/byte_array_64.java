@@ -8,16 +8,16 @@
 
 package org.libtorrent4j.swig;
 
-public class char_array_64 {
+public class byte_array_64 {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
-  protected char_array_64(long cPtr, boolean cMemoryOwn) {
+  protected byte_array_64(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(char_array_64 obj) {
+  protected static long getCPtr(byte_array_64 obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
@@ -30,38 +30,38 @@ public class char_array_64 {
     if (swigCPtr != 0) {
       if (swigCMemOwn) {
         swigCMemOwn = false;
-        libtorrent_jni.delete_char_array_64(swigCPtr);
+        libtorrent_jni.delete_byte_array_64(swigCPtr);
       }
       swigCPtr = 0;
     }
   }
 
-  public char_array_64() {
-    this(libtorrent_jni.new_char_array_64__SWIG_0(), true);
+  public byte_array_64() {
+    this(libtorrent_jni.new_byte_array_64__SWIG_0(), true);
   }
 
-  public char_array_64(char_array_64 other) {
-    this(libtorrent_jni.new_char_array_64__SWIG_1(char_array_64.getCPtr(other), other), true);
+  public byte_array_64(byte_array_64 other) {
+    this(libtorrent_jni.new_byte_array_64__SWIG_1(byte_array_64.getCPtr(other), other), true);
   }
 
   public long size() {
-    return libtorrent_jni.char_array_64_size(swigCPtr, this);
+    return libtorrent_jni.byte_array_64_size(swigCPtr, this);
   }
 
   public boolean isEmpty() {
-    return libtorrent_jni.char_array_64_isEmpty(swigCPtr, this);
+    return libtorrent_jni.byte_array_64_isEmpty(swigCPtr, this);
   }
 
-  public void fill(char u) {
-    libtorrent_jni.char_array_64_fill(swigCPtr, this, u);
+  public void fill(byte u) {
+    libtorrent_jni.byte_array_64_fill(swigCPtr, this, u);
   }
 
-  public char get(int i) {
-    return libtorrent_jni.char_array_64_get(swigCPtr, this, i);
+  public byte get(int i) {
+    return libtorrent_jni.byte_array_64_get(swigCPtr, this, i);
   }
 
-  public void set(int i, char val) {
-    libtorrent_jni.char_array_64_set(swigCPtr, this, i, val);
+  public void set(int i, byte val) {
+    libtorrent_jni.byte_array_64_set(swigCPtr, this, i, val);
   }
 
 }

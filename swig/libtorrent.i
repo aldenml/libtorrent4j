@@ -36,7 +36,6 @@
 #include "libtorrent/flags.hpp"
 #include "libtorrent/address.hpp"
 #include "libtorrent/socket.hpp"
-#include "libtorrent/kademlia/node_id.hpp"
 #include "libtorrent/kademlia/dht_state.hpp"
 #include "libtorrent/client_data.hpp"
 #include "libtorrent/sha1_hash.hpp"
@@ -62,7 +61,6 @@
 #include "libtorrent/piece_block.hpp"
 #include "libtorrent/socket_type.hpp"
 #include "libtorrent/entry.hpp"
-#include "libtorrent/peer_id.hpp"
 #include "libtorrent/tracker_manager.hpp"
 #include "libtorrent/alert.hpp"
 #include "libtorrent/alert_types.hpp"
@@ -166,7 +164,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 
 %template(sha1_hash_udp_endpoint_pair) std::pair<libtorrent::digest32<160>, libtorrent::udp::endpoint>;
 %template(bdecode_node_bdecode_node_pair) std::pair<libtorrent::bdecode_node, libtorrent::bdecode_node>;
-%template(address_node_id_pair) std::pair<libtorrent::address, libtorrent::dht::node_id>;
+%template(address_sha1_hash_pair) std::pair<libtorrent::address, libtorrent::digest32<160>>;
 
 %template(string_vector) std::vector<std::string>;
 %template(int_vector) std::vector<int>;
@@ -199,11 +197,10 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(bool_vector_vector) std::vector<std::vector<bool>>;
 %template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;
 %template(sha1_hash_udp_endpoint_pair_vector) std::vector<std::pair<libtorrent::digest32<160>, libtorrent::udp::endpoint>>;
-%template(address_node_id_pair_vector) std::vector<std::pair<libtorrent::address, libtorrent::dht::node_id>>;
+%template(address_sha1_hash_pair_vector) std::vector<std::pair<libtorrent::address, libtorrent::digest32<160>>>;
 
 %template(byte_array_32) std::array<std::int8_t, 32>;
-%template(char_array_32) std::array<char, 32>;
-%template(char_array_64) std::array<char, 64>;
+%template(byte_array_64) std::array<std::int8_t, 64>;
 
 %template(int_string_map) std::map<int, std::string>;
 %template(string_string_map) std::map<std::string, std::string>;
@@ -249,7 +246,6 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %include "libtorrent/flags.i"
 %include "libtorrent/address.i"
 %include "libtorrent/socket.i"
-%include "libtorrent/kademlia/node_id.i"
 %include "libtorrent/kademlia/dht_state.i"
 %include "libtorrent/client_data.i"
 %include "libtorrent/sha1_hash.i"
@@ -275,7 +271,6 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %include "libtorrent/piece_block.i"
 %include "libtorrent/socket_type.i"
 %include "libtorrent/entry.i"
-%include "libtorrent/peer_id.i"
 %include "libtorrent/tracker_manager.i"
 %include "libtorrent/alert.i"
 %include "libtorrent/alert_types.i"
@@ -296,5 +291,6 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 
 // for libtorrent.hpp
 %ignore set_piece_hashes_listener::progress_index;
+%ignore dht_put_item_cb;
 
 %include "libtorrent.hpp"

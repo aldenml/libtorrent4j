@@ -61,24 +61,6 @@ public class dht_put_alert extends alert {
     return (cPtr == 0) ? null : new sha1_hash(cPtr, false);
   }
 
-  public void setPublic_key(char_array_32 value) {
-    libtorrent_jni.dht_put_alert_public_key_set(swigCPtr, this, char_array_32.getCPtr(value), value);
-  }
-
-  public char_array_32 getPublic_key() {
-    long cPtr = libtorrent_jni.dht_put_alert_public_key_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new char_array_32(cPtr, false);
-  }
-
-  public void setSignature(char_array_64 value) {
-    libtorrent_jni.dht_put_alert_signature_set(swigCPtr, this, char_array_64.getCPtr(value), value);
-  }
-
-  public char_array_64 getSignature() {
-    long cPtr = libtorrent_jni.dht_put_alert_signature_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new char_array_64(cPtr, false);
-  }
-
   public void setSalt(String value) {
     libtorrent_jni.dht_put_alert_salt_set(swigCPtr, this, value);
   }
@@ -103,12 +85,12 @@ public class dht_put_alert extends alert {
     return libtorrent_jni.dht_put_alert_num_success_get(swigCPtr, this);
   }
 
-  public byte_vector get_public_key() {
-    return new byte_vector(libtorrent_jni.dht_put_alert_get_public_key(swigCPtr, this), true);
+  public byte_array_32 get_public_key() {
+    return new byte_array_32(libtorrent_jni.dht_put_alert_get_public_key(swigCPtr, this), true);
   }
 
-  public byte_vector get_signature() {
-    return new byte_vector(libtorrent_jni.dht_put_alert_get_signature(swigCPtr, this), true);
+  public byte_array_64 get_signature() {
+    return new byte_array_64(libtorrent_jni.dht_put_alert_get_signature(swigCPtr, this), true);
   }
 
   public byte_vector get_salt() {

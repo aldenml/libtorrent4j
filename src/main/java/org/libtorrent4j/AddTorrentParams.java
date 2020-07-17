@@ -1,6 +1,16 @@
 package org.libtorrent4j;
 
-import org.libtorrent4j.swig.*;
+import org.libtorrent4j.swig.add_torrent_params;
+import org.libtorrent4j.swig.byte_vector;
+import org.libtorrent4j.swig.error_code;
+import org.libtorrent4j.swig.int_vector;
+import org.libtorrent4j.swig.storage_mode_t;
+import org.libtorrent4j.swig.string_int_pair;
+import org.libtorrent4j.swig.string_int_pair_vector;
+import org.libtorrent4j.swig.string_vector;
+import org.libtorrent4j.swig.tcp_endpoint_vector;
+import org.libtorrent4j.swig.torrent_flags_t;
+import org.libtorrent4j.swig.torrent_info;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +37,7 @@ import java.util.List;
  * @author aldenml
  */
 public final class AddTorrentParams
-    extends SwigObject<add_torrent_params> {
+        extends SwigObject<add_torrent_params> {
 
     /**
      * The native object
@@ -81,7 +91,7 @@ public final class AddTorrentParams
      * @return the list of trackers
      */
     public List<String> trackers() {
-        return new ArrayList<>(h.get_trackers());
+        return new ArrayList<>(h.getTrackers());
     }
 
     /**
@@ -92,7 +102,7 @@ public final class AddTorrentParams
      */
     public void trackers(List<String> value) {
         string_vector v = new string_vector(value);
-        h.set_trackers(v);
+        h.setTrackers(v);
     }
 
     /**
@@ -105,7 +115,7 @@ public final class AddTorrentParams
      * @return the list of trackers tiers
      */
     public List<Integer> trackerTiers() {
-        return new ArrayList<>(h.get_tracker_tiers());
+        return new ArrayList<>(h.getTracker_tiers());
     }
 
     /**
@@ -119,7 +129,7 @@ public final class AddTorrentParams
      */
     public void trackerTiers(List<Integer> value) {
         int_vector v = new int_vector(value);
-        h.set_tracker_tiers(v);
+        h.setTracker_tiers(v);
     }
 
     /**
@@ -129,8 +139,8 @@ public final class AddTorrentParams
      * @return the list of DHT nodes
      */
     public ArrayList<Pair<String, Integer>> dhtNodes() {
-        string_int_pair_vector v = h.get_dht_nodes();
-        int size = (int) v.size();
+        string_int_pair_vector v = h.getDht_nodes();
+        int size = v.size();
         ArrayList<Pair<String, Integer>> l = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
@@ -154,7 +164,7 @@ public final class AddTorrentParams
             v.add(p.to_string_int_pair());
         }
 
-        h.set_dht_nodes(v);
+        h.setDht_nodes(v);
     }
 
     /**
@@ -345,8 +355,8 @@ public final class AddTorrentParams
      * @return the url seeds
      */
     public ArrayList<String> urlSeeds() {
-        string_vector v = h.get_url_seeds();
-        int size = (int) v.size();
+        string_vector v = h.getUrl_seeds();
+        int size = v.size();
         ArrayList<String> l = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
@@ -368,7 +378,7 @@ public final class AddTorrentParams
             v.add(s);
         }
 
-        h.set_url_seeds(v);
+        h.setUrl_seeds(v);
     }
 
     public Priority[] filePriorities() {
@@ -411,8 +421,8 @@ public final class AddTorrentParams
      * @return the peers list
      */
     public ArrayList<TcpEndpoint> peers() {
-        tcp_endpoint_vector v = h.get_peers();
-        int size = (int) v.size();
+        tcp_endpoint_vector v = h.getPeers();
+        int size = v.size();
         ArrayList<TcpEndpoint> l = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
@@ -435,7 +445,7 @@ public final class AddTorrentParams
             v.add(endp.swig());
         }
 
-        h.set_peers(v);
+        h.setPeers(v);
     }
 
     /**
@@ -444,8 +454,8 @@ public final class AddTorrentParams
      * @return the peers list
      */
     public ArrayList<TcpEndpoint> bannedPeers() {
-        tcp_endpoint_vector v = h.get_banned_peers();
-        int size = (int) v.size();
+        tcp_endpoint_vector v = h.getBanned_peers();
+        int size = v.size();
         ArrayList<TcpEndpoint> l = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
@@ -467,7 +477,7 @@ public final class AddTorrentParams
             v.add(endp.swig());
         }
 
-        h.set_banned_peers(v);
+        h.setBanned_peers(v);
     }
 
     /**
