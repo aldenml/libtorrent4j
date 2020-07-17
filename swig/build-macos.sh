@@ -8,3 +8,6 @@ $BOOST_ROOT/b2 -j8 --user-config=config/macos-x86_64-config.jam variant=release 
 dsymutil bin/release/macos/x86_64/libtorrent4j.dylib -o bin/release/macos/x86_64/libtorrent4j.dSYM
 strip -x bin/release/macos/x86_64/libtorrent4j.dylib
 cp bin/release/macos/x86_64/libtorrent4j.dylib ../
+
+rm -rf deps/libtorrent/deps/libdatachannel/deps/libjuice/build-openssl-release
+rm -rf deps/libtorrent/deps/libdatachannel/deps/usrsctp/build-openssl-release
