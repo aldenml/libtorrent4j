@@ -2,6 +2,7 @@ package org.libtorrent4j;
 
 import org.libtorrent4j.swig.add_torrent_params;
 import org.libtorrent4j.swig.byte_vector;
+import org.libtorrent4j.swig.entry;
 import org.libtorrent4j.swig.error_code;
 import org.libtorrent4j.swig.int_vector;
 import org.libtorrent4j.swig.storage_mode_t;
@@ -37,7 +38,7 @@ import java.util.List;
  * @author aldenml
  */
 public final class AddTorrentParams
-        extends SwigObject<add_torrent_params> {
+    extends SwigObject<add_torrent_params> {
 
     /**
      * The native object
@@ -69,7 +70,7 @@ public final class AddTorrentParams
      *
      * @return the torrent info or null if not set
      */
-    public TorrentInfo torrentInfo() {
+    public TorrentInfo getTorrentInfo() {
         torrent_info ti = h.ti_ptr();
         return ti != null && ti.is_valid() ? new TorrentInfo(ti) : null;
     }
@@ -79,7 +80,7 @@ public final class AddTorrentParams
      *
      * @param ti the torrent info
      */
-    public void torrentInfo(TorrentInfo ti) {
+    public void setTorrentInfo(TorrentInfo ti) {
         h.set_ti(ti.swig());
     }
 
@@ -493,5 +494,23 @@ public final class AddTorrentParams
             throw new IllegalArgumentException("Invalid magnet uri: " + ec.message());
         }
         return new AddTorrentParams(params);
+    }
+
+    /**
+     * Turns the resume data in an `AddTorrentParams` object
+     * into a bencoded structure.
+     */
+    public static Entry writeResumeData(AddTorrentParams params) {
+        entry e = add_torrent_params.write_resume_data(params.h);
+        return new Entry(e);
+    }
+
+    /**
+     * Turns the resume data in an `AddTorrentParams` object
+     * into a bencoded structure as a byte array.
+     */
+    public static byte[] writeResumeDataBuf(AddTorrentParams params) {
+        byte_vector v = add_torrent_params.write_resume_data_buf(params.h);
+        return Vectors.byte_vector2bytes(v);
     }
 }

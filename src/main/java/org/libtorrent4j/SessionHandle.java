@@ -1,9 +1,21 @@
 package org.libtorrent4j;
 
-import org.libtorrent4j.alerts.*;
-import org.libtorrent4j.swig.*;
+import org.libtorrent4j.alerts.AddTorrentAlert;
 import org.libtorrent4j.alerts.DhtImmutableItemAlert;
 import org.libtorrent4j.alerts.DhtMutableItemAlert;
+import org.libtorrent4j.alerts.SessionStatsAlert;
+import org.libtorrent4j.alerts.StateUpdateAlert;
+import org.libtorrent4j.swig.error_code;
+import org.libtorrent4j.swig.int_vector;
+import org.libtorrent4j.swig.libtorrent_errors;
+import org.libtorrent4j.swig.portmap_protocol;
+import org.libtorrent4j.swig.remove_flags_t;
+import org.libtorrent4j.swig.reopen_network_flags_t;
+import org.libtorrent4j.swig.save_state_flags_t;
+import org.libtorrent4j.swig.session_handle;
+import org.libtorrent4j.swig.status_flags_t;
+import org.libtorrent4j.swig.torrent_handle;
+import org.libtorrent4j.swig.torrent_handle_vector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,32 +34,29 @@ import java.util.List;
  * @author gubatron
  * @author aldenml
  */
-public class SessionHandle {
-
-    private static final Logger LOG = Logger.getLogger(SessionHandle.class);
-
-    protected final session_handle s;
+public class SessionHandle
+    extends SwigObject<session_handle> {
 
     // protocols used by add_port_mapping()
     public static final portmap_protocol UDP = session_handle.udp;
     public static final portmap_protocol TCP = session_handle.tcp;
 
     /**
-     * @param s the native object
+     * @param handle the native object
      */
-    public SessionHandle(session_handle s) {
-        this.s = s;
+    public SessionHandle(session_handle handle) {
+        super(handle);
     }
 
     /**
      * @return the native object
      */
     public session_handle swig() {
-        return s;
+        return h;
     }
 
     public boolean isValid() {
-        return s.is_valid();
+        return h.is_valid();
     }
 
     /**
@@ -74,7 +83,7 @@ public class SessionHandle {
      * @param flags or-combination of native values
      */
     public void postTorrentUpdates(status_flags_t flags) {
-        s.post_torrent_updates(flags);
+        h.post_torrent_updates(flags);
     }
 
     /**
@@ -87,7 +96,7 @@ public class SessionHandle {
      * included.
      */
     public void postTorrentUpdates() {
-        s.post_torrent_updates();
+        h.post_torrent_updates();
     }
 
     /**
@@ -97,14 +106,14 @@ public class SessionHandle {
      * session_stats_metrics().
      */
     public void postSessionStats() {
-        s.post_session_stats();
+        h.post_session_stats();
     }
 
     /**
      * This will cause a dht_stats_alert to be posted.
      */
     public void postDhtStats() {
-        s.post_dht_stats();
+        h.post_dht_stats();
     }
 
     /**
@@ -115,10 +124,9 @@ public class SessionHandle {
      * In case the torrent cannot be found, a null is returned.
      *
      * @param infoHash
-     *
      */
     public TorrentHandle findTorrent(Sha1Hash infoHash) {
-        torrent_handle th = s.find_torrent(infoHash.swig());
+        torrent_handle th = h.find_torrent(infoHash.swig());
 
         return th != null && th.is_valid() ? new TorrentHandle(th) : null;
     }
@@ -126,11 +134,9 @@ public class SessionHandle {
     /**
      * Returns a list of torrent handles to all the
      * torrents currently in the session.
-     *
-     *
      */
     public List<TorrentHandle> torrents() {
-        torrent_handle_vector v = s.get_torrents();
+        torrent_handle_vector v = h.get_torrents();
         int size = (int) v.size();
 
         ArrayList<TorrentHandle> l = new ArrayList<>(size);
@@ -172,13 +178,13 @@ public class SessionHandle {
      */
     public TorrentHandle addTorrent(AddTorrentParams params, ErrorCode ec) {
         error_code e = new error_code();
-        TorrentHandle th = new TorrentHandle(s.add_torrent(params.swig(), e));
+        TorrentHandle th = new TorrentHandle(h.add_torrent(params.swig(), e));
         ec.assign(e);
         return th;
     }
 
     public void asyncAddTorrent(AddTorrentParams params) {
-        s.async_add_torrent(params.swig());
+        h.async_add_torrent(params.swig());
     }
 
     /**
@@ -207,7 +213,7 @@ public class SessionHandle {
      */
     public void removeTorrent(TorrentHandle th, remove_flags_t options) {
         if (th.isValid()) {
-            s.remove_torrent(th.swig(), options);
+            h.remove_torrent(th.swig(), options);
         }
     }
 
@@ -220,7 +226,7 @@ public class SessionHandle {
      */
     public void removeTorrent(TorrentHandle th) {
         if (th.isValid()) {
-            s.remove_torrent(th.swig());
+            h.remove_torrent(th.swig());
         }
     }
 
@@ -230,7 +236,7 @@ public class SessionHandle {
      * mechanism.
      */
     public void pause() {
-        s.pause();
+        h.pause();
     }
 
     /**
@@ -240,11 +246,11 @@ public class SessionHandle {
      * paused.
      */
     public void resume() {
-        s.resume();
+        h.resume();
     }
 
     public boolean isPaused() {
-        return s.is_paused();
+        return h.is_paused();
     }
 
     // starts/stops UPnP, NATPMP or LSD port mappers they are stopped by
@@ -288,7 +294,7 @@ public class SessionHandle {
 
 
     public boolean isDhtRunning() {
-        return s.is_dht_running();
+        return h.is_dht_running();
     }
 
     /**
@@ -299,7 +305,7 @@ public class SessionHandle {
      * @param node
      */
     public void addDhtNode(Pair<String, Integer> node) {
-        s.add_dht_node(node.to_string_int_pair());
+        h.add_dht_node(node.to_string_int_pair());
     }
 
     /**
@@ -310,14 +316,14 @@ public class SessionHandle {
      * @param sp the settings
      */
     public void applySettings(SettingsPack sp) {
-        s.apply_settings(sp.swig());
+        h.apply_settings(sp.swig());
     }
 
     /**
      * @return a copy of the internal settings
      */
     public SettingsPack settings() {
-        return new SettingsPack(s.get_settings());
+        return new SettingsPack(h.get_settings());
     }
 
     /**
@@ -332,7 +338,7 @@ public class SessionHandle {
      * @return the array of port mapping ids
      */
     public int[] addPortMapping(PortmapProtocol t, int externalPort, int localPort) {
-        int_vector v = s.add_port_mapping_ex(portmap_protocol.swigToEnum(t.swig()), externalPort, localPort);
+        int_vector v = h.add_port_mapping_ex(portmap_protocol.swigToEnum(t.swig()), externalPort, localPort);
 
         int size = v.size();
         int[] arr = new int[size];
@@ -345,7 +351,7 @@ public class SessionHandle {
     }
 
     public void deletePortMapping(int handle) {
-        s.delete_port_mapping_ex(handle);
+        h.delete_port_mapping_ex(handle);
     }
 
     /**
@@ -366,7 +372,7 @@ public class SessionHandle {
      * @param options the options
      */
     public void reopenNetworkSockets(reopen_network_flags_t options) {
-        s.reopen_network_sockets(options);
+        h.reopen_network_sockets(options);
     }
 
     /**
@@ -377,7 +383,7 @@ public class SessionHandle {
      * detect changes in the IP routing table.
      */
     public void reopenNetworkSockets() {
-        s.reopen_network_sockets();
+        h.reopen_network_sockets();
     }
 
     /**
@@ -387,7 +393,7 @@ public class SessionHandle {
      * @param target
      */
     public void dhtGetItem(Sha1Hash target) {
-        s.dht_get_item(target.swig());
+        h.dht_get_item(target.swig());
     }
 
     /**
@@ -402,7 +408,7 @@ public class SessionHandle {
      * @param salt
      */
     public void dhtGetItem(byte[] key, byte[] salt) {
-        s.dht_get_item(Vectors.bytes2byte_array_32(key), Vectors.bytes2byte_vector(salt));
+        h.dht_get_item(Vectors.bytes2byte_array_32(key), Vectors.bytes2byte_vector(salt));
     }
 
     /**
@@ -412,10 +418,9 @@ public class SessionHandle {
      * structure.
      *
      * @param entry
-     *
      */
     public Sha1Hash dhtPutItem(Entry entry) {
-        return new Sha1Hash(s.dht_put_item(entry.swig()));
+        return new Sha1Hash(h.dht_put_item(entry.swig()));
     }
 
     // store an immutable item. The ``key`` is the public key the blob is
@@ -458,17 +463,17 @@ public class SessionHandle {
     // the DHT works, it is natural to always do a lookup before storing and
     // calling the callback in between is convenient.
     public void dhtPutItem(byte[] publicKey, byte[] privateKey, Entry entry, byte[] salt) {
-        s.dht_put_item(Vectors.bytes2byte_array_32(publicKey),
-                Vectors.bytes2byte_array_64(privateKey),
-                entry.swig(),
-                Vectors.bytes2byte_vector(salt));
+        h.dht_put_item(Vectors.bytes2byte_array_32(publicKey),
+            Vectors.bytes2byte_array_64(privateKey),
+            entry.swig(),
+            Vectors.bytes2byte_vector(salt));
     }
 
     /**
      * @param infoHash
      */
     public void dhtGetPeers(Sha1Hash infoHash) {
-        s.dht_get_peers(infoHash.swig());
+        h.dht_get_peers(infoHash.swig());
     }
 
     public static final int DHT_ANNOUNCE_SEED = 1;
@@ -481,14 +486,14 @@ public class SessionHandle {
      * @param flags
      */
     public void dhtAnnounce(Sha1Hash infoHash, int port, byte flags) {
-        s.dht_announce_ex(infoHash.swig(), port, flags);
+        h.dht_announce_ex(infoHash.swig(), port, flags);
     }
 
     /**
      * @param infoHash
      */
     public void dhtAnnounce(Sha1Hash infoHash) {
-        s.dht_announce_ex(infoHash.swig());
+        h.dht_announce_ex(infoHash.swig());
     }
 
     /**
@@ -497,7 +502,7 @@ public class SessionHandle {
      * @param userdata
      */
     public void dhtDirectRequest(UdpEndpoint endp, Entry entry, long userdata) {
-        s.dht_direct_request(endp.swig(), entry.swig(), userdata);
+        h.dht_direct_request(endp.swig(), entry.swig(), userdata);
     }
 
     /**
@@ -505,7 +510,7 @@ public class SessionHandle {
      * @param entry
      */
     public void dhtDirectRequest(UdpEndpoint endp, Entry entry) {
-        s.dht_direct_request(endp.swig(), entry.swig());
+        h.dht_direct_request(endp.swig(), entry.swig());
     }
 
     /**
@@ -513,15 +518,13 @@ public class SessionHandle {
      * just pass a port-range to the constructor and to ``listen_on()``, to
      * know which port it ended up using, you have to ask the session using
      * this function.
-     *
-     *
      */
     public int getListenPort() {
-        return s.listen_port();
+        return h.listen_port();
     }
 
     public int getSslListenPort() {
-        return s.ssl_listen_port();
+        return h.ssl_listen_port();
     }
 
     /**
@@ -533,6 +536,6 @@ public class SessionHandle {
      * @return {@code true} if listening
      */
     public boolean isListening() {
-        return s.is_listening();
+        return h.is_listening();
     }
 }

@@ -57,8 +57,6 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class SessionManager {
 
-    private static final Logger LOG = Logger.getLogger(SessionManager.class);
-
     private static final long REQUEST_STATS_RESOLUTION_MILLIS = 1000;
     private static final long ALERTS_LOOP_WAIT_MILLIS = 500;
 
@@ -454,7 +452,7 @@ public class SessionManager {
     }
 
     public boolean isDhtRunning() {
-        return session != null ? session.is_dht_running() : false;
+        return session != null && session.is_dht_running();
     }
 
     public void startDht() {
@@ -518,7 +516,7 @@ public class SessionManager {
                     throw new IllegalArgumentException("Unable to read the resume data: " + ec.message());
                 }
             } catch (Throwable e) {
-                LOG.warn("Unable to set resume data", e);
+                Log.warn("Unable to set resume data", e);
             }
         }
 
@@ -737,7 +735,7 @@ public class SessionManager {
         }
 
         final sha1_hash target = sha1.swig();
-        final Entry[] result = {null};
+        final AtomicReference<Entry> result = new AtomicReference<>();
         final CountDownLatch signal = new CountDownLatch(1);
 
         AlertListener listener = new AlertListener() {
@@ -751,7 +749,7 @@ public class SessionManager {
             public void alert(Alert<?> alert) {
                 DhtImmutableItemAlert a = (DhtImmutableItemAlert) alert;
                 if (target.op_eq(a.swig().getTarget())) {
-                    result[0] = new Entry(new entry(a.swig().getItem()));
+                    result.set(new Entry(new entry(a.swig().getItem())));
                     signal.countDown();
                 }
             }
@@ -766,12 +764,12 @@ public class SessionManager {
             signal.await(timeout, TimeUnit.SECONDS);
 
         } catch (Throwable e) {
-            LOG.error("Error getting immutable item", e);
+            Log.error("Error getting immutable item", e);
         } finally {
             removeListener(listener);
         }
 
-        return result[0];
+        return result.get();
     }
 
     /**
@@ -787,7 +785,7 @@ public class SessionManager {
             return null;
         }
 
-        final MutableItem[] result = {null};
+        final AtomicReference<MutableItem> result = new AtomicReference<>();
         final CountDownLatch signal = new CountDownLatch(1);
 
         AlertListener listener = new AlertListener() {
@@ -805,7 +803,7 @@ public class SessionManager {
                 if (sameKey && sameSalt) {
                     Entry e = new Entry(new entry(a.swig().getItem()));
                     MutableItem item = new MutableItem(e, a.signature(), a.seq());
-                    result[0] = item;
+                    result.set(item);
                     signal.countDown();
                 }
             }
@@ -820,12 +818,12 @@ public class SessionManager {
             signal.await(timeout, TimeUnit.SECONDS);
 
         } catch (Throwable e) {
-            LOG.error("Error getting mutable item", e);
+            Log.error("Error getting mutable item", e);
         } finally {
             removeListener(listener);
         }
 
-        return result[0];
+        return result.get();
     }
 
     public void dhtPutItem(byte[] publicKey, byte[] privateKey, Entry entry, byte[] salt) {
@@ -874,7 +872,7 @@ public class SessionManager {
             signal.await(timeout, TimeUnit.SECONDS);
 
         } catch (Throwable e) {
-            LOG.error("Error getting peers from the dht", e);
+            Log.error("Error getting peers from the dht", e);
         } finally {
             removeListener(listener);
         }
@@ -904,11 +902,9 @@ public class SessionManager {
 
         try {
             torrent_handle_vector v = session.get_torrents();
-            int size = (int) v.size();
 
             String path = dir.getAbsolutePath();
-            for (int i = 0; i < size; i++) {
-                torrent_handle th = v.get(i);
+            for (torrent_handle th : v) {
                 torrent_status ts = th.status();
                 boolean incomplete = !ts.getIs_seeding() && !ts.getIs_finished();
                 if (th.is_valid() && incomplete) {
@@ -916,7 +912,7 @@ public class SessionManager {
                 }
             }
         } catch (Throwable e) {
-            LOG.error("Error changing save path for session", e);
+            Log.error("Error changing save path for session", e);
         }
     }
 
@@ -1022,7 +1018,7 @@ public class SessionManager {
             try {
                 listener.alert(a);
             } catch (Throwable e) {
-                LOG.warn("Error calling alert listener: " + e.getMessage());
+                Log.warn("Error calling alert listener: " + e.getMessage());
                 lastAlertError = e;
             }
         }
@@ -1051,11 +1047,6 @@ public class SessionManager {
             String address = addr.toString();
             int port = alert.port();
 
-            // avoid invalid addresses
-            if (address.contains("invalid")) {
-                return;
-            }
-
             // avoid local-link addresses
             if (address.startsWith("127.") || address.startsWith("fe80::")) {
                 return;
@@ -1064,7 +1055,7 @@ public class SessionManager {
             String endp = (addr.isV6() ? "[" + address + "]" : address) + ":" + port;
             listenEndpoints.put(address, endp);
         } catch (Throwable e) {
-            LOG.error("Error adding listen endpoint to internal list", e);
+            Log.error("Error adding listen endpoint to internal list", e);
         }
     }
 
@@ -1084,13 +1075,9 @@ public class SessionManager {
             if (!addr.is_v4()) {
                 return;
             }
-            String address = alert.externalAddress().toString();
-            if (address.contains("invalid")) {
-                return;
-            }
-            externalAddress = address;
+            externalAddress = alert.externalAddress().toString();
         } catch (Throwable e) {
-            LOG.error("Error saving reported external ip", e);
+            Log.error("Error saving reported external ip", e);
         }
     }
 

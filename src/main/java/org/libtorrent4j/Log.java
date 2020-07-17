@@ -6,11 +6,9 @@ import static java.util.logging.Level.SEVERE;
 import static java.util.logging.Level.WARNING;
 
 /**
- * INTERNAL
- *
  * @author aldenml
  */
-public final class Log {
+final class Log {
 
     private static final Logger LOGGER = Logger.getLogger("lt4j");
 
@@ -23,5 +21,9 @@ public final class Log {
 
     public static void warn(String message, Throwable thrown) {
         LOGGER.log(WARNING, message, thrown);
+    }
+
+    public static void warn(String message) {
+        LOGGER.log(WARNING, message);
     }
 }

@@ -2,12 +2,20 @@ package org.libtorrent4j;
 
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
-import org.libtorrent4j.alerts.*;
+import org.libtorrent4j.alerts.AddTorrentAlert;
+import org.libtorrent4j.alerts.Alert;
+import org.libtorrent4j.alerts.AlertType;
+import org.libtorrent4j.alerts.PieceFinishedAlert;
+import org.libtorrent4j.alerts.SaveResumeDataAlert;
+import org.libtorrent4j.alerts.TorrentFinishedAlert;
+import org.libtorrent4j.alerts.TorrentPausedAlert;
 
 import java.io.File;
 import java.util.concurrent.CountDownLatch;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author gubatron
@@ -67,8 +75,7 @@ public final class StatusDurationTest {
                         th.saveResumeData();
                         break;
                     case SAVE_RESUME_DATA:
-                        // TODO: restore later
-                        resumeData = null;//((SaveResumeDataAlert) alert).resumeData();
+                        resumeData = AddTorrentParams.writeResumeData(((SaveResumeDataAlert) alert).params());
                         TorrentHandle th2 = ((SaveResumeDataAlert) alert).handle();
                         TorrentStatus status2 = th2.status();
                         activeDuration = status2.activeDuration();

@@ -30,11 +30,22 @@ dependencies {
     codacy("com.codacy:codacy-coverage-reporter:7.1.0")
 }
 
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
 tasks.test {
     testLogging {
-        events("passed", "skipped", "failed")
+        events("passed", "skipped", "failed", "standard_out")
+
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+        showExceptions = true
+        showCauses = true
+        showStackTraces = true
     }
 
+    systemProperty("file.encoding", "utf-8")
+    systemProperty("java.library.path", file(".").absolutePath)
     environment("LD_LIBRARY_PATH", File(".").absolutePath)
 }
 
