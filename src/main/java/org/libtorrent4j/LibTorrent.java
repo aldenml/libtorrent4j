@@ -1,7 +1,14 @@
+/*
+ * Copyright (c) 2018-2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.libtorrent;
-import org.libtorrent4j.swig.libtorrent_jni;
+import org.libtorrent4j.swig.stats_metric;
 import org.libtorrent4j.swig.stats_metric_vector;
 
 import java.util.ArrayList;
@@ -36,7 +43,7 @@ public final class LibTorrent {
      * @return the git revision
      */
     public static String revision() {
-        return "23b62acd8dc9096c1e559c0304307e9a01202c33";
+        return "6d627d7044d70b8d0ca5f7385cbf4666e7879445";
     }
 
     public static String boostVersion() {
@@ -48,7 +55,7 @@ public final class LibTorrent {
     }
 
     public static String libtorrent4jVersion() {
-        return "1.3.0-alpha-5";
+        return "2.0.0-alpha-1";
     }
 
     /**
@@ -62,12 +69,11 @@ public final class LibTorrent {
      */
     public static List<StatsMetric> sessionStatsMetrics() {
         stats_metric_vector v = libtorrent.session_stats_metrics();
-        int size = (int) v.size();
 
-        ArrayList<StatsMetric> l = new ArrayList<>(size);
+        ArrayList<StatsMetric> l = new ArrayList<>(v.size());
 
-        for (int i = 0; i < size; i++) {
-            l.add(new StatsMetric(v.get(i)));
+        for (stats_metric m : v) {
+            l.add(new StatsMetric(m));
         }
 
         return l;

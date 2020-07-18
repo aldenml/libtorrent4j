@@ -1,7 +1,8 @@
 /*
- * Created by Alden Torres (aldenml)
+ * Copyright (c) 2018-2020, Alden Torres
  *
- * Licensed under the MIT License.
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
  */
 
 package org.libtorrent4j;
