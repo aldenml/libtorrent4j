@@ -42,7 +42,7 @@ A swig Java interface for [libtorrent](https://github.com/arvidn/libtorrent).
 | UDP Tracker Protocol | [BEP 15](https://www.bittorrent.org/beps/bep_0015.html) |
 | Local Service Discovery (LSD) | [BEP 14](https://www.bittorrent.org/beps/bep_0014.html) |
 | Multitracker Metadata Extension | [BEP 12](https://www.bittorrent.org/beps/bep_0012.html) |
-| Peer Exchange (PEX) | [BEP 11](https://www.bittorrent.org/beps/bep_0014.html) |
+| Peer Exchange (PEX) | [BEP 11](https://www.bittorrent.org/beps/bep_0011.html) |
 | Extension Protocol | [BEP 10](https://www.bittorrent.org/beps/bep_0010.html) |
 | Magnet links | [BEP 9](https://www.bittorrent.org/beps/bep_0009.html) |
 | IPv6 Tracker Extension | [BEP 7](https://www.bittorrent.org/beps/bep_0007.html) |
