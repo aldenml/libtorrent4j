@@ -550,7 +550,7 @@ public class SessionManager {
 
         torrent_flags_t flags = p.getFlags();
 
-        flags = flags.op_and(TorrentFlags.AUTO_MANAGED.inv());
+        flags = flags.and_(TorrentFlags.AUTO_MANAGED.inv());
 
         p.setFlags(flags);
 
@@ -590,7 +590,7 @@ public class SessionManager {
 
         torrent_flags_t flags = p.getFlags();
 
-        flags = flags.op_and(TorrentFlags.AUTO_MANAGED.inv());
+        flags = flags.and_(TorrentFlags.AUTO_MANAGED.inv());
 
         p.setFlags(flags);
 
@@ -647,7 +647,7 @@ public class SessionManager {
             @Override
             public void alert(Alert<?> alert) {
                 torrent_handle th = ((TorrentAlert<?>) alert).swig().getHandle();
-                if (th == null || !th.is_valid() || th.info_hash().op_ne(info_hash.get_best())) {
+                if (th == null || !th.is_valid() || th.info_hash().ne(info_hash.get_best())) {
                     return;
                 }
 
@@ -697,9 +697,9 @@ public class SessionManager {
                     p.setSave_path(tempDir);
 
                     torrent_flags_t flags = p.getFlags();
-                    flags = flags.op_and(TorrentFlags.AUTO_MANAGED.inv());
-                    flags = flags.op_or(TorrentFlags.UPLOAD_MODE);
-                    flags = flags.op_or(TorrentFlags.STOP_WHEN_READY);
+                    flags = flags.and_(TorrentFlags.AUTO_MANAGED.inv());
+                    flags = flags.or_(TorrentFlags.UPLOAD_MODE);
+                    flags = flags.or_(TorrentFlags.STOP_WHEN_READY);
                     p.setFlags(flags);
 
                     ec.clear();
@@ -748,7 +748,7 @@ public class SessionManager {
             @Override
             public void alert(Alert<?> alert) {
                 DhtImmutableItemAlert a = (DhtImmutableItemAlert) alert;
-                if (target.op_eq(a.swig().getTarget())) {
+                if (target.eq(a.swig().getTarget())) {
                     result.set(new Entry(new entry(a.swig().getItem())));
                     signal.countDown();
                 }
@@ -856,7 +856,7 @@ public class SessionManager {
             @Override
             public void alert(Alert<?> alert) {
                 DhtGetPeersReplyAlert a = (DhtGetPeersReplyAlert) alert;
-                if (target.op_eq(a.swig().getInfo_hash())) {
+                if (target.eq(a.swig().getInfo_hash())) {
                     result.addAll(a.peers());
                     signal.countDown();
                 }
@@ -1090,13 +1090,13 @@ public class SessionManager {
         alert_category_t mask = alert.all_categories;
         if (!logging) {
             alert_category_t log_mask = alert.session_log_notification;
-            log_mask = log_mask.op_or(alert.torrent_log_notification);
-            log_mask = log_mask.op_or(alert.peer_log_notification);
-            log_mask = log_mask.op_or(alert.dht_log_notification);
-            log_mask = log_mask.op_or(alert.port_mapping_log_notification);
-            log_mask = log_mask.op_or(alert.picker_log_notification);
+            log_mask = log_mask.or_(alert.torrent_log_notification);
+            log_mask = log_mask.or_(alert.peer_log_notification);
+            log_mask = log_mask.or_(alert.dht_log_notification);
+            log_mask = log_mask.or_(alert.port_mapping_log_notification);
+            log_mask = log_mask.or_(alert.picker_log_notification);
 
-            mask = mask.op_and(log_mask.inv());
+            mask = mask.and_(log_mask.inv());
         }
         return mask;
     }

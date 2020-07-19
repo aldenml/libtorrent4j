@@ -1,6 +1,16 @@
+/*
+ * Copyright (c) 2018-2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
+import org.libtorrent4j.swig.byte_vector;
+import org.libtorrent4j.swig.libtorrent;
 import org.libtorrent4j.swig.settings_pack;
+import org.libtorrent4j.swig.settings_pack.string_types;
 
 /**
  * The ``settings_pack`` struct, contains the names of all settings as
@@ -11,12 +21,14 @@ import org.libtorrent4j.swig.settings_pack;
  * @author gubatron
  * @author aldenml
  */
-public final class SettingsPack {
+public final class SettingsPack
+    extends SwigObject<settings_pack> {
 
-    private final settings_pack sp;
-
+    /**
+     * @param sp the native object
+     */
     public SettingsPack(settings_pack sp) {
-        this.sp = sp;
+        super(sp);
     }
 
     /**
@@ -32,18 +44,11 @@ public final class SettingsPack {
     }
 
     /**
-     *
-     */
-    public settings_pack swig() {
-        return sp;
-    }
-
-    /**
      * @param name
      *
      */
     public boolean getBoolean(int name) {
-        return sp.get_bool(name);
+        return h.get_bool(name);
     }
 
     /**
@@ -51,7 +56,7 @@ public final class SettingsPack {
      * @param value
      */
     public SettingsPack setBoolean(int name, boolean value) {
-        sp.set_bool(name, value);
+        h.set_bool(name, value);
         return this;
     }
 
@@ -60,7 +65,7 @@ public final class SettingsPack {
      *
      */
     public int getInteger(int name) {
-        return sp.get_int(name);
+        return h.get_int(name);
     }
 
     /**
@@ -68,7 +73,7 @@ public final class SettingsPack {
      * @param value
      */
     public SettingsPack setInteger(int name, int value) {
-        sp.set_int(name, value);
+        h.set_int(name, value);
         return this;
     }
 
@@ -77,7 +82,7 @@ public final class SettingsPack {
      *
      */
     public String getString(int name) {
-        return sp.get_str(name);
+        return h.get_str(name);
     }
 
     /**
@@ -85,23 +90,53 @@ public final class SettingsPack {
      * @param value
      */
     public SettingsPack setString(int name, String value) {
-        sp.set_str(name, value);
+        h.set_str(name, value);
         return this;
     }
 
+    public byte[] getBytes(int name) {
+        byte_vector v = h.get_bytes(name);
+        return Vectors.byte_vector2bytes(v);
+    }
+
+    public void setBytes(int name, byte[] value) {
+        byte_vector v = Vectors.bytes2byte_vector(value);
+        h.set_bytes(name, v);
+    }
+
     public void clear() {
-        sp.clear();
+        h.clear();
     }
 
     public void clear(int name) {
-        sp.clear(name);
+        h.clear(name);
+    }
+
+    /**
+     * The fingerprint for the client.
+     *
+     * It will be used as the prefix to the peer-id. If this is 20 bytes (or longer)
+     * it will be truncated to 20 bytes and used as the entire peer-id.
+     */
+    public byte[] getPeerFingerprint() {
+        return getBytes(string_types.peer_fingerprint.swigValue());
+    }
+
+    /**
+     * The fingerprint for the client.
+     *
+     * It will be used as the prefix to the peer-id. If this is 20 bytes (or longer)
+     * it will be truncated to 20 bytes and used as the entire peer-id.
+     */
+    public void setPeerFingerprint(byte[] value) {
+        setBytes(string_types.peer_fingerprint.swigValue(), value);
     }
 
     /**
      * @return the session-global download rate limit in bytes per second. (0 for unlimited)
      */
     public int downloadRateLimit() {
-        return sp.get_int(settings_pack.int_types.download_rate_limit.swigValue());
+        return h.get_int(settings_pack.int_types.download_rate_limit.swigValue());
     }
 
     /**
@@ -113,7 +148,7 @@ public final class SettingsPack {
      * @param value
      */
     public SettingsPack downloadRateLimit(int value) {
-        sp.set_int(settings_pack.int_types.download_rate_limit.swigValue(), value);
+        h.set_int(settings_pack.int_types.download_rate_limit.swigValue(), value);
         return this;
     }
 
@@ -121,7 +156,7 @@ public final class SettingsPack {
      * @return the session-global upload rate limit in bytes per second. (0 for unlimited)
      */
     public int uploadRateLimit() {
-        return sp.get_int(settings_pack.int_types.upload_rate_limit.swigValue());
+        return h.get_int(settings_pack.int_types.upload_rate_limit.swigValue());
     }
 
     /**
@@ -133,7 +168,7 @@ public final class SettingsPack {
      * @param value
      */
     public SettingsPack uploadRateLimit(int value) {
-        sp.set_int(settings_pack.int_types.upload_rate_limit.swigValue(), value);
+        h.set_int(settings_pack.int_types.upload_rate_limit.swigValue(), value);
         return this;
     }
 
@@ -169,7 +204,7 @@ public final class SettingsPack {
      *
      */
     public int activeDownloads() {
-        return sp.get_int(settings_pack.int_types.active_downloads.swigValue());
+        return h.get_int(settings_pack.int_types.active_downloads.swigValue());
     }
 
     /**
@@ -177,7 +212,7 @@ public final class SettingsPack {
      * @see #activeDownloads()
      */
     public SettingsPack activeDownloads(int value) {
-        sp.set_int(settings_pack.int_types.active_downloads.swigValue(), value);
+        h.set_int(settings_pack.int_types.active_downloads.swigValue(), value);
         return this;
     }
 
@@ -189,7 +224,7 @@ public final class SettingsPack {
      * @see #activeDownloads()
      */
     public int activeSeeds() {
-        return sp.get_int(settings_pack.int_types.active_seeds.swigValue());
+        return h.get_int(settings_pack.int_types.active_seeds.swigValue());
     }
 
     /**
@@ -197,7 +232,7 @@ public final class SettingsPack {
      * @see #activeSeeds()
      */
     public SettingsPack activeSeeds(int value) {
-        sp.set_int(settings_pack.int_types.active_seeds.swigValue(), value);
+        h.set_int(settings_pack.int_types.active_seeds.swigValue(), value);
         return this;
     }
 
@@ -209,7 +244,7 @@ public final class SettingsPack {
      * @see #activeDownloads()
      */
     public int activeChecking() {
-        return sp.get_int(settings_pack.int_types.active_checking.swigValue());
+        return h.get_int(settings_pack.int_types.active_checking.swigValue());
     }
 
     /**
@@ -217,7 +252,7 @@ public final class SettingsPack {
      * @see #activeChecking()
      */
     public SettingsPack activeChecking(int value) {
-        sp.set_int(settings_pack.int_types.active_checking.swigValue(), value);
+        h.set_int(settings_pack.int_types.active_checking.swigValue(), value);
         return this;
     }
 
@@ -228,7 +263,7 @@ public final class SettingsPack {
      * @see #activeDownloads()
      */
     public int activeDhtLimit() {
-        return sp.get_int(settings_pack.int_types.active_dht_limit.swigValue());
+        return h.get_int(settings_pack.int_types.active_dht_limit.swigValue());
     }
 
     /**
@@ -237,7 +272,7 @@ public final class SettingsPack {
      * @see #activeDhtLimit()
      */
     public SettingsPack activeDhtLimit(int value) {
-        sp.set_int(settings_pack.int_types.active_dht_limit.swigValue(), value);
+        h.set_int(settings_pack.int_types.active_dht_limit.swigValue(), value);
         return this;
     }
 
@@ -250,7 +285,7 @@ public final class SettingsPack {
      * @see #activeDownloads()
      */
     public int activeTrackerLimit() {
-        return sp.get_int(settings_pack.int_types.active_tracker_limit.swigValue());
+        return h.get_int(settings_pack.int_types.active_tracker_limit.swigValue());
     }
 
     /**
@@ -258,7 +293,7 @@ public final class SettingsPack {
      * @see #activeTrackerLimit()
      */
     public SettingsPack activeTrackerLimit(int value) {
-        sp.set_int(settings_pack.int_types.active_tracker_limit.swigValue(), value);
+        h.set_int(settings_pack.int_types.active_tracker_limit.swigValue(), value);
         return this;
     }
 
@@ -272,7 +307,7 @@ public final class SettingsPack {
      * @see #activeDownloads()
      */
     public int activeLsdLimit() {
-        return sp.get_int(settings_pack.int_types.active_lsd_limit.swigValue());
+        return h.get_int(settings_pack.int_types.active_lsd_limit.swigValue());
     }
 
     /**
@@ -280,7 +315,7 @@ public final class SettingsPack {
      * @see #activeLsdLimit()
      */
     public SettingsPack activeLsdLimit(int value) {
-        sp.set_int(settings_pack.int_types.active_lsd_limit.swigValue(), value);
+        h.set_int(settings_pack.int_types.active_lsd_limit.swigValue(), value);
         return this;
     }
 
@@ -292,7 +327,7 @@ public final class SettingsPack {
      * @see #activeDownloads()
      */
     public int activeLimit() {
-        return sp.get_int(settings_pack.int_types.active_limit.swigValue());
+        return h.get_int(settings_pack.int_types.active_limit.swigValue());
     }
 
     /**
@@ -303,7 +338,7 @@ public final class SettingsPack {
      * @see #activeLimit()
      */
     public SettingsPack activeLimit(int value) {
-        sp.set_int(settings_pack.int_types.active_limit.swigValue(), value);
+        h.set_int(settings_pack.int_types.active_limit.swigValue(), value);
         return this;
     }
 
@@ -311,7 +346,7 @@ public final class SettingsPack {
      * @return global limit on the number of connections opened.
      */
     public int connectionsLimit() {
-        return sp.get_int(settings_pack.int_types.connections_limit.swigValue());
+        return h.get_int(settings_pack.int_types.connections_limit.swigValue());
     }
 
     /**
@@ -323,7 +358,7 @@ public final class SettingsPack {
      * @param value
      */
     public SettingsPack connectionsLimit(int value) {
-        sp.set_int(settings_pack.int_types.connections_limit.swigValue(), value);
+        h.set_int(settings_pack.int_types.connections_limit.swigValue(), value);
         return this;
     }
 
@@ -331,7 +366,7 @@ public final class SettingsPack {
      * @return the maximum number of peers in the list of known peers. (0 for unlimited)
      */
     public int maxPeerlistSize() {
-        return sp.get_int(settings_pack.int_types.max_peerlist_size.swigValue());
+        return h.get_int(settings_pack.int_types.max_peerlist_size.swigValue());
     }
 
     /**
@@ -346,7 +381,7 @@ public final class SettingsPack {
      * @param value
      */
     public SettingsPack maxPeerlistSize(int value) {
-        sp.set_int(settings_pack.int_types.max_peerlist_size.swigValue(), value);
+        h.set_int(settings_pack.int_types.max_peerlist_size.swigValue(), value);
         return this;
     }
 
@@ -355,7 +390,7 @@ public final class SettingsPack {
      * write queue before its download rate is being throttled.
      */
     public int maxQueuedDiskBytes() {
-        return sp.get_int(settings_pack.int_types.max_queued_disk_bytes.swigValue());
+        return h.get_int(settings_pack.int_types.max_queued_disk_bytes.swigValue());
     }
 
     /**
@@ -373,7 +408,7 @@ public final class SettingsPack {
      * @param value
      */
     public SettingsPack maxQueuedDiskBytes(int value) {
-        sp.set_int(settings_pack.int_types.max_queued_disk_bytes.swigValue(), value);
+        h.set_int(settings_pack.int_types.max_queued_disk_bytes.swigValue(), value);
         return this;
     }
 
@@ -381,7 +416,7 @@ public final class SettingsPack {
      * @return the upper limit of the send buffer low-watermark.
      */
     public int sendBufferWatermark() {
-        return sp.get_int(settings_pack.int_types.send_buffer_watermark.swigValue());
+        return h.get_int(settings_pack.int_types.send_buffer_watermark.swigValue());
     }
 
     /**
@@ -395,7 +430,7 @@ public final class SettingsPack {
      * @param value
      */
     public SettingsPack sendBufferWatermark(int value) {
-        sp.set_int(settings_pack.int_types.send_buffer_watermark.swigValue(), value);
+        h.set_int(settings_pack.int_types.send_buffer_watermark.swigValue(), value);
         return this;
     }
 
@@ -403,7 +438,7 @@ public final class SettingsPack {
      *
      */
     public int tickInterval() {
-        return sp.get_int(settings_pack.int_types.tick_interval.swigValue());
+        return h.get_int(settings_pack.int_types.tick_interval.swigValue());
     }
 
     /**
@@ -416,7 +451,7 @@ public final class SettingsPack {
      * @param value
      */
     public SettingsPack tickInterval(int value) {
-        sp.set_int(settings_pack.int_types.tick_interval.swigValue(), value);
+        h.set_int(settings_pack.int_types.tick_interval.swigValue(), value);
         return this;
     }
 
@@ -424,7 +459,7 @@ public final class SettingsPack {
      *
      */
     public int inactivityTimeout() {
-        return sp.get_int(settings_pack.int_types.inactivity_timeout.swigValue());
+        return h.get_int(settings_pack.int_types.inactivity_timeout.swigValue());
     }
 
     /**
@@ -434,7 +469,7 @@ public final class SettingsPack {
      * @param value
      */
     public SettingsPack inactivityTimeout(int value) {
-        sp.set_int(settings_pack.int_types.inactivity_timeout.swigValue(), value);
+        h.set_int(settings_pack.int_types.inactivity_timeout.swigValue(), value);
         return this;
     }
 
@@ -442,7 +477,7 @@ public final class SettingsPack {
      *
      */
     public boolean seedingOutgoingConnections() {
-        return sp.get_bool(settings_pack.bool_types.seeding_outgoing_connections.swigValue());
+        return h.get_bool(settings_pack.bool_types.seeding_outgoing_connections.swigValue());
     }
 
     /**
@@ -456,7 +491,7 @@ public final class SettingsPack {
      * @param value
      */
     public SettingsPack seedingOutgoingConnections(boolean value) {
-        sp.set_bool(settings_pack.bool_types.seeding_outgoing_connections.swigValue(), value);
+        h.set_bool(settings_pack.bool_types.seeding_outgoing_connections.swigValue(), value);
         return this;
     }
 
@@ -464,7 +499,7 @@ public final class SettingsPack {
      *
      */
     public boolean anonymousMode() {
-        return sp.get_bool(settings_pack.bool_types.anonymous_mode.swigValue());
+        return h.get_bool(settings_pack.bool_types.anonymous_mode.swigValue());
     }
 
     /**
@@ -480,7 +515,7 @@ public final class SettingsPack {
      * @param value
      */
     public SettingsPack anonymousMode(boolean value) {
-        sp.set_bool(settings_pack.bool_types.anonymous_mode.swigValue(), value);
+        h.set_bool(settings_pack.bool_types.anonymous_mode.swigValue(), value);
         return this;
     }
 
@@ -488,7 +523,7 @@ public final class SettingsPack {
      *
      */
     public boolean enableDht() {
-        return sp.get_bool(settings_pack.bool_types.enable_dht.swigValue());
+        return h.get_bool(settings_pack.bool_types.enable_dht.swigValue());
     }
 
     /**
@@ -499,7 +534,7 @@ public final class SettingsPack {
      * @return this
      */
     public SettingsPack enableDht(boolean value) {
-        sp.set_bool(settings_pack.bool_types.enable_dht.swigValue(), value);
+        h.set_bool(settings_pack.bool_types.enable_dht.swigValue(), value);
         return this;
     }
 
@@ -507,7 +542,7 @@ public final class SettingsPack {
      *
      */
     public String listenInterfaces() {
-        return sp.get_str(settings_pack.string_types.listen_interfaces.swigValue());
+        return h.get_str(settings_pack.string_types.listen_interfaces.swigValue());
     }
 
     /**
@@ -515,7 +550,7 @@ public final class SettingsPack {
      * @return this
      */
     public SettingsPack listenInterfaces(String value) {
-        sp.set_str(settings_pack.string_types.listen_interfaces.swigValue(), value);
+        h.set_str(settings_pack.string_types.listen_interfaces.swigValue(), value);
         return this;
     }
 
@@ -524,7 +559,7 @@ public final class SettingsPack {
      * @see #stopTrackerTimeout(int)
      */
     public int stopTrackerTimeout() {
-        return sp.get_int(settings_pack.int_types.stop_tracker_timeout.swigValue());
+        return h.get_int(settings_pack.int_types.stop_tracker_timeout.swigValue());
     }
 
     /**
@@ -538,7 +573,7 @@ public final class SettingsPack {
      * @return this
      */
     public SettingsPack stopTrackerTimeout(int value) {
-        sp.set_int(settings_pack.int_types.stop_tracker_timeout.swigValue(), value);
+        h.set_int(settings_pack.int_types.stop_tracker_timeout.swigValue(), value);
         return this;
     }
 
@@ -547,7 +582,7 @@ public final class SettingsPack {
      * @see #alertQueueSize(int)
      */
     public int alertQueueSize() {
-        return sp.get_int(settings_pack.int_types.alert_queue_size.swigValue());
+        return h.get_int(settings_pack.int_types.alert_queue_size.swigValue());
     }
 
     /**
@@ -559,7 +594,14 @@ public final class SettingsPack {
      * @return this
      */
     public SettingsPack alertQueueSize(int value) {
-        sp.set_int(settings_pack.int_types.alert_queue_size.swigValue(), value);
+        h.set_int(settings_pack.int_types.alert_queue_size.swigValue(), value);
         return this;
+    }
+
+    /**
+     * Returns a `SettingsPack` with every setting set to its default value.
+     */
+    public static SettingsPack defaultSettings() {
+        return new SettingsPack(libtorrent.default_settings());
     }
 }

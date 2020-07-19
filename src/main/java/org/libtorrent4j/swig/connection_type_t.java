@@ -40,24 +40,24 @@ public class connection_type_t {
     return new connection_type_t(libtorrent_jni.connection_type_t_all(), true);
   }
 
-  public boolean op_bool() {
-    return libtorrent_jni.connection_type_t_op_bool(swigCPtr, this);
+  public boolean non_zero() {
+    return libtorrent_jni.connection_type_t_non_zero(swigCPtr, this);
   }
 
-  public boolean op_eq(connection_type_t f) {
-    return libtorrent_jni.connection_type_t_op_eq(swigCPtr, this, connection_type_t.getCPtr(f), f);
+  public boolean eq(connection_type_t f) {
+    return libtorrent_jni.connection_type_t_eq(swigCPtr, this, connection_type_t.getCPtr(f), f);
   }
 
-  public boolean op_ne(connection_type_t f) {
-    return libtorrent_jni.connection_type_t_op_ne(swigCPtr, this, connection_type_t.getCPtr(f), f);
+  public boolean ne(connection_type_t f) {
+    return libtorrent_jni.connection_type_t_ne(swigCPtr, this, connection_type_t.getCPtr(f), f);
   }
 
-  public connection_type_t op_or(connection_type_t other) {
-    return new connection_type_t(libtorrent_jni.connection_type_t_op_or(swigCPtr, this, connection_type_t.getCPtr(other), other), true);
+  public connection_type_t or_(connection_type_t other) {
+    return new connection_type_t(libtorrent_jni.connection_type_t_or_(swigCPtr, this, connection_type_t.getCPtr(other), other), true);
   }
 
-  public connection_type_t op_and(connection_type_t other) {
-    return new connection_type_t(libtorrent_jni.connection_type_t_op_and(swigCPtr, this, connection_type_t.getCPtr(other), other), true);
+  public connection_type_t and_(connection_type_t other) {
+    return new connection_type_t(libtorrent_jni.connection_type_t_and_(swigCPtr, this, connection_type_t.getCPtr(other), other), true);
   }
 
   public connection_type_t xor(connection_type_t other) {

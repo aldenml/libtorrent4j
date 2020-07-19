@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.alerts.AddTorrentAlert;
@@ -34,7 +41,7 @@ import java.util.List;
  * @author gubatron
  * @author aldenml
  */
-public class SessionHandle
+public final class SessionHandle
     extends SwigObject<session_handle> {
 
     // protocols used by add_port_mapping()
@@ -46,13 +53,6 @@ public class SessionHandle
      */
     public SessionHandle(session_handle handle) {
         super(handle);
-    }
-
-    /**
-     * @return the native object
-     */
-    public session_handle swig() {
-        return h;
     }
 
     public boolean isValid() {

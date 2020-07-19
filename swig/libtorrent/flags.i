@@ -7,27 +7,27 @@ struct bitfield_flag
 
     %extend
     {
-        bool op_bool()
+        bool non_zero()
         {
             return $self->operator bool();
         }
 
-        bool op_eq(bitfield_flag const f)
+        bool eq(bitfield_flag const f)
         {
             return $self->operator==(f);
         }
 
-        bool op_ne(bitfield_flag const f)
+        bool ne(bitfield_flag const f)
         {
             return $self->operator!=(f);
         }
 
-        bitfield_flag op_or(bitfield_flag const other)
+        bitfield_flag or_(bitfield_flag const other)
         {
             return *$self | other;
         }
 
-        bitfield_flag op_and(bitfield_flag const other)
+        bitfield_flag and_(bitfield_flag const other)
         {
             return *$self & other;
         }

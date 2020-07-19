@@ -80,6 +80,14 @@ public class settings_pack extends settings_interface {
     return libtorrent_jni.settings_pack_get_bool(swigCPtr, this, name);
   }
 
+  public byte_vector get_bytes(int name) {
+    return new byte_vector(libtorrent_jni.settings_pack_get_bytes(swigCPtr, this, name), true);
+  }
+
+  public void set_bytes(int name, byte_vector v) {
+    libtorrent_jni.settings_pack_set_bytes(swigCPtr, this, name, byte_vector.getCPtr(v), v);
+  }
+
   public final static class type_bases {
     public final static settings_pack.type_bases string_type_base = new settings_pack.type_bases("string_type_base", libtorrent_jni.settings_pack_string_type_base_get());
     public final static settings_pack.type_bases int_type_base = new settings_pack.type_bases("int_type_base", libtorrent_jni.settings_pack_int_type_base_get());

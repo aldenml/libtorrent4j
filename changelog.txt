@@ -1,4 +1,4 @@
-2.0.0-alpha-1
+2.0.0-alpha-2
 
   * minimum supported Android API >= 24
   * updated to boost 1.73.0

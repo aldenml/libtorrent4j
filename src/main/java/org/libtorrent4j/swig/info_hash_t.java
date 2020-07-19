@@ -76,8 +76,8 @@ public class info_hash_t {
     return new sha1_hash(libtorrent_jni.info_hash_t_get_best(swigCPtr, this), true);
   }
 
-  public boolean op_lt(info_hash_t o) {
-    return libtorrent_jni.info_hash_t_op_lt(swigCPtr, this, info_hash_t.getCPtr(o), o);
+  public boolean lt(info_hash_t o) {
+    return libtorrent_jni.info_hash_t_lt(swigCPtr, this, info_hash_t.getCPtr(o), o);
   }
 
   public void setV1(sha1_hash value) {

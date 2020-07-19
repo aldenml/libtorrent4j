@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.session_params;
@@ -8,7 +15,7 @@ import org.libtorrent4j.swig.session_params;
  *
  * @author aldenml
  */
-public class SessionParams
+public final class SessionParams
     extends SwigObject<session_params> {
 
     /**
@@ -41,9 +48,20 @@ public class SessionParams
     }
 
     /**
+     * The settings to configure the session with.
+     *
      * @return the settings pack
      */
     public SettingsPack getSettings() {
         return new SettingsPack(h.getSettings());
+    }
+
+    /**
+     * The settings to configure the session with.
+     *
+     * @param settings the settings pack
+     */
+    public void setSettings(SettingsPack settings) {
+        h.setSettings(settings.swig());
     }
 }

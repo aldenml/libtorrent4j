@@ -64,52 +64,32 @@ public class sha1_hash {
     return libtorrent_jni.sha1_hash_is_all_zeros(swigCPtr, this);
   }
 
-  public sha1_hash op_shl_mut(int n) {
-    return new sha1_hash(libtorrent_jni.sha1_hash_op_shl_mut(swigCPtr, this, n), false);
+  public boolean eq(sha1_hash n) {
+    return libtorrent_jni.sha1_hash_eq(swigCPtr, this, sha1_hash.getCPtr(n), n);
   }
 
-  public sha1_hash op_shr_mut(int n) {
-    return new sha1_hash(libtorrent_jni.sha1_hash_op_shr_mut(swigCPtr, this, n), false);
+  public boolean ne(sha1_hash n) {
+    return libtorrent_jni.sha1_hash_ne(swigCPtr, this, sha1_hash.getCPtr(n), n);
   }
 
-  public boolean op_eq(sha1_hash n) {
-    return libtorrent_jni.sha1_hash_op_eq(swigCPtr, this, sha1_hash.getCPtr(n), n);
-  }
-
-  public boolean op_ne(sha1_hash n) {
-    return libtorrent_jni.sha1_hash_op_ne(swigCPtr, this, sha1_hash.getCPtr(n), n);
-  }
-
-  public boolean op_lt(sha1_hash n) {
-    return libtorrent_jni.sha1_hash_op_lt(swigCPtr, this, sha1_hash.getCPtr(n), n);
+  public boolean lt(sha1_hash n) {
+    return libtorrent_jni.sha1_hash_lt(swigCPtr, this, sha1_hash.getCPtr(n), n);
   }
 
   public int count_leading_zeroes() {
     return libtorrent_jni.sha1_hash_count_leading_zeroes(swigCPtr, this);
   }
 
-  public sha1_hash op_inv() {
-    return new sha1_hash(libtorrent_jni.sha1_hash_op_inv(swigCPtr, this), true);
+  public sha1_hash inv() {
+    return new sha1_hash(libtorrent_jni.sha1_hash_inv(swigCPtr, this), true);
   }
 
-  public sha1_hash op_xor(sha1_hash n) {
-    return new sha1_hash(libtorrent_jni.sha1_hash_op_xor(swigCPtr, this, sha1_hash.getCPtr(n), n), true);
+  public sha1_hash xor(sha1_hash n) {
+    return new sha1_hash(libtorrent_jni.sha1_hash_xor(swigCPtr, this, sha1_hash.getCPtr(n), n), true);
   }
 
-  public sha1_hash op_xor_mut(sha1_hash n) {
-    return new sha1_hash(libtorrent_jni.sha1_hash_op_xor_mut(swigCPtr, this, sha1_hash.getCPtr(n), n), false);
-  }
-
-  public sha1_hash op_and(sha1_hash n) {
-    return new sha1_hash(libtorrent_jni.sha1_hash_op_and(swigCPtr, this, sha1_hash.getCPtr(n), n), true);
-  }
-
-  public sha1_hash op_and_mut(sha1_hash n) {
-    return new sha1_hash(libtorrent_jni.sha1_hash_op_and_mut(swigCPtr, this, sha1_hash.getCPtr(n), n), false);
-  }
-
-  public sha1_hash op_or_mut(sha1_hash n) {
-    return new sha1_hash(libtorrent_jni.sha1_hash_op_or_mut(swigCPtr, this, sha1_hash.getCPtr(n), n), false);
+  public sha1_hash and_(sha1_hash n) {
+    return new sha1_hash(libtorrent_jni.sha1_hash_and_(swigCPtr, this, sha1_hash.getCPtr(n), n), true);
   }
 
   public sha1_hash(byte_vector v) {

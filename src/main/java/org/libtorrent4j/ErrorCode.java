@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.error_code;
@@ -45,6 +52,6 @@ public final class ErrorCode {
     void assign(error_code ec) {
         value = ec.value();
         message = ec.message();
-        isError = ec.op_bool();
+        isError = ec.non_zero();
     }
 }

@@ -44,8 +44,8 @@ public class torrent_status {
     this(libtorrent_jni.new_torrent_status__SWIG_1(torrent_status.getCPtr(arg0), arg0), true);
   }
 
-  public boolean op_eq(torrent_status st) {
-    return libtorrent_jni.torrent_status_op_eq(swigCPtr, this, torrent_status.getCPtr(st), st);
+  public boolean eq(torrent_status st) {
+    return libtorrent_jni.torrent_status_eq(swigCPtr, this, torrent_status.getCPtr(st), st);
   }
 
   public void setHandle(torrent_handle value) {

@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.sha1_hash;
@@ -16,33 +23,15 @@ import java.util.ArrayList;
  * @author gubatron
  * @author aldenml
  */
-public final class Sha1Hash implements Comparable<Sha1Hash>, Cloneable {
-
-    private final sha1_hash h;
+public final class Sha1Hash
+    extends SwigObject<sha1_hash>
+    implements Comparable<Sha1Hash>, Cloneable {
 
     /**
      * @param h native object
      */
     public Sha1Hash(sha1_hash h) {
-        this.h = h;
-    }
-
-    /**
-     * @param bytes hash as an array of bytes
-     */
-    public Sha1Hash(byte[] bytes) {
-        if (bytes.length != 20) {
-            throw new IllegalArgumentException("bytes array must be of length 20");
-        }
-
-        this.h = new sha1_hash(Vectors.bytes2byte_vector(bytes));
-    }
-
-    /**
-     * @param hex hex coded representation of the hash
-     */
-    public Sha1Hash(String hex) {
-        this(Hex.decode(hex));
+        super(h);
     }
 
     /**
@@ -50,13 +39,6 @@ public final class Sha1Hash implements Comparable<Sha1Hash>, Cloneable {
      */
     public Sha1Hash() {
         this(new sha1_hash());
-    }
-
-    /**
-     * @return the native object
-     */
-    public sha1_hash swig() {
-        return h;
     }
 
     /**
@@ -123,7 +105,7 @@ public final class Sha1Hash implements Comparable<Sha1Hash>, Cloneable {
             return false;
         }
 
-        return h.op_eq(((Sha1Hash) obj).h);
+        return h.eq(((Sha1Hash) obj).h);
     }
 
     /**
@@ -161,12 +143,29 @@ public final class Sha1Hash implements Comparable<Sha1Hash>, Cloneable {
         return new Sha1Hash(sha1_hash.min());
     }
 
-    static ArrayList<Sha1Hash> convert(sha1_hash_vector v) {
-        int size = (int) v.size();
-        ArrayList<Sha1Hash> l = new ArrayList<>(size);
+    /**
+     * @param bytes hash as an array of bytes
+     */
+    public static Sha1Hash fromBytes(byte[] bytes) {
+        if (bytes.length != 20) {
+            throw new IllegalArgumentException("bytes array must be of length 20");
+        }
 
-        for (int i = 0; i < size; i++) {
-            l.add(new Sha1Hash(v.get(i)));
+        return new Sha1Hash(new sha1_hash(Vectors.bytes2byte_vector(bytes)));
+    }
+
+    /**
+     * @param hex hex coded representation of the hash
+     */
+    public static Sha1Hash parseHex(String hex) {
+        return fromBytes(Hex.decode(hex));
+    }
+
+    static ArrayList<Sha1Hash> convert(sha1_hash_vector v) {
+        ArrayList<Sha1Hash> l = new ArrayList<>(v.size());
+
+        for (sha1_hash hash : v) {
+            l.add(new Sha1Hash(hash));
         }
 
         return l;
