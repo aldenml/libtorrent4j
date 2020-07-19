@@ -48,8 +48,8 @@ public class bdecode_node {
     return bdecode_node.type_t.swigToEnum(libtorrent_jni.bdecode_node_type(swigCPtr, this));
   }
 
-  public boolean op_bool() {
-    return libtorrent_jni.bdecode_node_op_bool(swigCPtr, this);
+  public boolean non_zero() {
+    return libtorrent_jni.bdecode_node_non_zero(swigCPtr, this);
   }
 
   public long data_offset() {

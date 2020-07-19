@@ -48,12 +48,12 @@ public class web_seed_entry {
     this(libtorrent_jni.new_web_seed_entry__SWIG_2(url_, type_.swigValue()), true);
   }
 
-  public boolean op_eq(web_seed_entry e) {
-    return libtorrent_jni.web_seed_entry_op_eq(swigCPtr, this, web_seed_entry.getCPtr(e), e);
+  public boolean eq(web_seed_entry e) {
+    return libtorrent_jni.web_seed_entry_eq(swigCPtr, this, web_seed_entry.getCPtr(e), e);
   }
 
-  public boolean op_lt(web_seed_entry e) {
-    return libtorrent_jni.web_seed_entry_op_lt(swigCPtr, this, web_seed_entry.getCPtr(e), e);
+  public boolean lt(web_seed_entry e) {
+    return libtorrent_jni.web_seed_entry_lt(swigCPtr, this, web_seed_entry.getCPtr(e), e);
   }
 
   public void setUrl(String value) {

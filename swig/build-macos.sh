@@ -9,5 +9,5 @@ dsymutil bin/release/macos/x86_64/libtorrent4j.dylib -o bin/release/macos/x86_64
 strip -x bin/release/macos/x86_64/libtorrent4j.dylib
 cp bin/release/macos/x86_64/libtorrent4j.dylib ../
 
-rm -rf deps/libtorrent/deps/libdatachannel/deps/libjuice/build-openssl-release
-rm -rf deps/libtorrent/deps/libdatachannel/deps/usrsctp/build-openssl-release
+rm -rf deps/libtorrent/deps/libdatachannel/deps/libjuice/build-*
+rm -rf deps/libtorrent/deps/libdatachannel/deps/usrsctp/build-*

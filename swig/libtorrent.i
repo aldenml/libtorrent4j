@@ -211,24 +211,25 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 
 // ignore of operators
 %ignore operator=;
+%ignore operator^=;
+%ignore operator&=;
+%ignore operator|=;
+%ignore operator<<=;
+%ignore operator>>=;
 
 // rename of operators
-%rename(op_eq) operator==;
-%rename(op_ne) operator!=;
-%rename(op_lt) operator<;
-%rename(op_gt) operator>;
-%rename(op_lte) operator<=;
-%rename(op_gte) operator>=;
-%rename(op_inv) operator~;
-%rename(op_xor) operator^;
-%rename(op_xor_mut) operator^=;
-%rename(op_and) operator&;
-%rename(op_and_mut) operator&=;
-%rename(op_or_mut) operator|=;
-%rename(op_shl_mut) operator<<=;
-%rename(op_shr_mut) operator>>=;
-%rename(op_at) operator[];
-%rename(op_bool) operator bool;
+%rename(eq) operator==;
+%rename(ne) operator!=;
+%rename(lt) operator<;
+%rename(gt) operator>;
+%rename(lte) operator<=;
+%rename(gte) operator>=;
+%rename(inv) operator~;
+%rename(xor) operator^;
+%rename(or_) operator|;
+%rename(and_) operator&;
+%rename(at) operator[];
+%rename(non_zero) operator bool;
 
 // general ignores
 %ignore libtorrent::aux;

@@ -40,24 +40,24 @@ public class deadline_flags_t {
     return new deadline_flags_t(libtorrent_jni.deadline_flags_t_all(), true);
   }
 
-  public boolean op_bool() {
-    return libtorrent_jni.deadline_flags_t_op_bool(swigCPtr, this);
+  public boolean non_zero() {
+    return libtorrent_jni.deadline_flags_t_non_zero(swigCPtr, this);
   }
 
-  public boolean op_eq(deadline_flags_t f) {
-    return libtorrent_jni.deadline_flags_t_op_eq(swigCPtr, this, deadline_flags_t.getCPtr(f), f);
+  public boolean eq(deadline_flags_t f) {
+    return libtorrent_jni.deadline_flags_t_eq(swigCPtr, this, deadline_flags_t.getCPtr(f), f);
   }
 
-  public boolean op_ne(deadline_flags_t f) {
-    return libtorrent_jni.deadline_flags_t_op_ne(swigCPtr, this, deadline_flags_t.getCPtr(f), f);
+  public boolean ne(deadline_flags_t f) {
+    return libtorrent_jni.deadline_flags_t_ne(swigCPtr, this, deadline_flags_t.getCPtr(f), f);
   }
 
-  public deadline_flags_t op_or(deadline_flags_t other) {
-    return new deadline_flags_t(libtorrent_jni.deadline_flags_t_op_or(swigCPtr, this, deadline_flags_t.getCPtr(other), other), true);
+  public deadline_flags_t or_(deadline_flags_t other) {
+    return new deadline_flags_t(libtorrent_jni.deadline_flags_t_or_(swigCPtr, this, deadline_flags_t.getCPtr(other), other), true);
   }
 
-  public deadline_flags_t op_and(deadline_flags_t other) {
-    return new deadline_flags_t(libtorrent_jni.deadline_flags_t_op_and(swigCPtr, this, deadline_flags_t.getCPtr(other), other), true);
+  public deadline_flags_t and_(deadline_flags_t other) {
+    return new deadline_flags_t(libtorrent_jni.deadline_flags_t_and_(swigCPtr, this, deadline_flags_t.getCPtr(other), other), true);
   }
 
   public deadline_flags_t xor(deadline_flags_t other) {

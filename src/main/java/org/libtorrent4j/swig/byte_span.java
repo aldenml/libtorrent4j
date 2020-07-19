@@ -68,8 +68,8 @@ public class byte_span {
     return new byte_span(libtorrent_jni.byte_span_subspan__SWIG_1(swigCPtr, this, offset, count), true);
   }
 
-  public byte op_at(long idx) {
-    return libtorrent_jni.byte_span_op_at(swigCPtr, this, idx);
+  public byte at(long idx) {
+    return libtorrent_jni.byte_span_at(swigCPtr, this, idx);
   }
 
 }

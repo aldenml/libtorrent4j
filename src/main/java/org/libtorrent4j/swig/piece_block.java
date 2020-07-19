@@ -65,16 +65,16 @@ public class piece_block {
     return libtorrent_jni.piece_block_block_index_get(swigCPtr, this);
   }
 
-  public boolean op_lt(piece_block b) {
-    return libtorrent_jni.piece_block_op_lt(swigCPtr, this, piece_block.getCPtr(b), b);
+  public boolean lt(piece_block b) {
+    return libtorrent_jni.piece_block_lt(swigCPtr, this, piece_block.getCPtr(b), b);
   }
 
-  public boolean op_eq(piece_block b) {
-    return libtorrent_jni.piece_block_op_eq(swigCPtr, this, piece_block.getCPtr(b), b);
+  public boolean eq(piece_block b) {
+    return libtorrent_jni.piece_block_eq(swigCPtr, this, piece_block.getCPtr(b), b);
   }
 
-  public boolean op_ne(piece_block b) {
-    return libtorrent_jni.piece_block_op_ne(swigCPtr, this, piece_block.getCPtr(b), b);
+  public boolean ne(piece_block b) {
+    return libtorrent_jni.piece_block_ne(swigCPtr, this, piece_block.getCPtr(b), b);
   }
 
 }

@@ -40,24 +40,24 @@ public class file_flags_t {
     return new file_flags_t(libtorrent_jni.file_flags_t_all(), true);
   }
 
-  public boolean op_bool() {
-    return libtorrent_jni.file_flags_t_op_bool(swigCPtr, this);
+  public boolean non_zero() {
+    return libtorrent_jni.file_flags_t_non_zero(swigCPtr, this);
   }
 
-  public boolean op_eq(file_flags_t f) {
-    return libtorrent_jni.file_flags_t_op_eq(swigCPtr, this, file_flags_t.getCPtr(f), f);
+  public boolean eq(file_flags_t f) {
+    return libtorrent_jni.file_flags_t_eq(swigCPtr, this, file_flags_t.getCPtr(f), f);
   }
 
-  public boolean op_ne(file_flags_t f) {
-    return libtorrent_jni.file_flags_t_op_ne(swigCPtr, this, file_flags_t.getCPtr(f), f);
+  public boolean ne(file_flags_t f) {
+    return libtorrent_jni.file_flags_t_ne(swigCPtr, this, file_flags_t.getCPtr(f), f);
   }
 
-  public file_flags_t op_or(file_flags_t other) {
-    return new file_flags_t(libtorrent_jni.file_flags_t_op_or(swigCPtr, this, file_flags_t.getCPtr(other), other), true);
+  public file_flags_t or_(file_flags_t other) {
+    return new file_flags_t(libtorrent_jni.file_flags_t_or_(swigCPtr, this, file_flags_t.getCPtr(other), other), true);
   }
 
-  public file_flags_t op_and(file_flags_t other) {
-    return new file_flags_t(libtorrent_jni.file_flags_t_op_and(swigCPtr, this, file_flags_t.getCPtr(other), other), true);
+  public file_flags_t and_(file_flags_t other) {
+    return new file_flags_t(libtorrent_jni.file_flags_t_and_(swigCPtr, this, file_flags_t.getCPtr(other), other), true);
   }
 
   public file_flags_t xor(file_flags_t other) {

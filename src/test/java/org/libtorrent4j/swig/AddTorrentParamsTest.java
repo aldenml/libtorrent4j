@@ -72,7 +72,7 @@ public class AddTorrentParamsTest {
         params.set_merkle_trees(trees);
 
         sha256_hash_vector_vector rt = params.get_merkle_trees();
-        assertTrue(hash.op_eq(rt.get(1).get(2)));
+        assertTrue(hash.eq(rt.get(1).get(2)));
     }
 
     @Test

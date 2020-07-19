@@ -308,16 +308,16 @@ public class torrent_handle {
     return new info_hash_t(libtorrent_jni.torrent_handle_info_hashes(swigCPtr, this), true);
   }
 
-  public boolean op_eq(torrent_handle h) {
-    return libtorrent_jni.torrent_handle_op_eq(swigCPtr, this, torrent_handle.getCPtr(h), h);
+  public boolean eq(torrent_handle h) {
+    return libtorrent_jni.torrent_handle_eq(swigCPtr, this, torrent_handle.getCPtr(h), h);
   }
 
-  public boolean op_ne(torrent_handle h) {
-    return libtorrent_jni.torrent_handle_op_ne(swigCPtr, this, torrent_handle.getCPtr(h), h);
+  public boolean ne(torrent_handle h) {
+    return libtorrent_jni.torrent_handle_ne(swigCPtr, this, torrent_handle.getCPtr(h), h);
   }
 
-  public boolean op_lt(torrent_handle h) {
-    return libtorrent_jni.torrent_handle_op_lt(swigCPtr, this, torrent_handle.getCPtr(h), h);
+  public boolean lt(torrent_handle h) {
+    return libtorrent_jni.torrent_handle_lt(swigCPtr, this, torrent_handle.getCPtr(h), h);
   }
 
   public long id() {

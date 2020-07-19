@@ -60,8 +60,8 @@ public class peer_request {
     return libtorrent_jni.peer_request_length_get(swigCPtr, this);
   }
 
-  public boolean op_eq(peer_request r) {
-    return libtorrent_jni.peer_request_op_eq(swigCPtr, this, peer_request.getCPtr(r), r);
+  public boolean eq(peer_request r) {
+    return libtorrent_jni.peer_request_eq(swigCPtr, this, peer_request.getCPtr(r), r);
   }
 
   public peer_request() {
