@@ -36,6 +36,10 @@ public class add_piece_flags_t {
     }
   }
 
+  public add_piece_flags_t() {
+    this(libtorrent_jni.new_add_piece_flags_t(), true);
+  }
+
   public static add_piece_flags_t all() {
     return new add_piece_flags_t(libtorrent_jni.add_piece_flags_t_all(), true);
   }
@@ -72,8 +76,8 @@ public class add_piece_flags_t {
     return libtorrent_jni.add_piece_flags_t_to_int(swigCPtr, this);
   }
 
-  public add_piece_flags_t() {
-    this(libtorrent_jni.new_add_piece_flags_t(), true);
+  public add_piece_flags_t from_int(int val) {
+    return new add_piece_flags_t(libtorrent_jni.add_piece_flags_t_from_int(swigCPtr, this, val), true);
   }
 
 }

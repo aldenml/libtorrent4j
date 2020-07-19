@@ -8,7 +8,6 @@
 package org.libtorrent4j;
 
 import org.junit.Test;
-import org.libtorrent4j.swig.settings_pack;
 
 import java.nio.charset.StandardCharsets;
 

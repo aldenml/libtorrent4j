@@ -36,6 +36,10 @@ public class pause_flags_t {
     }
   }
 
+  public pause_flags_t() {
+    this(libtorrent_jni.new_pause_flags_t(), true);
+  }
+
   public static pause_flags_t all() {
     return new pause_flags_t(libtorrent_jni.pause_flags_t_all(), true);
   }
@@ -72,8 +76,8 @@ public class pause_flags_t {
     return libtorrent_jni.pause_flags_t_to_int(swigCPtr, this);
   }
 
-  public pause_flags_t() {
-    this(libtorrent_jni.new_pause_flags_t(), true);
+  public pause_flags_t from_int(int val) {
+    return new pause_flags_t(libtorrent_jni.pause_flags_t_from_int(swigCPtr, this, val), true);
   }
 
 }

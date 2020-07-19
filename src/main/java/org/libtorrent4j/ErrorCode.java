@@ -29,14 +29,14 @@ public final class ErrorCode {
     /**
      * @return the internal error code value
      */
-    public int value() {
+    public int getValue() {
         return value;
     }
 
     /**
      * @return the error message
      */
-    public String message() {
+    public String getMessage() {
         return message;
     }
 
@@ -52,6 +52,6 @@ public final class ErrorCode {
     void assign(error_code ec) {
         value = ec.value();
         message = ec.message();
-        isError = ec.non_zero();
+        isError = ec.to_bool();
     }
 }

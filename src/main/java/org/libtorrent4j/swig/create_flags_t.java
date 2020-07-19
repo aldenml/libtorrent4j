@@ -36,6 +36,10 @@ public class create_flags_t {
     }
   }
 
+  public create_flags_t() {
+    this(libtorrent_jni.new_create_flags_t(), true);
+  }
+
   public static create_flags_t all() {
     return new create_flags_t(libtorrent_jni.create_flags_t_all(), true);
   }
@@ -72,8 +76,8 @@ public class create_flags_t {
     return libtorrent_jni.create_flags_t_to_int(swigCPtr, this);
   }
 
-  public create_flags_t() {
-    this(libtorrent_jni.new_create_flags_t(), true);
+  public create_flags_t from_int(int val) {
+    return new create_flags_t(libtorrent_jni.create_flags_t_from_int(swigCPtr, this, val), true);
   }
 
 }

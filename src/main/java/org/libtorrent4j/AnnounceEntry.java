@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.announce_endpoint;
@@ -22,6 +29,15 @@ public final class AnnounceEntry
      */
     public AnnounceEntry(announce_entry e) {
         super(e);
+    }
+
+    /**
+     * Constructs a tracker announce entry with `url` as the URL.
+     *
+     * @param url tracker announce entry URL
+     */
+    public AnnounceEntry(String url) {
+        super(new announce_entry(url));
     }
 
     public List<AnnounceEndpoint> endpoints() {

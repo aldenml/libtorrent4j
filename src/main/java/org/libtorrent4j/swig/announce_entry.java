@@ -101,6 +101,10 @@ public class announce_entry {
     return libtorrent_jni.announce_entry_verified_get(swigCPtr, this);
   }
 
+  public announce_entry(String url) {
+    this(libtorrent_jni.new_announce_entry__SWIG_2(url), true);
+  }
+
   public final static class tracker_source {
     public final static announce_entry.tracker_source source_torrent = new announce_entry.tracker_source("source_torrent", libtorrent_jni.announce_entry_source_torrent_get());
     public final static announce_entry.tracker_source source_client = new announce_entry.tracker_source("source_client", libtorrent_jni.announce_entry_source_client_get());

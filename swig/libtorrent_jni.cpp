@@ -814,11 +814,11 @@ namespace Swig {
 #include "libtorrent/version.hpp"
 #include "libtorrent/magnet_uri.hpp"
 #include "libtorrent/fingerprint.hpp"
+#include "libtorrent/read_resume_data.hpp"
+#include "libtorrent/write_resume_data.hpp"
 
 #include <libtorrent/hex.hpp>
 #include <libtorrent/bencode.hpp>
-#include <libtorrent/read_resume_data.hpp>
-#include <libtorrent/write_resume_data.hpp>
 
 namespace lt = libtorrent;
 
@@ -2923,6 +2923,9 @@ SWIGINTERN libtorrent::announce_infohash libtorrent_announce_endpoint_get_infoha
 SWIGINTERN libtorrent::announce_infohash libtorrent_announce_endpoint_get_infohash_v2(libtorrent::announce_endpoint *self){
         return self->info_hashes[lt::protocol_version::V2];
     }
+SWIGINTERN libtorrent::announce_entry *new_libtorrent_announce_entry__SWIG_2(std::string url){
+        return new lt::announce_entry(url);
+    }
 SWIGINTERN void libtorrent_file_storage_add_file_ex__SWIG_0(libtorrent::file_storage *self,libtorrent::error_code &ec,std::string const &path,std::int64_t file_size,libtorrent::file_flags_t file_flags={},std::time_t mtime=0,std::string symlink_path={}){
         self->add_file(ec, path, file_size, file_flags, mtime, symlink_path);
     }
@@ -2952,6 +2955,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags
         }
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_file_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint8_t>(*self));
+        }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_file_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint8_t, libtorrent::file_flags_tag>(static_cast<std::uint8_t>(val));
         }
 SWIGINTERN std::string libtorrent_bdecode_node_list_string_value_at_ex__SWIG_0(libtorrent::bdecode_node *self,int i,std::string default_val=""){
         return std::string{self->list_string_value_at(i, default_val)};
@@ -3016,6 +3022,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_f
         }
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint64_t_Sc_libtorrent_torrent_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint64_t>(*self));
+        }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint64_t_Sc_libtorrent_torrent_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint64_t, libtorrent::torrent_flags_tag>(static_cast<std::uint64_t>(val));
         }
 SWIGINTERN libtorrent::torrent_info const *libtorrent_add_torrent_params_ti_ptr(libtorrent::add_torrent_params *self){
         return self->ti.get();
@@ -3095,22 +3104,6 @@ SWIGINTERN void libtorrent_add_torrent_params_set_verified_pieces(libtorrent::ad
         auto* t = reinterpret_cast<libtorrent::typed_bitfield<libtorrent::piece_index_t>*>(&v);
         self->verified_pieces = *t;
     }
-SWIGINTERN libtorrent::add_torrent_params libtorrent_add_torrent_params_read_resume_data__SWIG_0(libtorrent::bdecode_node const &rd,libtorrent::error_code &ec){
-        return libtorrent::read_resume_data(rd, ec);
-    }
-SWIGINTERN libtorrent::add_torrent_params libtorrent_add_torrent_params_read_resume_data__SWIG_1(std::vector< std::int8_t > const &buffer,libtorrent::error_code &ec){
-        return libtorrent::read_resume_data({(char const*)&buffer[0], static_cast<long>(buffer.size())}, ec);
-    }
-SWIGINTERN libtorrent::entry libtorrent_add_torrent_params_write_resume_data(libtorrent::add_torrent_params const &atp){
-        return libtorrent::write_resume_data(atp);
-    }
-SWIGINTERN std::vector< std::int8_t > libtorrent_add_torrent_params_write_resume_data_buf(libtorrent::add_torrent_params const &atp){
-        auto v = libtorrent::write_resume_data_buf(atp);
-        return {v.begin(), v.end()};
-    }
-SWIGINTERN libtorrent::add_torrent_params libtorrent_add_torrent_params_parse_magnet_uri(std::string const &uri,libtorrent::error_code &ec){
-        return libtorrent::parse_magnet_uri(uri, ec);
-    }
 SWIGINTERN std::vector< int8_t > libtorrent_peer_info_get_client(libtorrent::peer_info *self){
         std::string s = self->client;
         return {s.begin(), s.end()};
@@ -3164,6 +3157,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_bandwidth_state_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint8_t>(*self));
         }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_bandwidth_state_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint8_t, libtorrent::bandwidth_state_flags_tag>(static_cast<std::uint8_t>(val));
+        }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_connection_type_tag_Sg__non_zero(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > *self){
             return self->operator bool();
         }
@@ -3187,6 +3183,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection
         }
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_connection_type_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > *self){
             return static_cast<int>(static_cast<std::uint8_t>(*self));
+        }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_connection_type_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint8_t, libtorrent::connection_type_tag>(static_cast<std::uint8_t>(val));
         }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_peer_source_flags_tag_Sg__non_zero(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > *self){
             return self->operator bool();
@@ -3212,6 +3211,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_sourc
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_peer_source_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint8_t>(*self));
         }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_peer_source_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint8_t, libtorrent::peer_source_flags_tag>(static_cast<std::uint8_t>(val));
+        }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_peer_flags_tag_Sg__non_zero(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > *self){
             return self->operator bool();
         }
@@ -3236,6 +3238,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flag
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_peer_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint32_t>(*self));
         }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_peer_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint32_t, libtorrent::peer_flags_tag>(static_cast<std::uint32_t>(val));
+        }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_pex_flags_tag_Sg__non_zero(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > *self){
             return self->operator bool();
         }
@@ -3259,6 +3264,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_
         }
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_pex_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint8_t>(*self));
+        }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_pex_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint8_t, libtorrent::pex_flags_tag>(static_cast<std::uint8_t>(val));
         }
 SWIGINTERN libtorrent::torrent_info const *libtorrent_torrent_status_torrent_file_ptr(libtorrent::torrent_status *self){
         return self->torrent_file.lock().get();
@@ -3386,6 +3394,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_add_piece_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint8_t>(*self));
         }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_add_piece_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint8_t, libtorrent::add_piece_flags_tag>(static_cast<std::uint8_t>(val));
+        }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_deadline_flags_tag_Sg__non_zero(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > *self){
             return self->operator bool();
         }
@@ -3409,6 +3420,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_f
         }
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_deadline_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint8_t>(*self));
+        }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_deadline_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint8_t, libtorrent::deadline_flags_tag>(static_cast<std::uint8_t>(val));
         }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_file_progress_flags_tag_Sg__non_zero(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > *self){
             return self->operator bool();
@@ -3434,6 +3448,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progr
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_file_progress_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint8_t>(*self));
         }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_file_progress_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint8_t, libtorrent::file_progress_flags_tag>(static_cast<std::uint8_t>(val));
+        }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_pause_flags_tag_Sg__non_zero(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > *self){
             return self->operator bool();
         }
@@ -3457,6 +3474,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flag
         }
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_pause_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint8_t>(*self));
+        }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_pause_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint8_t, libtorrent::pause_flags_tag>(static_cast<std::uint8_t>(val));
         }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_resume_data_flags_tag_Sg__non_zero(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > *self){
             return self->operator bool();
@@ -3482,6 +3502,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_dat
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_resume_data_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint8_t>(*self));
         }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_resume_data_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint8_t, libtorrent::resume_data_flags_tag>(static_cast<std::uint8_t>(val));
+        }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_reannounce_flags_tag_Sg__non_zero(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > *self){
             return self->operator bool();
         }
@@ -3506,6 +3529,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_reannounce_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint8_t>(*self));
         }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_reannounce_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint8_t, libtorrent::reannounce_flags_tag>(static_cast<std::uint8_t>(val));
+        }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_status_flags_tag_Sg__non_zero(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > *self){
             return self->operator bool();
         }
@@ -3529,6 +3555,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_fl
         }
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_status_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint32_t>(*self));
+        }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_status_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint32_t, libtorrent::status_flags_tag>(static_cast<std::uint32_t>(val));
         }
 SWIGINTERN libtorrent::entry &libtorrent_entry_get(libtorrent::entry *self,std::string const &key){
             return self->operator[](key);
@@ -3681,6 +3710,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_cat
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_alert_category_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > *self){
             return static_cast<int>(static_cast<std::uint32_t>(*self));
         }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_alert_category_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint32_t, libtorrent::alert_category_tag>(static_cast<std::uint32_t>(val));
+        }
 SWIGINTERN libtorrent::tcp::endpoint libtorrent_peer_alert_get_endpoint(libtorrent::peer_alert *self){
         return self->endpoint;
     }
@@ -3805,6 +3837,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_fl
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_picker_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint32_t>(*self));
         }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_picker_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint32_t, libtorrent::picker_flags_tag>(static_cast<std::uint32_t>(val));
+        }
 SWIGINTERN std::vector< std::int8_t > libtorrent_settings_pack_get_bytes(libtorrent::settings_pack *self,int name){
         auto v = self->get_str(name);
         return std::vector<std::int8_t>(v.begin(), v.end());
@@ -3836,6 +3871,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_fla
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_remove_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint8_t>(*self));
         }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_remove_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint8_t, libtorrent::remove_flags_tag>(static_cast<std::uint8_t>(val));
+        }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_save_state_flags_tag_Sg__non_zero(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > *self){
             return self->operator bool();
         }
@@ -3860,6 +3898,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_stat
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_save_state_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint32_t>(*self));
         }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_save_state_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint32_t, libtorrent::save_state_flags_tag>(static_cast<std::uint32_t>(val));
+        }
 SWIGINTERN bool libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_reopen_network_flags_tag_Sg__non_zero(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > *self){
             return self->operator bool();
         }
@@ -3883,6 +3924,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_net
         }
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_reopen_network_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint8_t>(*self));
+        }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_reopen_network_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint8_t, libtorrent::reopen_network_flags_tag>(static_cast<std::uint8_t>(val));
         }
 SWIGINTERN lt::session_params libtorrent_session_params_read_session_params__SWIG_0(lt::bdecode_node const &e,lt::save_state_flags_t flags=lt::save_state_flags_t::all()){
         return lt::read_session_params(e, flags);
@@ -3983,6 +4027,9 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_fl
         }
 SWIGINTERN int libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_create_flags_tag_Sg__to_int(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > *self){
             return static_cast<int>(static_cast<std::uint32_t>(*self));
+        }
+SWIGINTERN libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_create_flags_tag_Sg__from_int(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > *self,int val){
+            return lt::flags::bitfield_flag<std::uint32_t, libtorrent::create_flags_tag>(static_cast<std::uint32_t>(val));
         }
 SWIGINTERN std::string libtorrent_stats_metric_get_name(libtorrent::stats_metric *self){
         return std::string(self->name);
@@ -16156,7 +16203,7 @@ SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_error_1co
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_error_1code_1non_1zero(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_error_1code_1to_1bool(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jboolean jresult = 0 ;
   boost::system::error_code *arg1 = (boost::system::error_code *) 0 ;
   bool result;
@@ -19388,7 +19435,7 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1storage
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_storage_1error_1non_1zero(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_storage_1error_1to_1bool(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jboolean jresult = 0 ;
   libtorrent::storage_error *arg1 = (libtorrent::storage_error *) 0 ;
   bool result;
@@ -20238,6 +20285,27 @@ SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_announce_
   arg1 = *(libtorrent::announce_entry **)&jarg1; 
   result = (bool) ((arg1)->verified);
   jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1announce_1entry_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jlong jresult = 0 ;
+  std::string arg1 ;
+  libtorrent::announce_entry *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  (&arg1)->assign(arg1_pstr);
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = (libtorrent::announce_entry *)new_libtorrent_announce_entry__SWIG_2(arg1);
+  *(libtorrent::announce_entry **)&jresult = result; 
   return jresult;
 }
 
@@ -21399,6 +21467,18 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1stor
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1file_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1flags_1t_1all(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > result;
@@ -21576,14 +21656,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1flags_1
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1file_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_file_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_flags_tag > &)result); 
   return jresult;
 }
 
@@ -21788,7 +21873,7 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1non_1zero(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bdecode_1node_1to_1bool(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jboolean jresult = 0 ;
   libtorrent::bdecode_node *arg1 = (libtorrent::bdecode_node *) 0 ;
   bool result;
@@ -22663,6 +22748,140 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1web_1
   (void)jenv;
   (void)jcls;
   arg1 = *(libtorrent::web_seed_entry **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_load_1torrent_1limits_1max_1buffer_1size_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  libtorrent::load_torrent_limits *arg1 = (libtorrent::load_torrent_limits *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::load_torrent_limits **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->max_buffer_size = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_load_1torrent_1limits_1max_1buffer_1size_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  libtorrent::load_torrent_limits *arg1 = (libtorrent::load_torrent_limits *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::load_torrent_limits **)&jarg1; 
+  result = (int) ((arg1)->max_buffer_size);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_load_1torrent_1limits_1max_1pieces_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  libtorrent::load_torrent_limits *arg1 = (libtorrent::load_torrent_limits *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::load_torrent_limits **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->max_pieces = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_load_1torrent_1limits_1max_1pieces_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  libtorrent::load_torrent_limits *arg1 = (libtorrent::load_torrent_limits *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::load_torrent_limits **)&jarg1; 
+  result = (int) ((arg1)->max_pieces);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_load_1torrent_1limits_1max_1decode_1depth_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  libtorrent::load_torrent_limits *arg1 = (libtorrent::load_torrent_limits *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::load_torrent_limits **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->max_decode_depth = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_load_1torrent_1limits_1max_1decode_1depth_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  libtorrent::load_torrent_limits *arg1 = (libtorrent::load_torrent_limits *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::load_torrent_limits **)&jarg1; 
+  result = (int) ((arg1)->max_decode_depth);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_load_1torrent_1limits_1max_1decode_1tokens_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  libtorrent::load_torrent_limits *arg1 = (libtorrent::load_torrent_limits *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::load_torrent_limits **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->max_decode_tokens = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_load_1torrent_1limits_1max_1decode_1tokens_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  libtorrent::load_torrent_limits *arg1 = (libtorrent::load_torrent_limits *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::load_torrent_limits **)&jarg1; 
+  result = (int) ((arg1)->max_decode_tokens);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1load_1torrent_1limits(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::load_torrent_limits *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::load_torrent_limits *)new libtorrent::load_torrent_limits();
+  *(libtorrent::load_torrent_limits **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1load_1torrent_1limits(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  libtorrent::load_torrent_limits *arg1 = (libtorrent::load_torrent_limits *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(libtorrent::load_torrent_limits **)&jarg1; 
   delete arg1;
 }
 
@@ -23847,6 +24066,18 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_default_1fla
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1torrent_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1flags_1t_1all(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > result;
@@ -24024,14 +24255,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1flag
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1torrent_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint64_t_Sc_libtorrent_torrent_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint64_t,libtorrent::torrent_flags_tag > &)result); 
   return jresult;
 }
 
@@ -25344,125 +25580,6 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_
     return ;
   } 
   libtorrent_add_torrent_params_set_verified_pieces(arg1,*arg2);
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1read_1resume_1data_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  jlong jresult = 0 ;
-  libtorrent::bdecode_node *arg1 = 0 ;
-  libtorrent::error_code *arg2 = 0 ;
-  libtorrent::add_torrent_params result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(libtorrent::bdecode_node **)&jarg1;
-  if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::bdecode_node const & reference is null");
-    return 0;
-  } 
-  arg2 = *(libtorrent::error_code **)&jarg2;
-  if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::error_code & reference is null");
-    return 0;
-  } 
-  result = libtorrent_add_torrent_params_read_resume_data__SWIG_0((libtorrent::bdecode_node const &)*arg1,*arg2);
-  *(libtorrent::add_torrent_params **)&jresult = new libtorrent::add_torrent_params((const libtorrent::add_torrent_params &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1read_1resume_1data_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  jlong jresult = 0 ;
-  std::vector< std::int8_t > *arg1 = 0 ;
-  libtorrent::error_code *arg2 = 0 ;
-  libtorrent::add_torrent_params result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(std::vector< std::int8_t > **)&jarg1;
-  if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::int8_t > const & reference is null");
-    return 0;
-  } 
-  arg2 = *(libtorrent::error_code **)&jarg2;
-  if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::error_code & reference is null");
-    return 0;
-  } 
-  result = libtorrent_add_torrent_params_read_resume_data__SWIG_1((std::vector< signed char > const &)*arg1,*arg2);
-  *(libtorrent::add_torrent_params **)&jresult = new libtorrent::add_torrent_params((const libtorrent::add_torrent_params &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1write_1resume_1data(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  libtorrent::add_torrent_params *arg1 = 0 ;
-  libtorrent::entry result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1;
-  if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::add_torrent_params const & reference is null");
-    return 0;
-  } 
-  result = libtorrent_add_torrent_params_write_resume_data((libtorrent::add_torrent_params const &)*arg1);
-  *(libtorrent::entry **)&jresult = new libtorrent::entry((const libtorrent::entry &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1write_1resume_1data_1buf(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  libtorrent::add_torrent_params *arg1 = 0 ;
-  std::vector< std::int8_t > result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::add_torrent_params **)&jarg1;
-  if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::add_torrent_params const & reference is null");
-    return 0;
-  } 
-  result = libtorrent_add_torrent_params_write_resume_data_buf((libtorrent::add_torrent_params const &)*arg1);
-  *(std::vector< std::int8_t > **)&jresult = new std::vector< std::int8_t >((const std::vector< std::int8_t > &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1torrent_1params_1parse_1magnet_1uri(JNIEnv *jenv, jclass jcls, jstring jarg1, jlong jarg2, jobject jarg2_) {
-  jlong jresult = 0 ;
-  std::string *arg1 = 0 ;
-  libtorrent::error_code *arg2 = 0 ;
-  libtorrent::add_torrent_params result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg2_;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  arg2 = *(libtorrent::error_code **)&jarg2;
-  if (!arg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::error_code & reference is null");
-    return 0;
-  } 
-  result = libtorrent_add_torrent_params_parse_magnet_uri((std::string const &)*arg1,*arg2);
-  *(libtorrent::add_torrent_params **)&jresult = new libtorrent::add_torrent_params((const libtorrent::add_torrent_params &)result); 
-  return jresult;
 }
 
 
@@ -27278,6 +27395,18 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1info_1
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1bandwidth_1state_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bandwidth_1state_1flags_1t_1all(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > result;
@@ -27455,14 +27584,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bandwidth_1st
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1bandwidth_1state_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_bandwidth_1state_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_bandwidth_state_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > &)result); 
   return jresult;
 }
 
@@ -27474,6 +27608,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1bandw
   (void)jcls;
   arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::bandwidth_state_flags_tag > **)&jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1connection_1type_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -27654,14 +27800,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_connection_1t
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1connection_1type_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_connection_1type_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_connection_type_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag >((const libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > &)result); 
   return jresult;
 }
 
@@ -27673,6 +27824,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1conne
   (void)jcls;
   arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::connection_type_tag > **)&jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1peer_1source_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -27853,14 +28016,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1source_
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1peer_1source_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1source_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_peer_source_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > &)result); 
   return jresult;
 }
 
@@ -27872,6 +28040,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1peer_
   (void)jcls;
   arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::peer_source_flags_tag > **)&jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1peer_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -28052,14 +28232,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1flags_1
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1peer_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_peer_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::peer_flags_tag > &)result); 
   return jresult;
 }
 
@@ -28130,6 +28315,18 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_pex_1lt_1v2_
   (void)jcls;
   result = (libtorrent::pex_flags_t *)&libtorrent::pex_lt_v2;
   *(libtorrent::pex_flags_t **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1pex_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > **)&jresult = result; 
   return jresult;
 }
 
@@ -28311,14 +28508,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_pex_1flags_1t
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1pex_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_pex_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_pex_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pex_flags_tag > &)result); 
   return jresult;
 }
 
@@ -32492,6 +32694,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1torre
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1add_1piece_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1piece_1flags_1t_1all(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > result;
@@ -32669,14 +32883,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1piece_1f
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1add_1piece_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1piece_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_add_piece_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > &)result); 
   return jresult;
 }
 
@@ -32688,6 +32907,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1add_1
   (void)jcls;
   arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::add_piece_flags_tag > **)&jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1deadline_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -32868,14 +33099,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_deadline_1fla
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1deadline_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_deadline_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_deadline_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > &)result); 
   return jresult;
 }
 
@@ -32887,6 +33123,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1deadl
   (void)jcls;
   arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::deadline_flags_tag > **)&jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1file_1progress_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -33067,14 +33315,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1progres
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1file_1progress_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1progress_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_file_progress_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > &)result); 
   return jresult;
 }
 
@@ -33086,6 +33339,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1file_
   (void)jcls;
   arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::file_progress_flags_tag > **)&jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1pause_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -33266,14 +33531,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_pause_1flags_
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1pause_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_pause_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_pause_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > &)result); 
   return jresult;
 }
 
@@ -33285,6 +33555,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1pause
   (void)jcls;
   arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::pause_flags_tag > **)&jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1resume_1data_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -33465,14 +33747,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_resume_1data_
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1resume_1data_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_resume_1data_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_resume_data_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > &)result); 
   return jresult;
 }
 
@@ -33484,6 +33771,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1resum
   (void)jcls;
   arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::resume_data_flags_tag > **)&jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1reannounce_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -33664,14 +33963,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_reannounce_1f
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1reannounce_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_reannounce_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_reannounce_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > &)result); 
   return jresult;
 }
 
@@ -33683,6 +33987,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1reann
   (void)jcls;
   arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reannounce_flags_tag > **)&jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1status_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -33863,14 +34179,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_status_1flags
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1status_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_status_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_status_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::status_flags_tag > &)result); 
   return jresult;
 }
 
@@ -36616,6 +36937,18 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_alert_1cast_
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1alert_1category_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > *)new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_alert_1category_1t_1all(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > result;
@@ -36793,14 +37126,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_alert_1catego
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1alert_1category_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_alert_1category_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > *)new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_alert_category_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag >((const libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::alert_category_tag > &)result); 
   return jresult;
 }
 
@@ -50231,6 +50569,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1socks
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1picker_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_picker_1flags_1t_1all(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > result;
@@ -50408,14 +50758,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_picker_1flags
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1picker_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_picker_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_picker_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::picker_flags_tag > &)result); 
   return jresult;
 }
 
@@ -51835,6 +52190,18 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_port_1filter
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1remove_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_remove_1flags_1t_1all(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > result;
@@ -52012,14 +52379,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_remove_1flags
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1remove_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_remove_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_remove_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > &)result); 
   return jresult;
 }
 
@@ -52031,6 +52403,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1remov
   (void)jcls;
   arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::remove_flags_tag > **)&jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1save_1state_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -52211,14 +52595,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_save_1state_1
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1save_1state_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_save_1state_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_save_state_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > &)result); 
   return jresult;
 }
 
@@ -52230,6 +52619,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1save_
   (void)jcls;
   arg1 = *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::save_state_flags_tag > **)&jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1reopen_1network_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -52410,14 +52811,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_reopen_1netwo
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1reopen_1network_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_reopen_1network_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint8_t_Sc_libtorrent_reopen_network_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_network_flags_tag > &)result); 
   return jresult;
 }
 
@@ -54656,6 +55062,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_add_1files_1_
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1create_1flags_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag >();
+  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_create_1flags_1t_1all(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > result;
@@ -54833,14 +55251,19 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_create_1flags
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1create_1flags_1t(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_create_1flags_1t_1from_1int(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
-  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > *result = 0 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > *arg1 = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > *) 0 ;
+  int arg2 ;
+  libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > *)new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag >();
-  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > **)&jresult = result; 
+  (void)jarg1_;
+  arg1 = *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = libtorrent_flags_bitfield_flag_Sl_std_uint32_t_Sc_libtorrent_create_flags_tag_Sg__from_int(arg1,arg2);
+  *(libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > **)&jresult = new libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag >((const libtorrent::flags::bitfield_flag< std::uint32_t,libtorrent::create_flags_tag > &)result); 
   return jresult;
 }
 
@@ -55110,6 +55533,79 @@ SWIGEXPORT jstring JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_generate_1
   arg2 = (int)jarg2; 
   result = libtorrent::generate_fingerprint(arg1,arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_read_1resume_1data_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3) {
+  jlong jresult = 0 ;
+  libtorrent::bdecode_node *arg1 = 0 ;
+  libtorrent::error_code *arg2 = 0 ;
+  int arg3 ;
+  libtorrent::add_torrent_params result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(libtorrent::bdecode_node **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::bdecode_node const & reference is null");
+    return 0;
+  } 
+  arg2 = *(libtorrent::error_code **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::error_code & reference is null");
+    return 0;
+  } 
+  arg3 = (int)jarg3; 
+  result = libtorrent::read_resume_data((libtorrent::bdecode_node const &)*arg1,*arg2,arg3);
+  *(libtorrent::add_torrent_params **)&jresult = new libtorrent::add_torrent_params((const libtorrent::add_torrent_params &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_read_1resume_1data_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  libtorrent::bdecode_node *arg1 = 0 ;
+  libtorrent::error_code *arg2 = 0 ;
+  libtorrent::add_torrent_params result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(libtorrent::bdecode_node **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::bdecode_node const & reference is null");
+    return 0;
+  } 
+  arg2 = *(libtorrent::error_code **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::error_code & reference is null");
+    return 0;
+  } 
+  result = libtorrent::read_resume_data((libtorrent::bdecode_node const &)*arg1,*arg2);
+  *(libtorrent::add_torrent_params **)&jresult = new libtorrent::add_torrent_params((const libtorrent::add_torrent_params &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_write_1resume_1data(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::add_torrent_params *arg1 = 0 ;
+  libtorrent::entry result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::add_torrent_params const & reference is null");
+    return 0;
+  } 
+  result = libtorrent::write_resume_data((libtorrent::add_torrent_params const &)*arg1);
+  *(libtorrent::entry **)&jresult = new libtorrent::entry((const libtorrent::entry &)result); 
   return jresult;
 }
 
@@ -56110,6 +56606,113 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_set_1piece_1h
     return ;
   } 
   set_piece_hashes_ex(*arg1,(std::string const &)*arg2,arg3,*arg4);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_read_1resume_1data_1ex_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_) {
+  jlong jresult = 0 ;
+  std::vector< std::int8_t > *arg1 = 0 ;
+  libtorrent::error_code *arg2 = 0 ;
+  libtorrent::load_torrent_limits *arg3 = 0 ;
+  libtorrent::add_torrent_params result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  (void)jarg3_;
+  arg1 = *(std::vector< std::int8_t > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::int8_t > const & reference is null");
+    return 0;
+  } 
+  arg2 = *(libtorrent::error_code **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::error_code & reference is null");
+    return 0;
+  } 
+  arg3 = *(libtorrent::load_torrent_limits **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::load_torrent_limits const & reference is null");
+    return 0;
+  } 
+  result = read_resume_data_ex((std::vector< signed char > const &)*arg1,*arg2,(libtorrent::load_torrent_limits const &)*arg3);
+  *(libtorrent::add_torrent_params **)&jresult = new libtorrent::add_torrent_params((const libtorrent::add_torrent_params &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_read_1resume_1data_1ex_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  std::vector< std::int8_t > *arg1 = 0 ;
+  libtorrent::error_code *arg2 = 0 ;
+  libtorrent::add_torrent_params result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(std::vector< std::int8_t > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::int8_t > const & reference is null");
+    return 0;
+  } 
+  arg2 = *(libtorrent::error_code **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::error_code & reference is null");
+    return 0;
+  } 
+  result = read_resume_data_ex((std::vector< signed char > const &)*arg1,*arg2);
+  *(libtorrent::add_torrent_params **)&jresult = new libtorrent::add_torrent_params((const libtorrent::add_torrent_params &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_write_1resume_1data_1buf_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  libtorrent::add_torrent_params *arg1 = 0 ;
+  std::vector< std::int8_t > result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::add_torrent_params **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::add_torrent_params const & reference is null");
+    return 0;
+  } 
+  result = write_resume_data_buf_ex((libtorrent::add_torrent_params const &)*arg1);
+  *(std::vector< std::int8_t > **)&jresult = new std::vector< std::int8_t >((const std::vector< std::int8_t > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_parse_1magnet_1uri(JNIEnv *jenv, jclass jcls, jstring jarg1, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  libtorrent::error_code *arg2 = 0 ;
+  libtorrent::add_torrent_params result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg2_;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  arg2 = *(libtorrent::error_code **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "libtorrent::error_code & reference is null");
+    return 0;
+  } 
+  result = parse_magnet_uri((std::string const &)*arg1,*arg2);
+  *(libtorrent::add_torrent_params **)&jresult = new libtorrent::add_torrent_params((const libtorrent::add_torrent_params &)result); 
+  return jresult;
 }
 
 

@@ -34,4 +34,12 @@ namespace libtorrent {
     }
 }
 
+%extend announce_entry
+{
+    announce_entry(std::string url)
+    {
+        return new lt::announce_entry(url);
+    }
+}
+
 }

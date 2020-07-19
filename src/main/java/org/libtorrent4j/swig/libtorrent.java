@@ -356,6 +356,18 @@ public class libtorrent {
     return libtorrent_jni.generate_fingerprint__SWIG_3(name, major);
   }
 
+  public static add_torrent_params read_resume_data(bdecode_node rd, error_code ec, int piece_limit) {
+    return new add_torrent_params(libtorrent_jni.read_resume_data__SWIG_0(bdecode_node.getCPtr(rd), rd, error_code.getCPtr(ec), ec, piece_limit), true);
+  }
+
+  public static add_torrent_params read_resume_data(bdecode_node rd, error_code ec) {
+    return new add_torrent_params(libtorrent_jni.read_resume_data__SWIG_1(bdecode_node.getCPtr(rd), rd, error_code.getCPtr(ec), ec), true);
+  }
+
+  public static entry write_resume_data(add_torrent_params atp) {
+    return new entry(libtorrent_jni.write_resume_data(add_torrent_params.getCPtr(atp), atp), true);
+  }
+
   public static int find_metric_idx_ex(String name) {
     return libtorrent_jni.find_metric_idx_ex(name);
   }
@@ -422,6 +434,22 @@ public class libtorrent {
 
   public static void set_piece_hashes_ex(create_torrent t, String p, set_piece_hashes_listener listener, error_code ec) {
     libtorrent_jni.set_piece_hashes_ex(create_torrent.getCPtr(t), t, p, set_piece_hashes_listener.getCPtr(listener), listener, error_code.getCPtr(ec), ec);
+  }
+
+  public static add_torrent_params read_resume_data_ex(byte_vector buffer, error_code ec, load_torrent_limits cfg) {
+    return new add_torrent_params(libtorrent_jni.read_resume_data_ex__SWIG_0(byte_vector.getCPtr(buffer), buffer, error_code.getCPtr(ec), ec, load_torrent_limits.getCPtr(cfg), cfg), true);
+  }
+
+  public static add_torrent_params read_resume_data_ex(byte_vector buffer, error_code ec) {
+    return new add_torrent_params(libtorrent_jni.read_resume_data_ex__SWIG_1(byte_vector.getCPtr(buffer), buffer, error_code.getCPtr(ec), ec), true);
+  }
+
+  public static byte_vector write_resume_data_buf_ex(add_torrent_params atp) {
+    return new byte_vector(libtorrent_jni.write_resume_data_buf_ex(add_torrent_params.getCPtr(atp), atp), true);
+  }
+
+  public static add_torrent_params parse_magnet_uri(String uri, error_code ec) {
+    return new add_torrent_params(libtorrent_jni.parse_magnet_uri(uri, error_code.getCPtr(ec), ec), true);
   }
 
 }

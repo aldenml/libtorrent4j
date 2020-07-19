@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j.swig;
 
 import org.junit.Test;
@@ -86,5 +93,12 @@ public class AddTorrentParamsTest {
         bitfield r = params.get_have_pieces();
 
         assertTrue(r.get_bit(5));
+    }
+
+    @Test
+    public void testDefaultName() {
+        add_torrent_params params = new add_torrent_params();
+
+        assertEquals("", params.getName());
     }
 }

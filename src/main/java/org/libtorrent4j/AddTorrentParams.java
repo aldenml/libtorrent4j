@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.add_torrent_params;
@@ -5,6 +12,7 @@ import org.libtorrent4j.swig.byte_vector;
 import org.libtorrent4j.swig.entry;
 import org.libtorrent4j.swig.error_code;
 import org.libtorrent4j.swig.int_vector;
+import org.libtorrent4j.swig.libtorrent;
 import org.libtorrent4j.swig.storage_mode_t;
 import org.libtorrent4j.swig.string_int_pair;
 import org.libtorrent4j.swig.string_int_pair_vector;
@@ -31,7 +39,7 @@ import java.util.List;
  * <p>
  * If you only specify the info-hash, the torrent file will be downloaded
  * from peers, which requires them to support the metadata extension. It also
- * takes an optional {@link #name()} argument. This may be left empty in case no
+ * takes an optional {@link #getName()} argument. This may be left empty in case no
  * name should be assigned to the torrent. In case it's not, the name is
  * used for the torrent as long as it doesn't have metadata.
  *
@@ -86,12 +94,12 @@ public final class AddTorrentParams
 
     /**
      * If the torrent doesn't have a tracker, but relies on the DHT to find
-     * peers, the {@link #trackers(List)} can specify tracker URLs for the
+     * peers, the {@link #setTrackers(List)} can specify tracker URLs for the
      * torrent.
      *
      * @return the list of trackers
      */
-    public List<String> trackers() {
+    public List<String> getTrackers() {
         return new ArrayList<>(h.getTrackers());
     }
 
@@ -101,13 +109,13 @@ public final class AddTorrentParams
      *
      * @param value the list of trackers
      */
-    public void trackers(List<String> value) {
+    public void setTrackers(List<String> value) {
         string_vector v = new string_vector(value);
         h.setTrackers(v);
     }
 
     /**
-     * The tiers the URLs in {@link #trackers()} belong to. Trackers belonging to
+     * The tiers the URLs in {@link #getTrackers()} belong to. Trackers belonging to
      * different tiers may be treated differently, as defined by the multi
      * tracker extension. This is optional, if not specified trackers are
      * assumed to be part of tier 0, or whichever the last tier was as
@@ -120,7 +128,7 @@ public final class AddTorrentParams
     }
 
     /**
-     * The tiers the URLs in {@link #trackers()} belong to. Trackers belonging to
+     * The tiers the URLs in {@link #getTrackers()} belong to. Trackers belonging to
      * different tiers may be treated differently, as defined by the multi
      * tracker extension. This is optional, if not specified trackers are
      * assumed to be part of tier 0, or whichever the last tier was as
@@ -171,14 +179,14 @@ public final class AddTorrentParams
     /**
      * @return the name
      */
-    public String name() {
+    public String getName() {
         return h.getName();
     }
 
     /**
      * @param value the name
      */
-    public void name(String value) {
+    public void setName(String value) {
         h.setName(value);
     }
 
@@ -261,7 +269,7 @@ public final class AddTorrentParams
      *
      * @return the info-hash
      */
-    public InfoHash infoHash() {
+    public InfoHash getInfoHash() {
         return new InfoHash(h.getInfo_hash());
     }
 
@@ -272,7 +280,7 @@ public final class AddTorrentParams
      *
      * @param value the info-hash
      */
-    public void infoHash(InfoHash value) {
+    public void setInfoHash(InfoHash value) {
         h.setInfo_hash(value.swig());
     }
 
@@ -489,7 +497,7 @@ public final class AddTorrentParams
      */
     public static AddTorrentParams parseMagnetUri(String uri) {
         error_code ec = new error_code();
-        add_torrent_params params = add_torrent_params.parse_magnet_uri(uri, ec);
+        add_torrent_params params = libtorrent.parse_magnet_uri(uri, ec);
         if (ec.value() != 0) {
             throw new IllegalArgumentException("Invalid magnet uri: " + ec.message());
         }
@@ -501,7 +509,7 @@ public final class AddTorrentParams
      * into a bencoded structure.
      */
     public static Entry writeResumeData(AddTorrentParams params) {
-        entry e = add_torrent_params.write_resume_data(params.h);
+        entry e = libtorrent.write_resume_data(params.h);
         return new Entry(e);
     }
 
@@ -510,7 +518,7 @@ public final class AddTorrentParams
      * into a bencoded structure as a byte array.
      */
     public static byte[] writeResumeDataBuf(AddTorrentParams params) {
-        byte_vector v = add_torrent_params.write_resume_data_buf(params.h);
+        byte_vector v = libtorrent.write_resume_data_buf_ex(params.h);
         return Vectors.byte_vector2bytes(v);
     }
 }

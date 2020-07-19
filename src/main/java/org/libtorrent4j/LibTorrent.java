@@ -54,8 +54,14 @@ public final class LibTorrent {
         return libtorrent.openssl_version_text();
     }
 
+    /**
+     * Version of libtorrent4j. It should match your maven
+     * artifact version.
+     *
+     * @return libtorrent4j version.
+     */
     public static String libtorrent4jVersion() {
-        return "2.0.0-alpha-2";
+        return "2.0.0-alpha-3";
     }
 
     /**

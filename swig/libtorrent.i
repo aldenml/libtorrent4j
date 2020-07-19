@@ -78,11 +78,11 @@
 #include "libtorrent/version.hpp"
 #include "libtorrent/magnet_uri.hpp"
 #include "libtorrent/fingerprint.hpp"
+#include "libtorrent/read_resume_data.hpp"
+#include "libtorrent/write_resume_data.hpp"
 
 #include <libtorrent/hex.hpp>
 #include <libtorrent/bencode.hpp>
-#include <libtorrent/read_resume_data.hpp>
-#include <libtorrent/write_resume_data.hpp>
 
 namespace lt = libtorrent;
 
@@ -229,7 +229,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %rename(or_) operator|;
 %rename(and_) operator&;
 %rename(at) operator[];
-%rename(non_zero) operator bool;
+%rename(to_bool) operator bool;
 
 // general ignores
 %ignore libtorrent::aux;
@@ -289,6 +289,8 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %include "libtorrent/version.i"
 %include "libtorrent/magnet_uri.i"
 %include "libtorrent/fingerprint.i"
+%include "libtorrent/read_resume_data.i"
+%include "libtorrent/write_resume_data.i"
 
 // for libtorrent.hpp
 %ignore set_piece_hashes_listener::progress_index;

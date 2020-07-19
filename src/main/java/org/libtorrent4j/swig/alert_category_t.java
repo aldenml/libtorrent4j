@@ -36,6 +36,10 @@ public class alert_category_t {
     }
   }
 
+  public alert_category_t() {
+    this(libtorrent_jni.new_alert_category_t(), true);
+  }
+
   public static alert_category_t all() {
     return new alert_category_t(libtorrent_jni.alert_category_t_all(), true);
   }
@@ -72,8 +76,8 @@ public class alert_category_t {
     return libtorrent_jni.alert_category_t_to_int(swigCPtr, this);
   }
 
-  public alert_category_t() {
-    this(libtorrent_jni.new_alert_category_t(), true);
+  public alert_category_t from_int(int val) {
+    return new alert_category_t(libtorrent_jni.alert_category_t_from_int(swigCPtr, this, val), true);
   }
 
 }

@@ -1,7 +1,39 @@
+/*
+ * Copyright (c) 2018-2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
-import org.libtorrent4j.swig.*;
-import org.libtorrent4j.alerts.*;
+import org.libtorrent4j.alerts.CacheFlushedAlert;
+import org.libtorrent4j.alerts.FileErrorAlert;
+import org.libtorrent4j.alerts.FileRenameFailedAlert;
+import org.libtorrent4j.alerts.FileRenamedAlert;
+import org.libtorrent4j.alerts.HashFailedAlert;
+import org.libtorrent4j.alerts.PieceFinishedAlert;
+import org.libtorrent4j.alerts.ReadPieceAlert;
+import org.libtorrent4j.alerts.StorageMovedAlert;
+import org.libtorrent4j.alerts.StorageMovedFailedAlert;
+import org.libtorrent4j.alerts.TorrentNeedCertAlert;
+import org.libtorrent4j.swig.add_piece_flags_t;
+import org.libtorrent4j.swig.announce_entry_vector;
+import org.libtorrent4j.swig.byte_vector;
+import org.libtorrent4j.swig.deadline_flags_t;
+import org.libtorrent4j.swig.file_progress_flags_t;
+import org.libtorrent4j.swig.int64_vector;
+import org.libtorrent4j.swig.int_vector;
+import org.libtorrent4j.swig.libtorrent;
+import org.libtorrent4j.swig.partial_piece_info_vector;
+import org.libtorrent4j.swig.peer_info_vector;
+import org.libtorrent4j.swig.reannounce_flags_t;
+import org.libtorrent4j.swig.resume_data_flags_t;
+import org.libtorrent4j.swig.status_flags_t;
+import org.libtorrent4j.swig.torrent_flags_t;
+import org.libtorrent4j.swig.torrent_handle;
+import org.libtorrent4j.swig.torrent_info;
+import org.libtorrent4j.swig.torrent_status;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,26 +69,21 @@ import java.util.List;
  * @author gubatron
  * @author aldenml
  */
-public final class TorrentHandle {
+public final class TorrentHandle
+    extends SwigObject<torrent_handle> {
 
     private static final long REQUEST_STATUS_RESOLUTION_MILLIS = 500;
     // cache this zero flag for performance reasons
     private static final status_flags_t STATUS_FLAGS_ZERO = new status_flags_t();
 
-    private final torrent_handle th;
-
     private long lastStatusRequestTime;
     private TorrentStatus lastStatus;
 
-    public TorrentHandle(torrent_handle th) {
-        this.th = th;
-    }
-
     /**
-     * @return the native object
+     * @param th the native object
      */
-    public torrent_handle swig() {
-        return th;
+    public TorrentHandle(torrent_handle th) {
+        super(th);
     }
 
     /**
@@ -88,7 +115,7 @@ public final class TorrentHandle {
      * @param flags flags
      */
     public void addPiece(int piece, byte[] data, add_piece_flags_t flags) {
-        th.add_piece_bytes(piece, Vectors.bytes2byte_vector(data), flags);
+        h.add_piece_bytes(piece, Vectors.bytes2byte_vector(data), flags);
     }
 
     /**
@@ -99,7 +126,7 @@ public final class TorrentHandle {
      * @param data  the piece data
      */
     public void addPiece(int piece, byte[] data) {
-        th.add_piece_bytes(piece, Vectors.bytes2byte_vector(data));
+        h.add_piece_bytes(piece, Vectors.bytes2byte_vector(data));
     }
 
     /**
@@ -118,7 +145,7 @@ public final class TorrentHandle {
      * @param piece the piece index
      */
     public void readPiece(int piece) {
-        th.read_piece(piece);
+        h.read_piece(piece);
     }
 
     /**
@@ -129,7 +156,7 @@ public final class TorrentHandle {
      * @return if piece has been completely downloaded
      */
     public boolean havePiece(int piece) {
-        return th.have_piece(piece);
+        return h.have_piece(piece);
     }
 
     /**
@@ -143,12 +170,12 @@ public final class TorrentHandle {
      * @see PeerInfo
      */
     public List<PeerInfo> peerInfo() {
-        if (!th.is_valid()) {
+        if (!h.is_valid()) {
             return new ArrayList<>();
         }
 
         peer_info_vector v = new peer_info_vector();
-        th.get_peer_info(v);
+        h.get_peer_info(v);
 
         int size = (int) v.size();
         ArrayList<PeerInfo> l = new ArrayList<>(size);
@@ -173,10 +200,10 @@ public final class TorrentHandle {
      * @return the internal torrent info
      */
     public TorrentInfo torrentFile() {
-        if (!th.is_valid()) {
+        if (!h.is_valid()) {
             return null;
         }
-        torrent_info ti = th.torrent_file_ptr();
+        torrent_info ti = h.torrent_file_ptr();
         return ti != null ? new TorrentInfo(ti) : null;
     }
 
@@ -201,7 +228,7 @@ public final class TorrentHandle {
         long now = System.currentTimeMillis();
         if (force || (now - lastStatusRequestTime) >= REQUEST_STATUS_RESOLUTION_MILLIS) {
             lastStatusRequestTime = now;
-            lastStatus = new TorrentStatus(th.status(STATUS_FLAGS_ZERO));
+            lastStatus = new TorrentStatus(h.status(STATUS_FLAGS_ZERO));
         }
 
         return lastStatus;
@@ -278,7 +305,7 @@ public final class TorrentHandle {
      * @return the status
      */
     public TorrentStatus status(status_flags_t flags) {
-        return new TorrentStatus(th.status(flags));
+        return new TorrentStatus(h.status(flags));
     }
 
     /**
@@ -290,7 +317,7 @@ public final class TorrentHandle {
      */
     public ArrayList<PartialPieceInfo> getDownloadQueue() {
         partial_piece_info_vector v = new partial_piece_info_vector();
-        th.get_download_queue(v);
+        h.get_download_queue(v);
         int size = (int) v.size();
         ArrayList<PartialPieceInfo> l = new ArrayList<>(size);
 
@@ -310,7 +337,7 @@ public final class TorrentHandle {
      * @return the torrent info hash
      */
     public Sha1Hash infoHash() {
-        return new Sha1Hash(th.info_hash());
+        return new Sha1Hash(h.info_hash());
     }
 
     /**
@@ -338,7 +365,7 @@ public final class TorrentHandle {
      * not automanaged first.
      */
     public void pause() {
-        th.pause();
+        h.pause();
     }
 
     /**
@@ -347,23 +374,23 @@ public final class TorrentHandle {
      * Torrents that are auto-managed may be automatically resumed again.
      */
     public void resume() {
-        th.resume();
+        h.resume();
     }
 
     public torrent_flags_t flags() {
-        return th.flags();
+        return h.flags();
     }
 
     public void setFlags(torrent_flags_t flags, torrent_flags_t mask) {
-        th.set_flags(flags, mask);
+        h.set_flags(flags, mask);
     }
 
     public void setFlags(torrent_flags_t flags) {
-        th.set_flags(flags);
+        h.set_flags(flags);
     }
 
     public void unsetFlags(torrent_flags_t flags) {
-        th.unset_flags(flags);
+        h.unset_flags(flags);
     }
 
     /**
@@ -377,7 +404,7 @@ public final class TorrentHandle {
      * {@code flushCache()} has been written to disk.
      */
     public void flushCache() {
-        th.flush_cache();
+        h.flush_cache();
     }
 
     /**
@@ -395,7 +422,7 @@ public final class TorrentHandle {
      * data was saved.
      */
     public boolean needSaveResumeData() {
-        return th.need_save_resume_data();
+        return h.need_save_resume_data();
     }
 
     /**
@@ -418,7 +445,7 @@ public final class TorrentHandle {
      * @return the queue position
      */
     public int queuePosition() {
-        return th.queue_position_ex();
+        return h.queue_position_ex();
     }
 
     /**
@@ -428,7 +455,7 @@ public final class TorrentHandle {
      * the queue respectively.
      */
     public void queuePositionUp() {
-        th.queue_position_up();
+        h.queue_position_up();
     }
 
     /**
@@ -438,7 +465,7 @@ public final class TorrentHandle {
      * the queue respectively.
      */
     public void queuePositionDown() {
-        th.queue_position_down();
+        h.queue_position_down();
     }
 
     /**
@@ -448,7 +475,7 @@ public final class TorrentHandle {
      * the queue respectively.
      */
     public void queuePositionTop() {
-        th.queue_position_top();
+        h.queue_position_top();
     }
 
     /**
@@ -458,7 +485,7 @@ public final class TorrentHandle {
      * the queue respectively.
      */
     public void queuePositionBottom() {
-        th.queue_position_bottom();
+        h.queue_position_bottom();
     }
 
     /**
@@ -469,7 +496,7 @@ public final class TorrentHandle {
      * @param position the new position
      */
     public void queuePositionSet(int position) {
-        th.queue_position_set_ex(position);
+        h.queue_position_set_ex(position);
     }
 
     /**
@@ -497,7 +524,7 @@ public final class TorrentHandle {
      */
     public void setSslCertificate(String certificate, String privateKey,
                                   String dhParams) {
-        th.set_ssl_certificate(certificate, privateKey, dhParams);
+        h.set_ssl_certificate(certificate, privateKey, dhParams);
     }
 
     /**
@@ -527,7 +554,7 @@ public final class TorrentHandle {
      */
     public void setSslCertificate(String certificate, String privateKey,
                                   String dhParams, String passphrase) {
-        th.set_ssl_certificate(certificate, privateKey, dhParams, passphrase);
+        h.set_ssl_certificate(certificate, privateKey, dhParams, passphrase);
     }
 
     /**
@@ -547,7 +574,7 @@ public final class TorrentHandle {
         byte_vector cert = Vectors.bytes2byte_vector(certificate);
         byte_vector pk = Vectors.bytes2byte_vector(privateKey);
         byte_vector dh = Vectors.bytes2byte_vector(dhParams);
-        th.set_ssl_certificate_buffer_ex(cert, pk, dh);
+        h.set_ssl_certificate_buffer_ex(cert, pk, dh);
     }
 
     /**
@@ -704,7 +731,7 @@ public final class TorrentHandle {
      * the initial loop, and thwart the counter otherwise.
      */
     public void saveResumeData(resume_data_flags_t flags) {
-        th.save_resume_data(flags);
+        h.save_resume_data(flags);
     }
 
     /**
@@ -712,7 +739,7 @@ public final class TorrentHandle {
      * empty flags.
      */
     public void saveResumeData() {
-        th.save_resume_data();
+        h.save_resume_data();
     }
 
     /**
@@ -728,7 +755,7 @@ public final class TorrentHandle {
      *
      */
     public boolean isValid() {
-        return th.is_valid();
+        return h.is_valid();
     }
 
     /**
@@ -738,7 +765,7 @@ public final class TorrentHandle {
      *
      */
     public String makeMagnetUri() {
-        return th.is_valid() ? libtorrent.make_magnet_uri(th) : null;
+        return h.is_valid() ? libtorrent.make_magnet_uri(h) : null;
     }
 
     // ``set_upload_limit`` will limit the upload bandwidth used by this
@@ -754,7 +781,7 @@ public final class TorrentHandle {
     // ``upload_limit`` and ``download_limit`` will return the current limit
     // setting, for upload and download, respectively.
     public int getUploadLimit() {
-        return th.upload_limit();
+        return h.upload_limit();
     }
 
     // ``set_upload_limit`` will limit the upload bandwidth used by this
@@ -770,7 +797,7 @@ public final class TorrentHandle {
     // ``upload_limit`` and ``download_limit`` will return the current limit
     // setting, for upload and download, respectively.
     public void setUploadLimit(int limit) {
-        th.set_upload_limit(limit);
+        h.set_upload_limit(limit);
     }
 
     // ``set_upload_limit`` will limit the upload bandwidth used by this
@@ -786,7 +813,7 @@ public final class TorrentHandle {
     // ``upload_limit`` and ``download_limit`` will return the current limit
     // setting, for upload and download, respectively.
     public int getDownloadLimit() {
-        return th.download_limit();
+        return h.download_limit();
     }
 
     // ``set_upload_limit`` will limit the upload bandwidth used by this
@@ -802,7 +829,7 @@ public final class TorrentHandle {
     // ``upload_limit`` and ``download_limit`` will return the current limit
     // setting, for upload and download, respectively.
     public void setDownloadLimit(int limit) {
-        th.set_download_limit(limit);
+        h.set_download_limit(limit);
     }
 
     /**
@@ -814,7 +841,7 @@ public final class TorrentHandle {
      * will start connecting to peers again, as normal.
      */
     public void forceRecheck() {
-        th.force_recheck();
+        h.force_recheck();
     }
 
     /**
@@ -837,7 +864,7 @@ public final class TorrentHandle {
     // If set to -1 (which is the default), all trackers are re-announce.
     //
     public void forceReannounce(int seconds, int tracker_index, reannounce_flags_t flags) {
-        th.force_reannounce(seconds, tracker_index, flags);
+        h.force_reannounce(seconds, tracker_index, flags);
     }
 
     // ``force_reannounce()`` will force this torrent to do another tracker
@@ -853,7 +880,7 @@ public final class TorrentHandle {
     // If set to -1 (which is the default), all trackers are re-announce.
     //
     public void forceReannounce(int seconds, int tracker_index) {
-        th.force_reannounce(seconds, tracker_index);
+        h.force_reannounce(seconds, tracker_index);
     }
 
     // ``force_reannounce()`` will force this torrent to do another tracker
@@ -869,7 +896,7 @@ public final class TorrentHandle {
     // If set to -1 (which is the default), all trackers are re-announce.
     //
     public void forceReannounce(int seconds) {
-        th.force_reannounce(seconds);
+        h.force_reannounce(seconds);
     }
 
     /**
@@ -886,14 +913,14 @@ public final class TorrentHandle {
      * If set to -1 (which is the default), all trackers are re-announce.
      */
     public void forceReannounce() {
-        th.force_reannounce();
+        h.force_reannounce();
     }
 
     /**
      * Announce the torrent to the DHT immediately.
      */
     public void forceDHTAnnounce() {
-        th.force_dht_announce();
+        h.force_dht_announce();
     }
 
     /**
@@ -906,10 +933,10 @@ public final class TorrentHandle {
      * @return the list of trackers
      */
     public List<AnnounceEntry> trackers() {
-        if (!th.is_valid()) {
+        if (!h.is_valid()) {
             return Collections.emptyList();
         }
-        return TorrentInfo.trackers(th.trackers());
+        return TorrentInfo.trackers(h.trackers());
     }
 
     /**
@@ -923,7 +950,7 @@ public final class TorrentHandle {
      * If it fails, it will generate a scrape_failed_alert.
      */
     public void scrapeTracker() {
-        th.scrape_tracker();
+        h.scrape_tracker();
     }
 
     /**
@@ -946,7 +973,7 @@ public final class TorrentHandle {
             v.add(t.swig());
         }
 
-        th.replace_trackers(v);
+        h.replace_trackers(v);
     }
 
     /**
@@ -960,7 +987,7 @@ public final class TorrentHandle {
      * data will replace the original ones.
      */
     public void addTracker(AnnounceEntry tracker) {
-        th.add_tracker(tracker.swig());
+        h.add_tracker(tracker.swig());
     }
 
     // ``add_url_seed()`` adds another url to the torrent's list of url
@@ -974,7 +1001,7 @@ public final class TorrentHandle {
     //
     // See http-seeding_ for more information.
     public void addUrlSeed(String url) {
-        th.add_url_seed(url);
+        h.add_url_seed(url);
     }
 
     // ``add_url_seed()`` adds another url to the torrent's list of url
@@ -988,7 +1015,7 @@ public final class TorrentHandle {
     //
     // See http-seeding_ for more information.
     public void removeUrlSeed(String url) {
-        th.remove_url_seed(url);
+        h.remove_url_seed(url);
     }
 
     /**
@@ -998,7 +1025,7 @@ public final class TorrentHandle {
      * @return the url seed list
      */
     public List<String> urlSeeds() {
-        return Vectors.string_vector2list(th.get_url_seeds());
+        return Vectors.string_vector2list(h.get_url_seeds());
     }
 
     // These functions are identical as the ``*_url_seed()`` variants, but
@@ -1006,7 +1033,7 @@ public final class TorrentHandle {
     //
     // See http-seeding_ for more information.
     public void addHttpSeed(String url) {
-        th.add_url_seed(url);
+        h.add_url_seed(url);
     }
 
     // These functions are identical as the ``*_url_seed()`` variants, but
@@ -1014,7 +1041,7 @@ public final class TorrentHandle {
     //
     // See http-seeding_ for more information.
     public void removeHttpSeed(String url) {
-        th.remove_http_seed(url);
+        h.remove_http_seed(url);
     }
 
     /**
@@ -1024,7 +1051,7 @@ public final class TorrentHandle {
      * @return the url seed list
      */
     public List<String> httpSeeds() {
-        return Vectors.string_vector2list(th.get_http_seeds());
+        return Vectors.string_vector2list(h.get_http_seeds());
     }
 
     /**
@@ -1040,7 +1067,7 @@ public final class TorrentHandle {
      */
     public int[] pieceAvailability() {
         int_vector v = new int_vector();
-        th.piece_availability(v);
+        h.piece_availability(v);
         return Vectors.int_vector2ints(v);
     }
 
@@ -1076,19 +1103,19 @@ public final class TorrentHandle {
     // ``piece_priorities`` returns a vector with one element for each piece
     // in the torrent. Each element is the current priority of that piece.
     public void piecePriority(int index, Priority priority) {
-        th.piece_priority_ex(index, priority.swig());
+        h.piece_priority_ex(index, priority.swig());
     }
 
     public Priority piecePriority(int index) {
-        return Priority.fromSwig(th.piece_priority_ex(index));
+        return Priority.fromSwig(h.piece_priority_ex(index));
     }
 
     public void prioritizePieces(Priority[] priorities) {
-        th.prioritize_pieces_ex(Priority.array2vector(priorities));
+        h.prioritize_pieces_ex(Priority.array2vector(priorities));
     }
 
     public Priority[] piecePriorities() {
-        byte_vector v = th.get_piece_priorities_ex();
+        byte_vector v = h.get_piece_priorities_ex();
         return Priority.vector2array(v);
     }
 
@@ -1110,7 +1137,7 @@ public final class TorrentHandle {
      * @param priority
      */
     public void filePriority(int index, Priority priority) {
-        th.file_priority_ex(index, priority.swig());
+        h.file_priority_ex(index, priority.swig());
     }
 
     /**
@@ -1122,7 +1149,7 @@ public final class TorrentHandle {
      *
      */
     public Priority filePriority(int index) {
-        return Priority.fromSwig(th.file_priority_ex(index));
+        return Priority.fromSwig(h.file_priority_ex(index));
     }
 
     /**
@@ -1134,7 +1161,7 @@ public final class TorrentHandle {
      * @param priorities the array of priorities
      */
     public void prioritizeFiles(Priority[] priorities) {
-        th.prioritize_files_ex(Priority.array2vector(priorities));
+        h.prioritize_files_ex(Priority.array2vector(priorities));
     }
 
     /**
@@ -1143,7 +1170,7 @@ public final class TorrentHandle {
      * @return the array of priorities.
      */
     public Priority[] filePriorities() {
-        byte_vector v = th.get_file_priorities_ex();
+        byte_vector v = h.get_file_priorities_ex();
         return Priority.vector2array(v);
     }
 
@@ -1164,7 +1191,7 @@ public final class TorrentHandle {
      * @param deadline
      */
     public void setPieceDeadline(int index, int deadline) {
-        th.set_piece_deadline(index, deadline);
+        h.set_piece_deadline(index, deadline);
     }
 
     /**
@@ -1195,7 +1222,7 @@ public final class TorrentHandle {
      * @param flags
      */
     public void setPieceDeadline(int index, int deadline, deadline_flags_t flags) {
-        th.set_piece_deadline(index, deadline, flags);
+        h.set_piece_deadline(index, deadline, flags);
     }
 
     /**
@@ -1206,7 +1233,7 @@ public final class TorrentHandle {
      * @param index
      */
     public void resetPieceDeadline(int index) {
-        th.reset_piece_deadline(index);
+        h.reset_piece_deadline(index);
     }
 
     /**
@@ -1214,8 +1241,16 @@ public final class TorrentHandle {
      * As if {@link #resetPieceDeadline(int)} was called on all pieces.
      */
     public void clearPieceDeadlines() {
-        th.clear_piece_deadlines();
+        h.clear_piece_deadlines();
     }
+
+    /**
+     * Only calculate file progress at piece granularity. This makes
+     * the `fileProgress()` call cheaper and also only takes bytes that
+     * have passed the hash check into account, so progress cannot
+     * regress in this mode.
+     */
+    public static final file_progress_flags_t PIECE_GRANULARITY = torrent_handle.piece_granularity;
 
     /**
      * This function fills in the supplied vector with the number of
@@ -1234,12 +1269,11 @@ public final class TorrentHandle {
      * piece granularity, the operation is a lot cheaper, since libtorrent
      * already keeps track of this internally and no calculation is required.
      *
-     * @param flags
      * @return the file progress
      */
     public long[] fileProgress(file_progress_flags_t flags) {
         int64_vector v = new int64_vector();
-        th.file_progress(v, flags);
+        h.file_progress(v, flags);
         return Vectors.int64_vector2longs(v);
     }
 
@@ -1255,7 +1289,7 @@ public final class TorrentHandle {
      */
     public long[] fileProgress() {
         int64_vector v = new int64_vector();
-        th.file_progress(v);
+        h.file_progress(v);
         return Vectors.int64_vector2longs(v);
     }
 
@@ -1267,7 +1301,7 @@ public final class TorrentHandle {
      *
      */
     public String savePath() {
-        torrent_status ts = th.status(torrent_handle.query_save_path);
+        torrent_status ts = h.status(torrent_handle.query_save_path);
         return ts.getSave_path();
     }
 
@@ -1280,7 +1314,7 @@ public final class TorrentHandle {
      * @return the name
      */
     public String name() {
-        torrent_status ts = th.status(torrent_handle.query_name);
+        torrent_status ts = h.status(torrent_handle.query_name);
         return ts.getName();
     }
 
@@ -1312,7 +1346,7 @@ public final class TorrentHandle {
      * @param flags    the move behavior flags
      */
     public void moveStorage(String savePath, MoveFlags flags) {
-        th.move_storage(savePath, flags.swig());
+        h.move_storage(savePath, flags.swig());
     }
 
     /**
@@ -1322,7 +1356,7 @@ public final class TorrentHandle {
      * @see #moveStorage(String, MoveFlags)
      */
     public void moveStorage(String savePath) {
-        th.move_storage(savePath);
+        h.move_storage(savePath);
     }
 
     /**
@@ -1334,33 +1368,6 @@ public final class TorrentHandle {
      * @param newName
      */
     public void renameFile(int index, String newName) {
-        th.rename_file(index, newName);
-    }
-
-    /**
-     *
-     */
-    public enum FileProgressFlags {
-
-        /**
-         * only calculate file progress at piece granularity. This makes
-         * the file_progress() call cheaper and also only takes bytes that
-         * have passed the hash check into account, so progress cannot
-         * regress in this mode.
-         */
-        PIECE_GRANULARITY(torrent_handle.piece_granularity.to_int());
-
-        FileProgressFlags(int swigValue) {
-            this.swigValue = swigValue;
-        }
-
-        private final int swigValue;
-
-        /**
-         * @return the native value
-         */
-        public int swig() {
-            return swigValue;
-        }
+        h.rename_file(index, newName);
     }
 }
