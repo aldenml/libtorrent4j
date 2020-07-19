@@ -1,6 +1,5 @@
 %ignore libtorrent::from_span;
 %ignore libtorrent::from_span_t;
-%ignore libtorrent::load_torrent_limits;
 %ignore libtorrent::torrent_info::torrent_info(char const*, int, error_code&);
 %ignore libtorrent::torrent_info::torrent_info(char const*, int, error_code&, int);
 %ignore libtorrent::torrent_info::torrent_info(span<char const>, error_code&, from_span_t);

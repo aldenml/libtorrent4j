@@ -9,6 +9,7 @@ import org.libtorrent4j.alerts.PieceFinishedAlert;
 import org.libtorrent4j.alerts.SaveResumeDataAlert;
 import org.libtorrent4j.alerts.TorrentFinishedAlert;
 import org.libtorrent4j.alerts.TorrentPausedAlert;
+import org.libtorrent4j.swig.torrent_flags_t;
 
 import java.io.File;
 import java.util.concurrent.CountDownLatch;
@@ -116,7 +117,7 @@ public final class StatusDurationTest {
         s.start();
 
         long timeMark = System.currentTimeMillis();
-        s.download(ti, torrentFile.getParentFile(), resumeFile, null, null);
+        s.download(ti, torrentFile.getParentFile(), resumeFile, null, null, new torrent_flags_t());
 
         Utils.awaitMinutes(signal2, "too much time downloading the torrent 100%", 5);
         assertNull(s.lastAlertError());

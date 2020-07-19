@@ -3,6 +3,7 @@ package org.libtorrent4j;
 import org.libtorrent4j.alerts.Alert;
 import org.libtorrent4j.alerts.AlertType;
 
+import java.io.File;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -66,7 +67,7 @@ public class FetchMagnetTest {
 
 
         // Fetching the magnet uri, waiting 30 seconds max
-        byte[] data = s.fetchMagnet(uri, 30);
+        byte[] data = s.fetchMagnet(uri, 30, new File("/tmp"));
         assertNotNull("Failed to retrieve the magnet", data);
 
         //TorrentHandle th = s.findTorrent(new Sha1Hash(sha1));

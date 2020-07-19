@@ -36,6 +36,10 @@ public class deadline_flags_t {
     }
   }
 
+  public deadline_flags_t() {
+    this(libtorrent_jni.new_deadline_flags_t(), true);
+  }
+
   public static deadline_flags_t all() {
     return new deadline_flags_t(libtorrent_jni.deadline_flags_t_all(), true);
   }
@@ -72,8 +76,8 @@ public class deadline_flags_t {
     return libtorrent_jni.deadline_flags_t_to_int(swigCPtr, this);
   }
 
-  public deadline_flags_t() {
-    this(libtorrent_jni.new_deadline_flags_t(), true);
+  public deadline_flags_t from_int(int val) {
+    return new deadline_flags_t(libtorrent_jni.deadline_flags_t_from_int(swigCPtr, this, val), true);
   }
 
 }

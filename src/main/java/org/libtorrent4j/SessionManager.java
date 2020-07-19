@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.alerts.AddTorrentAlert;
@@ -26,6 +33,7 @@ import org.libtorrent4j.swig.create_torrent;
 import org.libtorrent4j.swig.entry;
 import org.libtorrent4j.swig.error_code;
 import org.libtorrent4j.swig.info_hash_t;
+import org.libtorrent4j.swig.libtorrent;
 import org.libtorrent4j.swig.port_filter;
 import org.libtorrent4j.swig.remove_flags_t;
 import org.libtorrent4j.swig.session;
@@ -478,7 +486,9 @@ public class SessionManager {
      * @param resumeFile the file with the resume file
      * @param priorities the initial file priorities
      */
-    public void download(TorrentInfo ti, File saveDir, File resumeFile, Priority[] priorities, List<TcpEndpoint> peers) {
+    public void download(TorrentInfo ti, File saveDir, File resumeFile,
+                         Priority[] priorities, List<TcpEndpoint> peers,
+                         torrent_flags_t flags) {
         if (session == null) {
             return;
         }
@@ -511,7 +521,7 @@ public class SessionManager {
             try {
                 byte[] data = Files.bytes(resumeFile);
                 error_code ec = new error_code();
-                p = add_torrent_params.read_resume_data(Vectors.bytes2byte_vector(data), ec);
+                p = libtorrent.read_resume_data_ex(Vectors.bytes2byte_vector(data), ec);
                 if (ec.value() != 0) {
                     throw new IllegalArgumentException("Unable to read the resume data: " + ec.message());
                 }
@@ -548,11 +558,7 @@ public class SessionManager {
             p.setPeers(v);
         }
 
-        torrent_flags_t flags = p.getFlags();
-
-        flags = flags.and_(TorrentFlags.AUTO_MANAGED.inv());
-
-        p.setFlags(flags);
+        p.setFlags(p.getFlags().or_(flags));
 
         session.async_add_torrent(p);
     }
@@ -563,13 +569,13 @@ public class SessionManager {
      * @param magnetUri the magnet uri to download
      * @param saveDir   the path to save the downloaded files
      */
-    public void download(String magnetUri, File saveDir) {
+    public void download(String magnetUri, File saveDir, torrent_flags_t flags) {
         if (session == null) {
             return;
         }
 
         error_code ec = new error_code();
-        add_torrent_params p = add_torrent_params.parse_magnet_uri(magnetUri, ec);
+        add_torrent_params p = libtorrent.parse_magnet_uri(magnetUri, ec);
 
         if (ec.value() != 0) {
             throw new IllegalArgumentException(ec.message());
@@ -588,11 +594,11 @@ public class SessionManager {
             p.setSave_path(saveDir.getAbsolutePath());
         }
 
-        torrent_flags_t flags = p.getFlags();
+        if ("".equals(p.getName())) {
+            p.setName(info_hash.to_hex());
+        }
 
-        flags = flags.and_(TorrentFlags.AUTO_MANAGED.inv());
-
-        p.setFlags(flags);
+        p.setFlags(p.getFlags().or_(flags));
 
         session.async_add_torrent(p);
     }
@@ -602,7 +608,7 @@ public class SessionManager {
      * @param saveDir
      */
     public void download(TorrentInfo ti, File saveDir) {
-        download(ti, saveDir, null, null, null);
+        download(ti, saveDir, null, null, null, new torrent_flags_t());
     }
 
     public void remove(TorrentHandle th, remove_flags_t options) {
@@ -622,13 +628,13 @@ public class SessionManager {
      * @param timeout in seconds
      * @return the bencoded info or null
      */
-    public byte[] fetchMagnet(String uri, int timeout) {
+    public byte[] fetchMagnet(String uri, int timeout, File tempDir) {
         if (session == null) {
             return null;
         }
 
         error_code ec = new error_code();
-        add_torrent_params p = add_torrent_params.parse_magnet_uri(uri, ec);
+        add_torrent_params p = libtorrent.parse_magnet_uri(uri, ec);
 
         if (ec.value() != 0) {
             throw new IllegalArgumentException(ec.message());
@@ -692,9 +698,7 @@ public class SessionManager {
 
                 if (add) {
                     p.setName(FETCH_MAGNET_DOWNLOAD_KEY + uri);
-
-                    String tempDir = System.getProperty("java.io.tmpdir");
-                    p.setSave_path(tempDir);
+                    p.setSave_path(tempDir.getAbsolutePath());
 
                     torrent_flags_t flags = p.getFlags();
                     flags = flags.and_(TorrentFlags.AUTO_MANAGED.inv());

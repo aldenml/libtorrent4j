@@ -36,6 +36,10 @@ public class connection_type_t {
     }
   }
 
+  public connection_type_t() {
+    this(libtorrent_jni.new_connection_type_t(), true);
+  }
+
   public static connection_type_t all() {
     return new connection_type_t(libtorrent_jni.connection_type_t_all(), true);
   }
@@ -72,8 +76,8 @@ public class connection_type_t {
     return libtorrent_jni.connection_type_t_to_int(swigCPtr, this);
   }
 
-  public connection_type_t() {
-    this(libtorrent_jni.new_connection_type_t(), true);
+  public connection_type_t from_int(int val) {
+    return new connection_type_t(libtorrent_jni.connection_type_t_from_int(swigCPtr, this, val), true);
   }
 
 }

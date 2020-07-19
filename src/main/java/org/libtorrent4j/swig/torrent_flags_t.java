@@ -36,6 +36,10 @@ public class torrent_flags_t {
     }
   }
 
+  public torrent_flags_t() {
+    this(libtorrent_jni.new_torrent_flags_t(), true);
+  }
+
   public static torrent_flags_t all() {
     return new torrent_flags_t(libtorrent_jni.torrent_flags_t_all(), true);
   }
@@ -72,8 +76,8 @@ public class torrent_flags_t {
     return libtorrent_jni.torrent_flags_t_to_int(swigCPtr, this);
   }
 
-  public torrent_flags_t() {
-    this(libtorrent_jni.new_torrent_flags_t(), true);
+  public torrent_flags_t from_int(int val) {
+    return new torrent_flags_t(libtorrent_jni.torrent_flags_t_from_int(swigCPtr, this, val), true);
   }
 
 }

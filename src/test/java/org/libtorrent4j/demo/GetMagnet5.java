@@ -136,7 +136,7 @@ public final class GetMagnet5 {
             s.start();
         if (link.startsWith("magnet:?")) {
             waitForNodesInDHT(s);
-            byte[] data = s.fetchMagnet(link, 30);
+            byte[] data = s.fetchMagnet(link, 30, new File("/tmp"));
             TorrentInfo ti = TorrentInfo.bdecode(data);
             log(Entry.bdecode(data).toString());
             log("is valid ? =" + ti.isValid());

@@ -56,8 +56,8 @@ public class error_code {
     return libtorrent_jni.error_code_failed(swigCPtr, this);
   }
 
-  public boolean non_zero() {
-    return libtorrent_jni.error_code_non_zero(swigCPtr, this);
+  public boolean to_bool() {
+    return libtorrent_jni.error_code_to_bool(swigCPtr, this);
   }
 
 }

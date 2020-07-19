@@ -3,6 +3,8 @@ namespace libtorrent { namespace flags {
 template<typename UnderlyingType, typename Tag>
 struct bitfield_flag
 {
+    bitfield_flag();
+
     static bitfield_flag all();
 
     %extend
@@ -45,6 +47,11 @@ struct bitfield_flag
         int to_int()
         {
             return static_cast<int>(static_cast<UnderlyingType>(*$self));
+        }
+
+        bitfield_flag from_int(int val)
+        {
+            return lt::flags::bitfield_flag<UnderlyingType, Tag>(static_cast<UnderlyingType>(val));
         }
     }
 };

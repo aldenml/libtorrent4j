@@ -1,9 +1,19 @@
 package org.libtorrent4j.demo;
 
-import org.libtorrent4j.swig.add_torrent_params;
+import org.libtorrent4j.AlertListener;
+import org.libtorrent4j.Entry;
+import org.libtorrent4j.SessionManager;
+import org.libtorrent4j.TorrentHandle;
+import org.libtorrent4j.TorrentInfo;
+import org.libtorrent4j.Utils;
+import org.libtorrent4j.Vectors;
+import org.libtorrent4j.alerts.AddTorrentAlert;
+import org.libtorrent4j.alerts.Alert;
+import org.libtorrent4j.alerts.AlertType;
+import org.libtorrent4j.alerts.SaveResumeDataAlert;
 import org.libtorrent4j.swig.byte_vector;
-import org.libtorrent4j.*;
-import org.libtorrent4j.alerts.*;
+import org.libtorrent4j.swig.libtorrent;
+import org.libtorrent4j.swig.torrent_flags_t;
 
 import java.io.File;
 import java.io.IOException;
@@ -70,7 +80,7 @@ public final class ResumeTest {
         System.out.println(Entry.bdecode(new File("resume.dat")).toString());
 
         s.restart();
-        s.download(ti, torrentFile.getParentFile(), new File("resume.dat"), null, null);
+        s.download(ti, torrentFile.getParentFile(), new File("resume.dat"), null, null, new torrent_flags_t());
 
         System.in.read();
         s.stop();
@@ -80,7 +90,7 @@ public final class ResumeTest {
         File resume = new File("resume.dat");
         if (resume.exists())
             return;
-        byte_vector data = add_torrent_params.write_resume_data(alert.params().swig()).bencode();
+        byte_vector data = libtorrent.write_resume_data(alert.params().swig()).bencode();
         try {
             Utils.writeByteArrayToFile(resume, Vectors.byte_vector2bytes(data), false);
         } catch (IOException e) {

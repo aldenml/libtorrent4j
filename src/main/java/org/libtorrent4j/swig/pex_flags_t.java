@@ -36,6 +36,10 @@ public class pex_flags_t {
     }
   }
 
+  public pex_flags_t() {
+    this(libtorrent_jni.new_pex_flags_t(), true);
+  }
+
   public static pex_flags_t all() {
     return new pex_flags_t(libtorrent_jni.pex_flags_t_all(), true);
   }
@@ -72,8 +76,8 @@ public class pex_flags_t {
     return libtorrent_jni.pex_flags_t_to_int(swigCPtr, this);
   }
 
-  public pex_flags_t() {
-    this(libtorrent_jni.new_pex_flags_t(), true);
+  public pex_flags_t from_int(int val) {
+    return new pex_flags_t(libtorrent_jni.pex_flags_t_from_int(swigCPtr, this, val), true);
   }
 
 }

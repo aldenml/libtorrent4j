@@ -5,6 +5,7 @@ import org.libtorrent4j.SessionManager;
 import org.libtorrent4j.alerts.Alert;
 import org.libtorrent4j.alerts.AlertType;
 
+import java.io.File;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -70,7 +71,7 @@ public final class GetMagnet2 {
             Thread t = new Thread() {
                 @Override
                 public void run() {
-                    byte[] data = s.fetchMagnet(uri, 30);
+                    byte[] data = s.fetchMagnet(uri, 30, new File("/tmp"));
 
                     int count = counter.incrementAndGet();
                     if (data != null) {

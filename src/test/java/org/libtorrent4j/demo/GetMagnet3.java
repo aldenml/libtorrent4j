@@ -93,7 +93,7 @@ public final class GetMagnet3 {
         }
 
         System.out.println("Fetching the magnet uri, please wait...");
-        byte[] data = s.fetchMagnet(magnet, 30);
+        byte[] data = s.fetchMagnet(magnet, 30, new File("/tmp"));
         if (data == null) {
             System.out.println("data == null");
             s.stop();

@@ -266,7 +266,8 @@ void set_piece_hashes_ex(libtorrent::create_torrent& t, std::string const& p
 
 void dht_put_item_cb(libtorrent::entry& e, std::array<char, 64>& sig, std::int64_t& seq,
     std::string salt, libtorrent::dht::public_key pk, libtorrent::dht::secret_key sk,
-    libtorrent::entry data) {
+    libtorrent::entry data)
+{
     using namespace libtorrent::dht;
 
     e = data;
@@ -276,6 +277,23 @@ void dht_put_item_cb(libtorrent::entry& e, std::array<char, 64>& sig, std::int64
     ++seq;
     sign = sign_mutable_item(buf, salt, sequence_number(seq), pk, sk);
     sig = sign.bytes;
+}
+
+lt::add_torrent_params read_resume_data_ex(std::vector<std::int8_t> const& buffer
+    , lt::error_code& ec, lt::load_torrent_limits const& cfg = {})
+{
+    return lt::read_resume_data({(char const*)&buffer[0], static_cast<long>(buffer.size())}, ec, cfg);
+}
+
+std::vector<std::int8_t> write_resume_data_buf_ex(lt::add_torrent_params const& atp)
+{
+    auto v = lt::write_resume_data_buf(atp);
+    return {v.begin(), v.end()};
+}
+
+lt::add_torrent_params parse_magnet_uri(std::string const& uri, lt::error_code& ec)
+{
+    return lt::parse_magnet_uri(uri, ec);
 }
 
 #endif

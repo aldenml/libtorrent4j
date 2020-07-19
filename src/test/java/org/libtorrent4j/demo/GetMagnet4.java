@@ -4,7 +4,9 @@ import org.libtorrent4j.alerts.AddTorrentAlert;
 import org.libtorrent4j.alerts.Alert;
 import org.libtorrent4j.alerts.MetadataReceivedAlert;
 import org.libtorrent4j.*;
+import org.libtorrent4j.swig.torrent_flags_t;
 
+import java.io.File;
 import java.sql.Time;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -66,7 +68,7 @@ public final class GetMagnet4 {
         waitForNodesInDHT(s);
 
         System.out.println("About to download magnet: " + magnet);
-        s.download(magnet, null);
+        s.download(magnet, null, new torrent_flags_t());
 
         System.in.read();
         s.stop();

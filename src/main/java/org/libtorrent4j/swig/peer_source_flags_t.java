@@ -36,6 +36,10 @@ public class peer_source_flags_t {
     }
   }
 
+  public peer_source_flags_t() {
+    this(libtorrent_jni.new_peer_source_flags_t(), true);
+  }
+
   public static peer_source_flags_t all() {
     return new peer_source_flags_t(libtorrent_jni.peer_source_flags_t_all(), true);
   }
@@ -72,8 +76,8 @@ public class peer_source_flags_t {
     return libtorrent_jni.peer_source_flags_t_to_int(swigCPtr, this);
   }
 
-  public peer_source_flags_t() {
-    this(libtorrent_jni.new_peer_source_flags_t(), true);
+  public peer_source_flags_t from_int(int val) {
+    return new peer_source_flags_t(libtorrent_jni.peer_source_flags_t_from_int(swigCPtr, this, val), true);
   }
 
 }

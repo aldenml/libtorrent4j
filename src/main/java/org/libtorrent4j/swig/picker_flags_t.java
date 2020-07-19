@@ -36,6 +36,10 @@ public class picker_flags_t {
     }
   }
 
+  public picker_flags_t() {
+    this(libtorrent_jni.new_picker_flags_t(), true);
+  }
+
   public static picker_flags_t all() {
     return new picker_flags_t(libtorrent_jni.picker_flags_t_all(), true);
   }
@@ -72,8 +76,8 @@ public class picker_flags_t {
     return libtorrent_jni.picker_flags_t_to_int(swigCPtr, this);
   }
 
-  public picker_flags_t() {
-    this(libtorrent_jni.new_picker_flags_t(), true);
+  public picker_flags_t from_int(int val) {
+    return new picker_flags_t(libtorrent_jni.picker_flags_t_from_int(swigCPtr, this, val), true);
   }
 
 }

@@ -133,27 +133,6 @@ namespace libtorrent {
         auto* t = reinterpret_cast<libtorrent::typed_bitfield<libtorrent::piece_index_t>*>(&v);
         $self->verified_pieces = *t;
     }
-
-    static libtorrent::add_torrent_params read_resume_data(libtorrent::bdecode_node const& rd, error_code& ec) {
-        return libtorrent::read_resume_data(rd, ec);
-    }
-
-    static libtorrent::add_torrent_params read_resume_data(std::vector<std::int8_t> const& buffer, error_code& ec) {
-        return libtorrent::read_resume_data({(char const*)&buffer[0], static_cast<long>(buffer.size())}, ec);
-    }
-
-    static libtorrent::entry write_resume_data(add_torrent_params const& atp) {
-        return libtorrent::write_resume_data(atp);
-    }
-
-    static std::vector<std::int8_t> write_resume_data_buf(add_torrent_params const& atp) {
-        auto v = libtorrent::write_resume_data_buf(atp);
-        return {v.begin(), v.end()};
-    }
-
-    static add_torrent_params parse_magnet_uri(std::string const& uri, error_code& ec) {
-        return libtorrent::parse_magnet_uri(uri, ec);
-    }
 }
 
 }
