@@ -1,13 +1,23 @@
+/*
+ * Copyright (c) 2018-2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.entry;
 import org.libtorrent4j.swig.entry_vector;
 import org.libtorrent4j.swig.string_entry_map;
-import org.libtorrent4j.swig.string_vector;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.AbstractList;
+import java.util.AbstractMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The Entry class represents one node in a bencoded hierarchy. It works as a

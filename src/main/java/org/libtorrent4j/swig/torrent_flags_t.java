@@ -76,8 +76,8 @@ public class torrent_flags_t {
     return libtorrent_jni.torrent_flags_t_to_int(swigCPtr, this);
   }
 
-  public torrent_flags_t from_int(int val) {
-    return new torrent_flags_t(libtorrent_jni.torrent_flags_t_from_int(swigCPtr, this, val), true);
+  public static torrent_flags_t from_int(int val) {
+    return new torrent_flags_t(libtorrent_jni.torrent_flags_t_from_int(val), true);
   }
 
 }

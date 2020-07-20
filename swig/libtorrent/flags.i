@@ -49,7 +49,7 @@ struct bitfield_flag
             return static_cast<int>(static_cast<UnderlyingType>(*$self));
         }
 
-        bitfield_flag from_int(int val)
+        static bitfield_flag from_int(int val)
         {
             return lt::flags::bitfield_flag<UnderlyingType, Tag>(static_cast<UnderlyingType>(val));
         }

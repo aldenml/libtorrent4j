@@ -76,8 +76,8 @@ public class peer_flags_t {
     return libtorrent_jni.peer_flags_t_to_int(swigCPtr, this);
   }
 
-  public peer_flags_t from_int(int val) {
-    return new peer_flags_t(libtorrent_jni.peer_flags_t_from_int(swigCPtr, this, val), true);
+  public static peer_flags_t from_int(int val) {
+    return new peer_flags_t(libtorrent_jni.peer_flags_t_from_int(val), true);
   }
 
 }

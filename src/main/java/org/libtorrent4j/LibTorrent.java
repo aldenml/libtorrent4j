@@ -61,7 +61,7 @@ public final class LibTorrent {
      * @return libtorrent4j version.
      */
     public static String libtorrent4jVersion() {
-        return "2.0.0-alpha-3";
+        return "2.0.0-alpha-4";
     }
 
     /**
