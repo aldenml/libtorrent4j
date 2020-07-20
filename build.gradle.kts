@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 plugins {
     `java-library`
     `maven-publish`
@@ -6,7 +13,7 @@ plugins {
 }
 
 group = "org.libtorrent4j"
-version = "2.0.0-alpha-3"
+version = "2.0.0-alpha-4"
 
 java {
     // using java 8 for android compatibility

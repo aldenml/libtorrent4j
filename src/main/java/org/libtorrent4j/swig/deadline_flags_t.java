@@ -76,8 +76,8 @@ public class deadline_flags_t {
     return libtorrent_jni.deadline_flags_t_to_int(swigCPtr, this);
   }
 
-  public deadline_flags_t from_int(int val) {
-    return new deadline_flags_t(libtorrent_jni.deadline_flags_t_from_int(swigCPtr, this, val), true);
+  public static deadline_flags_t from_int(int val) {
+    return new deadline_flags_t(libtorrent_jni.deadline_flags_t_from_int(val), true);
   }
 
 }

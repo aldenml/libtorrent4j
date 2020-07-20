@@ -18,9 +18,12 @@ import org.libtorrent4j.alerts.StorageMovedAlert;
 import org.libtorrent4j.alerts.StorageMovedFailedAlert;
 import org.libtorrent4j.alerts.TorrentNeedCertAlert;
 import org.libtorrent4j.swig.add_piece_flags_t;
+import org.libtorrent4j.swig.announce_entry;
 import org.libtorrent4j.swig.announce_entry_vector;
 import org.libtorrent4j.swig.byte_vector;
+import org.libtorrent4j.swig.create_torrent;
 import org.libtorrent4j.swig.deadline_flags_t;
+import org.libtorrent4j.swig.entry;
 import org.libtorrent4j.swig.file_progress_flags_t;
 import org.libtorrent4j.swig.int64_vector;
 import org.libtorrent4j.swig.int_vector;
@@ -30,6 +33,7 @@ import org.libtorrent4j.swig.peer_info_vector;
 import org.libtorrent4j.swig.reannounce_flags_t;
 import org.libtorrent4j.swig.resume_data_flags_t;
 import org.libtorrent4j.swig.status_flags_t;
+import org.libtorrent4j.swig.string_vector;
 import org.libtorrent4j.swig.torrent_flags_t;
 import org.libtorrent4j.swig.torrent_handle;
 import org.libtorrent4j.swig.torrent_info;
@@ -1369,5 +1373,38 @@ public final class TorrentHandle
      */
     public void renameFile(int index, String newName) {
         h.rename_file(index, newName);
+    }
+
+    public byte[] createTorrent() {
+        if (!h.is_valid()) {
+            return null;
+        }
+
+        torrent_info ti = h.torrent_file_ptr();
+        if (ti == null || !ti.is_valid()) {
+            return null;
+        }
+
+        create_torrent ct = new create_torrent(ti);
+
+        string_vector v = h.get_url_seeds();
+        int size = v.size();
+        for (int i = 0; i < size; i++) {
+            ct.add_url_seed(v.get(i));
+        }
+        v = h.get_http_seeds();
+        size = v.size();
+        for (int i = 0; i < size; i++) {
+            ct.add_http_seed(v.get(i));
+        }
+        announce_entry_vector trackers = h.trackers();
+        size = trackers.size();
+        for (int i = 0; i < size; i++) {
+            announce_entry t = trackers.get(i);
+            ct.add_tracker(t.getUrl(), t.getTier());
+        }
+
+        entry e = ct.generate();
+        return Vectors.byte_vector2bytes(e.bencode());
     }
 }

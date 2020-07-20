@@ -10,6 +10,7 @@ package org.libtorrent4j;
 import org.libtorrent4j.swig.byte_vector;
 import org.libtorrent4j.swig.libtorrent;
 import org.libtorrent4j.swig.settings_pack;
+import org.libtorrent4j.swig.settings_pack.int_types;
 import org.libtorrent4j.swig.settings_pack.string_types;
 
 /**
@@ -110,6 +111,18 @@ public final class SettingsPack
 
     public void clear(int name) {
         h.clear(name);
+    }
+
+    /**
+     * Queries whether the specified configuration option has a value set in
+     * this pack. ``name`` can be any enumeration value from string_types,
+     * int_types or bool_types.
+     *
+     * @param name name id of the setting
+     * @return true if present
+     */
+    public boolean hasValue(int name) {
+        return h.has_val(name);
     }
 
     /**
@@ -520,9 +533,12 @@ public final class SettingsPack
     }
 
     /**
+     * Starts the dht node and makes the trackerless service available to
+     * torrents.
      *
+     * @return true if enable
      */
-    public boolean enableDht() {
+    public boolean isEnableDht() {
         return h.get_bool(settings_pack.bool_types.enable_dht.swigValue());
     }
 
@@ -530,12 +546,52 @@ public final class SettingsPack
      * Starts the dht node and makes the trackerless service available to
      * torrents.
      *
-     * @param value
-     * @return this
+     * @param value true if enable
      */
-    public SettingsPack enableDht(boolean value) {
+    public void setEnableDht(boolean value) {
         h.set_bool(settings_pack.bool_types.enable_dht.swigValue(), value);
-        return this;
+    }
+
+    /**
+     * Starts and stops Local Service Discovery. This service will
+     * broadcast the info-hashes of all the non-private torrents on the
+     * local network to look for peers on the same swarm within multicast
+     * reach.
+     *
+     * @return true if enable
+     */
+    public boolean isEnableLsd() {
+        return h.get_bool(settings_pack.bool_types.enable_lsd.swigValue());
+    }
+
+    /**
+     * Starts and stops Local Service Discovery. This service will
+     * broadcast the info-hashes of all the non-private torrents on the
+     * local network to look for peers on the same swarm within multicast
+     * reach.
+     *
+     * @param value true if enable
+     */
+    public void setEnableLsd(boolean value) {
+        h.set_bool(settings_pack.bool_types.enable_lsd.swigValue(), value);
+    }
+
+    /**
+     * The maximum allowed size (in bytes) to be
+     * received by the metadata extension, i.e. magnet links.
+     */
+    public int getMaxMetadataSize() {
+        return h.get_int(int_types.max_metadata_size.swigValue());
+    }
+
+    /**
+     * The maximum allowed size (in bytes) to be
+     * received by the metadata extension, i.e. magnet links.
+     *
+     * @param value true if enable
+     */
+    public void setMaxMetadataSize(int value) {
+        h.set_int(int_types.max_metadata_size.swigValue(), value);
     }
 
     /**

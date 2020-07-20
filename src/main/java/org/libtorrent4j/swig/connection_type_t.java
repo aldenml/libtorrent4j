@@ -76,8 +76,8 @@ public class connection_type_t {
     return libtorrent_jni.connection_type_t_to_int(swigCPtr, this);
   }
 
-  public connection_type_t from_int(int val) {
-    return new connection_type_t(libtorrent_jni.connection_type_t_from_int(swigCPtr, this, val), true);
+  public static connection_type_t from_int(int val) {
+    return new connection_type_t(libtorrent_jni.connection_type_t_from_int(val), true);
   }
 
 }

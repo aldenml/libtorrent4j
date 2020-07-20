@@ -76,8 +76,8 @@ public class reopen_network_flags_t {
     return libtorrent_jni.reopen_network_flags_t_to_int(swigCPtr, this);
   }
 
-  public reopen_network_flags_t from_int(int val) {
-    return new reopen_network_flags_t(libtorrent_jni.reopen_network_flags_t_from_int(swigCPtr, this, val), true);
+  public static reopen_network_flags_t from_int(int val) {
+    return new reopen_network_flags_t(libtorrent_jni.reopen_network_flags_t_from_int(val), true);
   }
 
 }

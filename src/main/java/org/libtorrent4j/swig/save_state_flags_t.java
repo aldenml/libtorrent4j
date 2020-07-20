@@ -76,8 +76,8 @@ public class save_state_flags_t {
     return libtorrent_jni.save_state_flags_t_to_int(swigCPtr, this);
   }
 
-  public save_state_flags_t from_int(int val) {
-    return new save_state_flags_t(libtorrent_jni.save_state_flags_t_from_int(swigCPtr, this, val), true);
+  public static save_state_flags_t from_int(int val) {
+    return new save_state_flags_t(libtorrent_jni.save_state_flags_t_from_int(val), true);
   }
 
 }

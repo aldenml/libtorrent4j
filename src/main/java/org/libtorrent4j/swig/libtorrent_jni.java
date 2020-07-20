@@ -1055,7 +1055,7 @@ public class libtorrent_jni {
   public final static native long file_flags_t_xor(long jarg1, file_flags_t jarg1_, long jarg2, file_flags_t jarg2_);
   public final static native long file_flags_t_inv(long jarg1, file_flags_t jarg1_);
   public final static native int file_flags_t_to_int(long jarg1, file_flags_t jarg1_);
-  public final static native long file_flags_t_from_int(long jarg1, file_flags_t jarg1_, int jarg2);
+  public final static native long file_flags_t_from_int(int jarg1);
   public final static native void delete_file_flags_t(long jarg1);
   public final static native void peer_request_piece_set(long jarg1, peer_request jarg1_, int jarg2);
   public final static native int peer_request_piece_get(long jarg1, peer_request jarg1_);
@@ -1203,7 +1203,7 @@ public class libtorrent_jni {
   public final static native long torrent_flags_t_xor(long jarg1, torrent_flags_t jarg1_, long jarg2, torrent_flags_t jarg2_);
   public final static native long torrent_flags_t_inv(long jarg1, torrent_flags_t jarg1_);
   public final static native int torrent_flags_t_to_int(long jarg1, torrent_flags_t jarg1_);
-  public final static native long torrent_flags_t_from_int(long jarg1, torrent_flags_t jarg1_, int jarg2);
+  public final static native long torrent_flags_t_from_int(int jarg1);
   public final static native void delete_torrent_flags_t(long jarg1);
   public final static native long new_add_torrent_params__SWIG_0();
   public final static native void delete_add_torrent_params(long jarg1);
@@ -1435,7 +1435,7 @@ public class libtorrent_jni {
   public final static native long bandwidth_state_flags_t_xor(long jarg1, bandwidth_state_flags_t jarg1_, long jarg2, bandwidth_state_flags_t jarg2_);
   public final static native long bandwidth_state_flags_t_inv(long jarg1, bandwidth_state_flags_t jarg1_);
   public final static native int bandwidth_state_flags_t_to_int(long jarg1, bandwidth_state_flags_t jarg1_);
-  public final static native long bandwidth_state_flags_t_from_int(long jarg1, bandwidth_state_flags_t jarg1_, int jarg2);
+  public final static native long bandwidth_state_flags_t_from_int(int jarg1);
   public final static native void delete_bandwidth_state_flags_t(long jarg1);
   public final static native long new_connection_type_t();
   public final static native long connection_type_t_all();
@@ -1447,7 +1447,7 @@ public class libtorrent_jni {
   public final static native long connection_type_t_xor(long jarg1, connection_type_t jarg1_, long jarg2, connection_type_t jarg2_);
   public final static native long connection_type_t_inv(long jarg1, connection_type_t jarg1_);
   public final static native int connection_type_t_to_int(long jarg1, connection_type_t jarg1_);
-  public final static native long connection_type_t_from_int(long jarg1, connection_type_t jarg1_, int jarg2);
+  public final static native long connection_type_t_from_int(int jarg1);
   public final static native void delete_connection_type_t(long jarg1);
   public final static native long new_peer_source_flags_t();
   public final static native long peer_source_flags_t_all();
@@ -1459,7 +1459,7 @@ public class libtorrent_jni {
   public final static native long peer_source_flags_t_xor(long jarg1, peer_source_flags_t jarg1_, long jarg2, peer_source_flags_t jarg2_);
   public final static native long peer_source_flags_t_inv(long jarg1, peer_source_flags_t jarg1_);
   public final static native int peer_source_flags_t_to_int(long jarg1, peer_source_flags_t jarg1_);
-  public final static native long peer_source_flags_t_from_int(long jarg1, peer_source_flags_t jarg1_, int jarg2);
+  public final static native long peer_source_flags_t_from_int(int jarg1);
   public final static native void delete_peer_source_flags_t(long jarg1);
   public final static native long new_peer_flags_t();
   public final static native long peer_flags_t_all();
@@ -1471,7 +1471,7 @@ public class libtorrent_jni {
   public final static native long peer_flags_t_xor(long jarg1, peer_flags_t jarg1_, long jarg2, peer_flags_t jarg2_);
   public final static native long peer_flags_t_inv(long jarg1, peer_flags_t jarg1_);
   public final static native int peer_flags_t_to_int(long jarg1, peer_flags_t jarg1_);
-  public final static native long peer_flags_t_from_int(long jarg1, peer_flags_t jarg1_, int jarg2);
+  public final static native long peer_flags_t_from_int(int jarg1);
   public final static native void delete_peer_flags_t(long jarg1);
   public final static native long pex_encryption_get();
   public final static native long pex_seed_get();
@@ -1488,7 +1488,7 @@ public class libtorrent_jni {
   public final static native long pex_flags_t_xor(long jarg1, pex_flags_t jarg1_, long jarg2, pex_flags_t jarg2_);
   public final static native long pex_flags_t_inv(long jarg1, pex_flags_t jarg1_);
   public final static native int pex_flags_t_to_int(long jarg1, pex_flags_t jarg1_);
-  public final static native long pex_flags_t_from_int(long jarg1, pex_flags_t jarg1_, int jarg2);
+  public final static native long pex_flags_t_from_int(int jarg1);
   public final static native void delete_pex_flags_t(long jarg1);
   public final static native long new_torrent_status__SWIG_0();
   public final static native void delete_torrent_status(long jarg1);
@@ -1772,7 +1772,7 @@ public class libtorrent_jni {
   public final static native long add_piece_flags_t_xor(long jarg1, add_piece_flags_t jarg1_, long jarg2, add_piece_flags_t jarg2_);
   public final static native long add_piece_flags_t_inv(long jarg1, add_piece_flags_t jarg1_);
   public final static native int add_piece_flags_t_to_int(long jarg1, add_piece_flags_t jarg1_);
-  public final static native long add_piece_flags_t_from_int(long jarg1, add_piece_flags_t jarg1_, int jarg2);
+  public final static native long add_piece_flags_t_from_int(int jarg1);
   public final static native void delete_add_piece_flags_t(long jarg1);
   public final static native long new_deadline_flags_t();
   public final static native long deadline_flags_t_all();
@@ -1784,7 +1784,7 @@ public class libtorrent_jni {
   public final static native long deadline_flags_t_xor(long jarg1, deadline_flags_t jarg1_, long jarg2, deadline_flags_t jarg2_);
   public final static native long deadline_flags_t_inv(long jarg1, deadline_flags_t jarg1_);
   public final static native int deadline_flags_t_to_int(long jarg1, deadline_flags_t jarg1_);
-  public final static native long deadline_flags_t_from_int(long jarg1, deadline_flags_t jarg1_, int jarg2);
+  public final static native long deadline_flags_t_from_int(int jarg1);
   public final static native void delete_deadline_flags_t(long jarg1);
   public final static native long new_file_progress_flags_t();
   public final static native long file_progress_flags_t_all();
@@ -1796,7 +1796,7 @@ public class libtorrent_jni {
   public final static native long file_progress_flags_t_xor(long jarg1, file_progress_flags_t jarg1_, long jarg2, file_progress_flags_t jarg2_);
   public final static native long file_progress_flags_t_inv(long jarg1, file_progress_flags_t jarg1_);
   public final static native int file_progress_flags_t_to_int(long jarg1, file_progress_flags_t jarg1_);
-  public final static native long file_progress_flags_t_from_int(long jarg1, file_progress_flags_t jarg1_, int jarg2);
+  public final static native long file_progress_flags_t_from_int(int jarg1);
   public final static native void delete_file_progress_flags_t(long jarg1);
   public final static native long new_pause_flags_t();
   public final static native long pause_flags_t_all();
@@ -1808,7 +1808,7 @@ public class libtorrent_jni {
   public final static native long pause_flags_t_xor(long jarg1, pause_flags_t jarg1_, long jarg2, pause_flags_t jarg2_);
   public final static native long pause_flags_t_inv(long jarg1, pause_flags_t jarg1_);
   public final static native int pause_flags_t_to_int(long jarg1, pause_flags_t jarg1_);
-  public final static native long pause_flags_t_from_int(long jarg1, pause_flags_t jarg1_, int jarg2);
+  public final static native long pause_flags_t_from_int(int jarg1);
   public final static native void delete_pause_flags_t(long jarg1);
   public final static native long new_resume_data_flags_t();
   public final static native long resume_data_flags_t_all();
@@ -1820,7 +1820,7 @@ public class libtorrent_jni {
   public final static native long resume_data_flags_t_xor(long jarg1, resume_data_flags_t jarg1_, long jarg2, resume_data_flags_t jarg2_);
   public final static native long resume_data_flags_t_inv(long jarg1, resume_data_flags_t jarg1_);
   public final static native int resume_data_flags_t_to_int(long jarg1, resume_data_flags_t jarg1_);
-  public final static native long resume_data_flags_t_from_int(long jarg1, resume_data_flags_t jarg1_, int jarg2);
+  public final static native long resume_data_flags_t_from_int(int jarg1);
   public final static native void delete_resume_data_flags_t(long jarg1);
   public final static native long new_reannounce_flags_t();
   public final static native long reannounce_flags_t_all();
@@ -1832,7 +1832,7 @@ public class libtorrent_jni {
   public final static native long reannounce_flags_t_xor(long jarg1, reannounce_flags_t jarg1_, long jarg2, reannounce_flags_t jarg2_);
   public final static native long reannounce_flags_t_inv(long jarg1, reannounce_flags_t jarg1_);
   public final static native int reannounce_flags_t_to_int(long jarg1, reannounce_flags_t jarg1_);
-  public final static native long reannounce_flags_t_from_int(long jarg1, reannounce_flags_t jarg1_, int jarg2);
+  public final static native long reannounce_flags_t_from_int(int jarg1);
   public final static native void delete_reannounce_flags_t(long jarg1);
   public final static native long new_status_flags_t();
   public final static native long status_flags_t_all();
@@ -1844,7 +1844,7 @@ public class libtorrent_jni {
   public final static native long status_flags_t_xor(long jarg1, status_flags_t jarg1_, long jarg2, status_flags_t jarg2_);
   public final static native long status_flags_t_inv(long jarg1, status_flags_t jarg1_);
   public final static native int status_flags_t_to_int(long jarg1, status_flags_t jarg1_);
-  public final static native long status_flags_t_from_int(long jarg1, status_flags_t jarg1_, int jarg2);
+  public final static native long status_flags_t_from_int(int jarg1);
   public final static native void delete_status_flags_t(long jarg1);
   public final static native int counters_num_checking_torrents_get();
   public final static native int counters_num_gauges_counters_get();
@@ -2041,7 +2041,7 @@ public class libtorrent_jni {
   public final static native long alert_category_t_xor(long jarg1, alert_category_t jarg1_, long jarg2, alert_category_t jarg2_);
   public final static native long alert_category_t_inv(long jarg1, alert_category_t jarg1_);
   public final static native int alert_category_t_to_int(long jarg1, alert_category_t jarg1_);
-  public final static native long alert_category_t_from_int(long jarg1, alert_category_t jarg1_, int jarg2);
+  public final static native long alert_category_t_from_int(int jarg1);
   public final static native void delete_alert_category_t(long jarg1);
   public final static native String alert_name(int jarg1);
   public final static native int user_alert_id_get();
@@ -3039,7 +3039,7 @@ public class libtorrent_jni {
   public final static native long picker_flags_t_xor(long jarg1, picker_flags_t jarg1_, long jarg2, picker_flags_t jarg2_);
   public final static native long picker_flags_t_inv(long jarg1, picker_flags_t jarg1_);
   public final static native int picker_flags_t_to_int(long jarg1, picker_flags_t jarg1_);
-  public final static native long picker_flags_t_from_int(long jarg1, picker_flags_t jarg1_, int jarg2);
+  public final static native long picker_flags_t_from_int(int jarg1);
   public final static native void delete_picker_flags_t(long jarg1);
   public final static native String name_for_setting(int jarg1);
   public final static native long default_settings();
@@ -3153,7 +3153,7 @@ public class libtorrent_jni {
   public final static native long remove_flags_t_xor(long jarg1, remove_flags_t jarg1_, long jarg2, remove_flags_t jarg2_);
   public final static native long remove_flags_t_inv(long jarg1, remove_flags_t jarg1_);
   public final static native int remove_flags_t_to_int(long jarg1, remove_flags_t jarg1_);
-  public final static native long remove_flags_t_from_int(long jarg1, remove_flags_t jarg1_, int jarg2);
+  public final static native long remove_flags_t_from_int(int jarg1);
   public final static native void delete_remove_flags_t(long jarg1);
   public final static native long new_save_state_flags_t();
   public final static native long save_state_flags_t_all();
@@ -3165,7 +3165,7 @@ public class libtorrent_jni {
   public final static native long save_state_flags_t_xor(long jarg1, save_state_flags_t jarg1_, long jarg2, save_state_flags_t jarg2_);
   public final static native long save_state_flags_t_inv(long jarg1, save_state_flags_t jarg1_);
   public final static native int save_state_flags_t_to_int(long jarg1, save_state_flags_t jarg1_);
-  public final static native long save_state_flags_t_from_int(long jarg1, save_state_flags_t jarg1_, int jarg2);
+  public final static native long save_state_flags_t_from_int(int jarg1);
   public final static native void delete_save_state_flags_t(long jarg1);
   public final static native long new_reopen_network_flags_t();
   public final static native long reopen_network_flags_t_all();
@@ -3177,7 +3177,7 @@ public class libtorrent_jni {
   public final static native long reopen_network_flags_t_xor(long jarg1, reopen_network_flags_t jarg1_, long jarg2, reopen_network_flags_t jarg2_);
   public final static native long reopen_network_flags_t_inv(long jarg1, reopen_network_flags_t jarg1_);
   public final static native int reopen_network_flags_t_to_int(long jarg1, reopen_network_flags_t jarg1_);
-  public final static native long reopen_network_flags_t_from_int(long jarg1, reopen_network_flags_t jarg1_, int jarg2);
+  public final static native long reopen_network_flags_t_from_int(int jarg1);
   public final static native void delete_reopen_network_flags_t(long jarg1);
   public final static native long new_session_params__SWIG_0(long jarg1, settings_pack jarg1_);
   public final static native long new_session_params__SWIG_1();
@@ -3316,7 +3316,7 @@ public class libtorrent_jni {
   public final static native long create_flags_t_xor(long jarg1, create_flags_t jarg1_, long jarg2, create_flags_t jarg2_);
   public final static native long create_flags_t_inv(long jarg1, create_flags_t jarg1_);
   public final static native int create_flags_t_to_int(long jarg1, create_flags_t jarg1_);
-  public final static native long create_flags_t_from_int(long jarg1, create_flags_t jarg1_, int jarg2);
+  public final static native long create_flags_t_from_int(int jarg1);
   public final static native void delete_create_flags_t(long jarg1);
   public final static native void stats_metric_value_index_set(long jarg1, stats_metric jarg1_, int jarg2);
   public final static native int stats_metric_value_index_get(long jarg1, stats_metric jarg1_);

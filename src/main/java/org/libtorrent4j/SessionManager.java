@@ -26,10 +26,7 @@ import org.libtorrent4j.swig.address;
 import org.libtorrent4j.swig.alert;
 import org.libtorrent4j.swig.alert_category_t;
 import org.libtorrent4j.swig.alert_ptr_vector;
-import org.libtorrent4j.swig.announce_entry;
-import org.libtorrent4j.swig.announce_entry_vector;
 import org.libtorrent4j.swig.byte_vector;
-import org.libtorrent4j.swig.create_torrent;
 import org.libtorrent4j.swig.entry;
 import org.libtorrent4j.swig.error_code;
 import org.libtorrent4j.swig.info_hash_t;
@@ -40,7 +37,6 @@ import org.libtorrent4j.swig.session;
 import org.libtorrent4j.swig.session_params;
 import org.libtorrent4j.swig.settings_pack;
 import org.libtorrent4j.swig.sha1_hash;
-import org.libtorrent4j.swig.string_vector;
 import org.libtorrent4j.swig.tcp_endpoint_vector;
 import org.libtorrent4j.swig.torrent_flags_t;
 import org.libtorrent4j.swig.torrent_handle;
@@ -141,8 +137,14 @@ public class SessionManager {
 
             resetState();
 
-            params.getSettings().setInteger(settings_pack.int_types.alert_mask.swigValue(), alertMask(logging).to_int());
-            params.getSettings().setInteger(settings_pack.int_types.max_metadata_size.swigValue(), 4 * 1024 * 1024);
+            SettingsPack sp = params.getSettings();
+
+            sp.setInteger(settings_pack.int_types.alert_mask.swigValue(), alertMask(logging).to_int());
+
+            // limit metadata size by default
+            if (!sp.hasValue(settings_pack.int_types.max_metadata_size.swigValue())) {
+                sp.setMaxMetadataSize(2 * 1024 * 1024);
+            }
 
             session = new session(params.swig());
             alertsLoop();
@@ -624,6 +626,9 @@ public class SessionManager {
     }
 
     /**
+     * The maximum size of the data that can be downloaded is controlled
+     * by {@link SettingsPack#setMaxMetadataSize(int)}.
+     *
      * @param uri     magnet uri
      * @param timeout in seconds
      * @return the bencoded info or null
@@ -661,7 +666,7 @@ public class SessionManager {
 
                 if (type.equals(AlertType.METADATA_RECEIVED)) {
                     try {
-                        data.set(buildMagnetTorrentData(th));
+                        data.set(((TorrentAlert<?>) alert).handle().createTorrent());
                     } catch (Throwable e) {
                         Log.error("Error bulding magnet torrent data", e);
                     }
@@ -689,7 +694,7 @@ public class SessionManager {
                     torrent_info ti = th.torrent_file_ptr();
                     if (ti != null && ti.is_valid()) {
                         // torrent info is good, so is metadata
-                        data.set(buildMagnetTorrentData(th));
+                        data.set(new TorrentHandle(th).createTorrent());
                         signal.countDown();
                     }
                 } else {
@@ -920,6 +925,16 @@ public class SessionManager {
         }
     }
 
+    public byte[] saveState() {
+        if (session == null) {
+            return null;
+        }
+
+        session_params params = session.session_state();
+        byte_vector v = session_params.write_session_params_buf(params);
+        return Vectors.byte_vector2bytes(v);
+    }
+
     /**
      * Instructs the session to reopen all listen and outgoing sockets.
      * <p>
@@ -1067,7 +1082,11 @@ public class SessionManager {
         if (session == null || isDhtRunning() == on) {
             return;
         }
-        applySettings(new SettingsPack().enableDht(on));
+
+        SettingsPack sp = new SettingsPack();
+        sp.setEnableDht(on);
+
+        applySettings(sp);
     }
 
     private void onExternalIpAlert(ExternalIpAlert alert) {
@@ -1121,39 +1140,6 @@ public class SessionManager {
         return type == AlertType.SESSION_STATS.swig() ||
                 type == AlertType.STATE_UPDATE.swig() ||
                 type == AlertType.SESSION_STATS_HEADER.swig();
-    }
-
-    public static byte[] buildMagnetTorrentData(torrent_handle th) {
-        if (th == null || !th.is_valid()) {
-            return null;
-        }
-
-        torrent_info ti = th.torrent_file_ptr();
-        if (ti == null || !ti.is_valid()) {
-            return null;
-        }
-
-        create_torrent ct = new create_torrent(ti);
-
-        string_vector v = th.get_url_seeds();
-        int size = v.size();
-        for (int i = 0; i < size; i++) {
-            ct.add_url_seed(v.get(i));
-        }
-        v = th.get_http_seeds();
-        size = v.size();
-        for (int i = 0; i < size; i++) {
-            ct.add_http_seed(v.get(i));
-        }
-        announce_entry_vector trackers = th.trackers();
-        size = trackers.size();
-        for (int i = 0; i < size; i++) {
-            announce_entry t = trackers.get(i);
-            ct.add_tracker(t.getUrl(), t.getTier());
-        }
-
-        entry e = ct.generate();
-        return Vectors.byte_vector2bytes(e.bencode());
     }
 
     private void alertsLoop() {
