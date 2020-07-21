@@ -69,7 +69,7 @@ public final class AddTorrentParams
      *
      * @return the version
      */
-    public int version() {
+    public int getVersion() {
         return h.getVersion();
     }
 
@@ -123,7 +123,7 @@ public final class AddTorrentParams
      *
      * @return the list of trackers tiers
      */
-    public List<Integer> trackerTiers() {
+    public List<Integer> getTrackerTiers() {
         return new ArrayList<>(h.getTracker_tiers());
     }
 
@@ -136,7 +136,7 @@ public final class AddTorrentParams
      *
      * @param value the list of trackers tiers
      */
-    public void trackerTiers(List<Integer> value) {
+    public void setTrackerTiers(List<Integer> value) {
         int_vector v = new int_vector(value);
         h.setTracker_tiers(v);
     }
@@ -147,13 +147,11 @@ public final class AddTorrentParams
      *
      * @return the list of DHT nodes
      */
-    public ArrayList<Pair<String, Integer>> dhtNodes() {
+    public ArrayList<Pair<String, Integer>> getDhtNodes() {
         string_int_pair_vector v = h.getDht_nodes();
-        int size = v.size();
-        ArrayList<Pair<String, Integer>> l = new ArrayList<>();
+        ArrayList<Pair<String, Integer>> l = new ArrayList<>(v.size());
 
-        for (int i = 0; i < size; i++) {
-            string_int_pair n = v.get(i);
+        for (string_int_pair n : v) {
             l.add(new Pair<>(n.getFirst(), n.getSecond()));
         }
 
@@ -166,7 +164,7 @@ public final class AddTorrentParams
      *
      * @param value the list of DHT nodes
      */
-    public void dhtNodes(List<Pair<String, Integer>> value) {
+    public void setDhtNodes(List<Pair<String, Integer>> value) {
         string_int_pair_vector v = new string_int_pair_vector();
 
         for (Pair<String, Integer> p : value) {

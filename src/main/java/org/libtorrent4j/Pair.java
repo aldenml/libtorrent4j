@@ -1,7 +1,16 @@
+/*
+ * Copyright (c) 2018-2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.string_int_pair;
 import org.libtorrent4j.swig.string_string_pair;
+
+import java.util.Objects;
 
 /**
  * Utility function to mirror the C++ std::pair class
@@ -50,5 +59,25 @@ public final class Pair<T1, T2> {
         }
 
         return new string_int_pair((String) first, (Integer) second);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Pair<?, ?>)) {
+            return false;
+        }
+
+        Pair<?, ?> p = (Pair<?, ?>) obj;
+
+        return first.equals(p.first) && second.equals(p.second);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(first, second);
+    }
+
+    public static <T1, T2> Pair<T1, T2> of(T1 first, T2 second) {
+        return new Pair<>(first, second);
     }
 }

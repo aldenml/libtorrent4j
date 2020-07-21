@@ -25,7 +25,7 @@ public class AddTorrentParamsTest {
     @Test
     public void testVersion() {
         AddTorrentParams params = new AddTorrentParams();
-        assertEquals(20000, params.version());
+        assertEquals(20000, params.getVersion());
     }
 
     @Test
@@ -51,15 +51,15 @@ public class AddTorrentParamsTest {
     public void testTrackerTiers() {
         AddTorrentParams params = new AddTorrentParams();
 
-        assertTrue(params.trackerTiers().isEmpty());
+        assertTrue(params.getTrackerTiers().isEmpty());
 
         List<Integer> tiers = new ArrayList<>(2);
         tiers.add(10);
         tiers.add(20);
 
-        params.trackerTiers(tiers);
+        params.setTrackerTiers(tiers);
 
-        List<Integer> r = params.trackerTiers();
+        List<Integer> r = params.getTrackerTiers();
 
         assertEquals(2, r.size());
         assertTrue(r.contains(10));
@@ -86,5 +86,24 @@ public class AddTorrentParamsTest {
         byte[] buff = AddTorrentParams.writeResumeDataBuf(params);
 
         assertArrayEquals(entry.bencode(), buff);
+    }
+
+    @Test
+    public void testDhtNodes() {
+        AddTorrentParams params = new AddTorrentParams();
+
+        assertTrue(params.getDhtNodes().isEmpty());
+
+        ArrayList<Pair<String, Integer>> nodes = new ArrayList<>(2);
+        nodes.add(Pair.of("1.1.1.1", 1));
+        nodes.add(Pair.of("2.2.2.2", 2));
+
+        params.setDhtNodes(nodes);
+
+        ArrayList<Pair<String, Integer>> r = params.getDhtNodes();
+
+        assertEquals(2, r.size());
+        assertTrue(r.contains(Pair.of("1.1.1.1", 1)));
+        assertTrue(r.contains(Pair.of("2.2.2.2", 2)));
     }
 }
