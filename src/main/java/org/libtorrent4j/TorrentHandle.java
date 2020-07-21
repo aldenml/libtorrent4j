@@ -381,7 +381,7 @@ public final class TorrentHandle
         h.resume();
     }
 
-    public torrent_flags_t flags() {
+    public torrent_flags_t getFlags() {
         return h.flags();
     }
 
@@ -1317,7 +1317,7 @@ public final class TorrentHandle
      *
      * @return the name
      */
-    public String name() {
+    public String getName() {
         torrent_status ts = h.status(torrent_handle.query_name);
         return ts.getName();
     }
@@ -1406,5 +1406,19 @@ public final class TorrentHandle
 
         entry e = ct.generate();
         return Vectors.byte_vector2bytes(e.bencode());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof TorrentHandle)) {
+            return false;
+        }
+
+        return h.eq(((TorrentHandle) obj).h);
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.hashCode(h.id());
     }
 }

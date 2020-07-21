@@ -8,6 +8,7 @@
 #include <libtorrent/kademlia/ed25519.hpp>
 #include <libtorrent/kademlia/item.hpp>
 #include <libtorrent/enum_net.hpp>
+#include <libtorrent/random.hpp>
 
 namespace lt = libtorrent;
 
@@ -295,5 +296,15 @@ lt::add_torrent_params parse_magnet_uri(std::string const& uri, lt::error_code& 
 {
     return lt::parse_magnet_uri(uri, ec);
 }
+
+#if defined(__ANDROID__) || defined(ANDROID)
+
+extern "C" ssize_t getrandom(void* __buffer, size_t __buffer_size, unsigned int __flags)
+{
+    lt::aux::random_bytes({static_cast<char*>(__buffer), static_cast<std::ptrdiff_t>(__buffer_size)});
+    return __buffer_size;
+}
+
+#endif
 
 #endif
