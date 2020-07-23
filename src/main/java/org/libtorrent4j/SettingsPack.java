@@ -595,6 +595,50 @@ public final class SettingsPack
     }
 
     /**
+     * This is a comma-separated list of IP port-pairs. They will be added
+     * to the DHT node (if it's enabled) as back-up nodes in case we don't
+     * know of any.
+     * <p>
+     * Changing these after the DHT has been started may not have any
+     * effect until the DHT is restarted.
+     */
+    public String getDhtBootstrapNodes() {
+        return h.get_str(string_types.dht_bootstrap_nodes.swigValue());
+    }
+
+    /**
+     * This is a comma-separated list of IP port-pairs. They will be added
+     * to the DHT node (if it's enabled) as back-up nodes in case we don't
+     * know of any.
+     * <p>
+     * Changing these after the DHT has been started may not have any
+     * effect until the DHT is restarted.
+     *
+     * @param value the IP port-pairs list
+     */
+    public void setDhtBootstrapNodes(String value) {
+        h.set_str(string_types.dht_bootstrap_nodes.swigValue(), value);
+    }
+
+    /**
+     * This is the STUN server used by WebTorrent to enable ICE NAT
+     * traversal for WebRTC. It must have the format ``hostname:port``.
+     */
+    public String getWebtorrentStunServer() {
+        return h.get_str(string_types.webtorrent_stun_server.swigValue());
+    }
+
+    /**
+     * This is the STUN server used by WebTorrent to enable ICE NAT
+     * traversal for WebRTC. It must have the format ``hostname:port``.
+     *
+     * @param value the STUN server endpoint
+     */
+    public void setWebtorrentStunServer(String value) {
+        h.set_str(string_types.webtorrent_stun_server.swigValue(), value);
+    }
+
+    /**
      *
      */
     public String listenInterfaces() {

@@ -17,3 +17,6 @@ libtorrent4j.iws
 /libtorrent4j*.dylib
 /libtorrent4j*.so
 /libtorrent4j*.dll
+
+dht_shell.dat
+demo/build/

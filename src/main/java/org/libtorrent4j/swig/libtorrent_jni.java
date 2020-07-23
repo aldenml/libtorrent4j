@@ -3193,8 +3193,6 @@ public class libtorrent_jni {
   public final static native long session_params_ip_filter_get(long jarg1, session_params jarg1_);
   public final static native long session_params_read_session_params__SWIG_0(long jarg1, bdecode_node jarg1_, long jarg2, save_state_flags_t jarg2_);
   public final static native long session_params_read_session_params__SWIG_1(long jarg1, bdecode_node jarg1_);
-  public final static native long session_params_read_session_params__SWIG_2(long jarg1, byte_vector jarg1_, long jarg2, save_state_flags_t jarg2_);
-  public final static native long session_params_read_session_params__SWIG_3(long jarg1, byte_vector jarg1_);
   public final static native long session_params_write_session_params__SWIG_0(long jarg1, session_params jarg1_, long jarg2, save_state_flags_t jarg2_);
   public final static native long session_params_write_session_params__SWIG_1(long jarg1, session_params jarg1_);
   public final static native long session_params_write_session_params_buf__SWIG_0(long jarg1, session_params jarg1_, long jarg2, save_state_flags_t jarg2_);
