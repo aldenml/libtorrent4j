@@ -3931,11 +3931,6 @@ SWIGINTERN libtorrent::flags::bitfield_flag< std::uint8_t,libtorrent::reopen_net
 SWIGINTERN lt::session_params libtorrent_session_params_read_session_params__SWIG_0(lt::bdecode_node const &e,lt::save_state_flags_t flags=lt::save_state_flags_t::all()){
         return lt::read_session_params(e, flags);
     }
-SWIGINTERN lt::session_params libtorrent_session_params_read_session_params__SWIG_2(std::vector< std::int8_t > const &buf,lt::save_state_flags_t flags=lt::save_state_flags_t::all()){
-        lt::span<char const> s{reinterpret_cast<char const*>(buf.data())
-            , static_cast<long>(buf.size())};
-        return lt::read_session_params(s, flags);
-    }
 SWIGINTERN lt::entry libtorrent_session_params_write_session_params__SWIG_0(lt::session_params const &sp,lt::save_state_flags_t flags=lt::save_state_flags_t::all()){
         return lt::write_session_params(sp, flags);
     }
@@ -52999,53 +52994,6 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1par
     return 0;
   } 
   result = libtorrent_session_params_read_session_params__SWIG_0((libtorrent::bdecode_node const &)*arg1);
-  *(lt::session_params **)&jresult = new lt::session_params((const lt::session_params &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1params_1read_1session_1params_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  jlong jresult = 0 ;
-  std::vector< std::int8_t > *arg1 = 0 ;
-  lt::save_state_flags_t arg2 ;
-  lt::save_state_flags_t *argp2 ;
-  lt::session_params result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(std::vector< std::int8_t > **)&jarg1;
-  if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::int8_t > const & reference is null");
-    return 0;
-  } 
-  argp2 = *(lt::save_state_flags_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null lt::save_state_flags_t");
-    return 0;
-  }
-  arg2 = *argp2; 
-  result = libtorrent_session_params_read_session_params__SWIG_2((std::vector< signed char > const &)*arg1,arg2);
-  *(lt::session_params **)&jresult = new lt::session_params((const lt::session_params &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1params_1read_1session_1params_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  std::vector< std::int8_t > *arg1 = 0 ;
-  lt::session_params result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(std::vector< std::int8_t > **)&jarg1;
-  if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::int8_t > const & reference is null");
-    return 0;
-  } 
-  result = libtorrent_session_params_read_session_params__SWIG_2((std::vector< signed char > const &)*arg1);
   *(lt::session_params **)&jresult = new lt::session_params((const lt::session_params &)result); 
   return jresult;
 }

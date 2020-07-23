@@ -22,15 +22,6 @@ namespace libtorrent
         return lt::read_session_params(e, flags);
     }
 
-    static lt::session_params read_session_params(
-        std::vector<std::int8_t> const& buf
-        , lt::save_state_flags_t flags = lt::save_state_flags_t::all())
-    {
-        lt::span<char const> s{reinterpret_cast<char const*>(buf.data())
-            , static_cast<long>(buf.size())};
-        return lt::read_session_params(s, flags);
-    }
-
     static lt::entry write_session_params(lt::session_params const& sp
     	, lt::save_state_flags_t flags = lt::save_state_flags_t::all())
     {

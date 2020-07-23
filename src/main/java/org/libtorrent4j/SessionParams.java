@@ -7,7 +7,13 @@
 
 package org.libtorrent4j;
 
+import org.libtorrent4j.swig.bdecode_node;
+import org.libtorrent4j.swig.byte_vector;
+import org.libtorrent4j.swig.error_code;
 import org.libtorrent4j.swig.session_params;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * This is a parameters pack for configuring the session
@@ -47,6 +53,14 @@ public final class SessionParams
         this(new session_params(settings.swig()));
     }
 
+    public SessionParams(File data) {
+        this(bdecode0(data));
+    }
+
+    public SessionParams(byte[] data) {
+        this(bdecode0(data));
+    }
+
     /**
      * The settings to configure the session with.
      *
@@ -63,5 +77,29 @@ public final class SessionParams
      */
     public void setSettings(SettingsPack settings) {
         h.setSettings(settings.swig());
+    }
+
+    private static session_params bdecode0(File file) {
+        try {
+            byte[] data = Files.bytes(file);
+            return bdecode0(data);
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Can't decode data from file: " + file, e);
+        }
+    }
+
+    private static session_params bdecode0(byte[] data) {
+        byte_vector buffer = Vectors.bytes2byte_vector(data);
+        bdecode_node n = new bdecode_node();
+        error_code ec = new error_code();
+        int ret = bdecode_node.bdecode(buffer, n, ec);
+
+        if (ret == 0) {
+            session_params params = session_params.read_session_params(n);
+            buffer.clear(); // prevents GC
+            return params;
+        } else {
+            throw new IllegalArgumentException("Can't decode data: " + ec.message());
+        }
     }
 }

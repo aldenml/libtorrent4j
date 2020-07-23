@@ -139,11 +139,17 @@ public class SessionManager {
 
             SettingsPack sp = params.getSettings();
 
+            // we always control the alert mask
             sp.setInteger(settings_pack.int_types.alert_mask.swigValue(), alertMask(logging).to_int());
 
             // limit metadata size by default
             if (!sp.hasValue(settings_pack.int_types.max_metadata_size.swigValue())) {
                 sp.setMaxMetadataSize(2 * 1024 * 1024);
+            }
+
+            // use some dht bootstrap nodes if none is provided
+            if (!sp.hasValue(settings_pack.string_types.dht_bootstrap_nodes.swigValue())) {
+                sp.setDhtBootstrapNodes(dhtBootstrapNodes());
             }
 
             session = new session(params.swig());
@@ -165,11 +171,7 @@ public class SessionManager {
     }
 
     public void start() {
-        settings_pack sp = new settings_pack();
-
-        sp.set_str(settings_pack.string_types.dht_bootstrap_nodes.swigValue(), dhtBootstrapNodes());
-
-        start(new SessionParams(new session_params(sp)));
+        start(new SessionParams());
     }
 
     /**
@@ -1129,9 +1131,7 @@ public class SessionManager {
 
         sb.append("dht.libtorrent.org:25401").append(",");
         sb.append("router.bittorrent.com:6881").append(",");
-        sb.append("dht.transmissionbt.com:6881").append(",");
-        // for DHT IPv6
-        sb.append("router.silotis.us:6881");
+        sb.append("dht.transmissionbt.com:6881");
 
         return sb.toString();
     }

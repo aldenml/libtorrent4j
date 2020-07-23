@@ -20,7 +20,7 @@ package org.libtorrent4j;
 /**
  * Converts hexadecimal Strings.
  */
-final class Hex {
+public final class Hex {
 
     private Hex() {
     }

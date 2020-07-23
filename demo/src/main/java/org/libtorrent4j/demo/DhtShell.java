@@ -1,20 +1,39 @@
+/*
+ * Copyright (c) 2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j.demo;
 
-import org.libtorrent4j.*;
-import org.libtorrent4j.alerts.*;
+import org.libtorrent4j.AlertListener;
+import org.libtorrent4j.Ed25519;
+import org.libtorrent4j.Entry;
+import org.libtorrent4j.Hex;
+import org.libtorrent4j.Pair;
+import org.libtorrent4j.SessionManager;
+import org.libtorrent4j.SessionParams;
+import org.libtorrent4j.Sha1Hash;
+import org.libtorrent4j.TcpEndpoint;
+import org.libtorrent4j.alerts.Alert;
+import org.libtorrent4j.alerts.AlertType;
+import org.libtorrent4j.alerts.DhtPutAlert;
+import org.libtorrent4j.alerts.ListenFailedAlert;
+import org.libtorrent4j.alerts.ListenSucceededAlert;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @author gubatron
  * @author aldenml
  */
 public final class DhtShell {
 
-    /*
-    public static void main(String[] args) throws Throwable {
+    public static void main(String[] args) {
 
         AlertListener mainListener = new AlertListener() {
             @Override
@@ -45,17 +64,12 @@ public final class DhtShell {
 
         SessionManager s = new SessionManager();
         s.addListener(mainListener);
-        s.start();
 
-        try {
-            File f = new File("dht_shell.dat");
-            if (f.exists()) {
-                byte[] data = Utils.readFileToByteArray(f);
-                s.loadState(data);
-            }
-        } catch (Throwable e) {
-            log(e.getMessage());
-        }
+        File f = new File("dht_shell.dat");
+        if (f.exists())
+            s.start(new SessionParams(new File("dht_shell.dat")));
+        else
+            s.start();
 
         Scanner in = new Scanner(System.in);
         while (true) {
@@ -114,7 +128,7 @@ public final class DhtShell {
         print("Exiting...");
         byte[] data = s.saveState();
         try {
-            Utils.writeByteArrayToFile(new File("dht_shell.dat"), data, false);
+            Files.write(Paths.get("dht_shell.dat"), data);
         } catch (Throwable e) {
             print(e.getMessage());
         }
@@ -139,7 +153,7 @@ public final class DhtShell {
     private static void get(SessionManager sm, String s) {
         String sha1 = s.split(" ")[1];
         print("Waiting a max of 20 seconds to get data for key: " + sha1);
-        Entry data = sm.dhtGetItem(new Sha1Hash(sha1), 20);
+        Entry data = sm.dhtGetItem(Sha1Hash.parseHex(sha1), 20);
         print(data.toString());
     }
 
@@ -150,7 +164,7 @@ public final class DhtShell {
     private static void get_peers(SessionManager sm, String s) {
         String sha1 = s.split(" ")[1];
         print("Waiting a max of 20 seconds to get peers for key: " + sha1);
-        ArrayList<TcpEndpoint> peers = sm.dhtGetPeers(new Sha1Hash(sha1), 20);
+        ArrayList<TcpEndpoint> peers = sm.dhtGetPeers(Sha1Hash.parseHex(sha1), 20);
         print(peers.toString());
     }
 
@@ -160,7 +174,7 @@ public final class DhtShell {
 
     private static void announce(SessionManager sm, String s) {
         String sha1 = s.split(" ")[1];
-        sm.dhtAnnounce(new Sha1Hash(sha1), 9000, 0);
+        sm.dhtAnnounce(Sha1Hash.parseHex(sha1), 9000, (byte) 0);
         print("Wait for completion of announce for key: " + sha1);
     }
 
@@ -181,8 +195,8 @@ public final class DhtShell {
         keys[1] = privateKey;
 
         String msg = "Save this key pair\n";
-        msg += "Public: " + Utils.toHex(keys[0]) + "\n";
-        msg += "Private: " + Utils.toHex(keys[1]) + "\n";
+        msg += "Public: " + Hex.encode(keys[0]) + "\n";
+        msg += "Private: " + Hex.encode(keys[1]) + "\n";
         print(msg);
     }
 
@@ -192,8 +206,8 @@ public final class DhtShell {
 
     private static void mput(SessionManager sm, String s) {
         String[] arr = s.split(" ");
-        byte[] publicKey = Utils.fromHex(arr[1]);
-        byte[] privateKey = Utils.fromHex(arr[2]);
+        byte[] publicKey = Hex.decode(arr[1]);
+        byte[] privateKey = Hex.decode(arr[2]);
         String data = arr[3];
         sm.dhtPutItem(publicKey, privateKey, new Entry(data), new byte[0]);
         print("Wait for completion of mput for public key: " + arr[1]);
@@ -205,7 +219,7 @@ public final class DhtShell {
 
     private static void mget(SessionManager sm, String s) {
         String[] arr = s.split(" ");
-        byte[] publicKey = Utils.fromHex(arr[1]);
+        byte[] publicKey = Hex.decode(arr[1]);
         print("Waiting a max of 20 seconds to get mutable data for public key: " + arr[1]);
         SessionManager.MutableItem data = sm.dhtGetItem(publicKey, new byte[0], 20);
         print(data.item.toString());
@@ -219,7 +233,7 @@ public final class DhtShell {
         String sha1 = s.split(" ")[1];
         String uri = "magnet:?xt=urn:btih:" + sha1;
         print("Waiting a max of 20 seconds to fetch magnet for sha1: " + sha1);
-        byte[] data = session.fetchMagnet(uri, 20);
+        byte[] data = session.fetchMagnet(uri, 20, new File("."));
         print(Entry.bdecode(data).toString());
     }
 
@@ -238,6 +252,4 @@ public final class DhtShell {
     private static void invalid(String s) {
         print("Invalid command: " + s + "\n" + "Try ? for help");
     }
-
-     */
 }
