@@ -19,6 +19,6 @@ jobs:
           wget -nv -O boost.tar.gz https://dl.bintray.com/boostorg/release/1.73.0/source/boost_1_73_0.tar.gz
           tar xzf boost.tar.gz
           mv boost_1_73_0 boost-src
-          pushd build/boost-src
+          pushd boost-src
           ./bootstrap.sh --prefix=../boost
           popd
