@@ -77,7 +77,6 @@ public class AddTorrentParamsTest {
 
     @Test
     public void testWriteResumeData() {
-
         AddTorrentParams params = new AddTorrentParams();
 
         params.setName("test");
@@ -105,5 +104,27 @@ public class AddTorrentParamsTest {
         assertEquals(2, r.size());
         assertTrue(r.contains(Pair.of("1.1.1.1", 1)));
         assertTrue(r.contains(Pair.of("2.2.2.2", 2)));
+    }
+
+    @Test
+    public void testSavePath() {
+        AddTorrentParams params = new AddTorrentParams();
+
+        assertEquals("", params.getSavePath());
+
+        params.setSavePath("test");
+
+        assertEquals("test", params.getSavePath());
+    }
+
+    @Test
+    public void testStorageMode() {
+        AddTorrentParams params = new AddTorrentParams();
+
+        assertEquals(StorageMode.STORAGE_MODE_SPARSE, params.getStorageMode());
+
+        params.setStorageMode(StorageMode.STORAGE_MODE_ALLOCATE);
+
+        assertEquals(StorageMode.STORAGE_MODE_ALLOCATE, params.getStorageMode());
     }
 }

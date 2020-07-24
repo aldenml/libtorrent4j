@@ -149,7 +149,7 @@ public class SessionManager {
 
             // use some dht bootstrap nodes if none is provided
             if (!sp.hasValue(settings_pack.string_types.dht_bootstrap_nodes.swigValue())) {
-                sp.setDhtBootstrapNodes(dhtBootstrapNodes());
+                sp.setDhtBootstrapNodes(defaultDhtBootstrapNodes());
             }
 
             session = new session(params.swig());
@@ -1126,11 +1126,12 @@ public class SessionManager {
         return mask;
     }
 
-    private static String dhtBootstrapNodes() {
+    protected String defaultDhtBootstrapNodes() {
         StringBuilder sb = new StringBuilder();
 
         sb.append("dht.libtorrent.org:25401").append(",");
         sb.append("router.bittorrent.com:6881").append(",");
+        sb.append("router.utorrent.com:6881").append(",");
         sb.append("dht.transmissionbt.com:6881");
 
         return sb.toString();
