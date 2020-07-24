@@ -200,7 +200,7 @@ public final class AddTorrentParams
      *
      * @return the save path
      */
-    public String savePath() {
+    public String getSavePath() {
         return h.getSave_path();
     }
 
@@ -216,7 +216,7 @@ public final class AddTorrentParams
      *
      * @param value the save path
      */
-    public void savePath(String value) {
+    public void setSavePath(String value) {
         h.setSave_path(value);
     }
 
@@ -224,7 +224,7 @@ public final class AddTorrentParams
      * @return the storage mode
      * @see StorageMode
      */
-    public StorageMode storageMode() {
+    public StorageMode getStorageMode() {
         return StorageMode.fromSwig(h.getStorage_mode().swigValue());
     }
 
@@ -232,7 +232,7 @@ public final class AddTorrentParams
      * @param value the storage mode
      * @see StorageMode
      */
-    public void storageMode(StorageMode value) {
+    public void setStorageMode(StorageMode value) {
         h.setStorage_mode(storage_mode_t.swigToEnum(value.swig()));
     }
 

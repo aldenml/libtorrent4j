@@ -1,0 +1,24 @@
+name: Android arm64
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+
+  arm64:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: download boost
+        run: |
+          wget -nv -O boost.tar.gz https://dl.bintray.com/boostorg/release/1.73.0/source/boost_1_73_0.tar.gz
+          tar xzf boost.tar.gz
+          mv boost_1_73_0 boost-src
+          pushd boost-src
+          ./bootstrap.sh --prefix=../boost
+          popd
