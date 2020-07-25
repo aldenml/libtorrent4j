@@ -1,0 +1,67 @@
+name: Android
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  BOOST_DOT_VERSION: "1.73.0"
+  BOOST_VERSION: "1_73_0"
+
+jobs:
+
+  arm:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: download boost
+        run: |
+          wget -nv -O boost.tar.gz https://dl.bintray.com/boostorg/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
+          tar xzf boost.tar.gz
+          mv boost_${BOOST_VERSION} boost-src
+          pushd boost-src
+          ./bootstrap.sh --prefix=../boost
+          popd
+
+  arm64:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: download boost
+        run: |
+          wget -nv -O boost.tar.gz https://dl.bintray.com/boostorg/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
+          tar xzf boost.tar.gz
+          mv boost_${BOOST_VERSION} boost-src
+          pushd boost-src
+          ./bootstrap.sh --prefix=../boost
+          popd
+
+  x86:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: download boost
+        run: |
+          wget -nv -O boost.tar.gz https://dl.bintray.com/boostorg/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
+          tar xzf boost.tar.gz
+          mv boost_${BOOST_VERSION} boost-src
+          pushd boost-src
+          ./bootstrap.sh --prefix=../boost
+          popd
+
+  x86_64:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: download boost
+        run: |
+          wget -nv -O boost.tar.gz https://dl.bintray.com/boostorg/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
+          tar xzf boost.tar.gz
+          mv boost_${BOOST_VERSION} boost-src
+          pushd boost-src
+          ./bootstrap.sh --prefix=../boost
+          popd

@@ -43,7 +43,7 @@ public final class LibTorrent {
      * @return the git revision
      */
     public static String revision() {
-        return "e0d9d7791d08511c4bb3e772241010bd6996c1b5";
+        return "90f636fc6e714fb6e4f7438838cde8b78e31088c";
     }
 
     public static String boostVersion() {
@@ -61,7 +61,7 @@ public final class LibTorrent {
      * @return libtorrent4j version.
      */
     public static String libtorrent4jVersion() {
-        return "2.0.0-alpha-5";
+        return "2.0.0-beta-1";
     }
 
     /**
