@@ -244,7 +244,7 @@ public final class AddTorrentParams
      *
      * @return the trackerid url parameter
      */
-    public String trackerId() {
+    public String getTrackerId() {
         return h.getTrackerid();
     }
 
@@ -256,7 +256,7 @@ public final class AddTorrentParams
      *
      * @param value the trackerid url parameter
      */
-    public void trackerId(String value) {
+    public void setTrackerId(String value) {
         h.setTrackerid(value);
     }
 

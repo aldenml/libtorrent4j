@@ -127,4 +127,15 @@ public class AddTorrentParamsTest {
 
         assertEquals(StorageMode.STORAGE_MODE_ALLOCATE, params.getStorageMode());
     }
+
+    @Test
+    public void testTrackerId() {
+        AddTorrentParams params = new AddTorrentParams();
+
+        assertEquals("", params.getTrackerId());
+
+        params.setTrackerId("test");
+
+        assertEquals("test", params.getTrackerId());
+    }
 }
