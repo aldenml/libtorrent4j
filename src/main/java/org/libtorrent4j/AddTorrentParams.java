@@ -33,7 +33,7 @@ import java.util.List;
  * <li>info_hash - when all you have is an info-hash (this is similar to a magnet link)</li>
  * </ul>
  * One of those fields need to be set. Another mandatory field is
- * {@link #savePath()}. The {@link AddTorrentParams} object is passed into one of the
+ * {@link #setSavePath(String)}. The {@link AddTorrentParams} object is passed into one of the
  * {@link SessionHandle#addTorrent(AddTorrentParams, ErrorCode)} overloads or
  * {@link SessionHandle#asyncAddTorrent(AddTorrentParams)}.
  * <p>
@@ -194,7 +194,6 @@ public final class AddTorrentParams
      * the resume data to be used, you need to set the
      * flag_use_resume_save_path flag.
      * <p>
-     * .. note::
      * On windows this path (and other paths) are interpreted as UNC
      * paths. This means they must use backslashes as directory separators
      *
@@ -210,7 +209,6 @@ public final class AddTorrentParams
      * the resume data to be used, you need to set the
      * flag_use_resume_save_path flag.
      * <p>
-     * .. note::
      * On windows this path (and other paths) are interpreted as UNC
      * paths. This means they must use backslashes as directory separators
      *

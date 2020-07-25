@@ -6,4 +6,4 @@ engines:
 exclude_paths:
   - '**.md'
   - 'src/main/**/swig/**'
-  - 'examples/*'
+  - 'demo/**'
