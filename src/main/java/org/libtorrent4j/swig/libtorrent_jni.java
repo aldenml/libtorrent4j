@@ -952,13 +952,13 @@ public class libtorrent_jni {
   public final static native long announce_infohash_get_next_announce(long jarg1, announce_infohash jarg1_);
   public final static native long announce_infohash_get_min_announce(long jarg1, announce_infohash jarg1_);
   public final static native void delete_announce_infohash(long jarg1);
+  public final static native long new_announce_endpoint();
   public final static native void announce_endpoint_local_endpoint_set(long jarg1, announce_endpoint jarg1_, long jarg2, tcp_endpoint jarg2_);
   public final static native long announce_endpoint_local_endpoint_get(long jarg1, announce_endpoint jarg1_);
   public final static native void announce_endpoint_enabled_set(long jarg1, announce_endpoint jarg1_, boolean jarg2);
   public final static native boolean announce_endpoint_enabled_get(long jarg1, announce_endpoint jarg1_);
   public final static native long announce_endpoint_get_infohash_v1(long jarg1, announce_endpoint jarg1_);
   public final static native long announce_endpoint_get_infohash_v2(long jarg1, announce_endpoint jarg1_);
-  public final static native long new_announce_endpoint();
   public final static native void delete_announce_endpoint(long jarg1);
   public final static native long new_announce_entry__SWIG_0();
   public final static native void delete_announce_entry(long jarg1);

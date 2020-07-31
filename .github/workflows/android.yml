@@ -18,14 +18,18 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - name: download boost
+      - name: set versions
         run: |
-          wget -nv -O boost.tar.gz https://dl.bintray.com/boostorg/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
-          tar xzf boost.tar.gz
-          mv boost_${BOOST_VERSION} boost-src
-          pushd boost-src
-          ./bootstrap.sh --prefix=../boost
-          popd
+          source ./swig/scripts/set-versions.sh
+          echo BOOST_VERSION=${BOOST_VERSION}
+          echo NDK_VERSION=${NDK_VERSION}
+      - name: setup boost
+        run: ./swig/scripts/setup-boost.sh
+      - name: setup ndk
+        run: |
+          ./swig/scripts/setup-ndk.sh
+          source ./swig/scripts/set-ndk-vars.sh
+          echo NDK=${NDK}
 
   arm64:
     runs-on: ubuntu-20.04

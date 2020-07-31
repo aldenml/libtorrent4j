@@ -36,6 +36,10 @@ public class announce_endpoint {
     }
   }
 
+  public announce_endpoint() {
+    this(libtorrent_jni.new_announce_endpoint(), true);
+  }
+
   public void setLocal_endpoint(tcp_endpoint value) {
     libtorrent_jni.announce_endpoint_local_endpoint_set(swigCPtr, this, tcp_endpoint.getCPtr(value), value);
   }
@@ -59,10 +63,6 @@ public class announce_endpoint {
 
   public announce_infohash get_infohash_v2() {
     return new announce_infohash(libtorrent_jni.announce_endpoint_get_infohash_v2(swigCPtr, this), true);
-  }
-
-  public announce_endpoint() {
-    this(libtorrent_jni.new_announce_endpoint(), true);
   }
 
 }

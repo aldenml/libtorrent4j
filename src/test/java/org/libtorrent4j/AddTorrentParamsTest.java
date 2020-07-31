@@ -138,4 +138,26 @@ public class AddTorrentParamsTest {
 
         assertEquals("test", params.getTrackerId());
     }
+
+    @Test
+    public void testMaxUploads() {
+        AddTorrentParams params = new AddTorrentParams();
+
+        assertEquals(-1, params.getMaxUploads());
+
+        params.setMaxUploads(100);
+
+        assertEquals(100, params.getMaxUploads());
+    }
+
+    @Test
+    public void testMaxConnections() {
+        AddTorrentParams params = new AddTorrentParams();
+
+        assertEquals(-1, params.getMaxConnections());
+
+        params.setMaxConnections(100);
+
+        assertEquals(100, params.getMaxConnections());
+    }
 }
