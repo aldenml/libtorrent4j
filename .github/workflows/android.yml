@@ -11,6 +11,7 @@ on:
 env:
   BOOST_DOT_VERSION: "1.73.0"
   BOOST_VERSION: "1_73_0"
+  NDK_VERSION: "r21d"
 
 jobs:
 
@@ -18,18 +19,10 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - name: set versions
-        run: |
-          source ./swig/scripts/set-versions.sh
-          echo BOOST_VERSION=${BOOST_VERSION}
-          echo NDK_VERSION=${NDK_VERSION}
       - name: setup boost
         run: ./swig/scripts/setup-boost.sh
       - name: setup ndk
-        run: |
-          ./swig/scripts/setup-ndk.sh
-          source ./swig/scripts/set-ndk-vars.sh
-          echo NDK=${NDK}
+        run: ./swig/scripts/setup-ndk.sh
 
   arm64:
     runs-on: ubuntu-20.04
