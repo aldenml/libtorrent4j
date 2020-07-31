@@ -77,7 +77,7 @@ libtorrent4j-windows
 ```
 These are all different artifacts, you need to select according to your architecture.
 
-For examples look at [demos](https://github.com/aldenml/libtorrent4j/tree/master/src/test/java/org/libtorrent4j/demo).
+For examples look at [demos](https://github.com/aldenml/libtorrent4j/tree/master/demo/src/main/java/org/libtorrent4j/demo).
 
 Architectures supported:
 

@@ -283,28 +283,28 @@ public final class AddTorrentParams
     /**
      * @return max uploads limit
      */
-    public int maxUploads() {
+    public int getMaxUploads() {
         return h.getMax_uploads();
     }
 
     /**
      * @param value max uploads limit
      */
-    public void maxUploads(int value) {
+    public void setMaxUploads(int value) {
         h.setMax_uploads(value);
     }
 
     /**
      * @return max connections limit
      */
-    public int maxConnections() {
+    public int getMaxConnections() {
         return h.getMax_connections();
     }
 
     /**
      * @param value max connections limit
      */
-    public void maxConnections(int value) {
+    public void setMaxConnections(int value) {
         h.setMax_connections(value);
     }
 

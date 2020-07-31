@@ -19873,6 +19873,18 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_delete_1annou
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1announce_1endpoint(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::announce_endpoint *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::announce_endpoint *)new libtorrent::announce_endpoint();
+  *(libtorrent::announce_endpoint **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_announce_1endpoint_1local_1endpoint_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   libtorrent::announce_endpoint *arg1 = (libtorrent::announce_endpoint *) 0 ;
   libtorrent::tcp::endpoint *arg2 = (libtorrent::tcp::endpoint *) 0 ;
@@ -19956,18 +19968,6 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_announce_1en
   arg1 = *(libtorrent::announce_endpoint **)&jarg1; 
   result = libtorrent_announce_endpoint_get_infohash_v2(arg1);
   *(libtorrent::announce_infohash **)&jresult = new libtorrent::announce_infohash((const libtorrent::announce_infohash &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_new_1announce_1endpoint(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
-  libtorrent::announce_endpoint *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (libtorrent::announce_endpoint *)new libtorrent::announce_endpoint();
-  *(libtorrent::announce_endpoint **)&jresult = result; 
   return jresult;
 }
 

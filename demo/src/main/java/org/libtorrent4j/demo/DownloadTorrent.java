@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2020, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j.demo;
 
 import org.libtorrent4j.AlertListener;
@@ -19,9 +26,6 @@ import java.util.concurrent.CountDownLatch;
 public final class DownloadTorrent {
 
     public static void main(String[] args) throws Throwable {
-
-        // comment this line for a real application
-        args = new String[]{"/Users/aldenml/Downloads/ubuntu-20.04-desktop-amd64.iso.torrent"};
 
         File torrentFile = new File(args[0]);
 
