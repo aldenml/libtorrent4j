@@ -37,7 +37,6 @@ A swig Java interface for [libtorrent](https://github.com/arvidn/libtorrent).
 | Tracker Returns Compact Peer Lists | [BEP 23](https://www.bittorrent.org/beps/bep_0023.html) |
 | Extension for Partial Seeds | [BEP 21](https://www.bittorrent.org/beps/bep_0021.html) |
 | HTTP/FTP Seeding (GetRight-style) | [BEP 19](https://www.bittorrent.org/beps/bep_0019.html) |
-| HTTP Seeding (Hoffman-style) | [BEP 17](https://www.bittorrent.org/beps/bep_0017.html) |
 | Superseeding | [BEP 16](https://www.bittorrent.org/beps/bep_0016.html) |
 | UDP Tracker Protocol | [BEP 15](https://www.bittorrent.org/beps/bep_0015.html) |
 | Local Service Discovery (LSD) | [BEP 14](https://www.bittorrent.org/beps/bep_0014.html) |
@@ -77,7 +76,8 @@ libtorrent4j-windows
 ```
 These are all different artifacts, you need to select according to your architecture.
 
-For examples look at [demos](https://github.com/aldenml/libtorrent4j/tree/master/demo/src/main/java/org/libtorrent4j/demo).
+For examples look at [demos](https://github.com/aldenml/libtorrent4j/tree/master/demo)
+and [tests](https://github.com/aldenml/libtorrent4j/tree/master/src/test/java/org/libtorrent4j).
 
 Architectures supported:
 
@@ -86,10 +86,10 @@ Architectures supported:
 - Linux (x86_64)
 - Windows (x86_64)
 
-## Projects using libtorrent4j
+#### About stability
 
-Submit a PR to add a link here.
- - [LibreTorrent](https://gitlab.com/proninyaroslav/libretorrent)
+This library tracks libtorrent [`master`](https://github.com/arvidn/libtorrent/tree/master) branch.
+The branch is very stable, runs a lot of tests, and receives bug fixes quickly.
 
 ## License
 
