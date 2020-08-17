@@ -160,4 +160,26 @@ public class AddTorrentParamsTest {
 
         assertEquals(100, params.getMaxConnections());
     }
+
+    @Test
+    public void testUploadLimit() {
+        AddTorrentParams params = new AddTorrentParams();
+
+        assertEquals(-1, params.getUploadLimit());
+
+        params.setUploadLimit(100);
+
+        assertEquals(100, params.getUploadLimit());
+    }
+
+    @Test
+    public void testDownloadLimit() {
+        AddTorrentParams params = new AddTorrentParams();
+
+        assertEquals(-1, params.getDownloadLimit());
+
+        params.setDownloadLimit(100);
+
+        assertEquals(100, params.getDownloadLimit());
+    }
 }

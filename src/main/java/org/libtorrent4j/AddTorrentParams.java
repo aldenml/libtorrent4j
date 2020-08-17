@@ -311,28 +311,28 @@ public final class AddTorrentParams
     /**
      * @return upload limit
      */
-    public int uploadLimit() {
+    public int getUploadLimit() {
         return h.getUpload_limit();
     }
 
     /**
      * @param value upload limit
      */
-    public void uploadLimit(int value) {
+    public void setUploadLimit(int value) {
         h.setUpload_limit(value);
     }
 
     /**
      * @return download limit
      */
-    public int downloadLimit() {
+    public int getDownloadLimit() {
         return h.getDownload_limit();
     }
 
     /**
      * @param value download limit
      */
-    public void downloadLimit(int value) {
+    public void setDownloadLimit(int value) {
         h.setDownload_limit(value);
     }
 
