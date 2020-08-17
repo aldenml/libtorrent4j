@@ -7,6 +7,7 @@
 /out
 /build
 
+*.iml
 libtorrent4j.iml
 libtorrent4j.ipr
 libtorrent4j.iws

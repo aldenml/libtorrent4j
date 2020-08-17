@@ -32,6 +32,7 @@
 %ignore libtorrent::dht_mutable_item_alert::signature;
 %ignore libtorrent::dht_put_alert::public_key;
 %ignore libtorrent::dht_put_alert::signature;
+%ignore libtorrent::performance_warning_str;
 
 %rename("$ignore", regextarget=1, %$isconstructor) ".*_alert$";
 

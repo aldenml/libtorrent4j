@@ -1,3 +1,20 @@
+
+  * using libtorrent master
+  * lt:fix incorrect mapping of performance warning enum to human readable string
+  * lt:remove little-endian to host conversion in CRC32 function
+  * lt:fix endian issue in classify_prefix()
+  * lt:add support for SetFileValidData() to the mmap file (Windows)
+  * lt:always check for duplicate peer IDs
+  * lt:mark all torrents as not wanting peer connections when both TCP and uTP
+    connections are disabled
+  * lt:fix issue when changing the seeding_outgoing_connections setting
+  * lt:add additional support for no_cache option to mmap file
+  * lt:print bdecoded binary data as hex again
+  * lt:fix torrent round-trip for v2 torrents in create_torrent
+  * lt:fix detection of hard-links not being supported by filesystem
+  * lt:clean up parse_utf8_sequence and lower dependence on ConvertUTF code
+  * lt:source code cleanup, performance and stability
+
 2.0.0-1
 
   * minimum supported Android API >= 24
