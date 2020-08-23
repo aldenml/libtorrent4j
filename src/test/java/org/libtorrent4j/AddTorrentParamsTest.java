@@ -189,7 +189,7 @@ public class AddTorrentParamsTest {
     public void testFlags() {
         AddTorrentParams params = new AddTorrentParams();
 
-        assertEquals(8376, params.getFlags().to_int());
+        assertEquals(352440, params.getFlags().to_int());
 
         params.setFlags(torrent_flags_t.from_int(5));
 
