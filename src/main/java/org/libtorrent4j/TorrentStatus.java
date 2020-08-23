@@ -658,12 +658,12 @@ public final class TorrentStatus implements Cloneable {
     }
 
     /**
-     * the info-hash for this torrent.
+     * Returns the info-hash for this torrent.
      *
-     *
+     * @return the info-hash
      */
-    public InfoHash infoHash() {
-        return new InfoHash(ts.getInfo_hash());
+    public InfoHash getInfoHashes() {
+        return new InfoHash(ts.getInfo_hashes());
     }
 
     public long lastUpload() {

@@ -8,8 +8,10 @@
 package org.libtorrent4j;
 
 import org.junit.Test;
+import org.libtorrent4j.swig.torrent_flags_t;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -70,7 +72,7 @@ public class AddTorrentParamsTest {
     public void testParseMagnetUri() {
         AddTorrentParams params = AddTorrentParams.parseMagnetUri("magnet:?xt=urn:btih:D540FC48EB12F2833163EED6421D449DD8F1CE1F&dn=Ubuntu+desktop+19.04+%2864bit%29&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337");
 
-        assertEquals("D540FC48EB12F2833163EED6421D449DD8F1CE1F", params.getInfoHash().getV1().toHex().toUpperCase(Locale.US));
+        assertEquals("D540FC48EB12F2833163EED6421D449DD8F1CE1F", params.getInfoHashes().getV1().toHex().toUpperCase(Locale.US));
         assertEquals("Ubuntu desktop 19.04 (64bit)", params.getName());
         assertEquals("udp://tracker.opentrackr.org:1337", params.getTrackers().get(0));
     }
@@ -181,5 +183,32 @@ public class AddTorrentParamsTest {
         params.setDownloadLimit(100);
 
         assertEquals(100, params.getDownloadLimit());
+    }
+
+    @Test
+    public void testFlags() {
+        AddTorrentParams params = new AddTorrentParams();
+
+        assertEquals(8376, params.getFlags().to_int());
+
+        params.setFlags(torrent_flags_t.from_int(5));
+
+        assertEquals(5, params.getFlags().to_int());
+    }
+
+    @Test
+    public void testUrlSeeds() {
+        AddTorrentParams params = new AddTorrentParams();
+
+        assertEquals(0, params.getUrlSeeds().size());
+
+        List<String> urlSeeds = Arrays.asList(
+            "http://1/1",
+            "http://2/2"
+        );
+
+        params.setUrlSeeds(urlSeeds);
+
+        assertEquals(urlSeeds, params.getUrlSeeds());
     }
 }

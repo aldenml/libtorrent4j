@@ -265,8 +265,8 @@ public final class AddTorrentParams
      *
      * @return the info-hash
      */
-    public InfoHash getInfoHash() {
-        return new InfoHash(h.getInfo_hash());
+    public InfoHash getInfoHashes() {
+        return new InfoHash(h.getInfo_hashes());
     }
 
     /**
@@ -276,8 +276,8 @@ public final class AddTorrentParams
      *
      * @param value the info-hash
      */
-    public void setInfoHash(InfoHash value) {
-        h.setInfo_hash(value.swig());
+    public void setInfoHashes(InfoHash value) {
+        h.setInfo_hashes(value.swig());
     }
 
     /**
@@ -341,7 +341,7 @@ public final class AddTorrentParams
      *
      * @return the flags
      */
-    public torrent_flags_t flags() {
+    public torrent_flags_t getFlags() {
         return h.getFlags();
     }
 
@@ -350,7 +350,7 @@ public final class AddTorrentParams
      *
      * @param flags the flags
      */
-    public void flags(torrent_flags_t flags) {
+    public void setFlags(torrent_flags_t flags) {
         h.setFlags(flags);
     }
 
@@ -359,16 +359,8 @@ public final class AddTorrentParams
      *
      * @return the url seeds
      */
-    public ArrayList<String> urlSeeds() {
-        string_vector v = h.getUrl_seeds();
-        int size = v.size();
-        ArrayList<String> l = new ArrayList<>();
-
-        for (int i = 0; i < size; i++) {
-            l.add(v.get(i));
-        }
-
-        return l;
+    public List<String> getUrlSeeds() {
+        return new ArrayList<>(h.getUrl_seeds());
     }
 
     /**
@@ -376,13 +368,8 @@ public final class AddTorrentParams
      *
      * @param value the url seeds
      */
-    public void urlSeeds(List<String> value) {
-        string_vector v = new string_vector();
-
-        for (String s : value) {
-            v.add(s);
-        }
-
+    public void setUrlSeeds(List<String> value) {
+        string_vector v = new string_vector(value);
         h.setUrl_seeds(v);
     }
 

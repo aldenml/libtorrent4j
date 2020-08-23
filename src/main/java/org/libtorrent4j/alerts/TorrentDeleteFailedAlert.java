@@ -19,20 +19,20 @@ public final class TorrentDeleteFailedAlert extends TorrentAlert<torrent_delete_
     }
 
     /**
-     * tells you why it failed.
+     * Tells you why it failed.
      *
-     *
+     * @return the failure's error code
      */
     public ErrorCode getError() {
         return new ErrorCode(alert.getError());
     }
 
     /**
-     * the info hash of the torrent whose files failed to be deleted.
+     * Returns the info-hash of the torrent whose files failed to be deleted.
      *
-     *
+     * @return the torrent info-hash
      */
-    public InfoHash getInfoHash() {
-        return new InfoHash(alert.getInfo_hash());
+    public InfoHash getInfoHashes() {
+        return new InfoHash(alert.getInfo_hashes());
     }
 }

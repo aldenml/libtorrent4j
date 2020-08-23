@@ -352,7 +352,7 @@ public final class TorrentStats {
     }
 
     public void update(TorrentStatus status) {
-        if (!ih.equals(status.infoHash())) {
+        if (!ih.equals(status.getInfoHashes().getBest())) {
             return; // not for us
         }
 

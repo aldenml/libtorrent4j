@@ -27,7 +27,12 @@ public final class TorrentRemovedAlert extends TorrentAlert<torrent_removed_aler
         super(alert);
     }
 
-    public InfoHash infoHash() {
-        return new InfoHash(alert.getInfo_hash());
+    /**
+     * Returns the info-hash of the torrent that was removed.
+     *
+     * @return the torrent's info-hash
+     */
+    public InfoHash getInfoHashes() {
+        return new InfoHash(alert.getInfo_hashes());
     }
 }
