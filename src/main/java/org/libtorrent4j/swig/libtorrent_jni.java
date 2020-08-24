@@ -1228,8 +1228,8 @@ public class libtorrent_jni {
   public final static native String add_torrent_params_trackerid_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_flags_set(long jarg1, add_torrent_params jarg1_, long jarg2, torrent_flags_t jarg2_);
   public final static native long add_torrent_params_flags_get(long jarg1, add_torrent_params jarg1_);
-  public final static native void add_torrent_params_info_hash_set(long jarg1, add_torrent_params jarg1_, long jarg2, info_hash_t jarg2_);
-  public final static native long add_torrent_params_info_hash_get(long jarg1, add_torrent_params jarg1_);
+  public final static native void add_torrent_params_info_hashes_set(long jarg1, add_torrent_params jarg1_, long jarg2, info_hash_t jarg2_);
+  public final static native long add_torrent_params_info_hashes_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_max_uploads_set(long jarg1, add_torrent_params jarg1_, int jarg2);
   public final static native int add_torrent_params_max_uploads_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_max_connections_set(long jarg1, add_torrent_params jarg1_, int jarg2);
@@ -1614,8 +1614,8 @@ public class libtorrent_jni {
   public final static native boolean torrent_status_announcing_to_lsd_get(long jarg1, torrent_status jarg1_);
   public final static native void torrent_status_announcing_to_dht_set(long jarg1, torrent_status jarg1_, boolean jarg2);
   public final static native boolean torrent_status_announcing_to_dht_get(long jarg1, torrent_status jarg1_);
-  public final static native void torrent_status_info_hash_set(long jarg1, torrent_status jarg1_, long jarg2, info_hash_t jarg2_);
-  public final static native long torrent_status_info_hash_get(long jarg1, torrent_status jarg1_);
+  public final static native void torrent_status_info_hashes_set(long jarg1, torrent_status jarg1_, long jarg2, info_hash_t jarg2_);
+  public final static native long torrent_status_info_hashes_get(long jarg1, torrent_status jarg1_);
   public final static native void torrent_status_flags_set(long jarg1, torrent_status jarg1_, long jarg2, torrent_flags_t jarg2_);
   public final static native long torrent_status_flags_get(long jarg1, torrent_status jarg1_);
   public final static native long torrent_status_torrent_file_ptr(long jarg1, torrent_status jarg1_);
@@ -2077,8 +2077,8 @@ public class libtorrent_jni {
   public final static native String torrent_removed_alert_what(long jarg1, torrent_removed_alert jarg1_);
   public final static native long torrent_removed_alert_static_category_get();
   public final static native String torrent_removed_alert_message(long jarg1, torrent_removed_alert jarg1_);
-  public final static native void torrent_removed_alert_info_hash_set(long jarg1, torrent_removed_alert jarg1_, long jarg2, info_hash_t jarg2_);
-  public final static native long torrent_removed_alert_info_hash_get(long jarg1, torrent_removed_alert jarg1_);
+  public final static native void torrent_removed_alert_info_hashes_set(long jarg1, torrent_removed_alert jarg1_, long jarg2, info_hash_t jarg2_);
+  public final static native long torrent_removed_alert_info_hashes_get(long jarg1, torrent_removed_alert jarg1_);
   public final static native void torrent_removed_alert_userdata_set(long jarg1, torrent_removed_alert jarg1_, long jarg2, client_data_t jarg2_);
   public final static native long torrent_removed_alert_userdata_get(long jarg1, torrent_removed_alert jarg1_);
   public final static native void delete_torrent_removed_alert(long jarg1);
@@ -2390,8 +2390,8 @@ public class libtorrent_jni {
   public final static native String torrent_deleted_alert_what(long jarg1, torrent_deleted_alert jarg1_);
   public final static native long torrent_deleted_alert_static_category_get();
   public final static native String torrent_deleted_alert_message(long jarg1, torrent_deleted_alert jarg1_);
-  public final static native void torrent_deleted_alert_info_hash_set(long jarg1, torrent_deleted_alert jarg1_, long jarg2, info_hash_t jarg2_);
-  public final static native long torrent_deleted_alert_info_hash_get(long jarg1, torrent_deleted_alert jarg1_);
+  public final static native void torrent_deleted_alert_info_hashes_set(long jarg1, torrent_deleted_alert jarg1_, long jarg2, info_hash_t jarg2_);
+  public final static native long torrent_deleted_alert_info_hashes_get(long jarg1, torrent_deleted_alert jarg1_);
   public final static native void delete_torrent_deleted_alert(long jarg1);
   public final static native int torrent_delete_failed_alert_priority_get();
   public final static native int torrent_delete_failed_alert_alert_type_get();
@@ -2401,8 +2401,8 @@ public class libtorrent_jni {
   public final static native long torrent_delete_failed_alert_static_category_get();
   public final static native String torrent_delete_failed_alert_message(long jarg1, torrent_delete_failed_alert jarg1_);
   public final static native long torrent_delete_failed_alert_error_get(long jarg1, torrent_delete_failed_alert jarg1_);
-  public final static native void torrent_delete_failed_alert_info_hash_set(long jarg1, torrent_delete_failed_alert jarg1_, long jarg2, info_hash_t jarg2_);
-  public final static native long torrent_delete_failed_alert_info_hash_get(long jarg1, torrent_delete_failed_alert jarg1_);
+  public final static native void torrent_delete_failed_alert_info_hashes_set(long jarg1, torrent_delete_failed_alert jarg1_, long jarg2, info_hash_t jarg2_);
+  public final static native long torrent_delete_failed_alert_info_hashes_get(long jarg1, torrent_delete_failed_alert jarg1_);
   public final static native void delete_torrent_delete_failed_alert(long jarg1);
   public final static native int save_resume_data_alert_priority_get();
   public final static native int save_resume_data_alert_alert_type_get();

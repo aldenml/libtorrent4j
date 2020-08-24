@@ -1,5 +1,10 @@
 
   * using libtorrent master
+  * lt:if the local codepage/locale is already UTF-8, don't perform any character
+    conversion
+  * lt:drop iconv dependency
+  * lt:fix threading issue in convert to/from native functions when using locale
+    functions mbtowc and wctomb
   * lt:fix incorrect mapping of performance warning enum to human readable string
   * lt:remove little-endian to host conversion in CRC32 function
   * lt:fix endian issue in classify_prefix()

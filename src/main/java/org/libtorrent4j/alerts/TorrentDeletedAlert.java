@@ -24,7 +24,12 @@ public final class TorrentDeletedAlert extends TorrentAlert<torrent_deleted_aler
         super(alert);
     }
 
-    public InfoHash getInfoHash() {
-        return new InfoHash(alert.getInfo_hash());
+    /**
+     * Returns the info-hash of the torrent whose files failed to be deleted.
+     *
+     * @return the torrent's info-hash
+     */
+    public InfoHash getInfoHashes() {
+        return new InfoHash(alert.getInfo_hashes());
     }
 }

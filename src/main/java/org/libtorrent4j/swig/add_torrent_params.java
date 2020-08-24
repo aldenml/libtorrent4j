@@ -129,12 +129,12 @@ public class add_torrent_params {
     return (cPtr == 0) ? null : new torrent_flags_t(cPtr, false);
   }
 
-  public void setInfo_hash(info_hash_t value) {
-    libtorrent_jni.add_torrent_params_info_hash_set(swigCPtr, this, info_hash_t.getCPtr(value), value);
+  public void setInfo_hashes(info_hash_t value) {
+    libtorrent_jni.add_torrent_params_info_hashes_set(swigCPtr, this, info_hash_t.getCPtr(value), value);
   }
 
-  public info_hash_t getInfo_hash() {
-    long cPtr = libtorrent_jni.add_torrent_params_info_hash_get(swigCPtr, this);
+  public info_hash_t getInfo_hashes() {
+    long cPtr = libtorrent_jni.add_torrent_params_info_hashes_get(swigCPtr, this);
     return (cPtr == 0) ? null : new info_hash_t(cPtr, false);
   }
 

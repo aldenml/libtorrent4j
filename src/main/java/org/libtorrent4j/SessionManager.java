@@ -585,7 +585,7 @@ public class SessionManager {
             throw new IllegalArgumentException(ec.message());
         }
 
-        sha1_hash info_hash = p.getInfo_hash().get_best();
+        sha1_hash info_hash = p.getInfo_hashes().get_best();
 
         torrent_handle th = session.find_torrent(info_hash);
 
@@ -647,7 +647,7 @@ public class SessionManager {
             throw new IllegalArgumentException(ec.message());
         }
 
-        final info_hash_t info_hash = p.getInfo_hash();
+        final info_hash_t info_hash = p.getInfo_hashes();
         final AtomicReference<byte[]> data = new AtomicReference<>();
         final CountDownLatch signal = new CountDownLatch(1);
 

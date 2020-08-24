@@ -149,7 +149,7 @@ public class torrent_info {
   }
 
   public sha1_hash info_hash() {
-    return new sha1_hash(libtorrent_jni.torrent_info_info_hash(swigCPtr, this), false);
+    return new sha1_hash(libtorrent_jni.torrent_info_info_hash(swigCPtr, this), true);
   }
 
   public info_hash_t info_hashes() {
