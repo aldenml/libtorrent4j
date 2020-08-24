@@ -1,3 +1,4 @@
+2.0.0-2
 
   * using libtorrent master
   * lt:if the local codepage/locale is already UTF-8, don't perform any character
