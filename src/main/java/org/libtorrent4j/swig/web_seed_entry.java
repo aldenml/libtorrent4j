@@ -36,16 +36,20 @@ public class web_seed_entry {
     }
   }
 
-  public web_seed_entry(String url_, web_seed_entry.type_t type_, String auth_, string_string_pair_vector extra_headers_) {
-    this(libtorrent_jni.new_web_seed_entry__SWIG_0(url_, type_.swigValue(), auth_, string_string_pair_vector.getCPtr(extra_headers_), extra_headers_), true);
+  public web_seed_entry(String url_, String auth_, string_string_pair_vector extra_headers_) {
+    this(libtorrent_jni.new_web_seed_entry__SWIG_0(url_, auth_, string_string_pair_vector.getCPtr(extra_headers_), extra_headers_), true);
   }
 
-  public web_seed_entry(String url_, web_seed_entry.type_t type_, String auth_) {
-    this(libtorrent_jni.new_web_seed_entry__SWIG_1(url_, type_.swigValue(), auth_), true);
+  public web_seed_entry(String url_, String auth_) {
+    this(libtorrent_jni.new_web_seed_entry__SWIG_1(url_, auth_), true);
   }
 
-  public web_seed_entry(String url_, web_seed_entry.type_t type_) {
-    this(libtorrent_jni.new_web_seed_entry__SWIG_2(url_, type_.swigValue()), true);
+  public web_seed_entry(String url_) {
+    this(libtorrent_jni.new_web_seed_entry__SWIG_2(url_), true);
+  }
+
+  public web_seed_entry(web_seed_entry arg0) {
+    this(libtorrent_jni.new_web_seed_entry__SWIG_3(web_seed_entry.getCPtr(arg0), arg0), true);
   }
 
   public boolean eq(web_seed_entry e) {
@@ -79,58 +83,6 @@ public class web_seed_entry {
   public string_string_pair_vector getExtra_headers() {
     long cPtr = libtorrent_jni.web_seed_entry_extra_headers_get(swigCPtr, this);
     return (cPtr == 0) ? null : new string_string_pair_vector(cPtr, false);
-  }
-
-  public void setType(short value) {
-    libtorrent_jni.web_seed_entry_type_set(swigCPtr, this, value);
-  }
-
-  public short getType() {
-    return libtorrent_jni.web_seed_entry_type_get(swigCPtr, this);
-  }
-
-  public final static class type_t {
-    public final static web_seed_entry.type_t url_seed = new web_seed_entry.type_t("url_seed");
-    public final static web_seed_entry.type_t http_seed = new web_seed_entry.type_t("http_seed");
-
-    public final int swigValue() {
-      return swigValue;
-    }
-
-    public String toString() {
-      return swigName;
-    }
-
-    public static type_t swigToEnum(int swigValue) {
-      if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-        return swigValues[swigValue];
-      for (int i = 0; i < swigValues.length; i++)
-        if (swigValues[i].swigValue == swigValue)
-          return swigValues[i];
-      throw new IllegalArgumentException("No enum " + type_t.class + " with value " + swigValue);
-    }
-
-    private type_t(String swigName) {
-      this.swigName = swigName;
-      this.swigValue = swigNext++;
-    }
-
-    private type_t(String swigName, int swigValue) {
-      this.swigName = swigName;
-      this.swigValue = swigValue;
-      swigNext = swigValue+1;
-    }
-
-    private type_t(String swigName, type_t swigEnum) {
-      this.swigName = swigName;
-      this.swigValue = swigEnum.swigValue;
-      swigNext = this.swigValue+1;
-    }
-
-    private static type_t[] swigValues = { url_seed, http_seed };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
   }
 
 }

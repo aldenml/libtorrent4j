@@ -61,11 +61,6 @@ struct status_flags_tag;
         return {s.begin(), s.end()};
     }
 
-    std::vector<std::string> get_http_seeds() const {
-        std::set<std::string> s = $self->http_seeds();
-        return {s.begin(), s.end()};
-    }
-
     void set_ssl_certificate_buffer_ex(std::vector<int8_t> const& certificate
         , std::vector<int8_t> const& private_key
         , std::vector<int8_t> const& dh_params)

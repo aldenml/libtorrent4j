@@ -120,14 +120,6 @@ public class torrent_handle {
     libtorrent_jni.torrent_handle_remove_url_seed(swigCPtr, this, url);
   }
 
-  public void add_http_seed(String url) {
-    libtorrent_jni.torrent_handle_add_http_seed(swigCPtr, this, url);
-  }
-
-  public void remove_http_seed(String url) {
-    libtorrent_jni.torrent_handle_remove_http_seed(swigCPtr, this, url);
-  }
-
   public boolean is_valid() {
     return libtorrent_jni.torrent_handle_is_valid(swigCPtr, this);
   }
@@ -343,10 +335,6 @@ public class torrent_handle {
 
   public string_vector get_url_seeds() {
     return new string_vector(libtorrent_jni.torrent_handle_get_url_seeds(swigCPtr, this), true);
-  }
-
-  public string_vector get_http_seeds() {
-    return new string_vector(libtorrent_jni.torrent_handle_get_http_seeds(swigCPtr, this), true);
   }
 
   public void set_ssl_certificate_buffer_ex(byte_vector certificate, byte_vector private_key, byte_vector dh_params) {

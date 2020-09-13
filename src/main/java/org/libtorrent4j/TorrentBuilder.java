@@ -24,7 +24,6 @@ public final class TorrentBuilder {
     private String comment;
     private String creator;
     private List<String> urlSeeds;
-    private List<String> httpSeeds;
     private List<Pair<String, Integer>> nodes;
     private List<Pair<String, Integer>> trackers;
     private boolean priv;
@@ -40,7 +39,6 @@ public final class TorrentBuilder {
         this.alignment = -1;
 
         this.urlSeeds = new LinkedList<>();
-        this.httpSeeds = new LinkedList<>();
         this.nodes = new LinkedList<>();
         this.trackers = new LinkedList<>();
 
@@ -196,41 +194,6 @@ public final class TorrentBuilder {
     public TorrentBuilder addUrlSeed(String value) {
         if (value != null) {
             this.urlSeeds.add(value);
-        }
-        return this;
-    }
-
-    /**
-     *
-     */
-    public List<String> httpSeeds() {
-        return httpSeeds;
-    }
-
-    /**
-     * @param value
-     *
-     */
-    public TorrentBuilder addHttpSeeds(List<String> value) {
-        if (value != null) {
-            this.httpSeeds.addAll(value);
-        }
-        return this;
-    }
-
-    /**
-     * This adds a HTTP seed to the torrent. You can have any number of url seeds. For a
-     * single file torrent, this should be an HTTP url, pointing to a file with identical
-     * content as the file of the torrent. For a multi-file torrent, it should point to
-     * a directory containing a directory with the same name as this torrent, and all the
-     * files of the torrent in it.
-     *
-     * @param value
-     *
-     */
-    public TorrentBuilder addHttpSeed(String value) {
-        if (value != null) {
-            this.httpSeeds.add(value);
         }
         return this;
     }
@@ -490,9 +453,6 @@ public final class TorrentBuilder {
         }
         for (String s : urlSeeds) {
             t.add_url_seed(s);
-        }
-        for (String s : httpSeeds) {
-            t.add_http_seed(s);
         }
         for (Pair<String, Integer> n : nodes) {
             t.add_node(n.to_string_int_pair());
