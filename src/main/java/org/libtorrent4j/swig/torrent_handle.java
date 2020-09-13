@@ -337,10 +337,6 @@ public class torrent_handle {
     return new string_vector(libtorrent_jni.torrent_handle_get_url_seeds(swigCPtr, this), true);
   }
 
-  public string_vector get_http_seeds() {
-    return new string_vector(libtorrent_jni.torrent_handle_get_http_seeds(swigCPtr, this), true);
-  }
-
   public void set_ssl_certificate_buffer_ex(byte_vector certificate, byte_vector private_key, byte_vector dh_params) {
     libtorrent_jni.torrent_handle_set_ssl_certificate_buffer_ex(swigCPtr, this, byte_vector.getCPtr(certificate), certificate, byte_vector.getCPtr(private_key), private_key, byte_vector.getCPtr(dh_params), dh_params);
   }

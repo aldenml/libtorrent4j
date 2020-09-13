@@ -3310,10 +3310,6 @@ SWIGINTERN std::vector< std::string > libtorrent_torrent_handle_get_url_seeds(li
         std::set<std::string> s = self->url_seeds();
         return {s.begin(), s.end()};
     }
-SWIGINTERN std::vector< std::string > libtorrent_torrent_handle_get_http_seeds(libtorrent::torrent_handle const *self){
-        std::set<std::string> s = self->http_seeds();
-        return {s.begin(), s.end()};
-    }
 SWIGINTERN void libtorrent_torrent_handle_set_ssl_certificate_buffer_ex(libtorrent::torrent_handle *self,std::vector< int8_t > const &certificate,std::vector< int8_t > const &private_key,std::vector< int8_t > const &dh_params){
         std::string cert{certificate.begin(), certificate.end()};
         std::string pk{private_key.begin(), private_key.end()};
@@ -3979,9 +3975,6 @@ SWIGINTERN void libtorrent_session_handle_delete_port_mapping_ex(libtorrent::ses
     }
 SWIGINTERN void libtorrent_create_torrent_add_url_seed(libtorrent::create_torrent *self,std::string const &url){
         self->add_url_seed(url);
-    }
-SWIGINTERN void libtorrent_create_torrent_add_http_seed(libtorrent::create_torrent *self,std::string const &url){
-        self->add_http_seed(url);
     }
 SWIGINTERN void libtorrent_create_torrent_add_tracker__SWIG_0(libtorrent::create_torrent *self,std::string const &url){
         self->add_tracker(url);
@@ -32251,21 +32244,6 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1han
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1get_1http_1seeds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  libtorrent::torrent_handle *arg1 = (libtorrent::torrent_handle *) 0 ;
-  std::vector< std::string > result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::torrent_handle **)&jarg1; 
-  result = libtorrent_torrent_handle_get_http_seeds((libtorrent::torrent_handle const *)arg1);
-  *(std::vector< std::string > **)&jresult = new std::vector< std::string >((const std::vector< std::string > &)result); 
-  return jresult;
-}
-
-
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1handle_1set_1ssl_1certificate_1buffer_1ex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jlong jarg4, jobject jarg4_) {
   libtorrent::torrent_handle *arg1 = (libtorrent::torrent_handle *) 0 ;
   std::vector< int8_t > *arg2 = 0 ;
@@ -54587,27 +54565,6 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_create_1torre
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
   libtorrent_create_torrent_add_url_seed(arg1,(std::string const &)*arg2);
-}
-
-
-SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_create_1torrent_1add_1http_1seed(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
-  libtorrent::create_torrent *arg1 = (libtorrent::create_torrent *) 0 ;
-  std::string *arg2 = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(libtorrent::create_torrent **)&jarg1; 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return ;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return ;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  libtorrent_create_torrent_add_http_seed(arg1,(std::string const &)*arg2);
 }
 
 

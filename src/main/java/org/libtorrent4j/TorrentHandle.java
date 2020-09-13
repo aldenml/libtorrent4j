@@ -1033,16 +1033,6 @@ public final class TorrentHandle
     }
 
     /**
-     * Return a set of the url seeds currently in this
-     * torrent. This list is based on BEP 17.
-     *
-     * @return the url seed list
-     */
-    public List<String> httpSeeds() {
-        return Vectors.string_vector2list(h.get_http_seeds());
-    }
-
-    /**
      * Returns an array with the availability for each piece in this torrent.
      * libtorrent does not keep track of availability for seeds, so if the
      * torrent is seeding the availability for all pieces is reported as 0.
@@ -1376,11 +1366,7 @@ public final class TorrentHandle
         for (int i = 0; i < size; i++) {
             ct.add_url_seed(v.get(i));
         }
-        v = h.get_http_seeds();
-        size = v.size();
-        for (int i = 0; i < size; i++) {
-            ct.add_http_seed(v.get(i));
-        }
+
         announce_entry_vector trackers = h.trackers();
         size = trackers.size();
         for (int i = 0; i < size; i++) {

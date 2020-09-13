@@ -1,6 +1,5 @@
 %ignore libtorrent::set_piece_hashes;
 %ignore libtorrent::create_torrent::add_url_seed(string_view);
-%ignore libtorrent::create_torrent::add_http_seed(string_view);
 %ignore libtorrent::create_torrent::add_tracker(string_view);
 %ignore libtorrent::create_torrent::add_tracker(string_view, int);
 %ignore libtorrent::create_torrent::add_collection(string_view);
@@ -20,11 +19,6 @@ struct create_flags_tag;
     void add_url_seed(std::string const& url)
     {
         $self->add_url_seed(url);
-    }
-
-    void add_http_seed(std::string const& url)
-    {
-        $self->add_http_seed(url);
     }
 
     void add_tracker(std::string const& url)

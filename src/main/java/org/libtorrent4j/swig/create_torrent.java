@@ -112,10 +112,6 @@ public class create_torrent {
     libtorrent_jni.create_torrent_add_url_seed(swigCPtr, this, url);
   }
 
-  public void add_http_seed(String url) {
-    libtorrent_jni.create_torrent_add_http_seed(swigCPtr, this, url);
-  }
-
   public void add_tracker(String url) {
     libtorrent_jni.create_torrent_add_tracker__SWIG_0(swigCPtr, this, url);
   }
