@@ -116,18 +116,6 @@ public class torrent_info {
     libtorrent_jni.torrent_info_set_web_seeds(swigCPtr, this, web_seed_entry_vector.getCPtr(seeds), seeds);
   }
 
-  public void add_http_seed(String url, String extern_auth, string_string_pair_vector extra_headers) {
-    libtorrent_jni.torrent_info_add_http_seed__SWIG_0(swigCPtr, this, url, extern_auth, string_string_pair_vector.getCPtr(extra_headers), extra_headers);
-  }
-
-  public void add_http_seed(String url, String extern_auth) {
-    libtorrent_jni.torrent_info_add_http_seed__SWIG_1(swigCPtr, this, url, extern_auth);
-  }
-
-  public void add_http_seed(String url) {
-    libtorrent_jni.torrent_info_add_http_seed__SWIG_2(swigCPtr, this, url);
-  }
-
   public long total_size() {
     return libtorrent_jni.torrent_info_total_size(swigCPtr, this);
   }

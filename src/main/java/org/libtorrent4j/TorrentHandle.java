@@ -1032,22 +1032,6 @@ public final class TorrentHandle
         return Vectors.string_vector2list(h.get_url_seeds());
     }
 
-    // These functions are identical as the ``*_url_seed()`` variants, but
-    // they operate on `BEP 17`_ web seeds instead of `BEP 19`_.
-    //
-    // See http-seeding_ for more information.
-    public void addHttpSeed(String url) {
-        h.add_url_seed(url);
-    }
-
-    // These functions are identical as the ``*_url_seed()`` variants, but
-    // they operate on `BEP 17`_ web seeds instead of `BEP 19`_.
-    //
-    // See http-seeding_ for more information.
-    public void removeHttpSeed(String url) {
-        h.remove_http_seed(url);
-    }
-
     /**
      * Return a set of the url seeds currently in this
      * torrent. This list is based on BEP 17.

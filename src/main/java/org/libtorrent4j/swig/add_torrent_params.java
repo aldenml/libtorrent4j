@@ -258,15 +258,6 @@ public class add_torrent_params {
     return libtorrent_jni.add_torrent_params_num_downloaded_get(swigCPtr, this);
   }
 
-  public void setHttp_seeds(string_vector value) {
-    libtorrent_jni.add_torrent_params_http_seeds_set(swigCPtr, this, string_vector.getCPtr(value), value);
-  }
-
-  public string_vector getHttp_seeds() {
-    long cPtr = libtorrent_jni.add_torrent_params_http_seeds_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new string_vector(cPtr, false);
-  }
-
   public void setUrl_seeds(string_vector value) {
     libtorrent_jni.add_torrent_params_url_seeds_set(swigCPtr, this, string_vector.getCPtr(value), value);
   }

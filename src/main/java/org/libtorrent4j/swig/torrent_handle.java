@@ -120,14 +120,6 @@ public class torrent_handle {
     libtorrent_jni.torrent_handle_remove_url_seed(swigCPtr, this, url);
   }
 
-  public void add_http_seed(String url) {
-    libtorrent_jni.torrent_handle_add_http_seed(swigCPtr, this, url);
-  }
-
-  public void remove_http_seed(String url) {
-    libtorrent_jni.torrent_handle_remove_http_seed(swigCPtr, this, url);
-  }
-
   public boolean is_valid() {
     return libtorrent_jni.torrent_handle_is_valid(swigCPtr, this);
   }

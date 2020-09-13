@@ -1112,8 +1112,6 @@ public class libtorrent_jni {
   public final static native String web_seed_entry_auth_get(long jarg1, web_seed_entry jarg1_);
   public final static native void web_seed_entry_extra_headers_set(long jarg1, web_seed_entry jarg1_, long jarg2, string_string_pair_vector jarg2_);
   public final static native long web_seed_entry_extra_headers_get(long jarg1, web_seed_entry jarg1_);
-  public final static native void web_seed_entry_type_set(long jarg1, web_seed_entry jarg1_, short jarg2);
-  public final static native short web_seed_entry_type_get(long jarg1, web_seed_entry jarg1_);
   public final static native void delete_web_seed_entry(long jarg1);
   public final static native void load_torrent_limits_max_buffer_size_set(long jarg1, load_torrent_limits jarg1_, int jarg2);
   public final static native int load_torrent_limits_max_buffer_size_get(long jarg1, load_torrent_limits jarg1_);
@@ -1146,9 +1144,6 @@ public class libtorrent_jni {
   public final static native void torrent_info_add_url_seed__SWIG_2(long jarg1, torrent_info jarg1_, String jarg2);
   public final static native long torrent_info_web_seeds(long jarg1, torrent_info jarg1_);
   public final static native void torrent_info_set_web_seeds(long jarg1, torrent_info jarg1_, long jarg2, web_seed_entry_vector jarg2_);
-  public final static native void torrent_info_add_http_seed__SWIG_0(long jarg1, torrent_info jarg1_, String jarg2, String jarg3, long jarg4, string_string_pair_vector jarg4_);
-  public final static native void torrent_info_add_http_seed__SWIG_1(long jarg1, torrent_info jarg1_, String jarg2, String jarg3);
-  public final static native void torrent_info_add_http_seed__SWIG_2(long jarg1, torrent_info jarg1_, String jarg2);
   public final static native long torrent_info_total_size(long jarg1, torrent_info jarg1_);
   public final static native int torrent_info_piece_length(long jarg1, torrent_info jarg1_);
   public final static native int torrent_info_num_pieces(long jarg1, torrent_info jarg1_);
@@ -1261,8 +1256,6 @@ public class libtorrent_jni {
   public final static native int add_torrent_params_num_incomplete_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_num_downloaded_set(long jarg1, add_torrent_params jarg1_, int jarg2);
   public final static native int add_torrent_params_num_downloaded_get(long jarg1, add_torrent_params jarg1_);
-  public final static native void add_torrent_params_http_seeds_set(long jarg1, add_torrent_params jarg1_, long jarg2, string_vector jarg2_);
-  public final static native long add_torrent_params_http_seeds_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_url_seeds_set(long jarg1, add_torrent_params jarg1_, long jarg2, string_vector jarg2_);
   public final static native long add_torrent_params_url_seeds_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_peers_set(long jarg1, add_torrent_params jarg1_, long jarg2, tcp_endpoint_vector jarg2_);
@@ -1687,8 +1680,6 @@ public class libtorrent_jni {
   public final static native void torrent_handle_add_tracker(long jarg1, torrent_handle jarg1_, long jarg2, announce_entry jarg2_);
   public final static native void torrent_handle_add_url_seed(long jarg1, torrent_handle jarg1_, String jarg2);
   public final static native void torrent_handle_remove_url_seed(long jarg1, torrent_handle jarg1_, String jarg2);
-  public final static native void torrent_handle_add_http_seed(long jarg1, torrent_handle jarg1_, String jarg2);
-  public final static native void torrent_handle_remove_http_seed(long jarg1, torrent_handle jarg1_, String jarg2);
   public final static native boolean torrent_handle_is_valid(long jarg1, torrent_handle jarg1_);
   public final static native long torrent_handle_graceful_pause_get();
   public final static native long torrent_handle_clear_disk_cache_get();

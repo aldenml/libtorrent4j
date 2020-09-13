@@ -99,7 +99,6 @@ public class CreateTorrentTest {
             .comment("comment")
             .creator("creator")
             .addUrlSeed("http://urlseed/")
-            .addHttpSeed("http://httpseed/")
             .addNode(new Pair<>("1.1.1.1", 1))
             .addTracker("udp://tracker/")
             .setPrivate(true)
@@ -113,12 +112,7 @@ public class CreateTorrentTest {
 
         ArrayList<WebSeedEntry> seeds = ti.webSeeds();
         for (WebSeedEntry e : seeds) {
-            if (e.type() == WebSeedEntry.Type.URL_SEED) {
-                assertEquals("http://urlseed/", e.url());
-            }
-            if (e.type() == WebSeedEntry.Type.HTTP_SEED) {
-                assertEquals("http://httpseed/", e.url());
-            }
+            assertEquals("http://urlseed/", e.url());
         }
 
         assertEquals("1.1.1.1", ti.nodes().get(0).first);
