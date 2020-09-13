@@ -1,3 +1,15 @@
+
+  * lt:use a different error code than host-unreachable, when skipping
+    tracker announces
+  * lt:fix error category in http_tracker_connection
+  * lt:fix issue where pad blocks would skip the zero-hash check and consider
+    the last piece as passed, which in turn could cause a hybrid magnet link
+    to fail with inconsistent-hashes
+  * lt:remove support for BEP 17 web seeds
+  * lt:initialize missing fields in resume data by their default value
+  * lt:find the system locale by inspecting the LANG environment variable
+  * lt:source code cleanup, performance and stability
+
 2.0.0-2
 
   * using libtorrent master
