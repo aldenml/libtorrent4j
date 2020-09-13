@@ -1100,9 +1100,10 @@ public class libtorrent_jni {
   public final static native String print_entry__SWIG_0(long jarg1, bdecode_node jarg1_, boolean jarg2, int jarg3);
   public final static native String print_entry__SWIG_1(long jarg1, bdecode_node jarg1_, boolean jarg2);
   public final static native String print_entry__SWIG_2(long jarg1, bdecode_node jarg1_);
-  public final static native long new_web_seed_entry__SWIG_0(String jarg1, int jarg2, String jarg3, long jarg4, string_string_pair_vector jarg4_);
-  public final static native long new_web_seed_entry__SWIG_1(String jarg1, int jarg2, String jarg3);
-  public final static native long new_web_seed_entry__SWIG_2(String jarg1, int jarg2);
+  public final static native long new_web_seed_entry__SWIG_0(String jarg1, String jarg2, long jarg3, string_string_pair_vector jarg3_);
+  public final static native long new_web_seed_entry__SWIG_1(String jarg1, String jarg2);
+  public final static native long new_web_seed_entry__SWIG_2(String jarg1);
+  public final static native long new_web_seed_entry__SWIG_3(long jarg1, web_seed_entry jarg1_);
   public final static native boolean web_seed_entry_eq(long jarg1, web_seed_entry jarg1_, long jarg2, web_seed_entry jarg2_);
   public final static native boolean web_seed_entry_lt(long jarg1, web_seed_entry jarg1_, long jarg2, web_seed_entry jarg2_);
   public final static native void web_seed_entry_url_set(long jarg1, web_seed_entry jarg1_, String jarg2);
@@ -1143,11 +1144,11 @@ public class libtorrent_jni {
   public final static native void torrent_info_add_url_seed__SWIG_0(long jarg1, torrent_info jarg1_, String jarg2, String jarg3, long jarg4, string_string_pair_vector jarg4_);
   public final static native void torrent_info_add_url_seed__SWIG_1(long jarg1, torrent_info jarg1_, String jarg2, String jarg3);
   public final static native void torrent_info_add_url_seed__SWIG_2(long jarg1, torrent_info jarg1_, String jarg2);
+  public final static native long torrent_info_web_seeds(long jarg1, torrent_info jarg1_);
+  public final static native void torrent_info_set_web_seeds(long jarg1, torrent_info jarg1_, long jarg2, web_seed_entry_vector jarg2_);
   public final static native void torrent_info_add_http_seed__SWIG_0(long jarg1, torrent_info jarg1_, String jarg2, String jarg3, long jarg4, string_string_pair_vector jarg4_);
   public final static native void torrent_info_add_http_seed__SWIG_1(long jarg1, torrent_info jarg1_, String jarg2, String jarg3);
   public final static native void torrent_info_add_http_seed__SWIG_2(long jarg1, torrent_info jarg1_, String jarg2);
-  public final static native long torrent_info_web_seeds(long jarg1, torrent_info jarg1_);
-  public final static native void torrent_info_set_web_seeds(long jarg1, torrent_info jarg1_, long jarg2, web_seed_entry_vector jarg2_);
   public final static native long torrent_info_total_size(long jarg1, torrent_info jarg1_);
   public final static native int torrent_info_piece_length(long jarg1, torrent_info jarg1_);
   public final static native int torrent_info_num_pieces(long jarg1, torrent_info jarg1_);

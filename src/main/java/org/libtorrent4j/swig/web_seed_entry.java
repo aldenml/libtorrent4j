@@ -36,16 +36,20 @@ public class web_seed_entry {
     }
   }
 
-  public web_seed_entry(String url_, web_seed_entry.type_t type_, String auth_, string_string_pair_vector extra_headers_) {
-    this(libtorrent_jni.new_web_seed_entry__SWIG_0(url_, type_.swigValue(), auth_, string_string_pair_vector.getCPtr(extra_headers_), extra_headers_), true);
+  public web_seed_entry(String url_, String auth_, string_string_pair_vector extra_headers_) {
+    this(libtorrent_jni.new_web_seed_entry__SWIG_0(url_, auth_, string_string_pair_vector.getCPtr(extra_headers_), extra_headers_), true);
   }
 
-  public web_seed_entry(String url_, web_seed_entry.type_t type_, String auth_) {
-    this(libtorrent_jni.new_web_seed_entry__SWIG_1(url_, type_.swigValue(), auth_), true);
+  public web_seed_entry(String url_, String auth_) {
+    this(libtorrent_jni.new_web_seed_entry__SWIG_1(url_, auth_), true);
   }
 
-  public web_seed_entry(String url_, web_seed_entry.type_t type_) {
-    this(libtorrent_jni.new_web_seed_entry__SWIG_2(url_, type_.swigValue()), true);
+  public web_seed_entry(String url_) {
+    this(libtorrent_jni.new_web_seed_entry__SWIG_2(url_), true);
+  }
+
+  public web_seed_entry(web_seed_entry arg0) {
+    this(libtorrent_jni.new_web_seed_entry__SWIG_3(web_seed_entry.getCPtr(arg0), arg0), true);
   }
 
   public boolean eq(web_seed_entry e) {
