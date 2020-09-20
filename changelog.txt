@@ -1,5 +1,12 @@
+2.0.0-3
 
   * minimum supported Android API >= 21
+  * using libtorrent master
+  * lt:record blocks in the disk queue as downloaded in the resume data
+  * lt:make sure there's always at least a / path component in HTTP requests
+  * lt:fix issue in URL parser, causing issues with certain tracker URLs
+  * lt:disable use of SetFileValidData() by default (windows). A new setting
+    allows enabling it
   * lt:use a different error code than host-unreachable, when skipping
     tracker announces
   * lt:fix error category in http_tracker_connection
