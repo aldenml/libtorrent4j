@@ -6,6 +6,7 @@ using clang : x86 : $(ANDROID_TOOLCHAIN)/bin/i686-linux-android-clang++ :
     <cxxflags>-fPIC
     <cxxflags>-DANDROID
     <cxxflags>-D__STDC_FORMAT_MACROS
+    <cxxflags>-D__USE_FILE_OFFSET64
     <cxxflags>-D_FILE_OFFSET_BITS=64
     <cxxflags>-fno-strict-aliasing
     <cxxflags>-fvisibility=hidden

@@ -42,8 +42,10 @@ before_install:
       echo "Extracting NDK...wait";
       unzip -qq android-ndk.zip;
       export NDK=$PWD/android-ndk-r21d;
-      $NDK/build/tools/make_standalone_toolchain.py --arch $os_arch --api 24 --stl libc++ --install-dir android-toolchain;
+      $NDK/build/tools/make_standalone_toolchain.py --arch $os_arch --api 21 --stl libc++ --install-dir android-toolchain;
       export ANDROID_TOOLCHAIN=$PWD/android-toolchain;
+      sed -i 's/24/21/g' $ANDROID_TOOLCHAIN/sysroot/usr/include/ifaddrs.h;
+      sed -i 's/24/21/g' $ANDROID_TOOLCHAIN/sysroot/usr/include/stdio.h;
     fi
 
 # openssl
