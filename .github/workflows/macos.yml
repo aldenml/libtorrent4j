@@ -17,7 +17,7 @@ jobs:
       - name: install packages
         run: |
           brew reinstall boost
-          brew reinstall openssl@1.1
+          HOMEBREW_NO_INSTALL_CLEANUP=1 brew reinstall openssl@1.1
       - name: submodules
         run: git submodule update --depth=1 --init --recursive
       - name: cmake
