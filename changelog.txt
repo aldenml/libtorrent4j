@@ -1,3 +1,18 @@
+2.0.0-4
+
+  * using libtorrent master
+  * lt:replaced remote endpoint assert with logging as it can legit happen
+  * lt:enforce unique addresses on rtc peers
+  * lt:fixed peer sorting for RTC peers by using remote address as key
+  * lt:updated libdatachannel to v0.9.3 (for WebTorrent)
+  * lt:add missing add_storage_node_ids, to keep the DHT storage up to date
+  * lt:fix calculation in tracker_manager::num_requests when webtorrent is enable
+  * lt:fix saving 'name' in write_resume_data()
+  * lt:allow saving resume data before metadata has been downloaded (for magnet links)
+  * lt:fix issue in add_piece() called multiple times
+  * lt:fix recording of unfinished pieces in resume data
+  * lt:source code cleanup, performance and stability
+
 2.0.0-3
 
   * minimum supported Android API >= 21
