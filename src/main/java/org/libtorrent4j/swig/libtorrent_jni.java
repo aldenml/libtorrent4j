@@ -1736,6 +1736,7 @@ public class libtorrent_jni {
   public final static native boolean torrent_handle_lt(long jarg1, torrent_handle jarg1_, long jarg2, torrent_handle jarg2_);
   public final static native long torrent_handle_id(long jarg1, torrent_handle jarg1_);
   public final static native long torrent_handle_userdata(long jarg1, torrent_handle jarg1_);
+  public final static native boolean torrent_handle_in_session(long jarg1, torrent_handle jarg1_);
   public final static native void torrent_handle_add_piece_bytes__SWIG_0(long jarg1, torrent_handle jarg1_, int jarg2, long jarg3, byte_vector jarg3_, long jarg4, add_piece_flags_t jarg4_);
   public final static native void torrent_handle_add_piece_bytes__SWIG_1(long jarg1, torrent_handle jarg1_, int jarg2, long jarg3, byte_vector jarg3_);
   public final static native long torrent_handle_torrent_file_ptr(long jarg1, torrent_handle jarg1_);

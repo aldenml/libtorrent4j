@@ -320,6 +320,10 @@ public class torrent_handle {
     return new client_data_t(libtorrent_jni.torrent_handle_userdata(swigCPtr, this), true);
   }
 
+  public boolean in_session() {
+    return libtorrent_jni.torrent_handle_in_session(swigCPtr, this);
+  }
+
   public void add_piece_bytes(int piece, byte_vector data, add_piece_flags_t flags) {
     libtorrent_jni.torrent_handle_add_piece_bytes__SWIG_0(swigCPtr, this, piece, byte_vector.getCPtr(data), data, add_piece_flags_t.getCPtr(flags), flags);
   }

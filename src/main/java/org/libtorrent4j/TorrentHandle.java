@@ -1378,6 +1378,19 @@ public final class TorrentHandle
         return Vectors.byte_vector2bytes(e.bencode());
     }
 
+    /**
+     * Returns true if the torrent is in the session. It returns true before
+     * session::remove_torrent() is called, and false afterward.
+     * <p>
+     * Note that this is a blocking function, unlike {@link #isValid()}
+     * which returns immediately.
+     *
+     * @return true if the torrent is in the session
+     */
+    public boolean inSession() {
+        return h.in_session();
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof TorrentHandle)) {
