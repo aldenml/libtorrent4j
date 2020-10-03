@@ -322,6 +322,12 @@ extern "C" void freeifaddrs(struct ifaddrs* __ptr)
     if (f != NULL) f(__ptr);
 }
 
+extern "C" ssize_t getrandom(void* __buffer, size_t __buffer_size, unsigned int __flags)
+{
+    lt::aux::random_bytes({static_cast<char*>(__buffer), static_cast<std::ptrdiff_t>(__buffer_size)});
+    return __buffer_size;
+}
+
 #endif
 
 #endif

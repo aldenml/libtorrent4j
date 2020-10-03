@@ -46,6 +46,7 @@ before_install:
       export ANDROID_TOOLCHAIN=$PWD/android-toolchain;
       sed -i 's/24/21/g' $ANDROID_TOOLCHAIN/sysroot/usr/include/ifaddrs.h;
       sed -i 's/24/21/g' $ANDROID_TOOLCHAIN/sysroot/usr/include/stdio.h;
+      sed -i 's/28/21/g' $ANDROID_TOOLCHAIN/sysroot/usr/include/sys/random.h;
     fi
 
 # openssl
