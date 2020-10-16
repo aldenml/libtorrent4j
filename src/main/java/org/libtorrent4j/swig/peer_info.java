@@ -437,6 +437,7 @@ public class peer_info {
   public final static peer_flags_t remote_interested = new peer_flags_t(libtorrent_jni.peer_info_remote_interested_get(), false);
   public final static peer_flags_t remote_choked = new peer_flags_t(libtorrent_jni.peer_info_remote_choked_get(), false);
   public final static peer_flags_t supports_extensions = new peer_flags_t(libtorrent_jni.peer_info_supports_extensions_get(), false);
+  public final static peer_flags_t outgoing_connection = new peer_flags_t(libtorrent_jni.peer_info_outgoing_connection_get(), false);
   public final static peer_flags_t local_connection = new peer_flags_t(libtorrent_jni.peer_info_local_connection_get(), false);
   public final static peer_flags_t handshake = new peer_flags_t(libtorrent_jni.peer_info_handshake_get(), false);
   public final static peer_flags_t connecting = new peer_flags_t(libtorrent_jni.peer_info_connecting_get(), false);

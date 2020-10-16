@@ -23922,6 +23922,18 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_disable_1pex
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_no_1verify_1files_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::torrent_flags_t *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::torrent_flags_t *)&libtorrent::torrent_flags::no_verify_files;
+  *(libtorrent::torrent_flags_t **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_all_1get(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   libtorrent::torrent_flags_t *result = 0 ;
@@ -25607,6 +25619,18 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1info_1
   (void)jenv;
   (void)jcls;
   result = (libtorrent::flags::bitfield_flag< unsigned int,libtorrent::peer_flags_tag > *)&libtorrent::peer_info::supports_extensions;
+  *(libtorrent::flags::bitfield_flag< unsigned int,libtorrent::peer_flags_tag > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_peer_1info_1outgoing_1connection_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  libtorrent::flags::bitfield_flag< unsigned int,libtorrent::peer_flags_tag > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::flags::bitfield_flag< unsigned int,libtorrent::peer_flags_tag > *)&libtorrent::peer_info::outgoing_connection;
   *(libtorrent::flags::bitfield_flag< unsigned int,libtorrent::peer_flags_tag > **)&jresult = result; 
   return jresult;
 }

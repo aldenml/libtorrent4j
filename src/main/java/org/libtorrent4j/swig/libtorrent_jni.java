@@ -1187,6 +1187,7 @@ public class libtorrent_jni {
   public final static native long disable_dht_get();
   public final static native long disable_lsd_get();
   public final static native long disable_pex_get();
+  public final static native long no_verify_files_get();
   public final static native long all_get();
   public final static native long default_flags_get();
   public final static native long new_torrent_flags_t();
@@ -1300,6 +1301,7 @@ public class libtorrent_jni {
   public final static native long peer_info_remote_interested_get();
   public final static native long peer_info_remote_choked_get();
   public final static native long peer_info_supports_extensions_get();
+  public final static native long peer_info_outgoing_connection_get();
   public final static native long peer_info_local_connection_get();
   public final static native long peer_info_handshake_get();
   public final static native long peer_info_connecting_get();
