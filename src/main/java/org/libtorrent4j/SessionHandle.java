@@ -19,6 +19,7 @@ import org.libtorrent4j.swig.portmap_protocol;
 import org.libtorrent4j.swig.remove_flags_t;
 import org.libtorrent4j.swig.reopen_network_flags_t;
 import org.libtorrent4j.swig.save_state_flags_t;
+import org.libtorrent4j.swig.session_flags_t;
 import org.libtorrent4j.swig.session_handle;
 import org.libtorrent4j.swig.status_flags_t;
 import org.libtorrent4j.swig.torrent_handle;
@@ -197,6 +198,12 @@ public final class SessionHandle
      * Delete just the part-file associated with this torrent.
      */
     public static final remove_flags_t DELETE_PARTFILE = session_handle.delete_partfile;
+
+    /**
+     * When set, the session will start paused. Call
+     * {@link #resume()} to start.
+     */
+    public static final session_flags_t PAUSED = session_handle.paused;
 
     /**
      * This method will close all peer connections associated with the torrent and tell the

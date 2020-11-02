@@ -1,8 +1,9 @@
 package org.libtorrent4j;
 
 import org.junit.Test;
+import org.libtorrent4j.swig.boost_string_entry_map;
 import org.libtorrent4j.swig.entry;
-import org.libtorrent4j.swig.string_entry_map;
+import org.libtorrent4j.swig.string_vector;
 
 import java.util.*;
 
@@ -36,8 +37,8 @@ public class EntryTest {
         e = Entry.fromMap(m);
         assertNotNull(e);
 
-        string_entry_map dict = e.swig().dict();
-        Set<String> keys = dict.keySet();
+        boost_string_entry_map dict = e.swig().dict();
+        string_vector keys = dict.keys();
         for (String k : keys) {
             assertNotNull(dict.get(k).to_string());
         }

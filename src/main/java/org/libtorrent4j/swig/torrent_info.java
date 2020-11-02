@@ -212,6 +212,10 @@ public class torrent_info {
     return new bdecode_node(libtorrent_jni.torrent_info_info(swigCPtr, this, key), true);
   }
 
+  public void free_piece_layers() {
+    libtorrent_jni.torrent_info_free_piece_layers(swigCPtr, this);
+  }
+
   public torrent_info(long buffer_ptr, int size, error_code ec) {
     this(libtorrent_jni.new_torrent_info__SWIG_4(buffer_ptr, size, error_code.getCPtr(ec), ec), true);
   }
