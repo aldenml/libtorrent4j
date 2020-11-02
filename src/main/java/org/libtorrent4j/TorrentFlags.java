@@ -181,5 +181,16 @@ public final class TorrentFlags {
      */
     public static final torrent_flags_t DISABLE_PEX = libtorrent.getDisable_pex();
 
+    /**
+     * If this flag is set, the resume data will be assumed to be correct
+     * without validating it against any files on disk. This may be used when
+     * restoring a session by loading resume data from disk. It will save time
+     * and also delay any hard disk errors until files are actually needed. If
+     * the resume data cannot be trusted, or if a torrent is added for the first
+     * time to some save path that may already have some of the files, this flag
+     * should not be set.
+     */
+    public static final torrent_flags_t NO_VERIFY_FILES = libtorrent.getNo_verify_files();
+
     public static final torrent_flags_t ALL = libtorrent.getAll();
 }

@@ -1,3 +1,26 @@
+2.0.0-5
+
+  * using libtorrent master
+  * lt:fix mtime field when creating single-file v2 torrents
+  * lt:fix issue in file_storage::swap
+  * lt:if pre-allocated handler buffer is too small, fall back to malloc/free
+  * lt:fix performance regression in checking files
+  * lt:fix incorrectly inlined move-assignment of file_storage
+  * lt:support constructing sessions in paused mode via new session_flag
+  * lt:don't update the num_unchoke_slots counter based on the number of peers,
+    in fixed-slots-choker. This counter is used for triggering immediate unchoking
+  * lt:fix issue where pausing a session would cause tracker_manager to enter
+    shutdown-mode and never come back
+  * lt:filter internal peer flag in pex messages
+  * lt:fix incorrect interpretation of the peer-exchange flags
+  * lt:remove superfluous call to release_files() when triggering a force-recheck
+  * lt:prevent protocol encryption over WebRTC
+  * lt:post save_resume_data_failed_alert if torrent was removed
+  * lt:add a new torrent flag to not validate resume data against files on disk
+  * lt:minor cleanups to URL seed. just use the server string as client name,
+    always generate a unique peer id
+  * lt:source code cleanup, performance and stability
+
 2.0.0-4
 
   * using libtorrent master

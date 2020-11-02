@@ -9,6 +9,7 @@
 %ignore libtorrent::file_storage::file_range;
 %ignore libtorrent::file_storage::piece_range;
 %ignore libtorrent::file_storage::sanitize_symlinks;
+%ignore libtorrent::file_storage::v2;
 %ignore libtorrent::file_storage::add_file_borrow;
 %ignore libtorrent::file_storage::add_file;
 %ignore libtorrent::file_storage::file_name;

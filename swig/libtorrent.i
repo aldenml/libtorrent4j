@@ -126,6 +126,8 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBuffer
 %include <std_array.i>
 %include <std_bitset.i>
 
+%include "boost/boost_map.i"
+
 %apply std::int8_t { char };
 %apply std::int64_t { void* };
 %apply std::int64_t { std::ptrdiff_t };
@@ -206,6 +208,8 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(string_string_map) std::map<std::string, std::string>;
 %template(int_bitfield_map) std::map<int, libtorrent::bitfield>;
 %template(string_entry_map) std::map<std::string, libtorrent::entry>;
+
+%template(boost_string_entry_map) boost::container::map<std::string, libtorrent::entry>;
 
 %template(bitset_128) std::bitset<128>;
 

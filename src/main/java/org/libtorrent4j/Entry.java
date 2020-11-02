@@ -7,14 +7,15 @@
 
 package org.libtorrent4j;
 
+import org.libtorrent4j.swig.boost_string_entry_map;
 import org.libtorrent4j.swig.entry;
 import org.libtorrent4j.swig.entry_vector;
-import org.libtorrent4j.swig.string_entry_map;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.AbstractList;
 import java.util.AbstractMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -109,7 +110,7 @@ public final class Entry {
     public static Entry fromMap(Map<String, ?> map) {
         entry e = new entry(entry.data_type.dictionary_t);
 
-        string_entry_map d = e.dict();
+        boost_string_entry_map d = e.dict();
         for (String k : map.keySet()) {
             Object v = map.get(k);
 
@@ -170,16 +171,16 @@ public final class Entry {
 
     private static final class EntryMap extends AbstractMap<String, Entry> {
 
-        private final string_entry_map m;
+        private final boost_string_entry_map m;
 
-        public EntryMap(string_entry_map m) {
+        public EntryMap(boost_string_entry_map m) {
             this.m = m;
         }
 
         @Override
         public org.libtorrent4j.Entry get(Object key) {
             String k = key.toString();
-            return m.containsKey(k) ? new org.libtorrent4j.Entry(m.get(key.toString())) : null;
+            return m.contains(k) ? new org.libtorrent4j.Entry(m.get(key.toString())) : null;
         }
 
         @Override
@@ -201,17 +202,17 @@ public final class Entry {
 
         @Override
         public boolean containsKey(Object key) {
-            return m.containsKey(key.toString());
+            return m.contains(key.toString());
         }
 
         @Override
         public boolean isEmpty() {
-            return m.isEmpty();
+            return m.empty();
         }
 
         @Override
         public Set<String> keySet() {
-            return m.keySet();
+            return new HashSet<>(m.keys());
         }
 
         @Override

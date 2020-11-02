@@ -578,6 +578,16 @@ public final class TorrentInfo {
     }
 
     /**
+     * Clears the piece layers from the torrent_info. This is done by the
+     * session when a torrent is added, to avoid storing it twice. The piece
+     * layer (or other hashes part of the merkle tree) are stored in the
+     * internal torrent object.
+     */
+    public void freePieceLayers() {
+        ti.free_piece_layers();
+    }
+
+    /**
      * Generates a magnet URI from the specified torrent. If the torrent
      * is invalid, null is returned.
      * <p>

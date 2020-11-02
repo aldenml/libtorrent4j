@@ -196,6 +196,10 @@ public class torrent_handle {
     libtorrent_jni.torrent_handle_set_ssl_certificate__SWIG_1(swigCPtr, this, certificate, private_key, dh_params);
   }
 
+  public sha256_hash_vector_vector piece_layers() {
+    return new sha256_hash_vector_vector(libtorrent_jni.torrent_handle_piece_layers(swigCPtr, this), true);
+  }
+
   public void piece_availability(int_vector avail) {
     libtorrent_jni.torrent_handle_piece_availability(swigCPtr, this, int_vector.getCPtr(avail), avail);
   }
