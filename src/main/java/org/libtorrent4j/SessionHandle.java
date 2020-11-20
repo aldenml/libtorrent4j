@@ -72,6 +72,45 @@ public final class SessionHandle
     public static final save_state_flags_t SAVE_DHT_STATE = session_handle.save_dht_state;
 
     /**
+     * Load or save state from plugins.
+     */
+    public static final save_state_flags_t SAVE_EXTENSION_STATE = session_handle.save_extension_state;
+
+    /**
+     * Load or save the IP filter set on the session.
+     */
+    public static final save_state_flags_t SAVE_IP_FILTER = session_handle.save_ip_filter;
+
+    /**
+     * Returns the current session state.
+     *
+     * This can be passed to write_session_params() to save the state to disk
+     * and restored using read_session_params() when constructing a new session.
+     *
+     * The kind of state that's included is all settings, the DHT routing table,
+     * possibly plugin-specific state.
+     *
+     * The flags parameter can be used to only save certain parts of the
+     * session state.
+     *
+     * @param flags specifies to safe certain parts
+     * @return the session params
+     */
+    public SessionParams sessionState(save_state_flags_t flags) {
+        return new SessionParams(h.session_state(flags));
+    }
+
+    /**
+     * Same as {@link #sessionState(save_state_flags_t)} with all
+     * the flags bits active.
+     *
+     * @return the session params
+     */
+    public SessionParams sessionState() {
+        return new SessionParams(h.session_state());
+    }
+
+    /**
      * This functions instructs the session to post the
      * {@link StateUpdateAlert},
      * containing the status of all torrents whose state changed since the
