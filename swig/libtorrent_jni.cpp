@@ -40189,6 +40189,18 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1stat
 }
 
 
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1status_1checking_1resume_1data_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  libtorrent::torrent_status::state_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (libtorrent::torrent_status::state_t)libtorrent::torrent_status::checking_resume_data;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_torrent_1status_1errc_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   libtorrent::torrent_status *arg1 = (libtorrent::torrent_status *) 0 ;
   libtorrent::error_code *arg2 = (libtorrent::error_code *) 0 ;
