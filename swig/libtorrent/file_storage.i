@@ -15,6 +15,7 @@
 %ignore libtorrent::file_storage::file_name;
 %ignore libtorrent::file_storage::paths;
 %ignore libtorrent::file_storage::file_piece_range;
+%ignore libtorrent::file_storage::internal_symlink;
 
 namespace libtorrent {
 

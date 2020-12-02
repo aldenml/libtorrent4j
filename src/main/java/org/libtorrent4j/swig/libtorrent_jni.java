@@ -1504,6 +1504,7 @@ public class libtorrent_jni {
   public final static native void torrent_status_handle_set(long jarg1, torrent_status jarg1_, long jarg2, torrent_handle jarg2_);
   public final static native long torrent_status_handle_get(long jarg1, torrent_status jarg1_);
   public final static native int torrent_status_checking_files_get();
+  public final static native int torrent_status_checking_resume_data_get();
   public final static native void torrent_status_errc_set(long jarg1, torrent_status jarg1_, long jarg2, error_code jarg2_);
   public final static native long torrent_status_errc_get(long jarg1, torrent_status jarg1_);
   public final static native void torrent_status_error_file_set(long jarg1, torrent_status jarg1_, int jarg2);

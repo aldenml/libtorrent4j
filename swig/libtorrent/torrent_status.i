@@ -29,6 +29,7 @@
 %ignore libtorrent::torrent_status::deprecated_sequential_download;
 %ignore libtorrent::torrent_status::deprecated_seed_mode;
 %ignore libtorrent::torrent_status::deprecated_stop_when_ready;
+%ignore libtorrent::torrent_status::unused_enum_for_backwards_compatibility_allocating;
 
 namespace libtorrent {
 

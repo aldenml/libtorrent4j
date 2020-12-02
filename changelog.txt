@@ -1,7 +1,20 @@
+2.0.0-6
 
+  * using libtorrent master
   * restored general exception handler in JNI layer
   * added missing flags and api to save session params
   * fixed issue, actual session params were ignored in SessionManager#restart
+  * lt:fix issue with moving the session object
+  * lt:fix attribute in single-file v2 torrent creation
+  * lt:fix padding for empty files in v2 torrent creation
+  * lt:deprecate torrent_status::allocating (state no longer used)
+  * lt:fix bug creating torrents with symbolic links
+  * lt:add function to ask a file_storage whether it's v2 or not
+  * lt:remove special case to save metadata in resume data unconditionally when
+    added through magnet link
+  * lt:fix feature to create hard-links to existing files in other torrents
+  * lt:fix bug in torrent_info copy constructor
+  * lt:source code cleanup, performance and stability
 
 2.0.0-5
 
