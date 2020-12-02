@@ -30,6 +30,18 @@
     public static final native long directBufferCapacity(java.nio.Buffer buffer);
 %}
 
+%exception {
+    try {
+        $action
+    } catch (std::exception& e) {
+        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+        return $null;
+    } catch (...) {
+        SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+        return $null;
+    }
+}
+
 %{
 // BEGIN common set include ----------------------------------------------------
 
@@ -105,11 +117,27 @@ extern "C" {
 #endif
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBufferAddress(JNIEnv *jenv, jclass jcls, jobject jbuf) {
-    return jlong(jenv->GetDirectBufferAddress(jbuf));
+    try {
+        return jlong(jenv->GetDirectBufferAddress(jbuf));
+    } catch (std::exception& e) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+    } catch (...) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+    }
+
+    return 0;
 }
 
 SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_directBufferCapacity(JNIEnv *jenv, jclass jcls, jobject jbuf) {
-    return jlong(jenv->GetDirectBufferCapacity(jbuf));
+    try {
+        return jlong(jenv->GetDirectBufferCapacity(jbuf));
+    } catch (std::exception& e) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+    } catch (...) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+    }
+
+    return 0;
 }
 
 #ifdef __cplusplus

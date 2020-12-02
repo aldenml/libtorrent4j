@@ -1,4 +1,5 @@
 
+  * restored general exception handler in JNI layer
   * added missing flags and api to save session params
   * fixed issue, actual session params were ignored in SessionManager#restart
 
