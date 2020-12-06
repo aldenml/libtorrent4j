@@ -1,3 +1,27 @@
+2.0.1-7
+
+  * using libtorrent master
+  * lt:extend SSRF mitigation to also cover web seeds
+  * lt:validate HTTPS tracker certificates by default
+  * lt:add option to disallow IDNA tracker and web seed hostnames, and disallow
+    them by default
+  * lt:add is_idna() function to detect IDNA encoded hostname labels
+  * lt:load SSL certificates from windows system certificate store, to
+    authenticate trackers
+  * lt:fix unaligned piece requests in mmap_storage
+  * lt:introduce mitigation for Server Side Request Forgery in tracker
+    announces
+  * lt:simplify pointer arithmetic in utp buffer handling by using span.
+    Introduce some more defensive sanity checks
+  * lt:don't log protocol encryption key and synchash
+  * lt:fix error handling for pool allocation failure. Use regular new, that
+    throws on failure, rather than the nothrow version
+  * lt:smart_ban uses sha-1 to hash blocks, there's no need to salt
+  * lt:clarify that DHT transaction IDs are 16 bits
+  * lt:fix concurrent access to part files by using pread/overlapped I/O
+    instead of seek+read
+  * lt:source code cleanup, performance and stability
+
 2.0.0-6
 
   * using libtorrent master
