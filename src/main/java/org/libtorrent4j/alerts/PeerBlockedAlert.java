@@ -73,6 +73,11 @@ public final class PeerBlockedAlert extends TorrentAlert<peer_blocked_alert> {
         /**
          *
          */
+        SSRF_MITIGATION(peer_blocked_alert.reason_t.ssrf_mitigation.swigValue()),
+
+        /**
+         *
+         */
         UNKNOWN(-1);
 
         Reason(int swigValue) {
