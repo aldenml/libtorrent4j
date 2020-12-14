@@ -1,3 +1,6 @@
+%ignore boost::system::system_category;
+%ignore boost::system::generic_category;
+
 namespace boost {
 namespace system {
 
@@ -12,5 +15,8 @@ public:
     bool failed();
     operator bool() const;
 };
+
+error_category const& system_category();
+error_category const& generic_category();
 
 }}

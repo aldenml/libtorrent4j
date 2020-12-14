@@ -18,7 +18,7 @@ branches:
 
 before_install:
 # boost: download and bootstrap
-  - git clone --depth=1 --branch=boost-1.73.0 https://github.com/boostorg/boost.git
+  - git clone --depth=1 --branch=boost-1.75.0 https://github.com/boostorg/boost.git
   - cd boost
   - git submodule update --depth=1 --init --recursive
   - ./bootstrap.sh
