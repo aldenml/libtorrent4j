@@ -9,18 +9,6 @@
 package org.libtorrent4j.swig;
 
 public class libtorrent {
-  public static boolean eq(error_code lhs, error_code rhs) {
-    return libtorrent_jni.eq__SWIG_1(error_code.getCPtr(lhs), lhs, error_code.getCPtr(rhs), rhs);
-  }
-
-  public static boolean lt(error_code lhs, error_code rhs) {
-    return libtorrent_jni.lt__SWIG_1(error_code.getCPtr(lhs), lhs, error_code.getCPtr(rhs), rhs);
-  }
-
-  public static error_code make_error_code(errc_t e) {
-    return new error_code(libtorrent_jni.make_error_code(e.swigValue()), true);
-  }
-
   public static long getNum_protocols() {
     return libtorrent_jni.num_protocols_get();
   }
