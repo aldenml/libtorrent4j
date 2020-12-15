@@ -1,5 +1,13 @@
 
+  * using libtorrent master
   * updated to boost 1.75.0
+  * lt:m_seq_nr is not incremented when sending a FIN packet
+  * lt:add support for getrandom
+  * lt:improve seeding of pseudo random number generator
+  * lt:use cryptographic random numbers for DHT write key
+  * lt:use crypto_random_bytes() to generate PCP nonce
+  * lt:use crypto_random_bytes() to generate ed25519 key seeds
+  * lt:separate secure random numbers from pseudo random numbers
   * lt:source code cleanup, performance and stability
 
 2.0.1-7
