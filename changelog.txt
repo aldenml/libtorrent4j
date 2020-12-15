@@ -1,6 +1,8 @@
 
   * using libtorrent master
+  * updated to OpenSSL 1.1.1i
   * updated to boost 1.75.0
+  * lt:move session flags into the session_params object
   * lt:m_seq_nr is not incremented when sending a FIN packet
   * lt:add support for getrandom
   * lt:improve seeding of pseudo random number generator

@@ -3,8 +3,8 @@
 extract_packages() {
 
   NDK_VERSION=r21d
-  BOOST_VERSION=1_73_0
-  OPENSSL_VERSION=1.1.1g
+  BOOST_VERSION=1_75_0
+  OPENSSL_VERSION=1.1.1i
 
   NDK_PKG=${PWD}/../../android-ndk-${NDK_VERSION}-darwin-x86_64.zip
   BOOST_PKG=${PWD}/../../boost_${BOOST_VERSION}.tar.gz

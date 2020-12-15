@@ -3122,6 +3122,8 @@ public class libtorrent_jni {
   public final static native long new_session_params__SWIG_2(long jarg1, session_params jarg1_);
   public final static native void session_params_settings_set(long jarg1, session_params jarg1_, long jarg2, settings_pack jarg2_);
   public final static native long session_params_settings_get(long jarg1, session_params jarg1_);
+  public final static native void session_params_flags_set(long jarg1, session_params jarg1_, long jarg2, session_flags_t jarg2_);
+  public final static native long session_params_flags_get(long jarg1, session_params jarg1_);
   public final static native void session_params_dht_state_set(long jarg1, session_params jarg1_, long jarg2, dht_state jarg2_);
   public final static native long session_params_dht_state_get(long jarg1, session_params jarg1_);
   public final static native void session_params_ext_state_set(long jarg1, session_params jarg1_, long jarg2, string_string_map jarg2_);
@@ -3206,9 +3208,8 @@ public class libtorrent_jni {
   public final static native void delete_session_proxy(long jarg1);
   public final static native long new_session_proxy__SWIG_1(long jarg1, session_proxy jarg1_);
   public final static native long new_session__SWIG_0(long jarg1, session_params jarg1_);
-  public final static native long new_session__SWIG_1(long jarg1, session_params jarg1_, long jarg2, session_flags_t jarg2_);
-  public final static native long new_session__SWIG_2();
-  public final static native long new_session__SWIG_3(long jarg1, session jarg1_);
+  public final static native long new_session__SWIG_1();
+  public final static native long new_session__SWIG_2(long jarg1, session jarg1_);
   public final static native void delete_session(long jarg1);
   public final static native long session_abort(long jarg1, session jarg1_);
   public final static native long create_torrent_modification_time_get();
