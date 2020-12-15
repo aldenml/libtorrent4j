@@ -27,9 +27,9 @@ before_install:
   - export BOOST_ROOT=$PWD/boost
 
 # openssl: download
-  - wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1g.tar.gz
+  - wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-1.1.1i.tar.gz
   - tar xzf openssl.tar.gz
-  - export OPENSSL_SOURCE=$PWD/openssl-1.1.1g
+  - export OPENSSL_SOURCE=$PWD/openssl-1.1.1i
 
 # libtorrent: download and checkout revision
   - cd $TRAVIS_BUILD_DIR;

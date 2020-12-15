@@ -57,6 +57,15 @@ public class session_params {
     return (cPtr == 0) ? null : new settings_pack(cPtr, false);
   }
 
+  public void setFlags(session_flags_t value) {
+    libtorrent_jni.session_params_flags_set(swigCPtr, this, session_flags_t.getCPtr(value), value);
+  }
+
+  public session_flags_t getFlags() {
+    long cPtr = libtorrent_jni.session_params_flags_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new session_flags_t(cPtr, false);
+  }
+
   public void setDht_state(dht_state value) {
     libtorrent_jni.session_params_dht_state_set(swigCPtr, this, dht_state.getCPtr(value), value);
   }
