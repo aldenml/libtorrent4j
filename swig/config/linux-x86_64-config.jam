@@ -1,6 +1,6 @@
 import os ;
 
-using gcc : x86_64 : g++ :
+using gcc : x86_64 : g++-10 :
     <cxxflags>-fPIC
     <cxxflags>-fno-strict-aliasing
     <cxxflags>-fvisibility=hidden

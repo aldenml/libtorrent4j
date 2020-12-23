@@ -8,33 +8,97 @@ on:
     branches:
       - master
 
+env:
+  BOOST_DOT_VERSION: "1.75.0"
+  BOOST_VERSION: "1_75_0"
+  OPENSSL_VERSION: "1.1.1i"
+  OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend -fno-strict-aliasing -fvisibility=hidden -O3"
+  CXX: g++-10
+  CC: gcc-10
+
 jobs:
 
-  x86_64:
+  x86_64-cmake:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: install packages
         run: |
           sudo apt install libboost-all-dev
           sudo apt install libssl-dev
           sudo apt install ninja-build
-      - name: submodules
-        run: git submodule update --depth=1 --init --recursive
       - name: cmake
         run: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -B build -G "Ninja" swig
       - name: build
         run: cmake --build build --config Release --parallel 2
       - name: strip
-        run: strip --strip-unneeded -x build/libtorrent4j.so
+        run: |
+          objcopy --only-keep-debug build/libtorrent4j.so build/libtorrent4j.so.debug
+          strip --strip-unneeded -x build/libtorrent4j.so
       - name: dependencies
         run: readelf -d build/libtorrent4j.so
-# TODO: restore
-#      - name: test
-#        run: |
-#          cp build/libtorrent4j.so .
-#          ./gradlew test
+      - name: test
+        run: |
+          cp build/libtorrent4j.so .
+          ./gradlew test
       - uses: actions/upload-artifact@v2
         with:
-          name: libtorrent4j.so
-          path: build/libtorrent4j.so
+          name: libtorrent4j-linux-cmake
+          path: |
+            build/libtorrent4j.so
+            build/libtorrent4j.so.debug
+
+  x86_64-b2:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: setup gcc
+        run: |
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+          sudo apt update
+          sudo apt install gcc-10
+      - name: setup boost
+        run: |
+          wget -nv -O boost.tar.gz https://dl.bintray.com/boostorg/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
+          tar xzf boost.tar.gz
+          mv boost_${BOOST_VERSION} boost
+          cd boost
+          ./bootstrap.sh
+          cd ..
+      - name: setup openssl
+        run: |
+          wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
+          tar xzf openssl.tar.gz
+          cd openssl-${OPENSSL_VERSION}
+          ./Configure linux-x86_64 ${OPENSSL_NO_OPTS} --prefix=${PWD}/../openssl
+          make &> /dev/null
+          make install_sw &> /dev/null
+          cd ..
+      - name: build
+        run: |
+          export BOOST_ROOT=${PWD}/boost
+          export OPENSSL_ROOT=${PWD}/openssl
+          export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
+          cd swig
+          ${BOOST_ROOT}/b2 -j2 --user-config=config/linux-x86_64-config.jam variant=release toolset=gcc-x86_64 target-os=linux location=bin/release/linux/x86_64
+          cd ..
+      - name: strip
+        run: |
+          objcopy --only-keep-debug swig/bin/release/linux/x86_64/libtorrent4j.so swig/bin/release/linux/x86_64/libtorrent4j.so.debug
+          strip --strip-unneeded -x swig/bin/release/linux/x86_64/libtorrent4j.so
+      - name: dependencies
+        run: readelf -d swig/bin/release/linux/x86_64/libtorrent4j.so
+      - name: test
+        run: |
+          cp swig/bin/release/linux/x86_64/libtorrent4j.so .
+          ./gradlew test
+      - uses: actions/upload-artifact@v2
+        with:
+          name: libtorrent4j-linux-b2
+          path: |
+            swig/bin/release/linux/x86_64/libtorrent4j.so
+            swig/bin/release/linux/x86_64/libtorrent4j.so.debug
