@@ -1,5 +1,6 @@
 
   * using libtorrent master
+  * using ubuntu bionic (18.04 LTS) to generate linux binary
   * updated to OpenSSL 1.1.1i
   * updated to boost 1.75.0
   * lt:move session flags into the session_params object
