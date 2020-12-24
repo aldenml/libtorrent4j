@@ -75,7 +75,7 @@ jobs:
           wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
           tar xzf openssl.tar.gz
           cd openssl-${OPENSSL_VERSION}
-          ./Configure linux-x86_64 ${OPENSSL_NO_OPTS} --prefix=${PWD}/../openssl
+          ./Configure linux-x86_64 ${OPENSSL_NO_OPTS} -fPIC --prefix=${PWD}/../openssl
           make &> /dev/null
           make install_sw &> /dev/null
           cd ..
