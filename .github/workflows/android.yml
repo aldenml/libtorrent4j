@@ -62,6 +62,8 @@ jobs:
           export BOOST_ROOT=${PWD}/boost
           export OPENSSL_ROOT=${PWD}/openssl
           export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
+          export CXX=${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-clang++
+          export CC=${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-clang
           cd swig
           ${BOOST_ROOT}/b2 -j2 --user-config=config/android-arm-config.jam variant=release toolset=clang-linux-arm target-os=android location=bin/release/android/armeabi-v7a
           cd ..
@@ -127,6 +129,8 @@ jobs:
           export BOOST_ROOT=${PWD}/boost
           export OPENSSL_ROOT=${PWD}/openssl
           export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
+          export CXX=${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-clang++
+          export CC=${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-clang
           cd swig
           ${BOOST_ROOT}/b2 -j2 --user-config=config/android-arm64-config.jam variant=release toolset=clang-arm64 target-os=android location=bin/release/android/arm64-v8a
           cd ..
@@ -192,6 +196,8 @@ jobs:
           export BOOST_ROOT=${PWD}/boost
           export OPENSSL_ROOT=${PWD}/openssl
           export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
+          export CXX=${ANDROID_TOOLCHAIN}/bin/i686-linux-android-clang++
+          export CC=${ANDROID_TOOLCHAIN}/bin/i686-linux-android-clang
           cd swig
           ${BOOST_ROOT}/b2 -j2 --user-config=config/android-x86-config.jam variant=release toolset=clang-x86 target-os=android location=bin/release/android/x86
           cd ..
@@ -257,6 +263,8 @@ jobs:
           export BOOST_ROOT=${PWD}/boost
           export OPENSSL_ROOT=${PWD}/openssl
           export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
+          export CXX=${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-clang++
+          export CC=${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-clang
           cd swig
           ${BOOST_ROOT}/b2 -j2 --user-config=config/android-x86_64-config.jam variant=release toolset=clang-x86_64 target-os=android location=bin/release/android/x86_64
           cd ..
