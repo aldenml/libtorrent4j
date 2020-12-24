@@ -8,18 +8,24 @@ on:
     branches:
       - master
 
+env:
+  BOOST_DOT_VERSION: "1.75.0"
+  BOOST_VERSION: "1_75_0"
+  OPENSSL_VERSION: "1.1.1i"
+  OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend -fno-strict-aliasing -fvisibility=hidden -O3"
+
 jobs:
 
-  x86_64:
+  x86_64-cmake:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: install packages
         run: |
           brew reinstall boost
           HOMEBREW_NO_INSTALL_CLEANUP=1 brew reinstall openssl@1.1
-      - name: submodules
-        run: git submodule update --depth=1 --init --recursive
       - name: cmake
         run: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -B build -G "CodeBlocks - Unix Makefiles" swig
         env:
@@ -27,7 +33,9 @@ jobs:
       - name: build
         run: cmake --build build --config Release --parallel 2
       - name: strip
-        run: strip -S -x build/libtorrent4j.dylib
+        run: |
+          dsymutil build/libtorrent4j.dylib -o build/libtorrent4j.dSYM
+          strip -S -x build/libtorrent4j.dylib
       - name: dependencies
         run: otool -L build/libtorrent4j.dylib
       - name: test
@@ -41,5 +49,57 @@ jobs:
           CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
       - uses: actions/upload-artifact@v2
         with:
-          name: libtorrent4j.dylib
-          path: build/libtorrent4j.dylib
+          name: libtorrent4j-macos-cmake
+          path: |
+            build/libtorrent4j.dylib
+            build/libtorrent4j.dSYM
+          retention-days: 5
+
+  x86_64-b2:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: setup boost
+        run: |
+          wget -nv -O boost.tar.gz https://dl.bintray.com/boostorg/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
+          tar xzf boost.tar.gz
+          mv boost_${BOOST_VERSION} boost
+          cd boost
+          ./bootstrap.sh
+          cd ..
+      - name: setup openssl
+        run: |
+          wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
+          tar xzf openssl.tar.gz
+          cd openssl-${OPENSSL_VERSION}
+          ./Configure darwin64-x86_64-cc ${OPENSSL_NO_OPTS} --prefix=${PWD}/../openssl
+          make &> /dev/null
+          make install_sw &> /dev/null
+          cd ..
+      - name: build
+        run: |
+          export BOOST_ROOT=${PWD}/boost
+          export OPENSSL_ROOT=${PWD}/openssl
+          export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
+          cd swig
+          ${BOOST_ROOT}/b2  -j2 --user-config=config/macos-x86_64-config.jam variant=release toolset=darwin-x86_64 target-os=darwin location=bin/release/macos/x86_64
+          cd ..
+      - name: strip
+        run: |
+          dsymutil swig/bin/release/macos/x86_64/libtorrent4j.dylib -o swig/bin/release/macos/x86_64/libtorrent4j.dSYM
+          strip -S -x swig/bin/release/macos/x86_64/libtorrent4j.dylib
+      - name: dependencies
+        run: otool -L swig/bin/release/macos/x86_64/libtorrent4j.dylib
+      - name: test
+        run: |
+          cp swig/bin/release/macos/x86_64/libtorrent4j.dylib .
+          ./gradlew test
+      - uses: actions/upload-artifact@v2
+        with:
+          name: libtorrent4j-macos-b2
+          path: |
+            swig/bin/release/macos/x86_64/libtorrent4j.dylib
+            swig/bin/release/macos/x86_64/libtorrent4j.dSYM
+          retention-days: 5
