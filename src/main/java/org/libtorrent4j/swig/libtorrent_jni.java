@@ -1079,6 +1079,8 @@ public class libtorrent_jni {
   public final static native int torrent_info_end_piece(long jarg1, torrent_info jarg1_);
   public final static native long torrent_info_info_hash(long jarg1, torrent_info jarg1_);
   public final static native long torrent_info_info_hashes(long jarg1, torrent_info jarg1_);
+  public final static native boolean torrent_info_v1(long jarg1, torrent_info jarg1_);
+  public final static native boolean torrent_info_v2(long jarg1, torrent_info jarg1_);
   public final static native int torrent_info_num_files(long jarg1, torrent_info jarg1_);
   public final static native long torrent_info_map_block(long jarg1, torrent_info jarg1_, int jarg2, long jarg3, int jarg4);
   public final static native long torrent_info_map_file(long jarg1, torrent_info jarg1_, int jarg2, long jarg3, int jarg4);
@@ -3225,6 +3227,7 @@ public class libtorrent_jni {
   public final static native long create_torrent_files(long jarg1, create_torrent jarg1_);
   public final static native void create_torrent_set_comment(long jarg1, create_torrent jarg1_, String jarg2);
   public final static native void create_torrent_set_creator(long jarg1, create_torrent jarg1_, String jarg2);
+  public final static native void create_torrent_set_creation_date(long jarg1, create_torrent jarg1_, long jarg2);
   public final static native void create_torrent_set_hash(long jarg1, create_torrent jarg1_, int jarg2, long jarg3, sha1_hash jarg3_);
   public final static native void create_torrent_add_node(long jarg1, create_torrent jarg1_, long jarg2, string_int_pair jarg2_);
   public final static native void create_torrent_set_priv(long jarg1, create_torrent jarg1_, boolean jarg2);

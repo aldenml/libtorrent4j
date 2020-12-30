@@ -13,8 +13,32 @@ import org.libtorrent4j.swig.info_hash_t;
 public class InfoHash
     extends SwigObject<info_hash_t> {
 
+    /**
+     * The default constructor creates an object that has neither a v1 or v2
+     * hash.
+     */
+    public InfoHash() {
+        super(new info_hash_t());
+    }
+
     public InfoHash(info_hash_t ih) {
         super(ih);
+    }
+
+    /**
+     * Returns true if the corresponding info hash is present in this
+     * object.
+     */
+    public boolean hasV1() {
+        return h.has_v1();
+    }
+
+    /**
+     * Returns true if the corresponding info hash is present in this
+     * object.
+     */
+    public boolean hasV2() {
+        return h.has_v2();
     }
 
     public Sha1Hash getBest() {
