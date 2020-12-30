@@ -23,6 +23,7 @@ public final class TorrentBuilder {
 
     private String comment;
     private String creator;
+    private Long creationDate;
     private List<String> urlSeeds;
     private List<Pair<String, Integer>> nodes;
     private List<Pair<String, Integer>> trackers;
@@ -160,6 +161,31 @@ public final class TorrentBuilder {
      */
     public TorrentBuilder creator(String value) {
         this.creator = value;
+        return this;
+    }
+
+    /**
+     * The "creation time" field. Defaults to the system clock at the
+     * time of construction.
+     *
+     * The timestamp is specified in seconds, posix time. If the creation
+     * date is set to 0, the "creation date" field will be omitted from
+     * the generated torrent.
+     */
+    public long creationDate() {
+        return creationDate;
+    }
+
+    /**
+     * Set the "creation time" field. Defaults to the system clock at the
+     * time of construction.
+     *
+     * The timestamp is specified in seconds, posix time. If the creation
+     * date is set to 0, the "creation date" field will be omitted from
+     * the generated torrent.
+     */
+    public TorrentBuilder creationDate(long timestamp) {
+        this.creationDate = timestamp;
         return this;
     }
 
@@ -450,6 +476,9 @@ public final class TorrentBuilder {
         }
         if (creator != null) {
             t.set_creator(creator);
+        }
+        if (creationDate != null) {
+            t.set_creation_date(creationDate);
         }
         for (String s : urlSeeds) {
             t.add_url_seed(s);

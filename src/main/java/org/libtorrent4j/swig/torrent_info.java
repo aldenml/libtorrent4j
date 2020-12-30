@@ -144,6 +144,14 @@ public class torrent_info {
     return new info_hash_t(libtorrent_jni.torrent_info_info_hashes(swigCPtr, this), false);
   }
 
+  public boolean v1() {
+    return libtorrent_jni.torrent_info_v1(swigCPtr, this);
+  }
+
+  public boolean v2() {
+    return libtorrent_jni.torrent_info_v2(swigCPtr, this);
+  }
+
   public int num_files() {
     return libtorrent_jni.torrent_info_num_files(swigCPtr, this);
   }

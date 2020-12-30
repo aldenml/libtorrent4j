@@ -7,6 +7,8 @@ import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author aldenml
@@ -23,5 +25,8 @@ public class TorrentInfoTest {
         TorrentInfo ti = new TorrentInfo((MappedByteBuffer) bb);
         assertEquals("83e37aea34581ce105af93c0955e7c7d4194ae47", ti.infoHash().toHex());
         assertEquals("FrostWire 6.2.4 build 179", ti.creator());
+
+        assertTrue(ti.hasV1());
+        assertFalse(ti.hasV2());
     }
 }

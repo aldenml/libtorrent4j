@@ -68,6 +68,10 @@ public class create_torrent {
     libtorrent_jni.create_torrent_set_creator(swigCPtr, this, str);
   }
 
+  public void set_creation_date(long timestamp) {
+    libtorrent_jni.create_torrent_set_creation_date(swigCPtr, this, timestamp);
+  }
+
   public void set_hash(int index, sha1_hash h) {
     libtorrent_jni.create_torrent_set_hash(swigCPtr, this, index, sha1_hash.getCPtr(h), h);
   }

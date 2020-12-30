@@ -384,12 +384,40 @@ public final class TorrentInfo {
     }
 
     /**
-     * returns the info-hash of the torrent.
+     * Returns the info-hash of the torrent.
      *
-     *
+     * For BitTorrent v2 support, use `infoHash()` to get an object that
+     * may hold both a v1 and v2 info-hash.
      */
     public Sha1Hash infoHash() {
         return new Sha1Hash(ti.info_hash());
+    }
+
+    /**
+     * Returns an object that may hold both a v1 and v2 info-hash.
+     */
+    public InfoHash infoHashes() {
+        return new InfoHash(ti.info_hashes());
+    }
+
+    /**
+     * Returns whether this torrent has v1 metadata.
+     *
+     * Hybrid torrents have both. This is a shortcut for
+     * `infoHashes().hasV1()`.
+     */
+    public boolean hasV1() {
+        return ti.v1();
+    }
+
+    /**
+     * Returns whether this torrent has v2 metadata.
+     *
+     * Hybrid torrents have both. This is a shortcut for
+     * `infoHashes().hasV2()`.
+     */
+    public boolean hasV2() {
+        return ti.v2();
     }
 
     /**

@@ -1,3 +1,25 @@
+2.0.1-9
+
+  * using libtorrent master
+  * lt:fix loading of DHT node ID from previous session on startup
+  * lt:use getrandom(), when available, and fall back to /dev/urandom
+  * lt:allow not setting a creation date in create_torrent (but default to
+    current timestamp). Provide more prominent shortcuts to ask a torrent_info
+    about whether it has v1 and v2 metadata
+  * lt:pull out cached_block_entry::blocks_in_piece from bitfield, since it's
+    immutable and may be read from multiple threads without holding any mutex.
+    Other fields in the bitfields may be updated under a mutex, which would
+    race with blocks_in_fields otherwise
+  * lt:fix data race in storage::m_settings
+  * lt:remove invalid asserts, which introduce a data race
+  * lt:remove use of global variable in ut_pex (and a data race along with it)
+  * lt:fix data race in block cache
+  * lt:fix time_now_string to not use a global variable for the returned string
+  * lt:magnet link parameters names are case insensitive
+  * lt:mitigate a class of tracker SSRF where tracker URLs come preloaded with
+    bittorrent tracker query string arguments, like info_hash, event, etc
+  * lt:source code cleanup, performance and stability
+
 2.0.1-8
 
   * using libtorrent master

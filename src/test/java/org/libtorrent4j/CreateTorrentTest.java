@@ -98,6 +98,7 @@ public class CreateTorrentTest {
         TorrentBuilder.Result r = b.path(dir)
             .comment("comment")
             .creator("creator")
+            .creationDate(1000)
             .addUrlSeed("http://urlseed/")
             .addNode(new Pair<>("1.1.1.1", 1))
             .addTracker("udp://tracker/")
@@ -109,6 +110,7 @@ public class CreateTorrentTest {
         TorrentInfo ti = TorrentInfo.bdecode(r.entry().bencode());
         assertEquals("comment", ti.comment());
         assertEquals("creator", ti.creator());
+        assertEquals(1000, ti.creationDate());
 
         ArrayList<WebSeedEntry> seeds = ti.webSeeds();
         for (WebSeedEntry e : seeds) {
