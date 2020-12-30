@@ -30,7 +30,7 @@ jobs:
           sudo apt install libssl-dev
           sudo apt install ninja-build
       - name: cmake
-        run: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -B build -G "Ninja" swig
+        run: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -B build -G "Ninja" swig
       - name: build
         run: cmake --build build --config Release --parallel 2
       - name: strip

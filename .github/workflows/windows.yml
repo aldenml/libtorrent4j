@@ -24,7 +24,7 @@ jobs:
       - name: cmake
         run: |
           $env:BOOST_ROOT=$env:BOOST_ROOT_1_72_0
-          cmake -DCMAKE_BUILD_TYPE=Release -B build -G "Visual Studio 16 2019" -A x64 swig
+          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -B build -G "Visual Studio 16 2019" -A x64 swig
       - name: build
         run: cmake --build build --config Release --parallel 2
       - name: dependencies
