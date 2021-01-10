@@ -797,7 +797,7 @@ namespace Swig {
 #include "libtorrent/piece_block.hpp"
 #include "libtorrent/socket_type.hpp"
 #include "libtorrent/entry.hpp"
-#include "libtorrent/tracker_manager.hpp"
+#include "libtorrent/tracker_event.hpp"
 #include "libtorrent/alert.hpp"
 #include "libtorrent/alert_types.hpp"
 #include "libtorrent/settings_pack.hpp"
@@ -31047,6 +31047,34 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_load_1torrent
   (void)jarg1_;
   arg1 = *(libtorrent::load_torrent_limits **)&jarg1; 
   result = (int) ((arg1)->max_decode_tokens);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_load_1torrent_1limits_1max_1duplicate_1filenames_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  libtorrent::load_torrent_limits *arg1 = (libtorrent::load_torrent_limits *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::load_torrent_limits **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->max_duplicate_filenames = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_load_1torrent_1limits_1max_1duplicate_1filenames_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  libtorrent::load_torrent_limits *arg1 = (libtorrent::load_torrent_limits *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::load_torrent_limits **)&jarg1; 
+  result = (int) ((arg1)->max_duplicate_filenames);
   jresult = (jint)result; 
   return jresult;
 }
