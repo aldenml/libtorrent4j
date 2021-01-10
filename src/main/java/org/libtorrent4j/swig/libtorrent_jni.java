@@ -1049,6 +1049,8 @@ public class libtorrent_jni {
   public final static native int load_torrent_limits_max_decode_depth_get(long jarg1, load_torrent_limits jarg1_);
   public final static native void load_torrent_limits_max_decode_tokens_set(long jarg1, load_torrent_limits jarg1_, int jarg2);
   public final static native int load_torrent_limits_max_decode_tokens_get(long jarg1, load_torrent_limits jarg1_);
+  public final static native void load_torrent_limits_max_duplicate_filenames_set(long jarg1, load_torrent_limits jarg1_, int jarg2);
+  public final static native int load_torrent_limits_max_duplicate_filenames_get(long jarg1, load_torrent_limits jarg1_);
   public final static native long new_load_torrent_limits();
   public final static native void delete_load_torrent_limits(long jarg1);
   public final static native long new_torrent_info__SWIG_0(long jarg1, torrent_info jarg1_);

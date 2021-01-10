@@ -1,3 +1,12 @@
+2.0.2-10
+
+  * using libtorrent master
+  * lt:fail loading torrents with too many duplicate file names (as that's a
+    potential DoS)
+  * lt:don't announce to trackers while checking files, in replace_trackers()
+  * lt:fix redundant and failed bytes overflow check
+  * lt:source code cleanup, performance and stability
+
 2.0.1-9
 
   * using libtorrent master

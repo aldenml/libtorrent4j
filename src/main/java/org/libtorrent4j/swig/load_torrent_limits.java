@@ -68,6 +68,14 @@ public class load_torrent_limits {
     return libtorrent_jni.load_torrent_limits_max_decode_tokens_get(swigCPtr, this);
   }
 
+  public void setMax_duplicate_filenames(int value) {
+    libtorrent_jni.load_torrent_limits_max_duplicate_filenames_set(swigCPtr, this, value);
+  }
+
+  public int getMax_duplicate_filenames() {
+    return libtorrent_jni.load_torrent_limits_max_duplicate_filenames_get(swigCPtr, this);
+  }
+
   public load_torrent_limits() {
     this(libtorrent_jni.new_load_torrent_limits(), true);
   }
