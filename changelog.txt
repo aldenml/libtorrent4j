@@ -1,3 +1,29 @@
+2.0.2-11
+
+  * using libtorrent master
+  * lt:do not accept RTC peer if already connected
+  * lt:fix the complete() function, turning a path into an absolute path,
+    to correctly strip the ./ prefix of a relative path
+  * lt:fix load_file(), used to load files in the torrent_info constructor
+    and the posix part file, to support non-ascii characters on windows
+  * lt:prevent a time-out because no incoming requests have been received,
+    when we're still waiting to respond to previous requests
+  * lt:add dedicated error codes for SSRF mitigation and IDNA blocking
+  * lt:updated libdatachannel to v0.10.4
+  * lt:fix DHT upload rate limit overflow when set very high, or invoked very
+    rarely
+  * lt:some uTP MTU-probe fixes
+  * lt:restart path MTU discovery when a probe is lost that previously made it
+  * lt:use IP_PMTUDISC_PROBE instead of IP_PMTUDISC_DO to set the DF flag on
+    linux
+  * lt:keep sending MTU probes after the MTU floor and ceiling have converged
+  * lt:fix overflow of block_index in hash_picker for v2 torrents
+  * lt:WebTorrent - add keepalive with ping on WebSocket
+  * lt:fix overflow issue when rlimit_nofile is set to infinity
+  * lt:simplify some of the computation of MTUs for uTP sockets
+  * lt:strengthen SSRF mitigation for web seeds
+  * lt:source code cleanup, performance and stability
+
 2.0.2-10
 
   * using libtorrent master
