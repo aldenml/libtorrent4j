@@ -7,8 +7,8 @@
 #include <libtorrent/aux_/cpuid.hpp>
 #include <libtorrent/kademlia/ed25519.hpp>
 #include <libtorrent/kademlia/item.hpp>
-#include <libtorrent/enum_net.hpp>
-#include <libtorrent/random.hpp>
+#include <libtorrent/aux_/enum_net.hpp>
+#include <libtorrent/aux_/random.hpp>
 
 namespace lt = libtorrent;
 
@@ -149,7 +149,7 @@ std::vector<ip_interface> enum_net_interfaces(libtorrent::session* s)
 {
     std::vector<ip_interface> ret;
     boost::system::error_code ec;
-    auto v = libtorrent::enum_net_interfaces(s->get_context(), ec);
+    auto v = libtorrent::aux::enum_net_interfaces(s->get_context(), ec);
     for (auto& e : v)
     {
         ip_interface iface;
@@ -168,7 +168,7 @@ std::vector<ip_route> enum_routes(libtorrent::session* s)
 {
     std::vector<ip_route> ret;
     boost::system::error_code ec;
-    auto v = libtorrent::enum_routes(s->get_context(), ec);
+    auto v = libtorrent::aux::enum_routes(s->get_context(), ec);
     for (auto& e : v)
     {
         ip_route r;
@@ -193,7 +193,7 @@ void mem_copy(std::vector<std::int8_t> source
 libtorrent::address get_gateway(ip_interface const& iface
     , std::vector<ip_route>& routes)
 {
-    lt::ip_interface lt_iface{};
+    lt::aux::ip_interface lt_iface{};
     lt_iface.interface_address = iface.interface_address;
     lt_iface.netmask = iface.netmask;
     lt_iface.preferred = iface.preferred;
@@ -202,9 +202,9 @@ libtorrent::address get_gateway(ip_interface const& iface
     mem_copy(iface.friendly_name, lt_iface.friendly_name, 128);
     mem_copy(iface.description, lt_iface.description, 128);
 
-    std::vector<lt::ip_route> lt_routes;
+    std::vector<lt::aux::ip_route> lt_routes;
     for (auto const& r : routes) {
-        lt::ip_route lt_ip_route{};
+        lt::aux::ip_route lt_ip_route{};
         lt_ip_route.destination = r.destination;
         lt_ip_route.netmask = r.netmask;
         lt_ip_route.gateway = r.gateway;
@@ -214,14 +214,14 @@ libtorrent::address get_gateway(ip_interface const& iface
         lt_routes.push_back(lt_ip_route);
     }
 
-    return lt::get_gateway(lt_iface, lt_routes)
+    return lt::aux::get_gateway(lt_iface, lt_routes)
         .value_or(lt::address{});
 }
 
 std::string device_for_address(libtorrent::session* s
     , libtorrent::address addr, boost::system::error_code& ec)
 {
-    return lt::device_for_address(addr, s->get_context(), ec);
+    return lt::aux::device_for_address(addr, s->get_context(), ec);
 }
 
 struct add_files_listener
