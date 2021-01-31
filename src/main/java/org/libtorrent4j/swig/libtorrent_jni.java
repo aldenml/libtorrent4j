@@ -3002,7 +3002,6 @@ public class libtorrent_jni {
   public final static native int settings_pack_use_dht_as_fallback_get();
   public final static native int settings_pack_auto_manage_prefer_seeds_get();
   public final static native int settings_pack_disable_hash_checks_get();
-  public final static native int settings_pack_deprecated_volatile_read_cache_get();
   public final static native int settings_pack_no_atime_storage_get();
   public final static native int settings_pack_enable_outgoing_utp_get();
   public final static native int settings_pack_no_recheck_incomplete_resume_get();
