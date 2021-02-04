@@ -386,7 +386,7 @@ public final class AddTorrentParams
      * @param priorities the priorities
      */
     public void filePriorities(Priority[] priorities) {
-        h.set_file_priorities(Priority.array2byte_vector(priorities));
+        h.set_file_priorities(Priority.array2vector(priorities));
     }
 
     public Priority[] piecePriorities() {
@@ -403,7 +403,7 @@ public final class AddTorrentParams
      * @param priorities the priorities
      */
     public void piecePriorities(Priority[] priorities) {
-        h.set_piece_priorities(Priority.array2byte_vector(priorities));
+        h.set_piece_priorities(Priority.array2vector(priorities));
     }
 
     /**

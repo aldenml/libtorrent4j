@@ -81,17 +81,17 @@ struct status_flags_tag;
         $self->queue_position_set(queue_position_t{p});
     }
 
-    int piece_priority_ex(piece_index_t index)
+    std::int8_t piece_priority_ex(piece_index_t index)
     {
-        return int(static_cast<std::uint8_t>($self->piece_priority(index)));
+        return std::int8_t(static_cast<std::uint8_t>($self->piece_priority(index)));
     }
 
-    void piece_priority_ex(piece_index_t index, int priority)
+    void piece_priority_ex(piece_index_t index, std::int8_t priority)
     {
         $self->piece_priority(index, libtorrent::download_priority_t{std::uint8_t(priority)});
     }
 
-    void prioritize_pieces_ex(std::vector<int> const& pieces)
+    void prioritize_pieces_ex(std::vector<std::int8_t> const& pieces)
     {
         std::vector<libtorrent::download_priority_t> v(pieces.size());
         for (std::size_t i = 0; i < v.size(); i++)
@@ -99,7 +99,7 @@ struct status_flags_tag;
         $self->prioritize_pieces(v);
     }
 
-    void prioritize_pieces_ex(std::vector<std::pair<int, int>> const& pieces)
+    void prioritize_pieces_ex(std::vector<std::pair<int, std::int8_t>> const& pieces)
     {
         std::vector<std::pair<piece_index_t, libtorrent::download_priority_t>> v(pieces.size());
         for (std::size_t i = 0; i < v.size(); i++)
@@ -116,17 +116,17 @@ struct status_flags_tag;
         return r;
     }
 
-    int file_priority_ex(file_index_t index)
+    std::int8_t file_priority_ex(file_index_t index)
     {
-        return int(static_cast<std::uint8_t>($self->file_priority(index)));
+        return std::int8_t(static_cast<std::uint8_t>($self->file_priority(index)));
     }
 
-    void file_priority_ex(file_index_t index, int priority)
+    void file_priority_ex(file_index_t index, std::int8_t priority)
     {
         $self->file_priority(index, libtorrent::download_priority_t{std::uint8_t(priority)});
     }
 
-    void prioritize_files_ex(std::vector<int> const& files)
+    void prioritize_files_ex(std::vector<std::int8_t> const& files)
     {
         std::vector<libtorrent::download_priority_t> v(files.size());
         for (std::size_t i = 0; i < v.size(); i++)
