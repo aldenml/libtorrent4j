@@ -1,7 +1,13 @@
+/*
+ * Copyright (c) 2018-2021, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.byte_vector;
-import org.libtorrent4j.swig.int_vector;
 
 /**
  * @author gubatron
@@ -53,15 +59,15 @@ public enum Priority {
     TOP_PRIORITY(7);
 
     Priority(int swigValue) {
-        this.swigValue = swigValue;
+        this.swigValue = (byte) swigValue;
     }
 
-    private final int swigValue;
+    private final byte swigValue;
 
     /**
      * @return the native value
      */
-    public int swig() {
+    public byte swig() {
         return swigValue;
     }
 
@@ -79,6 +85,13 @@ public enum Priority {
         throw new IllegalArgumentException("Invalid native value");
     }
 
+    /**
+     * Creates an array of `size` elements with the specified `value.
+     *
+     * @param value the value of each array element.
+     * @param size the size of the new array.
+     * @return an array of `size` elements with the specified `value.
+     */
     public static Priority[] array(Priority value, int size) {
         Priority[] arr = new Priority[size];
 
@@ -89,8 +102,8 @@ public enum Priority {
         return arr;
     }
 
-    static int_vector array2vector(Priority[] arr) {
-        int_vector v = new int_vector();
+    static byte_vector array2vector(Priority[] arr) {
+        byte_vector v = new byte_vector();
 
         for (int i = 0; i < arr.length; i++) {
             Priority p = arr[i];
@@ -100,19 +113,8 @@ public enum Priority {
         return v;
     }
 
-    static byte_vector array2byte_vector(Priority[] arr) {
-        byte_vector v = new byte_vector();
-
-        for (int i = 0; i < arr.length; i++) {
-            Priority p = arr[i];
-            v.add((byte) p.swig());
-        }
-
-        return v;
-    }
-
     static Priority[] vector2array(byte_vector v) {
-        int size = (int) v.size();
+        int size = v.size();
         Priority[] arr = new Priority[size];
         for (int i = 0; i < size; i++) {
             arr[i] = Priority.fromSwig(v.get(i));

@@ -357,36 +357,36 @@ public class torrent_handle {
     libtorrent_jni.torrent_handle_queue_position_set_ex(swigCPtr, this, p);
   }
 
-  public int piece_priority_ex(int index) {
+  public byte piece_priority_ex(int index) {
     return libtorrent_jni.torrent_handle_piece_priority_ex__SWIG_0(swigCPtr, this, index);
   }
 
-  public void piece_priority_ex(int index, int priority) {
+  public void piece_priority_ex(int index, byte priority) {
     libtorrent_jni.torrent_handle_piece_priority_ex__SWIG_1(swigCPtr, this, index, priority);
   }
 
-  public void prioritize_pieces_ex(int_vector pieces) {
-    libtorrent_jni.torrent_handle_prioritize_pieces_ex__SWIG_0(swigCPtr, this, int_vector.getCPtr(pieces), pieces);
+  public void prioritize_pieces_ex(byte_vector pieces) {
+    libtorrent_jni.torrent_handle_prioritize_pieces_ex__SWIG_0(swigCPtr, this, byte_vector.getCPtr(pieces), pieces);
   }
 
-  public void prioritize_pieces_ex(int_int_pair_vector pieces) {
-    libtorrent_jni.torrent_handle_prioritize_pieces_ex__SWIG_1(swigCPtr, this, int_int_pair_vector.getCPtr(pieces), pieces);
+  public void prioritize_pieces_ex(int_byte_pair_vector pieces) {
+    libtorrent_jni.torrent_handle_prioritize_pieces_ex__SWIG_1(swigCPtr, this, int_byte_pair_vector.getCPtr(pieces), pieces);
   }
 
   public byte_vector get_piece_priorities_ex() {
     return new byte_vector(libtorrent_jni.torrent_handle_get_piece_priorities_ex(swigCPtr, this), true);
   }
 
-  public int file_priority_ex(int index) {
+  public byte file_priority_ex(int index) {
     return libtorrent_jni.torrent_handle_file_priority_ex__SWIG_0(swigCPtr, this, index);
   }
 
-  public void file_priority_ex(int index, int priority) {
+  public void file_priority_ex(int index, byte priority) {
     libtorrent_jni.torrent_handle_file_priority_ex__SWIG_1(swigCPtr, this, index, priority);
   }
 
-  public void prioritize_files_ex(int_vector files) {
-    libtorrent_jni.torrent_handle_prioritize_files_ex(swigCPtr, this, int_vector.getCPtr(files), files);
+  public void prioritize_files_ex(byte_vector files) {
+    libtorrent_jni.torrent_handle_prioritize_files_ex(swigCPtr, this, byte_vector.getCPtr(files), files);
   }
 
   public byte_vector get_file_priorities_ex() {

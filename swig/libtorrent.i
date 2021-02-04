@@ -187,7 +187,7 @@ TYPE_INTEGRAL_CONVERSION(file_index_t, std::int32_t, int)
 TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 
 // template definitions
-%template(int_int_pair) std::pair<int, int>;
+%template(int_byte_pair) std::pair<int, std::int8_t>;
 %template(string_int_pair) std::pair<std::string, int>;
 %template(string_string_pair) std::pair<std::string, std::string>;
 %template(byte_vector_byte_vector_pair) std::pair<std::vector<std::int8_t>, std::vector<std::int8_t>>;
@@ -201,7 +201,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(int64_vector) std::vector<long long>;
 %template(byte_vector) std::vector<std::int8_t>;
 %template(bool_vector) std::vector<bool>;
-%template(int_int_pair_vector) std::vector<std::pair<int, int>>;
+%template(int_byte_pair_vector) std::vector<std::pair<int, std::int8_t>>;
 %template(string_int_pair_vector) std::vector<std::pair<std::string, int>>;
 %template(string_string_pair_vector) std::vector<std::pair<std::string, std::string>>;
 

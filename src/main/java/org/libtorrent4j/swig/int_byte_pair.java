@@ -8,16 +8,16 @@
 
 package org.libtorrent4j.swig;
 
-public class int_int_pair {
+public class int_byte_pair {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
-  protected int_int_pair(long cPtr, boolean cMemoryOwn) {
+  protected int_byte_pair(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(int_int_pair obj) {
+  protected static long getCPtr(int_byte_pair obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
@@ -30,38 +30,38 @@ public class int_int_pair {
     if (swigCPtr != 0) {
       if (swigCMemOwn) {
         swigCMemOwn = false;
-        libtorrent_jni.delete_int_int_pair(swigCPtr);
+        libtorrent_jni.delete_int_byte_pair(swigCPtr);
       }
       swigCPtr = 0;
     }
   }
 
-  public int_int_pair() {
-    this(libtorrent_jni.new_int_int_pair__SWIG_0(), true);
+  public int_byte_pair() {
+    this(libtorrent_jni.new_int_byte_pair__SWIG_0(), true);
   }
 
-  public int_int_pair(int first, int second) {
-    this(libtorrent_jni.new_int_int_pair__SWIG_1(first, second), true);
+  public int_byte_pair(int first, byte second) {
+    this(libtorrent_jni.new_int_byte_pair__SWIG_1(first, second), true);
   }
 
-  public int_int_pair(int_int_pair other) {
-    this(libtorrent_jni.new_int_int_pair__SWIG_2(int_int_pair.getCPtr(other), other), true);
+  public int_byte_pair(int_byte_pair other) {
+    this(libtorrent_jni.new_int_byte_pair__SWIG_2(int_byte_pair.getCPtr(other), other), true);
   }
 
   public void setFirst(int value) {
-    libtorrent_jni.int_int_pair_first_set(swigCPtr, this, value);
+    libtorrent_jni.int_byte_pair_first_set(swigCPtr, this, value);
   }
 
   public int getFirst() {
-    return libtorrent_jni.int_int_pair_first_get(swigCPtr, this);
+    return libtorrent_jni.int_byte_pair_first_get(swigCPtr, this);
   }
 
-  public void setSecond(int value) {
-    libtorrent_jni.int_int_pair_second_set(swigCPtr, this, value);
+  public void setSecond(byte value) {
+    libtorrent_jni.int_byte_pair_second_set(swigCPtr, this, value);
   }
 
-  public int getSecond() {
-    return libtorrent_jni.int_int_pair_second_get(swigCPtr, this);
+  public byte getSecond() {
+    return libtorrent_jni.int_byte_pair_second_get(swigCPtr, this);
   }
 
 }
