@@ -300,6 +300,8 @@ lt::add_torrent_params parse_magnet_uri(std::string const& uri, lt::error_code& 
 #if defined(__ANDROID__) || defined(ANDROID)
 
 #include <dlfcn.h>
+#include <unistd.h> // lseek
+#include <stdio.h> // fileno
 
 void* get_libc()
 {
@@ -317,15 +319,33 @@ extern "C" int getifaddrs(struct ifaddrs** __list_ptr)
 
 extern "C" void freeifaddrs(struct ifaddrs* __ptr)
 {
-    typedef int func_t(struct ifaddrs*);
+    typedef void func_t(struct ifaddrs*);
     static func_t* f = (func_t*) dlsym(get_libc(), "freeifaddrs");
     if (f != NULL) f(__ptr);
 }
 
+// NOTE: remove getrandom when supported API >= 28
 extern "C" ssize_t getrandom(void* __buffer, size_t __buffer_size, unsigned int __flags)
 {
     lt::aux::random_bytes({static_cast<char*>(__buffer), static_cast<std::ptrdiff_t>(__buffer_size)});
     return __buffer_size;
+}
+
+// NOTE: remove fseeko64 when supported API >= 24
+extern "C" int fseeko64(FILE* __fp, off64_t __offset, int __whence)
+{
+    typedef int func_t(FILE*, off64_t, int);
+    static func_t* f = (func_t*) dlsym(get_libc(), "fseeko64");
+    if (f != NULL)
+    {
+        return f(__fp, __offset, __whence);
+    }
+    else
+    {
+        int fd = fileno(__fp);
+        off64_t r = lseek64(fd, __offset, __whence);
+        return r != -1 ? 0 : -1;
+    }
 }
 
 #endif
