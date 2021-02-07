@@ -340,7 +340,8 @@ extern "C" int fseeko64(FILE* __fp, off64_t __offset, int __whence)
     else
     {
         int fd = fileno(__fp)
-        return lseek64(fd, __offset, __whence)
+        off64_t r = lseek64(fd, __offset, __whence)
+        return r != -1 ? 0 : -1;
     }
 }
 
