@@ -1,5 +1,21 @@
+2.0.2-12
+
+  * using libtorrent master
   * fixed missing fseeko64 symbol at runtime
   * fixed download priority type mismatch (now it is byte)
+  * lt:cleanup use of _FILE_OFFSET_BITS
+  * lt:ensure we don't attempt to make outgoing connections to RTC peers
+  * lt:don't announce stopped-event to websocket trackers. This (appears) to
+    solve a shutdown stall where we send stopped-announces after aborting
+    outstanding announces (including the persistent websocket connection).
+    The announce causes the persistent connection to be re-established and
+    sometimes not torn down properly again, to complete the shut down
+  * lt:remove misleading (and redundant) peer log message
+  * lt:increase the default setting for max_allowed_in_request_queue
+    from 500 to 2000. The entries in this queue are relatively small,
+    and allowing too few may negatively impact high-throughput peers
+  * lt:deprecate volatile_read_cache
+  * lt:source code cleanup, performance and stability
 
 2.0.2-11
 
