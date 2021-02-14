@@ -91,6 +91,26 @@ Architectures supported:
 This library tracks libtorrent [`master`](https://github.com/arvidn/libtorrent/tree/master) branch.
 The branch is very stable, runs a lot of tests, and receives bug fixes quickly.
 
+## Android local builds
+
+It's possible to build android binaries locally. The solution is docker based, you
+need to have Docker installed and running (see https://docs.docker.com/engine/install/).
+
+Go to the folder `swig/android-build` and perform all the operations inside it.
+
+1 - Build the docker image just one time (takes a long time):
+```
+docker build -t lt4j:latest .
+```
+
+2 - Select your architecture and run the build script, for example:
+```
+./build-arm.sh
+```
+
+3 - Collect the jars in `build/libs` at the root of the project. Repeat
+the step 2) for the desired architectures.
+
 ## License
 
 Licensed under the terms of the MIT license, available [here](LICENSE.md).
