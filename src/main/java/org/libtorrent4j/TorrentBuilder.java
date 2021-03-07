@@ -526,6 +526,23 @@ public final class TorrentBuilder {
     public static final create_flags_t SYMLINKS = create_torrent.symlinks;
 
     /**
+     * Do not generate v1 metadata. The resulting torrent will only be usable by
+     * clients which support v2. This requires setting all v2 hashes, with
+     * set_hash2() before calling generate(). Setting v1 hashes (with
+     * set_hash()) is an error with this flag set.
+     */
+    public static final create_flags_t V2_ONLY = create_torrent.v2_only;
+
+    /**
+     * Do not generate v2 metadata or enforce v2 alignment and padding rules
+     * this is mainly for tests, not recommended for production use. This
+     * requires setting all v1 hashes, with set_hash(), before calling
+     * generate(). Setting v2 hashes (with set_hash2()) is an error with
+     * this flag set.
+     */
+    public static final create_flags_t V1_ONLY = create_torrent.v1_only;
+
+    /**
      *
      */
     public interface Listener {

@@ -849,6 +849,7 @@ public class libtorrent_jni {
   public final static native int service_unavailable_get();
   public final static native long new_storage_error__SWIG_0();
   public final static native long new_storage_error__SWIG_1(long jarg1, error_code jarg1_);
+  public final static native long new_storage_error__SWIG_2(long jarg1, error_code jarg1_, int jarg2);
   public final static native boolean storage_error_to_bool(long jarg1, storage_error jarg1_);
   public final static native void storage_error_ec_set(long jarg1, storage_error jarg1_, long jarg2, error_code jarg2_);
   public final static native long storage_error_ec_get(long jarg1, storage_error jarg1_);

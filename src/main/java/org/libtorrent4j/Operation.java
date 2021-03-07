@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2021, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.libtorrent;
@@ -212,7 +219,42 @@ public enum Operation {
     /**
      *
      */
-    SYMLINK(operation_t.symlink.swigValue());
+    SYMLINK(operation_t.symlink.swigValue()),
+
+    /**
+     *
+     */
+    HANDSHAKE(operation_t.handshake.swigValue()),
+
+    /**
+     *
+     */
+    SOCK_OPTION(operation_t.sock_option.swigValue()),
+
+    /**
+     *
+     */
+    ENUM_ROUTE(operation_t.enum_route.swigValue()),
+
+    /**
+     *
+     */
+    FILE_SEEK(operation_t.file_seek.swigValue()),
+
+    /**
+     *
+     */
+    TIMER(operation_t.timer.swigValue()),
+
+    /**
+     *
+     */
+    FILE_MMAP(operation_t.file_mmap.swigValue()),
+
+    /**
+     *
+     */
+    FILE_TRUNCATE(operation_t.file_truncate.swigValue());
 
     Operation(int swigValue) {
         this.swigValue = swigValue;
