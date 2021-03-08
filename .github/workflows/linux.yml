@@ -26,6 +26,7 @@ jobs:
           submodules: recursive
       - name: install packages
         run: |
+          sudo apt update
           sudo apt install libboost-all-dev
           sudo apt install libssl-dev
           sudo apt install ninja-build
