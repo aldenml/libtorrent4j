@@ -4,7 +4,7 @@ extract_packages() {
 
   NDK_VERSION=r21d
   BOOST_VERSION=1_75_0
-  OPENSSL_VERSION=1.1.1i
+  OPENSSL_VERSION=1.1.1j
 
   NDK_PKG=${PWD}/../../android-ndk-${NDK_VERSION}-darwin-x86_64.zip
   BOOST_PKG=${PWD}/../../boost_${BOOST_VERSION}.tar.gz
@@ -47,7 +47,7 @@ compile_openssl() {
 
   pushd build/openssl-src
 
-  OPENSSL_OPTS="no-deprecated no-shared no-makedepend -fno-strict-aliasing -fvisibility=hidden -O3 -fPIC"
+  OPENSSL_OPTS="no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3 -fPIC"
 
   ./Configure linux-aarch64 ${OPENSSL_OPTS} -march=armv8-a+crypto --prefix=${PWD}/../openssl
   echo "Compiling openssl..."

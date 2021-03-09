@@ -11,8 +11,8 @@ on:
 env:
   BOOST_DOT_VERSION: "1.75.0"
   BOOST_VERSION: "1_75_0"
-  OPENSSL_VERSION: "1.1.1i"
-  OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend -fno-strict-aliasing -fvisibility=hidden -O3"
+  OPENSSL_VERSION: "1.1.1j"
+  OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3"
   CXX: g++-10
   CC: gcc-10
 
@@ -26,6 +26,7 @@ jobs:
           submodules: recursive
       - name: install packages
         run: |
+          sudo apt update
           sudo apt install libboost-all-dev
           sudo apt install libssl-dev
           sudo apt install ninja-build
