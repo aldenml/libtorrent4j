@@ -27,4 +27,11 @@ public class OperationTest {
         assertEquals("file_mmap", FILE_MMAP.nativeName());
         assertEquals("file_truncate", FILE_TRUNCATE.nativeName());
     }
+
+    @Test
+    public void testInvalidValue() {
+
+        assertEquals(Operation.UNKNOWN, Operation.fromSwig(-1));
+        assertEquals(Operation.UNKNOWN, Operation.fromSwig(1000));
+    }
 }
