@@ -76,6 +76,10 @@ public class file_storage {
     return libtorrent_jni.file_storage_total_size(swigCPtr, this);
   }
 
+  public long size_on_disk() {
+    return libtorrent_jni.file_storage_size_on_disk(swigCPtr, this);
+  }
+
   public void set_num_pieces(int n) {
     libtorrent_jni.file_storage_set_num_pieces(swigCPtr, this, n);
   }
@@ -126,10 +130,6 @@ public class file_storage {
 
   public void canonicalize() {
     libtorrent_jni.file_storage_canonicalize(swigCPtr, this);
-  }
-
-  public sha1_hash hash(int index) {
-    return new sha1_hash(libtorrent_jni.file_storage_hash(swigCPtr, this, index), true);
   }
 
   public sha256_hash root(int index) {

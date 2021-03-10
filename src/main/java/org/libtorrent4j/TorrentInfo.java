@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2021, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.*;
@@ -353,11 +360,17 @@ public final class TorrentInfo {
 
     /**
      * The total number of bytes the torrent-file represents (all the files in it).
-     *
-     *
      */
     public long totalSize() {
         return ti.total_size();
+    }
+
+    /**
+     * Returns the sum of all non-pad file sizes. i.e. the files that will
+     * actually be saved to disk by this torrent.
+     */
+    public long sizeOnDisk() {
+        return ti.size_on_disk();
     }
 
     /**

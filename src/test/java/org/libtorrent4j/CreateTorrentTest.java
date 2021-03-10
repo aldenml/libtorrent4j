@@ -156,5 +156,8 @@ public class CreateTorrentTest {
         assertEquals(3, ti.numFiles());
         assertTrue(b1.get());
         assertTrue(b2.get());
+
+        assertEquals(16386, ti.totalSize());
+        assertEquals(4, ti.sizeOnDisk());
     }
 }

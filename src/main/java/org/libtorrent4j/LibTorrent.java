@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020, Alden Torres
+ * Copyright (c) 2018-2021, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -43,13 +43,23 @@ public final class LibTorrent {
      * @return the git revision
      */
     public static String revision() {
-        return "9977978aeea28c762c4094c9a03faba5050219c7";
+        return "76c8f3fa1ec5bcab595fe964349468a4b0f7be7f";
     }
 
+    /**
+     * Returns the version of boost used in the build.
+     *
+     * @return the build boost version.
+     */
     public static String boostVersion() {
         return libtorrent.boost_lib_version();
     }
 
+    /**
+     * Returns the version of openssl used in the build.
+     *
+     * @return the build openssl version.
+     */
     public static String opensslVersion() {
         return libtorrent.openssl_version_text();
     }
@@ -61,7 +71,7 @@ public final class LibTorrent {
      * @return libtorrent4j version.
      */
     public static String libtorrent4jVersion() {
-        return "2.0.2-12";
+        return "2.0.2-13";
     }
 
     /**

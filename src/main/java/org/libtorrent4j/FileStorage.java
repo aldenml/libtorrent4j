@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2021, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.*;
@@ -240,11 +247,16 @@ public final class FileStorage {
 
     /**
      * Returns the total number of bytes all the files in this torrent spans.
-     *
-     *
      */
     public long totalSize() {
         return fs.total_size();
+    }
+
+    /**
+     * Returns the sum of all non pad file sizes.
+     */
+    public long sizeOnDisk() {
+        return fs.size_on_disk();
     }
 
     /**
@@ -299,8 +311,6 @@ public final class FileStorage {
     /**
      * Get the name of this torrent. For multi-file torrents, this is also
      * the name of the root directory all the files are stored in.
-     *
-     *
      */
     public String name() {
         return fs.name();
@@ -310,30 +320,17 @@ public final class FileStorage {
      * Set the name of this torrent. For multi-file torrents, this is also
      * the name of the root directory all the files are stored in.
      *
-     * @param name
+     * @param name the name for the torrent
      */
     public void name(String name) {
         fs.set_name(name);
     }
 
     /**
-     * Is a sha-1 hash of the file, or 0 if none was
-     * provided in the torrent file. This can potentially be used to
-     * join a bittorrent network with other file sharing networks.
+     * Returns the full path to a file.
      *
-     * @param index
-     *
-     */
-    public Sha1Hash hash(int index) {
-        return new Sha1Hash(fs.hash(index));
-    }
-
-    /**
-     * returns the full path to a file.
-     *
-     * @param index
-     * @param savePath
-     *
+     * @param index the file index
+     * @param savePath the desired safe path when the files are downloaded.
      */
     public String filePath(int index, String savePath) {
         // not calling the corresponding swig function because internally,

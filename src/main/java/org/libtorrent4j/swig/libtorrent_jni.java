@@ -849,6 +849,7 @@ public class libtorrent_jni {
   public final static native int service_unavailable_get();
   public final static native long new_storage_error__SWIG_0();
   public final static native long new_storage_error__SWIG_1(long jarg1, error_code jarg1_);
+  public final static native long new_storage_error__SWIG_2(long jarg1, error_code jarg1_, int jarg2);
   public final static native boolean storage_error_to_bool(long jarg1, storage_error jarg1_);
   public final static native void storage_error_ec_set(long jarg1, storage_error jarg1_, long jarg2, error_code jarg2_);
   public final static native long storage_error_ec_get(long jarg1, storage_error jarg1_);
@@ -931,6 +932,7 @@ public class libtorrent_jni {
   public final static native int file_storage_num_files(long jarg1, file_storage jarg1_);
   public final static native int file_storage_end_file(long jarg1, file_storage jarg1_);
   public final static native long file_storage_total_size(long jarg1, file_storage jarg1_);
+  public final static native long file_storage_size_on_disk(long jarg1, file_storage jarg1_);
   public final static native void file_storage_set_num_pieces(long jarg1, file_storage jarg1_, int jarg2);
   public final static native int file_storage_num_pieces(long jarg1, file_storage jarg1_);
   public final static native int file_storage_end_piece(long jarg1, file_storage jarg1_);
@@ -944,7 +946,6 @@ public class libtorrent_jni {
   public final static native String file_storage_name(long jarg1, file_storage jarg1_);
   public final static native void file_storage_swap(long jarg1, file_storage jarg1_, long jarg2, file_storage jarg2_);
   public final static native void file_storage_canonicalize(long jarg1, file_storage jarg1_);
-  public final static native long file_storage_hash(long jarg1, file_storage jarg1_, int jarg2);
   public final static native long file_storage_root(long jarg1, file_storage jarg1_, int jarg2);
   public final static native String file_storage_root_ptr(long jarg1, file_storage jarg1_, int jarg2);
   public final static native String file_storage_symlink(long jarg1, file_storage jarg1_, int jarg2);
@@ -1075,6 +1076,7 @@ public class libtorrent_jni {
   public final static native long torrent_info_web_seeds(long jarg1, torrent_info jarg1_);
   public final static native void torrent_info_set_web_seeds(long jarg1, torrent_info jarg1_, long jarg2, web_seed_entry_vector jarg2_);
   public final static native long torrent_info_total_size(long jarg1, torrent_info jarg1_);
+  public final static native long torrent_info_size_on_disk(long jarg1, torrent_info jarg1_);
   public final static native int torrent_info_piece_length(long jarg1, torrent_info jarg1_);
   public final static native int torrent_info_num_pieces(long jarg1, torrent_info jarg1_);
   public final static native int torrent_info_last_piece(long jarg1, torrent_info jarg1_);

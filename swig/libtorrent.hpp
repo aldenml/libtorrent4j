@@ -331,23 +331,6 @@ extern "C" ssize_t getrandom(void* __buffer, size_t __buffer_size, unsigned int 
     return __buffer_size;
 }
 
-// NOTE: remove fseeko64 when supported API >= 24
-extern "C" int fseeko64(FILE* __fp, off64_t __offset, int __whence)
-{
-    typedef int func_t(FILE*, off64_t, int);
-    static func_t* f = (func_t*) dlsym(get_libc(), "fseeko64");
-    if (f != NULL)
-    {
-        return f(__fp, __offset, __whence);
-    }
-    else
-    {
-        int fd = fileno(__fp);
-        off64_t r = lseek64(fd, __offset, __whence);
-        return r != -1 ? 0 : -1;
-    }
-}
-
 #endif
 
 #endif
