@@ -20,7 +20,6 @@
     open file)
   * lt:add work-around for systems without fseeko() (such as Android)
   * lt:source code cleanup, performance and stability
->>>>>>> 112d8e9 (update to libtorrent master HEAD)
 
 2.0.2-12
 
