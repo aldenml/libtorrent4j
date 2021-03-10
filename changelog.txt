@@ -2,13 +2,16 @@
   * using libtorrent master
   * updated to OpenSSL 1.1.1j
   * improved java api layer
+  * lt:updated libdatachannel to v0.11.9
+  * lt:deprecate sha-1 file hashes (torrent file extension field)
+  * lt:add size_on_disk() to file_storage and torrent_info, reporting the total
+    size of non-pad files
   * lt:fix issue when failing to parse outgoing_interfaces setting
   * lt:fix issue where set_piece_hashes() would not propagate file errors
   * lt:fix super-seeding issue that could cause a segfault
   * lt:mark need-save-resume when adding a tracker
   * lt:fix need_save_resume_data() for renaming files, share-mode, upload-mode,
     disable- pex, lsd, and dht.
-  * lt:updated libdatachannel to v0.11.4
   * lt:fix issue in parsing invalid webtorrent tracker responses
   * lt:fix incoming TCP connections when using tracker-only proxy
   * lt:correctly store "max_uploads" value in resume data

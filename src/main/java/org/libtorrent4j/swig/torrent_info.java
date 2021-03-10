@@ -120,6 +120,10 @@ public class torrent_info {
     return libtorrent_jni.torrent_info_total_size(swigCPtr, this);
   }
 
+  public long size_on_disk() {
+    return libtorrent_jni.torrent_info_size_on_disk(swigCPtr, this);
+  }
+
   public int piece_length() {
     return libtorrent_jni.torrent_info_piece_length(swigCPtr, this);
   }
