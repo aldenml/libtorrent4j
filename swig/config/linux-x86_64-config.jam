@@ -9,6 +9,4 @@ using gcc : x86_64 : g++-10 :
     <linkflags>"-z noexecstack"
     # debug information
     <cxxflags>-g
-    <cxxflags>-gdwarf-4
-    <cxxflags>-ggdb
     ;

@@ -2,19 +2,19 @@ import os ;
 
 ANDROID_TOOLCHAIN = [ os.environ ANDROID_TOOLCHAIN ] ;
 
-using clang : arm64 : $(ANDROID_TOOLCHAIN)/bin/aarch64-linux-android-clang++ :
+using clang : arm64 : $(ANDROID_TOOLCHAIN)/bin/aarch64-linux-android21-clang++ :
     <cxxflags>-fPIC
     <cxxflags>-march=armv8-a+crc
     <cxxflags>-DANDROID
-    <cxxflags>-D_FORTIFY_SOURCE=2
-    <cxxflags>-fdata-sections
-    <cxxflags>-ffunction-sections
-    <cxxflags>-funwind-tables
-    <cxxflags>-fstack-protector-strong
-    <cxxflags>-fno-omit-frame-pointer
     <cxxflags>-fno-strict-aliasing
     <cxxflags>-fvisibility=hidden
+    <cxxflags>-D_FORTIFY_SOURCE=2
+    <cxxflags>-fstack-protector-strong
     <linkflags>-static-libstdc++
+    <linkflags>-fuse-ld=lld
+    <linkflags>-Wl,--build-id=sha1
+    # remove when API >= 29
+    <linkflags>-Wl,--no-rosegment
     # debug information
     <cxxflags>-g
     ;

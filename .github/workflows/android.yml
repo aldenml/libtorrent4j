@@ -11,7 +11,7 @@ on:
 env:
   BOOST_DOT_VERSION: "1.75.0"
   BOOST_VERSION: "1_75_0"
-  NDK_VERSION: "r21d"
+  NDK_VERSION: "r21e"
   OPENSSL_VERSION: "1.1.1j"
   OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3"
 
@@ -35,19 +35,17 @@ jobs:
         run: |
           wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip
           unzip -qq android-ndk.zip
-          export NDK=${PWD}/android-ndk-${NDK_VERSION}
-          ${NDK}/build/tools/make_standalone_toolchain.py --arch arm --api 21 --stl libc++ --install-dir android-toolchain
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          export BOOST_ROOT=${PWD}/boost
-          sed -i 's/24/21/g' ${ANDROID_TOOLCHAIN}/sysroot/usr/include/ifaddrs.h
-          sed -i 's/24/21/g' ${ANDROID_TOOLCHAIN}/sysroot/usr/include/stdio.h
-          sed -i 's/28/21/g' ${ANDROID_TOOLCHAIN}/sysroot/usr/include/sys/random.h
-          sed -i 's/RANLIB = ranlib/RANLIB = "${ANDROID_TOOLCHAIN}\/bin\/arm-linux-androideabi-ranlib"/g' ${BOOST_ROOT}/tools/build/src/tools/gcc.jam
+          mv android-ndk-${NDK_VERSION} android-ndk
+          export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          sed -i 's/24/19/g' ${TOOLCHAIN}/sysroot/usr/include/ifaddrs.h
+          sed -i 's/28/19/g' ${TOOLCHAIN}/sysroot/usr/include/sys/random.h
       - name: setup openssl
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          export PATH=${ANDROID_TOOLCHAIN}/arm-linux-androideabi/bin:${PATH}
-          export CC=${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-clang
+          export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          export CC=${TOOLCHAIN}/bin/armv7a-linux-androideabi19-clang
+          export AR="${TOOLCHAIN}/bin/llvm-ar"
+          export LD="${TOOLCHAIN}/bin/ld"
+          export RANLIB="${TOOLCHAIN}/bin/llvm-ranlib"
           wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
           tar xzf openssl.tar.gz
           cd openssl-${OPENSSL_VERSION}
@@ -57,28 +55,31 @@ jobs:
           cd ..
       - name: build
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          export PATH=${ANDROID_TOOLCHAIN}/arm-linux-androideabi/bin:${PATH}
+          alias ranlib='${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib'
+          export ANDROID_TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
           export BOOST_ROOT=${PWD}/boost
           export OPENSSL_ROOT=${PWD}/openssl
           export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
-          export CXX=${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-clang++
-          export CC=${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-clang
+          export CXX=${ANDROID_TOOLCHAIN}/bin/armv7a-linux-androideabi19-clang++
+          export CC=${ANDROID_TOOLCHAIN}/bin/armv7a-linux-androideabi19-clang
+          export AR=${ANDROID_TOOLCHAIN}/bin/llvm-ar
+          export LD=${ANDROID_TOOLCHAIN}/bin/ld
+          export RANLIB=${ANDROID_TOOLCHAIN}/bin/llvm-ranlib
           cd swig
           ${BOOST_ROOT}/b2 -j2 --user-config=config/android-arm-config.jam variant=release toolset=clang-linux-arm target-os=android location=bin/release/android/armeabi-v7a
           cd ..
       - name: strip
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          ${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-objcopy --only-keep-debug swig/bin/release/android/armeabi-v7a/libtorrent4j.so swig/bin/release/android/armeabi-v7a/libtorrent4j.so.debug
-          ${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-strip --strip-unneeded -x -g swig/bin/release/android/armeabi-v7a/libtorrent4j.so
+          export ANDROID_TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          ${ANDROID_TOOLCHAIN}/bin/llvm-objcopy --only-keep-debug swig/bin/release/android/armeabi-v7a/libtorrent4j.so swig/bin/release/android/armeabi-v7a/libtorrent4j.so.debug
+          ${ANDROID_TOOLCHAIN}/bin/llvm-strip --strip-unneeded -x -g swig/bin/release/android/armeabi-v7a/libtorrent4j.so
       - name: dependencies
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          ${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-readelf -d swig/bin/release/android/armeabi-v7a/libtorrent4j.so
+          export ANDROID_TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          ${ANDROID_TOOLCHAIN}/bin/llvm-readelf -d swig/bin/release/android/armeabi-v7a/libtorrent4j.so
       - uses: actions/upload-artifact@v2
         with:
-          name: libtorrent4j-arm-b2
+          name: libtorrent4j-android-arm-b2
           path: |
             swig/bin/release/android/armeabi-v7a/libtorrent4j.so
             swig/bin/release/android/armeabi-v7a/libtorrent4j.so.debug
@@ -102,19 +103,17 @@ jobs:
         run: |
           wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip
           unzip -qq android-ndk.zip
-          export NDK=${PWD}/android-ndk-${NDK_VERSION}
-          ${NDK}/build/tools/make_standalone_toolchain.py --arch arm64 --api 21 --stl libc++ --install-dir android-toolchain
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          export BOOST_ROOT=${PWD}/boost
-          sed -i 's/24/21/g' ${ANDROID_TOOLCHAIN}/sysroot/usr/include/ifaddrs.h
-          sed -i 's/24/21/g' ${ANDROID_TOOLCHAIN}/sysroot/usr/include/stdio.h
-          sed -i 's/28/21/g' ${ANDROID_TOOLCHAIN}/sysroot/usr/include/sys/random.h
-          sed -i 's/RANLIB = ranlib/RANLIB = "${ANDROID_TOOLCHAIN}\/bin\/aarch64-linux-android-ranlib"/g' ${BOOST_ROOT}/tools/build/src/tools/gcc.jam
+          mv android-ndk-${NDK_VERSION} android-ndk
+          export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          sed -i 's/24/19/g' ${TOOLCHAIN}/sysroot/usr/include/ifaddrs.h
+          sed -i 's/28/19/g' ${TOOLCHAIN}/sysroot/usr/include/sys/random.h
       - name: setup openssl
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          export PATH=${ANDROID_TOOLCHAIN}/aarch64-linux-android/bin:${PATH}
-          export CC=${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-clang
+          export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          export CC=${TOOLCHAIN}/bin/aarch64-linux-android21-clang
+          export AR="${TOOLCHAIN}/bin/llvm-ar"
+          export LD="${TOOLCHAIN}/bin/ld"
+          export RANLIB="${TOOLCHAIN}/bin/llvm-ranlib"
           wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
           tar xzf openssl.tar.gz
           cd openssl-${OPENSSL_VERSION}
@@ -124,28 +123,31 @@ jobs:
           cd ..
       - name: build
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          export PATH=${ANDROID_TOOLCHAIN}/aarch64-linux-android/bin:${PATH}
+          alias ranlib='${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib'
+          export ANDROID_TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
           export BOOST_ROOT=${PWD}/boost
           export OPENSSL_ROOT=${PWD}/openssl
           export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
-          export CXX=${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-clang++
-          export CC=${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-clang
+          export CXX=${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android21-clang++
+          export CC=${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android21-clang
+          export AR=${ANDROID_TOOLCHAIN}/bin/llvm-ar
+          export LD=${ANDROID_TOOLCHAIN}/bin/ld
+          export RANLIB=${ANDROID_TOOLCHAIN}/bin/llvm-ranlib
           cd swig
           ${BOOST_ROOT}/b2 -j2 --user-config=config/android-arm64-config.jam variant=release toolset=clang-arm64 target-os=android location=bin/release/android/arm64-v8a
           cd ..
       - name: strip
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          ${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-objcopy --only-keep-debug swig/bin/release/android/arm64-v8a/libtorrent4j.so swig/bin/release/android/arm64-v8a/libtorrent4j.so.debug
-          ${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-strip --strip-unneeded -x swig/bin/release/android/arm64-v8a/libtorrent4j.so
+          export ANDROID_TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          ${ANDROID_TOOLCHAIN}/bin/llvm-objcopy --only-keep-debug swig/bin/release/android/arm64-v8a/libtorrent4j.so swig/bin/release/android/arm64-v8a/libtorrent4j.so.debug
+          ${ANDROID_TOOLCHAIN}/bin/llvm-strip --strip-unneeded -x swig/bin/release/android/arm64-v8a/libtorrent4j.so
       - name: dependencies
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          ${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android-readelf -d swig/bin/release/android/arm64-v8a/libtorrent4j.so
+          export ANDROID_TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          ${ANDROID_TOOLCHAIN}/bin/llvm-readelf -d swig/bin/release/android/arm64-v8a/libtorrent4j.so
       - uses: actions/upload-artifact@v2
         with:
-          name: libtorrent4j-arm64-b2
+          name: libtorrent4j-android-arm64-b2
           path: |
             swig/bin/release/android/arm64-v8a/libtorrent4j.so
             swig/bin/release/android/arm64-v8a/libtorrent4j.so.debug
@@ -169,19 +171,17 @@ jobs:
         run: |
           wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip
           unzip -qq android-ndk.zip
-          export NDK=${PWD}/android-ndk-${NDK_VERSION}
-          ${NDK}/build/tools/make_standalone_toolchain.py --arch x86 --api 21 --stl libc++ --install-dir android-toolchain
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          export BOOST_ROOT=${PWD}/boost
-          sed -i 's/24/21/g' ${ANDROID_TOOLCHAIN}/sysroot/usr/include/ifaddrs.h
-          sed -i 's/24/21/g' ${ANDROID_TOOLCHAIN}/sysroot/usr/include/stdio.h
-          sed -i 's/28/21/g' ${ANDROID_TOOLCHAIN}/sysroot/usr/include/sys/random.h
-          sed -i 's/RANLIB = ranlib/RANLIB = "${ANDROID_TOOLCHAIN}\/bin\/i686-linux-android-ranlib"/g' ${BOOST_ROOT}/tools/build/src/tools/gcc.jam
+          mv android-ndk-${NDK_VERSION} android-ndk
+          export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          sed -i 's/24/19/g' ${TOOLCHAIN}/sysroot/usr/include/ifaddrs.h
+          sed -i 's/28/19/g' ${TOOLCHAIN}/sysroot/usr/include/sys/random.h
       - name: setup openssl
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          export PATH=${ANDROID_TOOLCHAIN}/i686-linux-android/bin:${PATH}
-          export CC=${ANDROID_TOOLCHAIN}/bin/i686-linux-android-clang
+          export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          export CC=${TOOLCHAIN}/bin/i686-linux-android19-clang
+          export AR="${TOOLCHAIN}/bin/llvm-ar"
+          export LD="${TOOLCHAIN}/bin/ld"
+          export RANLIB="${TOOLCHAIN}/bin/llvm-ranlib"
           wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
           tar xzf openssl.tar.gz
           cd openssl-${OPENSSL_VERSION}
@@ -191,28 +191,31 @@ jobs:
           cd ..
       - name: build
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          export PATH=${ANDROID_TOOLCHAIN}/i686-linux-android/bin:${PATH}
+          alias ranlib='${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib'
+          export ANDROID_TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
           export BOOST_ROOT=${PWD}/boost
           export OPENSSL_ROOT=${PWD}/openssl
           export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
-          export CXX=${ANDROID_TOOLCHAIN}/bin/i686-linux-android-clang++
-          export CC=${ANDROID_TOOLCHAIN}/bin/i686-linux-android-clang
+          export CXX=${ANDROID_TOOLCHAIN}/bin/i686-linux-android19-clang++
+          export CC=${ANDROID_TOOLCHAIN}/bin/i686-linux-android19-clang
+          export AR=${ANDROID_TOOLCHAIN}/bin/llvm-ar
+          export LD=${ANDROID_TOOLCHAIN}/bin/ld
+          export RANLIB=${ANDROID_TOOLCHAIN}/bin/llvm-ranlib
           cd swig
           ${BOOST_ROOT}/b2 -j2 --user-config=config/android-x86-config.jam variant=release toolset=clang-x86 target-os=android location=bin/release/android/x86
           cd ..
       - name: strip
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          ${ANDROID_TOOLCHAIN}/bin/i686-linux-android-objcopy --only-keep-debug swig/bin/release/android/x86/libtorrent4j.so swig/bin/release/android/x86/libtorrent4j.so.debug
-          ${ANDROID_TOOLCHAIN}/bin/i686-linux-android-strip --strip-unneeded -x -g swig/bin/release/android/x86/libtorrent4j.so
+          export ANDROID_TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          ${ANDROID_TOOLCHAIN}/bin/llvm-objcopy --only-keep-debug swig/bin/release/android/x86/libtorrent4j.so swig/bin/release/android/x86/libtorrent4j.so.debug
+          ${ANDROID_TOOLCHAIN}/bin/llvm-strip --strip-unneeded -x -g swig/bin/release/android/x86/libtorrent4j.so
       - name: dependencies
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          ${ANDROID_TOOLCHAIN}/bin/i686-linux-android-readelf -d swig/bin/release/android/x86/libtorrent4j.so
+          export ANDROID_TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          ${ANDROID_TOOLCHAIN}/bin/llvm-readelf -d swig/bin/release/android/x86/libtorrent4j.so
       - uses: actions/upload-artifact@v2
         with:
-          name: libtorrent4j-x86-b2
+          name: libtorrent4j-android-x86-b2
           path: |
             swig/bin/release/android/x86/libtorrent4j.so
             swig/bin/release/android/x86/libtorrent4j.so.debug
@@ -236,19 +239,17 @@ jobs:
         run: |
           wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip
           unzip -qq android-ndk.zip
-          export NDK=${PWD}/android-ndk-${NDK_VERSION}
-          ${NDK}/build/tools/make_standalone_toolchain.py --arch x86_64 --api 21 --stl libc++ --install-dir android-toolchain
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          export BOOST_ROOT=${PWD}/boost
-          sed -i 's/24/21/g' ${ANDROID_TOOLCHAIN}/sysroot/usr/include/ifaddrs.h
-          sed -i 's/24/21/g' ${ANDROID_TOOLCHAIN}/sysroot/usr/include/stdio.h
-          sed -i 's/28/21/g' ${ANDROID_TOOLCHAIN}/sysroot/usr/include/sys/random.h
-          sed -i 's/RANLIB = ranlib/RANLIB = "${ANDROID_TOOLCHAIN}\/bin\/x86_64-linux-android-ranlib"/g' ${BOOST_ROOT}/tools/build/src/tools/gcc.jam
+          mv android-ndk-${NDK_VERSION} android-ndk
+          export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          sed -i 's/24/19/g' ${TOOLCHAIN}/sysroot/usr/include/ifaddrs.h
+          sed -i 's/28/19/g' ${TOOLCHAIN}/sysroot/usr/include/sys/random.h
       - name: setup openssl
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          export PATH=${ANDROID_TOOLCHAIN}/x86_64-linux-android/bin:${PATH}
-          export CC=${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-clang
+          export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          export CC=${TOOLCHAIN}/bin/x86_64-linux-android21-clang
+          export AR="${TOOLCHAIN}/bin/llvm-ar"
+          export LD="${TOOLCHAIN}/bin/ld"
+          export RANLIB="${TOOLCHAIN}/bin/llvm-ranlib"
           wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
           tar xzf openssl.tar.gz
           cd openssl-${OPENSSL_VERSION}
@@ -258,28 +259,31 @@ jobs:
           cd ..
       - name: build
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          export PATH=${ANDROID_TOOLCHAIN}/x86_64-linux-android/bin:${PATH}
+          alias ranlib='${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib'
+          export ANDROID_TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
           export BOOST_ROOT=${PWD}/boost
           export OPENSSL_ROOT=${PWD}/openssl
           export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
-          export CXX=${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-clang++
-          export CC=${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-clang
+          export CXX=${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android21-clang++
+          export CC=${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android21-clang
+          export AR=${ANDROID_TOOLCHAIN}/bin/llvm-ar
+          export LD=${ANDROID_TOOLCHAIN}/bin/ld
+          export RANLIB=${ANDROID_TOOLCHAIN}/bin/llvm-ranlib
           cd swig
           ${BOOST_ROOT}/b2 -j2 --user-config=config/android-x86_64-config.jam variant=release toolset=clang-x86_64 target-os=android location=bin/release/android/x86_64
           cd ..
       - name: strip
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          ${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-objcopy --only-keep-debug swig/bin/release/android/x86_64/libtorrent4j.so swig/bin/release/android/x86_64/libtorrent4j.so.debug
-          ${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-strip --strip-unneeded -x swig/bin/release/android/x86_64/libtorrent4j.so
+          export ANDROID_TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          ${ANDROID_TOOLCHAIN}/bin/llvm-objcopy --only-keep-debug swig/bin/release/android/x86_64/libtorrent4j.so swig/bin/release/android/x86_64/libtorrent4j.so.debug
+          ${ANDROID_TOOLCHAIN}/bin/llvm-strip --strip-unneeded -x swig/bin/release/android/x86_64/libtorrent4j.so
       - name: dependencies
         run: |
-          export ANDROID_TOOLCHAIN=${PWD}/android-toolchain
-          ${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android-readelf -d swig/bin/release/android/x86_64/libtorrent4j.so
+          export ANDROID_TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
+          ${ANDROID_TOOLCHAIN}/bin/llvm-readelf -d swig/bin/release/android/x86_64/libtorrent4j.so
       - uses: actions/upload-artifact@v2
         with:
-          name: libtorrent4j-x86_64-b2
+          name: libtorrent4j-android-x86_64-b2
           path: |
             swig/bin/release/android/x86_64/libtorrent4j.so
             swig/bin/release/android/x86_64/libtorrent4j.so.debug
