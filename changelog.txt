@@ -1,3 +1,10 @@
+
+  * minimum supported Android 32 bits API >= 19
+  * minimum supported Android 64 bits API >= 21
+  * using android NDK r21e
+  * using android prebuilt toolchain
+  * using android LLD linker
+
 2.0.2-13
 
   * using libtorrent master

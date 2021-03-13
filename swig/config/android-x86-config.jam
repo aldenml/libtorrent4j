@@ -2,7 +2,7 @@ import os ;
 
 ANDROID_TOOLCHAIN = [ os.environ ANDROID_TOOLCHAIN ] ;
 
-using clang : x86 : $(ANDROID_TOOLCHAIN)/bin/i686-linux-android-clang++ :
+using clang : x86 : $(ANDROID_TOOLCHAIN)/bin/i686-linux-android19-clang++ :
     <cxxflags>-fPIC
     <cxxflags>-DANDROID
     <cxxflags>-D__STDC_FORMAT_MACROS
@@ -10,12 +10,15 @@ using clang : x86 : $(ANDROID_TOOLCHAIN)/bin/i686-linux-android-clang++ :
     <cxxflags>-D_FILE_OFFSET_BITS=64
     <cxxflags>-fno-strict-aliasing
     <cxxflags>-fvisibility=hidden
+    <cxxflags>-D_FORTIFY_SOURCE=2
+    <cxxflags>-fstack-protector-strong
     <linkflags>-static-libstdc++
+    <linkflags>-fuse-ld=lld
+    <linkflags>-Wl,--build-id=sha1
+    # remove when API >= 29
+    <linkflags>-Wl,--no-rosegment
     # x86 devices have stack alignment issues, http://b.android.com/222239
     <cxxflags>-mstackrealign
     # debug information
     <cxxflags>-g
-    <cxxflags>-gdwarf-4
-    <cxxflags>-fdebug-macro
-    <cxxflags>-ggdb
     ;

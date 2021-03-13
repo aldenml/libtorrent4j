@@ -2,7 +2,7 @@ import os ;
 
 ANDROID_TOOLCHAIN = [ os.environ ANDROID_TOOLCHAIN ] ;
 
-using clang-linux : arm : $(ANDROID_TOOLCHAIN)/bin/arm-linux-androideabi-clang++ :
+using clang-linux : arm : $(ANDROID_TOOLCHAIN)/bin/armv7a-linux-androideabi19-clang++ :
     <cxxflags>-fPIC
     <cxxflags>-march=armv7-a
     <cxxflags>-mfpu=neon
@@ -12,10 +12,13 @@ using clang-linux : arm : $(ANDROID_TOOLCHAIN)/bin/arm-linux-androideabi-clang++
     <cxxflags>-D_FILE_OFFSET_BITS=64
     <cxxflags>-fno-strict-aliasing
     <cxxflags>-fvisibility=hidden
+    <cxxflags>-D_FORTIFY_SOURCE=2
+    <cxxflags>-fstack-protector-strong
     <linkflags>-static-libstdc++
+    <linkflags>-fuse-ld=lld
+    <linkflags>-Wl,--build-id=sha1
+    # remove when API >= 29
+    <linkflags>-Wl,--no-rosegment
     # debug information
     <cxxflags>-g
-    <cxxflags>-gdwarf-4
-    <cxxflags>-fdebug-macro
-    <cxxflags>-ggdb
     ;
