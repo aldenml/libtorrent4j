@@ -1,9 +1,21 @@
+2.0.2-14
 
+  * using libtorrent master
   * minimum supported Android 32 bits API >= 19
   * minimum supported Android 64 bits API >= 21
   * using android NDK r22
   * using android prebuilt toolchain
   * using android LLD linker
+  * lt:fix size_on_disk patch
+  * lt:fix torrent_info::v2 to be correct after freeing piece layers from
+    torrent_info
+  * lt:allow no-interest timeouts of peer connections before all connections
+    slots are full
+  * lt:add flag to force canonical file order and padding for v1-only torrents
+  * lt:return nullptr instead of crashing in get_storage_impl
+  * lt:fix issue where peers entering upload-mode cannot leave upload-mode
+  * lt:fix issue where a DHT message would count as an incoming connection
+  * lt:source code cleanup, performance and stability
 
 2.0.2-13
 

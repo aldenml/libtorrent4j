@@ -543,6 +543,15 @@ public final class TorrentBuilder {
     public static final create_flags_t V1_ONLY = create_torrent.v1_only;
 
     /**
+     * This flag only affects v1-only torrents, and is only relevant
+     * together with the v1_only_flag. This flag will force the
+     * same file order and padding as a v2 (or hybrid) torrent would have.
+     * It has the effect of ordering files and inserting pad files to align
+     * them with piece boundaries.
+     */
+    public static final create_flags_t CANONICAL_FILES = create_torrent.canonical_files;
+
+    /**
      *
      */
     public interface Listener {
