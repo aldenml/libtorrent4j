@@ -140,4 +140,5 @@ public class create_torrent {
   public final static create_flags_t symlinks = new create_flags_t(libtorrent_jni.create_torrent_symlinks_get(), false);
   public final static create_flags_t v2_only = new create_flags_t(libtorrent_jni.create_torrent_v2_only_get(), false);
   public final static create_flags_t v1_only = new create_flags_t(libtorrent_jni.create_torrent_v1_only_get(), false);
+  public final static create_flags_t canonical_files = new create_flags_t(libtorrent_jni.create_torrent_canonical_files_get(), false);
 }

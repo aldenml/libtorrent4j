@@ -3221,6 +3221,7 @@ public class libtorrent_jni {
   public final static native long create_torrent_symlinks_get();
   public final static native long create_torrent_v2_only_get();
   public final static native long create_torrent_v1_only_get();
+  public final static native long create_torrent_canonical_files_get();
   public final static native long new_create_torrent__SWIG_0(long jarg1, file_storage jarg1_, int jarg2, long jarg3, create_flags_t jarg3_);
   public final static native long new_create_torrent__SWIG_1(long jarg1, file_storage jarg1_, int jarg2);
   public final static native long new_create_torrent__SWIG_2(long jarg1, file_storage jarg1_);
