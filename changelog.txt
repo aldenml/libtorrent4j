@@ -1,3 +1,7 @@
+
+  * using android NDK r22b
+  * lt:source code cleanup, performance and stability
+
 2.0.2-14
 
   * using libtorrent master
