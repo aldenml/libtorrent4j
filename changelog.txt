@@ -1,4 +1,5 @@
 
+  * updated to OpenSSL 1.1.1k
   * using android NDK r22b
   * lt:source code cleanup, performance and stability
 
