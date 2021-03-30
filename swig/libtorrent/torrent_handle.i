@@ -8,6 +8,7 @@
 %ignore libtorrent::torrent_handle::use_interface;
 %ignore libtorrent::torrent_handle::native_handle;
 %ignore libtorrent::torrent_handle::torrent_file;
+%ignore libtorrent::torrent_handle::torrent_file_with_hashes;
 %ignore libtorrent::torrent_handle::get_full_peer_list;
 %ignore libtorrent::torrent_handle::set_metadata;
 %ignore libtorrent::torrent_handle::set_ssl_certificate_buffer;
@@ -54,6 +55,11 @@ struct status_flags_tag;
 
     libtorrent::torrent_info const* torrent_file_ptr() {
         return $self->torrent_file().get();
+    }
+
+    libtorrent::torrent_info const* torrent_file_with_hashes_ptr()
+    {
+        return $self->torrent_file_with_hashes().get();
     }
 
     std::vector<std::string> get_url_seeds() const {

@@ -192,14 +192,20 @@ public final class TorrentHandle
 
     /**
      * Returns a pointer to the torrent_info object associated with this
-     * torrent. The {@link TorrentInfo} object
-     * may be a copy of the internal object.
+     * torrent. The {@link TorrentInfo} object may be a copy of the internal
+     * object. If the torrent doesn't have metadata, the pointer will not be
+     * initialized (i.e. a null). The torrent may be in a state without
+     * metadata only if it was started without a .torrent file, e.g. by being
+     * added by magnet link.
      * <p>
-     * If the torrent doesn't have metadata, the pointer will not be
-     * initialized (i.e. a NULL pointer). The torrent may be in a state
-     * without metadata only if it was started without a .torrent file, e.g.
-     * by using the libtorrent extension of just supplying a tracker and
-     * info-hash.
+     * Note that the {@link TorrentInfo} object returned here may be a different
+     * instance than the one added to the session, with different attributes
+     * like piece layers, dht nodes and trackers. A {@link TorrentInfo} object does
+     * not round-trip cleanly when added to a session.
+     * <p>
+     * This means if you want to create a .torrent file by passing the
+     * {@link TorrentInfo} object into create_torrent, you need to use
+     * {@link #torrentFileWithHashes()} instead.
      *
      * @return the internal torrent info
      */
@@ -208,6 +214,35 @@ public final class TorrentHandle
             return null;
         }
         torrent_info ti = h.torrent_file_ptr();
+        return ti != null ? new TorrentInfo(ti) : null;
+    }
+
+    /**
+     * Returns a *copy* of the internal {@link TorrentInfo} and piece layer
+     * hashes (if it's a v2 torrent). The piece layers will only be included
+     * if they are available. If this torrent was added from a .torrent file
+     * with piece layers or if it's seeding, the piece layers are available.
+     * This function is more expensive than {@link #torrentFile()} since it
+     * needs to make copies of this information.
+     * <p>
+     * When constructing a create_torrent object from a {@link TorrentInfo} that's
+     * in a session, you need to use this function.
+     * <p>
+     * Note that a torrent added from a magnet link may not have the full
+     * merkle trees for all files, and hence not have the complete piece
+     * layers. In that state, you cannot create a .torrent file even from
+     * the {@link TorrentInfo} returned from `torrentFileWithHashes`. Once the
+     * torrent completes downloading all files, becoming a seed, you can
+     * make a .torrent file from it.
+     *
+     * @return a *copy* of the internal torrent info with the piece layer
+     * hashes (if it's a v2 torrent).
+     */
+    public TorrentInfo torrentFileWithHashes() {
+        if (!h.is_valid()) {
+            return null;
+        }
+        torrent_info ti = h.torrent_file_with_hashes_ptr();
         return ti != null ? new TorrentInfo(ti) : null;
     }
 
