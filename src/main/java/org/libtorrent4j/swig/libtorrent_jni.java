@@ -1091,7 +1091,6 @@ public class libtorrent_jni {
   public final static native boolean torrent_info_is_valid(long jarg1, torrent_info jarg1_);
   public final static native boolean torrent_info_priv(long jarg1, torrent_info jarg1_);
   public final static native boolean torrent_info_is_i2p(long jarg1, torrent_info jarg1_);
-  public final static native boolean torrent_info_v2_piece_hashes_verified(long jarg1, torrent_info jarg1_);
   public final static native int torrent_info_piece_size(long jarg1, torrent_info jarg1_, int jarg2);
   public final static native long torrent_info_hash_for_piece(long jarg1, torrent_info jarg1_, int jarg2);
   public final static native boolean torrent_info_is_loaded(long jarg1, torrent_info jarg1_);
@@ -1679,6 +1678,7 @@ public class libtorrent_jni {
   public final static native void torrent_handle_add_piece_bytes__SWIG_0(long jarg1, torrent_handle jarg1_, int jarg2, long jarg3, byte_vector jarg3_, long jarg4, add_piece_flags_t jarg4_);
   public final static native void torrent_handle_add_piece_bytes__SWIG_1(long jarg1, torrent_handle jarg1_, int jarg2, long jarg3, byte_vector jarg3_);
   public final static native long torrent_handle_torrent_file_ptr(long jarg1, torrent_handle jarg1_);
+  public final static native long torrent_handle_torrent_file_with_hashes_ptr(long jarg1, torrent_handle jarg1_);
   public final static native long torrent_handle_get_url_seeds(long jarg1, torrent_handle jarg1_);
   public final static native void torrent_handle_set_ssl_certificate_buffer_ex(long jarg1, torrent_handle jarg1_, long jarg2, byte_vector jarg2_, long jarg3, byte_vector jarg3_, long jarg4, byte_vector jarg4_);
   public final static native int torrent_handle_queue_position_ex(long jarg1, torrent_handle jarg1_);
@@ -1962,6 +1962,7 @@ public class libtorrent_jni {
   public final static native long alert_cast_to_block_uploaded_alert(long jarg1, alert jarg1_);
   public final static native long alert_cast_to_alerts_dropped_alert(long jarg1, alert jarg1_);
   public final static native long alert_cast_to_socks5_alert(long jarg1, alert jarg1_);
+  public final static native long alert_cast_to_file_prio_alert(long jarg1, alert jarg1_);
   public final static native long new_alert_category_t();
   public final static native long alert_category_t_all();
   public final static native boolean alert_category_t_non_zero(long jarg1, alert_category_t jarg1_);
@@ -2960,6 +2961,18 @@ public class libtorrent_jni {
   public final static native void socks5_alert_op_set(long jarg1, socks5_alert jarg1_, int jarg2);
   public final static native int socks5_alert_op_get(long jarg1, socks5_alert jarg1_);
   public final static native void delete_socks5_alert(long jarg1);
+  public final static native int file_prio_alert_priority_get();
+  public final static native int file_prio_alert_alert_type_get();
+  public final static native int file_prio_alert_type(long jarg1, file_prio_alert jarg1_);
+  public final static native long file_prio_alert_category(long jarg1, file_prio_alert jarg1_);
+  public final static native String file_prio_alert_what(long jarg1, file_prio_alert jarg1_);
+  public final static native long file_prio_alert_static_category_get();
+  public final static native String file_prio_alert_message(long jarg1, file_prio_alert jarg1_);
+  public final static native void file_prio_alert_error_set(long jarg1, file_prio_alert jarg1_, long jarg2, error_code jarg2_);
+  public final static native long file_prio_alert_error_get(long jarg1, file_prio_alert jarg1_);
+  public final static native void file_prio_alert_op_set(long jarg1, file_prio_alert jarg1_, int jarg2);
+  public final static native int file_prio_alert_op_get(long jarg1, file_prio_alert jarg1_);
+  public final static native void delete_file_prio_alert(long jarg1);
   public final static native long new_picker_flags_t();
   public final static native long picker_flags_t_all();
   public final static native boolean picker_flags_t_non_zero(long jarg1, picker_flags_t jarg1_);
@@ -3437,6 +3450,7 @@ public class libtorrent_jni {
   public final static native long block_uploaded_alert_SWIGUpcast(long jarg1);
   public final static native long alerts_dropped_alert_SWIGUpcast(long jarg1);
   public final static native long socks5_alert_SWIGUpcast(long jarg1);
+  public final static native long file_prio_alert_SWIGUpcast(long jarg1);
   public final static native long settings_pack_SWIGUpcast(long jarg1);
   public final static native long session_SWIGUpcast(long jarg1);
 

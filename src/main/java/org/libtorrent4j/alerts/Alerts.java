@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2021, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j.alerts;
 
 import org.libtorrent4j.swig.alert;
@@ -605,6 +612,12 @@ public final class Alerts {
             @Override
             public Alert<?> cast(alert a) {
                 return new Socks5Alert(cast_to_socks5_alert(a));
+            }
+        };
+        arr[97] = new CastLambda() {
+            @Override
+            public Alert<?> cast(alert a) {
+                return new FilePrioAlert(cast_to_file_prio_alert(a));
             }
         };
 

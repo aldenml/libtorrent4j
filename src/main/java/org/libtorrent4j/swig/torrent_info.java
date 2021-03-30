@@ -180,10 +180,6 @@ public class torrent_info {
     return libtorrent_jni.torrent_info_is_i2p(swigCPtr, this);
   }
 
-  public boolean v2_piece_hashes_verified() {
-    return libtorrent_jni.torrent_info_v2_piece_hashes_verified(swigCPtr, this);
-  }
-
   public int piece_size(int index) {
     return libtorrent_jni.torrent_info_piece_size(swigCPtr, this, index);
   }

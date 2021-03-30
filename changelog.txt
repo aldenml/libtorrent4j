@@ -1,6 +1,28 @@
+2.0.3-15
 
+  * using libtorrent master
   * updated to OpenSSL 1.1.1k
   * using android NDK r22b
+  * lt:add new torrent_file_with_hashes() which includes piece layers for
+    creating .torrent files
+  * lt:use /etc/ssl/cert.pem to validate HTTPS trackers and web servers on
+    MacOS
+  * lt:raise the severity of peers sending invalid messages to 'peer_error'.
+    Simplify m_upload_only to just record the explicit upload-only state
+    communicated via the extension message. Implied upload only is moved to
+    the upload_only() query. Add simulations for peer connection tests.
+    Mostly for have-all, have-none and bitfields, and some simple invalid
+    requests. This will serve as a platform to add more sophisticated tests.
+  * lt:restore peer_connection::is_seed to not take m_have_all into account.
+    It caused some regression in edge cases
+  * lt:add a file_prio_alert, posted when file priorities are applied
+  * lt:prefer __builtin_popcountl() over portable C implementation of
+    popcnt. This enables the ARM64 SIMD instruction on Apple M1
+  * lt:fix issue with setting file priorities and saving resume data. The
+    need-save-resume flag should not be set until *after* the new file
+    priorities have been applied. Don't set the need-save-resume flag just
+    by loading the resume data (when applying the file priorities into the
+    piece priorities)
   * lt:source code cleanup, performance and stability
 
 2.0.2-14
