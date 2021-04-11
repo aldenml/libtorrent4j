@@ -161,7 +161,7 @@ public final class TorrentHandle
      *
      * @param firstPiece piece index for the rage
      */
-    void setSequentialRange(int firstPiece, int lastPiece) {
+    public void setSequentialRange(int firstPiece, int lastPiece) {
         h.set_sequential_range(firstPiece, lastPiece);
     }
 
@@ -174,7 +174,7 @@ public final class TorrentHandle
      *
      * @param firstPiece piece index for the rage
      */
-    void setSequentialRange(int firstPiece) {
+    public void setSequentialRange(int firstPiece) {
         h.set_sequential_range(firstPiece);
     }
 
