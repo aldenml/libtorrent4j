@@ -200,12 +200,20 @@ public class file_storage {
     return libtorrent_jni.file_storage_file_index_at_piece(swigCPtr, this, piece);
   }
 
+  public int last_file_index_at_piece(int piece) {
+    return libtorrent_jni.file_storage_last_file_index_at_piece(swigCPtr, this, piece);
+  }
+
   public int file_index_for_root(sha256_hash root_hash) {
     return libtorrent_jni.file_storage_file_index_for_root(swigCPtr, this, sha256_hash.getCPtr(root_hash), root_hash);
   }
 
   public int piece_index_at_file(int f) {
     return libtorrent_jni.file_storage_piece_index_at_file(swigCPtr, this, f);
+  }
+
+  public int last_piece_index_at_file(int f) {
+    return libtorrent_jni.file_storage_last_piece_index_at_file(swigCPtr, this, f);
   }
 
   public void add_file_ex(error_code ec, String path, long file_size, file_flags_t file_flags, long mtime, String symlink_path) {

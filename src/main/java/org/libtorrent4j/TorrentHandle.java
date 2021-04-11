@@ -153,6 +153,32 @@ public final class TorrentHandle
     }
 
     /**
+     * Sets the first and last piece of the range for the piece picker to start
+     * downloading in sequential mode.
+     *
+     * If the torrent metadata has not been downloaded yet
+     * then the functions do nothing.
+     *
+     * @param firstPiece piece index for the rage
+     */
+    void setSequentialRange(int firstPiece, int lastPiece) {
+        h.set_sequential_range(firstPiece, lastPiece);
+    }
+
+    /**
+     * Sets the first piece of the range for the piece picker to start
+     * downloading in sequential mode.
+     *
+     * If the torrent metadata has not been downloaded yet
+     * then the functions do nothing.
+     *
+     * @param firstPiece piece index for the rage
+     */
+    void setSequentialRange(int firstPiece) {
+        h.set_sequential_range(firstPiece);
+    }
+
+    /**
      * Returns true if this piece has been completely downloaded, and false
      * otherwise.
      *
@@ -181,7 +207,7 @@ public final class TorrentHandle
         peer_info_vector v = new peer_info_vector();
         h.get_peer_info(v);
 
-        int size = (int) v.size();
+        int size = v.size();
         ArrayList<PeerInfo> l = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
             l.add(new PeerInfo(v.get(i)));

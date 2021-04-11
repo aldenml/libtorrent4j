@@ -447,11 +447,51 @@ public final class FileStorage {
     /**
      * Returns the index of the file at the given offset in the torrent.
      *
-     * @param offset
+     * @param offset torrent's offset
      *
      */
     public int fileIndexAtOffset(long offset) {
         return fs.file_index_at_offset(offset);
+    }
+
+    /**
+     * Returns the index of the file at the given piece in the torrent.
+     *
+     * @param piece torrent's piece
+     *
+     */
+    public int fileIndexAtPiece(int piece) {
+        return fs.file_index_at_piece(piece);
+    }
+
+    /**
+     * Returns the last index of the file at the given piece in the torrent.
+     *
+     * @param piece torrent's piece
+     *
+     */
+    public int lastFileIndexAtPiece(int piece) {
+        return fs.last_file_index_at_piece(piece);
+    }
+
+    /**
+     * Returns the first piece index of the given file in the torrent.
+     *
+     * @param fileIndex torrent's file index
+     *
+     */
+    public int pieceIndexAtFile(int fileIndex) {
+        return fs.piece_index_at_file(fileIndex);
+    }
+
+    /**
+     * Returns the last piece index of the given file in the torrent.
+     *
+     * @param fileIndex torrent's file index
+     *
+     */
+    public int lastPieceIndexAtFile(int fileIndex) {
+        return fs.last_piece_index_at_file(fileIndex);
     }
 
     static ArrayList<FileSlice> mapBlock(file_slice_vector v) {
