@@ -967,8 +967,10 @@ public class libtorrent_jni {
   public final static native boolean file_storage_file_absolute_path(long jarg1, file_storage jarg1_, int jarg2);
   public final static native int file_storage_file_index_at_offset(long jarg1, file_storage jarg1_, long jarg2);
   public final static native int file_storage_file_index_at_piece(long jarg1, file_storage jarg1_, int jarg2);
+  public final static native int file_storage_last_file_index_at_piece(long jarg1, file_storage jarg1_, int jarg2);
   public final static native int file_storage_file_index_for_root(long jarg1, file_storage jarg1_, long jarg2, sha256_hash jarg2_);
   public final static native int file_storage_piece_index_at_file(long jarg1, file_storage jarg1_, int jarg2);
+  public final static native int file_storage_last_piece_index_at_file(long jarg1, file_storage jarg1_, int jarg2);
   public final static native void file_storage_add_file_ex__SWIG_0(long jarg1, file_storage jarg1_, long jarg2, error_code jarg2_, String jarg3, long jarg4, long jarg5, file_flags_t jarg5_, long jarg6, String jarg7);
   public final static native void file_storage_add_file_ex__SWIG_1(long jarg1, file_storage jarg1_, long jarg2, error_code jarg2_, String jarg3, long jarg4, long jarg5, file_flags_t jarg5_, long jarg6);
   public final static native void file_storage_add_file_ex__SWIG_2(long jarg1, file_storage jarg1_, long jarg2, error_code jarg2_, String jarg3, long jarg4, long jarg5, file_flags_t jarg5_);
@@ -1587,6 +1589,8 @@ public class libtorrent_jni {
   public final static native void delete_partial_piece_info(long jarg1);
   public final static native long torrent_handle_overwrite_existing_get();
   public final static native void torrent_handle_read_piece(long jarg1, torrent_handle jarg1_, int jarg2);
+  public final static native void torrent_handle_set_sequential_range__SWIG_0(long jarg1, torrent_handle jarg1_, int jarg2, int jarg3);
+  public final static native void torrent_handle_set_sequential_range__SWIG_1(long jarg1, torrent_handle jarg1_, int jarg2);
   public final static native boolean torrent_handle_have_piece(long jarg1, torrent_handle jarg1_, int jarg2);
   public final static native void torrent_handle_get_peer_info(long jarg1, torrent_handle jarg1_, long jarg2, peer_info_vector jarg2_);
   public final static native long torrent_handle_query_distributed_copies_get();

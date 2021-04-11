@@ -40,6 +40,14 @@ public class torrent_handle {
     libtorrent_jni.torrent_handle_read_piece(swigCPtr, this, piece);
   }
 
+  public void set_sequential_range(int first_piece, int last_piece) {
+    libtorrent_jni.torrent_handle_set_sequential_range__SWIG_0(swigCPtr, this, first_piece, last_piece);
+  }
+
+  public void set_sequential_range(int first_piece) {
+    libtorrent_jni.torrent_handle_set_sequential_range__SWIG_1(swigCPtr, this, first_piece);
+  }
+
   public boolean have_piece(int piece) {
     return libtorrent_jni.torrent_handle_have_piece(swigCPtr, this, piece);
   }

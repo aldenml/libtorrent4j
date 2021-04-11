@@ -1,3 +1,13 @@
+2.0.3-16
+
+  * using libtorrent master
+  * improved java api layer
+  * lt:updated libdatachannel to v0.12.1
+  * lt:add first and last piece range to sequential download mode
+  * lt:make mmap disk io shutdown more reliable. don't ever miss a notification
+  * lt:fix identify BitSpirit 3.6
+  * lt:source code cleanup, performance and stability
+
 2.0.3-15
 
   * using libtorrent master
