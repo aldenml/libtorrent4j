@@ -7,6 +7,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5dda1f00528e4d93864eb8694c702bba)](https://app.codacy.com/manual/aldenml/libtorrent4j/dashboard)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/5dda1f00528e4d93864eb8694c702bba)](https://app.codacy.com/manual/aldenml/libtorrent4j/dashboard)
 [![Maven Central](https://img.shields.io/maven-central/v/org.libtorrent4j/libtorrent4j.svg?label=maven)](https://search.maven.org/search?q=g:%22org.libtorrent4j%22%20AND%20a:%22libtorrent4j%22)
+[![Open Hub](https://www.openhub.net/p/libtorrent4j/widgets/project_thin_badge.gif)](https://www.openhub.net/p/libtorrent4j)
 
 A swig Java interface for [libtorrent](https://github.com/arvidn/libtorrent).
 
