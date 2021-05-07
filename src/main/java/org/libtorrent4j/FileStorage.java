@@ -494,8 +494,26 @@ public final class FileStorage {
         return fs.last_piece_index_at_file(fileIndex);
     }
 
+    /**
+     * Validate any symlinks, to ensure they all point to
+     * other files or directories inside this storage. Any invalid symlinks
+     * are updated to point to themselves.
+     */
+    public void sanitizeSymlinks() {
+        fs.sanitize_symlinks();
+    }
+
+    /**
+     * Returns true if this torrent contains v2 metadata.
+     *
+     * @return true if has v2 metadata.
+     */
+    public boolean hasV2() {
+        return fs.v2();
+    }
+
     static ArrayList<FileSlice> mapBlock(file_slice_vector v) {
-        int size = (int) v.size();
+        int size = v.size();
 
         ArrayList<FileSlice> l = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
