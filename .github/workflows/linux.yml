@@ -66,7 +66,7 @@ jobs:
           sudo apt install gcc-10
       - name: setup boost
         run: |
-          wget -nv -O boost.tar.gz https://dl.bintray.com/boostorg/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
+          wget -nv -O boost.tar.gz https://boostorg.jfrog.io/artifactory/main/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
           tar xzf boost.tar.gz
           mv boost_${BOOST_VERSION} boost
           cd boost

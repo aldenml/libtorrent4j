@@ -1,8 +1,18 @@
+2.0.3-17
+
+  * using libtorrent master
+  * improved java api layer
+  * lt:fix issue creating and loading v2 torrents with empty files
+  * lt:updated libdatachannel to v0.12.2
+  * lt:source code cleanup, performance and stability
+
 2.0.3-16
 
   * using libtorrent master
   * improved java api layer
   * lt:updated libdatachannel to v0.12.1
+  * lt:fix issue where hash2 disk jobs would not be assigned to the hashing
+    threads in the disk I/O thread pool
   * lt:add first and last piece range to sequential download mode
   * lt:make mmap disk io shutdown more reliable. don't ever miss a notification
   * lt:fix identify BitSpirit 3.6

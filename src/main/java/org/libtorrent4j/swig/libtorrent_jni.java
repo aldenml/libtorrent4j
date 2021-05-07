@@ -971,6 +971,8 @@ public class libtorrent_jni {
   public final static native int file_storage_file_index_for_root(long jarg1, file_storage jarg1_, long jarg2, sha256_hash jarg2_);
   public final static native int file_storage_piece_index_at_file(long jarg1, file_storage jarg1_, int jarg2);
   public final static native int file_storage_last_piece_index_at_file(long jarg1, file_storage jarg1_, int jarg2);
+  public final static native void file_storage_sanitize_symlinks(long jarg1, file_storage jarg1_);
+  public final static native boolean file_storage_v2(long jarg1, file_storage jarg1_);
   public final static native void file_storage_add_file_ex__SWIG_0(long jarg1, file_storage jarg1_, long jarg2, error_code jarg2_, String jarg3, long jarg4, long jarg5, file_flags_t jarg5_, long jarg6, String jarg7);
   public final static native void file_storage_add_file_ex__SWIG_1(long jarg1, file_storage jarg1_, long jarg2, error_code jarg2_, String jarg3, long jarg4, long jarg5, file_flags_t jarg5_, long jarg6);
   public final static native void file_storage_add_file_ex__SWIG_2(long jarg1, file_storage jarg1_, long jarg2, error_code jarg2_, String jarg3, long jarg4, long jarg5, file_flags_t jarg5_);

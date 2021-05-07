@@ -8,14 +8,13 @@
 %ignore libtorrent::file_storage::apply_pointer_offset;
 %ignore libtorrent::file_storage::file_range;
 %ignore libtorrent::file_storage::piece_range;
-%ignore libtorrent::file_storage::sanitize_symlinks;
-%ignore libtorrent::file_storage::v2;
 %ignore libtorrent::file_storage::add_file_borrow;
 %ignore libtorrent::file_storage::add_file;
 %ignore libtorrent::file_storage::file_name;
 %ignore libtorrent::file_storage::paths;
 %ignore libtorrent::file_storage::file_piece_range;
 %ignore libtorrent::file_storage::internal_symlink;
+%ignore libtorrent::file_storage::remove_tail_padding;
 
 namespace libtorrent {
 

@@ -216,6 +216,14 @@ public class file_storage {
     return libtorrent_jni.file_storage_last_piece_index_at_file(swigCPtr, this, f);
   }
 
+  public void sanitize_symlinks() {
+    libtorrent_jni.file_storage_sanitize_symlinks(swigCPtr, this);
+  }
+
+  public boolean v2() {
+    return libtorrent_jni.file_storage_v2(swigCPtr, this);
+  }
+
   public void add_file_ex(error_code ec, String path, long file_size, file_flags_t file_flags, long mtime, String symlink_path) {
     libtorrent_jni.file_storage_add_file_ex__SWIG_0(swigCPtr, this, error_code.getCPtr(ec), ec, path, file_size, file_flags_t.getCPtr(file_flags), file_flags, mtime, symlink_path);
   }
