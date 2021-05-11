@@ -1,3 +1,7 @@
+2.0.3-18
+
+ * fixed AlertType for missing file_prio_alert entry
+
 2.0.3-17
 
   * using libtorrent master

@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2021, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j.alerts;
 
 import org.libtorrent4j.swig.*;
@@ -95,6 +102,7 @@ public enum AlertType {
     BLOCK_UPLOADED(block_uploaded_alert.alert_type),
     ALERTS_DROPPED(alerts_dropped_alert.alert_type),
     SOCKS5(socks5_alert.alert_type),
+    FILE_PRIO(file_prio_alert.alert_type),
     UNKNOWN(-1);
 
     private static final AlertType[] TABLE = buildTable();
@@ -220,6 +228,7 @@ public enum AlertType {
         arr[94] = BLOCK_UPLOADED;
         arr[95] = ALERTS_DROPPED;
         arr[96] = SOCKS5;
+        arr[97] = FILE_PRIO;
 
         return arr;
     }
