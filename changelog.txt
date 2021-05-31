@@ -1,3 +1,5 @@
+2.0.3-19
+
   * using libtorrent master
   * updated to boost 1.76.0
   * lt:clear seed flag when we receive an incomplete bitfield from a peer
