@@ -1,4 +1,16 @@
+  * using libtorrent master
   * updated to boost 1.76.0
+  * lt:clear seed flag when we receive an incomplete bitfield from a peer
+  * lt:improve handling of seed flag in PEX messages
+  * lt:mitigate accounting error in http seed connection
+  * lt:fix issue of accruing unlimited DHT node candidates when DHT is disabled
+  * lt:fix bug in parsing chunked encoding
+  * lt:a better fix to active, seeding and finished duration timers
+  * lt:fix incorrect reporting of active_duration when entering graceful-pause
+  * lt:fix redundant file_size check in torrent_info
+  * lt:fix support for the executable file permission attribute (and avoid
+    making every file executable, on unix-like systems)
+  * lt:source code cleanup, performance and stability
 
 2.0.3-18
 
