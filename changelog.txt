@@ -1,3 +1,23 @@
+2.0.4-20
+
+  * using libtorrent master
+  * added Sha256Hash
+  * lt:updated libdatachannel to v0.13.4
+  * lt:fix checking torrents
+  * lt:removed time_critical_mode from piece_picker::pick_pieces,
+    peer_connection and request_blocks.
+  * lt:ensure peer_info::client is always valid UTF-8
+  * lt:don't check pieces we already have (such as pad files), when running a
+    full check
+  * lt:improve piece-picker pad-file granularity to bytes (from blocks)
+  * lt:improve precision of total_wanted and total_wanted_done
+  * lt:fix shutdown issue with incoming SSL connections
+  * lt:fix issue with adding v2 torrents with invalid file root hash
+  * lt:simplify some checks of pieces against the ignored list in the piece
+    picker
+  * lt:fix piece picker bug causing double-picks with prefer-contiguous enabled
+  * lt:source code cleanup, performance and stability
+
 2.0.3-19
 
   * using libtorrent master

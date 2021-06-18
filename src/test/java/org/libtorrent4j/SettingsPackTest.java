@@ -28,7 +28,7 @@ public class SettingsPackTest {
 
         String value = new String(fingerprint, 0, 8, StandardCharsets.US_ASCII);
 
-        assertEquals("-LT2030-", value);
+        assertEquals("-LT2040-", value);
     }
 
     @Test
