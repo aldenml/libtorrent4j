@@ -1,3 +1,20 @@
+2.0.4-21
+
+  * using libtorrent master
+  * lt:add write_torrent_file(), a function to save a .torrent file from an
+    add_torrent_params
+  * lt:don't require piece layers in v2 torrent files, but ensure they are
+    valid if they are present
+  * lt:use can_disconnect in torrent when is finished
+  * lt:use can_disconnect in bt_peer_connection upload-to-upload connection
+  * lt:fix seed rank calculation when we're the only known seed
+  * lt:fix issue when checking certain v2 torrents
+  * lt:make the hash_picker tolerate a valid-hashes buffer that's lying
+  * lt:fix issue where a peer may not send a hash request after a piece failure
+  * lt:fix issue when asking for file progress right when starting a
+    force-recheck
+  * lt:source code cleanup, performance and stability
+
 2.0.4-20
 
   * using libtorrent master

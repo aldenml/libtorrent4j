@@ -3299,6 +3299,7 @@ public class libtorrent_jni {
   public final static native long read_resume_data__SWIG_0(long jarg1, bdecode_node jarg1_, long jarg2, error_code jarg2_, int jarg3);
   public final static native long read_resume_data__SWIG_1(long jarg1, bdecode_node jarg1_, long jarg2, error_code jarg2_);
   public final static native long write_resume_data(long jarg1, add_torrent_params jarg1_);
+  public final static native long write_torrent_file(long jarg1, add_torrent_params jarg1_);
   public final static native void delete_alert_notify_callback(long jarg1);
   public final static native void alert_notify_callback_on_alert(long jarg1, alert_notify_callback jarg1_);
   public final static native void alert_notify_callback_on_alertSwigExplicitalert_notify_callback(long jarg1, alert_notify_callback jarg1_);
