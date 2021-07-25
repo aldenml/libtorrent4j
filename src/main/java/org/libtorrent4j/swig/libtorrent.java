@@ -361,6 +361,10 @@ public class libtorrent {
     return new entry(libtorrent_jni.write_resume_data(add_torrent_params.getCPtr(atp), atp), true);
   }
 
+  public static entry write_torrent_file(add_torrent_params atp) {
+    return new entry(libtorrent_jni.write_torrent_file(add_torrent_params.getCPtr(atp), atp), true);
+  }
+
   public static int find_metric_idx_ex(String name) {
     return libtorrent_jni.find_metric_idx_ex(name);
   }
