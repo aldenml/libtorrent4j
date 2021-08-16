@@ -1,4 +1,6 @@
+  * using libtorrent master
   * updated to boost 1.77.0
+  * lt:source code cleanup, performance and stability
 
 2.0.4-21
 
