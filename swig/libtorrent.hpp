@@ -298,39 +298,12 @@ lt::add_torrent_params parse_magnet_uri(std::string const& uri, lt::error_code& 
 }
 
 #if defined(__ANDROID__) || defined(ANDROID)
-
-#include <dlfcn.h>
-#include <unistd.h> // lseek
-#include <stdio.h> // fileno
-
-void* get_libc()
-{
-    static void* h = dlopen("libc.so", RTLD_NOW);
-    return h;
-}
-
-// NOTE: remove getifaddrs and freeifaddrs when supported API >= 24
-extern "C" int getifaddrs(struct ifaddrs** __list_ptr)
-{
-    typedef int func_t(struct ifaddrs**);
-    static func_t* f = (func_t*) dlsym(get_libc(), "getifaddrs");
-    return f != NULL ? f(__list_ptr) : -1;
-}
-
-extern "C" void freeifaddrs(struct ifaddrs* __ptr)
-{
-    typedef void func_t(struct ifaddrs*);
-    static func_t* f = (func_t*) dlsym(get_libc(), "freeifaddrs");
-    if (f != NULL) f(__ptr);
-}
-
 // NOTE: remove getrandom when supported API >= 28
 extern "C" ssize_t getrandom(void* __buffer, size_t __buffer_size, unsigned int __flags)
 {
     lt::aux::random_bytes({static_cast<char*>(__buffer), static_cast<std::ptrdiff_t>(__buffer_size)});
     return __buffer_size;
 }
-
 #endif
 
 #endif
