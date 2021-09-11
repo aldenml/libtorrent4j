@@ -2,7 +2,7 @@ import os ;
 
 ANDROID_TOOLCHAIN = [ os.environ ANDROID_TOOLCHAIN ] ;
 
-using clang : x86_64 : $(ANDROID_TOOLCHAIN)/bin/x86_64-linux-android21-clang++ :
+using clang : x86_64 : $(ANDROID_TOOLCHAIN)/bin/x86_64-linux-android24-clang++ :
     <cxxflags>-fPIC
     <cxxflags>-DANDROID
     <cxxflags>-fno-strict-aliasing
