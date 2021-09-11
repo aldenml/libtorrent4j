@@ -33,7 +33,7 @@ ENV AR="${TOOLCHAIN}/bin/llvm-ar"
 ENV LD="${TOOLCHAIN}/bin/ld"
 ENV RANLIB="${TOOLCHAIN}/bin/llvm-ranlib"
 
-RUN export CC=${TOOLCHAIN}/bin/armv7a-linux-androideabi19-clang \
+RUN export CC=${TOOLCHAIN}/bin/armv7a-linux-androideabi24-clang \
     && cd openssl-src \
     && ./Configure linux-armv4 ${OPENSSL_NO_OPTS} -march=armv7-a -mfpu=neon --prefix=/openssl-arm \
     && make clean \
@@ -41,7 +41,7 @@ RUN export CC=${TOOLCHAIN}/bin/armv7a-linux-androideabi19-clang \
     && make install_sw \
     && cd ..
 
-RUN export CC=${TOOLCHAIN}/bin/aarch64-linux-android21-clang \
+RUN export CC=${TOOLCHAIN}/bin/aarch64-linux-android24-clang \
     && cd openssl-src \
     && ./Configure linux-aarch64 ${OPENSSL_NO_OPTS} -march=armv8-a+crypto -mfpu=neon --prefix=/openssl-arm64 \
     && make clean \
@@ -49,7 +49,7 @@ RUN export CC=${TOOLCHAIN}/bin/aarch64-linux-android21-clang \
     && make install_sw \
     && cd ..
 
-RUN export CC=${TOOLCHAIN}/bin/i686-linux-android19-clang \
+RUN export CC=${TOOLCHAIN}/bin/i686-linux-android24-clang \
     && cd openssl-src \
     && ./Configure linux-elf ${OPENSSL_NO_OPTS} --prefix=/openssl-x86 \
     && make clean \
@@ -57,7 +57,7 @@ RUN export CC=${TOOLCHAIN}/bin/i686-linux-android19-clang \
     && make install_sw \
     && cd ..
 
-RUN export CC=${TOOLCHAIN}/bin/x86_64-linux-android21-clang \
+RUN export CC=${TOOLCHAIN}/bin/x86_64-linux-android24-clang \
     && cd openssl-src \
     && ./Configure linux-x86_64 ${OPENSSL_NO_OPTS} --prefix=/openssl-x86_64 \
     && make clean \
@@ -69,7 +69,6 @@ RUN cd openssl-src \
     && make clean \
     && cd ..
 
-RUN sed -i 's/24/19/g' ${TOOLCHAIN}/sysroot/usr/include/ifaddrs.h \
-    && sed -i 's/28/19/g' ${TOOLCHAIN}/sysroot/usr/include/sys/random.h
+RUN sed -i 's/28/24/g' ${TOOLCHAIN}/sysroot/usr/include/sys/random.h
 
 COPY b2-arm.sh b2-arm64.sh b2-x86.sh b2-x86_64.sh /
