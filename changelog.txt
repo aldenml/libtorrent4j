@@ -1,7 +1,66 @@
-2.0.4-22-RC1
+2.0.5-22
 
+  * using libtorrent master
   * minimum supported Android API >= 24
   * fix for new network access restrictions in android 11
+  * lt:allow unspecified address for android api >= 24
+  * lt: explicitly FlushViewOfFile() on windows when closing a file and
+    periodically the file with most dirty bytes
+  * lt:factor out storage index free list from mmap_disk_io and posix_disk_io
+  * lt:enable close_file_interval by default on windows, set to 240 seconds
+  * lt:use cached DNS resolver for socks5 proxy
+  * lt:back-port fix for accepting incoming connections over socks5
+  * lt:fix issue where incoming uTP connections were not accepted over SOCKS5
+  * lt:use a more reliable work-around for msvc standard library types whose
+    move and move-assign operators can throw
+  * lt:overhaul the merkle_tree class in order to allow it to have a
+    consistent (and well defined) invariant
+  * lt:rename variables, small strengthening of invariant check in merkle_tree
+  * lt:add special case for single-node merkle trees in load_piece_layer,
+    to maintain an efficient internal representation
+  * lt:add merkle_get_first_child() overload
+  * lt:make the token limit when parsing metadata from magnet files
+    configurable
+  * lt:use ifaddrs for android api >= 24, implement enum_routes with
+    operation_not_supported
+  * lt:fix stalled pieces on disk-full errors
+  * lt:fix issue with stalled pieces on disk full errors
+  * lt:fix logic penalizing peers for sending corrupt data
+  * lt:remove unintended reserve() call in resolve_links
+  * lt:fix merkle_tree operator[] and compare_node in the various
+    memory-optimized modes
+  * lt:slight refactor of logic penalizing peers for sending corrupt data
+  * lt:guard against self assignment in hasher512 and hasher code
+  * lt:disable deprecation warnings in code calling OpenSSL SHA1 functions
+  * lt:fix ambiguous overload of utf8_latin1. Both std::string_view and
+    boost::json::string_view can be constructed from a boost::json::string
+  * lt:remove unused field on peer_connection, previously used for debugging
+  * lt:minor logging fixes
+  * lt:add null checks in iface_from_ifaddrs
+  * lt:get_torrent_copy_with_hashes() fails if we don't have all the piece
+    layers yet
+  * lt:don't open the piece in the piece picker if there still are outstanding
+    hash jobs (to handle write failures)
+  * lt:silence conversion signedness warning on file.cpp
+  * lt:restore path character encoding conversion for non UTF-8 locales on
+    linux
+  * lt:sanitize surrogates found in utf-8
+  * lt:fix for building with boost-1.77 on windows
+  * lt:fix issue when asking for file progress right when starting a
+   force-recheck
+  * lt:bump handler allocation sizes for boost-1.77 (linux)
+  * lt:fix restoring last_seen_complete from resume data
+  * lt:fix build errors involving unsatisfied constraints
+  * lt:improve hash request debug logging
+  * lt:fix uninitialized timestamp in hash-picker requests
+  * lt:fix issue on macOS where the DHT was not restarted on a network-up
+    notification
+  * lt:fix use-after-free bug in make_magnet_uri
+  * lt:fix refactoring bug introduced when turning http_stream handlers into
+    templates, where buffer read_pos was checked after being used
+  * lt:make remove_torrent flags be treated as flags (instead of an enum)
+  * lt:removed name-field at root from write_torrent_file()
+  * lt:source code cleanup, performance and stability
 
 2.0.4-21
 
