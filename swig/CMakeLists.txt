@@ -35,6 +35,7 @@ option(webtorrent "" ON)
 option(USE_JUICE "" ON)
 option(USE_NETTLE "" OFF)
 
+set(deprecated-functions OFF)
 set(Boost_USE_STATIC_LIBS ON)
 set(OPENSSL_USE_STATIC_LIBS ON)
 set(OPENSSL_MSVC_STATIC_RT ON)
