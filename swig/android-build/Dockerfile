@@ -9,8 +9,8 @@ RUN apt update -y \
 
 ENV BOOST_DOT_VERSION="1.76.0"
 ENV BOOST_VERSION="1_76_0"
-ENV NDK_VERSION="r22b"
-ENV OPENSSL_VERSION="1.1.1k"
+ENV NDK_VERSION="r23b"
+ENV OPENSSL_VERSION="1.1.1m"
 ENV OPENSSL_NO_OPTS="no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3 -fPIC"
 
 RUN wget -nv -O boost.tar.gz https://boostorg.jfrog.io/artifactory/main/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz \
@@ -20,7 +20,7 @@ RUN wget -nv -O boost.tar.gz https://boostorg.jfrog.io/artifactory/main/release/
     && ./bootstrap.sh \
     && cd ..
 
-RUN wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip \
+RUN wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux.zip \
     && unzip -qq android-ndk.zip \
     && mv android-ndk-${NDK_VERSION} android-ndk
 

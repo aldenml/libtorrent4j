@@ -1,3 +1,7 @@
+
+  * updated to OpenSSL 1.1.1m
+  * using android NDK r23b
+
 2.0.5-23
 
   * fix windows build, not enable deprecated functions
