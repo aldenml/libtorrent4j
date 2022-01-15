@@ -1,6 +1,28 @@
+2.0.5-24
 
+  * using libtorrent master
   * updated to OpenSSL 1.1.1m
   * using android NDK r23b
+  * updated to boost 1.78.0
+  * lt:remove redundant calls to convert_from_native() on system error messages
+  * lt:use UTF-8 encoding for messages coming from boost on Windows
+  * lt:fix DHT announce timer issue
+  * lt:set DSCP_TRAFFIC_TYPE socket option on windows
+  * lt:default TOS marking to 0x04 (LE)
+  * lt:poll for new endpoints when forcing a tracker announce
+  * lt:only ever set min_interval on tracker entries based on responses from
+    trackers
+  * lt:retry all trackers when force announcing
+  * lt:keep trying to announce to trackers even when all fail
+  * lt:don't disable announcing from local endpoints because of temporary
+    failures
+  * lt:improve error reporting when opening files
+  * lt:fix issue in parsing UPnP XML response with multiple forwarding services
+  * lt:fix typos in preadv vs. pread detection. add new version of MacOS to
+    use vector versions
+  * lt:updated libdatachannel to v0.16.1
+  * lt:tweak mixed mode algorithm to throttle less
+  * lt:source code cleanup, performance and stability
 
 2.0.5-23
 
