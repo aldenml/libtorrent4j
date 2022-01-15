@@ -20,7 +20,7 @@ RUN wget -nv -O boost.tar.gz https://boostorg.jfrog.io/artifactory/main/release/
     && ./bootstrap.sh \
     && cd ..
 
-RUN wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip \
+RUN wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux.zip \
     && unzip -qq android-ndk.zip \
     && mv android-ndk-${NDK_VERSION} android-ndk
 
