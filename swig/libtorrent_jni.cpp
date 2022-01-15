@@ -40922,7 +40922,7 @@ SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_partial_1piec
   (void)jarg2_;
   arg1 = *(libtorrent::partial_piece_info **)&jarg1; 
   arg2 = *(libtorrent::block_info **)&jarg2; 
-  if (arg1) (arg1)->blocks = arg2;
+  if (arg1) (arg1)->blocks = (libtorrent::block_info const *)arg2;
 }
 
 
