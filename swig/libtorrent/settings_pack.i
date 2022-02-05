@@ -46,6 +46,9 @@
 %ignore libtorrent::settings_pack::deprecated_decrease_est_reciprocation_rate;
 %ignore libtorrent::settings_pack::deprecated_cache_size_volatile;
 %ignore libtorrent::settings_pack::deprecated_volatile_read_cache;
+%ignore libtorrent::settings_pack::deprecated_read_cache_line_size;
+%ignore libtorrent::settings_pack::deprecated_write_cache_line_size;
+%ignore libtorrent::settings_pack::deprecated_allow_partial_disk_writes;
 %ignore libtorrent::apply_pack_impl;
 %ignore libtorrent::setting_by_name;
 %ignore libtorrent::non_default_settings;

@@ -70352,13 +70352,13 @@ SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pac
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pack_1read_1cache_1line_1size_1get(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_settings_1pack_1optimistic_1disk_1retry_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   libtorrent::settings_pack::int_types result;
   
   (void)jenv;
   (void)jcls;
-  result = (libtorrent::settings_pack::int_types)libtorrent::settings_pack::read_cache_line_size;
+  result = (libtorrent::settings_pack::int_types)libtorrent::settings_pack::optimistic_disk_retry;
   jresult = (jint)result; 
   return jresult;
 }

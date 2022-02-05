@@ -1,3 +1,17 @@
+2.0.5-25
+
+ * using libtorrent master
+ * lt:deprecate (unused) allow_partial_disk_writes settings
+ * lt:fix disk-full error reporting in mmap_disk_io
+ * lt:fix similar torrents feature for v2 torrents
+ * lt:use MADV_DONTNEED/MADV_COLD for volatile_reads (when checking files)
+ * lt:use MADV_NOCORE on BSD systems
+ * lt:fix potential unbounded recursion in add_completed_jobs()
+ * lt:deprecate (unused) volatile_read_cache setting
+ * lt:mark read_cache_line_size and write_cache_line_size as deprecated
+ * lt:fix part files being marked as hidden on windows
+ * lt:source code cleanup, performance and stability
+
 2.0.5-24
 
   * using libtorrent master
