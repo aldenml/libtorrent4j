@@ -35,6 +35,16 @@ namespace libtorrent
         auto v = lt::write_session_params_buf(sp, flags);
         return {v.begin(), v.end()};
     }
+
+    void set_posix_disk_io_constructor()
+    {
+        $self->disk_io_constructor = lt::posix_disk_io_constructor;
+    }
+
+    void set_default_disk_io_constructor()
+    {
+        $self->disk_io_constructor = lt::default_disk_io_constructor;
+    }
 }
 
 }

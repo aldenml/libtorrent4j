@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020, Alden Torres
+ * Copyright (c) 2018-2022, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -77,6 +77,30 @@ public final class SessionParams
      */
     public void setSettings(SettingsPack settings) {
         h.setSettings(settings.swig());
+    }
+
+    /**
+     * Internally set the session to use a simple posix disk I/O back-end, used
+     * for systems that don't have a 64-bit virtual address space or don't support
+     * memory mapped files.
+     *
+     * It's implemented using portable C file functions and is single-threaded.
+     *
+     * This is an advance feature, only to use in particular situations, like
+     * Android devices with faulty drivers.
+     */
+    public void setPosixDiskIO() {
+        h.set_posix_disk_io_constructor();
+    }
+
+    /**
+     * Internally set the session to use the more appropriate disk I/O back-end.
+     *
+     * On systems that support memory mapped files (and a 64-bit address space) the
+     * memory mapped storage will be constructed, otherwise the portable posix storage.
+     */
+    public void setDefaultDiskIO() {
+        h.set_default_disk_io_constructor();
     }
 
     private static session_params bdecode0(File file) {
