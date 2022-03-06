@@ -117,4 +117,12 @@ public class session_params {
     return new byte_vector(libtorrent_jni.session_params_write_session_params_buf__SWIG_1(session_params.getCPtr(sp), sp), true);
   }
 
+  public void set_posix_disk_io_constructor() {
+    libtorrent_jni.session_params_set_posix_disk_io_constructor(swigCPtr, this);
+  }
+
+  public void set_default_disk_io_constructor() {
+    libtorrent_jni.session_params_set_default_disk_io_constructor(swigCPtr, this);
+  }
+
 }

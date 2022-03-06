@@ -3160,6 +3160,8 @@ public class libtorrent_jni {
   public final static native long session_params_write_session_params__SWIG_1(long jarg1, session_params jarg1_);
   public final static native long session_params_write_session_params_buf__SWIG_0(long jarg1, session_params jarg1_, long jarg2, save_state_flags_t jarg2_);
   public final static native long session_params_write_session_params_buf__SWIG_1(long jarg1, session_params jarg1_);
+  public final static native void session_params_set_posix_disk_io_constructor(long jarg1, session_params jarg1_);
+  public final static native void session_params_set_default_disk_io_constructor(long jarg1, session_params jarg1_);
   public final static native long new_session_handle__SWIG_0();
   public final static native long new_session_handle__SWIG_1(long jarg1, session_handle jarg1_);
   public final static native boolean session_handle_is_valid(long jarg1, session_handle jarg1_);

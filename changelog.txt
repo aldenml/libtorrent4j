@@ -1,3 +1,7 @@
+2.0.5-26-RC1
+
+  * added API support to change the disk I/O back-end
+
 2.0.5-25
 
  * using libtorrent master

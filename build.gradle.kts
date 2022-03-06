@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "org.libtorrent4j"
-version = "2.0.5-25"
+version = "2.0.5-26-RC1"
 
 java {
     // using java 8 for android compatibility

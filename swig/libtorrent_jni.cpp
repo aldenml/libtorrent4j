@@ -816,6 +816,7 @@ namespace Swig {
 #include "libtorrent/fingerprint.hpp"
 #include "libtorrent/read_resume_data.hpp"
 #include "libtorrent/write_resume_data.hpp"
+#include "libtorrent/posix_disk_io.hpp"
 
 #include <libtorrent/hex.hpp>
 #include <libtorrent/bencode.hpp>
@@ -4002,6 +4003,12 @@ SWIGINTERN lt::entry libtorrent_session_params_write_session_params__SWIG_0(lt::
 SWIGINTERN std::vector< std::int8_t > libtorrent_session_params_write_session_params_buf__SWIG_0(lt::session_params const &sp,lt::save_state_flags_t flags=lt::save_state_flags_t::all()){
         auto v = lt::write_session_params_buf(sp, flags);
         return {v.begin(), v.end()};
+    }
+SWIGINTERN void libtorrent_session_params_set_posix_disk_io_constructor(libtorrent::session_params *self){
+        self->disk_io_constructor = lt::posix_disk_io_constructor;
+    }
+SWIGINTERN void libtorrent_session_params_set_default_disk_io_constructor(libtorrent::session_params *self){
+        self->disk_io_constructor = lt::default_disk_io_constructor;
     }
 SWIGINTERN void libtorrent_session_handle_dht_get_item__SWIG_1(libtorrent::session_handle *self,std::array< std::int8_t,32 > &key,std::vector< std::int8_t > &salt){
         std::array<char, 32> pk;
@@ -73113,6 +73120,48 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1par
   }
   *(std::vector< std::int8_t > **)&jresult = new std::vector< std::int8_t >((const std::vector< std::int8_t > &)result); 
   return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1params_1set_1posix_1disk_1io_1constructor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  libtorrent::session_params *arg1 = (libtorrent::session_params *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::session_params **)&jarg1; 
+  {
+    try {
+      libtorrent_session_params_set_posix_disk_io_constructor(arg1);
+    } catch (std::exception& e) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+      return ;
+    } catch (...) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+      return ;
+    }
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_session_1params_1set_1default_1disk_1io_1constructor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  libtorrent::session_params *arg1 = (libtorrent::session_params *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(libtorrent::session_params **)&jarg1; 
+  {
+    try {
+      libtorrent_session_params_set_default_disk_io_constructor(arg1);
+    } catch (std::exception& e) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, e.what());
+      return ;
+    } catch (...) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unknown exception type");
+      return ;
+    }
+  }
 }
 
 
