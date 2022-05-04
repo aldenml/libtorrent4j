@@ -13,6 +13,8 @@ public final class status_t {
   public final static status_t fatal_disk_error = new status_t("fatal_disk_error");
   public final static status_t need_full_check = new status_t("need_full_check");
   public final static status_t file_exist = new status_t("file_exist");
+  public final static status_t mask = new status_t("mask", libtorrent_jni.status_t_mask_get());
+  public final static status_t oversized_file = new status_t("oversized_file", libtorrent_jni.status_t_oversized_file_get());
 
   public final int swigValue() {
     return swigValue;
@@ -48,7 +50,7 @@ public final class status_t {
     swigNext = this.swigValue+1;
   }
 
-  private static status_t[] swigValues = { no_error, fatal_disk_error, need_full_check, file_exist };
+  private static status_t[] swigValues = { no_error, fatal_disk_error, need_full_check, file_exist, mask, oversized_file };
   private static int swigNext = 0;
   private final int swigValue;
   private final String swigName;

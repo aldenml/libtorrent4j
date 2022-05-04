@@ -1,6 +1,30 @@
-2.0.5-26-RC1
+2.0.5-26 (temp)
 
   * added API support to change the disk I/O back-end
+  * lt:updated libdatachannel to v0.17.1
+  * lt:simplify part of pe_crypto, init_bt_handshake and stats accounting
+  * lt:add new alert, oversized_file_alert, posted when an existing file in a
+    torrent is found to have a greater size than the file according to the
+    torrent file
+  * lt:make the disk buffer pool implement the buffer_allocator_interface
+  * lt:send a User-Agent field in HTTP tracker requests in anonymous mode
+  * lt:fix issue creating v2 torrent from torrent_info with empty file
+  * lt:make recheck files also update which files use partfile
+  * lt:add write_through option to disk_io_write_mode
+  * lt:improve copy_file() to preserve sparse regions on systems supporting
+    SEEK_HOLE/SEEK_DATA
+  * lt:add function to truncate over-sized files part of a torrent
+  * lt:set lower memory priority for disk I/O threads on windows
+  * lt:fix directory creation on windows shared folders
+  * lt:rename disk_io_job to mmap_disk_job
+  * lt:set thread names on Haiku
+  * lt:set thread names on windows
+  * lt:set thread names on posix
+  * lt:fix mmap_disk_io shutdown race. We may end up posting new jobs after
+    starting the shutdown
+  * lt:factor out storage initialization
+  * lt:add flag to make add_files() not record file attributes
+  * lt:source code cleanup, performance and stability
 
 2.0.5-25
 

@@ -610,6 +610,7 @@ public class settings_pack extends settings_interface {
   public final static class io_buffer_mode_t {
     public final static settings_pack.io_buffer_mode_t enable_os_cache = new settings_pack.io_buffer_mode_t("enable_os_cache", libtorrent_jni.settings_pack_enable_os_cache_get());
     public final static settings_pack.io_buffer_mode_t disable_os_cache = new settings_pack.io_buffer_mode_t("disable_os_cache", libtorrent_jni.settings_pack_disable_os_cache_get());
+    public final static settings_pack.io_buffer_mode_t write_through = new settings_pack.io_buffer_mode_t("write_through", libtorrent_jni.settings_pack_write_through_get());
 
     public final int swigValue() {
       return swigValue;
@@ -645,7 +646,7 @@ public class settings_pack extends settings_interface {
       swigNext = this.swigValue+1;
     }
 
-    private static io_buffer_mode_t[] swigValues = { enable_os_cache, disable_os_cache };
+    private static io_buffer_mode_t[] swigValues = { enable_os_cache, disable_os_cache, write_through };
     private static int swigNext = 0;
     private final int swigValue;
     private final String swigName;

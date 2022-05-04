@@ -496,6 +496,11 @@ public class alert {
     return (cPtr == 0) ? null : new file_prio_alert(cPtr, false);
   }
 
+  public static oversized_file_alert cast_to_oversized_file_alert(alert a) {
+    long cPtr = libtorrent_jni.alert_cast_to_oversized_file_alert(alert.getCPtr(a), a);
+    return (cPtr == 0) ? null : new oversized_file_alert(cPtr, false);
+  }
+
   public final static alert_category_t error_notification = new alert_category_t(libtorrent_jni.alert_error_notification_get(), false);
   public final static alert_category_t peer_notification = new alert_category_t(libtorrent_jni.alert_peer_notification_get(), false);
   public final static alert_category_t port_mapping_notification = new alert_category_t(libtorrent_jni.alert_port_mapping_notification_get(), false);

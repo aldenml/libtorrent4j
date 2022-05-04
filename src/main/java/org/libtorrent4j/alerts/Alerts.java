@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021, Alden Torres
+ * Copyright (c) 2018-2022, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -618,6 +618,12 @@ public final class Alerts {
             @Override
             public Alert<?> cast(alert a) {
                 return new FilePrioAlert(cast_to_file_prio_alert(a));
+            }
+        };
+        arr[98] = new CastLambda() {
+            @Override
+            public Alert<?> cast(alert a) {
+                return new OversizedFileAlert(cast_to_oversized_file_alert(a));
             }
         };
 
