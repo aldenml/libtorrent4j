@@ -796,6 +796,11 @@ public class libtorrent_jni {
   public final static native boolean info_hash_t_op_eq(long jarg1, info_hash_t jarg1_, long jarg2, info_hash_t jarg2_);
   public final static native boolean info_hash_t_op_ne(long jarg1, info_hash_t jarg1_, long jarg2, info_hash_t jarg2_);
   public final static native void delete_info_hash_t(long jarg1);
+  public final static native int status_t_mask_get();
+  public final static native int status_t_oversized_file_get();
+  public final static native int or_(int jarg1, int jarg2);
+  public final static native int and_(int jarg1, int jarg2);
+  public final static native int inv(int jarg1);
   public final static native long new_bitfield__SWIG_0();
   public final static native long new_bitfield__SWIG_1(int jarg1);
   public final static native long new_bitfield__SWIG_2(int jarg1, boolean jarg2);
@@ -1969,6 +1974,7 @@ public class libtorrent_jni {
   public final static native long alert_cast_to_alerts_dropped_alert(long jarg1, alert jarg1_);
   public final static native long alert_cast_to_socks5_alert(long jarg1, alert jarg1_);
   public final static native long alert_cast_to_file_prio_alert(long jarg1, alert jarg1_);
+  public final static native long alert_cast_to_oversized_file_alert(long jarg1, alert jarg1_);
   public final static native long new_alert_category_t();
   public final static native long alert_category_t_all();
   public final static native boolean alert_category_t_non_zero(long jarg1, alert_category_t jarg1_);
@@ -2979,6 +2985,14 @@ public class libtorrent_jni {
   public final static native void file_prio_alert_op_set(long jarg1, file_prio_alert jarg1_, int jarg2);
   public final static native int file_prio_alert_op_get(long jarg1, file_prio_alert jarg1_);
   public final static native void delete_file_prio_alert(long jarg1);
+  public final static native int oversized_file_alert_priority_get();
+  public final static native int oversized_file_alert_alert_type_get();
+  public final static native int oversized_file_alert_type(long jarg1, oversized_file_alert jarg1_);
+  public final static native long oversized_file_alert_category(long jarg1, oversized_file_alert jarg1_);
+  public final static native String oversized_file_alert_what(long jarg1, oversized_file_alert jarg1_);
+  public final static native long oversized_file_alert_static_category_get();
+  public final static native String oversized_file_alert_message(long jarg1, oversized_file_alert jarg1_);
+  public final static native void delete_oversized_file_alert(long jarg1);
   public final static native long new_picker_flags_t();
   public final static native long picker_flags_t_all();
   public final static native boolean picker_flags_t_non_zero(long jarg1, picker_flags_t jarg1_);
@@ -3051,6 +3065,7 @@ public class libtorrent_jni {
   public final static native int settings_pack_rate_based_choker_get();
   public final static native int settings_pack_enable_os_cache_get();
   public final static native int settings_pack_disable_os_cache_get();
+  public final static native int settings_pack_write_through_get();
   public final static native int settings_pack_prefer_tcp_get();
   public final static native int settings_pack_peer_proportional_get();
   public final static native int settings_pack_pe_plaintext_get();
@@ -3243,6 +3258,7 @@ public class libtorrent_jni {
   public final static native long create_torrent_v2_only_get();
   public final static native long create_torrent_v1_only_get();
   public final static native long create_torrent_canonical_files_get();
+  public final static native long create_torrent_no_attributes_get();
   public final static native long new_create_torrent__SWIG_0(long jarg1, file_storage jarg1_, int jarg2, long jarg3, create_flags_t jarg3_);
   public final static native long new_create_torrent__SWIG_1(long jarg1, file_storage jarg1_, int jarg2);
   public final static native long new_create_torrent__SWIG_2(long jarg1, file_storage jarg1_);
@@ -3460,6 +3476,7 @@ public class libtorrent_jni {
   public final static native long alerts_dropped_alert_SWIGUpcast(long jarg1);
   public final static native long socks5_alert_SWIGUpcast(long jarg1);
   public final static native long file_prio_alert_SWIGUpcast(long jarg1);
+  public final static native long oversized_file_alert_SWIGUpcast(long jarg1);
   public final static native long settings_pack_SWIGUpcast(long jarg1);
   public final static native long session_SWIGUpcast(long jarg1);
 

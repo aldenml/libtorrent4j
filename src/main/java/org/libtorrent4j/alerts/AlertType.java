@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021, Alden Torres
+ * Copyright (c) 2018-2022, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -103,6 +103,7 @@ public enum AlertType {
     ALERTS_DROPPED(alerts_dropped_alert.alert_type),
     SOCKS5(socks5_alert.alert_type),
     FILE_PRIO(file_prio_alert.alert_type),
+    OVERSIZED_FILE(oversized_file_alert.alert_type),
     UNKNOWN(-1);
 
     private static final AlertType[] TABLE = buildTable();
@@ -229,6 +230,7 @@ public enum AlertType {
         arr[95] = ALERTS_DROPPED;
         arr[96] = SOCKS5;
         arr[97] = FILE_PRIO;
+        arr[98] = OVERSIZED_FILE;
 
         return arr;
     }
