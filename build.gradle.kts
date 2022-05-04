@@ -32,7 +32,7 @@ repositories {
 
 dependencies {
 
-    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.13.2")
 
     codacy("com.codacy:codacy-coverage-reporter:7.1.0")
 }
