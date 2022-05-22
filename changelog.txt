@@ -1,5 +1,6 @@
-2.0.5-26 (temp)
+2.0.5-26
 
+  * using libtorrent master
   * added API support to change the disk I/O back-end
   * lt:updated libdatachannel to v0.17.1
   * lt:simplify part of pe_crypto, init_bt_handshake and stats accounting
