@@ -19,11 +19,11 @@ public class VersionTest {
 
     @Test
     public void testLibtorrent4jVersionValue() {
-        assertTrue(LibTorrent.libtorrent4jVersion().startsWith("2.0.5-"));
+        assertTrue(LibTorrent.libtorrent4jVersion().startsWith("2.0.6-"));
     }
 
     @Test
     public void testVersionValue() {
-        assertEquals("2.0.5.0", LibTorrent.version());
+        assertEquals("2.0.6.0", LibTorrent.version());
     }
 }

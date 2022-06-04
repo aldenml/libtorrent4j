@@ -1,6 +1,13 @@
-2.0.5-26 (temp)
+2.0.6-26
 
+  * using libtorrent master
   * added API support to change the disk I/O back-end
+  * lt:fix MacOS version check for preadv() support
+  * lt:handle all "fastresume rejected" cases consistently
+  * lt:default to a single hashing thread, for full checks
+  * lt:fix bind-to-device for tracker announces and UPnP
+  * lt:fix bug when checking files and the first piece is invalid
+  * lt:rename peer_tos -> peer_dscp
   * lt:updated libdatachannel to v0.17.1
   * lt:simplify part of pe_crypto, init_bt_handshake and stats accounting
   * lt:add new alert, oversized_file_alert, posted when an existing file in a

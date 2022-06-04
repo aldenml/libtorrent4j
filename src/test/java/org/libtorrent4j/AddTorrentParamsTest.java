@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021, Alden Torres
+ * Copyright (c) 2018-2022, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -27,7 +27,7 @@ public class AddTorrentParamsTest {
     @Test
     public void testVersion() {
         AddTorrentParams params = new AddTorrentParams();
-        assertEquals(20005, params.getVersion());
+        assertEquals(20006, params.getVersion());
     }
 
     @Test

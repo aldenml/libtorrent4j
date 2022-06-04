@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2021, Alden Torres
+ * Copyright (c) 2020-2022, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -28,7 +28,7 @@ public class SettingsPackTest {
 
         String value = new String(fingerprint, 0, 8, StandardCharsets.US_ASCII);
 
-        assertEquals("-LT2050-", value);
+        assertEquals("-LT2060-", value);
     }
 
     @Test
