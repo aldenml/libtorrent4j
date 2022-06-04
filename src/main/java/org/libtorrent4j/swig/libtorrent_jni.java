@@ -3047,6 +3047,7 @@ public class libtorrent_jni {
   public final static native int settings_pack_announce_crypto_support_get();
   public final static native int settings_pack_tracker_completion_timeout_get();
   public final static native int settings_pack_disk_io_write_mode_get();
+  public final static native int settings_pack_active_downloads_get();
   public final static native int settings_pack_auto_manage_interval_get();
   public final static native int settings_pack_optimistic_disk_retry_get();
   public final static native int settings_pack_num_optimistic_unchoke_slots_get();
