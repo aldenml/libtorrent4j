@@ -1,4 +1,4 @@
-2.0.5-26
+2.0.6-26
 
   * using libtorrent master
   * added API support to change the disk I/O back-end
