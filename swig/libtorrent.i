@@ -224,6 +224,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(stats_metric_vector) std::vector<libtorrent::stats_metric>;
 %template(ip_interface_vector) std::vector<ip_interface>;
 %template(ip_route_vector) std::vector<ip_route>;
+%template(create_file_entry_vector) std::vector<libtorrent::create_file_entry>;
 
 %template(bool_vector_vector) std::vector<std::vector<bool>>;
 %template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;
@@ -270,7 +271,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 
 // directors
 %feature("director") alert_notify_callback;
-%feature("director") add_files_listener;
+%feature("director") list_files_listener;
 %feature("director") set_piece_hashes_listener;
 
 // includes

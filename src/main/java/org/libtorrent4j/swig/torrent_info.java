@@ -116,6 +116,10 @@ public class torrent_info {
     libtorrent_jni.torrent_info_set_web_seeds(swigCPtr, this, web_seed_entry_vector.getCPtr(seeds), seeds);
   }
 
+  public void clear_web_seeds() {
+    libtorrent_jni.torrent_info_clear_web_seeds(swigCPtr, this);
+  }
+
   public long total_size() {
     return libtorrent_jni.torrent_info_total_size(swigCPtr, this);
   }

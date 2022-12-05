@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2022, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j.alerts;
 
 import org.libtorrent4j.swig.alert;
@@ -77,8 +84,6 @@ public interface Alert<T extends alert> {
     /**
      * Returns a string literal describing the type of the alert. It does
      * not include any information that might be bundled with the alert.
-     *
-     *
      */
     String what();
 
@@ -88,8 +93,6 @@ public interface Alert<T extends alert> {
      * to use this for applications that may be localized. Instead, handle each alert
      * type individually and extract and render the information from the alert depending
      * on the locale.
-     *
-     *
      */
     String message();
 

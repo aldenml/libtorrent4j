@@ -36,28 +36,20 @@ public class create_torrent {
     }
   }
 
-  public create_torrent(file_storage fs, int piece_size, create_flags_t flags) {
-    this(libtorrent_jni.new_create_torrent__SWIG_0(file_storage.getCPtr(fs), fs, piece_size, create_flags_t.getCPtr(flags), flags), true);
+  public create_torrent(create_file_entry_vector files, int piece_size, create_flags_t flags) {
+    this(libtorrent_jni.new_create_torrent__SWIG_0(create_file_entry_vector.getCPtr(files), files, piece_size, create_flags_t.getCPtr(flags), flags), true);
   }
 
-  public create_torrent(file_storage fs, int piece_size) {
-    this(libtorrent_jni.new_create_torrent__SWIG_1(file_storage.getCPtr(fs), fs, piece_size), true);
+  public create_torrent(create_file_entry_vector files, int piece_size) {
+    this(libtorrent_jni.new_create_torrent__SWIG_1(create_file_entry_vector.getCPtr(files), files, piece_size), true);
   }
 
-  public create_torrent(file_storage fs) {
-    this(libtorrent_jni.new_create_torrent__SWIG_2(file_storage.getCPtr(fs), fs), true);
-  }
-
-  public create_torrent(torrent_info ti) {
-    this(libtorrent_jni.new_create_torrent__SWIG_3(torrent_info.getCPtr(ti), ti), true);
+  public create_torrent(create_file_entry_vector files) {
+    this(libtorrent_jni.new_create_torrent__SWIG_2(create_file_entry_vector.getCPtr(files), files), true);
   }
 
   public entry generate() {
     return new entry(libtorrent_jni.create_torrent_generate(swigCPtr, this), true);
-  }
-
-  public file_storage files() {
-    return new file_storage(libtorrent_jni.create_torrent_files(swigCPtr, this), false);
   }
 
   public void set_comment(String str) {
@@ -98,6 +90,22 @@ public class create_torrent {
 
   public int num_pieces() {
     return libtorrent_jni.create_torrent_num_pieces(swigCPtr, this);
+  }
+
+  public int end_piece() {
+    return libtorrent_jni.create_torrent_end_piece(swigCPtr, this);
+  }
+
+  public int end_file() {
+    return libtorrent_jni.create_torrent_end_file(swigCPtr, this);
+  }
+
+  public create_file_entry file_at(int f) {
+    return new create_file_entry(libtorrent_jni.create_torrent_file_at(swigCPtr, this, f), false);
+  }
+
+  public long total_size() {
+    return libtorrent_jni.create_torrent_total_size(swigCPtr, this);
   }
 
   public int piece_length() {
@@ -142,4 +150,5 @@ public class create_torrent {
   public final static create_flags_t v1_only = new create_flags_t(libtorrent_jni.create_torrent_v1_only_get(), false);
   public final static create_flags_t canonical_files = new create_flags_t(libtorrent_jni.create_torrent_canonical_files_get(), false);
   public final static create_flags_t no_attributes = new create_flags_t(libtorrent_jni.create_torrent_no_attributes_get(), false);
+  public final static create_flags_t canonical_files_no_tail_padding = new create_flags_t(libtorrent_jni.create_torrent_canonical_files_no_tail_padding_get(), false);
 }

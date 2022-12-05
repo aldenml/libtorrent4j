@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2022, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.*;
@@ -7,7 +14,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.libtorrent4j.swig.libtorrent.add_files_ex;
+import static org.libtorrent4j.swig.libtorrent.list_files_ex;
 import static org.libtorrent4j.swig.libtorrent.set_piece_hashes_ex;
 
 /**
@@ -428,10 +435,7 @@ public final class TorrentBuilder {
     }
 
     /**
-     * This function will generate a result withe the .torrent file as a bencode tree.
-     *
-     *
-     * @throws IOException
+     * This function will generate a result with the .torrent file as a bencode tree.
      */
     public Result generate() throws IOException {
         if (path == null) {
@@ -440,18 +444,17 @@ public final class TorrentBuilder {
 
         File absPath = path.getAbsoluteFile();
 
-        file_storage fs = new file_storage();
-        add_files_listener l1 = new add_files_listener() {
+        list_files_listener l1 = new list_files_listener() {
             @Override
             public boolean pred(String p) {
                 return listener == null || listener.accept(p);
             }
         };
-        add_files_ex(fs, absPath.getPath(), l1, flags);
-        if (fs.total_size() == 0) {
-            throw new IOException("content total size can't be 0");
+        create_file_entry_vector files = list_files_ex(absPath.getPath(), l1, flags);
+        if (files.size() == 0) {
+            throw new IOException("content files can't be empty");
         }
-        create_torrent t = new create_torrent(fs, pieceSize, flags);
+        create_torrent t = new create_torrent(files, pieceSize, flags);
         final int numPieces = t.num_pieces();
         set_piece_hashes_listener l2 = new set_piece_hashes_listener() {
             @Override

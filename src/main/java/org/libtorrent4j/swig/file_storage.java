@@ -128,10 +128,6 @@ public class file_storage {
     libtorrent_jni.file_storage_swap(swigCPtr, this, file_storage.getCPtr(ti), ti);
   }
 
-  public void canonicalize() {
-    libtorrent_jni.file_storage_canonicalize(swigCPtr, this);
-  }
-
   public sha256_hash root(int index) {
     return new sha256_hash(libtorrent_jni.file_storage_root(swigCPtr, this, index), true);
   }

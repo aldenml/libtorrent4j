@@ -427,6 +427,8 @@ public class settings_pack extends settings_interface {
     public final static settings_pack.int_types dht_max_infohashes_sample_count = new settings_pack.int_types("dht_max_infohashes_sample_count");
     public final static settings_pack.int_types max_piece_count = new settings_pack.int_types("max_piece_count");
     public final static settings_pack.int_types metadata_token_limit = new settings_pack.int_types("metadata_token_limit");
+    public final static settings_pack.int_types disk_write_mode = new settings_pack.int_types("disk_write_mode");
+    public final static settings_pack.int_types mmap_file_size_cutoff = new settings_pack.int_types("mmap_file_size_cutoff");
     public final static settings_pack.int_types min_websocket_announce_interval = new settings_pack.int_types("min_websocket_announce_interval");
     public final static settings_pack.int_types webtorrent_connection_timeout = new settings_pack.int_types("webtorrent_connection_timeout");
     public final static settings_pack.int_types max_int_setting_internal = new settings_pack.int_types("max_int_setting_internal");
@@ -465,7 +467,7 @@ public class settings_pack extends settings_interface {
       swigNext = this.swigValue+1;
     }
 
-    private static int_types[] swigValues = { tracker_completion_timeout, tracker_receive_timeout, stop_tracker_timeout, tracker_maximum_response_length, piece_timeout, request_timeout, request_queue_time, max_allowed_in_request_queue, max_out_request_queue, whole_pieces_threshold, peer_timeout, urlseed_timeout, urlseed_pipeline_size, urlseed_wait_retry, file_pool_size, max_failcount, min_reconnect_time, peer_connect_timeout, connection_speed, inactivity_timeout, unchoke_interval, optimistic_unchoke_interval, num_want, initial_picker_threshold, allowed_fast_set_size, suggest_mode, max_queued_disk_bytes, handshake_timeout, send_buffer_low_watermark, send_buffer_watermark, send_buffer_watermark_factor, choking_algorithm, seed_choking_algorithm, disk_io_write_mode, disk_io_read_mode, outgoing_port, num_outgoing_ports, peer_dscp, active_downloads, active_seeds, active_checking, active_dht_limit, active_tracker_limit, active_lsd_limit, active_limit, auto_manage_interval, seed_time_limit, auto_scrape_interval, auto_scrape_min_interval, max_peerlist_size, max_paused_peerlist_size, min_announce_interval, auto_manage_startup, seeding_piece_quota, max_rejects, recv_socket_buffer_size, send_socket_buffer_size, max_peer_recv_buffer_size, optimistic_disk_retry, max_suggest_pieces, local_service_announce_interval, dht_announce_interval, udp_tracker_token_expiry, num_optimistic_unchoke_slots, max_pex_peers, tick_interval, share_mode_target, upload_rate_limit, download_rate_limit, dht_upload_rate_limit, unchoke_slots_limit, connections_limit, connections_slack, utp_target_delay, utp_gain_factor, utp_min_timeout, utp_syn_resends, utp_fin_resends, utp_num_resends, utp_connect_timeout, utp_loss_multiplier, mixed_mode_algorithm, listen_queue_size, torrent_connect_boost, alert_queue_size, max_metadata_size, hashing_threads, checking_mem_usage, predictive_piece_announce, aio_threads, tracker_backoff, share_ratio_limit, seed_time_ratio_limit, peer_turnover, peer_turnover_cutoff, peer_turnover_interval, connect_seed_every_n_download, max_http_recv_buffer_size, max_retry_port_bind, alert_mask, out_enc_policy, in_enc_policy, allowed_enc_level, inactive_down_rate, inactive_up_rate, proxy_type, proxy_port, i2p_port, urlseed_max_request_bytes, web_seed_name_lookup_retry, close_file_interval, utp_cwnd_reduce_timer, max_web_seed_connections, resolver_cache_timeout, send_not_sent_low_watermark, rate_choker_initial_threshold, upnp_lease_duration, max_concurrent_http_announces, dht_max_peers_reply, dht_search_branching, dht_max_fail_count, dht_max_torrents, dht_max_dht_items, dht_max_peers, dht_max_torrent_search_reply, dht_block_timeout, dht_block_ratelimit, dht_item_lifetime, dht_sample_infohashes_interval, dht_max_infohashes_sample_count, max_piece_count, metadata_token_limit, min_websocket_announce_interval, webtorrent_connection_timeout, max_int_setting_internal };
+    private static int_types[] swigValues = { tracker_completion_timeout, tracker_receive_timeout, stop_tracker_timeout, tracker_maximum_response_length, piece_timeout, request_timeout, request_queue_time, max_allowed_in_request_queue, max_out_request_queue, whole_pieces_threshold, peer_timeout, urlseed_timeout, urlseed_pipeline_size, urlseed_wait_retry, file_pool_size, max_failcount, min_reconnect_time, peer_connect_timeout, connection_speed, inactivity_timeout, unchoke_interval, optimistic_unchoke_interval, num_want, initial_picker_threshold, allowed_fast_set_size, suggest_mode, max_queued_disk_bytes, handshake_timeout, send_buffer_low_watermark, send_buffer_watermark, send_buffer_watermark_factor, choking_algorithm, seed_choking_algorithm, disk_io_write_mode, disk_io_read_mode, outgoing_port, num_outgoing_ports, peer_dscp, active_downloads, active_seeds, active_checking, active_dht_limit, active_tracker_limit, active_lsd_limit, active_limit, auto_manage_interval, seed_time_limit, auto_scrape_interval, auto_scrape_min_interval, max_peerlist_size, max_paused_peerlist_size, min_announce_interval, auto_manage_startup, seeding_piece_quota, max_rejects, recv_socket_buffer_size, send_socket_buffer_size, max_peer_recv_buffer_size, optimistic_disk_retry, max_suggest_pieces, local_service_announce_interval, dht_announce_interval, udp_tracker_token_expiry, num_optimistic_unchoke_slots, max_pex_peers, tick_interval, share_mode_target, upload_rate_limit, download_rate_limit, dht_upload_rate_limit, unchoke_slots_limit, connections_limit, connections_slack, utp_target_delay, utp_gain_factor, utp_min_timeout, utp_syn_resends, utp_fin_resends, utp_num_resends, utp_connect_timeout, utp_loss_multiplier, mixed_mode_algorithm, listen_queue_size, torrent_connect_boost, alert_queue_size, max_metadata_size, hashing_threads, checking_mem_usage, predictive_piece_announce, aio_threads, tracker_backoff, share_ratio_limit, seed_time_ratio_limit, peer_turnover, peer_turnover_cutoff, peer_turnover_interval, connect_seed_every_n_download, max_http_recv_buffer_size, max_retry_port_bind, alert_mask, out_enc_policy, in_enc_policy, allowed_enc_level, inactive_down_rate, inactive_up_rate, proxy_type, proxy_port, i2p_port, urlseed_max_request_bytes, web_seed_name_lookup_retry, close_file_interval, utp_cwnd_reduce_timer, max_web_seed_connections, resolver_cache_timeout, send_not_sent_low_watermark, rate_choker_initial_threshold, upnp_lease_duration, max_concurrent_http_announces, dht_max_peers_reply, dht_search_branching, dht_max_fail_count, dht_max_torrents, dht_max_dht_items, dht_max_peers, dht_max_torrent_search_reply, dht_block_timeout, dht_block_ratelimit, dht_item_lifetime, dht_sample_infohashes_interval, dht_max_infohashes_sample_count, max_piece_count, metadata_token_limit, disk_write_mode, mmap_file_size_cutoff, min_websocket_announce_interval, webtorrent_connection_timeout, max_int_setting_internal };
     private static int swigNext = 0;
     private final int swigValue;
     private final String swigName;
@@ -474,6 +476,51 @@ public class settings_pack extends settings_interface {
   public final static int num_string_settings = libtorrent_jni.settings_pack_num_string_settings_get();
   public final static int num_bool_settings = libtorrent_jni.settings_pack_num_bool_settings_get();
   public final static int num_int_settings = libtorrent_jni.settings_pack_num_int_settings_get();
+  public final static class mmap_write_mode_t {
+    public final static settings_pack.mmap_write_mode_t always_pwrite = new settings_pack.mmap_write_mode_t("always_pwrite", libtorrent_jni.settings_pack_always_pwrite_get());
+    public final static settings_pack.mmap_write_mode_t always_mmap_write = new settings_pack.mmap_write_mode_t("always_mmap_write");
+    public final static settings_pack.mmap_write_mode_t auto_mmap_write = new settings_pack.mmap_write_mode_t("auto_mmap_write");
+
+    public final int swigValue() {
+      return swigValue;
+    }
+
+    public String toString() {
+      return swigName;
+    }
+
+    public static mmap_write_mode_t swigToEnum(int swigValue) {
+      if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+        return swigValues[swigValue];
+      for (int i = 0; i < swigValues.length; i++)
+        if (swigValues[i].swigValue == swigValue)
+          return swigValues[i];
+      throw new IllegalArgumentException("No enum " + mmap_write_mode_t.class + " with value " + swigValue);
+    }
+
+    private mmap_write_mode_t(String swigName) {
+      this.swigName = swigName;
+      this.swigValue = swigNext++;
+    }
+
+    private mmap_write_mode_t(String swigName, int swigValue) {
+      this.swigName = swigName;
+      this.swigValue = swigValue;
+      swigNext = swigValue+1;
+    }
+
+    private mmap_write_mode_t(String swigName, mmap_write_mode_t swigEnum) {
+      this.swigName = swigName;
+      this.swigValue = swigEnum.swigValue;
+      swigNext = this.swigValue+1;
+    }
+
+    private static mmap_write_mode_t[] swigValues = { always_pwrite, always_mmap_write, auto_mmap_write };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
+  }
+
   public final static class suggest_mode_t {
     public final static settings_pack.suggest_mode_t no_piece_suggestions = new settings_pack.suggest_mode_t("no_piece_suggestions", libtorrent_jni.settings_pack_no_piece_suggestions_get());
     public final static settings_pack.suggest_mode_t suggest_read_cache = new settings_pack.suggest_mode_t("suggest_read_cache", libtorrent_jni.settings_pack_suggest_read_cache_get());

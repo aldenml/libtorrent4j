@@ -5,6 +5,12 @@
 %ignore libtorrent::create_torrent::add_collection(string_view);
 %ignore libtorrent::create_torrent::set_root_cert(string_view);
 %ignore libtorrent::create_torrent::set_hash2(file_index_t, piece_index_t::diff_type, sha256_hash const&);
+%ignore libtorrent::create_torrent::piece_range;
+%ignore libtorrent::create_torrent::file_range;
+%ignore libtorrent::create_torrent::file_piece_range;
+%ignore libtorrent::create_torrent::file_list;
+%ignore libtorrent::create_torrent::generate_buf;
+%ignore libtorrent::list_files;
 
 %include "libtorrent/create_torrent.hpp"
 

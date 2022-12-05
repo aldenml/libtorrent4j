@@ -48,6 +48,7 @@ endmacro()
 add_subdirectory(deps/libtorrent EXCLUDE_FROM_ALL)
 
 target_link_libraries(torrent4j PRIVATE torrent-rasterbar)
+target_include_directories(torrent4j PRIVATE /opt/homebrew/opt/openssl\@1.1/include/)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES Clang)
     # nothing

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020, Alden Torres
+ * Copyright (c) 2018-2022, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -7,20 +7,7 @@
 
 package org.libtorrent4j;
 
-import org.libtorrent4j.alerts.AddTorrentAlert;
-import org.libtorrent4j.alerts.Alert;
-import org.libtorrent4j.alerts.AlertType;
-import org.libtorrent4j.alerts.Alerts;
-import org.libtorrent4j.alerts.DhtGetPeersReplyAlert;
-import org.libtorrent4j.alerts.DhtImmutableItemAlert;
-import org.libtorrent4j.alerts.DhtMutableItemAlert;
-import org.libtorrent4j.alerts.DhtStatsAlert;
-import org.libtorrent4j.alerts.ExternalIpAlert;
-import org.libtorrent4j.alerts.ListenSucceededAlert;
-import org.libtorrent4j.alerts.SessionStatsAlert;
-import org.libtorrent4j.alerts.SocketType;
-import org.libtorrent4j.alerts.StateUpdateAlert;
-import org.libtorrent4j.alerts.TorrentAlert;
+import org.libtorrent4j.alerts.*;
 import org.libtorrent4j.swig.add_torrent_params;
 import org.libtorrent4j.swig.address;
 import org.libtorrent4j.swig.alert;
@@ -64,8 +51,13 @@ public class SessionManager {
     private static final long REQUEST_STATS_RESOLUTION_MILLIS = 1000;
     private static final long ALERTS_LOOP_WAIT_MILLIS = 500;
 
-    private static final int[] METADATA_ALERT_TYPES = new int[]
-            {AlertType.METADATA_RECEIVED.swig(), AlertType.METADATA_FAILED.swig()};
+    private static final int[] METADATA_ALERT_TYPES = new int[]{
+        AlertType.METADATA_RECEIVED.swig(),
+        AlertType.METADATA_FAILED.swig(),
+        AlertType.SAVE_RESUME_DATA.swig(),
+        AlertType.SAVE_RESUME_DATA_FAILED.swig(),
+    };
+
     private static final String FETCH_MAGNET_DOWNLOAD_KEY = "fetch_magnet___";
 
     private static final int[] DHT_IMMUTABLE_ITEM_TYPES = {AlertType.DHT_IMMUTABLE_ITEM.swig()};
@@ -456,7 +448,7 @@ public class SessionManager {
      * containing the status of all torrents whose state changed since the
      * last time this function was called.
      * <p>
-     * Only torrents who has the state subscription flag set will be
+     * Only torrents who have the state subscription flag set will be
      * included.
      */
     public void postTorrentUpdates() {
@@ -669,14 +661,25 @@ public class SessionManager {
                 AlertType type = alert.type();
 
                 if (type.equals(AlertType.METADATA_RECEIVED)) {
+                    ((TorrentAlert<?>) alert).handle().saveResumeData(TorrentHandle.SAVE_INFO_DICT);
+                }
+
+                if (type.equals(AlertType.SAVE_RESUME_DATA)) {
                     try {
-                        data.set(((TorrentAlert<?>) alert).handle().createTorrent());
+                        byte_vector bytes = libtorrent.write_resume_data(((SaveResumeDataAlert) alert).params().swig()).bencode();
+                        data.set(Vectors.byte_vector2bytes(bytes));
+                        signal.countDown();
                     } catch (Throwable e) {
-                        Log.error("Error bulding magnet torrent data", e);
+                        Log.error("Error building magnet torrent data", e);
                     }
                 }
 
-                signal.countDown();
+                if (type.equals(AlertType.METADATA_FAILED)) {
+                    Log.error("Error downloading magnet metadata");
+                }
+                if (type.equals(AlertType.SAVE_RESUME_DATA_FAILED)) {
+                    Log.error("Error saving resume data");
+                }
             }
         };
 
@@ -698,8 +701,7 @@ public class SessionManager {
                     torrent_info ti = th.torrent_file_ptr();
                     if (ti != null && ti.is_valid()) {
                         // torrent info is good, so is metadata
-                        data.set(new TorrentHandle(th).createTorrent());
-                        signal.countDown();
+                        th.save_resume_data(torrent_handle.save_info_dict);
                     }
                 } else {
                     add = true;

@@ -1,9 +1,13 @@
+/*
+ * Copyright (c) 2018-2022, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j.demo;
 
-import org.libtorrent4j.Entry;
-import org.libtorrent4j.SessionManager;
-import org.libtorrent4j.SessionParams;
-import org.libtorrent4j.SettingsPack;
+import org.libtorrent4j.*;
 
 import java.io.File;
 import java.util.Timer;
@@ -20,7 +24,7 @@ public final class GetMagnet {
     public static void main(String[] args) throws Throwable {
 
         //String uri = "magnet:?xt=urn:btih:86d0502ead28e495c9e67665340f72aa72fe304e&dn=Frostwire.5.3.6.+%5BWindows%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Fopen.demonii.com%3A1337";
-        String uri = "magnet:?xt=urn:btih:a83cc13bf4a07e85b938dcf06aa707955687ca7c";
+        String uri = "magnet:?xt=urn:btih:3b245504cf5f11bbdbe1201cea6a6bf45aee1bc0";
 
         final SessionManager s = new SessionManager();
         //final SessionManager s = new SessionManager(true);

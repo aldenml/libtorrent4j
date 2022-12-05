@@ -1,6 +1,14 @@
+/*
+ * Copyright (c) 2018-2022, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j.alerts;
 
 import org.libtorrent4j.TcpEndpoint;
+import org.libtorrent4j.swig.protocol_version;
 import org.libtorrent4j.swig.tracker_alert;
 
 /**
@@ -33,5 +41,14 @@ public class TrackerAlert<T extends tracker_alert> extends TorrentAlert<T> {
      */
     public String trackerUrl() {
         return alert.tracker_url();
+    }
+
+    /**
+     * The bittorrent protocol version that was announced.
+     *
+     * @return bittorrent protocol version that was announced
+     */
+    public protocol_version getVersion() {
+        return alert.getVersion();
     }
 }

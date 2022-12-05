@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021, Alden Torres
+ * Copyright (c) 2018-2022, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -17,11 +17,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.libtorrent4j.swig.libtorrent.add_files_ex;
+import static org.libtorrent4j.swig.libtorrent.list_files_ex;
 import static org.libtorrent4j.swig.libtorrent.set_piece_hashes_ex;
 
 /**
@@ -38,16 +36,15 @@ public class CreateTorrentTest {
         final File f = folder.newFile("test.txt");
         Utils.writeByteArrayToFile(f, new byte[]{0}, false);
 
-        file_storage fs = new file_storage();
-        add_files_listener l1 = new add_files_listener() {
+        list_files_listener l1 = new list_files_listener() {
             @Override
             public boolean pred(String p) {
                 assertEquals(f.getAbsolutePath(), p);
                 return true;
             }
         };
-        add_files_ex(fs, f.getAbsolutePath(), l1, new create_flags_t());
-        create_torrent ct = new create_torrent(fs);
+        create_file_entry_vector files = list_files_ex(f.getAbsolutePath(), l1, new create_flags_t());
+        create_torrent ct = new create_torrent(files);
         set_piece_hashes_listener l2 = new set_piece_hashes_listener() {
             @Override
             public void progress(int i) {
@@ -71,15 +68,14 @@ public class CreateTorrentTest {
         File f2 = new File(dir, "test1.txt");
         Utils.writeByteArrayToFile(f2, new byte[]{0}, false);
 
-        file_storage fs = new file_storage();
-        add_files_listener l1 = new add_files_listener() {
+        list_files_listener l1 = new list_files_listener() {
             @Override
             public boolean pred(String p) {
                 return true;
             }
         };
-        add_files_ex(fs, dir.getAbsolutePath(), l1, new create_flags_t());
-        create_torrent ct = new create_torrent(fs);
+        create_file_entry_vector files = list_files_ex(dir.getAbsolutePath(), l1, new create_flags_t());
+        create_torrent ct = new create_torrent(files);
         set_piece_hashes_listener l2 = new set_piece_hashes_listener() {
             @Override
             public void progress(int i) {
@@ -92,7 +88,7 @@ public class CreateTorrentTest {
         entry e = ct.generate();
         byte_vector buffer = e.bencode();
         TorrentInfo ti = TorrentInfo.bdecode(Vectors.byte_vector2bytes(buffer));
-        assertEquals(3, ti.numFiles());
+        assertEquals(4, ti.numFiles());
     }
 
     @Test
@@ -131,7 +127,7 @@ public class CreateTorrentTest {
         assertTrue(ti.isPrivate());
         assertTrue(ti.similarTorrents().get(0).isAllZeros());
         assertEquals("collection", ti.collections().get(0));
-        assertEquals(3, ti.numFiles());
+        assertEquals(4, ti.numFiles());
     }
 
     @Test
@@ -162,40 +158,11 @@ public class CreateTorrentTest {
             .generate();
 
         TorrentInfo ti = TorrentInfo.bdecode(r.entry().bencode());
-        assertEquals(3, ti.numFiles());
+        assertEquals(4, ti.numFiles());
         assertTrue(b1.get());
         assertTrue(b2.get());
 
-        assertEquals(16386, ti.totalSize());
+        assertEquals(32768, ti.totalSize());
         assertEquals(4, ti.sizeOnDisk());
-    }
-
-    @Test
-    public void testV2Only() {
-        error_code ec = new error_code();
-        file_storage fs = new file_storage();
-        fs.add_file_ex(ec, "test/A", 0x8002);
-        fs.add_file_ex(ec, "test/B", 0x4002);
-        create_torrent t = new create_torrent(fs, 0x4000, create_torrent.v2_only);
-
-        t.set_hash2(0, 0, sha256_hash.max());
-        t.set_hash2(0, 1, sha256_hash.max());
-        t.set_hash2(0, 2, sha256_hash.max());
-        // file 1 is a pad file
-        t.set_hash2(2, 0, sha256_hash.max());
-        t.set_hash2(2, 1, sha256_hash.max());
-
-        byte[] buffer = Vectors.byte_vector2bytes(t.generate().bencode());
-        torrent_info info = TorrentInfo.bdecode(buffer).swig();
-        assertTrue(info.info_hashes().has_v2());
-        assertFalse(info.info_hashes().has_v1());
-        assertEquals("A", info.files().file_name_ex(0));
-        assertTrue(info.files().pad_file_at(1));
-        assertEquals("B", info.files().file_name_ex(2));
-        assertEquals("test", info.name());
-
-        create_torrent t2 = new create_torrent(info);
-        byte[] buffer2 = Vectors.byte_vector2bytes(t2.generate().bencode());
-        assertArrayEquals(buffer, buffer2);
     }
 }

@@ -104,6 +104,7 @@ public enum AlertType {
     SOCKS5(socks5_alert.alert_type),
     FILE_PRIO(file_prio_alert.alert_type),
     OVERSIZED_FILE(oversized_file_alert.alert_type),
+    TORRENT_CONFLICT(torrent_conflict_alert.alert_type),
     UNKNOWN(-1);
 
     private static final AlertType[] TABLE = buildTable();
@@ -231,6 +232,7 @@ public enum AlertType {
         arr[96] = SOCKS5;
         arr[97] = FILE_PRIO;
         arr[98] = OVERSIZED_FILE;
+        arr[99] = TORRENT_CONFLICT;
 
         return arr;
     }

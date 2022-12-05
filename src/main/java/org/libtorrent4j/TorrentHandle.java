@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020, Alden Torres
+ * Copyright (c) 2018-2022, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -18,12 +18,9 @@ import org.libtorrent4j.alerts.StorageMovedAlert;
 import org.libtorrent4j.alerts.StorageMovedFailedAlert;
 import org.libtorrent4j.alerts.TorrentNeedCertAlert;
 import org.libtorrent4j.swig.add_piece_flags_t;
-import org.libtorrent4j.swig.announce_entry;
 import org.libtorrent4j.swig.announce_entry_vector;
 import org.libtorrent4j.swig.byte_vector;
-import org.libtorrent4j.swig.create_torrent;
 import org.libtorrent4j.swig.deadline_flags_t;
-import org.libtorrent4j.swig.entry;
 import org.libtorrent4j.swig.file_progress_flags_t;
 import org.libtorrent4j.swig.int64_vector;
 import org.libtorrent4j.swig.int_vector;
@@ -33,7 +30,6 @@ import org.libtorrent4j.swig.peer_info_vector;
 import org.libtorrent4j.swig.reannounce_flags_t;
 import org.libtorrent4j.swig.resume_data_flags_t;
 import org.libtorrent4j.swig.status_flags_t;
-import org.libtorrent4j.swig.string_vector;
 import org.libtorrent4j.swig.torrent_flags_t;
 import org.libtorrent4j.swig.torrent_handle;
 import org.libtorrent4j.swig.torrent_info;
@@ -168,7 +164,7 @@ public final class TorrentHandle
     /**
      * Sets the first piece of the range for the piece picker to start
      * downloading in sequential mode.
-     *
+     * <p>
      * If the torrent metadata has not been downloaded yet
      * then the functions do nothing.
      *
@@ -816,8 +812,6 @@ public final class TorrentHandle
      * be opened/created) on your filesystem. If such an error occurs, a
      * file_error_alert is generated and all handles that refers to that
      * torrent will become invalid.
-     *
-     *
      */
     public boolean isValid() {
         return h.is_valid();
@@ -826,41 +820,25 @@ public final class TorrentHandle
     /**
      * Generates a magnet URI from the specified torrent. If the torrent
      * handle is invalid, null is returned.
-     *
-     *
      */
     public String makeMagnetUri() {
         return h.is_valid() ? libtorrent.make_magnet_uri(h) : null;
     }
 
-    // ``set_upload_limit`` will limit the upload bandwidth used by this
-    // particular torrent to the limit you set. It is given as the number of
-    // bytes per second the torrent is allowed to upload.
-    // ``set_download_limit`` works the same way but for download bandwidth
-    // instead of upload bandwidth. Note that setting a higher limit on a
-    // torrent then the global limit
-    // (``session_settings::upload_rate_limit``) will not override the global
-    // rate limit. The torrent can never upload more than the global rate
-    // limit.
-    //
-    // ``upload_limit`` and ``download_limit`` will return the current limit
-    // setting, for upload and download, respectively.
+    /**
+     * Will limit the upload bandwidth used by this
+     * particular torrent to the limit you set. It is given as the number of
+     * bytes per second the torrent is allowed to upload.
+     */
     public int getUploadLimit() {
         return h.upload_limit();
     }
 
-    // ``set_upload_limit`` will limit the upload bandwidth used by this
-    // particular torrent to the limit you set. It is given as the number of
-    // bytes per second the torrent is allowed to upload.
-    // ``set_download_limit`` works the same way but for download bandwidth
-    // instead of upload bandwidth. Note that setting a higher limit on a
-    // torrent then the global limit
-    // (``session_settings::upload_rate_limit``) will not override the global
-    // rate limit. The torrent can never upload more than the global rate
-    // limit.
-    //
-    // ``upload_limit`` and ``download_limit`` will return the current limit
-    // setting, for upload and download, respectively.
+    /**
+     * Will limit the upload bandwidth used by this
+     * particular torrent to the limit you set. It is given as the number of
+     * bytes per second the torrent is allowed to upload.
+     */
     public void setUploadLimit(int limit) {
         h.set_upload_limit(limit);
     }
@@ -957,6 +935,36 @@ public final class TorrentHandle
     // as the ``min_interval`` expires. This is to honor trackers minimum
     // re-announce interval settings.
     //
+    // The ``url`` argument specifies which tracker to re-announce.
+    //
+    public void forceReannounce(int seconds, String url, reannounce_flags_t flags) {
+        h.force_reannounce(seconds, url, flags);
+    }
+
+    // ``force_reannounce()`` will force this torrent to do another tracker
+    // request, to receive new peers. The ``seconds`` argument specifies how
+    // many seconds from now to issue the tracker announces.
+    //
+    // If the tracker's ``min_interval`` has not passed since the last
+    // announce, the forced announce will be scheduled to happen immediately
+    // as the ``min_interval`` expires. This is to honor trackers minimum
+    // re-announce interval settings.
+    //
+    // The ``url`` argument specifies which tracker to re-announce.
+    //
+    public void forceReannounce(int seconds, String url) {
+        h.force_reannounce(seconds, url);
+    }
+
+    // ``force_reannounce()`` will force this torrent to do another tracker
+    // request, to receive new peers. The ``seconds`` argument specifies how
+    // many seconds from now to issue the tracker announces.
+    //
+    // If the tracker's ``min_interval`` has not passed since the last
+    // announce, the forced announce will be scheduled to happen immediately
+    // as the ``min_interval`` expires. This is to honor trackers minimum
+    // re-announce interval settings.
+    //
     // The ``tracker_index`` argument specifies which tracker to re-announce.
     // If set to -1 (which is the default), all trackers are re-announce.
     //
@@ -986,6 +994,43 @@ public final class TorrentHandle
      */
     public void forceDHTAnnounce() {
         h.force_dht_announce();
+    }
+
+    /**
+     * Announce the torrent on LSD immediately.
+     */
+    public void forceLSDAnnounce() {
+        h.force_lsd_announce();
+    }
+
+    // ``scrape_tracker()`` will send a scrape request to a tracker. By
+    // default (``idx`` = -1) it will scrape the last working tracker. If
+    // ``idx`` is >= 0, the tracker with the specified index will scraped.
+    //
+    // A scrape request queries the tracker for statistics such as total
+    // number of incomplete peers, complete peers, number of downloads etc.
+    //
+    // This request will specifically update the ``num_complete`` and
+    // ``num_incomplete`` fields in the torrent_status struct once it
+    // completes. When it completes, it will generate a scrape_reply_alert.
+    // If it fails, it will generate a scrape_failed_alert.
+    public void scrapeTracker(int idx) {
+        h.scrape_tracker(idx);
+    }
+
+    // ``scrape_tracker()`` will send a scrape request to a tracker. By
+    // default (``idx`` = -1) it will scrape the last working tracker. If
+    // ``idx`` is >= 0, the tracker with the specified index will scraped.
+    //
+    // A scrape request queries the tracker for statistics such as total
+    // number of incomplete peers, complete peers, number of downloads etc.
+    //
+    // This request will specifically update the ``num_complete`` and
+    // ``num_incomplete`` fields in the torrent_status struct once it
+    // completes. When it completes, it will generate a scrape_reply_alert.
+    // If it fails, it will generate a scrape_failed_alert.
+    public void scrapeTracker(String url) {
+        h.scrape_tracker(url);
     }
 
     /**
@@ -1055,30 +1100,19 @@ public final class TorrentHandle
         h.add_tracker(tracker.swig());
     }
 
-    // ``add_url_seed()`` adds another url to the torrent's list of url
-    // seeds. If the given url already exists in that list, the call has no
-    // effect. The torrent will connect to the server and try to download
-    // pieces from it, unless it's paused, queued, checking or seeding.
-    // ``remove_url_seed()`` removes the given url if it exists already.
-    // ``url_seeds()`` return a set of the url seeds currently in this
-    // torrent. Note that urls that fails may be removed automatically from
-    // the list.
-    //
-    // See http-seeding_ for more information.
+    /**
+     * Adds another url to the torrent's list of url
+     * seeds. If the given url already exists in that list, the call has no
+     * effect. The torrent will connect to the server and try to download
+     * pieces from it, unless it's paused, queued, checking or seeding.
+     */
     public void addUrlSeed(String url) {
         h.add_url_seed(url);
     }
 
-    // ``add_url_seed()`` adds another url to the torrent's list of url
-    // seeds. If the given url already exists in that list, the call has no
-    // effect. The torrent will connect to the server and try to download
-    // pieces from it, unless it's paused, queued, checking or seeding.
-    // ``remove_url_seed()`` removes the given url if it exists already.
-    // ``url_seeds()`` return a set of the url seeds currently in this
-    // torrent. Note that urls that fails may be removed automatically from
-    // the list.
-    //
-    // See http-seeding_ for more information.
+    /**
+     * Removes the given url if it exists already.
+     */
     public void removeUrlSeed(String url) {
         h.remove_url_seed(url);
     }
@@ -1336,8 +1370,6 @@ public final class TorrentHandle
      * The path to the directory where this torrent's files are stored.
      * It's typically the path as was given to async_add_torrent() or
      * add_torrent() when this torrent was started.
-     *
-     *
      */
     public String savePath() {
         torrent_status ts = h.status(torrent_handle.query_save_path);
@@ -1408,35 +1440,6 @@ public final class TorrentHandle
      */
     public void renameFile(int index, String newName) {
         h.rename_file(index, newName);
-    }
-
-    public byte[] createTorrent() {
-        if (!h.is_valid()) {
-            return null;
-        }
-
-        torrent_info ti = h.torrent_file_ptr();
-        if (ti == null || !ti.is_valid()) {
-            return null;
-        }
-
-        create_torrent ct = new create_torrent(ti);
-
-        string_vector v = h.get_url_seeds();
-        int size = v.size();
-        for (int i = 0; i < size; i++) {
-            ct.add_url_seed(v.get(i));
-        }
-
-        announce_entry_vector trackers = h.trackers();
-        size = trackers.size();
-        for (int i = 0; i < size; i++) {
-            announce_entry t = trackers.get(i);
-            ct.add_tracker(t.getUrl(), t.getTier());
-        }
-
-        entry e = ct.generate();
-        return Vectors.byte_vector2bytes(e.bencode());
     }
 
     /**

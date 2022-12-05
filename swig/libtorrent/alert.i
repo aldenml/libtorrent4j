@@ -108,6 +108,7 @@ struct alert_category_tag;
     CAST_ALERT_METHOD(socks5_alert)
     CAST_ALERT_METHOD(file_prio_alert)
     CAST_ALERT_METHOD(oversized_file_alert)
+    CAST_ALERT_METHOD(torrent_conflict_alert)
 
 }
 
