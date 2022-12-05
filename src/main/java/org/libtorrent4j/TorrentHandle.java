@@ -18,12 +18,9 @@ import org.libtorrent4j.alerts.StorageMovedAlert;
 import org.libtorrent4j.alerts.StorageMovedFailedAlert;
 import org.libtorrent4j.alerts.TorrentNeedCertAlert;
 import org.libtorrent4j.swig.add_piece_flags_t;
-import org.libtorrent4j.swig.announce_entry;
 import org.libtorrent4j.swig.announce_entry_vector;
 import org.libtorrent4j.swig.byte_vector;
-import org.libtorrent4j.swig.create_torrent;
 import org.libtorrent4j.swig.deadline_flags_t;
-import org.libtorrent4j.swig.entry;
 import org.libtorrent4j.swig.file_progress_flags_t;
 import org.libtorrent4j.swig.int64_vector;
 import org.libtorrent4j.swig.int_vector;
@@ -33,7 +30,6 @@ import org.libtorrent4j.swig.peer_info_vector;
 import org.libtorrent4j.swig.reannounce_flags_t;
 import org.libtorrent4j.swig.resume_data_flags_t;
 import org.libtorrent4j.swig.status_flags_t;
-import org.libtorrent4j.swig.string_vector;
 import org.libtorrent4j.swig.torrent_flags_t;
 import org.libtorrent4j.swig.torrent_handle;
 import org.libtorrent4j.swig.torrent_info;
@@ -168,7 +164,7 @@ public final class TorrentHandle
     /**
      * Sets the first piece of the range for the piece picker to start
      * downloading in sequential mode.
-     *
+     * <p>
      * If the torrent metadata has not been downloaded yet
      * then the functions do nothing.
      *
@@ -816,8 +812,6 @@ public final class TorrentHandle
      * be opened/created) on your filesystem. If such an error occurs, a
      * file_error_alert is generated and all handles that refers to that
      * torrent will become invalid.
-     *
-     *
      */
     public boolean isValid() {
         return h.is_valid();
@@ -826,41 +820,25 @@ public final class TorrentHandle
     /**
      * Generates a magnet URI from the specified torrent. If the torrent
      * handle is invalid, null is returned.
-     *
-     *
      */
     public String makeMagnetUri() {
         return h.is_valid() ? libtorrent.make_magnet_uri(h) : null;
     }
 
-    // ``set_upload_limit`` will limit the upload bandwidth used by this
-    // particular torrent to the limit you set. It is given as the number of
-    // bytes per second the torrent is allowed to upload.
-    // ``set_download_limit`` works the same way but for download bandwidth
-    // instead of upload bandwidth. Note that setting a higher limit on a
-    // torrent then the global limit
-    // (``session_settings::upload_rate_limit``) will not override the global
-    // rate limit. The torrent can never upload more than the global rate
-    // limit.
-    //
-    // ``upload_limit`` and ``download_limit`` will return the current limit
-    // setting, for upload and download, respectively.
+    /**
+     * Will limit the upload bandwidth used by this
+     * particular torrent to the limit you set. It is given as the number of
+     * bytes per second the torrent is allowed to upload.
+     */
     public int getUploadLimit() {
         return h.upload_limit();
     }
 
-    // ``set_upload_limit`` will limit the upload bandwidth used by this
-    // particular torrent to the limit you set. It is given as the number of
-    // bytes per second the torrent is allowed to upload.
-    // ``set_download_limit`` works the same way but for download bandwidth
-    // instead of upload bandwidth. Note that setting a higher limit on a
-    // torrent then the global limit
-    // (``session_settings::upload_rate_limit``) will not override the global
-    // rate limit. The torrent can never upload more than the global rate
-    // limit.
-    //
-    // ``upload_limit`` and ``download_limit`` will return the current limit
-    // setting, for upload and download, respectively.
+    /**
+     * Will limit the upload bandwidth used by this
+     * particular torrent to the limit you set. It is given as the number of
+     * bytes per second the torrent is allowed to upload.
+     */
     public void setUploadLimit(int limit) {
         h.set_upload_limit(limit);
     }
@@ -1403,8 +1381,6 @@ public final class TorrentHandle
      * The path to the directory where this torrent's files are stored.
      * It's typically the path as was given to async_add_torrent() or
      * add_torrent() when this torrent was started.
-     *
-     *
      */
     public String savePath() {
         torrent_status ts = h.status(torrent_handle.query_save_path);
