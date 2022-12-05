@@ -1100,30 +1100,19 @@ public final class TorrentHandle
         h.add_tracker(tracker.swig());
     }
 
-    // ``add_url_seed()`` adds another url to the torrent's list of url
-    // seeds. If the given url already exists in that list, the call has no
-    // effect. The torrent will connect to the server and try to download
-    // pieces from it, unless it's paused, queued, checking or seeding.
-    // ``remove_url_seed()`` removes the given url if it exists already.
-    // ``url_seeds()`` return a set of the url seeds currently in this
-    // torrent. Note that urls that fails may be removed automatically from
-    // the list.
-    //
-    // See http-seeding_ for more information.
+    /**
+     * Adds another url to the torrent's list of url
+     * seeds. If the given url already exists in that list, the call has no
+     * effect. The torrent will connect to the server and try to download
+     * pieces from it, unless it's paused, queued, checking or seeding.
+     */
     public void addUrlSeed(String url) {
         h.add_url_seed(url);
     }
 
-    // ``add_url_seed()`` adds another url to the torrent's list of url
-    // seeds. If the given url already exists in that list, the call has no
-    // effect. The torrent will connect to the server and try to download
-    // pieces from it, unless it's paused, queued, checking or seeding.
-    // ``remove_url_seed()`` removes the given url if it exists already.
-    // ``url_seeds()`` return a set of the url seeds currently in this
-    // torrent. Note that urls that fails may be removed automatically from
-    // the list.
-    //
-    // See http-seeding_ for more information.
+    /**
+     * Removes the given url if it exists already.
+     */
     public void removeUrlSeed(String url) {
         h.remove_url_seed(url);
     }

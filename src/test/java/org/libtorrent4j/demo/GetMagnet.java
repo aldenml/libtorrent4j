@@ -8,7 +8,6 @@
 package org.libtorrent4j.demo;
 
 import org.libtorrent4j.*;
-import org.libtorrent4j.alerts.Alert;
 
 import java.io.File;
 import java.util.Timer;
