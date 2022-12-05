@@ -26,13 +26,13 @@ protected:
     Swig::BoolArray<1> swig_override;
 };
 
-struct SwigDirector_add_files_listener : public add_files_listener, public Swig::Director {
+struct SwigDirector_list_files_listener : public list_files_listener, public Swig::Director {
 
 public:
     void swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global);
-    SwigDirector_add_files_listener(JNIEnv *jenv);
-    virtual ~SwigDirector_add_files_listener();
-    virtual bool pred(std::string const &p);
+    SwigDirector_list_files_listener(JNIEnv *jenv);
+    virtual ~SwigDirector_list_files_listener();
+    virtual bool pred(std::string p);
 public:
     bool swig_overrides(int n) {
       return (n < 1 ? swig_override[n] : false);

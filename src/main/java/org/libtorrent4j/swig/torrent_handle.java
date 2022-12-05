@@ -220,12 +220,24 @@ public class torrent_handle {
     libtorrent_jni.torrent_handle_force_reannounce__SWIG_1(swigCPtr, this, seconds, idx);
   }
 
+  public void force_reannounce(int seconds, String url, reannounce_flags_t arg2) {
+    libtorrent_jni.torrent_handle_force_reannounce__SWIG_2(swigCPtr, this, seconds, url, reannounce_flags_t.getCPtr(arg2), arg2);
+  }
+
+  public void force_reannounce(int seconds, String url) {
+    libtorrent_jni.torrent_handle_force_reannounce__SWIG_3(swigCPtr, this, seconds, url);
+  }
+
+  public void force_reannounce(int seconds, reannounce_flags_t arg1) {
+    libtorrent_jni.torrent_handle_force_reannounce__SWIG_4(swigCPtr, this, seconds, reannounce_flags_t.getCPtr(arg1), arg1);
+  }
+
   public void force_reannounce(int seconds) {
-    libtorrent_jni.torrent_handle_force_reannounce__SWIG_2(swigCPtr, this, seconds);
+    libtorrent_jni.torrent_handle_force_reannounce__SWIG_5(swigCPtr, this, seconds);
   }
 
   public void force_reannounce() {
-    libtorrent_jni.torrent_handle_force_reannounce__SWIG_3(swigCPtr, this);
+    libtorrent_jni.torrent_handle_force_reannounce__SWIG_6(swigCPtr, this);
   }
 
   public void force_dht_announce() {
@@ -242,6 +254,10 @@ public class torrent_handle {
 
   public void scrape_tracker() {
     libtorrent_jni.torrent_handle_scrape_tracker__SWIG_1(swigCPtr, this);
+  }
+
+  public void scrape_tracker(String url) {
+    libtorrent_jni.torrent_handle_scrape_tracker__SWIG_2(swigCPtr, this, url);
   }
 
   public void set_upload_limit(int limit) {
@@ -418,7 +434,6 @@ public class torrent_handle {
   public final static deadline_flags_t alert_when_available = new deadline_flags_t(libtorrent_jni.torrent_handle_alert_when_available_get(), false);
   public final static file_progress_flags_t piece_granularity = new file_progress_flags_t(libtorrent_jni.torrent_handle_piece_granularity_get(), false);
   public final static pause_flags_t graceful_pause = new pause_flags_t(libtorrent_jni.torrent_handle_graceful_pause_get(), false);
-  public final static pause_flags_t clear_disk_cache = new pause_flags_t(libtorrent_jni.torrent_handle_clear_disk_cache_get(), false);
   public final static resume_data_flags_t flush_disk_cache = new resume_data_flags_t(libtorrent_jni.torrent_handle_flush_disk_cache_get(), false);
   public final static resume_data_flags_t save_info_dict = new resume_data_flags_t(libtorrent_jni.torrent_handle_save_info_dict_get(), false);
   public final static resume_data_flags_t only_if_modified = new resume_data_flags_t(libtorrent_jni.torrent_handle_only_if_modified_get(), false);

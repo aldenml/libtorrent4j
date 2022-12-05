@@ -626,15 +626,21 @@ public final class Alerts {
                 return new OversizedFileAlert(cast_to_oversized_file_alert(a));
             }
         };
+        arr[99] = new CastLambda() {
+            @Override
+            public Alert<?> cast(alert a) {
+                return new TorrentConflictAlert(cast_to_torrent_conflict_alert(a));
+            }
+        };
 
         return arr;
     }
 
-    private static Alert handleUnknownAlert(alert a) {
+    private static Alert<?> handleUnknownAlert(alert a) {
         throw new IllegalArgumentException("alert not known: " + a.type() + " - " + a.message());
     }
 
     private interface CastLambda {
-        Alert cast(alert a);
+        Alert<?> cast(alert a);
     }
 }

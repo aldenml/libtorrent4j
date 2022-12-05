@@ -301,6 +301,30 @@ public class add_torrent_params {
     return libtorrent_jni.add_torrent_params_last_upload_get(swigCPtr, this);
   }
 
+  public void setComment(String value) {
+    libtorrent_jni.add_torrent_params_comment_set(swigCPtr, this, value);
+  }
+
+  public String getComment() {
+    return libtorrent_jni.add_torrent_params_comment_get(swigCPtr, this);
+  }
+
+  public void setCreated_by(String value) {
+    libtorrent_jni.add_torrent_params_created_by_set(swigCPtr, this, value);
+  }
+
+  public String getCreated_by() {
+    return libtorrent_jni.add_torrent_params_created_by_get(swigCPtr, this);
+  }
+
+  public void setCreation_date(long value) {
+    libtorrent_jni.add_torrent_params_creation_date_set(swigCPtr, this, value);
+  }
+
+  public long getCreation_date() {
+    return libtorrent_jni.add_torrent_params_creation_date_get(swigCPtr, this);
+  }
+
   public torrent_info ti_ptr() {
     long cPtr = libtorrent_jni.add_torrent_params_ti_ptr(swigCPtr, this);
     return (cPtr == 0) ? null : new torrent_info(cPtr, false);

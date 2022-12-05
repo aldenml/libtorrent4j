@@ -1,3 +1,120 @@
+2.1.0-27
+
+  * using libtorrent master
+  * removed API to create torrents from torrent info
+  * lt:prevent sending data on a uTP socket after closing it
+  * lt:fix m_bytes_in_flight invariant and packet counters in the event of the
+    UDP socket stalling
+  * lt:fix some disk-io counters. primarily num_read_back
+  * lt:introduce new API for create_torrent, to phase out the use of
+    file_storage for creating torrents
+  * lt:clean-up settings_pack default values to be able to return the default
+    value for un-set settings without a hack
+  * lt:add write_torrent_file_buf() overload for generating .torrent files
+  * lt:add create_torrent::generate_buf() function to generate into a buffer
+  * lt:use typesafe flag in (internal) file_status() function parameter
+  * lt:use typesafe flag in file_status struct, and optimize out a redundant
+    call to stat() in add_files
+  * lt:resend uTP acks that fail to send due to stalling
+  * lt:fix copy_file when the file ends with a sparse region
+  * lt:when the uTP socket stalls, mark failed packets for resend
+  * lt:add some utility member functions to create_torrent
+  * lt:fix trackers being stuck after session pause/resume
+  * lt:fix bug in hash_picker with empty files
+  * lt:expose mmapped file_open_mode flag
+  * lt:add option to not memory map files below a certain size
+  * lt:settings_pack now returns default values when queried for missing
+    settings
+  * lt:don't drop uTP's cwnd below 1*MSS due to latency
+  * lt:reset uTP timeout when sending packets
+  * lt:extend create_torrent object with piece_range(), end_piece() and
+    total_size()
+  * lt:fall back to full copy if SEEK_HOLE and SEEK_DATA isn't supported
+  * lt:improve error reporting from file opy and move
+  * lt:tweak pad file placement to match reference implementation (tail-padding)
+  * lt:update state when need to save resume data
+  * lt:support incoming SOCKS5 packets with hostnames as source address, for UDP
+    trackers
+  * lt:modify the Nagle algorithm to allow one undersized packet in flight at a
+    time
+  * lt:for efficiency, pick up and send an undersized utp packet if there's room
+    in the congestion window when 'forcing' a packet
+  * lt:ignore duplicate network interface change notifications on linux
+  * lt:prevent redundant deferred utp acks from being sent
+  * lt:don't memory map files smaller than 1 MiB, use pwrite/pread calls
+  * lt:fix wanted_done/done accounting when force-rechecking
+  * lt:fix total_want/want accounting when forcing a recheck
+  * lt:expose userdata via torrent_handle
+  * lt:introduce setting for using pwrite in mmap_disk_storage
+  * lt:use pwrite() for writing to files in mmap_storage
+  * lt:better thread names
+  * lt:fix merging metadata with magnet links added on top of existing torrents
+  * lt:add torrent_flag to default all file priorities to dont_download
+  * lt:make the SOCKS5 client tolerate a domain name in the response to UDP
+    ASSOCIATE
+  * lt:fix renaming of filenames that are too long for the filesystem
+  * lt:optimize loading merkle tree mask
+  * lt:move the creation of directories and retrying opening a file for writing
+    down the stack
+  * lt:fix destruction order of job-pool and file-pool
+  * lt:make LSD code avoid using select_reactor
+  * lt:make UPnP code not use select_reactor
+  * lt:refactor file_view_pool to allow it to be used with other file objects
+    than just memory mapped files
+  * lt:remove vectored I/O API from file class
+  * lt:remove vector I/O API from part file. use single buffers
+  * lt:open files with no_cache set in O_SYNC mode
+  * lt:report EOF when attempting to hash off the end of a short file
+  * lt:factor out hash_zeroes() from mmap_storage
+  * lt:set file index of errors in readwrite() instead of in every file-op
+  * lt:change vectored I/O API to single-buffer in readwritev() and posix- and
+    mmap storage
+  * lt:handle all "fastresume rejected" cases consistently
+  * lt:make copy_file_range() fall back to manual copy when it fails with EXDEV
+  * lt:use boost static_vector in disk_completed_queue
+  * lt:make file_pool_view serialize opening of files, rather than race each
+    other. When the same file is needed by multiple threads
+  * lt:fix destruction order issue in mmap_disk_io
+  * lt:don't disconnect peers after accepting 'slack' connections when no longer
+    above the connection limit
+  * lt:factor out disk job completed queue from mmap_disk_io
+  * lt:factor out and fix debug disk thread functionality
+  * lt:make disk_job_pool generic
+  * lt:make a generic disk job type
+  * lt:simplify the disk io thread pools and factor more of its logic out
+    of mmap_disk_io
+  * lt:fix issue where stop-when-ready would not close files
+  * lt:fixed tracker connections spinning when hostname lookups stall
+  * lt:improve tailqueue's API to make it clearer and safer
+  * lt:factor out storage_array from mmap_disk_io
+  * lt:enable volatile-read for peer connection read requests, when
+    disk_io_read_mode is disable_os_cache
+  * lt:new scrape_tracker and force_reannounce
+  * lt:factor out tracker list, enforce unique tracker URLs
+  * lt:extend write_torrent_file() with a flags parameter, don't include DHT
+    nodes by default
+  * lt:when over the connection limit, treat partially downloaded but complete
+    torrents the same as seeds when looking for a peer to replace with a
+     potentially better one
+  * lt:add torrent_conflict_alert
+  * lt:fix issue with merging two magnet link torrents into one hybrid
+  * lt:move the protocol version field for tracker alerts into the
+    tracker_alert baseclass
+  * lt:use sync_file_range() on linux, when disabling write cache
+  * lt:post add_torrent_alert after torrent is fully initialized
+  * lt:interrupt http_connection::on_resolve() for closed connection
+  * lt:fix file_num_blocks() and file_num_pieces() for empty files
+  * lt:use default settings in set_piece_hashes
+  * lt:ut_metadata: don't request the same block more than once every 3
+    seconds unless the source is disconnected
+  * lt:unify default limits when loading torrents in torrent_info constructor
+  * lt:add new overload to make_magnet_uri that takes an add_torrent_params
+  * lt:add missing protocol version to tracker_reply_alert and
+    tracker_error_alert
+  * lt:fix privilege issue with SetFileValidData()
+  * lt:add asynchronous overload of torrent_handle::add_piece()
+  * lt:source code cleanup, performance and stability
+
 2.0.6-26
 
   * using libtorrent master

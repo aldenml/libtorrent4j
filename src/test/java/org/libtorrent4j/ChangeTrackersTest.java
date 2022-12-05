@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2022, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.*;
@@ -14,45 +21,6 @@ import static org.junit.Assert.assertTrue;
  * @author aldenml
  */
 public class ChangeTrackersTest {
-
-    @Test
-    public void testChangeTrackersUsingCreateTorrent() throws IOException {
-        // this line is important to link native ahead of time
-        // while debugging, any static method will do it
-        libtorrent.version();
-
-        byte[] torrentBytes = Utils.resourceBytes("test4.torrent");
-        TorrentInfo ti = TorrentInfo.bdecode(torrentBytes);
-
-        // do we have any tracker
-        assertTrue(ti.trackers().size() > 0);
-
-        entry e = entry.bdecode(Vectors.bytes2byte_vector(torrentBytes));
-        boost_string_entry_map m = e.dict();
-        if (m.contains("announce")) {
-            m.remove("announce");
-        }
-        if (m.contains("announce-list")) {
-            m.remove("announce-list");
-        }
-
-        ti = TorrentInfo.bdecode(Vectors.byte_vector2bytes(e.bencode()));
-        // did we remove all trackers
-        assertEquals(ti.trackers().size(), 0);
-
-        create_torrent c = new create_torrent(ti.swig());
-
-        c.add_tracker("http://a:6969/announce", 0);
-        c.add_tracker("http://b:6969/announce", 1);
-
-        e = c.generate();
-        ti = TorrentInfo.bdecode(Vectors.byte_vector2bytes(e.bencode()));
-        ArrayList<AnnounceEntry> trackers = ti.trackers();
-        // do we have exactly the two added trackers
-        assertEquals(trackers.size(), 2);
-        assertEquals(trackers.get(0).url(), "http://a:6969/announce");
-        assertEquals(trackers.get(1).url(), "http://b:6969/announce");
-    }
 
     @Test
     public void testChangeTrackersLowLevel() throws IOException {

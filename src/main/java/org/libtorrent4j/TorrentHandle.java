@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020, Alden Torres
+ * Copyright (c) 2018-2022, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -957,6 +957,36 @@ public final class TorrentHandle
     // as the ``min_interval`` expires. This is to honor trackers minimum
     // re-announce interval settings.
     //
+    // The ``url`` argument specifies which tracker to re-announce.
+    //
+    public void forceReannounce(int seconds, String url, reannounce_flags_t flags) {
+        h.force_reannounce(seconds, url, flags);
+    }
+
+    // ``force_reannounce()`` will force this torrent to do another tracker
+    // request, to receive new peers. The ``seconds`` argument specifies how
+    // many seconds from now to issue the tracker announces.
+    //
+    // If the tracker's ``min_interval`` has not passed since the last
+    // announce, the forced announce will be scheduled to happen immediately
+    // as the ``min_interval`` expires. This is to honor trackers minimum
+    // re-announce interval settings.
+    //
+    // The ``url`` argument specifies which tracker to re-announce.
+    //
+    public void forceReannounce(int seconds, String url) {
+        h.force_reannounce(seconds, url);
+    }
+
+    // ``force_reannounce()`` will force this torrent to do another tracker
+    // request, to receive new peers. The ``seconds`` argument specifies how
+    // many seconds from now to issue the tracker announces.
+    //
+    // If the tracker's ``min_interval`` has not passed since the last
+    // announce, the forced announce will be scheduled to happen immediately
+    // as the ``min_interval`` expires. This is to honor trackers minimum
+    // re-announce interval settings.
+    //
     // The ``tracker_index`` argument specifies which tracker to re-announce.
     // If set to -1 (which is the default), all trackers are re-announce.
     //
@@ -986,6 +1016,43 @@ public final class TorrentHandle
      */
     public void forceDHTAnnounce() {
         h.force_dht_announce();
+    }
+
+    /**
+     * Announce the torrent on LSD immediately.
+     */
+    public void forceLSDAnnounce() {
+        h.force_lsd_announce();
+    }
+
+    // ``scrape_tracker()`` will send a scrape request to a tracker. By
+    // default (``idx`` = -1) it will scrape the last working tracker. If
+    // ``idx`` is >= 0, the tracker with the specified index will scraped.
+    //
+    // A scrape request queries the tracker for statistics such as total
+    // number of incomplete peers, complete peers, number of downloads etc.
+    //
+    // This request will specifically update the ``num_complete`` and
+    // ``num_incomplete`` fields in the torrent_status struct once it
+    // completes. When it completes, it will generate a scrape_reply_alert.
+    // If it fails, it will generate a scrape_failed_alert.
+    public void scrapeTracker(int idx) {
+        h.scrape_tracker(idx);
+    }
+
+    // ``scrape_tracker()`` will send a scrape request to a tracker. By
+    // default (``idx`` = -1) it will scrape the last working tracker. If
+    // ``idx`` is >= 0, the tracker with the specified index will scraped.
+    //
+    // A scrape request queries the tracker for statistics such as total
+    // number of incomplete peers, complete peers, number of downloads etc.
+    //
+    // This request will specifically update the ``num_complete`` and
+    // ``num_incomplete`` fields in the torrent_status struct once it
+    // completes. When it completes, it will generate a scrape_reply_alert.
+    // If it fails, it will generate a scrape_failed_alert.
+    public void scrapeTracker(String url) {
+        h.scrape_tracker(url);
     }
 
     /**
@@ -1408,35 +1475,6 @@ public final class TorrentHandle
      */
     public void renameFile(int index, String newName) {
         h.rename_file(index, newName);
-    }
-
-    public byte[] createTorrent() {
-        if (!h.is_valid()) {
-            return null;
-        }
-
-        torrent_info ti = h.torrent_file_ptr();
-        if (ti == null || !ti.is_valid()) {
-            return null;
-        }
-
-        create_torrent ct = new create_torrent(ti);
-
-        string_vector v = h.get_url_seeds();
-        int size = v.size();
-        for (int i = 0; i < size; i++) {
-            ct.add_url_seed(v.get(i));
-        }
-
-        announce_entry_vector trackers = h.trackers();
-        size = trackers.size();
-        for (int i = 0; i < size; i++) {
-            announce_entry t = trackers.get(i);
-            ct.add_tracker(t.getUrl(), t.getTier());
-        }
-
-        entry e = ct.generate();
-        return Vectors.byte_vector2bytes(e.bencode());
     }
 
     /**

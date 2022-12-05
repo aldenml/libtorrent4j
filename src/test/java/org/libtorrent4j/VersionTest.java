@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021, Alden Torres
+ * Copyright (c) 2018-2022, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -19,11 +19,11 @@ public class VersionTest {
 
     @Test
     public void testLibtorrent4jVersionValue() {
-        assertTrue(LibTorrent.libtorrent4jVersion().startsWith("2.0.6-"));
+        assertTrue(LibTorrent.libtorrent4jVersion().startsWith("2.1.0-"));
     }
 
     @Test
     public void testVersionValue() {
-        assertEquals("2.0.6.0", LibTorrent.version());
+        assertEquals("2.1.0.0", LibTorrent.version());
     }
 }

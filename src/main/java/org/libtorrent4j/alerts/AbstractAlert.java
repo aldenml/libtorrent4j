@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2022, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j.alerts;
 
 import org.libtorrent4j.swig.alert;
@@ -24,8 +31,6 @@ public abstract class AbstractAlert<T extends alert> implements Alert<T> {
 
     /**
      * A timestamp is automatically created in the constructor (in milliseconds).
-     *
-     *
      */
     @Override
     public long timestamp() {
@@ -70,8 +75,6 @@ public abstract class AbstractAlert<T extends alert> implements Alert<T> {
     /**
      * Returns a string literal describing the type of the alert. It does
      * not include any information that might be bundled with the alert.
-     *
-     *
      */
     @Override
     public String what() {

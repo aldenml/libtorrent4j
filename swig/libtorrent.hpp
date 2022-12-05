@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2022, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 #ifndef LIBTORRENT_HPP
 #define LIBTORRENT_HPP
 
@@ -9,6 +16,12 @@
 #include <libtorrent/kademlia/item.hpp>
 #include <libtorrent/aux_/enum_net.hpp>
 #include <libtorrent/aux_/random.hpp>
+#include <libtorrent/session_stats.hpp>
+#include <libtorrent/session.hpp>
+#include <libtorrent/create_torrent.hpp>
+#include <libtorrent/read_resume_data.hpp>
+#include <libtorrent/write_resume_data.hpp>
+#include <libtorrent/magnet_uri.hpp>
 
 namespace lt = libtorrent;
 
@@ -145,7 +158,7 @@ struct ip_route
     int mtu;
 };
 
-std::vector<ip_interface> enum_net_interfaces(libtorrent::session* s)
+std::vector<ip_interface> enum_net_interfaces(lt::session* s)
 {
     std::vector<ip_interface> ret;
     boost::system::error_code ec;
@@ -224,22 +237,22 @@ std::string device_for_address(libtorrent::session* s
     return lt::aux::device_for_address(addr, s->get_context(), ec);
 }
 
-struct add_files_listener
+struct list_files_listener
 {
 
-    virtual ~add_files_listener()
+    virtual ~list_files_listener()
     {}
 
-    virtual bool pred(std::string const& p)
+    virtual bool pred(std::string p)
     {
         return true;
     }
 };
 
-void add_files_ex(libtorrent::file_storage& fs, std::string const& file
-    , add_files_listener* listener, libtorrent::create_flags_t flags)
+std::vector<lt::create_file_entry> list_files_ex(std::string const& file
+    , list_files_listener* listener, libtorrent::create_flags_t flags)
 {
-    add_files(fs, file, std::bind(&add_files_listener::pred
+    return lt::list_files(file, std::bind(&list_files_listener::pred
         , listener, std::placeholders::_1), flags);
 }
 
@@ -252,13 +265,13 @@ struct set_piece_hashes_listener
     virtual void progress(int i)
     {}
 
-    void progress_index(piece_index_t i)
+    void progress_index(lt::piece_index_t i)
     {
         progress(static_cast<int>(i));
     }
 };
 
-void set_piece_hashes_ex(libtorrent::create_torrent& t, std::string const& p
+void set_piece_hashes_ex(lt::create_torrent& t, std::string const& p
     , set_piece_hashes_listener* listener, libtorrent::error_code& ec)
 {
     set_piece_hashes(t, p, std::bind(&set_piece_hashes_listener::progress_index

@@ -34,6 +34,7 @@
 %ignore libtorrent::dht_put_alert::signature;
 %ignore libtorrent::performance_warning_str;
 %ignore libtorrent::oversized_file_alert::reserved;
+%ignore libtorrent::torrent_conflict_alert::metadata;
 
 %rename("$ignore", regextarget=1, %$isconstructor) ".*_alert$";
 
@@ -253,6 +254,13 @@ struct picker_flags_tag;
     udp::endpoint get_local_endpoint()
     {
         return $self->local_endpoint;
+    }
+}
+
+%extend torrent_conflict_alert {
+
+    torrent_info get_metadata() {
+        return *($self->metadata);
     }
 }
 

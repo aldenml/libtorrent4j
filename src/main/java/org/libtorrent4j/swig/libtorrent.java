@@ -139,6 +139,11 @@ public class libtorrent {
     return (cPtr == 0) ? null : new torrent_flags_t(cPtr, false);
   }
 
+  public static torrent_flags_t getDefault_dont_download() {
+    long cPtr = libtorrent_jni.default_dont_download_get();
+    return (cPtr == 0) ? null : new torrent_flags_t(cPtr, false);
+  }
+
   public static torrent_flags_t getAll() {
     long cPtr = libtorrent_jni.all_get();
     return (cPtr == 0) ? null : new torrent_flags_t(cPtr, false);
@@ -321,14 +326,6 @@ public class libtorrent {
     return new settings_pack(libtorrent_jni.high_performance_seed(), true);
   }
 
-  public static void add_files(file_storage fs, String file, create_flags_t flags) {
-    libtorrent_jni.add_files__SWIG_0(file_storage.getCPtr(fs), fs, file, create_flags_t.getCPtr(flags), flags);
-  }
-
-  public static void add_files(file_storage fs, String file) {
-    libtorrent_jni.add_files__SWIG_1(file_storage.getCPtr(fs), fs, file);
-  }
-
   public static stats_metric_vector session_stats_metrics() {
     return new stats_metric_vector(libtorrent_jni.session_stats_metrics(), true);
   }
@@ -337,12 +334,16 @@ public class libtorrent {
     return libtorrent_jni.version();
   }
 
+  public static String make_magnet_uri(add_torrent_params atp) {
+    return libtorrent_jni.make_magnet_uri__SWIG_0(add_torrent_params.getCPtr(atp), atp);
+  }
+
   public static String make_magnet_uri(torrent_handle handle) {
-    return libtorrent_jni.make_magnet_uri__SWIG_0(torrent_handle.getCPtr(handle), handle);
+    return libtorrent_jni.make_magnet_uri__SWIG_1(torrent_handle.getCPtr(handle), handle);
   }
 
   public static String make_magnet_uri(torrent_info info) {
-    return libtorrent_jni.make_magnet_uri__SWIG_1(torrent_info.getCPtr(info), info);
+    return libtorrent_jni.make_magnet_uri__SWIG_2(torrent_info.getCPtr(info), info);
   }
 
   public static String generate_fingerprint(String name, int major, int minor, int revision, int tag) {
@@ -373,8 +374,27 @@ public class libtorrent {
     return new entry(libtorrent_jni.write_resume_data(add_torrent_params.getCPtr(atp), atp), true);
   }
 
+  public static write_torrent_flags_t getAllow_missing_piece_layer() {
+    long cPtr = libtorrent_jni.allow_missing_piece_layer_get();
+    return (cPtr == 0) ? null : new write_torrent_flags_t(cPtr, false);
+  }
+
+  public static write_torrent_flags_t getNo_http_seeds() {
+    long cPtr = libtorrent_jni.no_http_seeds_get();
+    return (cPtr == 0) ? null : new write_torrent_flags_t(cPtr, false);
+  }
+
+  public static write_torrent_flags_t getInclude_dht_nodes() {
+    long cPtr = libtorrent_jni.include_dht_nodes_get();
+    return (cPtr == 0) ? null : new write_torrent_flags_t(cPtr, false);
+  }
+
   public static entry write_torrent_file(add_torrent_params atp) {
-    return new entry(libtorrent_jni.write_torrent_file(add_torrent_params.getCPtr(atp), atp), true);
+    return new entry(libtorrent_jni.write_torrent_file__SWIG_0(add_torrent_params.getCPtr(atp), atp), true);
+  }
+
+  public static entry write_torrent_file(add_torrent_params atp, write_torrent_flags_t flags) {
+    return new entry(libtorrent_jni.write_torrent_file__SWIG_1(add_torrent_params.getCPtr(atp), atp, write_torrent_flags_t.getCPtr(flags), flags), true);
   }
 
   public static int find_metric_idx_ex(String name) {
@@ -437,8 +457,8 @@ public class libtorrent {
     return libtorrent_jni.device_for_address(session.getCPtr(s), s, address.getCPtr(addr), addr, error_code.getCPtr(ec), ec);
   }
 
-  public static void add_files_ex(file_storage fs, String file, add_files_listener listener, create_flags_t flags) {
-    libtorrent_jni.add_files_ex(file_storage.getCPtr(fs), fs, file, add_files_listener.getCPtr(listener), listener, create_flags_t.getCPtr(flags), flags);
+  public static create_file_entry_vector list_files_ex(String file, list_files_listener listener, create_flags_t flags) {
+    return new create_file_entry_vector(libtorrent_jni.list_files_ex(file, list_files_listener.getCPtr(listener), listener, create_flags_t.getCPtr(flags), flags), true);
   }
 
   public static void set_piece_hashes_ex(create_torrent t, String p, set_piece_hashes_listener listener, error_code ec) {

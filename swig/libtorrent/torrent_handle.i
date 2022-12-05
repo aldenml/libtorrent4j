@@ -20,6 +20,7 @@
 %ignore libtorrent::torrent_handle::file_priority;
 %ignore libtorrent::torrent_handle::prioritize_files;
 %ignore libtorrent::torrent_handle::get_file_priorities;
+%ignore libtorrent::torrent_handle::clear_disk_cache;
 %ignore libtorrent::hash_value;
 
 %include "libtorrent/torrent_handle.hpp"

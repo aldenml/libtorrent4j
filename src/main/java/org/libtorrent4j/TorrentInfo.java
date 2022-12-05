@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021, Alden Torres
+ * Copyright (c) 2018-2022, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -436,8 +436,6 @@ public final class TorrentInfo {
     /**
      * If you need index-access to files you can use this method
      * to access files using indices.
-     *
-     *
      */
     public int numFiles() {
         return ti.num_files();
@@ -633,19 +631,9 @@ public final class TorrentInfo {
      * is invalid, null is returned.
      * <p>
      * For more information about magnet links, see magnet-links_.
-     *
-     *
      */
     public String makeMagnetUri() {
         return ti.is_valid() ? libtorrent.make_magnet_uri(ti) : null;
-    }
-
-    public Entry toEntry() {
-        return new Entry(new create_torrent(ti).generate());
-    }
-
-    public byte[] bencode() {
-        return toEntry().bencode();
     }
 
     public static TorrentInfo bdecode(byte[] data) {

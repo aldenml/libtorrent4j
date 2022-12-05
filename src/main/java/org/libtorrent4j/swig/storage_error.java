@@ -48,6 +48,10 @@ public class storage_error {
     this(libtorrent_jni.new_storage_error__SWIG_2(error_code.getCPtr(e), e, op.swigValue()), true);
   }
 
+  public storage_error(error_code e, int f, operation_t op) {
+    this(libtorrent_jni.new_storage_error__SWIG_3(error_code.getCPtr(e), e, f, op.swigValue()), true);
+  }
+
   public boolean to_bool() {
     return libtorrent_jni.storage_error_to_bool(swigCPtr, this);
   }

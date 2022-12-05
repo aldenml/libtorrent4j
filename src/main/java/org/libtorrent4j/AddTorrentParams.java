@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020, Alden Torres
+ * Copyright (c) 2018-2022, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -470,6 +470,88 @@ public final class AddTorrentParams
         }
 
         h.setBanned_peers(v);
+    }
+
+    /**
+     * The posix time of the last time payload was received for this
+     * torrent.
+     */
+    public long getLastDownload() {
+        return h.getLast_download();
+    }
+
+    /**
+     * The posix time of the last time payload was received for this
+     * torrent.
+     */
+    public void setLastDownload(long value) {
+        h.setLast_download(value);
+    }
+
+    /**
+     * The posix time of the last time payload was sent for this
+     * torrent.
+     */
+    public long getLastUpload() {
+        return h.getLast_upload();
+    }
+
+    /**
+     * The posix time of the last time payload was sent for this
+     * torrent.
+     */
+    public void setLastUpload(long value) {
+        h.setLast_upload(value);
+    }
+
+    /**
+     * If a comment is found in the torrent file
+     * this will be set to that comment.
+     */
+    public String getComment() {
+        return h.getComment();
+    }
+
+    /**
+     * If a comment is found in the torrent file
+     * this will be set to that comment.
+     */
+    public void setComment(String value) {
+        h.setComment(value);
+    }
+
+    /**
+     * An optional string naming the software used
+     * to create the torrent file.
+     */
+    public String getCreatedBy() {
+        return h.getCreated_by();
+    }
+
+    /**
+     * An optional string naming the software used
+     * to create the torrent file.
+     */
+    public void setCreatedBy(String value) {
+        h.setCreated_by(value);
+    }
+
+    /**
+     * If a creation date is found in the torrent file
+     * this will be set to that, otherwise it'll be
+     * 1970, Jan 1.
+     */
+    public long getCreationDate() {
+        return h.getCreation_date();
+    }
+
+    /**
+     * If a creation date is found in the torrent file
+     * this will be set to that, otherwise it'll be
+     * 1970, Jan 1.
+     */
+    public void setCreationDate(long value) {
+        h.setCreation_date(value);
     }
 
     /**
