@@ -1,6 +1,6 @@
 2.1.0-27
 
-  * using libtorrent master
+  * update to libtorrent master
   * removed API to create torrents from torrent info
   * lt:prevent sending data on a uTP socket after closing it
   * lt:fix m_bytes_in_flight invariant and packet counters in the event of the
