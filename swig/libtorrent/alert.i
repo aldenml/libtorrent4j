@@ -109,6 +109,11 @@ struct alert_category_tag;
     CAST_ALERT_METHOD(file_prio_alert)
     CAST_ALERT_METHOD(oversized_file_alert)
     CAST_ALERT_METHOD(torrent_conflict_alert)
+    CAST_ALERT_METHOD(peer_info_alert)
+    CAST_ALERT_METHOD(file_progress_alert)
+    CAST_ALERT_METHOD(piece_info_alert)
+    CAST_ALERT_METHOD(piece_availability_alert)
+    CAST_ALERT_METHOD(tracker_list_alert)
 
 }
 

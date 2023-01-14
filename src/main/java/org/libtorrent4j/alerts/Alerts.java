@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022, Alden Torres
+ * Copyright (c) 2018-2023, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -630,6 +630,36 @@ public final class Alerts {
             @Override
             public Alert<?> cast(alert a) {
                 return new TorrentConflictAlert(cast_to_torrent_conflict_alert(a));
+            }
+        };
+        arr[100] = new CastLambda() {
+            @Override
+            public Alert<?> cast(alert a) {
+                return new PeerInfoAlert(cast_to_peer_info_alert(a));
+            }
+        };
+        arr[101] = new CastLambda() {
+            @Override
+            public Alert<?> cast(alert a) {
+                return new FileProgressAlert(cast_to_file_progress_alert(a));
+            }
+        };
+        arr[102] = new CastLambda() {
+            @Override
+            public Alert<?> cast(alert a) {
+                return new PieceInfoAlert(cast_to_piece_info_alert(a));
+            }
+        };
+        arr[103] = new CastLambda() {
+            @Override
+            public Alert<?> cast(alert a) {
+                return new PieceAvailabilityAlert(cast_to_piece_availability_alert(a));
+            }
+        };
+        arr[104] = new CastLambda() {
+            @Override
+            public Alert<?> cast(alert a) {
+                return new TrackerListAlert(cast_to_tracker_list_alert(a));
             }
         };
 

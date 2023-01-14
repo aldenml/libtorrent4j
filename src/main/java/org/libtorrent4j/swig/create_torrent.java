@@ -151,4 +151,5 @@ public class create_torrent {
   public final static create_flags_t canonical_files = new create_flags_t(libtorrent_jni.create_torrent_canonical_files_get(), false);
   public final static create_flags_t no_attributes = new create_flags_t(libtorrent_jni.create_torrent_no_attributes_get(), false);
   public final static create_flags_t canonical_files_no_tail_padding = new create_flags_t(libtorrent_jni.create_torrent_canonical_files_no_tail_padding_get(), false);
+  public final static create_flags_t allow_odd_piece_size = new create_flags_t(libtorrent_jni.create_torrent_allow_odd_piece_size_get(), false);
 }

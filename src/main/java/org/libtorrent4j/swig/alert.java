@@ -506,6 +506,31 @@ public class alert {
     return (cPtr == 0) ? null : new torrent_conflict_alert(cPtr, false);
   }
 
+  public static peer_info_alert cast_to_peer_info_alert(alert a) {
+    long cPtr = libtorrent_jni.alert_cast_to_peer_info_alert(alert.getCPtr(a), a);
+    return (cPtr == 0) ? null : new peer_info_alert(cPtr, false);
+  }
+
+  public static file_progress_alert cast_to_file_progress_alert(alert a) {
+    long cPtr = libtorrent_jni.alert_cast_to_file_progress_alert(alert.getCPtr(a), a);
+    return (cPtr == 0) ? null : new file_progress_alert(cPtr, false);
+  }
+
+  public static piece_info_alert cast_to_piece_info_alert(alert a) {
+    long cPtr = libtorrent_jni.alert_cast_to_piece_info_alert(alert.getCPtr(a), a);
+    return (cPtr == 0) ? null : new piece_info_alert(cPtr, false);
+  }
+
+  public static piece_availability_alert cast_to_piece_availability_alert(alert a) {
+    long cPtr = libtorrent_jni.alert_cast_to_piece_availability_alert(alert.getCPtr(a), a);
+    return (cPtr == 0) ? null : new piece_availability_alert(cPtr, false);
+  }
+
+  public static tracker_list_alert cast_to_tracker_list_alert(alert a) {
+    long cPtr = libtorrent_jni.alert_cast_to_tracker_list_alert(alert.getCPtr(a), a);
+    return (cPtr == 0) ? null : new tracker_list_alert(cPtr, false);
+  }
+
   public final static alert_category_t error_notification = new alert_category_t(libtorrent_jni.alert_error_notification_get(), false);
   public final static alert_category_t peer_notification = new alert_category_t(libtorrent_jni.alert_peer_notification_get(), false);
   public final static alert_category_t port_mapping_notification = new alert_category_t(libtorrent_jni.alert_port_mapping_notification_get(), false);

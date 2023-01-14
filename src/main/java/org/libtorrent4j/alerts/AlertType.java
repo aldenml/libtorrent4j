@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022, Alden Torres
+ * Copyright (c) 2018-2023, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -105,6 +105,11 @@ public enum AlertType {
     FILE_PRIO(file_prio_alert.alert_type),
     OVERSIZED_FILE(oversized_file_alert.alert_type),
     TORRENT_CONFLICT(torrent_conflict_alert.alert_type),
+    PEER_INFO(peer_info_alert.alert_type),
+    FILE_PROGRESS(file_progress_alert.alert_type),
+    PIECE_INFO(piece_info_alert.alert_type),
+    PIECE_AVAILABILITY(piece_availability_alert.alert_type),
+    TRACKER_LIST(tracker_list_alert.alert_type),
     UNKNOWN(-1);
 
     private static final AlertType[] TABLE = buildTable();
@@ -233,6 +238,11 @@ public enum AlertType {
         arr[97] = FILE_PRIO;
         arr[98] = OVERSIZED_FILE;
         arr[99] = TORRENT_CONFLICT;
+        arr[100] = PEER_INFO;
+        arr[101] = FILE_PROGRESS;
+        arr[102] = PIECE_INFO;
+        arr[103] = PIECE_AVAILABILITY;
+        arr[104] = TRACKER_LIST;
 
         return arr;
     }

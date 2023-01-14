@@ -116,6 +116,10 @@ public class file_storage {
     return libtorrent_jni.file_storage_blocks_in_piece2(swigCPtr, this, index);
   }
 
+  public int blocks_per_piece() {
+    return libtorrent_jni.file_storage_blocks_per_piece(swigCPtr, this);
+  }
+
   public void set_name(String n) {
     libtorrent_jni.file_storage_set_name(swigCPtr, this, n);
   }

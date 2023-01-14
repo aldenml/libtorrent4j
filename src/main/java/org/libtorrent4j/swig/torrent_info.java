@@ -136,6 +136,10 @@ public class torrent_info {
     return libtorrent_jni.torrent_info_num_pieces(swigCPtr, this);
   }
 
+  public int blocks_per_piece() {
+    return libtorrent_jni.torrent_info_blocks_per_piece(swigCPtr, this);
+  }
+
   public int last_piece() {
     return libtorrent_jni.torrent_info_last_piece(swigCPtr, this);
   }

@@ -358,20 +358,20 @@ public class add_torrent_params {
     libtorrent_jni.add_torrent_params_set_merkle_trees(swigCPtr, this, sha256_hash_vector_vector.getCPtr(v), v);
   }
 
-  public bool_vector_vector get_merkle_tree_mask() {
-    return new bool_vector_vector(libtorrent_jni.add_torrent_params_get_merkle_tree_mask(swigCPtr, this), true);
+  public bitfield_vector get_merkle_tree_mask() {
+    return new bitfield_vector(libtorrent_jni.add_torrent_params_get_merkle_tree_mask(swigCPtr, this), true);
   }
 
-  public void set_merkle_tree_mask(bool_vector_vector v) {
-    libtorrent_jni.add_torrent_params_set_merkle_tree_mask(swigCPtr, this, bool_vector_vector.getCPtr(v), v);
+  public void set_merkle_tree_mask(bitfield_vector v) {
+    libtorrent_jni.add_torrent_params_set_merkle_tree_mask(swigCPtr, this, bitfield_vector.getCPtr(v), v);
   }
 
-  public bool_vector_vector get_verified_leaf_hashes() {
-    return new bool_vector_vector(libtorrent_jni.add_torrent_params_get_verified_leaf_hashes(swigCPtr, this), true);
+  public bitfield_vector get_verified_leaf_hashes() {
+    return new bitfield_vector(libtorrent_jni.add_torrent_params_get_verified_leaf_hashes(swigCPtr, this), true);
   }
 
-  public void set_verified_leaf_hashes(bool_vector_vector v) {
-    libtorrent_jni.add_torrent_params_set_verified_leaf_hashes(swigCPtr, this, bool_vector_vector.getCPtr(v), v);
+  public void set_verified_leaf_hashes(bitfield_vector v) {
+    libtorrent_jni.add_torrent_params_set_verified_leaf_hashes(swigCPtr, this, bitfield_vector.getCPtr(v), v);
   }
 
   public int_bitfield_map get_unfinished_pieces() {

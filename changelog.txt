@@ -2,6 +2,32 @@
 
   * update to libtorrent master
   * removed API to create torrents from torrent info
+  * lt:move towards an immutable torrent_info
+  * lt:optimize create_torrent::generate_buf()
+  * lt:changed offer_id length from 16 to 20 for consistency with the JS
+    implementation
+  * lt:fixed rtc_signaling to use the peer id generated for the torrent
+  * lt:add async tracker status query, post_trackers()
+  * lt:add async torrent status query, post_status()
+  * lt:create_torrent does not need fileroots to be a member to create_torrent
+  * lt:support loading version 2 of resume data format
+  * lt:disable alert notification during session destruction
+  * lt:ensure loading resume data tolerates bitfields that are too large
+  * lt:post torrent_removed_alert after actually removing it from the disk
+    subsystem
+  * lt:fix use-after-free in web_peer_connection
+  * lt:fix issue with torrents that have a piece size not divisible by 16kB
+  * lt:optimize resume data format to use less space
+  * lt:add async piece availibility query, post_piece_availibility()
+  * lt:add async download queue query, post_download_queue()
+  * lt:add async file_progress query, post_file_progress()
+  * lt:add async peer_info query, post_peer_info()
+  * lt:starting torrent, connect to peers found in add_torrent_params
+    immediately
+  * lt:continue to ack incoming uTP data while finalizing the connection
+  * lt:fix sending ST_FIN packet while the socket is stalled
+  * lt:fix uTP streams timing out instead of closing cleanly
+  * lt:safe usage of strncpy
   * lt:prevent sending data on a uTP socket after closing it
   * lt:fix m_bytes_in_flight invariant and packet counters in the event of the
     UDP socket stalling

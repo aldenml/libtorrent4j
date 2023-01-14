@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022, Alden Torres
+ * Copyright (c) 2018-2023, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -43,7 +43,7 @@ public final class LibTorrent {
      * @return the git revision
      */
     public static String revision() {
-        return "5e9b0fabb3a4117b8848fbab5bd153dfa51bf70f";
+        return "cc7459e8ed219077b1395c5ac7d808a45e7fa3f7";
     }
 
     /**

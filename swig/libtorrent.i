@@ -225,6 +225,8 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %template(ip_interface_vector) std::vector<ip_interface>;
 %template(ip_route_vector) std::vector<ip_route>;
 %template(create_file_entry_vector) std::vector<libtorrent::create_file_entry>;
+%template(block_info_vector) std::vector<libtorrent::block_info>;
+%template(bitfield_vector) std::vector<libtorrent::bitfield>;
 
 %template(bool_vector_vector) std::vector<std::vector<bool>>;
 %template(sha256_hash_vector_vector) std::vector<std::vector<libtorrent::digest32<256>>>;
