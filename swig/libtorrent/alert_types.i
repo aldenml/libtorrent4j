@@ -35,6 +35,7 @@
 %ignore libtorrent::performance_warning_str;
 %ignore libtorrent::oversized_file_alert::reserved;
 %ignore libtorrent::torrent_conflict_alert::metadata;
+%ignore libtorrent::file_progress_alert::files;
 
 %rename("$ignore", regextarget=1, %$isconstructor) ".*_alert$";
 
@@ -261,6 +262,15 @@ struct picker_flags_tag;
 
     torrent_info get_metadata() {
         return *($self->metadata);
+    }
+}
+
+%extend file_progress_alert {
+
+    std::vector<std::int64_t> get_files()
+    {
+        auto* v = &$self->files;
+        return *reinterpret_cast<std::vector<std::int64_t>*>(v);
     }
 }
 

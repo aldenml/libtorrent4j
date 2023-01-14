@@ -52,6 +52,10 @@ public class torrent_handle {
     return libtorrent_jni.torrent_handle_have_piece(swigCPtr, this, piece);
   }
 
+  public void post_peer_info() {
+    libtorrent_jni.torrent_handle_post_peer_info(swigCPtr, this);
+  }
+
   public void get_peer_info(peer_info_vector v) {
     libtorrent_jni.torrent_handle_get_peer_info(swigCPtr, this, peer_info_vector.getCPtr(v), v);
   }
@@ -62,6 +66,18 @@ public class torrent_handle {
 
   public torrent_status status() {
     return new torrent_status(libtorrent_jni.torrent_handle_status__SWIG_1(swigCPtr, this), true);
+  }
+
+  public void post_status(status_flags_t flags) {
+    libtorrent_jni.torrent_handle_post_status__SWIG_0(swigCPtr, this, status_flags_t.getCPtr(flags), flags);
+  }
+
+  public void post_status() {
+    libtorrent_jni.torrent_handle_post_status__SWIG_1(swigCPtr, this);
+  }
+
+  public void post_download_queue() {
+    libtorrent_jni.torrent_handle_post_download_queue(swigCPtr, this);
   }
 
   public partial_piece_info_vector get_download_queue() {
@@ -104,6 +120,10 @@ public class torrent_handle {
     return new int64_vector(libtorrent_jni.torrent_handle_file_progress__SWIG_3(swigCPtr, this), true);
   }
 
+  public void post_file_progress(file_progress_flags_t flags) {
+    libtorrent_jni.torrent_handle_post_file_progress(swigCPtr, this, file_progress_flags_t.getCPtr(flags), flags);
+  }
+
   public void clear_error() {
     libtorrent_jni.torrent_handle_clear_error(swigCPtr, this);
   }
@@ -118,6 +138,10 @@ public class torrent_handle {
 
   public void add_tracker(announce_entry arg0) {
     libtorrent_jni.torrent_handle_add_tracker(swigCPtr, this, announce_entry.getCPtr(arg0), arg0);
+  }
+
+  public void post_trackers() {
+    libtorrent_jni.torrent_handle_post_trackers(swigCPtr, this);
   }
 
   public void add_url_seed(String url) {
@@ -206,6 +230,10 @@ public class torrent_handle {
 
   public sha256_hash_vector_vector piece_layers() {
     return new sha256_hash_vector_vector(libtorrent_jni.torrent_handle_piece_layers(swigCPtr, this), true);
+  }
+
+  public void post_piece_availability() {
+    libtorrent_jni.torrent_handle_post_piece_availability(swigCPtr, this);
   }
 
   public void piece_availability(int_vector avail) {

@@ -62,27 +62,27 @@ namespace libtorrent {
         $self->merkle_trees = *t;
     }
 
-    std::vector<std::vector<bool>> get_merkle_tree_mask()
+    std::vector<libtorrent::bitfield> get_merkle_tree_mask()
     {
         auto* v = &$self->merkle_tree_mask;
-        return *reinterpret_cast<std::vector<std::vector<bool>>*>(v);
+        return *reinterpret_cast<std::vector<libtorrent::bitfield>*>(v);
     }
 
-    void set_merkle_tree_mask(std::vector<std::vector<bool>>& v)
+    void set_merkle_tree_mask(std::vector<libtorrent::bitfield>& v)
     {
-        auto* t = reinterpret_cast<lt::aux::vector<std::vector<bool>, libtorrent::file_index_t>*>(&v);
+        auto* t = reinterpret_cast<lt::aux::vector<libtorrent::bitfield, libtorrent::file_index_t>*>(&v);
         $self->merkle_tree_mask = *t;
     }
 
-    std::vector<std::vector<bool>> get_verified_leaf_hashes()
+    std::vector<libtorrent::bitfield> get_verified_leaf_hashes()
     {
         auto* v = &$self->verified_leaf_hashes;
-        return *reinterpret_cast<std::vector<std::vector<bool>>*>(v);
+        return *reinterpret_cast<std::vector<libtorrent::bitfield>*>(v);
     }
 
-    void set_verified_leaf_hashes(std::vector<std::vector<bool>>& v)
+    void set_verified_leaf_hashes(std::vector<libtorrent::bitfield>& v)
     {
-        auto* t = reinterpret_cast<libtorrent::aux::vector<std::vector<bool>, libtorrent::file_index_t>*>(&v);
+        auto* t = reinterpret_cast<libtorrent::aux::vector<libtorrent::bitfield, libtorrent::file_index_t>*>(&v);
         $self->verified_leaf_hashes = *t;
     }
 
