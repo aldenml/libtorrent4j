@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022, Alden Torres
+ * Copyright (c) 2018-2023, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -676,9 +676,11 @@ public class SessionManager {
 
                 if (type.equals(AlertType.METADATA_FAILED)) {
                     Log.error("Error downloading magnet metadata");
+                    signal.countDown();
                 }
                 if (type.equals(AlertType.SAVE_RESUME_DATA_FAILED)) {
                     Log.error("Error saving resume data");
+                    signal.countDown();
                 }
             }
         };
