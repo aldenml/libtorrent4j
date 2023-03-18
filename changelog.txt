@@ -1,6 +1,7 @@
 
   * update to libtorrent master
   * removed API to manage trackers from torrent info
+  * make sure trackers and web seed info is saved when fetching a magnet
   * lt:minor accounting fix for utp packet pool
   * lt:report back the full endpoint of peers removed from the peer list when
     applying a port_filter and include it in the peer_blocked_alert
