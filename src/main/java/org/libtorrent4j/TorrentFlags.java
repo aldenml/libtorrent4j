@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2023, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.libtorrent;
@@ -143,18 +150,6 @@ public final class TorrentFlags {
     // call to pause.
     public static final torrent_flags_t STOP_WHEN_READY = libtorrent.getStop_when_ready();
 
-    // when this flag is set, the tracker list in the add_torrent_params
-    // object override any trackers from the torrent file. If the flag is
-    // not set, the trackers from the add_torrent_params object will be
-    // added to the list of trackers used by the torrent.
-    public static final torrent_flags_t OVERRIDE_TRACKERS = libtorrent.getOverride_trackers();
-
-    // If this flag is set, the web seeds from the add_torrent_params
-    // object will override any web seeds in the torrent file. If it's not
-    // set, web seeds in the add_torrent_params object will be added to the
-    // list of web seeds used by the torrent.
-    public static final torrent_flags_t OVERRIDE_WEB_SEEDS = libtorrent.getOverride_web_seeds();
-
     /**
      * If this flag is set (which it is by default) the torrent will be
      * considered needing to save its resume data immediately as it's
@@ -191,6 +186,16 @@ public final class TorrentFlags {
      * should not be set.
      */
     public static final torrent_flags_t NO_VERIFY_FILES = libtorrent.getNo_verify_files();
+
+    /**
+     * Default all file priorities to dont_download. This is useful for adding
+     * magnet links where the number of files is unknown, but the
+     * file_priorities is still set for some files. Any file not covered by
+     * the file_priorities list will be set to normal download priority,
+     * unless this flag is set, in which case they will be set to 0
+     * (dont_download).
+     */
+    public static final torrent_flags_t DEFAULT_DONT_DOWNLOAD = libtorrent.getDefault_dont_download();
 
     public static final torrent_flags_t ALL = libtorrent.getAll();
 }

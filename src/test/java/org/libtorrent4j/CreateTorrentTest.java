@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022, Alden Torres
+ * Copyright (c) 2018-2023, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -117,13 +117,7 @@ public class CreateTorrentTest {
         assertEquals("creator", ti.creator());
         assertEquals(1000, ti.creationDate());
 
-        ArrayList<WebSeedEntry> seeds = ti.webSeeds();
-        for (WebSeedEntry e : seeds) {
-            assertEquals("http://urlseed/", e.url());
-        }
-
         assertEquals("1.1.1.1", ti.nodes().get(0).first);
-        assertEquals("udp://tracker/", ti.trackers().get(0).url());
         assertTrue(ti.isPrivate());
         assertTrue(ti.similarTorrents().get(0).isAllZeros());
         assertEquals("collection", ti.collections().get(0));

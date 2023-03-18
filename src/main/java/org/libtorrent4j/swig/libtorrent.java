@@ -21,18 +21,6 @@ public class libtorrent {
     return libtorrent_jni.eq(info_hash_t.getCPtr(lhs), lhs, info_hash_t.getCPtr(rhs), rhs);
   }
 
-  public static status_t or_(status_t lhs, status_t rhs) {
-    return status_t.swigToEnum(libtorrent_jni.or_(lhs.swigValue(), rhs.swigValue()));
-  }
-
-  public static status_t and_(status_t lhs, status_t rhs) {
-    return status_t.swigToEnum(libtorrent_jni.and_(lhs.swigValue(), rhs.swigValue()));
-  }
-
-  public static status_t inv(status_t lhs) {
-    return status_t.swigToEnum(libtorrent_jni.inv(lhs.swigValue()));
-  }
-
   public static String operation_name(operation_t op) {
     return libtorrent_jni.operation_name(op.swigValue());
   }
@@ -101,16 +89,6 @@ public class libtorrent {
 
   public static torrent_flags_t getStop_when_ready() {
     long cPtr = libtorrent_jni.stop_when_ready_get();
-    return (cPtr == 0) ? null : new torrent_flags_t(cPtr, false);
-  }
-
-  public static torrent_flags_t getOverride_trackers() {
-    long cPtr = libtorrent_jni.override_trackers_get();
-    return (cPtr == 0) ? null : new torrent_flags_t(cPtr, false);
-  }
-
-  public static torrent_flags_t getOverride_web_seeds() {
-    long cPtr = libtorrent_jni.override_web_seeds_get();
     return (cPtr == 0) ? null : new torrent_flags_t(cPtr, false);
   }
 

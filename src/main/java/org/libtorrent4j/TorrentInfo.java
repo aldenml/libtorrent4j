@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022, Alden Torres
+ * Copyright (c) 2018-2023, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -141,39 +141,6 @@ public final class TorrentInfo {
     }
 
     /**
-     * Adds a tracker to the announce-list.
-     *
-     * @param url the tracker url
-     */
-    public void addTracker(String url) {
-        ti.add_tracker(url);
-    }
-
-    /**
-     * Adds a tracker to the announce-list. The {@code tier} determines the order in
-     * which the trackers are to be tried.
-     *
-     * @param url  the tracker url
-     * @param tier the tracker tier
-     */
-    public void addTracker(String url, int tier) {
-        ti.add_tracker(url, tier);
-    }
-
-    /**
-     * Will return a sorted list with the trackers of this torrent info.
-     * <p>
-     * Each announce entry contains a string, which is the tracker url, and a tier index. The
-     * tier index is the high-level priority. No matter which trackers that works or not, the
-     * ones with lower tier will always be tried before the one with higher tier number.
-     *
-     * @return the list of trackers
-     */
-    public ArrayList<AnnounceEntry> trackers() {
-        return trackers(ti.trackers());
-    }
-
-    /**
      * This function is related to BEP38_ (mutable torrents). The
      * vector returned from this correspond to the "similar" in the
      * .torrent file. The info-hashes from within the info-dict
@@ -207,155 +174,6 @@ public final class TorrentInfo {
         }
 
         return l;
-    }
-
-    /**
-     * Clear the internal list of trackers.
-     */
-    public void clearTrackers() {
-        ti.trackers().clear();
-    }
-
-    /**
-     * Adds one url to the list of url seeds. Currently, the only transport protocol
-     * supported for the url is http.
-     *
-     * @param url
-     * @see #addHttpSeed(String, String)
-     */
-    public void addUrlSeed(String url) {
-        ti.add_url_seed(url);
-    }
-
-    /**
-     * Adds one url to the list of url seeds. Currently, the only transport protocol
-     * supported for the url is http.
-     * <p>
-     * The {@code externAuth} argument can be used for other authorization schemes than
-     * basic HTTP authorization. If set, it will override any username and password
-     * found in the URL itself. The string will be sent as the HTTP authorization header's
-     * value (without specifying "Basic").
-     * <p>
-     * This is the same as calling {@link #addUrlSeed(String, String, List)} with an
-     * empty list.
-     *
-     * @param url
-     * @param externAuth
-     */
-    public void addUrlSeed(String url, String externAuth) {
-        ti.add_url_seed(url, externAuth);
-    }
-
-    /**
-     * Adds one url to the list of url seeds. Currently, the only transport protocol
-     * supported for the url is http.
-     * <p>
-     * The {@code externAuth} argument can be used for other authorization schemes than
-     * basic HTTP authorization. If set, it will override any username and password
-     * found in the URL itself. The string will be sent as the HTTP authorization header's
-     * value (without specifying "Basic").
-     * <p>
-     * The {@code extraHeaders} argument can be used to insert custom HTTP headers
-     * in the requests to a specific web seed.
-     *
-     * @param url
-     * @param externAuth
-     * @param extraHeaders
-     */
-    public void addUrlSeed(String url, String externAuth, List<Pair<String, String>> extraHeaders) {
-        string_string_pair_vector v = new string_string_pair_vector();
-
-        for (Pair<String, String> p : extraHeaders) {
-            v.add(p.to_string_string_pair());
-        }
-
-        ti.add_url_seed(url, externAuth, v);
-    }
-
-    /**
-     * Adds one url to the list of http seeds. Currently, the only transport protocol supported for the url
-     * is http.
-     *
-     * @param url
-     */
-    public void addHttpSeed(String url) {
-        ti.add_url_seed(url);
-    }
-
-    /**
-     * Adds one url to the list of http seeds. Currently, the only transport protocol supported for the url
-     * is http.
-     * <p>
-     * The {@code externAuth} argument can be used for other authorization schemes than
-     * basic HTTP authorization. If set, it will override any username and password
-     * found in the URL itself. The string will be sent as the HTTP authorization header's
-     * value (without specifying "Basic").
-     *
-     * @param url
-     * @param externAuth
-     */
-    public void addHttpSeed(String url, String externAuth) {
-        ti.add_url_seed(url, externAuth);
-    }
-
-    /**
-     * Adds one url to the list of http seeds. Currently, the only transport protocol supported
-     * for the url is http.
-     * <p>
-     * The {@code externAuth} argument can be used for other authorization schemes than
-     * basic HTTP authorization. If set, it will override any username and password
-     * found in the URL itself. The string will be sent as the HTTP authorization header's
-     * value (without specifying "Basic").
-     * <p>
-     * The {@code extraHeaders} argument defaults to an empty list, but can be used to
-     * insert custom HTTP headers in the requests to a specific web seed.
-     *
-     * @param url
-     * @param externAuth
-     * @param extraHeaders
-     */
-    public void addHttpSeed(String url, String externAuth, List<Pair<String, String>> extraHeaders) {
-        string_string_pair_vector v = new string_string_pair_vector();
-
-        for (Pair<String, String> p : extraHeaders) {
-            v.add(p.to_string_string_pair());
-        }
-
-        ti.add_url_seed(url, externAuth, v);
-    }
-
-    /**
-     * Returns all url seeds and http seeds in the torrent. Each entry
-     * is a {@link WebSeedEntry} and may refer to either a url seed or http seed.
-     *
-     * @return the list of web seeds
-     */
-    public ArrayList<WebSeedEntry> webSeeds() {
-        web_seed_entry_vector v = ti.web_seeds();
-        int size = (int) v.size();
-
-        ArrayList<WebSeedEntry> l = new ArrayList<>(size);
-        for (int i = 0; i < size; i++) {
-            l.add(new WebSeedEntry(v.get(i)));
-        }
-
-        return l;
-    }
-
-    /**
-     * Replaces all web seeds with the ones specified in the
-     * {@code seeds} list.
-     *
-     * @param seeds the list of web seeds
-     */
-    public void setWebSeeds(List<WebSeedEntry> seeds) {
-        web_seed_entry_vector v = new web_seed_entry_vector();
-
-        for (WebSeedEntry e : seeds) {
-            v.add(e.swig());
-        }
-
-        ti.set_web_seeds(v);
     }
 
     /**
@@ -638,18 +456,6 @@ public final class TorrentInfo {
 
     public static TorrentInfo bdecode(byte[] data) {
         return new TorrentInfo(bdecode0(data));
-    }
-
-    // helper function
-    static ArrayList<AnnounceEntry> trackers(announce_entry_vector v) {
-        int size = (int) v.size();
-        ArrayList<AnnounceEntry> l = new ArrayList<>(size);
-
-        for (int i = 0; i < size; i++) {
-            l.add(new AnnounceEntry(v.get(i)));
-        }
-
-        return l;
     }
 
     private static torrent_info bdecode0(File file) {

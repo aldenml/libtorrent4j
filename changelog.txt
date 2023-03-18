@@ -1,3 +1,29 @@
+
+  * update to libtorrent master
+  * removed API to manage trackers from torrent info
+  * lt:minor accounting fix for utp packet pool
+  * lt:report back the full endpoint of peers removed from the peer list when
+    applying a port_filter and include it in the peer_blocked_alert
+  * lt:simplify handling of privileged ports setting by untangling it from the
+    port filter
+  * lt:get close reason apply visitor types
+  * lt:deprecate storing trackers in torrent_info
+  * lt:improve I2P support
+  * lt:updated libdatachannel to v0.18.1 (re-licensed to MPL 2.0)
+  * lt:fix async_wait() for read and write (used to be null_buffers)
+  * lt:handle outgoing EOF properly. report eof to the write handler. record
+    that we're closing.
+  * lt:simplify utp send_reset() a bit
+  * lt:correct uTP sequence number check for packets past EOF
+  * lt:minor uTP cleanup and updates to logging
+  * lt:report EOF to upper layer when receiving a FIN packet, in uTP
+  * lt:rename eof and eof_seq_nr to indicate in refers to the incoming stream
+  * lt:fix recently introduced create_torrent::generate_buf() where it failed to
+    include collections and similar-fields
+  * lt:make status_t a proper flag type, to clean up oversized_file indication
+    from disk subsystem
+  * lt:source code cleanup, performance and stability
+
 2.1.0-27
 
   * update to libtorrent master

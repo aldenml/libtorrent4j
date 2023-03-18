@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022, Alden Torres
+ * Copyright (c) 2018-2023, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -1046,7 +1046,7 @@ public final class TorrentHandle
         if (!h.is_valid()) {
             return Collections.emptyList();
         }
-        return TorrentInfo.trackers(h.trackers());
+        return trackers(h.trackers());
     }
 
     /**
@@ -1467,5 +1467,17 @@ public final class TorrentHandle
     @Override
     public int hashCode() {
         return Long.hashCode(h.id());
+    }
+
+    // helper function
+    private static ArrayList<AnnounceEntry> trackers(announce_entry_vector v) {
+        int size = v.size();
+        ArrayList<AnnounceEntry> l = new ArrayList<>(size);
+
+        for (int i = 0; i < size; i++) {
+            l.add(new AnnounceEntry(v.get(i)));
+        }
+
+        return l;
     }
 }
