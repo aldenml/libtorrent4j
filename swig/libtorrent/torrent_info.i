@@ -22,7 +22,9 @@
 %ignore libtorrent::torrent_info::internal_load_merkle_trees;
 %ignore libtorrent::torrent_info::piece_layer;
 %ignore libtorrent::torrent_info::v2_piece_hashes_verified;
- %ignore libtorrent::torrent_info::set_piece_layers;
+%ignore libtorrent::torrent_info::set_piece_layers;
+%ignore libtorrent::torrent_info::clear_web_seeds;
+%ignore libtorrent::torrent_info::internal_web_seeds;
 %ignore libtorrent::aux::sanitize_append_path_element;
 %ignore libtorrent::aux::verify_encoding;
 

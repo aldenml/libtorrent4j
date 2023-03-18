@@ -1,3 +1,6 @@
+%ignore libtorrent::torrent_flags::deprecated_override_trackers;
+%ignore libtorrent::torrent_flags::deprecated_override_web_seeds;
+
 %include "libtorrent/torrent_flags.hpp"
 
 namespace libtorrent {

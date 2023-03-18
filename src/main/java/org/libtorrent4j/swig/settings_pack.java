@@ -840,7 +840,6 @@ public class settings_pack extends settings_interface {
     public final static settings_pack.proxy_type_t socks5_pw = new settings_pack.proxy_type_t("socks5_pw");
     public final static settings_pack.proxy_type_t http = new settings_pack.proxy_type_t("http");
     public final static settings_pack.proxy_type_t http_pw = new settings_pack.proxy_type_t("http_pw");
-    public final static settings_pack.proxy_type_t i2p_proxy = new settings_pack.proxy_type_t("i2p_proxy");
 
     public final int swigValue() {
       return swigValue;
@@ -876,7 +875,7 @@ public class settings_pack extends settings_interface {
       swigNext = this.swigValue+1;
     }
 
-    private static proxy_type_t[] swigValues = { none, socks4, socks5, socks5_pw, http, http_pw, i2p_proxy };
+    private static proxy_type_t[] swigValues = { none, socks4, socks5, socks5_pw, http, http_pw };
     private static int swigNext = 0;
     private final int swigValue;
     private final String swigName;

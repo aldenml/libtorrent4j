@@ -68,24 +68,12 @@ public class torrent_info {
     libtorrent_jni.torrent_info_remap_files(swigCPtr, this, file_storage.getCPtr(f), f);
   }
 
-  public void add_tracker(String url, int tier) {
-    libtorrent_jni.torrent_info_add_tracker__SWIG_0(swigCPtr, this, url, tier);
+  public announce_entry_vector internal_trackers() {
+    return new announce_entry_vector(libtorrent_jni.torrent_info_internal_trackers(swigCPtr, this), false);
   }
 
-  public void add_tracker(String url) {
-    libtorrent_jni.torrent_info_add_tracker__SWIG_1(swigCPtr, this, url);
-  }
-
-  public void add_tracker(String url, int tier, announce_entry.tracker_source source) {
-    libtorrent_jni.torrent_info_add_tracker__SWIG_2(swigCPtr, this, url, tier, source.swigValue());
-  }
-
-  public announce_entry_vector trackers() {
-    return new announce_entry_vector(libtorrent_jni.torrent_info_trackers(swigCPtr, this), false);
-  }
-
-  public void clear_trackers() {
-    libtorrent_jni.torrent_info_clear_trackers(swigCPtr, this);
+  public void internal_clear_trackers() {
+    libtorrent_jni.torrent_info_internal_clear_trackers(swigCPtr, this);
   }
 
   public sha1_hash_vector similar_torrents() {
@@ -94,30 +82,6 @@ public class torrent_info {
 
   public string_vector collections() {
     return new string_vector(libtorrent_jni.torrent_info_collections(swigCPtr, this), true);
-  }
-
-  public void add_url_seed(String url, String ext_auth, string_string_pair_vector ext_headers) {
-    libtorrent_jni.torrent_info_add_url_seed__SWIG_0(swigCPtr, this, url, ext_auth, string_string_pair_vector.getCPtr(ext_headers), ext_headers);
-  }
-
-  public void add_url_seed(String url, String ext_auth) {
-    libtorrent_jni.torrent_info_add_url_seed__SWIG_1(swigCPtr, this, url, ext_auth);
-  }
-
-  public void add_url_seed(String url) {
-    libtorrent_jni.torrent_info_add_url_seed__SWIG_2(swigCPtr, this, url);
-  }
-
-  public web_seed_entry_vector web_seeds() {
-    return new web_seed_entry_vector(libtorrent_jni.torrent_info_web_seeds(swigCPtr, this), false);
-  }
-
-  public void set_web_seeds(web_seed_entry_vector seeds) {
-    libtorrent_jni.torrent_info_set_web_seeds(swigCPtr, this, web_seed_entry_vector.getCPtr(seeds), seeds);
-  }
-
-  public void clear_web_seeds() {
-    libtorrent_jni.torrent_info_clear_web_seeds(swigCPtr, this);
   }
 
   public long total_size() {
