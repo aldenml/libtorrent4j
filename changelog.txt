@@ -2,6 +2,7 @@
   * update to libtorrent master
   * update to boost 1.81.0
   * update to OpenSSL 1.1.1t
+  * update android NDK r25c
   * removed API to manage trackers from torrent info
   * make sure trackers and web seed info is saved when fetching a magnet
   * lt:minor accounting fix for utp packet pool
