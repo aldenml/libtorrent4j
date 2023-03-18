@@ -1,5 +1,6 @@
 
   * update to libtorrent master
+  * update to boost 1.81.0
   * removed API to manage trackers from torrent info
   * make sure trackers and web seed info is saved when fetching a magnet
   * lt:minor accounting fix for utp packet pool
