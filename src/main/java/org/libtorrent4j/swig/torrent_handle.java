@@ -201,7 +201,11 @@ public class torrent_handle {
   }
 
   public boolean need_save_resume_data() {
-    return libtorrent_jni.torrent_handle_need_save_resume_data(swigCPtr, this);
+    return libtorrent_jni.torrent_handle_need_save_resume_data__SWIG_0(swigCPtr, this);
+  }
+
+  public boolean need_save_resume_data(resume_data_flags_t flags) {
+    return libtorrent_jni.torrent_handle_need_save_resume_data__SWIG_1(swigCPtr, this, resume_data_flags_t.getCPtr(flags), flags);
   }
 
   public void queue_position_up() {
@@ -464,6 +468,11 @@ public class torrent_handle {
   public final static pause_flags_t graceful_pause = new pause_flags_t(libtorrent_jni.torrent_handle_graceful_pause_get(), false);
   public final static resume_data_flags_t flush_disk_cache = new resume_data_flags_t(libtorrent_jni.torrent_handle_flush_disk_cache_get(), false);
   public final static resume_data_flags_t save_info_dict = new resume_data_flags_t(libtorrent_jni.torrent_handle_save_info_dict_get(), false);
+  public final static resume_data_flags_t if_counters_changed = new resume_data_flags_t(libtorrent_jni.torrent_handle_if_counters_changed_get(), false);
+  public final static resume_data_flags_t if_download_progress = new resume_data_flags_t(libtorrent_jni.torrent_handle_if_download_progress_get(), false);
+  public final static resume_data_flags_t if_config_changed = new resume_data_flags_t(libtorrent_jni.torrent_handle_if_config_changed_get(), false);
+  public final static resume_data_flags_t if_state_changed = new resume_data_flags_t(libtorrent_jni.torrent_handle_if_state_changed_get(), false);
+  public final static resume_data_flags_t if_metadata_changed = new resume_data_flags_t(libtorrent_jni.torrent_handle_if_metadata_changed_get(), false);
   public final static resume_data_flags_t only_if_modified = new resume_data_flags_t(libtorrent_jni.torrent_handle_only_if_modified_get(), false);
   public final static reannounce_flags_t ignore_min_interval = new reannounce_flags_t(libtorrent_jni.torrent_handle_ignore_min_interval_get(), false);
 }

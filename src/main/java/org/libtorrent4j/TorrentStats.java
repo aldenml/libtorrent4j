@@ -385,7 +385,7 @@ public final class TorrentStats {
         numPieces = st.getNum_pieces();
         numConnections = st.getNum_connections();
         state = status.state();
-        needSaveResume = st.getNeed_save_resume();
+        needSaveResume = st.getNeed_save_resume_data().non_zero();
         isPaused = st.getFlags().and_(TorrentFlags.PAUSED).non_zero();
         isSequentialDownload = st.getFlags().and_(TorrentFlags.SEQUENTIAL_DOWNLOAD).non_zero();
         isSeeding = st.getIs_seeding();

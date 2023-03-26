@@ -1,5 +1,6 @@
 package org.libtorrent4j;
 
+import org.libtorrent4j.swig.resume_data_flags_t;
 import org.libtorrent4j.swig.torrent_flags_t;
 import org.libtorrent4j.swig.torrent_status;
 
@@ -556,14 +557,11 @@ public final class TorrentStatus implements Cloneable {
     }
 
     /**
-     * true if this torrent has unsaved changes
-     * to its download state and statistics since the last resume data
-     * was saved.
-     *
-     *
+     * These are the flags indicating which aspects of this torrent have
+     * changed since the last time resume data was saved.
      */
-    public boolean needSaveResume() {
-        return ts.getNeed_save_resume();
+    public resume_data_flags_t needSaveResumeData() {
+        return ts.getNeed_save_resume_data();
     }
 
     /**
