@@ -1,4 +1,24 @@
+  * update to libtorrent master
   * fix fetch magnet, save the add_torrent_params as a torrent file
+  * lt:add need_save_resume field to torrent_status, with the resume data flags
+    indicating which aspects of a torrent have changed since the last resume
+    data was saved. Also make only_if_modified flag a combination of the other
+    flags.
+  * lt:separate only_if_modified flag to save_resume_data
+  * lt:removing an ephemeral web seed does not affect whether resume data needs
+    to be saved
+  * lt:allow promoting an ephemeral web seed when adding it
+  * lt:fix web seed request for renamed single-file torrents
+  * lt:instead of removing web seed with certain errors, just disable them and
+    preserve them in the resume data.
+  * lt:improve behavior of save_resume_data() only_if_modified flag to avoid
+    re-saving the resume data too frequently
+  * lt:port 1 is used as a placeholder for announcing to trackers without the
+    ability to accept incoming connections
+  * lt:fix issue in retrying trackers in tiers > 0
+  * lt:fix time_point conversion from/to time_t
+  * lt:don't throw a std::system_error holding a boost::system::error_code
+  * lt:source code cleanup, performance and stability
 
 2.1.0-28
 

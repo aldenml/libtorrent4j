@@ -23,6 +23,12 @@
 %ignore libtorrent::torrent_handle::clear_disk_cache;
 %ignore libtorrent::hash_value;
 
+namespace libtorrent {
+
+struct torrent_status;
+
+}
+
 %include "libtorrent/torrent_handle.hpp"
 
 namespace libtorrent {

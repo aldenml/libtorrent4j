@@ -454,12 +454,13 @@ public class torrent_status {
     return torrent_status.state_t.swigToEnum(libtorrent_jni.torrent_status_state_get(swigCPtr, this));
   }
 
-  public void setNeed_save_resume(boolean value) {
-    libtorrent_jni.torrent_status_need_save_resume_set(swigCPtr, this, value);
+  public void setNeed_save_resume_data(resume_data_flags_t value) {
+    libtorrent_jni.torrent_status_need_save_resume_data_set(swigCPtr, this, resume_data_flags_t.getCPtr(value), value);
   }
 
-  public boolean getNeed_save_resume() {
-    return libtorrent_jni.torrent_status_need_save_resume_get(swigCPtr, this);
+  public resume_data_flags_t getNeed_save_resume_data() {
+    long cPtr = libtorrent_jni.torrent_status_need_save_resume_data_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new resume_data_flags_t(cPtr, false);
   }
 
   public void setIs_seeding(boolean value) {
