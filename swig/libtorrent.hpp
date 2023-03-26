@@ -305,6 +305,12 @@ std::vector<std::int8_t> write_resume_data_buf_ex(lt::add_torrent_params const& 
     return {v.begin(), v.end()};
 }
 
+std::vector<std::int8_t> write_torrent_file_buf_ex(lt::add_torrent_params const& atp)
+{
+    auto v = lt::write_torrent_file_buf(atp, {});
+    return {v.begin(), v.end()};
+}
+
 lt::add_torrent_params parse_magnet_uri(std::string const& uri, lt::error_code& ec)
 {
     return lt::parse_magnet_uri(uri, ec);

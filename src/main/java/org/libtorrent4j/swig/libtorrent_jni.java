@@ -3539,6 +3539,7 @@ public class libtorrent_jni {
   public final static native long read_resume_data_ex__SWIG_0(long jarg1, byte_vector jarg1_, long jarg2, error_code jarg2_, long jarg3, load_torrent_limits jarg3_);
   public final static native long read_resume_data_ex__SWIG_1(long jarg1, byte_vector jarg1_, long jarg2, error_code jarg2_);
   public final static native long write_resume_data_buf_ex(long jarg1, add_torrent_params jarg1_);
+  public final static native long write_torrent_file_buf_ex(long jarg1, add_torrent_params jarg1_);
   public final static native long parse_magnet_uri(String jarg1, long jarg2, error_code jarg2_);
   public final static native long torrent_alert_SWIGUpcast(long jarg1);
   public final static native long peer_alert_SWIGUpcast(long jarg1);
