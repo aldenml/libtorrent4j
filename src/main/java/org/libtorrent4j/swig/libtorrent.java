@@ -455,6 +455,10 @@ public class libtorrent {
     return new byte_vector(libtorrent_jni.write_resume_data_buf_ex(add_torrent_params.getCPtr(atp), atp), true);
   }
 
+  public static byte_vector write_torrent_file_buf_ex(add_torrent_params atp) {
+    return new byte_vector(libtorrent_jni.write_torrent_file_buf_ex(add_torrent_params.getCPtr(atp), atp), true);
+  }
+
   public static add_torrent_params parse_magnet_uri(String uri, error_code ec) {
     return new add_torrent_params(libtorrent_jni.parse_magnet_uri(uri, error_code.getCPtr(ec), ec), true);
   }

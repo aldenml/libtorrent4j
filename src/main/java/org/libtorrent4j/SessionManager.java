@@ -668,17 +668,7 @@ public class SessionManager {
                     try {
 
                         add_torrent_params resumeDataParams = ((SaveResumeDataAlert) alert).params().swig();
-
-                        // complement with data from the original params if necessary
-                        if (resumeDataParams.getTrackers().isEmpty() && !p.getTrackers().isEmpty()) {
-                            resumeDataParams.setTrackers(p.getTrackers());
-                            resumeDataParams.setTracker_tiers(p.getTracker_tiers());
-                        }
-                        if (resumeDataParams.getUrl_seeds().isEmpty() && !p.getUrl_seeds().isEmpty()) {
-                            resumeDataParams.setUrl_seeds(p.getUrl_seeds());
-                        }
-
-                        byte_vector bytes = libtorrent.write_resume_data(resumeDataParams).bencode();
+                        byte_vector bytes = libtorrent.write_torrent_file_buf_ex(resumeDataParams);
                         data.set(Vectors.byte_vector2bytes(bytes));
                         signal.countDown();
                     } catch (Throwable e) {
