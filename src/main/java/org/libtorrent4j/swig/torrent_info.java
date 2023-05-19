@@ -80,10 +80,6 @@ public class torrent_info {
     return new string_vector(libtorrent_jni.torrent_info_collections(swigCPtr, this), true);
   }
 
-  public internal_drained_state _internal_drain() {
-    return new internal_drained_state(libtorrent_jni.torrent_info__internal_drain(swigCPtr, this), true);
-  }
-
   public long total_size() {
     return libtorrent_jni.torrent_info_total_size(swigCPtr, this);
   }

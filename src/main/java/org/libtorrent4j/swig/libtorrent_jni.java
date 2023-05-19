@@ -1103,7 +1103,6 @@ public class libtorrent_jni {
   public final static native long torrent_info_internal_trackers(long jarg1, torrent_info jarg1_);
   public final static native long torrent_info_similar_torrents(long jarg1, torrent_info jarg1_);
   public final static native long torrent_info_collections(long jarg1, torrent_info jarg1_);
-  public final static native long torrent_info__internal_drain(long jarg1, torrent_info jarg1_);
   public final static native long torrent_info_total_size(long jarg1, torrent_info jarg1_);
   public final static native long torrent_info_size_on_disk(long jarg1, torrent_info jarg1_);
   public final static native int torrent_info_piece_length(long jarg1, torrent_info jarg1_);
