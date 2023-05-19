@@ -197,5 +197,18 @@ public final class TorrentFlags {
      */
     public static final torrent_flags_t DEFAULT_DONT_DOWNLOAD = libtorrent.getDefault_dont_download();
 
+    /**
+     * This flag makes the torrent be considered an "i2p torrent" for purposes
+     * of the allow_i2p_mixed setting. When mixing regular peers and i2p peers
+     * is disabled, i2p torrents won't add normal peers to its peer list.
+     * Note that non i2p torrents may still allow i2p peers (on the off-chance
+     * that a tracker return them and the session is configured with a SAM
+     * connection).
+     * This flag is set automatically when adding a torrent that has at least
+     * one tracker whose hostname ends with .i2p.
+     * It's also set by parse_magnet_uri() if the tracker list contains such URL.
+     */
+    public static final torrent_flags_t I2P_TORRENT = libtorrent.getI2p_torrent();
+
     public static final torrent_flags_t ALL = libtorrent.getAll();
 }

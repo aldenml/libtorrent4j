@@ -122,6 +122,11 @@ public class libtorrent {
     return (cPtr == 0) ? null : new torrent_flags_t(cPtr, false);
   }
 
+  public static torrent_flags_t getI2p_torrent() {
+    long cPtr = libtorrent_jni.i2p_torrent_get();
+    return (cPtr == 0) ? null : new torrent_flags_t(cPtr, false);
+  }
+
   public static torrent_flags_t getAll() {
     long cPtr = libtorrent_jni.all_get();
     return (cPtr == 0) ? null : new torrent_flags_t(cPtr, false);

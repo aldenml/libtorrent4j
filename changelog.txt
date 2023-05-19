@@ -1,3 +1,38 @@
+2.1.0-30
+
+  * update to libtorrent master
+  * lt:revert and replace fix for proxies supporting IPv6
+  * lt:make i2p session options configurable
+  * lt:fix announce_with_tracker assert
+  * lt:fallocate() not supported is not a fatal error
+  * lt:fix proxying of IPv6 connections via IPv4 proxy
+  * lt:fix peer_list to support incoming i2p connections
+  * lt:treat CGNAT address range as local IPs
+  * lt:disallow piece layer entries that don't refer to any file in the torrent
+  * lt:disallow piece layer entries in torrent files that don't compute to their
+    advertised root hash
+  * lt:validate piece layers against their roots when loading torrents
+  * lt:tighten up handling of hash checking v2 and hybrid torrents
+  * lt:cache failed DNS lookups as well as successful ones
+  * lt:when draining the torrent_info object
+  * lt:fix scraping of i2p tracker
+  * lt:minor simplification of i2p socket identification
+  * lt:store i2p-torrent state in resume data
+  * lt:disable DHT for i2p torrents
+  * lt:fix accepting incoming i2p connections
+  * lt:fix interpretation of non-compact i2p tracker responses
+  * lt:add base64decode() for i2p alphabet and simplify base32encode()
+  * lt:make i2p trackers only announce once (not once per listen interface)
+  * lt:fix i2p SAM parsing of quoted values. and make name lookup failures
+    non-fatal
+  * lt:expose i2p peer destination (b32 address) in peer_info
+  * lt:simplify handling of compact tracker responses for i2p trackers
+  * lt:fix sorting of torrent_peer entries when mixing i2p and non-i2p peers
+  * lt:make base32encode take a span instead of a string
+  * lt:fix issue with read_piece() stopping torrent on pieces not yet downloaded
+  * lt:improve handling of allow_i2p_mixed setting to work for magnet links
+  * lt:source code cleanup, performance and stability
+
 2.1.0-29
 
   * update to libtorrent master
