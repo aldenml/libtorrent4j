@@ -1,6 +1,7 @@
 2.1.0-30
 
   * update to libtorrent master
+  * add support for Linux arm
   * lt:revert and replace fix for proxies supporting IPv6
   * lt:make i2p session options configurable
   * lt:fix announce_with_tracker assert
