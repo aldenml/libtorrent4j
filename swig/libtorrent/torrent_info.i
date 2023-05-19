@@ -25,6 +25,7 @@
 %ignore libtorrent::torrent_info::set_piece_layers;
 %ignore libtorrent::torrent_info::clear_web_seeds;
 %ignore libtorrent::torrent_info::internal_web_seeds;
+%ignore libtorrent::torrent_info::_internal_drain;
 %ignore libtorrent::aux::sanitize_append_path_element;
 %ignore libtorrent::aux::verify_encoding;
 

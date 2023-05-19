@@ -1101,7 +1101,6 @@ public class libtorrent_jni {
   public final static native void torrent_info_rename_file(long jarg1, torrent_info jarg1_, int jarg2, String jarg3);
   public final static native void torrent_info_remap_files(long jarg1, torrent_info jarg1_, long jarg2, file_storage jarg2_);
   public final static native long torrent_info_internal_trackers(long jarg1, torrent_info jarg1_);
-  public final static native void torrent_info_internal_clear_trackers(long jarg1, torrent_info jarg1_);
   public final static native long torrent_info_similar_torrents(long jarg1, torrent_info jarg1_);
   public final static native long torrent_info_collections(long jarg1, torrent_info jarg1_);
   public final static native long torrent_info_total_size(long jarg1, torrent_info jarg1_);
@@ -1151,6 +1150,7 @@ public class libtorrent_jni {
   public final static native long disable_pex_get();
   public final static native long no_verify_files_get();
   public final static native long default_dont_download_get();
+  public final static native long i2p_torrent_get();
   public final static native long all_get();
   public final static native long default_flags_get();
   public final static native long new_torrent_flags_t();

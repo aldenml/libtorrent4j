@@ -106,3 +106,61 @@ jobs:
             swig/bin/release/linux/x86_64/libtorrent4j.so
             swig/bin/release/linux/x86_64/libtorrent4j.so.debug
           retention-days: 5
+
+  arm-b2:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: setup gcc
+        run: |
+          sudo apt update
+          sudo apt install gcc-arm-linux-gnueabi g++-arm-linux-gnueabi binutils-arm-linux-gnueabi
+      - name: setup boost
+        run: |
+          wget -nv -O boost.tar.gz https://boostorg.jfrog.io/artifactory/main/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
+          tar xzf boost.tar.gz
+          mv boost_${BOOST_VERSION} boost
+          cd boost
+          ./bootstrap.sh
+          cd ..
+      - name: setup openssl
+        run: |
+          export CC=arm-linux-gnueabi-gcc
+          export AR=arm-linux-gnueabi-gcc-ar
+          export LD=arm-linux-gnueabi-ld
+          export RANLIB=arm-linux-gnueabi-gcc-ranlib
+          wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
+          tar xzf openssl.tar.gz
+          cd openssl-${OPENSSL_VERSION}
+          ./Configure linux-armv4 ${OPENSSL_NO_OPTS} -fPIC --prefix=${PWD}/../openssl
+          make &> /dev/null
+          make install_sw &> /dev/null
+          cd ..
+      - name: build
+        run: |
+          export BOOST_ROOT=${PWD}/boost
+          export OPENSSL_ROOT=${PWD}/openssl
+          export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
+          export CXX=arm-linux-gnueabi-g++
+          export CC=arm-linux-gnueabi-gcc
+          export AR=arm-linux-gnueabi-gcc-ar
+          export LD=arm-linux-gnueabi-ld
+          export RANLIB=arm-linux-gnueabi-gcc-ranlib
+          cd swig
+          ${BOOST_ROOT}/b2 -j2 --user-config=config/linux-arm-config.jam variant=release toolset=gcc-arm target-os=linux location=bin/release/linux/arm
+          cd ..
+      - name: strip
+        run: |
+          arm-linux-gnueabi-objcopy --only-keep-debug swig/bin/release/linux/arm/libtorrent4j.so swig/bin/release/linux/arm/libtorrent4j.so.debug
+          arm-linux-gnueabi-strip --strip-unneeded -x swig/bin/release/linux/arm/libtorrent4j.so
+      - name: dependencies
+        run: arm-linux-gnueabi-readelf -d swig/bin/release/linux/arm/libtorrent4j.so
+      - uses: actions/upload-artifact@v3
+        with:
+          name: libtorrent4j-linux-arm-b2
+          path: |
+            swig/bin/release/linux/arm/libtorrent4j.so
+            swig/bin/release/linux/arm/libtorrent4j.so.debug
+          retention-days: 5

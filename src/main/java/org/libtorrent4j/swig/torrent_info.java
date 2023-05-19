@@ -72,10 +72,6 @@ public class torrent_info {
     return new announce_entry_vector(libtorrent_jni.torrent_info_internal_trackers(swigCPtr, this), false);
   }
 
-  public void internal_clear_trackers() {
-    libtorrent_jni.torrent_info_internal_clear_trackers(swigCPtr, this);
-  }
-
   public sha1_hash_vector similar_torrents() {
     return new sha1_hash_vector(libtorrent_jni.torrent_info_similar_torrents(swigCPtr, this), true);
   }
