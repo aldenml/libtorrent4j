@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2023, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.bdecode_node;
@@ -39,7 +46,7 @@ public final class BDecodeNode {
     }
 
     /**
-     * This methods returns the internal buffer or null
+     * This method returns the internal buffer or null
      * if it was constructed without one.
      * <p>
      * This also prevent premature garbage collection in case
