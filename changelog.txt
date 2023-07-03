@@ -1,3 +1,5 @@
+  * improved java api layer
+
 2.1.0-30
 
   * update to libtorrent master
