@@ -7,8 +7,8 @@ RUN apt update -y \
     python perl make cmake \
     g++
 
-ENV BOOST_DOT_VERSION="1.81.0"
-ENV BOOST_VERSION="1_81_0"
+ENV BOOST_DOT_VERSION="1.83.0"
+ENV BOOST_VERSION="1_83_0"
 ENV NDK_VERSION="r26"
 ENV OPENSSL_VERSION="1.1.1t"
 ENV OPENSSL_NO_OPTS="no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3 -fPIC"
