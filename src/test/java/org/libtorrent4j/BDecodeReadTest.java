@@ -34,4 +34,20 @@ public class BDecodeReadTest {
 
         assertEquals("failed to create torrent info: " + ec.message(), ret, 0);
     }
+
+    @Test
+    public void testFind() throws IOException {
+        byte[] data = Utils.resourceBytes("test5.torrent");
+
+        byte_vector buffer = Vectors.bytes2byte_vector(data);
+        bdecode_node e = new bdecode_node();
+        error_code ec = new error_code();
+        bdecode_node.bdecode(buffer, e, ec);
+
+        assertNull(e.dict_find_list_ex("announce-list"))
+        assertNotNull(e.dict_find_dict_ex("info"))
+
+        ec.clear();
+        buffer.clear(); // prevents GC
+    }
 }
