@@ -1,5 +1,6 @@
   * update to libtorrent master
   * using SWIG 4.1.1
+  * update android NDK r26
   * improved java api layer
   * lt:allow to change save path without any additional actions
   * lt:allow to change save path without moving any files
