@@ -14,6 +14,7 @@ using clang-linux : arm : $(ANDROID_TOOLCHAIN)/bin/armv7a-linux-androideabi24-cl
     <cxxflags>-fvisibility=hidden
     <cxxflags>-D_FORTIFY_SOURCE=2
     <cxxflags>-fstack-protector-strong
+    <cxxflags>-Wno-unused-but-set-variable
     <linkflags>-static-libstdc++
     <linkflags>-fuse-ld=lld
     <linkflags>-Wl,--build-id=sha1

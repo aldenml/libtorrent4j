@@ -9,6 +9,7 @@ using clang : x86_64 : $(ANDROID_TOOLCHAIN)/bin/x86_64-linux-android24-clang++ :
     <cxxflags>-fvisibility=hidden
     <cxxflags>-D_FORTIFY_SOURCE=2
     <cxxflags>-fstack-protector-strong
+    <cxxflags>-Wno-unused-but-set-variable
     <linkflags>-static-libstdc++
     <linkflags>-fuse-ld=lld
     <linkflags>-Wl,--build-id=sha1
