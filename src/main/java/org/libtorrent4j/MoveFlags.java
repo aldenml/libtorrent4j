@@ -32,7 +32,19 @@ public enum MoveFlags {
      * If any files exist in the target, take those files instead
      * of the ones we may have in the source.
      */
-    DONT_REPLACE(move_flags_t.dont_replace);
+    DONT_REPLACE(move_flags_t.dont_replace),
+
+    /**
+     * Don't move any source files, just forget about them
+     * and begin checking files at new save path.
+     */
+    RESET_SAVE_PATH(move_flags_t.reset_save_path),
+
+    /**
+     * Don't move any source files, just change save path
+     * and continue working without any checks.
+     */
+    RESET_SAVE_PATH_UNCHECKED(move_flags_t.reset_save_path_unchecked);
 
     MoveFlags(move_flags_t swigValue) {
         this.swigValue = swigValue;
