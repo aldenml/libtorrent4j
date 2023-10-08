@@ -1,4 +1,12 @@
+  * update to libtorrent master
   * improved java api layer
+  * lt:allow to change save path without any additional actions
+  * lt:allow to change save path without moving any files
+  * lt:peer_list fix, clear the m_candidate_cache when clear peer_list, and set
+    m_num_seeds to 0
+  * lt:schedule DHT announces using milliseconds rather than seconds
+  * lt:fix issue with web seed connections when they close and re-open
+  * lt:removing an already removed torrent is a no-op
 
 2.1.0-30
 
