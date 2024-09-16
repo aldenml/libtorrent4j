@@ -54,15 +54,20 @@ public final class ResumeTest {
                         serializeResumeData((SaveResumeDataAlert) alert);
                         signalResumeData.countDown();
                         break;
-//                    case STATS:
-//                        TorrentHandle th = ((StatsAlert) alert).handle();
-//                        if (th.status().isFinished()) {
-//                            TorrentStatus ts = th.status();
-//                            System.out.println(String.format("seeding time=%d\nactive time=%d\n",
-//                                    ts.seedingDuration(), ts.activeDuration()));
-//                            signal.countDown();
-//                        }
-//                        break;
+                   case STATE_UPDATE:
+                        StateUpdateAlert sua = (StateUpdateAlert) alert;
+                        sua.status().forEach(ts -> {
+                            System.out.println(String.format("state update: name:%s seeding time=%d\nactive time=%d\n",
+                                    ts.name(),
+                                    ts.seedingDuration(),
+                                    ts.activeDuration()));
+
+                            TorrentHandle th = new TorrentHandle(ts.swig().getHandle());
+                            if (th.status().isFinished()) {
+                                signal.countDown();
+                            }
+                        });
+                        break;
                 }
             }
         });
