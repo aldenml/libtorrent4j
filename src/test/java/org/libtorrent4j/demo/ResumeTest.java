@@ -27,6 +27,7 @@ public final class ResumeTest {
         final SessionManager s = new SessionManager();
         final CountDownLatch signal = new CountDownLatch(10);
         final CountDownLatch signalResumeData = new CountDownLatch(1);
+        s.swig().post_torrent_updates();
         s.addListener(new AlertListener() {
             @Override
             public int[] types() {
@@ -41,6 +42,7 @@ public final class ResumeTest {
                     case ADD_TORRENT:
                         System.out.println("Torrent added");
                         ((AddTorrentAlert) alert).handle().resume();
+                        s.swig().post_torrent_updates();
                         break;
                     case TORRENT_FINISHED:
                         System.out.println("Torrent finished");
@@ -48,11 +50,13 @@ public final class ResumeTest {
                         break;
                     case TORRENT_PAUSED:
                         System.out.println("Torrent paused");
+                        s.swig().post_torrent_updates();
                         break;
                     case SAVE_RESUME_DATA:
                         System.out.println("Torrent saveResumeData");
                         serializeResumeData((SaveResumeDataAlert) alert);
                         signalResumeData.countDown();
+                        s.swig().post_torrent_updates();
                         break;
                    case STATE_UPDATE:
                         StateUpdateAlert sua = (StateUpdateAlert) alert;
