@@ -395,6 +395,41 @@ public final class FileStorage {
     }
 
     /**
+     * Internal limitations restrict file sizes to not be larger than this
+     * An int is used to index into file merkle trees, so a file may not contain more
+     * than INT_MAX entries. That means INT_MAX / 2 blocks (leafs) in each
+     * tree.
+     */
+    public static final long MAX_FILE_SIZE = file_storage.max_file_size;
+
+    /**
+     * Internal limitations restrict file sizes to not be larger than this
+     * An int is used to index into file merkle trees, so a file may not contain more
+     * than INT_MAX entries. That means INT_MAX / 2 blocks (leafs) in each
+     * tree.
+     */
+    public static final long MAX_FILE_OFFSET = file_storage.max_file_offset;
+
+    /**
+     * A signed 32 bit integer is used for piece indices internally, but
+     * frequently need headroom for intermediate calculations, so we limit
+     * the number of pieces 1 bit below the maximum.
+     */
+    public static final int MAX_NUM_PIECES = file_storage.max_num_pieces;
+
+    /**
+     * Limit the piece length at (2 ^ 30) to get a bit of headroom. The
+     * number of blocks per pieces is commonly compute by adding
+     * block_size - 1 before dividing by block_size. That would overflow with
+     * a piece size of 2 ^ 31. This limit is still an unreasonably large
+     * piece size anyway.
+     * The piece picker (currently) has a limit of no more than (2^15)-1
+     * blocks per piece, which is more restrictive, at a block size of 16
+     * kiB (0x4000).
+     */
+    public static final int MAX_PIECE_SIZE = file_storage.max_piece_size;
+
+    /**
      * This file is a pad file. The creator of the
      * torrent promises the file is entirely filled with
      * zeroes and does not need to be downloaded. The

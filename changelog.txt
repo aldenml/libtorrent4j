@@ -1,3 +1,39 @@
+wip
+
+  * update to libtorrent master
+  * lt:don't hint POSIX_FADV_RANDOM
+  * lt:allow connections while checking resume data if no_verify_files flag is
+    set
+  * lt:fix BEP-40 peer priority for IPv6
+  * lt:limit the piece size in create_torrent constructor
+  * lt:set m_file_priority early, to make open_file() work as expected.
+  * lt:don't discard netlink messages for previously seen addresses
+  * lt:fix issue when closing a uTP connection with a close reason and picking
+    up a nagle packet.
+  * lt:apply DSCP setting to peers before connecting
+  * lt:check settings_pack::max_out_request_queue before alerting performance
+    warning: max outstanding piece requests reached
+  * lt:check settings_pack::max_out_request_queue before alert
+    outstanding_request_limit_reached
+  * lt:updated libdatachannel to v0.21.2
+  * lt:make anti-leech choker never increase score for dishonesty
+  * lt:try encode web seed redirect location
+  * lt:send read_piece right at the end of piece_passed
+  * lt:fix integer overflow in piece picker
+  * lt:try harder to bind TCP and UDP sockets to the same port
+  * lt:torrent_status::num_pieces counts pieces passed hash check, as documented
+  * lt:add feature to enable interruption of disk I/O worker threads
+  * lt:pass in whether a torrent has v1 and/or v2 hashes in storage_params
+  * lt:reject resume data if it contains mismatching info hashes
+  * lt:restore file priorities in POSIX storage
+  * lt:fix the wrong port is being announced to tracker
+  * lt:allow I2P leaseset encryption type 4
+  * lt:allow execution of on_unknown_torrent method in the absence of active
+    torrents
+  * lt:fix assert in uTP resend_packet()
+  * lt:improve checking and testing of max piece size
+  * lt:source code cleanup, performance and stability
+
 2.1.0-31
 
   * update to libtorrent master
