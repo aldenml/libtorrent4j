@@ -42,11 +42,11 @@ jobs:
         run: |
           cp build/libtorrent4j.dylib .
           ./gradlew test
-      - name: coverage
-        if: github.ref == 'refs/heads/master'
-        run: ./gradlew codacyCoverage
-        env:
-          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+#      - name: coverage
+#        if: github.ref == 'refs/heads/master'
+#        run: ./gradlew codacyCoverage
+#        env:
+#          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
       - uses: actions/upload-artifact@v4
         with:
           name: libtorrent4j-macos-cmake
