@@ -29261,6 +29261,30 @@ SWIGEXPORT jlong JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1storag
 }
 
 
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1storage_1max_1num_1pieces_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)libtorrent::file_storage::max_num_pieces;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1storage_1max_1piece_1size_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)libtorrent::file_storage::max_piece_size;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jboolean JNICALL Java_org_libtorrent4j_swig_libtorrent_1jni_file_1storage_1is_1valid(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jboolean jresult = 0 ;
   libtorrent::file_storage *arg1 = (libtorrent::file_storage *) 0 ;

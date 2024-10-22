@@ -37,13 +37,13 @@ public final class LibTorrent {
      * <p>
      * This is not the internal revision libtorrent reports, since
      * that string is updated from time to time. This library can be
-     * using an up to date revision, this string is manually
+     * using an up-to-date revision, this string is manually
      * hardcoded in each version of libtorrent4j.
      *
      * @return the git revision
      */
     public static String revision() {
-        return "8e53eba82fc74c40905fd6b05b6ed24ee6b6b2a1";
+        return "9fbe56a81d75e3b8f0cfdd43b4fc05de48875767";
     }
 
     /**

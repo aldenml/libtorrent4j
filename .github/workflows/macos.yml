@@ -16,7 +16,7 @@ env:
 
 jobs:
 
-  x86_64-cmake:
+  arm64-cmake:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -47,7 +47,7 @@ jobs:
         run: ./gradlew codacyCoverage
         env:
           CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: libtorrent4j-macos-cmake
           path: |
@@ -55,7 +55,7 @@ jobs:
             build/libtorrent4j.dSYM
           retention-days: 5
 
-  x86_64-b2:
+  arm64-b2:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -74,7 +74,7 @@ jobs:
           wget -nv -O openssl.tar.gz https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
           tar xzf openssl.tar.gz
           cd openssl-${OPENSSL_VERSION}
-          ./Configure darwin64-x86_64-cc ${OPENSSL_NO_OPTS} --prefix=${PWD}/../openssl
+          ./Configure darwin64-arm64-cc ${OPENSSL_NO_OPTS} --prefix=${PWD}/../openssl
           make &> /dev/null
           make install_sw &> /dev/null
           cd ..
@@ -84,22 +84,22 @@ jobs:
           export OPENSSL_ROOT=${PWD}/openssl
           export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
           cd swig
-          ${BOOST_ROOT}/b2  -j2 --user-config=config/macos-x86_64-config.jam variant=release toolset=darwin-x86_64 target-os=darwin location=bin/release/macos/x86_64
+          ${BOOST_ROOT}/b2 -j2 --user-config=config/macos-arm64-config.jam variant=release toolset=darwin-arm64 target-os=darwin location=bin/release/macos/arm64
           cd ..
       - name: strip
         run: |
-          dsymutil swig/bin/release/macos/x86_64/libtorrent4j.dylib -o swig/bin/release/macos/x86_64/libtorrent4j.dSYM
-          strip -S -x swig/bin/release/macos/x86_64/libtorrent4j.dylib
+          dsymutil swig/bin/release/macos/arm64/libtorrent4j.dylib -o swig/bin/release/macos/arm64/libtorrent4j.dSYM
+          strip -S -x swig/bin/release/macos/arm64/libtorrent4j.dylib
       - name: dependencies
-        run: otool -L swig/bin/release/macos/x86_64/libtorrent4j.dylib
+        run: otool -L swig/bin/release/macos/arm64/libtorrent4j.dylib
       - name: test
         run: |
-          cp swig/bin/release/macos/x86_64/libtorrent4j.dylib .
+          cp swig/bin/release/macos/arm64/libtorrent4j.dylib .
           ./gradlew test
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: libtorrent4j-macos-b2
           path: |
-            swig/bin/release/macos/x86_64/libtorrent4j.dylib
-            swig/bin/release/macos/x86_64/libtorrent4j.dSYM
+            swig/bin/release/macos/arm64/libtorrent4j.dylib
+            swig/bin/release/macos/arm64/libtorrent4j.dSYM
           retention-days: 5

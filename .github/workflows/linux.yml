@@ -45,7 +45,7 @@ jobs:
 #        run: |
 #          cp build/libtorrent4j.so .
 #          ./gradlew test
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: libtorrent4j-linux-cmake
           path: |
@@ -98,7 +98,7 @@ jobs:
         run: |
           cp swig/bin/release/linux/x86_64/libtorrent4j.so .
           ./gradlew test
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: libtorrent4j-linux-b2
           path: |
