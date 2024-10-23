@@ -9,7 +9,7 @@ set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 project(libtorrent4j
     DESCRIPTION "libtorrent JNI SWIG binding"
-    VERSION 2.0.0
+    VERSION 2.1.0
     LANGUAGES CXX)
 
 set(include_files
