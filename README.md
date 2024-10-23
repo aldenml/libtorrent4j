@@ -81,7 +81,7 @@ and [tests](https://github.com/aldenml/libtorrent4j/tree/master/src/test/java/or
 Architectures supported:
 
 - Android (armeabi-v7a, arm64-v8a, x86, x86_64)
-- macOS (x86_64)
+- macOS (arm64)
 - Linux (x86_64)
 - Windows (x86_64)
 

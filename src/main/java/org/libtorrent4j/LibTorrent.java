@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023, Alden Torres
+ * Copyright (c) 2018-2024, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -71,7 +71,7 @@ public final class LibTorrent {
      * @return libtorrent4j version.
      */
     public static String libtorrent4jVersion() {
-        return "2.1.0-31";
+        return "2.1.0-32";
     }
 
     /**
