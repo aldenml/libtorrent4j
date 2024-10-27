@@ -25,7 +25,7 @@ jobs:
       - name: install packages
         run: |
           brew reinstall boost
-          HOMEBREW_NO_INSTALL_CLEANUP=1 brew reinstall openssl@1.1
+          HOMEBREW_NO_INSTALL_CLEANUP=1 brew reinstall openssl@3
       - name: cmake
         run: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -B build -G "CodeBlocks - Unix Makefiles" swig
         env:
