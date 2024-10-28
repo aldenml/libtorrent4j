@@ -69,6 +69,7 @@ RUN cd openssl-src \
     && make clean \
     && cd ..
 
+RUN mv /openssl-x86_64/lib64 /openssl-x86_64/lib
 RUN sed -i 's/28/24/g' ${TOOLCHAIN}/sysroot/usr/include/sys/random.h
 
 COPY b2-arm.sh b2-arm64.sh b2-x86.sh b2-x86_64.sh /

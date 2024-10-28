@@ -253,6 +253,7 @@ jobs:
           make &> /dev/null
           make install_sw &> /dev/null
           cd ..
+          mv ${PWD}/openssl/lib64 ${PWD}/openssl/lib
       - name: build
         run: |
           alias ranlib='${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib'
