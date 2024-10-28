@@ -12,7 +12,7 @@ env:
   BOOST_DOT_VERSION: "1.81.0"
   BOOST_VERSION: "1_81_0"
   NDK_VERSION: "r25c"
-  OPENSSL_VERSION: "1.1.1t"
+  OPENSSL_VERSION: "3.4.0"
   OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3"
 
 jobs:
@@ -253,6 +253,7 @@ jobs:
           make &> /dev/null
           make install_sw &> /dev/null
           cd ..
+          mv ${PWD}/openssl/lib64 ${PWD}/openssl/lib
       - name: build
         run: |
           alias ranlib='${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib'
