@@ -1,6 +1,7 @@
 wip
 
   * update to libtorrent master
+  * update to OpenSSL 3.4.0
   * lt:fix bug where file_progress could sometimes be reported as >100%
   * lt:source code cleanup, performance and stability
 
