@@ -9,7 +9,7 @@ RUN apt update -y \
 
 ENV BOOST_DOT_VERSION="1.81.0"
 ENV BOOST_VERSION="1_81_0"
-ENV NDK_VERSION="r25c"
+ENV NDK_VERSION="r27c"
 ENV OPENSSL_VERSION="3.4.0"
 ENV OPENSSL_NO_OPTS="no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3 -fPIC"
 
