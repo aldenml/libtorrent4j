@@ -34,7 +34,7 @@ struct bitfield_flag
             return *$self & other;
         }
 
-        bitfield_flag xor(bitfield_flag const other)
+        bitfield_flag xor_(bitfield_flag const other)
         {
             return *$self ^ other;
         }
