@@ -261,7 +261,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %rename(lte) operator<=;
 %rename(gte) operator>=;
 %rename(inv) operator~;
-%rename(xor) operator^;
+%rename(xor_) operator^;
 %rename(or_) operator|;
 %rename(and_) operator&;
 %rename(at) operator[];
