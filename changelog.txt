@@ -1,6 +1,7 @@
 wip
 
   * update to libtorrent master
+  * update to boost 1.86.0
   * update to OpenSSL 3.4.0
   * update android NDK r27c
   * lt:fix bug where file_progress could sometimes be reported as >100%
