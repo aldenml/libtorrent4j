@@ -1,9 +1,11 @@
-wip
+2.1.0-33
 
   * update to libtorrent master
+  * using SWIG 4.3.0
   * update to boost 1.86.0
   * update to OpenSSL 3.4.0
   * update android NDK r27c
+  * lt:fix performance bug in the file pool, evicting MRU instead of LRU
   * lt:fix bug where file_progress could sometimes be reported as >100%
   * lt:source code cleanup, performance and stability
 
