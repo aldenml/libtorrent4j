@@ -1,3 +1,9 @@
+2.1.0-34
+
+  * update to libtorrent master
+  * lt:addresses an issue where it would wait for pieces to be written to disk
+    before advertising it to peers
+
 2.1.0-33
 
   * update to libtorrent master
