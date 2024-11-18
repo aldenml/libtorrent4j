@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2022, Alden Torres
+ * Copyright (c) 2020-2024, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -62,5 +62,16 @@ public class SettingsPackTest {
         settings.setMaxMetadataSize(1);
 
         assertEquals(1, settings.getMaxMetadataSize());
+    }
+
+    @Test
+    public void testAnnouncePort() {
+        SettingsPack settings = SettingsPack.defaultSettings();
+
+        assertEquals(0, settings.getAnnouncePort());
+
+        settings.setAnnouncePort(1);
+
+        assertEquals(1, settings.getAnnouncePort());
     }
 }

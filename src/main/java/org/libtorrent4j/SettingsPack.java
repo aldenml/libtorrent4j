@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020, Alden Torres
+ * Copyright (c) 2018-2024, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -695,6 +695,47 @@ public final class SettingsPack
      */
     public SettingsPack alertQueueSize(int value) {
         h.set_int(settings_pack.int_types.alert_queue_size.swigValue(), value);
+        return this;
+    }
+
+    /**
+     * <code>announce_port</code> is the port passed along as the <code>port</code> parameter
+     * to remote trackers such as HTTP or DHT. This setting does not affect
+     * the effective listening port nor local service discovery announcements.
+     * If left as zero (default), the listening port value is used.
+     * <p>
+     * This setting is only meant for very special cases where a
+     * seed's listening port differs from the external port. As an
+     * example, if a local proxy is used and that the proxy supports
+     * reverse tunnels through NAT-PMP, the tracker must connect to
+     * the external NAT-PMP port (configured using <code>announce_port</code>)
+     * instead of the actual local listening port.
+     *
+     * @return the current value
+     * @see #setAnnouncePort(int)
+     */
+    public int getAnnouncePort() {
+        return h.get_int(settings_pack.int_types.announce_port.swigValue());
+    }
+
+    /**
+     * <code>announce_port</code> is the port passed along as the <code>port</code> parameter
+     * to remote trackers such as HTTP or DHT. This setting does not affect
+     * the effective listening port nor local service discovery announcements.
+     * If left as zero (default), the listening port value is used.
+     * <p>
+     * This setting is only meant for very special cases where a
+     * seed's listening port differs from the external port. As an
+     * example, if a local proxy is used and that the proxy supports
+     * reverse tunnels through NAT-PMP, the tracker must connect to
+     * the external NAT-PMP port (configured using <code>announce_port</code>)
+     * instead of the actual local listening port.
+     *
+     * @param value the new value
+     * @return this
+     */
+    public SettingsPack setAnnouncePort(int value) {
+        h.set_int(settings_pack.int_types.announce_port.swigValue(), value);
         return this;
     }
 
