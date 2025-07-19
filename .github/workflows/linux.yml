@@ -19,9 +19,9 @@ env:
 jobs:
 
   x86_64-cmake:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: install packages
@@ -54,15 +54,15 @@ jobs:
           retention-days: 5
 
   x86_64-b2:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
-      - name: setup gcc
-        run: |
-          sudo apt update
-          sudo apt install gcc-10 g++-10
+#      - name: setup gcc
+#        run: |
+#          sudo apt update
+#          sudo apt install gcc-10 g++-10
       - name: setup boost
         run: |
           wget -nv -O boost.tar.gz https://archives.boost.io/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
@@ -107,7 +107,7 @@ jobs:
           retention-days: 5
 
   arm-b2:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
         with:

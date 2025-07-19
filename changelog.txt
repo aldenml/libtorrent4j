@@ -1,4 +1,5 @@
 
+  * using SWIG 4.3.1
   * update to libtorrent master
   * add load torrent swig api
   * lt:parse_torrent_file() can return nullptr if the file is a magnet link
