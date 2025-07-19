@@ -18,7 +18,7 @@ env:
 jobs:
 
   arm-b2:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
         with:
@@ -85,7 +85,7 @@ jobs:
           retention-days: 5
 
   arm64-b2:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
         with:
@@ -152,7 +152,7 @@ jobs:
           retention-days: 5
 
   x86-b2:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
         with:
@@ -219,7 +219,7 @@ jobs:
           retention-days: 5
 
   x86_64-b2:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
         with:
