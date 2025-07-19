@@ -1,3 +1,4 @@
+2.1.0-36
 
   * update to libtorrent master
   * update android NDK r28c
