@@ -1,5 +1,6 @@
 
   * update to libtorrent master
+  * update to OpenSSL 3.5.1
   * update to boost 1.88.0
   * using SWIG 4.3.1
   * add load torrent swig api
