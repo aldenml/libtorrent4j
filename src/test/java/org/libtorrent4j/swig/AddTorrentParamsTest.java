@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020, Alden Torres
+ * Copyright (c) 2018-2025, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -8,6 +8,10 @@
 package org.libtorrent4j.swig;
 
 import org.junit.Test;
+import org.libtorrent4j.Utils;
+
+import java.io.IOException;
+import java.nio.ByteBuffer;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -100,5 +104,19 @@ public class AddTorrentParamsTest {
         add_torrent_params params = new add_torrent_params();
 
         assertEquals("", params.getName());
+    }
+
+    @Test
+    public void testLoadTorrentFromBuffer() throws IOException {
+        byte[] bytes = Utils.resourceBytes("Honey_Larochelle_Hijack_FrostClick_FrostWire_MP3_May_06_2016.torrent");
+        ByteBuffer bb = ByteBuffer.allocateDirect(bytes.length);
+        bb.put(bytes);
+        bb.position(0);
+
+        long ptr = libtorrent_jni.directBufferAddress(bb);
+        long size = libtorrent_jni.directBufferCapacity(bb);
+
+        add_torrent_params params = add_torrent_params.load_torrent_buffer(ptr, (int) size);
+        assertEquals("83e37aea34581ce105af93c0955e7c7d4194ae47", params.getInfo_hashes().getV1().to_hex());
     }
 }

@@ -133,6 +133,18 @@ namespace libtorrent {
         auto* t = reinterpret_cast<libtorrent::typed_bitfield<libtorrent::piece_index_t>*>(&v);
         $self->verified_pieces = *t;
     }
+
+    static add_torrent_params load_torrent_buffer(std::int64_t buffer_ptr, int size, load_torrent_limits const& cfg)
+    {
+        auto buffer = libtorrent::span<char const>{reinterpret_cast<char const*>(buffer_ptr), size};
+        return libtorrent::load_torrent_buffer(buffer, cfg);
+    }
+
+    static add_torrent_params load_torrent_buffer(std::int64_t buffer_ptr, int size)
+    {
+        auto buffer = libtorrent::span<char const>{reinterpret_cast<char const*>(buffer_ptr), size};
+        return libtorrent::load_torrent_buffer(buffer);
+    }
 }
 
 }

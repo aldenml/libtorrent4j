@@ -1,5 +1,6 @@
 
   * update to libtorrent master
+  * improved java api layer
   * lt:source code cleanup, performance and stability
 
 2.1.0-35

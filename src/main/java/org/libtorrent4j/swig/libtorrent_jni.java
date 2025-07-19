@@ -1277,6 +1277,8 @@ public class libtorrent_jni {
   public final static native void add_torrent_params_set_have_pieces(long jarg1, add_torrent_params jarg1_, long jarg2, bitfield jarg2_);
   public final static native long add_torrent_params_get_verified_pieces(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_set_verified_pieces(long jarg1, add_torrent_params jarg1_, long jarg2, bitfield jarg2_);
+  public final static native long add_torrent_params_load_torrent_buffer__SWIG_0(long jarg1, int jarg2, long jarg3, load_torrent_limits jarg3_);
+  public final static native long add_torrent_params_load_torrent_buffer__SWIG_1(long jarg1, int jarg2);
   public final static native int close_reason_t_none_get();
   public final static native int close_reason_t_encryption_error_get();
   public final static native long new_peer_info__SWIG_0();
