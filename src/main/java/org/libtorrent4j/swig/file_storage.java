@@ -64,10 +64,6 @@ public class file_storage {
     libtorrent_jni.file_storage_reserve(swigCPtr, this, num_files);
   }
 
-  public void rename_file(int index, String new_filename) {
-    libtorrent_jni.file_storage_rename_file(swigCPtr, this, index, new_filename);
-  }
-
   public file_slice_vector map_block(int piece, long offset, long size) {
     return new file_slice_vector(libtorrent_jni.file_storage_map_block(swigCPtr, this, piece, offset, size), true);
   }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023, Alden Torres
+ * Copyright (c) 2018-2025, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class represents the information stored in a .torrent file
@@ -54,19 +53,7 @@ public final class TorrentInfo {
     }
 
     public TorrentInfo(MappedByteBuffer buffer) {
-        try {
-            long ptr = libtorrent_jni.directBufferAddress(buffer);
-            long size = libtorrent_jni.directBufferCapacity(buffer);
-
-            error_code ec = new error_code();
-            this.ti = new torrent_info(ptr, (int) size, ec);
-
-            if (ec.value() != 0) {
-                throw new IllegalArgumentException("Can't decode data: " + ec.message());
-            }
-        } catch (Throwable e) {
-            throw new IllegalArgumentException("Can't decode data mapped buffer: " + e.getMessage(), e);
-        }
+        this(bdecode0(buffer));
     }
 
     /**
@@ -88,56 +75,7 @@ public final class TorrentInfo {
      * @return the files storage
      */
     public FileStorage files() {
-        return new FileStorage(ti.files(), ti);
-    }
-
-    /**
-     * Returns the original (unmodified) file storage for this torrent. This
-     * is used by the web server connection, which needs to request files with the original
-     * names. Filename may be changed using {@link #renameFile(int, String)}.
-     *
-     * @return the original file storage
-     */
-    public FileStorage origFiles() {
-        return new FileStorage(ti.orig_files(), ti);
-    }
-
-    /**
-     * Renames a the file with the specified index to the new name. The new
-     * filename is reflected by the {@link FileStorage} returned by {@link #files()}
-     * but not by the one returned by {@link #origFiles()}.
-     * <p>
-     * If you want to rename the base name of the torrent (for a multifile
-     * torrent), you can copy the {@code FileStorage} (see {@link #files()} and
-     * {@link #origFiles()} ), change the name, and then use
-     * {@link #remapFiles(FileStorage)}.
-     * <p>
-     * The {@code newFilename} can both be a relative path, in which case the
-     * file name is relative to the {@code savePath} of the torrent. If the
-     * {@code newFilename} is an absolute path then the file is detached from
-     * the {@code savePath} of the torrent. In this case the file is not moved when
-     * {@link TorrentHandle#moveStorage(String, MoveFlags)} is invoked.
-     *
-     * @param index       the file index to rename
-     * @param newFilename the new file name
-     */
-    public void renameFile(int index, String newFilename) {
-        ti.rename_file(index, newFilename);
-    }
-
-    /**
-     * Remaps the file storage to a new file layout. This can be used to, for
-     * instance, download all data in a torrent to a single file, or to a
-     * number of fixed size sector aligned files, regardless of the number
-     * and sizes of the files in the torrent.
-     * <p>
-     * The new specified {@link FileStorage} must have the exact same size as
-     * the current one.
-     *
-     * @param f the file storage
-     */
-    public void remapFiles(FileStorage f) {
-        ti.remap_files(f.swig());
+        return new FileStorage(ti.layout(), ti);
     }
 
     /**
@@ -359,70 +297,6 @@ public final class TorrentInfo {
     }
 
     /**
-     * Returns the creation date of he torrent as time_t (`posix time`_).
-     * If there's no time stamp in the torrent file,
-     * a value of zero is returned.
-     *
-     * @return the time
-     */
-    public long creationDate() {
-        return ti.creation_date();
-    }
-
-    /**
-     * Returns the creator string in the torrent. If there is no creator string
-     * it will return an empty string.
-     *
-     * @return the creator
-     */
-    public String creator() {
-        return ti.creator();
-    }
-
-    /**
-     * Returns the comment associated with the torrent. If there's no comment,
-     * it will return an empty string.
-     * <p>
-     * The comment is an UTF-8 encoded strings.
-     *
-     * @return the comment
-     */
-    public String comment() {
-        return ti.comment();
-    }
-
-    /**
-     * If this torrent contains any DHT nodes, they are returned in
-     * their original form (host name and port number).
-     *
-     *
-     */
-    public ArrayList<Pair<String, Integer>> nodes() {
-        string_int_pair_vector v = ti.nodes();
-        int size = (int) v.size();
-
-        ArrayList<Pair<String, Integer>> l = new ArrayList<>(size);
-
-        for (int i = 0; i < size; i++) {
-            string_int_pair p = v.get(i);
-            l.add(new Pair<>(p.getFirst(), p.getSecond()));
-        }
-
-        return l;
-    }
-
-    /**
-     * This is used when creating torrent. Use this to add a known DHT node.
-     * It may be used, by the client, to bootstrap into the DHT network.
-     *
-     * @param host
-     * @param port
-     */
-    public void addNode(String host, int port) {
-        ti.add_node(new string_int_pair(host, port));
-    }
-
-    /**
      * This function looks up keys from the info-dictionary of the loaded
      * torrent file. It can be used to access extension values put in the
      * .torrent file. If the specified key cannot be found, it returns NULL.
@@ -432,26 +306,6 @@ public final class TorrentInfo {
      */
     public bdecode_node info(String key) {
         return ti.info(key);
-    }
-
-    /**
-     * Clears the piece layers from the torrent_info. This is done by the
-     * session when a torrent is added, to avoid storing it twice. The piece
-     * layer (or other hashes part of the merkle tree) are stored in the
-     * internal torrent object.
-     */
-    public void freePieceLayers() {
-        ti.free_piece_layers();
-    }
-
-    /**
-     * Generates a magnet URI from the specified torrent. If the torrent
-     * is invalid, null is returned.
-     * <p>
-     * For more information about magnet links, see magnet-links_.
-     */
-    public String makeMagnetUri() {
-        return ti.is_valid() ? libtorrent.make_magnet_uri(ti) : null;
     }
 
     public static TorrentInfo bdecode(byte[] data) {
@@ -475,7 +329,7 @@ public final class TorrentInfo {
 
         if (ret == 0) {
             ec.clear();
-            torrent_info ti = new torrent_info(n, ec);
+            torrent_info ti = torrent_info.create_torrent_info(n.dict_find_dict_ex("info"), ec);
             buffer.clear(); // prevents GC
             if (ec.value() != 0) {
                 throw new IllegalArgumentException("Can't decode data: " + ec.message());
@@ -483,6 +337,31 @@ public final class TorrentInfo {
             return ti;
         } else {
             throw new IllegalArgumentException("Can't decode data: " + ec.message());
+        }
+    }
+
+    private static torrent_info bdecode0(MappedByteBuffer buffer) {
+        try {
+            long ptr = libtorrent_jni.directBufferAddress(buffer);
+            long size = libtorrent_jni.directBufferCapacity(buffer);
+
+            bdecode_node n = new bdecode_node();
+            error_code ec = new error_code();
+
+            int ret = bdecode_node.bdecode(ptr, (int) size, n, ec);
+
+            if (ret == 0) {
+                ec.clear();
+                torrent_info ti = torrent_info.create_torrent_info(n.dict_find_dict_ex("info"), ec);
+                if (ec.value() != 0) {
+                    throw new IllegalArgumentException("Can't decode data: " + ec.message());
+                }
+                return ti;
+            } else {
+                throw new IllegalArgumentException("Can't decode data: " + ec.message());
+            }
+        } catch (Throwable e) {
+            throw new IllegalArgumentException("Can't decode data mapped buffer: " + e.getMessage(), e);
         }
     }
 }

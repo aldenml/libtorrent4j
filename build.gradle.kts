@@ -34,7 +34,7 @@ dependencies {
 
     testImplementation("junit:junit:4.13.2")
 
-    codacy("com.codacy:codacy-coverage-reporter:7.1.0")
+    //codacy("com.codacy:codacy-coverage-reporter:7.1.0")
 }
 
 tasks.withType<JavaCompile> {
@@ -57,7 +57,7 @@ tasks.test {
 }
 
 tasks.register<Zip>("nativeMacOSJar") {
-    destinationDirectory.set(file("$buildDir/libs"))
+    destinationDirectory.set(file("${layout.buildDirectory}/libs"))
     archiveBaseName.set("libtorrent4j-macos")
     archiveExtension.set("jar")
 
@@ -69,7 +69,7 @@ tasks.register<Zip>("nativeMacOSJar") {
 }
 
 tasks.register<Zip>("nativeWindowsJar") {
-    destinationDirectory.set(file("$buildDir/libs"))
+    destinationDirectory.set(file("$layout.buildDirectory/libs"))
     archiveBaseName.set("libtorrent4j-windows")
     archiveExtension.set("jar")
 
@@ -81,7 +81,7 @@ tasks.register<Zip>("nativeWindowsJar") {
 }
 
 tasks.register<Zip>("nativeLinuxJar") {
-    destinationDirectory.set(file("$buildDir/libs"))
+    destinationDirectory.set(file("$layout.buildDirectory/libs"))
     archiveBaseName.set("libtorrent4j-linux")
     archiveExtension.set("jar")
 
@@ -93,7 +93,7 @@ tasks.register<Zip>("nativeLinuxJar") {
 }
 
 tasks.register<Zip>("nativeAndroidArmJar") {
-    destinationDirectory.set(file("$buildDir/libs"))
+    destinationDirectory.set(file("$layout.buildDirectory/libs"))
     archiveBaseName.set("libtorrent4j-android-arm")
     archiveExtension.set("jar")
 
@@ -104,7 +104,7 @@ tasks.register<Zip>("nativeAndroidArmJar") {
 }
 
 tasks.register<Zip>("nativeAndroidX86Jar") {
-    destinationDirectory.set(file("$buildDir/libs"))
+    destinationDirectory.set(file("$layout.buildDirectory/libs"))
     archiveBaseName.set("libtorrent4j-android-x86")
     archiveExtension.set("jar")
 
@@ -115,7 +115,7 @@ tasks.register<Zip>("nativeAndroidX86Jar") {
 }
 
 tasks.register<Zip>("nativeAndroidArm64Jar") {
-    destinationDirectory.set(file("$buildDir/libs"))
+    destinationDirectory.set(file("$layout.buildDirectory/libs"))
     archiveBaseName.set("libtorrent4j-android-arm64")
     archiveExtension.set("jar")
 
@@ -126,7 +126,7 @@ tasks.register<Zip>("nativeAndroidArm64Jar") {
 }
 
 tasks.register<Zip>("nativeAndroidX64Jar") {
-    destinationDirectory.set(file("$buildDir/libs"))
+    destinationDirectory.set(file("$layout.buildDirectory/libs"))
     archiveBaseName.set("libtorrent4j-android-x86_64")
     archiveExtension.set("jar")
 
@@ -244,20 +244,20 @@ signing {
 
 tasks.jacocoTestReport {
     reports {
-        xml.isEnabled = true
+        xml.required = true
     }
 }
 
-tasks.register<JavaExec>("codacyCoverage") {
-    dependsOn(tasks.jacocoTestReport)
-
-    main = "com.codacy.CodacyCoverageReporter"
-    classpath = codacy
-    args = listOf(
-        "report",
-        "-l",
-        "Java",
-        "-r",
-        "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
-    )
-}
+//tasks.register<JavaExec>("codacyCoverage") {
+//    dependsOn(tasks.jacocoTestReport)
+//
+//    main = "com.codacy.CodacyCoverageReporter"
+//    classpath = codacy
+//    args = listOf(
+//        "report",
+//        "-l",
+//        "Java",
+//        "-r",
+//        "${layout.buildDirectory}/reports/jacoco/test/jacocoTestReport.xml"
+//    )
+//}

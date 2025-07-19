@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2024, Alden Torres
+ * Copyright (c) 2018-2025, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -189,17 +189,6 @@ public final class FileStorage {
         if (ec.value() != 0) {
             throw new IllegalArgumentException(ec.message());
         }
-    }
-
-    /**
-     * Renames the file at {@code index} to {@code newFilename}. Keep in mind
-     * that filenames are expected to be UTF-8 encoded.
-     *
-     * @param index
-     * @param newFilename
-     */
-    public void renameFile(int index, String newFilename) {
-        fs.rename_file(index, newFilename);
     }
 
     /**

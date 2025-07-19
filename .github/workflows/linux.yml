@@ -19,7 +19,7 @@ env:
 jobs:
 
   x86_64-cmake:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
         with:
@@ -65,7 +65,7 @@ jobs:
           sudo apt install gcc-10 g++-10
       - name: setup boost
         run: |
-          wget -nv -O boost.tar.gz https://boostorg.jfrog.io/artifactory/main/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
+          wget -nv -O boost.tar.gz https://archives.boost.io/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
           tar xzf boost.tar.gz
           mv boost_${BOOST_VERSION} boost
           cd boost
@@ -118,7 +118,7 @@ jobs:
           sudo apt install gcc-arm-linux-gnueabi g++-arm-linux-gnueabi binutils-arm-linux-gnueabi
       - name: setup boost
         run: |
-          wget -nv -O boost.tar.gz https://boostorg.jfrog.io/artifactory/main/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
+          wget -nv -O boost.tar.gz https://archives.boost.io/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz
           tar xzf boost.tar.gz
           mv boost_${BOOST_VERSION} boost
           cd boost
@@ -156,7 +156,7 @@ jobs:
           arm-linux-gnueabi-strip --strip-unneeded -x swig/bin/release/linux/arm/libtorrent4j.so
       - name: dependencies
         run: arm-linux-gnueabi-readelf -d swig/bin/release/linux/arm/libtorrent4j.so
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: libtorrent4j-linux-arm-b2
           path: |

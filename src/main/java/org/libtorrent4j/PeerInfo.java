@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2025, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.libtorrent4j.swig.peer_info;
@@ -160,7 +167,7 @@ public class PeerInfo {
         connectionType = ConnectionType.fromSwig(p.getConnection_type().to_int());
         progress = p.getProgress();
         progressPpm = p.getProgress_ppm();
-        ip = new TcpEndpoint(p.getIp()).toString();
+        ip = new TcpEndpoint(p.remote_endpoint()).toString();
     }
 
     /**

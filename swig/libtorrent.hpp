@@ -22,6 +22,7 @@
 #include <libtorrent/read_resume_data.hpp>
 #include <libtorrent/write_resume_data.hpp>
 #include <libtorrent/magnet_uri.hpp>
+#include <libtorrent/aux_/escape_string.hpp>
 
 namespace lt = libtorrent;
 
@@ -314,6 +315,47 @@ std::vector<std::int8_t> write_torrent_file_buf_ex(lt::add_torrent_params const&
 lt::add_torrent_params parse_magnet_uri(std::string const& uri, lt::error_code& ec)
 {
     return lt::parse_magnet_uri(uri, ec);
+}
+
+std::string make_magnet_uri_from_torrent_handle(lt::torrent_handle const& handle)
+{
+    if (!handle.is_valid()) return "";
+
+    std::string ret = "magnet:?";
+
+    if (handle.info_hashes().has_v1())
+    {
+        ret += "xt=urn:btih:";
+        ret += lt::aux::to_hex(handle.info_hashes().v1);
+    }
+
+    if (handle.info_hashes().has_v2())
+    {
+        if (handle.info_hashes().has_v1()) ret += '&';
+        ret += "xt=urn:btmh:1220";
+        ret += lt::aux::to_hex(handle.info_hashes().v2);
+    }
+
+    lt::torrent_status st = handle.status(lt::torrent_handle::query_name);
+    if (!st.name.empty())
+    {
+        ret += "&dn=";
+        ret += lt::escape_string(st.name);
+    }
+
+    for (auto const& tr : handle.trackers())
+    {
+        ret += "&tr=";
+        ret += lt::escape_string(tr.url);
+    }
+
+    for (auto const& s : handle.url_seeds())
+    {
+        ret += "&ws=";
+        ret += lt::escape_string(s);
+    }
+
+    return ret;
 }
 
 #if defined(__ANDROID__) || defined(ANDROID)

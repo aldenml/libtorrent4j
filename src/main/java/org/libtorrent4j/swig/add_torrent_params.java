@@ -418,4 +418,12 @@ public class add_torrent_params {
     libtorrent_jni.add_torrent_params_set_verified_pieces(swigCPtr, this, bitfield.getCPtr(v), v);
   }
 
+  public static add_torrent_params load_torrent_buffer(long buffer_ptr, int size, load_torrent_limits cfg) {
+    return new add_torrent_params(libtorrent_jni.add_torrent_params_load_torrent_buffer__SWIG_0(buffer_ptr, size, load_torrent_limits.getCPtr(cfg), cfg), true);
+  }
+
+  public static add_torrent_params load_torrent_buffer(long buffer_ptr, int size) {
+    return new add_torrent_params(libtorrent_jni.add_torrent_params_load_torrent_buffer__SWIG_1(buffer_ptr, size), true);
+  }
+
 }

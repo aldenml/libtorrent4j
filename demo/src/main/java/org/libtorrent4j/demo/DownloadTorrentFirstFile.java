@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, Alden Torres
+ * Copyright (c) 2022-2025, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -49,7 +49,7 @@ public final class DownloadTorrentFirstFile {
                     case BLOCK_FINISHED:
                         BlockFinishedAlert a = (BlockFinishedAlert) alert;
                         int p = (int) (a.handle().status().progress() * 100);
-                        System.out.println("Progress: " + p + " for torrent name: " + a.torrentName());
+                        System.out.println("Progress: " + p + " for torrent name: " + a.handle().getName());
                         System.out.println(s.stats().totalDownload());
                         break;
                     case TORRENT_FINISHED:

@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2025, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j.alerts;
 
 import org.libtorrent4j.TorrentHandle;
@@ -24,12 +31,5 @@ public class TorrentAlert<T extends torrent_alert> extends AbstractAlert<T> {
      */
     public TorrentHandle handle() {
         return new TorrentHandle(alert.getHandle());
-    }
-
-    /**
-     * @return the name of the torrent download
-     */
-    public String torrentName() {
-        return alert.torrent_name();
     }
 }

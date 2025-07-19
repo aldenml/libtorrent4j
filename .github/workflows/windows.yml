@@ -11,7 +11,7 @@ on:
 jobs:
 
   x86_64:
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v2
         with:
@@ -24,7 +24,7 @@ jobs:
           choco install grep
       - name: cmake
         run: |
-          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -DBOOST_ROOT=C:/local/boost_1_86_0 -B build -G "Visual Studio 16 2019" -A x64 swig
+          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -DBOOST_ROOT=C:/local/boost_1_86_0 -B build -G "Visual Studio 17 2022" -A x64 swig
       - name: build
         run: cmake --build build --config Release --parallel 2
       - name: dependencies

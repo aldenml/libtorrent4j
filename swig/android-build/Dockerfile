@@ -13,7 +13,7 @@ ENV NDK_VERSION="r27c"
 ENV OPENSSL_VERSION="3.4.0"
 ENV OPENSSL_NO_OPTS="no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3 -fPIC"
 
-RUN wget -nv -O boost.tar.gz https://boostorg.jfrog.io/artifactory/main/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz \
+RUN wget -nv -O boost.tar.gz https://archives.boost.io/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz \
     && tar xzf boost.tar.gz \
     && mv boost_${BOOST_VERSION} boost \
     && cd boost \

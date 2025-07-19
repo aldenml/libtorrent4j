@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023, Alden Torres
+ * Copyright (c) 2018-2025, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -1115,7 +1115,7 @@ public class SessionManager {
     }
 
     private boolean isFetchMagnetDownload(AddTorrentAlert alert) {
-        String name = alert.torrentName();
+        String name = alert.swig().getParams().getName();
         return name != null && name.contains(FETCH_MAGNET_DOWNLOAD_KEY);
     }
 

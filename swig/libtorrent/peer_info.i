@@ -5,6 +5,7 @@
 %ignore libtorrent::peer_info::deprecated_dl_rate;
 %ignore libtorrent::peer_info::pieces;
 %ignore libtorrent::peer_info::deprecated_estimated_reciprocation_rate;
+%ignore libtorrent::peer_info::set_i2p_destination;
 
 namespace libtorrent {
 

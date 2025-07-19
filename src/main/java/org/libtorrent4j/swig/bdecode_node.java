@@ -161,7 +161,11 @@ public class bdecode_node {
   }
 
   public static int bdecode(byte_vector buffer, bdecode_node ret, error_code ec) {
-    return libtorrent_jni.bdecode_node_bdecode(byte_vector.getCPtr(buffer), buffer, bdecode_node.getCPtr(ret), ret, error_code.getCPtr(ec), ec);
+    return libtorrent_jni.bdecode_node_bdecode__SWIG_0(byte_vector.getCPtr(buffer), buffer, bdecode_node.getCPtr(ret), ret, error_code.getCPtr(ec), ec);
+  }
+
+  public static int bdecode(long buffer_ptr, int size, bdecode_node ret, error_code ec) {
+    return libtorrent_jni.bdecode_node_bdecode__SWIG_1(buffer_ptr, size, bdecode_node.getCPtr(ret), ret, error_code.getCPtr(ec), ec);
   }
 
   public final static class type_t {

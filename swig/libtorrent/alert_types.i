@@ -1,6 +1,5 @@
 %ignore libtorrent::read_piece_alert::read_piece_alert;
 %ignore libtorrent::read_piece_alert::buffer;
-%ignore libtorrent::peer_log_alert::event_type;
 %ignore libtorrent::dht_pkt_alert::pkt_buf;
 %ignore libtorrent::session_stats_alert::counters;
 %ignore libtorrent::dht_lookup::type;
@@ -11,7 +10,8 @@
 %ignore libtorrent::listen_failed_alert::address;
 %ignore libtorrent::listen_succeeded_alert::address;
 %ignore libtorrent::incoming_connection_alert::endpoint;
-%ignore libtorrent::peer_alert::endpoint;
+%ignore libtorrent::peer_alert::endpoint_type_t;
+%ignore libtorrent::peer_alert::ep;
 %ignore libtorrent::dht_direct_response_alert::endpoint;
 %ignore libtorrent::dht_outgoing_get_peers_alert::endpoint;
 %ignore libtorrent::dht_pkt_alert::node;
@@ -83,8 +83,16 @@ struct picker_flags_tag;
 
 %extend peer_alert {
 
-    tcp::endpoint get_endpoint() {
-        return $self->endpoint;
+    libtorrent::tcp::endpoint get_endpoint()
+    {
+        libtorrent::tcp::endpoint r;
+
+        if (auto ip = std::get_if<libtorrent::peer_alert::ip_endpoint>(&$self->ep))
+    	{
+    	    r = *ip;
+    	}
+
+    	return r;
     }
 }
 
@@ -225,12 +233,6 @@ struct picker_flags_tag;
 
     int64_t buffer_ptr() {
         return reinterpret_cast<int64_t>($self->buffer.get());
-    }
-}
-
-%extend peer_log_alert {
-    std::string get_event_type() {
-        return std::string($self->event_type);
     }
 }
 

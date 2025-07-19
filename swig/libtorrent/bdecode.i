@@ -77,6 +77,11 @@ namespace libtorrent {
     static int bdecode(std::vector<std::int8_t>& buffer, bdecode_node& ret, error_code& ec) {
         return libtorrent::bdecode((char const*)&buffer[0], (char const*)&buffer[0] + buffer.size(), ret, ec);
     }
+
+    static int bdecode(std::int64_t buffer_ptr, int size, bdecode_node& ret, error_code& ec)
+    {
+        return libtorrent::bdecode((char const*)buffer_ptr, (char const*)buffer_ptr + size, ret, ec);
+    }
 }
 
 }

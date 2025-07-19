@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2025, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j;
 
 import org.junit.Test;
@@ -24,7 +31,6 @@ public class TorrentInfoTest {
 
         TorrentInfo ti = new TorrentInfo((MappedByteBuffer) bb);
         assertEquals("83e37aea34581ce105af93c0955e7c7d4194ae47", ti.infoHash().toHex());
-        assertEquals("FrostWire 6.2.4 build 179", ti.creator());
 
         assertTrue(ti.hasV1());
         assertFalse(ti.hasV2());
