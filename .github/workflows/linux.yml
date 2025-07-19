@@ -13,8 +13,8 @@ env:
   BOOST_VERSION: "1_86_0"
   OPENSSL_VERSION: "3.4.0"
   OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3"
-  CXX: g++-10
-  CC: gcc-10
+#  CXX: g++-10
+#  CC: gcc-10
 
 jobs:
 
