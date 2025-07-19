@@ -7,17 +7,8 @@
 
 package org.libtorrent4j.demo;
 
-import org.libtorrent4j.AlertListener;
-import org.libtorrent4j.Entry;
-import org.libtorrent4j.SessionManager;
-import org.libtorrent4j.TorrentHandle;
-import org.libtorrent4j.TorrentInfo;
-import org.libtorrent4j.Utils;
-import org.libtorrent4j.Vectors;
-import org.libtorrent4j.alerts.AddTorrentAlert;
-import org.libtorrent4j.alerts.Alert;
-import org.libtorrent4j.alerts.AlertType;
-import org.libtorrent4j.alerts.SaveResumeDataAlert;
+import org.libtorrent4j.*;
+import org.libtorrent4j.alerts.*;
 import org.libtorrent4j.swig.byte_vector;
 import org.libtorrent4j.swig.libtorrent;
 import org.libtorrent4j.swig.torrent_flags_t;
@@ -48,6 +39,7 @@ public final class ResumeTest {
                     case ADD_TORRENT:
                         System.out.println("Torrent added");
                         ((AddTorrentAlert) alert).handle().resume();
+                        s.swig().post_torrent_updates();
                         break;
                     case TORRENT_FINISHED:
                         System.out.println("Torrent finished");
@@ -55,12 +47,27 @@ public final class ResumeTest {
                         break;
                     case TORRENT_PAUSED:
                         System.out.println("Torrent paused");
+                        s.swig().post_torrent_updates();
                         break;
                     case SAVE_RESUME_DATA:
                         System.out.println("Torrent saveResumeData");
                         serializeResumeData((SaveResumeDataAlert) alert);
                         signalResumeData.countDown();
+                        s.swig().post_torrent_updates();
                         break;
+                    case STATE_UPDATE:
+                        StateUpdateAlert sua = (StateUpdateAlert) alert;
+                        sua.status().forEach(ts -> {
+                            System.out.println(String.format("state update: name:%s seeding time=%d\nactive time=%d\n",
+                                ts.name(),
+                                ts.seedingDuration(),
+                                ts.activeDuration()));
+
+                            TorrentHandle th = new TorrentHandle(ts.swig().getHandle());
+                            if (th.status().isFinished()) {
+                                signal.countDown();
+                            }
+                        });
 //                    case STATS:
 //                        TorrentHandle th = ((StatsAlert) alert).handle();
 //                        if (th.status().isFinished()) {
