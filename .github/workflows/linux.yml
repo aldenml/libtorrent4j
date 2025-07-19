@@ -19,14 +19,15 @@ env:
 jobs:
 
   x86_64-cmake:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: install packages
         run: |
           sudo apt update
+          sudo apt install gcc-10 g++-10
           sudo apt install libboost-all-dev
           sudo apt install libssl-dev
           sudo apt install ninja-build
@@ -54,9 +55,9 @@ jobs:
           retention-days: 5
 
   x86_64-b2:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: setup gcc
@@ -107,7 +108,7 @@ jobs:
           retention-days: 5
 
   arm-b2:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
         with:

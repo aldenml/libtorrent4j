@@ -18,9 +18,9 @@ env:
 jobs:
 
   arm-b2:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: setup boost
@@ -85,9 +85,9 @@ jobs:
           retention-days: 5
 
   arm64-b2:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: setup boost
@@ -152,9 +152,9 @@ jobs:
           retention-days: 5
 
   x86-b2:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: setup boost
@@ -219,9 +219,9 @@ jobs:
           retention-days: 5
 
   x86_64-b2:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: setup boost
