@@ -1,6 +1,7 @@
 
-  * using SWIG 4.3.1
   * update to libtorrent master
+  * update to boost 1.88.0
+  * using SWIG 4.3.1
   * add load torrent swig api
   * lt:parse_torrent_file() can return nullptr if the file is a magnet link
   * lt:deprecate parse_info_section()
