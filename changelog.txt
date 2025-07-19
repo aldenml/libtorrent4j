@@ -1,6 +1,67 @@
 
   * update to libtorrent master
-  * improved java api layer
+  * add load torrent swig api
+  * lt:parse_torrent_file() can return nullptr if the file is a magnet link
+  * lt:deprecate parse_info_section()
+  * lt:transition resolving duplicate and invalid filenames to the new structure
+    where torrent_info and file_storage are immutable and renamed files are
+    recorded in a separate structure
+  * lt:improve error handling in parse_info_section()
+  * lt:deprecated torrent_info::remap_files() and correct the pre-condition to
+    not work for v2 (or hybrid) torrents
+  * lt:simplify resolve links by just using paths directly
+  * lt:cache DNS failures for a shorter time
+  * lt:always post file_renamed_alert, since it's always initiated by user
+    action. Taking the mask into account is error prone
+  * lt:add ability to get resume data synchronously
+  * lt:make torrent_info immutable to avoid copying it
+  * lt:add inbound and outbound tunnels length variance in i2p stream settings
+  * lt:don't resize merkle tree mask before loading
+  * lt:don't require to trim merkle tree mask before processing
+  * lt:don't require mask to cover entire tree
+  * lt:fix use after move
+  * lt:don't leak file descriptors to child processes
+  * lt:optimize the utp resend loop in utp_socket_impl::send_pkt
+  * lt:support find_torrent() for v2 torrents
+  * lt:don't iterate the send buffer if we know there aren't any packets to
+    resend
+  * lt:don't call update_tracker_timer() twice
+  * lt:avoid self-swap in announce-endpoints
+  * lt:ask for settings once in announce_with_tracker
+  * lt:fixup deprecation of piece-layers in torrent_info
+  * lt:deprecate keeping DHT nodes in torrent_info, in favor of
+    add_torrent_params
+  * lt:deprecate make_magnet_uri() overloads that take torrent_handle and
+    torrent_info, in favor of add_torrent_params. Also deprecate web seeds being
+    stored in torrent_info
+  * lt:deprecate torrent_info constructors that load torrents
+  * lt:deprecate storing piece layers in torrent_info, in favor of
+    add_torrent_params
+  * lt:move the code loading torrents from the torrent_info constructor into
+    load_torrent
+  * lt:fix handling of invalid filenames
+  * lt:is_i2p_url() can take a string view, no need to copy the string
+  * lt:round-trip torrent via session without relying on torrent_info storing
+    non-info-section parts
+  * lt:fix load_torrent_*() to not set piece layers for files smaller or equal
+    in size as the piece size
+  * lt:move file loading to load_torrent_file(), towards making it independent
+  * lt:make info_section immutable in torrent_info
+  * lt:remove internal_set_*() on torrent_info used by read_resume_data()
+  * lt:update peer_alert to support i2p endpoints
+  * lt:in peer_log_alert, turn string literal into an enum
+  * lt:update peer_info to hold a proper variant for i2p destination
+  * lt:implement i2p_pex, peer exchange support for i2p torrents
+  * lt:deprecate torrent_alert::torrent_name()
+  * lt:make message output for torrent_alert more concise
+  * lt:validate add_torrent_params::save_path at run-time
+  * lt:use stricter rules for what filenames are valid on Android
+  * lt:add invariant check to socks5_stream and make it resilient to a race when
+    closing the socket
+  * lt:fix applying IP filter to DHT traffic
+  * lt:fix windows mmap of empty files
+  * lt:call madvise only when mmap result is valid
+  * lt:avoid mmap with 0 length on Linux
   * lt:source code cleanup, performance and stability
 
 2.1.0-35
