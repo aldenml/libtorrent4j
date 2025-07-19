@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2024, Alden Torres
+ * Copyright (c) 2018-2025, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "org.libtorrent4j"
-version = "2.1.0-35"
+version = "2.1.0-36"
 
 java {
     // using java 8 for android compatibility
