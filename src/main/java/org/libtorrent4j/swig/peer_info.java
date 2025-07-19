@@ -372,22 +372,12 @@ public class peer_info {
     return libtorrent_jni.peer_info_progress_ppm_get(swigCPtr, this);
   }
 
-  public void setIp(tcp_endpoint value) {
-    libtorrent_jni.peer_info_ip_set(swigCPtr, this, tcp_endpoint.getCPtr(value), value);
+  public tcp_endpoint remote_endpoint() {
+    return new tcp_endpoint(libtorrent_jni.peer_info_remote_endpoint(swigCPtr, this), true);
   }
 
-  public tcp_endpoint getIp() {
-    long cPtr = libtorrent_jni.peer_info_ip_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new tcp_endpoint(cPtr, false);
-  }
-
-  public void setLocal_endpoint(tcp_endpoint value) {
-    libtorrent_jni.peer_info_local_endpoint_set(swigCPtr, this, tcp_endpoint.getCPtr(value), value);
-  }
-
-  public tcp_endpoint getLocal_endpoint() {
-    long cPtr = libtorrent_jni.peer_info_local_endpoint_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new tcp_endpoint(cPtr, false);
+  public tcp_endpoint local_endpoint() {
+    return new tcp_endpoint(libtorrent_jni.peer_info_local_endpoint(swigCPtr, this), true);
   }
 
   public void setRead_state(bandwidth_state_flags_t value) {
@@ -406,6 +396,10 @@ public class peer_info {
   public bandwidth_state_flags_t getWrite_state() {
     long cPtr = libtorrent_jni.peer_info_write_state_get(swigCPtr, this);
     return (cPtr == 0) ? null : new bandwidth_state_flags_t(cPtr, false);
+  }
+
+  public void set_endpoints(tcp_endpoint local, tcp_endpoint remote) {
+    libtorrent_jni.peer_info_set_endpoints(swigCPtr, this, tcp_endpoint.getCPtr(local), local, tcp_endpoint.getCPtr(remote), remote);
   }
 
   public byte_vector get_client() {

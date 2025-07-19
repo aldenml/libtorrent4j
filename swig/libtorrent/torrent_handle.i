@@ -64,11 +64,6 @@ struct status_flags_tag;
         return $self->torrent_file().get();
     }
 
-    libtorrent::torrent_info const* torrent_file_with_hashes_ptr()
-    {
-        return $self->torrent_file_with_hashes().get();
-    }
-
     std::vector<std::string> get_url_seeds() const {
         std::set<std::string> s = $self->url_seeds();
         return {s.begin(), s.end()};

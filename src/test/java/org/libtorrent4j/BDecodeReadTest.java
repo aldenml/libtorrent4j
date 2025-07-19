@@ -1,9 +1,10 @@
 /*
- * Copyright (c) 2018-2024, Alden Torres
+ * Copyright (c) 2018-2025, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
  */
+
 package org.libtorrent4j;
 
 import org.junit.Test;
@@ -34,7 +35,7 @@ public class BDecodeReadTest {
         assertEquals("failed to decode torrent: " + ec.message(), ret, 0);
 
         ec.clear();
-        torrent_info ti = new torrent_info(e, ec);
+        torrent_info ti = torrent_info.create_torrent_info(e, ec);
         buffer.clear(); // prevents GC
 
         assertEquals("failed to create torrent info: " + ec.message(), ret, 0);

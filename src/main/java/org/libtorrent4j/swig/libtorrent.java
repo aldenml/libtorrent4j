@@ -318,15 +318,7 @@ public class libtorrent {
   }
 
   public static String make_magnet_uri(add_torrent_params atp) {
-    return libtorrent_jni.make_magnet_uri__SWIG_0(add_torrent_params.getCPtr(atp), atp);
-  }
-
-  public static String make_magnet_uri(torrent_handle handle) {
-    return libtorrent_jni.make_magnet_uri__SWIG_1(torrent_handle.getCPtr(handle), handle);
-  }
-
-  public static String make_magnet_uri(torrent_info info) {
-    return libtorrent_jni.make_magnet_uri__SWIG_2(torrent_info.getCPtr(info), info);
+    return libtorrent_jni.make_magnet_uri(add_torrent_params.getCPtr(atp), atp);
   }
 
   public static String generate_fingerprint(String name, int major, int minor, int revision, int tag) {
@@ -378,6 +370,22 @@ public class libtorrent {
 
   public static entry write_torrent_file(add_torrent_params atp, write_torrent_flags_t flags) {
     return new entry(libtorrent_jni.write_torrent_file__SWIG_1(add_torrent_params.getCPtr(atp), atp, write_torrent_flags_t.getCPtr(flags), flags), true);
+  }
+
+  public static add_torrent_params load_torrent_file(String filename, load_torrent_limits cfg) {
+    return new add_torrent_params(libtorrent_jni.load_torrent_file__SWIG_0(filename, load_torrent_limits.getCPtr(cfg), cfg), true);
+  }
+
+  public static add_torrent_params load_torrent_file(String filename) {
+    return new add_torrent_params(libtorrent_jni.load_torrent_file__SWIG_1(filename), true);
+  }
+
+  public static add_torrent_params load_torrent_parsed(bdecode_node torrent_file, load_torrent_limits cfg) {
+    return new add_torrent_params(libtorrent_jni.load_torrent_parsed__SWIG_0(bdecode_node.getCPtr(torrent_file), torrent_file, load_torrent_limits.getCPtr(cfg), cfg), true);
+  }
+
+  public static add_torrent_params load_torrent_parsed(bdecode_node torrent_file) {
+    return new add_torrent_params(libtorrent_jni.load_torrent_parsed__SWIG_1(bdecode_node.getCPtr(torrent_file), torrent_file), true);
   }
 
   public static int find_metric_idx_ex(String name) {
@@ -466,6 +474,10 @@ public class libtorrent {
 
   public static add_torrent_params parse_magnet_uri(String uri, error_code ec) {
     return new add_torrent_params(libtorrent_jni.parse_magnet_uri(uri, error_code.getCPtr(ec), ec), true);
+  }
+
+  public static String make_magnet_uri_from_torrent_handle(torrent_handle handle) {
+    return libtorrent_jni.make_magnet_uri_from_torrent_handle(torrent_handle.getCPtr(handle), handle);
   }
 
 }

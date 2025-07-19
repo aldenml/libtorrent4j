@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2025, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j.demo;
 
 import org.libtorrent4j.AlertListener;
@@ -22,7 +29,7 @@ import java.util.concurrent.CountDownLatch;
 public final class ResumeTest {
 
     public static void main(String[] args) throws Throwable {
-        File torrentFile = new File("/Users/aldenml/Downloads/ubuntu-19.10-desktop-amd64.iso.torrent");
+        File torrentFile = new File("/Users/aldenml/Downloads/ubuntu-24.04.2-desktop-amd64.iso.torrent");
 
         final SessionManager s = new SessionManager();
         final CountDownLatch signal = new CountDownLatch(10);
@@ -62,6 +69,9 @@ public final class ResumeTest {
 //                                    ts.seedingDuration(), ts.activeDuration()));
 //                            signal.countDown();
 //                        }
+//                        break;
+//                    default:
+//                        System.out.println(alert);
 //                        break;
                 }
             }

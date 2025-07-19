@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023, Alden Torres
+ * Copyright (c) 2018-2025, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -225,9 +225,15 @@ public final class TorrentHandle
      * like piece layers, dht nodes and trackers. A {@link TorrentInfo} object does
      * not round-trip cleanly when added to a session.
      * <p>
-     * This means if you want to create a .torrent file by passing the
-     * {@link TorrentInfo} object into create_torrent, you need to use
-     * {@link #torrentFileWithHashes()} instead.
+     * If you want to save a .torrent file from the torrent_handle, instead
+     * call save_resume_data() and write_torrent_file() the
+     * add_torrent_params object passed back in the alert.
+     * <p>
+     * Note that a torrent added from a magnet link may not have the full
+     * merkle trees for all files, and hence not have the complete piece
+     * layers. In that state, you cannot create a .torrent file from the
+     * torrent_info returned. Once the torrent completes downloading all
+     * files, becoming a seed, you can make a .torrent file from it.
      *
      * @return the internal torrent info
      */
@@ -236,35 +242,6 @@ public final class TorrentHandle
             return null;
         }
         torrent_info ti = h.torrent_file_ptr();
-        return ti != null ? new TorrentInfo(ti) : null;
-    }
-
-    /**
-     * Returns a *copy* of the internal {@link TorrentInfo} and piece layer
-     * hashes (if it's a v2 torrent). The piece layers will only be included
-     * if they are available. If this torrent was added from a .torrent file
-     * with piece layers or if it's seeding, the piece layers are available.
-     * This function is more expensive than {@link #torrentFile()} since it
-     * needs to make copies of this information.
-     * <p>
-     * When constructing a create_torrent object from a {@link TorrentInfo} that's
-     * in a session, you need to use this function.
-     * <p>
-     * Note that a torrent added from a magnet link may not have the full
-     * merkle trees for all files, and hence not have the complete piece
-     * layers. In that state, you cannot create a .torrent file even from
-     * the {@link TorrentInfo} returned from `torrentFileWithHashes`. Once the
-     * torrent completes downloading all files, becoming a seed, you can
-     * make a .torrent file from it.
-     *
-     * @return a *copy* of the internal torrent info with the piece layer
-     * hashes (if it's a v2 torrent).
-     */
-    public TorrentInfo torrentFileWithHashes() {
-        if (!h.is_valid()) {
-            return null;
-        }
-        torrent_info ti = h.torrent_file_with_hashes_ptr();
         return ti != null ? new TorrentInfo(ti) : null;
     }
 
@@ -822,7 +799,7 @@ public final class TorrentHandle
      * handle is invalid, null is returned.
      */
     public String makeMagnetUri() {
-        return h.is_valid() ? libtorrent.make_magnet_uri(h) : null;
+        return h.is_valid() ? libtorrent.make_magnet_uri_from_torrent_handle(h) : null;
     }
 
     /**

@@ -1,8 +1,11 @@
 %ignore libtorrent::from_span;
 %ignore libtorrent::from_span_t;
+%ignore libtorrent::from_info_section;
+%ignore libtorrent::from_info_section_t;
 %ignore libtorrent::torrent_info::torrent_info(char const*, int, error_code&);
 %ignore libtorrent::torrent_info::torrent_info(char const*, int, error_code&, int);
 %ignore libtorrent::torrent_info::torrent_info(span<char const>, error_code&, from_span_t);
+%ignore libtorrent::torrent_info::torrent_info(bdecode_node const&, error_code&, load_torrent_limits const&, from_info_section_t);
 %ignore libtorrent::torrent_info::metadata;
 %ignore libtorrent::torrent_info::load;
 %ignore libtorrent::torrent_info::unload;
@@ -35,15 +38,20 @@ namespace libtorrent {
 
 %extend torrent_info
 {
-    torrent_info(std::int64_t buffer_ptr, int size, error_code& ec)
-    {
-        return new libtorrent::torrent_info(reinterpret_cast<char const*>(buffer_ptr), size, ec);
-    }
-
     libtorrent::span<std::int8_t const> get_info_section()
     {
         auto v = $self->info_section();
         return libtorrent::span<std::int8_t const>({reinterpret_cast<std::int8_t const*>(v.data()), v.size()});
+    }
+
+    static torrent_info create_torrent_info(bdecode_node const& info_section, error_code& ec, load_torrent_limits const& cfg)
+    {
+        return libtorrent::torrent_info(info_section, ec, cfg, libtorrent::from_info_section);
+    }
+
+    static torrent_info create_torrent_info(bdecode_node const& info_section, error_code& ec)
+    {
+        return libtorrent::torrent_info(info_section, ec, libtorrent::load_torrent_limits{}, libtorrent::from_info_section);
     }
 };
 

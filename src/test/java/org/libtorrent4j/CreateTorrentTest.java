@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023, Alden Torres
+ * Copyright (c) 2018-2025, Alden Torres
  *
  * Licensed under the terms of the MIT license.
  * Copy of the license at https://opensource.org/licenses/MIT
@@ -112,12 +112,17 @@ public class CreateTorrentTest {
             .addCollection("collection")
             .generate();
 
-        TorrentInfo ti = TorrentInfo.bdecode(r.entry().bencode());
-        assertEquals("comment", ti.comment());
-        assertEquals("creator", ti.creator());
-        assertEquals(1000, ti.creationDate());
+        Entry entry = r.entry();
+        TorrentInfo ti = TorrentInfo.bdecode(entry.bencode());
+        String comment = entry.dictionary().get("comment").string();
+        String creator = entry.dictionary().get("created by").string();
+        long creationDate = entry.dictionary().get("creation date").integer();
+        assertEquals("comment", comment);
+        assertEquals("creator", creator);
+        assertEquals(1000, creationDate);
 
-        assertEquals("1.1.1.1", ti.nodes().get(0).first);
+        String firstNode = entry.dictionary().get("nodes").list().get(0).list().get(0).string();
+        assertEquals("1.1.1.1", firstNode);
         assertTrue(ti.isPrivate());
         assertTrue(ti.similarTorrents().get(0).isAllZeros());
         assertEquals("collection", ti.collections().get(0));

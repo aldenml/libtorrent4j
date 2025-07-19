@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2018-2025, Alden Torres
+ *
+ * Licensed under the terms of the MIT license.
+ * Copy of the license at https://opensource.org/licenses/MIT
+ */
+
 package org.libtorrent4j.alerts;
 
 import org.libtorrent4j.swig.peer_log_alert;
@@ -23,7 +30,7 @@ public final class PeerLogAlert extends PeerAlert<peer_log_alert> {
      * @return the event type
      */
     public String eventType() {
-        return alert.get_event_type();
+        return alert.getEvent_type().toString();
     }
 
     /**

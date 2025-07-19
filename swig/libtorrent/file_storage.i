@@ -15,6 +15,10 @@
 %ignore libtorrent::file_storage::file_piece_range;
 %ignore libtorrent::file_storage::internal_symlink;
 %ignore libtorrent::file_storage::remove_tail_padding;
+%ignore libtorrent::filenames::file_range;
+%ignore libtorrent::renamed_files::file_name;
+%ignore libtorrent::renamed_files::import_filenames;
+%ignore libtorrent::renamed_files::export_filenames;
 
 namespace libtorrent {
 
@@ -42,6 +46,25 @@ struct file_flags_tag;
     std::string file_name_ex(int index)
     {
         return std::string{$self->file_name(lt::file_index_t{index})};
+    }
+}
+
+%extend renamed_files
+{
+    std::string file_name_ex(file_storage const& fs, int index)
+    {
+        return std::string{$self->file_name(fs, lt::file_index_t{index})};
+    }
+
+    void import_filenames_ex(file_storage const& fs, std::map<int, std::string>& renamed_files)
+    {
+        $self->import_filenames(fs, *reinterpret_cast<std::map<lt::file_index_t, std::string>*>(&renamed_files));
+    }
+
+    std::map<int, std::string> export_filenames_ex()
+    {
+        auto v = $self->export_filenames();
+        return *reinterpret_cast<std::map<int, std::string>*>(&v);
     }
 }
 

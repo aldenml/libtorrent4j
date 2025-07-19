@@ -93,6 +93,7 @@
 #include "libtorrent/read_resume_data.hpp"
 #include "libtorrent/write_resume_data.hpp"
 #include "libtorrent/posix_disk_io.hpp"
+#include "libtorrent/load_torrent.hpp"
 
 #include <libtorrent/hex.hpp>
 #include <libtorrent/bencode.hpp>
@@ -328,6 +329,7 @@ TYPE_INTEGRAL_CONVERSION(queue_position_t, int, int)
 %include "libtorrent/read_resume_data.i"
 %include "libtorrent/write_resume_data.i"
 %include "libtorrent/web_seed_entry.i"
+%include "libtorrent/load_torrent.i"
 
 // for libtorrent.hpp
 %ignore set_piece_hashes_listener::progress_index;
