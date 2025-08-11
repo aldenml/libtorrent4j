@@ -372,20 +372,28 @@ public class libtorrent {
     return new entry(libtorrent_jni.write_torrent_file__SWIG_1(add_torrent_params.getCPtr(atp), atp, write_torrent_flags_t.getCPtr(flags), flags), true);
   }
 
+  public static add_torrent_params load_torrent_file(String filename, error_code ec, load_torrent_limits cfg) {
+    return new add_torrent_params(libtorrent_jni.load_torrent_file__SWIG_0(filename, error_code.getCPtr(ec), ec, load_torrent_limits.getCPtr(cfg), cfg), true);
+  }
+
   public static add_torrent_params load_torrent_file(String filename, load_torrent_limits cfg) {
-    return new add_torrent_params(libtorrent_jni.load_torrent_file__SWIG_0(filename, load_torrent_limits.getCPtr(cfg), cfg), true);
+    return new add_torrent_params(libtorrent_jni.load_torrent_file__SWIG_1(filename, load_torrent_limits.getCPtr(cfg), cfg), true);
   }
 
   public static add_torrent_params load_torrent_file(String filename) {
-    return new add_torrent_params(libtorrent_jni.load_torrent_file__SWIG_1(filename), true);
+    return new add_torrent_params(libtorrent_jni.load_torrent_file__SWIG_2(filename), true);
+  }
+
+  public static add_torrent_params load_torrent_parsed(bdecode_node torrent_file, error_code ec, load_torrent_limits cfg) {
+    return new add_torrent_params(libtorrent_jni.load_torrent_parsed__SWIG_0(bdecode_node.getCPtr(torrent_file), torrent_file, error_code.getCPtr(ec), ec, load_torrent_limits.getCPtr(cfg), cfg), true);
   }
 
   public static add_torrent_params load_torrent_parsed(bdecode_node torrent_file, load_torrent_limits cfg) {
-    return new add_torrent_params(libtorrent_jni.load_torrent_parsed__SWIG_0(bdecode_node.getCPtr(torrent_file), torrent_file, load_torrent_limits.getCPtr(cfg), cfg), true);
+    return new add_torrent_params(libtorrent_jni.load_torrent_parsed__SWIG_1(bdecode_node.getCPtr(torrent_file), torrent_file, load_torrent_limits.getCPtr(cfg), cfg), true);
   }
 
   public static add_torrent_params load_torrent_parsed(bdecode_node torrent_file) {
-    return new add_torrent_params(libtorrent_jni.load_torrent_parsed__SWIG_1(bdecode_node.getCPtr(torrent_file), torrent_file), true);
+    return new add_torrent_params(libtorrent_jni.load_torrent_parsed__SWIG_2(bdecode_node.getCPtr(torrent_file), torrent_file), true);
   }
 
   public static int find_metric_idx_ex(String name) {

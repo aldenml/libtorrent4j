@@ -1,3 +1,13 @@
+
+  * update to libtorrent master
+  * lt:improve stack_allocator oom handling
+  * lt:cache stack_allocator's allocation of torrent name to optimize memory
+    footprint
+  * lt:fix stack_allocator to fail gracefully when running out of memory
+  * lt:add load torrent api that no throw exceptions
+  * lt:add option to send host header in HTTP proxy CONNECT command
+  * lt:source code cleanup, performance and stability
+
 2.1.0-36
 
   * update to libtorrent master
