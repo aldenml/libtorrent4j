@@ -226,7 +226,7 @@ publishing {
                 password = if (hasProperty("ossrhPassword"))
                     property("ossrhPassword").toString() else ""
             }
-            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            url = uri("https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/")
         }
     }
 }

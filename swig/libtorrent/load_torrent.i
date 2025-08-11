@@ -1,3 +1,4 @@
+%ignore libtorrent::load_torrent_buffer(span<char const>, error_code&, load_torrent_limits const&);
 %ignore libtorrent::load_torrent_buffer(span<char const>, load_torrent_limits const&);
 %ignore libtorrent::load_torrent_buffer(span<char const>);
 

@@ -5,7 +5,7 @@
 [![Windows](https://github.com/aldenml/libtorrent4j/workflows/Windows/badge.svg)](https://github.com/aldenml/libtorrent4j/actions?query=workflow%3AWindows)
 [![Android](https://github.com/aldenml/libtorrent4j/workflows/Android/badge.svg)](https://github.com/aldenml/libtorrent4j/actions?query=workflow%3AAndroid)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5dda1f00528e4d93864eb8694c702bba)](https://app.codacy.com/manual/aldenml/libtorrent4j/dashboard)
-[![Maven Central](https://img.shields.io/maven-central/v/org.libtorrent4j/libtorrent4j.svg?label=maven)](https://search.maven.org/search?q=g:%22org.libtorrent4j%22%20AND%20a:%22libtorrent4j%22)
+[![Maven Central](https://img.shields.io/maven-central/v/org.libtorrent4j/libtorrent4j.svg?label=maven)](https://central.sonatype.com/search?namespace=org.libtorrent4j)
 
 A swig Java interface for [libtorrent](https://github.com/arvidn/libtorrent).
 

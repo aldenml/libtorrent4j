@@ -1721,6 +1721,10 @@ public class libtorrent_jni {
   public final static native void torrent_status_handle_set(long jarg1, torrent_status jarg1_, long jarg2, torrent_handle jarg2_);
   public final static native long torrent_status_handle_get(long jarg1, torrent_status jarg1_);
   public final static native int torrent_status_checking_files_get();
+  public final static native int torrent_status_downloading_metadata_get();
+  public final static native int torrent_status_downloading_get();
+  public final static native int torrent_status_finished_get();
+  public final static native int torrent_status_seeding_get();
   public final static native int torrent_status_checking_resume_data_get();
   public final static native void torrent_status_errc_set(long jarg1, torrent_status jarg1_, long jarg2, error_code jarg2_);
   public final static native long torrent_status_errc_get(long jarg1, torrent_status jarg1_);
@@ -3501,10 +3505,12 @@ public class libtorrent_jni {
   public final static native void web_seed_entry_extra_headers_set(long jarg1, web_seed_entry jarg1_, long jarg2, string_string_pair_vector jarg2_);
   public final static native long web_seed_entry_extra_headers_get(long jarg1, web_seed_entry jarg1_);
   public final static native void delete_web_seed_entry(long jarg1);
-  public final static native long load_torrent_file__SWIG_0(String jarg1, long jarg2, load_torrent_limits jarg2_);
-  public final static native long load_torrent_file__SWIG_1(String jarg1);
-  public final static native long load_torrent_parsed__SWIG_0(long jarg1, bdecode_node jarg1_, long jarg2, load_torrent_limits jarg2_);
-  public final static native long load_torrent_parsed__SWIG_1(long jarg1, bdecode_node jarg1_);
+  public final static native long load_torrent_file__SWIG_0(String jarg1, long jarg2, error_code jarg2_, long jarg3, load_torrent_limits jarg3_);
+  public final static native long load_torrent_file__SWIG_1(String jarg1, long jarg2, load_torrent_limits jarg2_);
+  public final static native long load_torrent_file__SWIG_2(String jarg1);
+  public final static native long load_torrent_parsed__SWIG_0(long jarg1, bdecode_node jarg1_, long jarg2, error_code jarg2_, long jarg3, load_torrent_limits jarg3_);
+  public final static native long load_torrent_parsed__SWIG_1(long jarg1, bdecode_node jarg1_, long jarg2, load_torrent_limits jarg2_);
+  public final static native long load_torrent_parsed__SWIG_2(long jarg1, bdecode_node jarg1_);
   public final static native void delete_alert_notify_callback(long jarg1);
   public final static native void alert_notify_callback_on_alert(long jarg1, alert_notify_callback jarg1_);
   public final static native void alert_notify_callback_on_alertSwigExplicitalert_notify_callback(long jarg1, alert_notify_callback jarg1_);
