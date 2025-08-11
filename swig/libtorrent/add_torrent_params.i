@@ -134,16 +134,48 @@ namespace libtorrent {
         $self->verified_pieces = *t;
     }
 
-    static add_torrent_params load_torrent_buffer(std::int64_t buffer_ptr, int size, load_torrent_limits const& cfg)
+    static add_torrent_params load_torrent_file(std::string const& filename, error_code& ec, load_torrent_limits const& cfg)
     {
-        auto buffer = libtorrent::span<char const>{reinterpret_cast<char const*>(buffer_ptr), size};
-        return libtorrent::load_torrent_buffer(buffer, cfg);
+        return libtorrent::load_torrent_file(filename, ec, cfg);
     }
 
-    static add_torrent_params load_torrent_buffer(std::int64_t buffer_ptr, int size)
+    static add_torrent_params load_torrent_file(std::string const& filename, error_code& ec)
     {
-        auto buffer = libtorrent::span<char const>{reinterpret_cast<char const*>(buffer_ptr), size};
-        return libtorrent::load_torrent_buffer(buffer);
+        return libtorrent::load_torrent_file(filename, ec, {});
+    }
+
+    static add_torrent_params load_torrent_buffer(std::vector<std::int8_t>& buffer, error_code& ec, load_torrent_limits const& cfg)
+    {
+        auto buffer_span = libtorrent::span<char const>{(char const*)&buffer[0], (long)buffer.size()};
+        return libtorrent::load_torrent_buffer(buffer_span, ec, cfg);
+    }
+
+    static add_torrent_params load_torrent_buffer(std::vector<std::int8_t>& buffer, error_code& ec)
+    {
+        auto buffer_span = libtorrent::span<char const>{(char const*)&buffer[0], (long)buffer.size()};
+        return libtorrent::load_torrent_buffer(buffer_span, ec, {});
+    }
+
+    static add_torrent_params load_torrent_native_buffer(std::int64_t buffer_ptr, int size, error_code& ec, load_torrent_limits const& cfg)
+    {
+        auto buffer_span = libtorrent::span<char const>{reinterpret_cast<char const*>(buffer_ptr), size};
+        return libtorrent::load_torrent_buffer(buffer_span, ec, cfg);
+    }
+
+    static add_torrent_params load_torrent_native_buffer(std::int64_t buffer_ptr, int size, error_code& ec)
+    {
+        auto buffer_span = libtorrent::span<char const>{reinterpret_cast<char const*>(buffer_ptr), size};
+        return libtorrent::load_torrent_buffer(buffer_span, ec, {});
+    }
+
+    static add_torrent_params load_torrent_parsed(bdecode_node const& torrent_file, error_code& ec, load_torrent_limits const& cfg)
+    {
+        return libtorrent::load_torrent_parsed(torrent_file, ec, cfg);
+    }
+
+    static add_torrent_params load_torrent_parsed(bdecode_node const& torrent_file, error_code& ec)
+    {
+        return libtorrent::load_torrent_parsed(torrent_file, ec, {});
     }
 }
 
