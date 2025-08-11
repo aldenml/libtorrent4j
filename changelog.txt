@@ -1,6 +1,7 @@
+2.1.0-37
 
-  * update to OpenSSL 3.5.2
   * update to libtorrent master
+  * update to OpenSSL 3.5.2
   * improved java swig api layer for add_torrent_params
   * lt:improve stack_allocator oom handling
   * lt:cache stack_allocator's allocation of torrent name to optimize memory
