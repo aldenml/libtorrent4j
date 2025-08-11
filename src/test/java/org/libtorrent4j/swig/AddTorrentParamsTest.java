@@ -9,6 +9,7 @@ package org.libtorrent4j.swig;
 
 import org.junit.Test;
 import org.libtorrent4j.Utils;
+import org.libtorrent4j.Vectors;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -109,6 +110,16 @@ public class AddTorrentParamsTest {
     @Test
     public void testLoadTorrentFromBuffer() throws IOException {
         byte[] bytes = Utils.resourceBytes("Honey_Larochelle_Hijack_FrostClick_FrostWire_MP3_May_06_2016.torrent");
+        error_code ec = new error_code();
+        byte_vector buffer = Vectors.bytes2byte_vector(bytes);
+        add_torrent_params params = add_torrent_params.load_torrent_buffer(buffer, ec);
+        assertEquals("83e37aea34581ce105af93c0955e7c7d4194ae47", params.getInfo_hashes().getV1().to_hex());
+        assertEquals(0, ec.value());
+    }
+
+    @Test
+    public void testLoadTorrentFromNativeBuffer() throws IOException {
+        byte[] bytes = Utils.resourceBytes("Honey_Larochelle_Hijack_FrostClick_FrostWire_MP3_May_06_2016.torrent");
         ByteBuffer bb = ByteBuffer.allocateDirect(bytes.length);
         bb.put(bytes);
         bb.position(0);
@@ -116,7 +127,9 @@ public class AddTorrentParamsTest {
         long ptr = libtorrent_jni.directBufferAddress(bb);
         long size = libtorrent_jni.directBufferCapacity(bb);
 
-        add_torrent_params params = add_torrent_params.load_torrent_buffer(ptr, (int) size);
+        error_code ec = new error_code();
+        add_torrent_params params = add_torrent_params.load_torrent_native_buffer(ptr, (int) size, ec);
         assertEquals("83e37aea34581ce105af93c0955e7c7d4194ae47", params.getInfo_hashes().getV1().to_hex());
+        assertEquals(0, ec.value());
     }
 }

@@ -1,5 +1,6 @@
 
   * update to libtorrent master
+  * improved java swig api layer for add_torrent_params
   * lt:improve stack_allocator oom handling
   * lt:cache stack_allocator's allocation of torrent name to optimize memory
     footprint

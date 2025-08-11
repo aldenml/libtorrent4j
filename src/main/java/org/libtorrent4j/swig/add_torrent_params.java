@@ -418,12 +418,36 @@ public class add_torrent_params {
     libtorrent_jni.add_torrent_params_set_verified_pieces(swigCPtr, this, bitfield.getCPtr(v), v);
   }
 
-  public static add_torrent_params load_torrent_buffer(long buffer_ptr, int size, load_torrent_limits cfg) {
-    return new add_torrent_params(libtorrent_jni.add_torrent_params_load_torrent_buffer__SWIG_0(buffer_ptr, size, load_torrent_limits.getCPtr(cfg), cfg), true);
+  public static add_torrent_params load_torrent_file(String filename, error_code ec, load_torrent_limits cfg) {
+    return new add_torrent_params(libtorrent_jni.add_torrent_params_load_torrent_file__SWIG_0(filename, error_code.getCPtr(ec), ec, load_torrent_limits.getCPtr(cfg), cfg), true);
   }
 
-  public static add_torrent_params load_torrent_buffer(long buffer_ptr, int size) {
-    return new add_torrent_params(libtorrent_jni.add_torrent_params_load_torrent_buffer__SWIG_1(buffer_ptr, size), true);
+  public static add_torrent_params load_torrent_file(String filename, error_code ec) {
+    return new add_torrent_params(libtorrent_jni.add_torrent_params_load_torrent_file__SWIG_1(filename, error_code.getCPtr(ec), ec), true);
+  }
+
+  public static add_torrent_params load_torrent_buffer(byte_vector buffer, error_code ec, load_torrent_limits cfg) {
+    return new add_torrent_params(libtorrent_jni.add_torrent_params_load_torrent_buffer__SWIG_0(byte_vector.getCPtr(buffer), buffer, error_code.getCPtr(ec), ec, load_torrent_limits.getCPtr(cfg), cfg), true);
+  }
+
+  public static add_torrent_params load_torrent_buffer(byte_vector buffer, error_code ec) {
+    return new add_torrent_params(libtorrent_jni.add_torrent_params_load_torrent_buffer__SWIG_1(byte_vector.getCPtr(buffer), buffer, error_code.getCPtr(ec), ec), true);
+  }
+
+  public static add_torrent_params load_torrent_native_buffer(long buffer_ptr, int size, error_code ec, load_torrent_limits cfg) {
+    return new add_torrent_params(libtorrent_jni.add_torrent_params_load_torrent_native_buffer__SWIG_0(buffer_ptr, size, error_code.getCPtr(ec), ec, load_torrent_limits.getCPtr(cfg), cfg), true);
+  }
+
+  public static add_torrent_params load_torrent_native_buffer(long buffer_ptr, int size, error_code ec) {
+    return new add_torrent_params(libtorrent_jni.add_torrent_params_load_torrent_native_buffer__SWIG_1(buffer_ptr, size, error_code.getCPtr(ec), ec), true);
+  }
+
+  public static add_torrent_params load_torrent_parsed(bdecode_node torrent_file, error_code ec, load_torrent_limits cfg) {
+    return new add_torrent_params(libtorrent_jni.add_torrent_params_load_torrent_parsed__SWIG_0(bdecode_node.getCPtr(torrent_file), torrent_file, error_code.getCPtr(ec), ec, load_torrent_limits.getCPtr(cfg), cfg), true);
+  }
+
+  public static add_torrent_params load_torrent_parsed(bdecode_node torrent_file, error_code ec) {
+    return new add_torrent_params(libtorrent_jni.add_torrent_params_load_torrent_parsed__SWIG_1(bdecode_node.getCPtr(torrent_file), torrent_file, error_code.getCPtr(ec), ec), true);
   }
 
 }
