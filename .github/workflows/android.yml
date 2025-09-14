@@ -20,7 +20,7 @@ jobs:
   arm-b2:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: recursive
       - name: setup boost
@@ -87,7 +87,7 @@ jobs:
   arm64-b2:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: recursive
       - name: setup boost
@@ -154,7 +154,7 @@ jobs:
   x86-b2:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: recursive
       - name: setup boost
@@ -221,7 +221,7 @@ jobs:
   x86_64-b2:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: recursive
       - name: setup boost

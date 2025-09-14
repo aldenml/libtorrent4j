@@ -13,7 +13,7 @@ jobs:
   x86_64:
     runs-on: windows-2022
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: recursive
       - name: install packages

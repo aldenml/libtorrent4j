@@ -17,9 +17,9 @@ env:
 jobs:
 
   arm64-cmake:
-    runs-on: macos-latest
+    runs-on: macos-14
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: recursive
       - name: install packages
@@ -56,9 +56,9 @@ jobs:
           retention-days: 5
 
   arm64-b2:
-    runs-on: macos-latest
+    runs-on: macos-14
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: recursive
       - name: setup boost
