@@ -1,3 +1,5 @@
+  * update to boost 1.89.0
+
 2.1.0-37
 
   * update to libtorrent master
