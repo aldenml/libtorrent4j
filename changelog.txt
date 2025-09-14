@@ -1,4 +1,10 @@
+2.1.0-38
+
+  * update to libtorrent master
   * update to boost 1.89.0
+  * lt:fix backslash in filenames on POSIX systems
+  * lt:avoid replacing files when renaming
+  * lt:source code cleanup, performance and stability
 
 2.1.0-37
 
