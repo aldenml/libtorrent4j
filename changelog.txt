@@ -1,9 +1,25 @@
 
+  * update to libtorrent master
   * minimum supported Android API >= 28
   * update android NDK r29
   * update to OpenSSL 3.5.5
   * update to boost 1.90.0
   * using SWIG 4.4.1
+  * lt:updated libdatachannel to rev a4d3211da33bc1114ae50d2dd12f4186b67aaba4
+  * lt:fix issue in XML parser
+  * lt:make the save path for part files configurable
+  * lt:fix no-copy-on-write flag setting
+  * lt:add new setting disk_disable_copy_on_write to set FS_NOCOW_FL on new
+    files.
+  * lt:add performance counters to file pool
+  * lt:fix broken request latency measurement
+  * lt:add I2P reconnection fix
+  * lt:add high_priority flag to tracker announcements, to put them at the front
+    of the queue.
+  * lt:update default DSCP value and update docs
+  * lt:fix error handling in mmap disk I/O when hashing files
+  * lt:make copy_file_range() fall back if it fails with ENOSYS
+  * lt:source code cleanup, performance and stability
 
 2.1.0-38
 

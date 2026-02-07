@@ -1201,6 +1201,8 @@ public class libtorrent_jni {
   public final static native String add_torrent_params_name_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_save_path_set(long jarg1, add_torrent_params jarg1_, String jarg2);
   public final static native String add_torrent_params_save_path_get(long jarg1, add_torrent_params jarg1_);
+  public final static native void add_torrent_params_part_file_dir_set(long jarg1, add_torrent_params jarg1_, String jarg2);
+  public final static native String add_torrent_params_part_file_dir_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_storage_mode_set(long jarg1, add_torrent_params jarg1_, int jarg2);
   public final static native int add_torrent_params_storage_mode_get(long jarg1, add_torrent_params jarg1_);
   public final static native void add_torrent_params_userdata_set(long jarg1, add_torrent_params jarg1_, long jarg2, client_data_t jarg2_);
@@ -1584,6 +1586,7 @@ public class libtorrent_jni {
   public final static native void torrent_handle_post_piece_availability(long jarg1, torrent_handle jarg1_);
   public final static native void torrent_handle_piece_availability(long jarg1, torrent_handle jarg1_, long jarg2, int_vector jarg2_);
   public final static native long torrent_handle_ignore_min_interval_get();
+  public final static native long torrent_handle_high_priority_get();
   public final static native void torrent_handle_force_reannounce__SWIG_0(long jarg1, torrent_handle jarg1_, int jarg2, int jarg3, long jarg4, reannounce_flags_t jarg4_);
   public final static native void torrent_handle_force_reannounce__SWIG_1(long jarg1, torrent_handle jarg1_, int jarg2, int jarg3);
   public final static native void torrent_handle_force_reannounce__SWIG_2(long jarg1, torrent_handle jarg1_, int jarg2, String jarg3, long jarg4, reannounce_flags_t jarg4_);

@@ -107,6 +107,14 @@ public class add_torrent_params {
     return libtorrent_jni.add_torrent_params_save_path_get(swigCPtr, this);
   }
 
+  public void setPart_file_dir(String value) {
+    libtorrent_jni.add_torrent_params_part_file_dir_set(swigCPtr, this, value);
+  }
+
+  public String getPart_file_dir() {
+    return libtorrent_jni.add_torrent_params_part_file_dir_get(swigCPtr, this);
+  }
+
   public void setStorage_mode(storage_mode_t value) {
     libtorrent_jni.add_torrent_params_storage_mode_set(swigCPtr, this, value.swigValue());
   }
