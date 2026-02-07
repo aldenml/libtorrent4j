@@ -1,4 +1,5 @@
 
+  * update to OpenSSL 3.5.5
   * update to boost 1.90.0
   * using SWIG 4.4.1
 
