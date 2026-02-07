@@ -2,7 +2,7 @@ import os ;
 
 ANDROID_TOOLCHAIN = [ os.environ ANDROID_TOOLCHAIN ] ;
 
-using clang-linux : arm : $(ANDROID_TOOLCHAIN)/bin/armv7a-linux-androideabi24-clang++ :
+using clang-linux : arm : $(ANDROID_TOOLCHAIN)/bin/armv7a-linux-androideabi28-clang++ :
     <cxxflags>-fPIC
     <cxxflags>-march=armv7-a
     <cxxflags>-mfpu=neon

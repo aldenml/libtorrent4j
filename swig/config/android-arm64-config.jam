@@ -2,7 +2,7 @@ import os ;
 
 ANDROID_TOOLCHAIN = [ os.environ ANDROID_TOOLCHAIN ] ;
 
-using clang : arm64 : $(ANDROID_TOOLCHAIN)/bin/aarch64-linux-android24-clang++ :
+using clang : arm64 : $(ANDROID_TOOLCHAIN)/bin/aarch64-linux-android28-clang++ :
     <cxxflags>-fPIC
     <cxxflags>-march=armv8-a+crc
     <cxxflags>-DANDROID
