@@ -13,6 +13,8 @@ env:
   BOOST_VERSION: "1_89_0"
   OPENSSL_VERSION: "3.5.2"
   OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3"
+  # this is required by libdatachannel, which is specifying a too old version of cmake
+  CMAKE_POLICY_VERSION_MINIMUM: 3.5
 
 jobs:
 
@@ -27,7 +29,7 @@ jobs:
           brew reinstall boost
           HOMEBREW_NO_INSTALL_CLEANUP=1 brew reinstall openssl@3
       - name: cmake
-        run: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -B build -G "CodeBlocks - Unix Makefiles" swig
+        run: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_STANDARD=17 -B build -G Ninja swig
         env:
           OPENSSL_ROOT_DIR: /usr/local/opt/openssl
       - name: build

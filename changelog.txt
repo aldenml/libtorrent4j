@@ -1,3 +1,6 @@
+
+  * using SWIG 4.4.1
+
 2.1.0-38
 
   * update to libtorrent master
