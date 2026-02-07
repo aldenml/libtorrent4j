@@ -2,7 +2,7 @@ import os ;
 
 ANDROID_TOOLCHAIN = [ os.environ ANDROID_TOOLCHAIN ] ;
 
-using clang : x86 : $(ANDROID_TOOLCHAIN)/bin/i686-linux-android24-clang++ :
+using clang : x86 : $(ANDROID_TOOLCHAIN)/bin/i686-linux-android28-clang++ :
     <cxxflags>-fPIC
     <cxxflags>-DANDROID
     <cxxflags>-D__STDC_FORMAT_MACROS

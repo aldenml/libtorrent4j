@@ -11,7 +11,7 @@ on:
 env:
   BOOST_DOT_VERSION: "1.90.0"
   BOOST_VERSION: "1_90_0"
-  NDK_VERSION: "r28c"
+  NDK_VERSION: "r29"
   OPENSSL_VERSION: "3.5.5"
   OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3"
 
@@ -37,11 +37,10 @@ jobs:
           unzip -qq android-ndk.zip
           mv android-ndk-${NDK_VERSION} android-ndk
           export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
-          sed -i 's/28/24/g' ${TOOLCHAIN}/sysroot/usr/include/sys/random.h
       - name: setup openssl
         run: |
           export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
-          export CC=${TOOLCHAIN}/bin/armv7a-linux-androideabi24-clang
+          export CC=${TOOLCHAIN}/bin/armv7a-linux-androideabi28-clang
           export AR="${TOOLCHAIN}/bin/llvm-ar"
           export LD="${TOOLCHAIN}/bin/ld"
           export RANLIB="${TOOLCHAIN}/bin/llvm-ranlib"
@@ -59,8 +58,8 @@ jobs:
           export BOOST_ROOT=${PWD}/boost
           export OPENSSL_ROOT=${PWD}/openssl
           export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
-          export CXX=${ANDROID_TOOLCHAIN}/bin/armv7a-linux-androideabi24-clang++
-          export CC=${ANDROID_TOOLCHAIN}/bin/armv7a-linux-androideabi24-clang
+          export CXX=${ANDROID_TOOLCHAIN}/bin/armv7a-linux-androideabi28-clang++
+          export CC=${ANDROID_TOOLCHAIN}/bin/armv7a-linux-androideabi28-clang
           export AR=${ANDROID_TOOLCHAIN}/bin/llvm-ar
           export LD=${ANDROID_TOOLCHAIN}/bin/ld
           export RANLIB=${ANDROID_TOOLCHAIN}/bin/llvm-ranlib
@@ -104,11 +103,10 @@ jobs:
           unzip -qq android-ndk.zip
           mv android-ndk-${NDK_VERSION} android-ndk
           export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
-          sed -i 's/28/24/g' ${TOOLCHAIN}/sysroot/usr/include/sys/random.h
       - name: setup openssl
         run: |
           export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
-          export CC=${TOOLCHAIN}/bin/aarch64-linux-android24-clang
+          export CC=${TOOLCHAIN}/bin/aarch64-linux-android28-clang
           export AR="${TOOLCHAIN}/bin/llvm-ar"
           export LD="${TOOLCHAIN}/bin/ld"
           export RANLIB="${TOOLCHAIN}/bin/llvm-ranlib"
@@ -126,8 +124,8 @@ jobs:
           export BOOST_ROOT=${PWD}/boost
           export OPENSSL_ROOT=${PWD}/openssl
           export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
-          export CXX=${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android24-clang++
-          export CC=${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android24-clang
+          export CXX=${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android28-clang++
+          export CC=${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android28-clang
           export AR=${ANDROID_TOOLCHAIN}/bin/llvm-ar
           export LD=${ANDROID_TOOLCHAIN}/bin/ld
           export RANLIB=${ANDROID_TOOLCHAIN}/bin/llvm-ranlib
@@ -171,11 +169,10 @@ jobs:
           unzip -qq android-ndk.zip
           mv android-ndk-${NDK_VERSION} android-ndk
           export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
-          sed -i 's/28/24/g' ${TOOLCHAIN}/sysroot/usr/include/sys/random.h
       - name: setup openssl
         run: |
           export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
-          export CC=${TOOLCHAIN}/bin/i686-linux-android24-clang
+          export CC=${TOOLCHAIN}/bin/i686-linux-android28-clang
           export AR="${TOOLCHAIN}/bin/llvm-ar"
           export LD="${TOOLCHAIN}/bin/ld"
           export RANLIB="${TOOLCHAIN}/bin/llvm-ranlib"
@@ -193,8 +190,8 @@ jobs:
           export BOOST_ROOT=${PWD}/boost
           export OPENSSL_ROOT=${PWD}/openssl
           export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
-          export CXX=${ANDROID_TOOLCHAIN}/bin/i686-linux-android24-clang++
-          export CC=${ANDROID_TOOLCHAIN}/bin/i686-linux-android24-clang
+          export CXX=${ANDROID_TOOLCHAIN}/bin/i686-linux-android28-clang++
+          export CC=${ANDROID_TOOLCHAIN}/bin/i686-linux-android28-clang
           export AR=${ANDROID_TOOLCHAIN}/bin/llvm-ar
           export LD=${ANDROID_TOOLCHAIN}/bin/ld
           export RANLIB=${ANDROID_TOOLCHAIN}/bin/llvm-ranlib
@@ -238,11 +235,10 @@ jobs:
           unzip -qq android-ndk.zip
           mv android-ndk-${NDK_VERSION} android-ndk
           export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
-          sed -i 's/28/24/g' ${TOOLCHAIN}/sysroot/usr/include/sys/random.h
       - name: setup openssl
         run: |
           export TOOLCHAIN="${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64"
-          export CC=${TOOLCHAIN}/bin/x86_64-linux-android24-clang
+          export CC=${TOOLCHAIN}/bin/x86_64-linux-android28-clang
           export AR="${TOOLCHAIN}/bin/llvm-ar"
           export LD="${TOOLCHAIN}/bin/ld"
           export RANLIB="${TOOLCHAIN}/bin/llvm-ranlib"
@@ -261,8 +257,8 @@ jobs:
           export BOOST_ROOT=${PWD}/boost
           export OPENSSL_ROOT=${PWD}/openssl
           export LIBTORRENT_ROOT=${PWD}/swig/deps/libtorrent
-          export CXX=${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android24-clang++
-          export CC=${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android24-clang
+          export CXX=${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android28-clang++
+          export CC=${ANDROID_TOOLCHAIN}/bin/x86_64-linux-android28-clang
           export AR=${ANDROID_TOOLCHAIN}/bin/llvm-ar
           export LD=${ANDROID_TOOLCHAIN}/bin/ld
           export RANLIB=${ANDROID_TOOLCHAIN}/bin/llvm-ranlib

@@ -9,7 +9,7 @@ RUN apt update -y \
 
 ENV BOOST_DOT_VERSION="1.90.0"
 ENV BOOST_VERSION="1_90_0"
-ENV NDK_VERSION="r28c"
+ENV NDK_VERSION="r29"
 ENV OPENSSL_VERSION="3.5.5"
 ENV OPENSSL_NO_OPTS="no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3 -fPIC"
 
@@ -33,7 +33,7 @@ ENV AR="${TOOLCHAIN}/bin/llvm-ar"
 ENV LD="${TOOLCHAIN}/bin/ld"
 ENV RANLIB="${TOOLCHAIN}/bin/llvm-ranlib"
 
-RUN export CC=${TOOLCHAIN}/bin/armv7a-linux-androideabi24-clang \
+RUN export CC=${TOOLCHAIN}/bin/armv7a-linux-androideabi28-clang \
     && cd openssl-src \
     && ./Configure linux-armv4 ${OPENSSL_NO_OPTS} -march=armv7-a -mfpu=neon --prefix=/openssl-arm \
     && make clean \
@@ -41,7 +41,7 @@ RUN export CC=${TOOLCHAIN}/bin/armv7a-linux-androideabi24-clang \
     && make install_sw \
     && cd ..
 
-RUN export CC=${TOOLCHAIN}/bin/aarch64-linux-android24-clang \
+RUN export CC=${TOOLCHAIN}/bin/aarch64-linux-android28-clang \
     && cd openssl-src \
     && ./Configure linux-aarch64 ${OPENSSL_NO_OPTS} -march=armv8-a+crypto -mfpu=neon --prefix=/openssl-arm64 \
     && make clean \
@@ -49,7 +49,7 @@ RUN export CC=${TOOLCHAIN}/bin/aarch64-linux-android24-clang \
     && make install_sw \
     && cd ..
 
-RUN export CC=${TOOLCHAIN}/bin/i686-linux-android24-clang \
+RUN export CC=${TOOLCHAIN}/bin/i686-linux-android28-clang \
     && cd openssl-src \
     && ./Configure linux-elf ${OPENSSL_NO_OPTS} --prefix=/openssl-x86 \
     && make clean \
@@ -57,7 +57,7 @@ RUN export CC=${TOOLCHAIN}/bin/i686-linux-android24-clang \
     && make install_sw \
     && cd ..
 
-RUN export CC=${TOOLCHAIN}/bin/x86_64-linux-android24-clang \
+RUN export CC=${TOOLCHAIN}/bin/x86_64-linux-android28-clang \
     && cd openssl-src \
     && ./Configure linux-x86_64 ${OPENSSL_NO_OPTS} --prefix=/openssl-x86_64 \
     && make clean \
@@ -70,6 +70,5 @@ RUN cd openssl-src \
     && cd ..
 
 RUN mv /openssl-x86_64/lib64 /openssl-x86_64/lib
-RUN sed -i 's/28/24/g' ${TOOLCHAIN}/sysroot/usr/include/sys/random.h
 
 COPY b2-arm.sh b2-arm64.sh b2-x86.sh b2-x86_64.sh /
