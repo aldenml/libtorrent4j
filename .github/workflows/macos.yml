@@ -13,6 +13,8 @@ env:
   BOOST_VERSION: "1_89_0"
   OPENSSL_VERSION: "3.5.2"
   OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3"
+  # this is required by libdatachannel, which is specifying a too old version of cmake
+  CMAKE_POLICY_VERSION_MINIMUM: 3.5
 
 jobs:
 
