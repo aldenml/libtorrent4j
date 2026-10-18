@@ -90,6 +90,44 @@ Architectures supported:
 This library tracks libtorrent [`master`](https://github.com/arvidn/libtorrent/tree/master) branch.
 The branch is very stable, runs a lot of tests, and receives bug fixes quickly.
 
+
+## TorrentHandle lifecycle caveat
+
+`TorrentHandle` instances returned by `AddTorrentAlert.handle()` and `MetadataReceivedAlert.handle()` are **weak references** to the internal torrent object. They can become invalid at any time, and specifically they become invalid when libtorrent re-registers the torrent after metadata resolution.
+
+When a magnet link resolves its metadata, libtorrent destroys the temporary "metadata fetcher" torrent object and creates a new full torrent object with the real info-hash. Any `TorrentHandle` you captured from `AddTorrentAlert` before metadata arrives is now a dangling reference.
+
+Calling methods on a dangling `TorrentHandle` **does not throw a Java exception**. It passes a null pointer across the JNI bridge and causes a native `SIGSEGV` (on arm64: `SEGV_MAPERR`, `fault addr 0xff0`, "null pointer dereference" in `torrent_handle::status()`).
+
+### The correct pattern
+
+Never cache a `TorrentHandle` across an async boundary. Instead, store the info-hash and call `SessionManager.find(Sha1Hash)` before every operation:
+
+```java
+// WRONG - handle becomes dangling after METADATA_RECEIVED
+TorrentHandle h = addTorrentAlert.handle();
+// ... later, after metadata resolves:
+h.status(); // SIGSEGV
+
+// RIGHT - fetch a fresh handle each time
+Sha1Hash infoHash = Sha1Hash.parseHex(knownInfoHashHex);
+TorrentHandle h = session.find(infoHash);
+if (h != null && h.isValid()) {
+    TorrentStatus st = h.status();
+    // ...
+}
+```
+
+The same applies to `pause()`, `resume()`, `remove()`, and any other operation that touches the torrent after metadata. Always fetch a fresh handle from the session first.
+
+### Why this is not a libtorrent bug
+
+libtorrent's maintainer explicitly states that `torrent_handle` is fundamentally a weak reference and that it's **intended** behavior for it to become invalid:
+
+> "It is the intended behavior. torrent_handle is fundamentally a weak_ptr to the torrent object. I think it would be risky to make alerts hold an owning reference to torrents." - arvidn
+
+The API is correct. The gap was in this library's documentation, which this section fills.
+
 ## Android local builds
 
 It's possible to build android binaries locally. The solution is docker based, you
