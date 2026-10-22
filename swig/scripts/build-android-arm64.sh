@@ -47,7 +47,7 @@ compile_openssl() {
 
   pushd build/openssl-src
 
-  OPENSSL_OPTS="no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3 -fPIC"
+  OPENSSL_OPTS="no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3 -fPIC"
 
   ./Configure linux-aarch64 ${OPENSSL_OPTS} -march=armv8-a+crypto --prefix=${PWD}/../openssl
   echo "Compiling openssl..."

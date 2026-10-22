@@ -11,7 +11,7 @@ ENV BOOST_DOT_VERSION="1.90.0"
 ENV BOOST_VERSION="1_90_0"
 ENV NDK_VERSION="r29"
 ENV OPENSSL_VERSION="3.5.5"
-ENV OPENSSL_NO_OPTS="no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3 -fPIC"
+ENV OPENSSL_NO_OPTS="no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3 -fPIC"
 
 RUN wget -nv -O boost.tar.gz https://archives.boost.io/release/${BOOST_DOT_VERSION}/source/boost_${BOOST_VERSION}.tar.gz \
     && tar xzf boost.tar.gz \
@@ -39,6 +39,7 @@ RUN export CC=${TOOLCHAIN}/bin/armv7a-linux-androideabi28-clang \
     && make clean \
     && make \
     && make install_sw \
+    && grep -q "define OPENSSL_THREADS" /openssl-arm/include/openssl/configuration.h \
     && cd ..
 
 RUN export CC=${TOOLCHAIN}/bin/aarch64-linux-android28-clang \
@@ -47,6 +48,7 @@ RUN export CC=${TOOLCHAIN}/bin/aarch64-linux-android28-clang \
     && make clean \
     && make \
     && make install_sw \
+    && grep -q "define OPENSSL_THREADS" /openssl-arm64/include/openssl/configuration.h \
     && cd ..
 
 RUN export CC=${TOOLCHAIN}/bin/i686-linux-android28-clang \
@@ -55,6 +57,7 @@ RUN export CC=${TOOLCHAIN}/bin/i686-linux-android28-clang \
     && make clean \
     && make \
     && make install_sw \
+    && grep -q "define OPENSSL_THREADS" /openssl-x86/include/openssl/configuration.h \
     && cd ..
 
 RUN export CC=${TOOLCHAIN}/bin/x86_64-linux-android28-clang \
@@ -63,6 +66,7 @@ RUN export CC=${TOOLCHAIN}/bin/x86_64-linux-android28-clang \
     && make clean \
     && make \
     && make install_sw \
+    && grep -q "define OPENSSL_THREADS" /openssl-x86_64/include/openssl/configuration.h \
     && cd ..
 
 RUN cd openssl-src \
