@@ -13,7 +13,7 @@ env:
   BOOST_VERSION: "1_90_0"
   NDK_VERSION: "r29"
   OPENSSL_VERSION: "3.5.5"
-  OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3"
+  OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3"
 
 jobs:
 
@@ -51,6 +51,8 @@ jobs:
           make &> /dev/null
           make install_sw &> /dev/null
           cd ..
+          # libtorrent hashes and uses RAND_bytes from several threads; OpenSSL must be a threads build
+          grep -q "define OPENSSL_THREADS" openssl/include/openssl/configuration.h
       - name: build
         run: |
           alias ranlib='${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib'
@@ -117,6 +119,8 @@ jobs:
           make &> /dev/null
           make install_sw &> /dev/null
           cd ..
+          # libtorrent hashes and uses RAND_bytes from several threads; OpenSSL must be a threads build
+          grep -q "define OPENSSL_THREADS" openssl/include/openssl/configuration.h
       - name: build
         run: |
           alias ranlib='${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib'
@@ -183,6 +187,8 @@ jobs:
           make &> /dev/null
           make install_sw &> /dev/null
           cd ..
+          # libtorrent hashes and uses RAND_bytes from several threads; OpenSSL must be a threads build
+          grep -q "define OPENSSL_THREADS" openssl/include/openssl/configuration.h
       - name: build
         run: |
           alias ranlib='${PWD}/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib'
@@ -249,6 +255,8 @@ jobs:
           make &> /dev/null
           make install_sw &> /dev/null
           cd ..
+          # libtorrent hashes and uses RAND_bytes from several threads; OpenSSL must be a threads build
+          grep -q "define OPENSSL_THREADS" openssl/include/openssl/configuration.h
           mv ${PWD}/openssl/lib64 ${PWD}/openssl/lib
       - name: build
         run: |

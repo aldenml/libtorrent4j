@@ -12,7 +12,7 @@ env:
   BOOST_DOT_VERSION: "1.90.0"
   BOOST_VERSION: "1_90_0"
   OPENSSL_VERSION: "3.5.5"
-  OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-threads no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3"
+  OPENSSL_NO_OPTS: "no-deprecated no-shared no-makedepend no-static-engine no-stdio no-posix-io no-ui-console no-zlib no-zlib-dynamic -fno-strict-aliasing -fvisibility=hidden -O3"
   CXX: g++-10
   CC: gcc-10
 
@@ -81,6 +81,8 @@ jobs:
           make &> /dev/null
           make install_sw &> /dev/null
           cd ..
+          # libtorrent hashes and uses RAND_bytes from several threads; OpenSSL must be a threads build
+          grep -q "define OPENSSL_THREADS" openssl/include/openssl/configuration.h
       - name: build
         run: |
           export BOOST_ROOT=${PWD}/boost
@@ -138,6 +140,8 @@ jobs:
           make &> /dev/null
           make install_sw &> /dev/null
           cd ..
+          # libtorrent hashes and uses RAND_bytes from several threads; OpenSSL must be a threads build
+          grep -q "define OPENSSL_THREADS" openssl/include/openssl/configuration.h
       - name: build
         run: |
           export BOOST_ROOT=${PWD}/boost
